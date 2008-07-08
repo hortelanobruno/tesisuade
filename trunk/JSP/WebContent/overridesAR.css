@@ -1,0 +1,16 @@
+#paquetesEnOfertaTitulo,#pasajesEnOfertaTitulo2{
+background-color:#003366;top:0px;left:0px;width:100%;height:21px;color:#FFFFFF;font-size:15px;font-weight:bold;padding-left:5px;background-image: none;}
+
+#pasajesEnOfertaTitulo{background-color:#CC0000;top:0px;left:0px;width:100%;height:21px;color:#FFFFFF;font-size:15px;font-weight:bold;padding-left:5px;background-image: none;}
+#ultimoMomentoDesde{
+	position:absolute;top:72px;left:320px;height:30px;width:140px;padding-right:5px;font-size: 11px;
+}
+#ultimoMomentoRotatorImpuestos{
+	position:absolute;top:110px;left:270px;height:30px;width:140px;padding-right:5px;font-size: 11px;
+}
+#precioFinalTitulo{
+float:right;
+margin-right:10px;font-size:10px;font-family:tahoma;
+margin-top:4px;
+font-weight:normal;
+}
