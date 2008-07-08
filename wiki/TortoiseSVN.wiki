@@ -13,6 +13,9 @@ Si nos pide un usuario y contraseña son los datos del repositorio de la pagina 
 Utilizar el repositorio:
 
 Para utilizar el repositorio hay 2 funciones indispensables, Commit y Update.
+
 La función Commit se encarga de actualizar ( copiar archivos modificados) el elemento seleccionado al repositorio. Osea de la pc al repositorio.
+
 La función Update se encarga de actualizar ( copiar archivos modificados) los elementos modificados a la pc. Osea del repositorio a la pc.
+
 Una buena practica es antes de modificar algo hacer un Update así modificamos sobre la ultima versión. Porque pueden aparecer conflictos porque queremos subir una versión que esta obsoleta.
