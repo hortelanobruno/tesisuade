@@ -1,0 +1,33 @@
+div#footer{font-family: Verdana, Arial, Helvetica, sans-serif;font-size: 11px;color: #666666;}
+div#logoSeguridad{width:449px;height:40px;position:absolute;top:40px;left:150px;background-position: left top;background-image:url(../footerImages/logosseguridad.gif)}
+div#footer a{color: #0066cc;}
+div#footerLinksGrales a{color: #0066cc;}
+div#footerLinksGrales {font-family: Verdana, Arial, Helvetica, sans-serif;font-size: 11px;color: #666666;position:absolute;top:90px;left:20px;text-align:center;}
+img#footerParners {position:absolute;top:85px;left:260px;}   
+div#logoSeguridad{width:449px;height:40px;position:absolute;top:40px;left:60px;background-position: left top;background-image:url(../footerImages/logosseguridad.gif)}
+#verisignDiv{
+   position:absolute;
+   left:170px;
+   top:5px;
+   width:75px;
+   height:30px;
+   cursor:pointer;
+}
+#bbbDiv{
+	position:absolute;
+	left:130px;
+	top:5px;
+	width:80px;
+	height:30px;
+	cursor:pointer;
+}
+div#footerPaisContenido{position:absolute;top:10px;left:40px;font-family: Verdana, Arial, Helvetica, sans-serif;font-size: 11px;color:#666666}
+div#footerPaisContenido img {padding-left:2px;padding-right:2px;}
+div#footerPaisContenido a{text-decoration:underline;color:#0066CC;}
+#hackerSafe{
+	position:absolute;
+	top:40px;
+	padding-top:10px;
+	left:550px;
+	z-index: 200;
+}

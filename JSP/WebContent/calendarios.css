@@ -1,0 +1,154 @@
+/* ******************** */
+/* Popup				*/
+/* ******************** */
+.popup,
+.popupcover {
+	position : absolute;
+	display : none;
+	visibility: hidden;
+	z-index: 500;
+}
+.popupcover {
+	z-index: 499;
+}
+
+/* ******************** */
+/* calendar popup    	*/
+/* ******************** */
+.calendar {
+	background : #fff;
+	height : auto;
+	border: none;
+}
+
+.calendar table {
+	border: 1px solid #666;
+	background-color: #fff;
+}
+
+.calendar td {
+	padding: 0.1em 0.25em;
+	text-align : center;
+}
+
+.calendar .calheader,
+.calendar .calheader .caltitle {
+	background-color: #ccd9b8;
+	color : #262626;
+	font-weight : bold;
+	padding-bottom : 0.1em;
+	white-space : nowrap;
+}
+
+.calendar .calweekdays td {
+	color : #ffffff;
+	background : #003366;
+}
+
+.calendar .calweekdays td.calweekend {
+	color : #ffffff;
+	background : #003366;
+}
+
+.calendar .caldays td {
+	color : #666633;
+	font-weight : bold;
+	border : 1px solid #fff;
+	border-top : 1px solid #ddd;
+	font-size : 1em;
+}
+
+.calendar .caldays td.weekday,
+.calendar .caldays td.weekend {
+	cursor : pointer;
+}
+
+.calendar .caldays td.weekday_hov,
+.calendar .caldays td.current_hov,
+.calendar .caldays td.weekend_hov,
+.calendar .caldays td.selected,
+.calendar .caldays td.selected_hov,
+.calendar .caldays td.current {
+	background-color: #ccd9b8;
+	color : #c00;
+	border : 1px solid #999;
+	cursor : pointer;
+}
+
+.calendar td.calnext,
+.calendar td.calnext_hov,
+.calendar td.calprev,
+.calendar td.calprev_hov {
+	color : #31608C;
+	text-decoration : underline;
+	cursor : pointer;
+}
+
+.calendar td.calnext,
+.calendar td.calnext_hov {
+	text-align : right;
+}
+
+.calendar td.calprev,
+.calendar td.calprev_hov,
+.calendar td.calprev_old,
+.calendar td.calprev_old_hov {
+	text-align : left;
+}
+
+.calendar td.calprev_old,
+.calendar td.calprev_old_hov {
+	color : #999;
+}
+
+.calendar td.calnext_hov,
+.calendar td.calprev_hov {
+	color : #c00;
+}
+
+.calendar td.past,
+.calendar td.past_hov,
+.calendar td.weekendpast,
+.calendar td.weekendpast_hov {
+	text-decoration : line-through;
+	color : #ddd;
+}
+
+.calendar td.today {
+	color : #d30000;
+}
+
+.calendar .calfooter {
+	background : #ccd9b8;
+}
+
+.calendar .calfooter td {
+	text-align : right;
+}
+
+
+.calendar td.calspacer1 {
+	padding : 0;
+    font-size: 1px;
+    width: 1px;
+	border-left: 1px solid #8FA0AF;
+	background-color: #fff;
+}
+.calendar td.calspacer2 {
+	padding : 0;
+    font-size: 1px;
+    width: 1px;
+	border-right: 1px solid #ddd;
+	background-color: #fff;
+}
+
+.calendar .calhborder td,
+.calendar .calfborder td {
+	font-size : 2px;
+	height : 2px;
+	background : #ccc url("/general/lib/calendario/border_bar1.gif") 0px 0px repeat-x;
+}
+
+.calendar .calfborder td {
+	background : #ccc url("/general/lib/calendario/border_bar2.gif") 0px 0px repeat-x;
+}
