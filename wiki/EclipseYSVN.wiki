@@ -13,7 +13,7 @@ Pasos para descargar un proyecto del repositorio:
 
 3 - Una vez seleccionado el repositorio correspondiente nos va a aparecer la jerarquía de carpetas que están en /trunk, notese que aqui es el directorio de los proyectos por lo que puede haber muchos proyectos de distinto tipo de lenguaje, así que hay que saber que proyecto se desea descargar. Una vez identificado la carpeta que contiene el proyecto se tiene que seleccionar y apretar en Finish. Notese que si es la primera vez nos puede pedir un usuario y contraseña que son los datos del repositorio.
 
-4 - Por ultimo hay que verificar que en el icono del proyecto aparece un "tamborsito" en forma de db amarillo, esto significa que poseemos la ultima versión del proyecto en el repositorio, si este icono se vuelve en forma de * significa que modificamos un archivo y hay que actualizarlo en el SVN.
+4 - Por ultimo hay que verificar que en el icono del proyecto aparece un "tamborsito" en forma de db amarillo, esto significa que poseemos la ultima versión del proyecto en el repositorio, si este icono se vuelve en forma de "*" significa que modificamos un archivo y hay que actualizarlo en el SVN.
 
 
 Pasos para subir un proyecto al repositorio:
