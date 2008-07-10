@@ -2,7 +2,7 @@ package thewebsemantic;
 
 import static thewebsemantic.TypeWrapper.instanceURI;
 import static thewebsemantic.TypeWrapper.wrap;
-import thewebsemantic.binding.Jenabean;
+import thewebsemantic.binding.*;
 
 import com.hp.hpl.jena.rdf.model.Resource;
 

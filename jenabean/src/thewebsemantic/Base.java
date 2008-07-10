@@ -2,7 +2,7 @@ package thewebsemantic;
 
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.ParameterizedType;
-import thewebsemantic.binding.Jenabean;
+import thewebsemantic.binding.*;
 
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntProperty;

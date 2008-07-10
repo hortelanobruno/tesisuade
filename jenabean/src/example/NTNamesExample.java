@@ -3,7 +3,7 @@ package example;
 import java.util.Collection;
 
 import thewebsemantic.Sparql;
-import thewebsemantic.binding.Jenabean;
+import thewebsemantic.binding.*;
 
 import com.hp.hpl.jena.ontology.OntDocumentManager;
 import com.hp.hpl.jena.ontology.OntModel;
