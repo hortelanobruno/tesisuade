@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import com.hp.hpl.jena.ontology.OntClass;
 
-import thewebsemantic.binding.Jenabean;
+import thewebsemantic.binding.*;
 import static org.junit.Assert.*;
 
 public class TestBinding {
