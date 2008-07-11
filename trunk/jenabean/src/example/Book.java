@@ -1,8 +1,23 @@
 package example;
 
+import static example.DublinCore.CONTRIBUTOR;
+import static example.DublinCore.COVERAGE;
+import static example.DublinCore.CREATOR;
+import static example.DublinCore.DATE;
+import static example.DublinCore.DESCRIPTION;
+import static example.DublinCore.FORMAT;
+import static example.DublinCore.IDENTIFIER;
+import static example.DublinCore.LANGUAGE;
+import static example.DublinCore.PUBLISHER;
+import static example.DublinCore.RELATION;
+import static example.DublinCore.RIGHTS;
+import static example.DublinCore.SOURCE;
+import static example.DublinCore.SUBJECT;
+import static example.DublinCore.TITLE;
+import static example.DublinCore.TYPE;
+
 import java.util.Date;
 
-import static example.DublinCore.*;
 import thewebsemantic.Id;
 import thewebsemantic.RdfProperty;
 

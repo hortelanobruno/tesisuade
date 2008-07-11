@@ -1,5 +1,7 @@
 package test.bean;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.Date;
 
 import org.junit.Test;
@@ -10,8 +12,6 @@ import thewebsemantic.RDF2Bean;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-
-import static org.junit.Assert.*;
 
 public class TestTransitive {
 	

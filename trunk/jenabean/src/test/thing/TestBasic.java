@@ -1,13 +1,14 @@
 package test.thing;
 
 
+import static java.lang.System.out;
+
 import org.junit.Test;
 
+import thewebsemantic.Thing;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import thewebsemantic.Thing;
-import static java.lang.System.out;
 
 
 public class TestBasic {

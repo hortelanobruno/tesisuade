@@ -3,6 +3,7 @@
  */
 package test.bean;
 import java.util.Collection;
+
 import thewebsemantic.Id;
 import thewebsemantic.Namespace;
 

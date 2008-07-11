@@ -3,7 +3,6 @@ package thewebsemantic;
 import java.util.Collection;
 import java.util.LinkedList;
 
-
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;

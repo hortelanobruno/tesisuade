@@ -1,6 +1,9 @@
 package test.bean;
 
 
+import static org.junit.Assert.assertEquals;
+import static thewebsemantic.binding.Jenabean.load;
+
 import java.util.Collection;
 
 import org.junit.BeforeClass;
@@ -11,8 +14,6 @@ import thewebsemantic.binding.Jenabean;
 
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import static thewebsemantic.binding.Jenabean.*;
-import static org.junit.Assert.*;
 
 public class TestRdfBeanId {
 
