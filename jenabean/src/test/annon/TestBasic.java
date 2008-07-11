@@ -3,7 +3,7 @@ package test.annon;
 import org.junit.Test;
 
 import thewebsemantic.NotFoundException;
-import thewebsemantic.binding.*;
+import thewebsemantic.binding.Jenabean;
 
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.ModelFactory;

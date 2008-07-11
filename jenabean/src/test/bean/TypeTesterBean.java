@@ -3,6 +3,7 @@ package test.bean;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
+
 import thewebsemantic.Namespace;
 
 @Namespace("http://test#")

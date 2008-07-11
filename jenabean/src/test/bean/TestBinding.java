@@ -1,11 +1,12 @@
 package test.bean;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
-import com.hp.hpl.jena.ontology.OntClass;
+import thewebsemantic.binding.Jenabean;
 
-import thewebsemantic.binding.*;
-import static org.junit.Assert.*;
+import com.hp.hpl.jena.ontology.OntClass;
 
 public class TestBinding {
 	

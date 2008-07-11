@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import thewebsemantic.Bean2RDF;
 import thewebsemantic.binding.Jenabean;
+
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 

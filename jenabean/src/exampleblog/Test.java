@@ -6,10 +6,13 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.util.Iterator;
 
 import com.hp.hpl.jena.db.DBConnection;
 import com.hp.hpl.jena.db.IDBConnection;
 import com.hp.hpl.jena.db.ModelRDB;
+import com.hp.hpl.jena.ontology.Individual;
+import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
@@ -26,13 +29,13 @@ public class Test {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			
-			String dbname = "";
-			String dbuser = "";
+			String dbname = "jena";
+			String dbuser = "root";
 			String dbpass = "";
-			String dbengine = "";
-			String dbmodelname = "";
+			String dbengine = "mysql";
+			String dbmodelname = "turismo";
 
-			connection = new DBConnection("jdbc:mysql://localhost/" + dbname,
+			connection = new DBConnection("jdbc:mysql://127.0.0.1:3306/" + dbname,
 					dbuser, dbpass, dbengine);
 
 			maker = ModelFactory.createModelRDBMaker(connection);
@@ -43,7 +46,42 @@ public class Test {
 					RDBModel);
 
 			// aca hay que poner el codigo nuestro
+			
+/*			createDatabaseScheema(dbname,dbuser,dbpass,dbengine,dbmodelname);
+			OntModel onti = loadOntModelFromOwlFile("C:\\Documents and Settings\\Administrador\\Escritorio\\Tesis\\Ontologias\\turismo2.owl");
+			boolean result = saveOntModelIntoDatabase(dbname,dbuser,dbpass,dbengine,dbmodelname,onti);
+			if(result){
+				System.out.println("Todo OK.");
+			}else{
+				System.out.println("Error al grabar en base");
+			}*/
+			
+			//ontology = loadOntModelFromOwlFile("C:\\Documents and Settings\\Administrador\\Escritorio\\Tesis\\Ontologias\\turismo2.owl");
+			
 
+
+   
+			ontology.getDocumentManager().addAltEntry( "http://www.w3.org/TR/2003/CR-owl-guide-20030818/wine",
+                                        "C:\\Documents and Settings\\Administrador\\Escritorio\\Tesis\\Ontologias\\turismo2.owl" );
+    
+
+        OntClass c = ontology.getOntClass( "Alojamiento" );
+        
+        for (Iterator i = ontology.listClasses();  i.hasNext(); ) {
+            // now list the classes
+           i.toString();
+        }
+   
+
+			
+			
+			
+			
+			
+			
+			
+			
+			System.out.println("Cargo ontologia");
 			try {
 				ontology.close();
 				RDBModel.close();

@@ -1,6 +1,7 @@
 package example.people;
 
 import thewebsemantic.Bean2RDF;
+
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 

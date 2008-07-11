@@ -1,8 +1,8 @@
 package example;
 
+import static example.AssemblerVocabulary.NS;
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfProperty;
-import static example.AssemblerVocabulary.NS;
 
 @Namespace(NS)
 public class RDBModel {

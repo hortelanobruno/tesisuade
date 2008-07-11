@@ -3,12 +3,11 @@ package example;
 import java.util.Collection;
 
 import thewebsemantic.Sparql;
-import thewebsemantic.binding.*;
+import thewebsemantic.binding.Jenabean;
 
 import com.hp.hpl.jena.ontology.OntDocumentManager;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import static thewebsemantic.binding.Jenabean.*;
 
 public class NTNamesExample {
 

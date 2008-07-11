@@ -20,5 +20,6 @@
 	<classpathentry kind="lib" path="jenalib/xercesImpl.jar"/>
 	<classpathentry kind="lib" path="jenalib/xml-apis.jar"/>
 	<classpathentry kind="lib" path="jenalib/junit-4.4.jar"/>
+	<classpathentry kind="lib" path="jenalib/mysql-connector-java-5.1.6-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
