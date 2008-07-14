@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import thewebsemantic.Bean2RDF;
 import thewebsemantic.RDF2Bean;
+import thewebsemantic.RdfBean;
 import thewebsemantic.binding.Jenabean;
 
 import com.hp.hpl.jena.ontology.OntModel;
@@ -93,6 +94,7 @@ public class TestLoadWith {
 	
 	}
 	
+
 	@Test
 	public void testOther() throws Exception {
 		Person p = new Person();
