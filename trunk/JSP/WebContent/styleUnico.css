@@ -1,0 +1,418 @@
+html, body {margin:0; padding:0;font-family:tahoma,verdana,arial,helvetica;font-size:8pt}
+div {overflow: hidden;}
+div#header{position:absolute;top:10px;left:10px;height:95px;width:320px}
+div#mailingBox{position:absolute;top:80px;left:270px;height:30px;width:495px;}
+div#publicidadTop{position:absolute;top:10px;left:300px;text-align:right}
+div#publicidadTop div{position:relative;width:0px;height:0px;}
+div#searchBox{position:absolute;top:100px;left:10px;height:250px;width:335px;}
+div#pasajesEnOfertaMain{position:absolute;top:360px;left:10px;height:190px;width:333px;background-color:#D3E1EC;border:1px solid #000000;}
+div#paquetesEnOfertaMain{position:absolute;top:360px;left:355px;height:190px;width:400px;background-color:#E5EBDD;border:1px solid #000000;}
+div#pasajesEnOfertaSecundario{position:absolute;top:560px;left:10px;height:280px;width:333px;background-color:#D3E1EC;border:1px solid #000000;}
+div#pasajesEnOfertaSecundario div{position:relative;width:0px;height:0px;}
+div#ultimoMomento{position:absolute;top:100px;left:355px;height:250px;width:413px;border-bottom:1px solid #AABAC7;}
+div#templateMain{position:absolute;top:645px;left:355px;height:280px;width:400px;border:1px solid  #DAE8F5;}
+div#recomienda{position:absolute;top:850px;left:10px;height:75px;width:333px;border-bottom:1px solid #DAE8F5;}
+div#especiales{position:absolute;top:560px;left:355px;height:75px;width:400px;border:1px solid #000000;background-color:#F1F4F9;}
+div#footerPais{position:absolute;top:930px;left:10px;height:15px;width:758px;}
+div#barRight{position:absolute;top:200px;left:763px;height:730px;width:5px;background-color:#CC0200;}
+div#hotelesRight{position:absolute;top:143px;left:778px;height:600px;width:160px;display:none;}
+div#publicidadTopRight{position:absolute;top:10px;left:778px;height:100px;width:160px;display:none;}
+div#publicidadTopRight div{position:relative;width:0px;height:0px;}
+div#publicidadBottomRight{position:absolute;top:778px;left:778px;height:100px;width:160px;display:none;}
+div#footer{position:absolute;top:955px;left:10px;height:320px;width:770px;}
+div#header a{color:#0460C3;text-decoration:underline;}
+div#header img{padding-bottom:5px;}
+#telefonoHeader{font-size:12px;color:#527A9B;}
+#telefonoHeader_ar{font-size:10px;color:#527A9B;}
+.buscadorContenedor {background-color:#93BB7C;background-repeat:no-repeat;background-position: top right;background-image: url(../buscadorImages/contenedorEsquinaSupDer.gif);font-size: 11px;font-family: Verdana, Arial, Helvetica, sans-serif;}
+.buscadorContenedor input, #buscadorOpAvContenedor input {font-size: 10px;height:13px;border-style:solid;border-color:#333333;border-width:1px;}
+.buscadorContenedor select, #buscadorOpAvContenedor select {font-size: 10px;height:18px;border-style:solid;border-color:#333333;border-width:1px;}
+.buscadorSolapaOnOff, .buscadorSolapaOn {background-color:#003366;background-repeat:no-repeat;background-position: right;font-weight: bold;color: #FFFFFF;}
+.icoInfo{cursor:pointer;}
+.buscadorSolapaOnOff{ background-image: url(../buscadorImages/solapa_on-off.gif);}
+.buscadorSolapaOn{background-image: url(../buscadorImages/solapa_on.gif);}
+.buscadorSolapaOffOff, .buscadorSolapaOffOn, .buscadorSolapaOff{background-color:#EDF1E7;background-repeat:no-repeat;background-position: right;cursor:pointer;}
+.buscadorSolapaOffOff{background-image: url(../buscadorImages/solapa_off-off.gif);}
+.buscadorSolapaOffOn{background-image: url(../buscadorImages/solapa_off-on.gif);}
+.buscadorSolapaOff{background-image: url(../buscadorImages/solapa_off.gif);}
+#buscadorSolapaVuelos{position:absolute;top:10px;left:0px;height:24px;width:80px;}
+#buscadorSolapaPaquetes{position:absolute;top:10px;left:80px;height:24px;width:90px;}
+#buscadorSolapaHoteles{position:absolute;top:10px;left:170px;height:24px;width:85px;}
+#buscadorSolapaAutos{position:absolute;top:10px;left:255px;height:24px;width:70px;}
+#buscadorSolapaVuelos p, #buscadorSolapaPaquetes p, #buscadorSolapaHoteles p, #buscadorSolapaAutos p {margin-top:5px;}
+#buscadorSolapaVuelosIcono, #buscadorSolapaPaquetesIcono, #buscadorSolapaHotelesIcono, #buscadorSolapaAutosIcono{float:left;height:16px;width:19px;margin-top:4px;background-repeat:no-repeat;background-position: right;}
+.buscadorSolapaVuelosIconoOn{background-image: url(../buscadorImages/ico_vuelos-on.gif);}
+.buscadorSolapaVuelosIconoOff{background-image: url(../buscadorImages/ico_vuelos-off.gif);}
+.buscadorSolapaPaquetesIconoOn{background-image: url(../buscadorImages/ico_paquetes-on.gif);}
+.buscadorSolapaPaquetesIconoOff{background-image: url(../buscadorImages/ico_paquetes-off.gif);}
+.buscadorSolapaHotelesIconoOn{background-image: url(../buscadorImages/ico_hoteles-on.gif);}
+.buscadorSolapaHotelesIconoOff{background-image: url(../buscadorImages/ico_hoteles-off.gif);}
+.buscadorSolapaAutosIconoOn{background-image: url(../buscadorImages/ico_autos-on.gif);}
+.buscadorSolapaAutosIconoOff{background-image: url(../buscadorImages/ico_autos-off.gif);}
+#buscadorSeparadorSolapas{position:absolute;top:34px;left:0px;height:7px;width:335px;background-color:#003366;font-size: 0px;}
+#buscadorVuelosContenedor, #buscadorPaquetesContenedor, #buscadorAutosContenedor{position:absolute;top:41px;left:0px;height:209px;width:335px;background-color:#E5EBDD;}
+.buscadorProductoContenedorOn{display:block;}
+.buscadorProductoContenedorOff{display:none;}
+.buscadorBotonBuscarOn{display:block;}
+.buscadorBotonBuscarOff{display:none;}
+/*modif V+H*/
+
+.buscadorVuelosHotelesTitulo1{float:left;}
+.buscadorVuelosHotelesTitulo2{margin-top: 2px;font-size: 6pt;}
+
+
+
+#buscadorVuelosTipo {position:absolute;top:5px;left:5px;height:21px;border:1px solid #FFFFFF;}
+#buscadorVuelosTipoSubTexto{width:313px;}
+#buscadorVuelosTipoSubTexto0{padding-top:3px;float:left;}
+#buscadorVuelosTipoSubTexto00{padding-left:25px;float:left;}/*sergio centrado de los radio de busqueda*/
+#buscadorVuelosTipoSubTexto001,#buscadorVuelosTipoSubTexto002,#buscadorVuelosTipoSubTexto01,#buscadorVuelosTipoSubTexto010,#buscadorVuelosTipoSubTexto012,#buscadorVuelosTipoSubTexto1{float:left;}
+/*fin modif V+H*/
+#buscadorVuelosTipo input{border-style:none;}
+#buscadorVuelosTipoIdaVuelta {font-weight:bold;}
+#buscadorVuelosDescripcionOriginLocation1, #buscadorVuelosDescripcionDestinationLocation1 {position:absolute;top:40px;width:150px;}
+#buscadorVuelosDescripcionOriginLocation1 {left:5px;}
+#buscadorVuelosDescripcionDestinationLocation1 {left:173px;}
+#buscadorVuelosSeparador {position:absolute;top:70px;left:0px;height:70px;width:335px;font-size: 0px;border-top:1px solid #FFFFFF;border-bottom:1px solid #FFFFFF;}
+#buscadorVuelosFechaSalidaLabel {position:absolute;top: 80px;left:5px;}
+#buscadorVuelosFechaRegresoLabel {position:absolute;top: 110px;left:5px;}
+#buscadorVuelosFechaSalida, #buscadorVuelosFechaRegreso {position:absolute;left:140px;width:80px;}
+#buscadorVuelosFechaSalida {top: 78px;}
+#buscadorVuelosFechaRegreso {top: 108px;}
+#buscadorVuelosCalFechaSalida, #buscadorVuelosCalFechaRegreso {position:absolute;left:245px;width:20px;height:16px;border:0px;cursor:pointer;}
+#buscadorVuelosCalFechaSalida {top:78px;}
+#buscadorVuelosCalFechaRegreso {top:108px;}
+#buscadorVuelosHoraDesde, #buscadorVuelosHoraHasta {position:absolute;left:170px;width:160px;}
+#buscadorVuelosHoraDesde {top:78px;}
+#buscadorVuelosHoraHasta {top:108px;}
+#buscadorVuelosCantPasajeros {position:absolute;top:160px;left:10px;width:315px;}
+#buscadorVuelosCantPasajeros select {margin-right:13px;}
+#buscadorVuelosIcoInfo {position:absolute;top:163px;left:315px;}
+#buscadorVuelosBotBuscar {position:absolute;top:185px;left:210px;cursor:pointer;}
+#buscadorPaquetesOrigen, #buscadorPaquetesMesSalida, #buscadorPaquetesRegion, #buscadorPaquetesPais, #buscadorPaquetesCiudad {position:absolute;left:10px;width:315px;height:20px;}
+#buscadorPaquetesOrigen {top:15px;}
+#buscadorPaquetesMesSalida {top:40px;}
+#buscadorPaquetesRegion {top:65px;}
+#buscadorPaquetesPais {top:90px;}
+#buscadorPaquetesCiudad {top:115px;}
+#buscadorPaquetesOrigen input, #buscadorPaquetesOrigen select,#buscadorPaquetesMesSalida select, #buscadorPaquetesRegion select, #buscadorPaquetesPais select, #buscadorPaquetesCiudad select {width:180px;position:absolute;top:0px;left:130px;}
+#buscadorPaquetesOrigen input {width:175px;}
+#buscadorPaquetesCantPasajeros {position:absolute;top:141px;left:0px;width:335px;border-top:1px solid #FFFFFF;padding-top:18px;padding-left:10px;}
+#buscadorPaquetesCantPasajeros select {margin-right:13px;}
+#buscadorPaquetesIcoInfo {position:absolute;top:163px;left:315px;}
+#buscadorPaquetesBotBuscar {position:absolute;top:185px;left:196px;cursor:pointer;}
+
+
+
+
+#buscadorHotelesFechaSalida, #buscadorHotelesFechaRegreso {position:absolute;left:200px;width:80px;}
+#buscadorHotelesFechaSalida {top:45px;}
+#buscadorHotelesFechaRegreso {top:75px;}
+#buscadorHotelesCalFechaSalida, #buscadorHotelesCalFechaRegreso {position:absolute;left:300px;width:20px;height:16px;border:0px;cursor:pointer;}            
+#buscadorHotelesCalFechaSalida {top:45px;}
+#buscadorHotelesCalFechaRegreso {top:75px;}
+#buscadorHotelesCantidadPasajeros {height:50px;position:absolute;padding-left:10px;padding-top:7px;top:100px;left:0px;width:335px;border-top:1px solid #FFFFFF;}
+#buscadorHotelesHuespedes1, #buscadorHotelesHuespedes2, #buscadorHotelesHuespedes3, #buscadorHotelesHuespedes4 {border-style:none;position:absolute;top:35px;}
+#buscadorHotelesHuespedes1 {left:13px;}
+#buscadorHotelesHuespedes2 {left:80px;}
+#buscadorHotelesHuespedes3 {left:160px;}
+#buscadorHotelesHuespedes4 {left:240px;}
+#buscadorHotelesHuespedesImg1, #buscadorHotelesHuespedesImg2, #buscadorHotelesHuespedesImg3, #buscadorHotelesHuespedesImg4 {position:absolute;top:25px;}
+#buscadorHotelesHuespedesImg1 {left:30px;}
+#buscadorHotelesHuespedesImg2 {left:100px;}
+#buscadorHotelesHuespedesImg3 {left:180px;}
+#buscadorHotelesHuespedesImg4 {left:260px;}
+#buscadorHotelesCantidadHabitaciones {position:absolute;padding-left:10px;top:160px;left:0px;width:335px;}
+#buscadorHotelesCantidadHabitaciones input{border-style:none;}
+
+#buscadorAutosCiudadOrigen {position:absolute;top:30px;left:10px;}
+#buscadorAutosContenedorCiudadDestino  {display:none;}
+#buscadorAutosCiudadDestino {position:absolute;top:70px;left:10px;}
+#buscadorAutosDescripcionOriginLocation1{position:absolute;left:190px;width:138px;}
+#buscadorAutosDescripcionDestinationLocation1 {position:absolute;left:190px;width:138px;}
+#buscadorAutosDescripcionOriginLocation1 {top:30px;}
+#buscadorAutosRegresaEnMismaCiudad {position:absolute;top:50px;left:10px;}
+#buscadorAutosDescripcionDestinationLocation1 {top:70px;}
+#buscadorAutosRegresaEnMismaCiudad input{border-style:none;}
+#buscadorAutosFechaSalidaLabel {position:absolute;top: 100px;left:10px;}
+#buscadorAutosFechaRegresoLabel {position:absolute;top: 130px;left:10px;}
+#buscadorAutosFechaSalida, #buscadorAutosFechaRegreso {position:absolute;left:200px;width:90px;}
+#buscadorAutosFechaSalida {top:100px;}
+#buscadorAutosFechaRegreso {top:130px;}
+#buscadorAutosCalFechaSalida, #buscadorAutosCalFechaRegreso {position:absolute;left:305px;width:20px;height:16px;border:0px;cursor:pointer;}
+#buscadorAutosCalFechaSalida {top:100px;}
+#buscadorAutosCalFechaRegreso {top:130px;}
+.buscadorPaquetesSolapaMostrarOpAvanzadasOn, .buscadorPaquetesSolapaMostrarOpAvanzadasOff{position:absolute;background-repeat:no-repeat;background-position: top right;top:185px;left:0px;padding-top:3px;width:190px;height:25px;}
+.buscadorPaquetesSolapaMostrarOpAvanzadasOn{background-color:#CDD8B8;background-image: url(../buscadorImages/solapa_inferior-on.gif);}
+.buscadorPaquetesSolapaMostrarOpAvanzadasOff{background-color:#E5EBDD;}
+.buscadorPaquetesSolapaMostrarOpAvanzadasOn a {color:#1600F1;text-decoration:underline;}
+.buscadorPaquetesSolapaMostrarOpAvanzadasOn img {visibility:show;}
+.buscadorPaquetesSolapaMostrarOpAvanzadasOff a {color:#000000;text-decoration:none;font-weight: bold;}
+.buscadorPaquetesSolapaMostrarOpAvanzadasOff img {visibility:hidden;}
+
+.buscadorVuelosMasHotelesSolapaMostrarOpAvanzadasOn, .buscadorVuelosMasHotelesSolapaMostrarOpAvanzadasOff{position:absolute;background-repeat:no-repeat;background-position: top right;left:0px;margin-top:0px;padding-top:5px;width:160px;height:50px;}
+.buscadorVuelosMasHotelesSolapaMostrarOpAvanzadasOn{background-color:#CDD8B8;background-image: url(../buscadorImages/solapa_inferior-on.gif);}
+.buscadorVuelosMasHotelesSolapaMostrarOpAvanzadasOff{background-color:#E5EBDD;}
+.buscadorPVuelosMasHotelesSolapaMostrarOpAvanzadasOn a {color:#1600F1;text-decoration:underline;}
+.buscadorVuelosMasHotelesSolapaMostrarOpAvanzadasOn img {visibility:show;}
+.buscadorVuelosMasHotelesSolapaMostrarOpAvanzadasOff a {color:#000000;text-decoration:none;font-weight: bold;}
+.buscadorVuelosMasHotelesSolapaMostrarOpAvanzadasOff img {visibility:hidden;}
+
+
+
+
+#buscadorAutosBotBuscar {position:absolute;top:185px;left:210px;cursor:pointer;}
+
+div#especialesTitulo{position:absolute;top:0px;left:0px;height:20px;width:390px;background-color: #003366;padding-left:10px;font-size:15px;font-weight:bold;color:#FFFFFF;}
+a#especialesVerTodas{position:absolute;top:2px;left:325px;float:right;font-size:11px;text-decoration:underline;color:#0460C3;}
+div#especialesContenido{ position:absolute;top:20px;left:0px;height:60px;width:385px;margin:5px;float:right;font-size:12px;font-weight:bold;color:#0065AA;}
+div#especialesContenido a{text-decoration:underline;color:#0065AA;}
+div#footerPais{background-color:#CC0200;}
+div#footerPaisLineaSuperior{position:absolute;top:0px;left:0px;width:753px;height:5px;background-color:#FFFFFF;background-image: url(../footerPaisImages/bottom-right.jpg) ;background-repeat:no-repeat;background-position: top right;}
+div#mailingBox{font-weight:bold;}div#mailingBox input{position:absolute;top:0px;left:235px;}a#mailingBoxRecibir{position:absolute;top:5px;left:387px;color:#0460C3;text-decoration:underline;font-weight:bold;}span#mailingBoxSeparador{position:absolute;top:5px;left:425px;color:#000000;font-weight:normal;}a#mailingBoxSuspender{position:absolute;top:5px;left:437px;color:#0460C3;text-decoration:underline;font-weight:bold;}img#mailingBoxSobre{position:absolute;top:5px;left:87px;}span#mailingBoxLabel{position:absolute;top:5px;left:135px;}
+#paquetesEnOfertaTitulo,#pasajesEnOfertaTitulo2{background-image: url(../paquetesEnOfertaImages/paquetes-oferta-titulo-izq.gif);background-repeat:no-repeat;background-position:bottom right;background-color:#003366;top:0px;left:0px;width:300px;height:21px;color:#FFFFFF;font-size:15px;font-weight:bold;padding-left:5px;}
+#iconoPaquetesTitulo{margin-top:2px;float:left;}
+.precioPaquete{text-align:right;}
+#paquetesEnOfertaTitulo a {color:#FFFFFF;text-decoration:none;}
+#paquetesEnOfertaTitulo a:hover {color:#FFFFFF;text-decoration:underline;}
+#paquetesEnOfertaTabla {font-family:verdana,tahoma,arial,helvetica;font-size:11px;}
+#paquetesEnOfertaTabla a{color:#0055AA;text-decoration:underline;font-weight:bold;}
+#paquetesEnOfertaTabla td{padding-left:5px;padding-right:5px;}
+.paquetesEnOfertaTrImpar {background-color:#E5EBDD;}
+.paquetesEnOfertaTrPar {background-color:#F3F5F0;}
+.paquetesEnOfertaTrImpar td {height:19px;padding:0px;}
+.paquetesEnOfertaTrPar td {height:18px;padding:0px;}
+.DiasPaquete {color:#003366;font-size:11px;font-family: tahoma;font-weight:bold;vertical-align:top;}
+#pasajesEnOfertaTitulo{background-image: url(../pasajesEnOfertaImages/pasajes-oferta-titulo-izq.gif);background-repeat:no-repeat;background-position: bottom right;background-color:#CC0000;top:0px;left:0px;width:280px;height:21px;color:#FFFFFF;font-size:15px;font-weight:bold;padding-left:5px;}
+#iconoPasajeTitulo{float:left;margin-top:2px;}
+.precioPasaje{ text-align:right;}
+#pasajesEnOfertaTitulo a {color:#FFFFFF;text-decoration:none;}
+#pasajesEnOfertaTitulo a:hover {color:#FFFFFF;text-decoration:underline;}
+#pasajesEnOfertaTabla, #pasajesEnOfertaTabla2{font-family:verdana,tahoma,arial,helvetica;font-size:11px;}
+#pasajesEnOfertaTabla a, #pasajesEnOfertaTabla2 a{color:#0055AA;text-decoration:underline;font-weight:bold;}
+#pasajesEnOfertaTabla td, #pasajesEnOfertaTabla2 td {padding-left:5px;padding-right:5px;}
+pasajesEnOfertaTrPar {background-color:#D3E1EC;}
+.pasajesEnOfertaTrImpar{background-color:#F1F4F9;}
+.pasajesEnOfertaTrImpar td{height:19px;padding:0px;}
+.pasajesEnOfertaTrPar td{height:18px;padding:0px;}
+#pasajesEnOfertaTitulo2 a {color:#FFFFFF;text-decoration:none;}
+#pasajesEnOfertaTitulo2 a:hover {color:#FFFFFF;text-decoration:underline;}
+#pasajesEnOfertaTabla3 {font-family:verdana,tahoma,arial,helvetica;font-size:11px;}
+#pasajesEnOfertaTabla3 a{color:#0055AA;text-decoration:underline;font-weight:bold;}
+#pasajesEnOfertaTabla3 td{padding-left:5px;padding-right:5px;}
+.pasajesEnOfertaTrPar2 {background-color:#E5EBDD;}
+.pasajesEnOfertaTrImpar2 {background-color:#F3F5F0;}
+.pasajesEnOfertaTrPar2 td {height:18px;padding:0px;}
+.pasajesEnOfertaTrImpar2 td {height:19px;padding:0px;}
+.paquetesEnOfertaTrPar2 td {height:18px;padding:0px;}
+div#templateMainItem1, div#templateMainItem2, div#templateMainItem3, div#templateMainItem4 {position:absolute;height:59px;width:288px;padding-left:110px;background-repeat:no-repeat;background-position: left;background-color:#FFFFFF;color:#003366;}
+div#templateMainItem1 a, div#templateMainItem2 a, div#templateMainItem3 a, div#templateMainItem4 a {color:#0066cc;}
+.templateMainItemTextMedium {font-size:12px;font-weight: bold;font-family:tahoma}
+div#templateMainItem1 {top:10px;background-image: url(../templateMainImages/mejor-precio.gif) ;}
+div#templateMainItem2 {top:80px;background-image: url(../templateMainImages/clientes-felices.jpg) ;}
+div#templateMainItem3 {top:150px;background-image: url(../templateMainImages/proteccion.jpg) ;}
+div#templateMainItem4 {top:220px;background-image: url(../templateMainImages/premios.gif) ;}
+
+div#templateMainItem1_AR, div#templateMainItem2_AR, div#templateMainItem3_AR, div#templateMainItem4_AR, div#templateMainItem5_AR {position:absolute;height:50px;width:288px;padding-left:110px;background-repeat:no-repeat;background-position: left;background-color:#FFFFFF;color:#003366;}
+div#templateMainItem1_AR a, div#templateMainItem2_AR a, div#templateMainItem3_AR a, div#templateMainItem4_AR a, div#templateMainItem5_AR a  {color:#0066cc;}
+.templateMainItemTextMedium_AR {font-size:12px;font-weight: bold;font-family:tahoma}
+div#templateMainItem1_AR {top:8px;background-image: url(../templateMainImages/mejor-precio.gif) ;}
+div#templateMainItem2_AR {top:68px;background-image: url(../templateMainImages/clientes-felices.jpg) ;}
+div#templateMainItem3_AR {top:178px;background-image: url(../templateMainImages/proteccion.jpg) ;}
+div#templateMainItem4_AR {top:228px;background-image: url(../templateMainImages/premios.gif) ;}
+div#templateMainItem5_AR {top:130px;background-image: url(../templateMainImages/pesos.gif) ;}
+
+
+div#ultimoMomentoMenu{position:absolute;top:10px;left:33px;height:40px;width:380px;text-align:right;color:#0066cc;}
+div#ultimoMomentoMenu a{color:#0066cc;}
+
+img#ultimoMomentoTopRight{position:absolute;top:22px;left:0px;}
+div#ultimoMomentoTopContent{position:absolute;top:43px;left:0px;height:56px;width:353px;padding-top:1px;padding-right:60px;background-repeat:no-repeat;background-position: bottom right;background-image: url(/homes/ultimoMomentoImages/ultimoMomento-top-right.jpg);background-color:#CC0200;color:#FFFFFF;}
+dvi#ultimoMomentoTopContentSpan1{font-size:15px;margin-left:95px}
+dvi#ultimoMomentoTopContentSpan2{font-size:14px;margin-left:95px}
+dvi#ultimoMomentoTopContentSpan3{font-size:14px;margin-left:95px}
+div#ultimoMomentoRotatorContent{position:absolute;top:100px;left:0px;height:150px;width:408px;background-repeat:no-repeat;background-position: top right;background-image: url(/homes/ultimoMomentoImages/rotator-top-right.gif);color:#006699;}
+div#ultimoMomentoRotatorNombre{position:absolute;top:6px;left:0px;height:30px;width:400px;text-align:right;font-size: 24px;}
+div#ultimoMomentoRotatorDescripcion{position:absolute;top:38px;left:255px;height:30px;width:140px;padding-right:5px;font-size: 11px;}
+div#ultimoMomentoRotatorPrecio{position:absolute;top:86px;left:190px;height:30px;width:160px;font-size: 17px;font-weight: bold;text-align:right;font-family:tahoma}
+div#ultimoMomentoRotatorBotonera{position:absolute;top:127px;left:280px;height:25px;width:110px;visibility:hidden;}
+div#ultimoMomentoRotatorBotonera img{padding-right:7px;}img#ultimoMomentoRotatorBotIr{position:absolute;top:81px;left:355px;border:0px;}
+#ultimoMomentoRotatorDescripcion{text-align:right}#ultimoMomentoTopContent a{color:white;}
+#ultimoMomentoRotatorMascara{font-size:12px;font-weight:bold;}
+#ultimoMomentoDesde{
+	position:absolute;top:72px;left:315px;height:30px;width:140px;padding-right:5px;font-size: 11px;
+}
+#ultimoMomentoRotatorImpuestos{
+	position:absolute;top:110px;left:280px;height:30px;width:140px;padding-right:5px;font-size: 11px;
+}
+div#recomienda{border-right:1px solid #DAE8F5;border-left:1px solid #DAE8F5;}
+div#recomiendaTitulo{position:absolute;top:0px;left:0px;height:20px;width:388px;background-color:#DAE8F5;padding-left:10px;font-size:15px;font-weight:bold;color:#042F62;}
+div#recomiendaContenido{position:absolute;top:35px;left:25px;}
+div#recomiendaBoxLabel{float:left;padding-top:5px;}
+#recomiendaBoxLabel span{text-decoration:underline;font-weight:bold;color:#0460C3;cursor:pointer;}
+div#recomiendaBoxSobre{float:left;padding-top:5px;padding-left:5px;}
+.linkPiePaquetes{font-size:10px;text-align:center;padding-top:5px;}
+.linkPiePasajes{font-size:10px;text-align:center;;padding-top:5px;}
+.buscadorPaquetesul{width:310px;list-style:none;padding:0px;margin:10px;margin-bottom:0px;}
+.buscadorPaquetesli{width:310px;height:23px;}
+.buscadorPaquetesspan1{width:100px;}
+.buscadorPaquetesspan2{float:right}
+.buscadorPaquetesspan2inputClass{width:193px;_width:192px;border:1px solid black;padding-left:5px}
+.buscadorPaqueteslidiv1Class{width:310px}
+.buscadorPaqueteslidiv2Class{width:310px;text-align:right;}
+.buscadorPaqueteslidiv2ulClass{margin:0px;padding:0px;display:inline;list-style:none}
+.buscadorPaqueteslidiv2ulli1Class{display:inline;width:80px;text-align:right}
+.buscadorPaqueteslidiv2ulli2Class{display:inline;width:100px;}
+.buscadorPaqueteslidiv2ulli2imgClass{margin-left:5px}
+.buscadorPaqueteslidiv2ulli3Class{display:inline;width:30px;}
+.buscadorPaqueteslidiv2ulli4Class{display:inline;width:100px;text-align:right}
+.buscadorPaquetesspan2selectClass{width:130px;border:1px solid black;}
+.buscadorPaqueteslidiv3Class{margin-top:5px;margin-botton:5px}
+.busquedaAvanzadaDivClass{display:none;padding:0px}
+.parteDelViajeFechasDiv1Class{float:left;}
+.parteDelViajeFechasDiv2Class{float:left;margin-top:1px;_margin-top:2px;}
+
+.ultimoMomentoTopRightImgClass{cursor:pointer;z-index:200}
+
+.buscadorContenedor {
+	BACKGROUND-POSITION: right top; FONT-SIZE: 11px; BACKGROUND-IMAGE: url(../buscadorImages/contenedorEsquinaSupDer.gif); BACKGROUND-REPEAT: no-repeat; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #93bb7c; 
+}
+/* lucho */
+#buscadorHotelesContenedor {position:absolute;top:41px;left:0px;height:209px;width:335px;background-color:#E5EBDD;}
+#buscadorHotelesCombos {BORDER-TOP:#ffffff 1px solid; position:absolute; top: 240px; left:10px; width:335px; z-index:498;background-color:#E5EBDD;display:none;}
+#buscadorHotelesCiudadLabel {position:absolute;top:15px;left:10px;width:315px;}
+#buscadorHotelesDescripcionDestinationLocation1 {LEFT: 200px; POSITION: absolute; TOP: 13px}
+#buscadorHotelesFechaSalidaLabel {LEFT: 10px; POSITION: absolute; TOP: 45px}
+#buscadorHotelesFechaRegresoLabel {LEFT: 10px; POSITION: absolute; TOP: 75px}
+#buscadorHotelesCalFechaRegreso {BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; LEFT: 300px; BORDER-BOTTOM-WIDTH: 0px; WIDTH: 20px; CURSOR: pointer; POSITION: absolute; HEIGHT: 16px; BORDER-RIGHT-WIDTH: 0px}
+#buscadorHotelesComboHabitacionContainer{float:left; width:100px;}
+#buscadorHotelesHabitacionesOpcionContainer{text-align:right;margin-right:10px;margin-top:20px;}
+
+#buscadorHoteleslabelHab1 {float:left;margin-top:30px;margin-right:4px;}
+#buscadorHoteleslabelHab2 {float:left;margin-top:7px;margin-right:4px;}
+#buscadorHoteleslabelHab3 {float:left;margin-top:7px;margin-right:4px;}
+#buscadorHoteleslabelHab4 {float:left;margin-top:7px;margin-right:4px;}
+.buscadorHotelesOpcionContainer {float:left;margin-right:4px;margin-bottom:0px;text-align:left;}
+.buscadorHotelesOpcionContainerBr {float:left;margin-right:2px;margin-bottom:0px;text-align:left;}
+.buscadorHotelesPrimeraLinea{padding:0px;margin:0px;height:48px;}
+.buscadorVuelosHotelesPrimeraLinea{padding:0px;margin:0px;height:38px;}
+
+
+.buscadorHotelesNextLineas{padding:0px;margin:0px;height:25px;}
+.buscadorHotelesNextLineasVH{padding:0px;margin:0px;height:25px;padding-left:80px;_padding-left:75px;}
+
+
+
+
+
+
+.buscadorHotelesCombosHabitaciones {width: 47px; margin-top:3px;}
+.buscadorHotelesBoxNext {margin-left:156px;left:0px;}
+.buscadorHotelesBoxNextBr {margin-left:155px;left:0px;}
+.buscadorHotelesComboEdad {margin-top:3px;width: 40px;}
+.buscadorHotelesComboEdadBr {margin-top:3px;width: 40px;}
+.buscadorHotelesComboEdadNext {margin-top:3px;width: 40px;}
+.buscadorHotelesLinea {float:left;width:8px;margin-top:36px;margin-left:3px;margin-right:3px;}
+.buscadorHotelesLinea2 {float:left;width:8px;margin-top:14px;margin-left:3px;margin-right:3px;}
+.buscadorHotelesLineaBr {float:left;width:8px;margin-top:36px;margin-left:3px;margin-right:3px;}
+
+
+
+
+#buscadorHotelesVuelosLinea1{float:left;width:8px;margin-top:24px;margin-left:3px;margin-right:3px;}
+#buscadorHotelesVuelosLinea1BR{float:left;width:8px;margin-top:24px;margin-right:3px;}
+
+
+
+
+#buscadorHotelesOpcionesAvanzadasDiv{margin-top:3px;}
+
+.ContenedorbuscadorVuelosHotelesBoxNext{text-align:right;margin-right:44px;_margin-right:51px;}
+
+.buscadorVuelosHotelesBoxNext { margin-left:251px;_margin-left:244px;}
+.buscadorVuelosHotelesBoxNextBR {margin-left:185px;left:0px;}
+.buscadorHotelesVuelosCombosHabitaciones {width: 47px; margin-top:3px;margin-left:12px; _margin-left:0px}
+.buscadorVuelosHotelesLinea2 {float:left;width:9px;margin-top:14px;margin-left:5px;margin-right:3px;}
+.buscadorVuelosHotelesLinea2BR {float:left;width:9px;margin-top:14px;margin-left:20px;margin-right:3px;}
+
+/* Inicio V+H */
+#buscadorHotelesVuelosCombos {BORDER-TOP:#ffffff 1px solid; position:absolute; top: 280px; left:10px; width:335px; z-index:498;background-color:#E5EBDD;display:none;}
+
+#buscadorHotelesVuelosHabitacionesOpcionContainer{margin-left:6px;margin-top:3px;}
+#buscadorHotelesVuelosComboHabitacionContainer{float:left; }
+#buscadorHotelesVuelosHabitacion1Container{padding-left:10px;padding-top:3px;}
+/*#buscadorHotelesVuelosHabitacion2Container{padding-left:10px;padding-top:1px;}
+#buscadorHotelesVuelosHabitacion3Container{padding-left:10px;padding-top:1px;}
+#buscadorHotelesVuelosHabitacion4Container{padding-left:10px;padding-top:1px;}*/
+
+
+#buscadorHotelesVuelosSolapaOpAvanzadas {float:left;WIDTH: 190px;height: 24px;BACKGROUND-REPEAT: no-repeat;BACKGROUND-COLOR: #cdd8b8;BACKGROUND-IMAGE:url(../buscadorImages/solapa_inferior-on.gif);margin-top:27px;background-position:right bottom;font-family: Verdana, Arial, Helvetica, sans-serif;font-size: 11px;}
+#buscadorHotelesVuelosBotBuscar {float:left;margin-left:18px;margin-top:27px;}
+#buscadorHotelesVuelosOpcionesAvanzadasDiv{margin-top:3px;}
+#buscadorHotelesVueloslabelHab1 {float:left;margin-top:18px;margin-right:4px;}
+#buscadorHotelesVueloslabelHab2 {float:left;margin-top:7px;margin-right:4px;}
+#buscadorHotelesVueloslabelHab3 {float:left;margin-top:7px;margin-right:4px;}
+#buscadorHotelesVueloslabelHab4 {float:left;margin-top:7px;margin-right:4px;}
+#buscadorHotelesVuelosFooter{width:335px;}
+#buscadorHotelesVuelosFooterContainer{padding-top:3px;}
+
+/*#buscadorHotelesVuelosFooter{width:335px;margin-right:10px;}*/    
+/*.buscadorHotelesVuelosFooterSpanClass{cursor:pointer;float:right;margin-right:10px;margin-bottom:4px;}*/
+#buscadorHotelesSolapaOpAvanzadas {float:left;WIDTH: 185px;height: 22px;BACKGROUND-REPEAT: no-repeat;BACKGROUND-COLOR: #cdd8b8;BACKGROUND-IMAGE:url(../buscadorImages/solapa_inferior-on.gif);background-position:right bottom;font-family: Verdana, Arial, Helvetica, sans-serif;font-size: 11px;padding-top:2px;}
+#buscadorHotelesSolapaOpAvanzadasImg{float:left;}
+#buscadorHotelesFooter{width:335px;padding-top:24px;}
+#buscadorHotelesHabitacion1Container {z-index:498;margin-top:10px;}
+#buscadorHotelesHabitacion2Container {z-index:498;}
+#buscadorHotelesHabitacion3Container {z-index:498;}
+#buscadorHotelesHabitacion4Container {z-index:498;}
+#buscadorHotelesHabitacionesContainer{_float:left; width:240px;}
+#buscadorHotelesHabitacionesContainerHoteles{_float:left; width:235px;}
+.buscadorHotelesTitulo1{margin-left:4px;}/*sergio bug primer cajita corrida*/
+.buscadorHotelesTitulo2{margin-left:8px;}/*sergio bug primer cajita corrida*/
+.buscadorHotelesTitulo2Br{margin-left:6px;}/*sergio bug primer cajita corrida*/
+.buscadorHotelesTitulo2{padding-left:0px;}
+/*hoteles */
+.buscadorHotelesTitulo3{margin-left: 9px;_margin-left: 5px;}
+.buscadorHotelesComboHelp2{font-size: 6pt;margin-left: 9px;_margin-left: 5px;}
+/*ie 7 */
+*:first-child+html ..buscadorHotelesTitulo3{margin-left: 14px;}
+
+/* vuelos + hoteles */
+.buscadorVuelosHotelesTitulo3{margin-left: 8px;_margin-left: 8px;}
+.buscadorVuelosHotelesComboHelp2{font-size: 6pt;padding-left: 8px;_margin-left: 0px;}
+/*ie 7 */
+*:first-child+html ..buscadorVuelosHotelesTitulo3{margin-left: 12px;}
+
+#adorHotelesVuelosEdadTituloContainer{}
+.buscadorHotelesComboHelp {font-size: 6pt;margin-left:9px;}
+#buscadorHotelesBotBuscar {float:left;margin-left:18px;margin-top:5px;}
+
+#bebesViajanEnDiv{width:335px;margin-left:4px;padding-top:2px;padding-bottom:7px;}
+#bebesViajanEnDiv00,#bebesViajanEnDiv011,#bebesViajanEnDiv021{margin-top:2px;float:left;}
+#bebesViajanEnDiv01,#bebesViajanEnDiv010,#bebesViajanEnDiv02,#bebesViajanEnDiv020{float:left;}
+
+#parteDelViajeDiv0,#parteDelViajeDiv00{float:left;}
+#parteDelViajeDiv01{margin-top:2px;float:left;}
+#buscadorHotelesVuelosOpcionContainer{float:left;}
+
+
+
+#bebesViajanEnDiv{display:none; visibility:hidden;margin-vertical-align:top:7px}
+
+#buscadorVuelosFechaCheckIn, #buscadorVuelosFechaCheckOut {width:80px;}
+#buscadorVuelosFechaCheckIn {top: 78px;}
+
+#parteDelViajeFechas {display:none; visibility:hidden;margin-top:7px}
+#parteDelViajeFechas input {font-size: 10px;height:13px;border-style:solid;border-color:#333333;border-width:1px;}
+#buscadorVuelosFechaCheckInLabel {top: 80px;left:215px;float:left;margin-top:4px; width:150px;}
+#buscadorVuelosFechaCheckOutLabel {top: 110px;left:215px;float:left;margin-top:4px; width:150px;}
+#checkOutHotlesVuelos{text-align:bottom;margin-top:4px;}
+#contenedorGeneralVuelosHotelesHabitaciones{BORDER-BOTTOM:#ffffff 1px solid;}
+.buscadorHotelesOpcionContainerLinea {float:left;margin-right:4px;margin-bottom:0px;text-align:center; width:14px; }
+
+
+.alinearIzquierda{float:left;}
+.hrDivSeparador{float:left; padding-left:4px;}
+.divEdadesNinos{float:left;padding-left:4px;width:40px;}
+.divCantidadNinos{float:left; padding-left:5px;_padding-left:15px;}
+
