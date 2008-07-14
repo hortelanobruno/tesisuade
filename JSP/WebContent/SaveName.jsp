@@ -15,7 +15,7 @@
 <p>
 	<% if(request.getParameter("email") != null)
 	{%>
-	Your email<%= request.getParameter("email") %>
+	Your email <%= request.getParameter("email") %>
 	<%}%>
 </p>
 <p>
