@@ -1,5 +1,6 @@
 package jenasouforce;
 
+import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.PrefixMapping;
@@ -136,22 +137,34 @@ public class ClassHierarchy {
     public void renderIndividualDescription( PrintStream out, Individual c, int depth ) {
         indent( out, depth );
 
-        for ( StmtIterator sIter = c.listProperties(); sIter.hasNext() ; )
-        {
-            Statement s = (Statement) sIter.next() ;
-            System.out.println("   Propiedad: "+s.getPredicate()+"Valor: "+s.getObject()) ;
-        }
-        
         if (!c.isAnon()) {
-            out.print( "Class " );
+            out.print( "Individual " );
             renderURI( out, c.getModel(), c.getURI() );
-            out.print( ' ' );
+            out.println( ' ' );
         }
         else {
             renderAnonymous( out, c, "class" );
         }
+        
+        
+        for ( StmtIterator sIter = c.listProperties(); sIter.hasNext() ; )
+        {
+            Statement s = (Statement) sIter.next() ;
+            Triple tri = s.asTriple();
+            if(tri.getObject().isLiteral()){
+            	System.out.println("   Propiedad: "+tri.getPredicate().getLocalName()+"\n   Valor: "+tri.getMatchObject().getLiteral().getValue()) ;
+            }else{
+            	System.out.println("   Propiedad: "+tri.getPredicate().getLocalName()+"\n   Valor: "+tri.getObject().getLocalName()) ;
+            }
+            
+            
+
+        }
+        
+        
 
     }
+    
     /**
      * <p>Handle the case of rendering a restriction.</p>
      * @param out The print stream to write to
