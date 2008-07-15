@@ -1,131 +1,249 @@
 <?xml version="1.0"?>
 <rdf:RDF
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xmlns="http://www.owl-ontologies.com/Ontology1211842062.owl#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://www.owl-ontologies.com/Ontology1211842062.owl#"
   xml:base="http://www.owl-ontologies.com/Ontology1211842062.owl">
   <owl:Ontology rdf:about=""/>
-  <owl:Class rdf:ID="Familiar">
+  <owl:Class rdf:ID="Bus">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Tren"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Maritimo"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Aereo"/>
+    </owl:disjointWith>
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="Auto"/>
+      <owl:Class rdf:ID="Viaje"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="Reserva_de_alojamiento">
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Precio"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Escala"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Asiento"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Personas"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="tipo_de_alojamiento"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="Alojamiento"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Viaje"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="tiene_precio"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#Precio"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="Fecha"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="fecha_salida"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="ciudad"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="Pais"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+  <owl:Class rdf:ID="Ticket_de_translado">
     <owl:disjointWith>
       <owl:Class rdf:ID="Ticket_de_vuelo"/>
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
-          <owl:Class rdf:about="#Alojamiento"/>
+          <owl:Class rdf:ID="Pais"/>
         </owl:someValuesFrom>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="cantidad_estrellas"/>
+          <owl:ObjectProperty rdf:ID="ciudad"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="cantidad_personas"/>
+          <owl:ObjectProperty rdf:ID="tiene_precio"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Precio"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Escala"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="fecha_salida"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Fecha"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Viaje"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Fecha"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="fecha_entrada"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="tieneTranslado"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Traslado"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Rent_car"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Asiento"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Comida"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Personas"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Fecha"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Habitacion"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Rent_car"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="nombre_empresa_alquiler"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Aerolinea"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Reserva_de_alojamiento"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Precio"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Excursion"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Traslado"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Alojamiento"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:ID="Extrahotelero">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Hotel"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Alojamiento"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Compacto">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Auto"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Micro">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Auto"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Traslado"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Hotel">
+    <owl:disjointWith rdf:resource="#Extrahotelero"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Alojamiento"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Primera">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Asiento"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Business"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Turista"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#Comida">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Rent_car"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Alojamiento"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Reserva_de_alojamiento"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Escala"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Aerolinea"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Personas"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Excursion"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Traslado"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Pais"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Asiento"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Viaje"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Fecha"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Precio"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Ticket_de_vuelo"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Habitacion"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#Ticket_de_vuelo">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="cantidad_pasajeros"/>
         </owl:onProperty>
         <owl:someValuesFrom>
           <owl:Class rdf:about="#Personas"/>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Habitacion"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Alojamiento"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Fecha"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Rent_car"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Excursion"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Comida"/>
-    </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#Alojamiento"/>
-        </owl:someValuesFrom>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="nombre_alojamiento"/>
+          <owl:ObjectProperty rdf:ID="fecha_arribo"/>
         </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Fecha"/>
+        </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Traslado"/>
-    </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="fecha_entrada"/>
+          <owl:ObjectProperty rdf:ID="fecha_partida"/>
         </owl:onProperty>
         <owl:someValuesFrom>
           <owl:Class rdf:about="#Fecha"/>
@@ -133,33 +251,267 @@
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Aerolinea"/>
+      <owl:Class rdf:about="#Aerolinea"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Habitacion"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Excursion"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Traslado"/>
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
-          <owl:Class rdf:about="#Habitacion"/>
+          <owl:Class rdf:about="#Aerolinea"/>
         </owl:someValuesFrom>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="cantidad_habitaciones"/>
+          <owl:ObjectProperty rdf:ID="nombre_aerolinea"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Pais"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="tiene_destino"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Reserva_de_alojamiento"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Fecha"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Rent_car"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Alojamiento"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Pais"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="tiene_origen"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Viaje"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Escala"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Asiento"/>
+    </owl:disjointWith>
     <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Ticket_de_translado"/>
+      <owl:Class rdf:about="#Personas"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Comida"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Precio"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#tiene_precio"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Precio"/>
     </owl:disjointWith>
   </owl:Class>
-  <owl:Class rdf:ID="Adultos">
+  <owl:Class rdf:about="#Pais">
     <owl:disjointWith>
-      <owl:Class rdf:ID="Bebes"/>
+      <owl:Class rdf:about="#Traslado"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Niños"/>
+      <owl:Class rdf:about="#Habitacion"/>
     </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Fecha"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Alojamiento"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Precio"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Comida"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Excursion"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Personas"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Asiento"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Viaje"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:ID="Grande">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Auto"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Viaje">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Habitacion"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Aerolinea"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Fecha"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Reserva_de_alojamiento"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Precio"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Rent_car"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Pais"/>
+    <owl:disjointWith rdf:resource="#Comida"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Excursion"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Traslado"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Escala"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Ticket_de_vuelo"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Alojamiento"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Asiento"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Personas"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#Turista">
+    <owl:disjointWith rdf:resource="#Primera"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Business"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Asiento"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Moneda">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Valor"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Precio"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Mediano">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Auto"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Auto">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Traslado"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Micro"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Bebes">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Personas"/>
     </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Niños"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Adultos"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:ID="Hostel">
+    <rdfs:subClassOf rdf:resource="#Extrahotelero"/>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Cabañas"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:ID="dobles">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Habitacion"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Economico">
+    <rdfs:subClassOf rdf:resource="#Auto"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Business">
+    <owl:disjointWith rdf:resource="#Primera"/>
+    <owl:disjointWith rdf:resource="#Turista"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Asiento"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Aerolinea">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Habitacion"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Excursion"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Personas"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Comida"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Precio"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Reserva_de_alojamiento"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Asiento"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Fecha"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Alojamiento"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Escala"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Traslado"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Viaje"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Rent_car"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Ticket_de_vuelo"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Cabañas">
+    <rdfs:subClassOf rdf:resource="#Extrahotelero"/>
+    <owl:disjointWith rdf:resource="#Hostel"/>
   </owl:Class>
   <owl:Class rdf:about="#Personas">
     <owl:disjointWith>
@@ -171,194 +523,39 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#Excursion"/>
     </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Viaje"/>
-    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Viaje"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Habitacion"/>
     </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Ticket_de_vuelo"/>
-    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Ticket_de_vuelo"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Precio"/>
     </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Pais"/>
-    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Pais"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Asiento"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Rent_car"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Reserva_de_alojamiento"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Ticket_de_translado"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Fecha"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Comida"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Escala"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Aerolinea"/>
-    </owl:disjointWith>
-  </owl:Class>
-  <owl:Class rdf:ID="dobles">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Habitacion"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#Aerolinea">
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Habitacion"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Excursion"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Personas"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Comida"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Precio"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Reserva_de_alojamiento"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Asiento"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Fecha"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Alojamiento"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Escala"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Traslado"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Ticket_de_translado"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Viaje"/>
+      <owl:Class rdf:about="#Reserva_de_alojamiento"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:about="#Rent_car"/>
     </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Ticket_de_vuelo"/>
-    </owl:disjointWith>
-  </owl:Class>
-  <owl:Class rdf:ID="Bus">
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Aereo"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Maritimo"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Tren"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Viaje"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#Maritimo">
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Aereo"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Bus"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Tren"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Viaje"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#Auto">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Traslado"/>
-    </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Micro"/>
-    </owl:disjointWith>
-  </owl:Class>
-  <owl:Class rdf:about="#Rent_car">
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Habitacion"/>
-    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Fecha"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Comida"/>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Precio"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Ticket_de_vuelo"/>
+      <owl:Class rdf:about="#Escala"/>
     </owl:disjointWith>
     <owl:disjointWith rdf:resource="#Aerolinea"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Traslado"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Comida"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Alojamiento"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Ticket_de_translado"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Viaje"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Reserva_de_alojamiento"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Asiento"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Escala"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Personas"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Excursion"/>
-    </owl:disjointWith>
-  </owl:Class>
-  <owl:Class rdf:ID="Extrahotelero">
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Hotel"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Alojamiento"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Valor">
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Moneda"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Precio"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Cabañas">
-    <rdfs:subClassOf rdf:resource="#Extrahotelero"/>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Hostel"/>
-    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#Alojamiento">
+    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Ticket_de_translado"/>
+      <owl:Class rdf:about="#Reserva_de_alojamiento"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Reserva_de_alojamiento"/>
     <owl:disjointWith rdf:resource="#Personas"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Excursion"/>
@@ -366,384 +563,28 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#Asiento"/>
     </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Viaje"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Ticket_de_vuelo"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Comida"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Pais"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Habitacion"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Escala"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Rent_car"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Fecha"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Aerolinea"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Precio"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Traslado"/>
-    </owl:disjointWith>
-  </owl:Class>
-  <owl:Class rdf:about="#Asiento">
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Fecha"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Ticket_de_vuelo"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Ticket_de_translado"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Precio"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Excursion"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Aerolinea"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Traslado"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Rent_car"/>
-    <owl:disjointWith rdf:resource="#Reserva_de_alojamiento"/>
-    <owl:disjointWith rdf:resource="#Personas"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Comida"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Alojamiento"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Viaje"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Habitacion"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Pais"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Escala"/>
-    </owl:disjointWith>
-  </owl:Class>
-  <owl:Class rdf:ID="Primera">
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Turista"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Business"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="#Asiento"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Excursion">
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Fecha"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Ticket_de_translado"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Viaje"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Precio"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Escala"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Aerolinea"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Comida"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Habitacion"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Pais"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Reserva_de_alojamiento"/>
-    <owl:disjointWith rdf:resource="#Asiento"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Traslado"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Personas"/>
-    <owl:disjointWith rdf:resource="#Rent_car"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Ticket_de_vuelo"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Alojamiento"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Hotel">
-    <owl:disjointWith rdf:resource="#Extrahotelero"/>
-    <rdfs:subClassOf rdf:resource="#Alojamiento"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Ticket_de_translado">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#Pais"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#ciudad"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Ticket_de_vuelo"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Escala"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Viaje"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Rent_car"/>
-    <owl:disjointWith rdf:resource="#Asiento"/>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Comida"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Personas"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Fecha"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Habitacion"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Aerolinea"/>
-    <owl:disjointWith rdf:resource="#Reserva_de_alojamiento"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Precio"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#Fecha"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#fecha_entrada"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#tiene_precio"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#Precio"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="nombre_empresa_alquiler"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#Rent_car"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#Excursion"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="tieneTranslado"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#Traslado"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Traslado"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Alojamiento"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#Fecha"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#fecha_salida"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#Traslado">
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Pais"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Ticket_de_vuelo"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Comida"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Precio"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
-    <owl:disjointWith rdf:resource="#Personas"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Viaje"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Habitacion"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Fecha"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Excursion"/>
-    <owl:disjointWith rdf:resource="#Aerolinea"/>
-    <owl:disjointWith rdf:resource="#Asiento"/>
-    <owl:disjointWith rdf:resource="#Alojamiento"/>
-    <owl:disjointWith rdf:resource="#Reserva_de_alojamiento"/>
-    <owl:disjointWith rdf:resource="#Rent_car"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Escala"/>
-    </owl:disjointWith>
-  </owl:Class>
-  <owl:Class rdf:about="#Escala">
-    <owl:disjointWith rdf:resource="#Aerolinea"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Habitacion"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Personas"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Viaje"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Precio"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Alojamiento"/>
-    <owl:disjointWith rdf:resource="#Asiento"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Fecha"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Ticket_de_vuelo"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Comida"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Excursion"/>
-    <owl:disjointWith rdf:resource="#Reserva_de_alojamiento"/>
-    <owl:disjointWith rdf:resource="#Rent_car"/>
-    <owl:disjointWith rdf:resource="#Traslado"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Comida">
-    <owl:disjointWith rdf:resource="#Rent_car"/>
-    <owl:disjointWith rdf:resource="#Reserva_de_alojamiento"/>
-    <owl:disjointWith rdf:resource="#Alojamiento"/>
-    <owl:disjointWith rdf:resource="#Escala"/>
-    <owl:disjointWith rdf:resource="#Aerolinea"/>
-    <owl:disjointWith rdf:resource="#Personas"/>
-    <owl:disjointWith rdf:resource="#Excursion"/>
-    <owl:disjointWith rdf:resource="#Traslado"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Pais"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
-    <owl:disjointWith rdf:resource="#Asiento"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Viaje"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Ticket_de_vuelo"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Precio"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Fecha"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Habitacion"/>
-    </owl:disjointWith>
-  </owl:Class>
-  <owl:Class rdf:about="#Moneda">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Precio"/>
-    </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#Valor"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Turista">
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Business"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Primera"/>
-    <rdfs:subClassOf rdf:resource="#Asiento"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Precio">
-    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
-    <owl:disjointWith rdf:resource="#Excursion"/>
-    <owl:disjointWith rdf:resource="#Asiento"/>
-    <owl:disjointWith rdf:resource="#Alojamiento"/>
-    <owl:disjointWith rdf:resource="#Rent_car"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Fecha"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Reserva_de_alojamiento"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Habitacion"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Escala"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Viaje"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Aerolinea"/>
-    <owl:disjointWith rdf:resource="#Traslado"/>
-    <owl:disjointWith rdf:resource="#Personas"/>
+    <owl:disjointWith rdf:resource="#Viaje"/>
+    <owl:disjointWith rdf:resource="#Ticket_de_vuelo"/>
     <owl:disjointWith rdf:resource="#Comida"/>
+    <owl:disjointWith rdf:resource="#Pais"/>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Pais"/>
+      <owl:Class rdf:about="#Habitacion"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Ticket_de_vuelo"/>
+      <owl:Class rdf:about="#Escala"/>
     </owl:disjointWith>
-  </owl:Class>
-  <owl:Class rdf:ID="Grande">
-    <rdfs:subClassOf rdf:resource="#Auto"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Hostel">
-    <rdfs:subClassOf rdf:resource="#Extrahotelero"/>
-    <owl:disjointWith rdf:resource="#Cabañas"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Habitacion">
-    <owl:disjointWith rdf:resource="#Asiento"/>
-    <owl:disjointWith rdf:resource="#Excursion"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Rent_car"/>
+    </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:about="#Fecha"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Comida"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Pais"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Viaje"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Reserva_de_alojamiento"/>
-    <owl:disjointWith rdf:resource="#Escala"/>
-    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
     <owl:disjointWith rdf:resource="#Aerolinea"/>
-    <owl:disjointWith rdf:resource="#Personas"/>
-    <owl:disjointWith rdf:resource="#Rent_car"/>
-    <owl:disjointWith rdf:resource="#Precio"/>
-    <owl:disjointWith rdf:resource="#Alojamiento"/>
-    <owl:disjointWith rdf:resource="#Traslado"/>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Ticket_de_vuelo"/>
+      <owl:Class rdf:about="#Precio"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Traslado"/>
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#Fecha">
@@ -751,75 +592,270 @@
     <owl:disjointWith rdf:resource="#Personas"/>
     <owl:disjointWith rdf:resource="#Aerolinea"/>
     <owl:disjointWith rdf:resource="#Comida"/>
-    <owl:disjointWith rdf:resource="#Reserva_de_alojamiento"/>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Ticket_de_vuelo"/>
+      <owl:Class rdf:about="#Reserva_de_alojamiento"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Ticket_de_vuelo"/>
+    <owl:disjointWith rdf:resource="#Pais"/>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Pais"/>
+      <owl:Class rdf:about="#Asiento"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Asiento"/>
     <owl:disjointWith rdf:resource="#Alojamiento"/>
-    <owl:disjointWith rdf:resource="#Rent_car"/>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Viaje"/>
+      <owl:Class rdf:about="#Rent_car"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Habitacion"/>
-    <owl:disjointWith rdf:resource="#Traslado"/>
-    <owl:disjointWith rdf:resource="#Excursion"/>
-    <owl:disjointWith rdf:resource="#Escala"/>
-    <owl:disjointWith rdf:resource="#Precio"/>
+    <owl:disjointWith rdf:resource="#Viaje"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Traslado"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Habitacion"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Excursion"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Escala"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Precio"/>
+    </owl:disjointWith>
   </owl:Class>
-  <owl:Class rdf:about="#Aereo">
+  <owl:Class rdf:about="#Niños">
+    <owl:disjointWith rdf:resource="#Bebes"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Adultos"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="#Personas"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Valor">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#Viaje"/>
+      <owl:Class rdf:about="#Precio"/>
     </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#Bus"/>
-    <owl:disjointWith rdf:resource="#Maritimo"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Tren"/>
-    </owl:disjointWith>
-  </owl:Class>
-  <owl:Class rdf:about="#Viaje">
-    <owl:disjointWith rdf:resource="#Habitacion"/>
-    <owl:disjointWith rdf:resource="#Aerolinea"/>
-    <owl:disjointWith rdf:resource="#Fecha"/>
-    <owl:disjointWith rdf:resource="#Reserva_de_alojamiento"/>
-    <owl:disjointWith rdf:resource="#Precio"/>
-    <owl:disjointWith rdf:resource="#Rent_car"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Pais"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Comida"/>
-    <owl:disjointWith rdf:resource="#Excursion"/>
-    <owl:disjointWith rdf:resource="#Escala"/>
-    <owl:disjointWith rdf:resource="#Traslado"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Ticket_de_vuelo"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Alojamiento"/>
-    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
-    <owl:disjointWith rdf:resource="#Asiento"/>
-    <owl:disjointWith rdf:resource="#Personas"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Mediano">
-    <rdfs:subClassOf rdf:resource="#Auto"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Micro">
-    <owl:disjointWith rdf:resource="#Auto"/>
-    <rdfs:subClassOf rdf:resource="#Traslado"/>
+    <owl:disjointWith rdf:resource="#Moneda"/>
   </owl:Class>
   <owl:Class rdf:ID="triples">
-    <rdfs:subClassOf rdf:resource="#Habitacion"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Habitacion"/>
+    </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#Ticket_de_vuelo">
+  <owl:Class rdf:about="#Tren">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Maritimo"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Bus"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Aereo"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="#Viaje"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Adultos">
+    <owl:disjointWith rdf:resource="#Niños"/>
+    <owl:disjointWith rdf:resource="#Bebes"/>
+    <rdfs:subClassOf rdf:resource="#Personas"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Habitacion">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Asiento"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Excursion"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Fecha"/>
+    <owl:disjointWith rdf:resource="#Comida"/>
+    <owl:disjointWith rdf:resource="#Pais"/>
+    <owl:disjointWith rdf:resource="#Viaje"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Reserva_de_alojamiento"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Escala"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
+    <owl:disjointWith rdf:resource="#Aerolinea"/>
+    <owl:disjointWith rdf:resource="#Personas"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Rent_car"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Precio"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Alojamiento"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Traslado"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Ticket_de_vuelo"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Asiento">
+    <owl:disjointWith rdf:resource="#Fecha"/>
+    <owl:disjointWith rdf:resource="#Ticket_de_vuelo"/>
+    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Precio"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Excursion"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Aerolinea"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Traslado"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Rent_car"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Reserva_de_alojamiento"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Personas"/>
+    <owl:disjointWith rdf:resource="#Alojamiento"/>
+    <owl:disjointWith rdf:resource="#Comida"/>
+    <owl:disjointWith rdf:resource="#Viaje"/>
+    <owl:disjointWith rdf:resource="#Habitacion"/>
+    <owl:disjointWith rdf:resource="#Pais"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Escala"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#Maritimo">
+    <owl:disjointWith rdf:resource="#Tren"/>
+    <owl:disjointWith rdf:resource="#Bus"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Aereo"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="#Viaje"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Traslado">
+    <owl:disjointWith rdf:resource="#Pais"/>
+    <owl:disjointWith rdf:resource="#Ticket_de_vuelo"/>
+    <owl:disjointWith rdf:resource="#Comida"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Precio"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
+    <owl:disjointWith rdf:resource="#Personas"/>
+    <owl:disjointWith rdf:resource="#Viaje"/>
+    <owl:disjointWith rdf:resource="#Habitacion"/>
+    <owl:disjointWith rdf:resource="#Fecha"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Excursion"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Aerolinea"/>
+    <owl:disjointWith rdf:resource="#Asiento"/>
+    <owl:disjointWith rdf:resource="#Alojamiento"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Reserva_de_alojamiento"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Rent_car"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Escala"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#Aereo">
+    <owl:disjointWith rdf:resource="#Tren"/>
+    <owl:disjointWith rdf:resource="#Maritimo"/>
+    <owl:disjointWith rdf:resource="#Bus"/>
+    <rdfs:subClassOf rdf:resource="#Viaje"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Escala">
     <owl:disjointWith rdf:resource="#Aerolinea"/>
     <owl:disjointWith rdf:resource="#Habitacion"/>
+    <owl:disjointWith rdf:resource="#Personas"/>
+    <owl:disjointWith rdf:resource="#Viaje"/>
+    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Precio"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Alojamiento"/>
+    <owl:disjointWith rdf:resource="#Asiento"/>
+    <owl:disjointWith rdf:resource="#Fecha"/>
+    <owl:disjointWith rdf:resource="#Ticket_de_vuelo"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Excursion"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Comida"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Reserva_de_alojamiento"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Rent_car"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Traslado"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Excursion">
+    <owl:disjointWith rdf:resource="#Fecha"/>
+    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
+    <owl:disjointWith rdf:resource="#Viaje"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Precio"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Escala"/>
+    <owl:disjointWith rdf:resource="#Aerolinea"/>
+    <owl:disjointWith rdf:resource="#Comida"/>
+    <owl:disjointWith rdf:resource="#Habitacion"/>
+    <owl:disjointWith rdf:resource="#Pais"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Reserva_de_alojamiento"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Asiento"/>
+    <owl:disjointWith rdf:resource="#Traslado"/>
+    <owl:disjointWith rdf:resource="#Personas"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Rent_car"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Ticket_de_vuelo"/>
+    <owl:disjointWith rdf:resource="#Alojamiento"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Precio">
+    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
+    <owl:disjointWith rdf:resource="#Excursion"/>
+    <owl:disjointWith rdf:resource="#Asiento"/>
+    <owl:disjointWith rdf:resource="#Alojamiento"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Rent_car"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Fecha"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Reserva_de_alojamiento"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Habitacion"/>
+    <owl:disjointWith rdf:resource="#Escala"/>
+    <owl:disjointWith rdf:resource="#Viaje"/>
+    <owl:disjointWith rdf:resource="#Aerolinea"/>
+    <owl:disjointWith rdf:resource="#Traslado"/>
+    <owl:disjointWith rdf:resource="#Personas"/>
+    <owl:disjointWith rdf:resource="#Comida"/>
+    <owl:disjointWith rdf:resource="#Pais"/>
+    <owl:disjointWith rdf:resource="#Ticket_de_vuelo"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Reserva_de_alojamiento">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="cantidad_habitaciones"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Habitacion"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Precio"/>
+    <owl:disjointWith rdf:resource="#Escala"/>
+    <owl:disjointWith rdf:resource="#Asiento"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Personas"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="cantidad_personas"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Personas"/>
+    <owl:disjointWith rdf:resource="#Viaje"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#Fecha"/>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="fecha_partida"/>
+          <owl:ObjectProperty rdf:about="#fecha_salida"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -831,214 +867,146 @@
         <owl:someValuesFrom rdf:resource="#Precio"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#Excursion"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Personas"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="cantidad_pasajeros"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#Traslado"/>
-    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="nombre_aerolinea"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#Aerolinea"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#Pais"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="tiene_origen"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#Reserva_de_alojamiento"/>
-    <owl:disjointWith rdf:resource="#Fecha"/>
-    <owl:disjointWith rdf:resource="#Rent_car"/>
-    <owl:disjointWith rdf:resource="#Alojamiento"/>
-    <owl:disjointWith rdf:resource="#Viaje"/>
-    <owl:disjointWith rdf:resource="#Escala"/>
-    <owl:disjointWith rdf:resource="#Asiento"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="fecha_arribo"/>
+          <owl:ObjectProperty rdf:about="#fecha_entrada"/>
         </owl:onProperty>
         <owl:someValuesFrom rdf:resource="#Fecha"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    <owl:disjointWith rdf:resource="#Personas"/>
-    <owl:disjointWith rdf:resource="#Comida"/>
+    <owl:disjointWith rdf:resource="#Ticket_de_vuelo"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Alojamiento"/>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="tiene_destino"/>
+          <owl:ObjectProperty rdf:ID="cantidad_estrellas"/>
         </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#Pais"/>
-        </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#Precio"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Economico">
-    <rdfs:subClassOf rdf:resource="#Auto"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Pais">
-    <owl:disjointWith rdf:resource="#Traslado"/>
     <owl:disjointWith rdf:resource="#Habitacion"/>
-    <owl:disjointWith rdf:resource="#Fecha"/>
     <owl:disjointWith rdf:resource="#Alojamiento"/>
-    <owl:disjointWith rdf:resource="#Precio"/>
+    <owl:disjointWith rdf:resource="#Fecha"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Alojamiento"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="nombre_alojamiento"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Rent_car"/>
+    </owl:disjointWith>
     <owl:disjointWith rdf:resource="#Comida"/>
     <owl:disjointWith rdf:resource="#Excursion"/>
-    <owl:disjointWith rdf:resource="#Personas"/>
-    <owl:disjointWith rdf:resource="#Asiento"/>
-    <owl:disjointWith rdf:resource="#Viaje"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Pais"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#ciudad"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Traslado"/>
+    <owl:disjointWith rdf:resource="#Aerolinea"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Alojamiento"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="tipo_de_alojamiento"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
   </owl:Class>
-  <owl:Class rdf:about="#Niños">
-    <owl:disjointWith rdf:resource="#Adultos"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Bebes"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="#Personas"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Compacto">
+  <owl:Class rdf:ID="Familiar">
     <rdfs:subClassOf rdf:resource="#Auto"/>
   </owl:Class>
-  <owl:Class rdf:about="#Bebes">
-    <rdfs:subClassOf rdf:resource="#Personas"/>
-    <owl:disjointWith rdf:resource="#Adultos"/>
-    <owl:disjointWith rdf:resource="#Niños"/>
+  <owl:Class rdf:about="#Rent_car">
+    <owl:disjointWith rdf:resource="#Habitacion"/>
+    <owl:disjointWith rdf:resource="#Fecha"/>
+    <owl:disjointWith rdf:resource="#Precio"/>
+    <owl:disjointWith rdf:resource="#Ticket_de_vuelo"/>
+    <owl:disjointWith rdf:resource="#Aerolinea"/>
+    <owl:disjointWith rdf:resource="#Traslado"/>
+    <owl:disjointWith rdf:resource="#Comida"/>
+    <owl:disjointWith rdf:resource="#Alojamiento"/>
+    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
+    <owl:disjointWith rdf:resource="#Viaje"/>
+    <owl:disjointWith rdf:resource="#Reserva_de_alojamiento"/>
+    <owl:disjointWith rdf:resource="#Asiento"/>
+    <owl:disjointWith rdf:resource="#Excursion"/>
+    <owl:disjointWith rdf:resource="#Personas"/>
+    <owl:disjointWith rdf:resource="#Escala"/>
   </owl:Class>
-  <owl:Class rdf:about="#Business">
-    <owl:disjointWith rdf:resource="#Turista"/>
-    <owl:disjointWith rdf:resource="#Primera"/>
-    <rdfs:subClassOf rdf:resource="#Asiento"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Tren">
-    <owl:disjointWith rdf:resource="#Aereo"/>
-    <owl:disjointWith rdf:resource="#Bus"/>
-    <owl:disjointWith rdf:resource="#Maritimo"/>
-    <rdfs:subClassOf rdf:resource="#Viaje"/>
-  </owl:Class>
-  <owl:ObjectProperty rdf:ID="tieneComida">
-    <rdfs:subPropertyOf>
-      <owl:TransitiveProperty rdf:ID="tieneComponentes"/>
-    </rdfs:subPropertyOf>
-    <rdfs:range rdf:resource="#Comida"/>
+  <owl:ObjectProperty rdf:ID="tieneComponentes">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
     <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="esComidaDe"/>
+      <owl:ObjectProperty rdf:ID="esComponenteDe"/>
     </owl:inverseOf>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#cantidad_pasajeros">
-    <rdfs:range rdf:resource="#Personas"/>
+  <owl:ObjectProperty rdf:about="#fecha_partida">
+    <rdfs:range rdf:resource="#Fecha"/>
     <rdfs:domain rdf:resource="#Ticket_de_vuelo"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="tipo_de_translado">
+    <rdfs:range rdf:resource="#Traslado"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#tipo_de_alojamiento">
+    <rdfs:domain rdf:resource="#Reserva_de_alojamiento"/>
+    <rdfs:range rdf:resource="#Alojamiento"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#fecha_arribo">
     <rdfs:domain rdf:resource="#Ticket_de_vuelo"/>
   </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="tieneComida">
+    <rdfs:range rdf:resource="#Comida"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="esComidaDe"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf rdf:resource="#tieneComponentes"/>
+  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="tieneExcursion">
-    <rdfs:subPropertyOf>
-      <owl:TransitiveProperty rdf:about="#tieneComponentes"/>
-    </rdfs:subPropertyOf>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:ID="esExcursionDe"/>
     </owl:inverseOf>
+    <rdfs:subPropertyOf rdf:resource="#tieneComponentes"/>
     <rdfs:range rdf:resource="#Excursion"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#cantidad_personas">
-    <rdfs:range rdf:resource="#Personas"/>
-    <rdfs:domain rdf:resource="#Reserva_de_alojamiento"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#cantidad_estrellas">
+  <owl:ObjectProperty rdf:about="#nombre_empresa_alquiler">
     <rdfs:domain>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#Hotel"/>
-          <owl:Class rdf:about="#Extrahotelero"/>
-          <owl:Class rdf:about="#Reserva_de_alojamiento"/>
+          <owl:Class rdf:about="#Ticket_de_translado"/>
+          <owl:Class rdf:about="#Rent_car"/>
         </owl:unionOf>
       </owl:Class>
     </rdfs:domain>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#tiene_origen">
-    <rdfs:domain rdf:resource="#Ticket_de_vuelo"/>
-    <rdfs:range rdf:resource="#Pais"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#esComidaDe">
-    <owl:inverseOf rdf:resource="#tieneComida"/>
-    <rdfs:domain rdf:resource="#Comida"/>
-    <rdfs:subPropertyOf>
-      <owl:TransitiveProperty rdf:ID="esComponenteDe"/>
-    </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="no_tiene_aire_acondicionado">
-    <rdfs:range>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#Familiar"/>
-          <owl:Class rdf:about="#Grande"/>
-          <owl:Class rdf:about="#Mediano"/>
-        </owl:unionOf>
-      </owl:Class>
-    </rdfs:range>
-    <rdfs:domain>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#Compacto"/>
-          <owl:Class rdf:about="#Economico"/>
-        </owl:unionOf>
-      </owl:Class>
-    </rdfs:domain>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="tiene_aire_acondicionado"/>
-    </owl:inverseOf>
+    <rdfs:range rdf:resource="#Rent_car"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#tieneTranslado">
-    <rdfs:domain rdf:resource="#Ticket_de_translado"/>
     <rdfs:range rdf:resource="#Traslado"/>
+    <rdfs:subPropertyOf rdf:resource="#tieneComponentes"/>
+    <rdfs:domain rdf:resource="#Ticket_de_translado"/>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:ID="esTransladoDe"/>
     </owl:inverseOf>
-    <rdfs:subPropertyOf>
-      <owl:TransitiveProperty rdf:about="#tieneComponentes"/>
-    </rdfs:subPropertyOf>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="tieneAlojamiento">
-    <rdfs:subPropertyOf>
-      <owl:TransitiveProperty rdf:about="#tieneComponentes"/>
-    </rdfs:subPropertyOf>
-    <rdfs:range rdf:resource="#Alojamiento"/>
+  <owl:ObjectProperty rdf:ID="NOtiene">
     <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="esAlojamientoDe"/>
+      <owl:ObjectProperty rdf:ID="tiene"/>
     </owl:inverseOf>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#esExcursionDe">
+  <owl:ObjectProperty rdf:ID="esViajeDe">
     <rdfs:subPropertyOf>
-      <owl:TransitiveProperty rdf:about="#esComponenteDe"/>
+      <owl:ObjectProperty rdf:about="#esComponenteDe"/>
     </rdfs:subPropertyOf>
-    <rdfs:domain rdf:resource="#Excursion"/>
-    <owl:inverseOf rdf:resource="#tieneExcursion"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#nombre_aerolinea">
-    <rdfs:domain>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#Aerolinea"/>
-          <owl:Class rdf:about="#Ticket_de_vuelo"/>
-        </owl:unionOf>
-      </owl:Class>
-    </rdfs:domain>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="tieneViaje"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#Viaje"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#nombre_alojamiento">
     <rdfs:domain>
@@ -1050,25 +1018,182 @@
       </owl:Class>
     </rdfs:domain>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="tieneViaje">
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="esViajeDe"/>
-    </owl:inverseOf>
-    <rdfs:subPropertyOf>
-      <owl:TransitiveProperty rdf:about="#tieneComponentes"/>
-    </rdfs:subPropertyOf>
-    <rdfs:range rdf:resource="#Viaje"/>
+  <owl:ObjectProperty rdf:about="#tiene_origen">
+    <rdfs:range rdf:resource="#Pais"/>
+    <rdfs:domain rdf:resource="#Ticket_de_vuelo"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#nombre_empresa_alquiler">
-    <rdfs:range rdf:resource="#Rent_car"/>
+  <owl:ObjectProperty rdf:about="#ciudad">
+    <rdfs:range rdf:resource="#Pais"/>
     <rdfs:domain>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Reserva_de_alojamiento"/>
+          <owl:Class rdf:about="#Hotel"/>
+          <owl:Class rdf:about="#Extrahotelero"/>
           <owl:Class rdf:about="#Ticket_de_translado"/>
-          <owl:Class rdf:about="#Rent_car"/>
         </owl:unionOf>
       </owl:Class>
     </rdfs:domain>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#tiene">
+    <owl:inverseOf rdf:resource="#NOtiene"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="tipo">
+    <rdfs:range rdf:resource="#Asiento"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="tieneAlojamiento">
+    <rdfs:range rdf:resource="#Alojamiento"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="esAlojamientoDe"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf rdf:resource="#tieneComponentes"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="tiene_aire_acondicionado">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="no_tiene_aire_acondicionado"/>
+    </owl:inverseOf>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Compacto"/>
+          <owl:Class rdf:about="#Economico"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Familiar"/>
+          <owl:Class rdf:about="#Grande"/>
+          <owl:Class rdf:about="#Mediano"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#tieneViaje">
+    <rdfs:subPropertyOf rdf:resource="#tieneComponentes"/>
+    <owl:inverseOf rdf:resource="#esViajeDe"/>
+    <rdfs:range rdf:resource="#Viaje"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="tiene_escala">
+    <rdfs:range rdf:resource="#Escala"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#no_tiene_aire_acondicionado">
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Familiar"/>
+          <owl:Class rdf:about="#Grande"/>
+          <owl:Class rdf:about="#Mediano"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <owl:inverseOf rdf:resource="#tiene_aire_acondicionado"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Compacto"/>
+          <owl:Class rdf:about="#Economico"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#cantidad_pasajeros">
+    <rdfs:range rdf:resource="#Personas"/>
+    <rdfs:domain rdf:resource="#Ticket_de_vuelo"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#fecha_entrada">
+    <rdfs:range rdf:resource="#Fecha"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Reserva_de_alojamiento"/>
+          <owl:Class rdf:about="#Ticket_de_translado"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#esTransladoDe">
+    <rdfs:domain rdf:resource="#Traslado"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#esComponenteDe"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#Ticket_de_translado"/>
+    <owl:inverseOf rdf:resource="#tieneTranslado"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#fecha_salida">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Reserva_de_alojamiento"/>
+          <owl:Class rdf:about="#Ticket_de_translado"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#esAlojamientoDe">
+    <rdfs:domain rdf:resource="#Alojamiento"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#esComponenteDe"/>
+    </rdfs:subPropertyOf>
+    <owl:inverseOf rdf:resource="#tieneAlojamiento"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#nombre_aerolinea">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Aerolinea"/>
+          <owl:Class rdf:about="#Ticket_de_vuelo"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#tiene_destino">
+    <rdfs:domain rdf:resource="#Ticket_de_vuelo"/>
+    <rdfs:range rdf:resource="#Pais"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="tiene_direccion_asistida">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Familiar"/>
+          <owl:Class rdf:about="#Grande"/>
+          <owl:Class rdf:about="#Mediano"/>
+          <owl:Class rdf:about="#Compacto"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="no_tiene_direccion_asistida"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#Economico"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#esComponenteDe">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <owl:inverseOf rdf:resource="#tieneComponentes"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#cantidad_habitaciones">
+    <rdfs:range rdf:resource="#Habitacion"/>
+    <rdfs:domain rdf:resource="#Reserva_de_alojamiento"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#esExcursionDe">
+    <rdfs:domain rdf:resource="#Excursion"/>
+    <rdfs:subPropertyOf rdf:resource="#esComponenteDe"/>
+    <owl:inverseOf rdf:resource="#tieneExcursion"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#no_tiene_direccion_asistida">
+    <owl:inverseOf rdf:resource="#tiene_direccion_asistida"/>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Familiar"/>
+          <owl:Class rdf:about="#Compacto"/>
+          <owl:Class rdf:about="#Grande"/>
+          <owl:Class rdf:about="#Mediano"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:domain rdf:resource="#Economico"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#tiene_precio">
     <rdfs:range rdf:resource="#Precio"/>
@@ -1082,197 +1207,91 @@
       </owl:Class>
     </rdfs:domain>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#tiene_aire_acondicionado">
-    <rdfs:domain>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#Familiar"/>
-          <owl:Class rdf:about="#Grande"/>
-          <owl:Class rdf:about="#Mediano"/>
-        </owl:unionOf>
-      </owl:Class>
-    </rdfs:domain>
-    <rdfs:range>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#Compacto"/>
-          <owl:Class rdf:about="#Economico"/>
-        </owl:unionOf>
-      </owl:Class>
-    </rdfs:range>
-    <owl:inverseOf rdf:resource="#no_tiene_aire_acondicionado"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#esAlojamientoDe">
-    <owl:inverseOf rdf:resource="#tieneAlojamiento"/>
-    <rdfs:subPropertyOf>
-      <owl:TransitiveProperty rdf:about="#esComponenteDe"/>
-    </rdfs:subPropertyOf>
-    <rdfs:domain rdf:resource="#Alojamiento"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="tiene_escala">
-    <rdfs:range rdf:resource="#Escala"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#cantidad_habitaciones">
-    <rdfs:range rdf:resource="#Habitacion"/>
+  <owl:ObjectProperty rdf:about="#cantidad_personas">
+    <rdfs:range rdf:resource="#Personas"/>
     <rdfs:domain rdf:resource="#Reserva_de_alojamiento"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="tiene">
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="NOtiene"/>
-    </owl:inverseOf>
+  <owl:ObjectProperty rdf:about="#esComidaDe">
+    <owl:inverseOf rdf:resource="#tieneComida"/>
+    <rdfs:domain rdf:resource="#Comida"/>
+    <rdfs:subPropertyOf rdf:resource="#esComponenteDe"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#fecha_entrada">
+  <owl:ObjectProperty rdf:about="#cantidad_estrellas">
     <rdfs:domain>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#Reserva_de_alojamiento"/>
-          <owl:Class rdf:about="#Ticket_de_translado"/>
-        </owl:unionOf>
-      </owl:Class>
-    </rdfs:domain>
-    <rdfs:range rdf:resource="#Fecha"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#esTransladoDe">
-    <rdfs:subPropertyOf>
-      <owl:TransitiveProperty rdf:about="#esComponenteDe"/>
-    </rdfs:subPropertyOf>
-    <rdfs:range rdf:resource="#Ticket_de_translado"/>
-    <rdfs:domain rdf:resource="#Traslado"/>
-    <owl:inverseOf rdf:resource="#tieneTranslado"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="tipo">
-    <rdfs:range rdf:resource="#Asiento"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#ciudad">
-    <rdfs:domain>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#Reserva_de_alojamiento"/>
           <owl:Class rdf:about="#Hotel"/>
           <owl:Class rdf:about="#Extrahotelero"/>
-          <owl:Class rdf:about="#Ticket_de_translado"/>
-        </owl:unionOf>
-      </owl:Class>
-    </rdfs:domain>
-    <rdfs:range rdf:resource="#Pais"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#tiene_destino">
-    <rdfs:range rdf:resource="#Pais"/>
-    <rdfs:domain rdf:resource="#Ticket_de_vuelo"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="tiene_direccion_asistida">
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="no_tiene_direccion_asistida"/>
-    </owl:inverseOf>
-    <rdfs:domain>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#Familiar"/>
-          <owl:Class rdf:about="#Grande"/>
-          <owl:Class rdf:about="#Mediano"/>
-          <owl:Class rdf:about="#Compacto"/>
-        </owl:unionOf>
-      </owl:Class>
-    </rdfs:domain>
-    <rdfs:range rdf:resource="#Economico"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#tipo_de_alojamiento">
-    <rdfs:range rdf:resource="#Alojamiento"/>
-    <rdfs:domain rdf:resource="#Reserva_de_alojamiento"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#esViajeDe">
-    <rdfs:domain rdf:resource="#Viaje"/>
-    <owl:inverseOf rdf:resource="#tieneViaje"/>
-    <rdfs:subPropertyOf>
-      <owl:TransitiveProperty rdf:about="#esComponenteDe"/>
-    </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#no_tiene_direccion_asistida">
-    <rdfs:range>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#Familiar"/>
-          <owl:Class rdf:about="#Compacto"/>
-          <owl:Class rdf:about="#Grande"/>
-          <owl:Class rdf:about="#Mediano"/>
-        </owl:unionOf>
-      </owl:Class>
-    </rdfs:range>
-    <rdfs:domain rdf:resource="#Economico"/>
-    <owl:inverseOf rdf:resource="#tiene_direccion_asistida"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#fecha_salida">
-    <rdfs:domain>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
           <owl:Class rdf:about="#Reserva_de_alojamiento"/>
-          <owl:Class rdf:about="#Ticket_de_translado"/>
         </owl:unionOf>
       </owl:Class>
     </rdfs:domain>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#fecha_partida">
-    <rdfs:range rdf:resource="#Fecha"/>
+  <owl:DatatypeProperty rdf:ID="fecha">
     <rdfs:domain rdf:resource="#Ticket_de_vuelo"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#NOtiene">
-    <owl:inverseOf rdf:resource="#tiene"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="tipo_de_translado">
-    <rdfs:range rdf:resource="#Traslado"/>
-  </owl:ObjectProperty>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  </owl:DatatypeProperty>
   <owl:DatatypeProperty rdf:ID="Ciudad">
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdfs:domain rdf:resource="#Pais"/>
   </owl:DatatypeProperty>
-  <owl:TransitiveProperty rdf:about="#tieneComponentes">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf>
-      <owl:TransitiveProperty rdf:about="#esComponenteDe"/>
-    </owl:inverseOf>
-  </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:about="#esComponenteDe">
-    <owl:inverseOf rdf:resource="#tieneComponentes"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </owl:TransitiveProperty>
-  <owl:FunctionalProperty rdf:ID="fecha">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:resource="#Ticket_de_vuelo"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-  </owl:FunctionalProperty>
-  <owl:AllDifferent/>
-  <Fecha rdf:ID="Fecha_3"/>
-  <Turista rdf:ID="Ida_9"/>
   <Fecha rdf:ID="Fecha_4">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></rdfs:comment>
   </Fecha>
-  <Ticket_de_vuelo rdf:ID="Ticket_de_vuelo_a_espania">
-    <fecha_partida>
-      <Fecha rdf:ID="Fecha_1"/>
-    </fecha_partida>
-    <fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
-    >2008-06-23T14:52:31</fecha>
-    <fecha_arribo rdf:resource="#Fecha_4"/>
-  </Ticket_de_vuelo>
-  <owl:AllDifferent/>
+  <Valor rdf:ID="Valor_13"/>
+  <Fecha rdf:ID="Fecha_1"/>
+  <rdf:Description rdf:ID="Valor_2">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </rdf:Description>
+  <Fecha rdf:ID="Fecha_5"/>
   <Pais rdf:ID="Argentina">
     <Ciudad rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Mendoza</Ciudad>
+    >Buenos Aires</Ciudad>
     <Ciudad rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Cordoba</Ciudad>
     <Ciudad rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Buenos Aires</Ciudad>
+    >Mendoza</Ciudad>
   </Pais>
-  <Valor rdf:ID="Valor_13"/>
+  <Fecha rdf:ID="Fecha_3"/>
+  <Turista rdf:ID="Ida_9"/>
+  <owl:AllDifferent/>
+  <Cabañas rdf:ID="Cabañas_8"/>
+  <Familiar rdf:ID="Familiar_7">
+    <esTransladoDe>
+      <Ticket_de_translado rdf:ID="Ticket_de_translado_1">
+        <tieneTranslado rdf:resource="#Familiar_7"/>
+        <fecha_salida rdf:resource="#Fecha_1"/>
+        <nombre_empresa_alquiler>
+          <Rent_car rdf:ID="AutosYFletes">
+            <nombre_empresa_alquiler rdf:resource="#AutosYFletes"/>
+          </Rent_car>
+        </nombre_empresa_alquiler>
+        <tiene_precio>
+          <Valor rdf:ID="precio_2"/>
+        </tiene_precio>
+        <fecha_entrada rdf:resource="#Fecha_5"/>
+        <ciudad rdf:resource="#Argentina"/>
+      </Ticket_de_translado>
+    </esTransladoDe>
+  </Familiar>
+  <owl:AllDifferent/>
   <Pais rdf:ID="Brasil">
     <Ciudad rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Florianopolis</Ciudad>
+    >San Pablo</Ciudad>
     <Ciudad rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Rio de Janeiro</Ciudad>
     <Ciudad rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >San Pablo</Ciudad>
+    >Florianopolis</Ciudad>
   </Pais>
+  <Ticket_de_vuelo rdf:ID="Ticket_de_vuelo_a_espania">
+    <fecha_partida rdf:resource="#Fecha_1"/>
+    <fecha_arribo rdf:resource="#Fecha_4"/>
+    <fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2008-06-23T14:52:31</fecha>
+  </Ticket_de_vuelo>
 </rdf:RDF>
 
-<!-- Created with Protege (with OWL Plugin 3.4, Build 128)  http://protege.stanford.edu -->
+<!-- Created with Protege (with OWL Plugin 3.4, Build 500)  http://protege.stanford.edu -->
