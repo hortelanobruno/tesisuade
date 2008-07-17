@@ -10,7 +10,8 @@ Requisitos:
 
    Una vez descargado ese plugin hay que copiar la carpeta eclipse que contiene el zip y copiar las cosas de adentro en la carpeta del eclipse.
 
-Luego hay que instalar los siguientes plugins segun los siguientes pasos:
+
+   Luego hay que instalar los siguientes plugins segun los siguientes pasos:
 
 
    1.
@@ -35,6 +36,4 @@ Luego hay que instalar los siguientes plugins segun los siguientes pasos:
          8. In eclipse, go to Help > Software Updates > Manage Configuration
          9. Click "Add an Extension Location"
         10. Select the VE "eclipse" subdir from above 
-
-
 
