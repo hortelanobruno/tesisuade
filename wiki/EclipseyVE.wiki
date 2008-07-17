@@ -10,6 +10,10 @@ Requisitos:
 
    Una vez descargado ese plugin hay que copiar la carpeta eclipse que contiene el zip y copiar las cosas de adentro en la carpeta del eclipse.
 
+   Despues descargar http://www.eclipse.org/downloads/download.php?file=/tools/gef/downloads/drops/3.4.0/R200806091334/GEF-ALL-3.4.0.zip
+
+   Y hacer lo mismo.
+
 
    Luego hay que instalar los siguientes plugins segun los siguientes pasos:
 
@@ -37,3 +41,6 @@ Requisitos:
          9. Click "Add an Extension Location"
         10. Select the VE "eclipse" subdir from above 
 
+
+
+Una vez hecho todo esto tendria que estar funcionando.
