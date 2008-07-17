@@ -1,0 +1,40 @@
+Eclipse Europa 3.3 y Visual Editor:
+
+
+Requisitos:
+
+   - Eclipse Europa 3.3 JEE - http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/europa/winter/eclipse-jee-europa-winter-win32.zip
+
+
+   - Plugins: http://www.eclipse.org/downloads/download.php?file=/modeling/emf/emf/downloads/drops/2.4.0/R200806091234/emf-sdo-xsd-SDK-2.4.0.zip
+
+   Una vez descargado ese plugin hay que copiar la carpeta eclipse que contiene el zip y copiar las cosas de adentro en la carpeta del eclipse.
+
+Luego hay que instalar los siguientes plugins segun los siguientes pasos:
+
+
+   1.
+         1. Go to http://download.eclipse.org/webtools/downloads/
+         2. Click the 3.0M1 build
+         3. Download the wtp-sdk zip
+         4. Unpack the .zip file somewhere
+         5. In that extracted folder, there is an "eclipse" subdir
+         6. In that subdir, create a file called ".eclipseextension"
+         7. In eclipse, go to Help > Software Updates > Manage Configuration
+         8. Click "Add an Extension Location"
+         9. Select the WTP "eclipse" subdir from above 
+
+   2.
+         1. Go to http://sourceforge.net/project/showfiles.php?group_id=131065&package_id=154855
+         2. Click "Visual Editor patched as in bug 202562"
+         3. Click org.eclipse.visualeditor-1.3.0.200709121813.zip
+         4. Unpack the .zip file somewhere
+         5. In that extracted folder, there is an " org.eclipse.visualeditor-1.3.0.200709121813" subdir
+         6. Rename that subdir to "eclipse"
+         7. In that "eclipse" subdir, create a file called ".eclipseextension"
+         8. In eclipse, go to Help > Software Updates > Manage Configuration
+         9. Click "Add an Extension Location"
+        10. Select the VE "eclipse" subdir from above 
+
+
+
