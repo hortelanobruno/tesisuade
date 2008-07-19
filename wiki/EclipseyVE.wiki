@@ -24,10 +24,7 @@ Requisitos:
          3. Download the wtp-sdk zip
          4. Unpack the .zip file somewhere
          5. In that extracted folder, there is an "eclipse" subdir
-         6. In that subdir, create a file called ".eclipseextension"
-         7. In eclipse, go to Help > Software Updates > Manage Configuration
-         8. Click "Add an Extension Location"
-         9. Select the WTP "eclipse" subdir from above 
+         6. Lo que tiene esa carpeta eclipse copiarlo dentro de la carpeta eclipse que contiene el IDE.
 
    2.
          1. Go to http://sourceforge.net/project/showfiles.php?group_id=131065&package_id=154855
@@ -36,11 +33,8 @@ Requisitos:
          4. Unpack the .zip file somewhere
          5. In that extracted folder, there is an " org.eclipse.visualeditor-1.3.0.200709121813" subdir
          6. Rename that subdir to "eclipse"
-         7. In that "eclipse" subdir, create a file called ".eclipseextension"
-         8. In eclipse, go to Help > Software Updates > Manage Configuration
-         9. Click "Add an Extension Location"
-        10. Select the VE "eclipse" subdir from above 
+         7. Lo que tiene esa carpeta eclipse copiarlo dentro de la carpeta eclipse que contiene el IDE.
 
 
 
-Una vez hecho todo esto tendria que estar funcionando.
+Una vez hecho todo esto tendría que estar funcionando.
