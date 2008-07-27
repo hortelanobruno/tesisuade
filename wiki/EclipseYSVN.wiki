@@ -2,7 +2,7 @@ En este articulo se explica como conectarse con Eclipse al repositorio de google
 
 
 Primero hay que descargar el plugin para que Eclipse se pueda conectar a repositorios del tipo SVN, para descargarlo hay que agregar un nuevo sitio remoto en la sección de Updates del IDE. 
-El sitio remoto es http://subclipse.tigris.org/update_1.0.x, y instalar el plugin y sus requerimientos.
+El sitio remoto es http://subclipse.tigris.org/update_1.4.x, y instalar el plugin y sus requerimientos.
 Una vez instalado correctamente el plugin se puede hacer muchas cosas, podemos descargar un proyecto del repositorio o subir un proyecto al mismo.
 
 Pasos para descargar un proyecto del repositorio:
