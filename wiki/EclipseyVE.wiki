@@ -19,8 +19,7 @@ Requisitos:
 
 
    1.
-         1. Go to http://download.eclipse.org/webtools/downloads/
-         2. Click the 3.0M1 build
+         1. Go to http://www.eclipse.org/downloads/download.php?file=/webtools/downloads/drops/R2.0/R-2.0.3-20080710044639/wtp-sdk-R-2.0.3-20080710044639.zip
          3. Download the wtp-sdk zip
          4. Unpack the .zip file somewhere
          5. In that extracted folder, there is an "eclipse" subdir
