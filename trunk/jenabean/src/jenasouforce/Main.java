@@ -68,7 +68,7 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 	                                            "file:testing/reasoners/bugs/food.owl" );*/
 
 //	        m.read( "http://www.w3.org/2001/sw/WebOnt/guide-src/wine" );
-	        m = loadOntModelFromOwlFile("C:\\Documents and Settings\\Admin\\Desktop\\Ontologias\\turismo2.owl");
+	        m = loadOntModelFromOwlFile("C:\\Documents and Settings\\Administrador\\Escritorio\\Tesis\\Ontologias\\turismo2.owl");
 	        new ClassHierarchy().showHierarchy2( System.out, m );
 		}
 		
