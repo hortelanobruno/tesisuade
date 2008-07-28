@@ -6,9 +6,8 @@ Requisitos:
    - Eclipse Europa 3.3 JEE - http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/europa/winter/eclipse-jee-europa-winter-win32.zip
 
 
-   - Plugins: http://www.eclipse.org/downloads/download.php?file=/modeling/emf/emf/downloads/drops/2.4.0/R200806091234/emf-sdo-xsd-SDK-2.4.0.zip
-or
-http://archive.eclipse.org/modeling/emf/emf/downloads/drops/2.3.0/R200706262000/
+   - Plugins: http://archive.eclipse.org/modeling/emf/emf/downloads/drops/2.3.0/R200706262000/
+y descargar emf-sdo-xsd-SDK-2.3.0.zip
 
    Una vez descargado ese plugin hay que copiar la carpeta eclipse que contiene el zip y copiar las cosas de adentro en la carpeta del eclipse.
 
