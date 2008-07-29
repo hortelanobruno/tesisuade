@@ -52,8 +52,8 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
         jComboBox3 = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        textFieldFechaVuelta = new javax.swing.JTextField();
+        textFieldFechaIda = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
@@ -117,9 +117,6 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
 
         jLabel2.setText("Fecha de vuelta");
 
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Documents and Settings\\Administrador\\Mis documentos\\workspace\\NetBeans\\GUITesis\\iconos\\icono_calendario.png")); // NOI18N
-
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Documents and Settings\\Administrador\\Mis documentos\\workspace\\NetBeans\\GUITesis\\iconos\\icono_calendario.png")); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -139,8 +136,8 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
                             .addComponent(jLabel2))
                         .addGap(59, 59, 59)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
+                            .addComponent(textFieldFechaVuelta, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textFieldFechaIda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton2, 0, 0, Short.MAX_VALUE)
@@ -186,14 +183,14 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
                         .addGap(24, 24, 24)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(textFieldFechaIda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textFieldFechaVuelta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2))
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
@@ -304,7 +301,8 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 // Abrir frame del calendario
-    JCalendar cal = new JCalendar(null, null, true, true);
+    JCalendar cal = new JCalendar(this,null,null,true,true);
+    
 }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -335,8 +333,24 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField textFieldFechaIda;
+    private javax.swing.JTextField textFieldFechaVuelta;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JTextField getTextFieldFechaIda() {
+        return textFieldFechaIda;
+    }
+
+    public void setTextFieldFechaIda(javax.swing.JTextField textFieldFechaIda) {
+        this.textFieldFechaIda = textFieldFechaIda;
+    }
+
+    public javax.swing.JTextField getTextFieldFechaVuelta() {
+        return textFieldFechaVuelta;
+    }
+
+    public void setTextFieldFechaVuelta(javax.swing.JTextField textFieldFechaVuelta) {
+        this.textFieldFechaVuelta = textFieldFechaVuelta;
+    }
 
 }
