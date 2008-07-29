@@ -67,7 +67,6 @@ public class Main extends javax.swing.JFrame {
 
         jLabel1.setText("Pantalla principal del asistente de viajes");
 
-        jProgressBar1.setOrientation(1);
         jProgressBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
@@ -90,8 +89,8 @@ public class Main extends javax.swing.JFrame {
                 .addGap(156, 156, 156)
                 .addComponent(jLabel1)
                 .addGap(31, 31, 31)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                .addGap(83, 83, 83))
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(195, Short.MAX_VALUE))
         );
 
         jMenu1.setText("File");
