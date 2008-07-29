@@ -118,12 +118,12 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="269" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="285" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="298" max="-2" attributes="0"/>
                           <Component id="jProgressBar1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -136,9 +136,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="jProgressBar1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="203" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <Component id="jProgressBar1" pref="133" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -150,6 +150,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JProgressBar" name="jProgressBar1">
+          <Properties>
+            <Property name="orientation" type="int" value="1"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                <EmptyBorder/>
+              </Border>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

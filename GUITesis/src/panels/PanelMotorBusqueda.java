@@ -8,6 +8,9 @@ package panels;
 
 import varios.JCalendar;
 import gui.Main;
+import java.util.Date;
+import java.util.Locale;
+import javax.swing.JButton;
 
 /**
  *
@@ -66,6 +69,7 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setSelected(true);
         jRadioButton1.setText("Ida y vuelta");
 
         buttonGroup1.add(jRadioButton2);
@@ -117,6 +121,16 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
 
         jLabel2.setText("Fecha de vuelta");
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panels/icono_calendario.png"))); // NOI18N
+        jButton2.setMnemonic(2);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icono_calendario.png"))); // NOI18N
+        jButton1.setMnemonic(1);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -301,9 +315,14 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 // Abrir frame del calendario
-    JCalendar cal = new JCalendar(this,null,null,true,true);
+    new JCalendar(this,((JButton)evt.getSource()).getMnemonic(),new Date(),new Locale("id"),true,true);
     
 }//GEN-LAST:event_jButton1ActionPerformed
+
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+// TODO add your handling code here:
+    new JCalendar(this,((JButton)evt.getSource()).getMnemonic(),new Date(),new Locale("id"),true,true);
+}//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
