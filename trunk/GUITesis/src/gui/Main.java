@@ -30,6 +30,7 @@ public class Main extends javax.swing.JFrame {
         this.setLookAndFeel();
         isPanelPrincipalSelected = true;
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        iniciaCuenta();
     }
 
     /** This method is called from within the constructor to
@@ -66,6 +67,9 @@ public class Main extends javax.swing.JFrame {
 
         jLabel1.setText("Pantalla principal del asistente de viajes");
 
+        jProgressBar1.setOrientation(1);
+        jProgressBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
@@ -76,7 +80,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(269, 269, 269)
                         .addComponent(jLabel1))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGap(285, 285, 285)
+                        .addGap(298, 298, 298)
                         .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(276, Short.MAX_VALUE))
         );
@@ -85,9 +89,9 @@ public class Main extends javax.swing.JFrame {
             .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addGap(156, 156, 156)
                 .addComponent(jLabel1)
-                .addGap(30, 30, 30)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                .addGap(83, 83, 83))
         );
 
         jMenu1.setText("File");
@@ -215,6 +219,68 @@ public void ponerPanel(JPanel panel) {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 }
+
+Thread hilo;
+  Object objeto = new Object();
+  boolean pideParar = false;
+  
+public boolean esImpar(int iNumero) {
+  if (iNumero%2!=0)
+    return true;
+  else
+    return false;
+}
+
+  public void iniciaCuenta() {
+    if( hilo == null ) {
+      hilo = new ThreadCarga();
+      pideParar = false;
+      hilo.start();
+    }
+  }
+class ThreadCarga extends Thread {
+    public void run() {
+      int min = 0;
+      int max = 100;
+      int aux = 1;
+      jProgressBar1.setValue( min );
+      jProgressBar1.setMinimum( min );
+      jProgressBar1.setMaximum( max );
+      while(true){
+      if(esImpar(aux)){
+          for (int i=min; i <= max; i++ ) {
+            jProgressBar1.setValue( i );
+            repaint();
+            synchronized( objeto ) {
+              if( pideParar )
+                break;
+              try {
+                objeto.wait( 10 );
+              } catch( InterruptedException e ) {
+                // Se ignoran las excepciones
+              }
+            }
+          }
+      }else{
+          for (int i=max; i >= min; i-- ) {
+            jProgressBar1.setValue( i );
+            repaint();
+            synchronized( objeto ) {
+              if( pideParar )
+                break;
+              try {
+                objeto.wait( 10 );
+              } catch( InterruptedException e ) {
+                // Se ignoran las excepciones
+              }
+            }
+          }
+      }
+      aux++;
+      }
+      //hilo = null;
+    }
+  }
     /**
      * @param args the command line arguments
      */

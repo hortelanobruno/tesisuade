@@ -15,6 +15,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -59,6 +60,10 @@ public class JCalendar extends JPanel implements PropertyChangeListener {
 	protected Date maxSelectableDate;
 
         private PanelMotorBusqueda panelMotorBusqueda;
+        
+        private JFrame frame;
+        
+        private int mnemoButton;
 	/**
 	 * Default JCalendar constructor.
 	 */
@@ -76,9 +81,11 @@ public class JCalendar extends JPanel implements PropertyChangeListener {
 	 * @param weekOfYearVisible
 	 *            true, if weeks of year shall be visible
 	 */
-	public JCalendar(PanelMotorBusqueda panel, Date date, Locale locale, boolean monthSpinner, boolean weekOfYearVisible) {
+	public JCalendar(PanelMotorBusqueda panel, int mnemo, Date date, Locale locale, boolean monthSpinner, boolean weekOfYearVisible) {
             this.panelMotorBusqueda = panel;
-            JFrame frame = new JFrame("JCalendar");
+            this.mnemoButton = mnemo;
+            
+            frame = new JFrame("JCalendar");
             
 
 		// needed for setFont() etc.
@@ -127,8 +134,8 @@ public class JCalendar extends JPanel implements PropertyChangeListener {
 		setCalendar(calendar);
                 
                 frame.getContentPane().add(this);
-            frame.pack();
-            frame.setVisible(true);
+                frame.pack();
+                frame.setVisible(true);
 	}
 
 
@@ -203,10 +210,14 @@ public class JCalendar extends JPanel implements PropertyChangeListener {
 			if (evt.getPropertyName().equals("day")) {
 				c.set(Calendar.DAY_OF_MONTH, ((Integer) evt.getNewValue()).intValue());
 				setCalendar(c, false);
-                                Date d = new Date(c.getTimeInMillis());
-                                String fecha = d.getDay() + "/" + d.getMonth() +"/"+d.getYear();
-                                this.panelMotorBusqueda.getTextFieldFechaIda().setText(fecha);
-                                this.setVisible(false);
+                                Date d = c.getTime();
+                                DateFormat format = DateFormat.getDateInstance();
+                                if(mnemoButton == 1){
+                                    this.panelMotorBusqueda.getTextFieldFechaIda().setText(format.format(d));
+                                }if(mnemoButton == 2){
+                                    this.panelMotorBusqueda.getTextFieldFechaVuelta().setText(format.format(d));
+                                }
+                                frame.setVisible(false);
 			} else if (evt.getPropertyName().equals("month")) {
 				c.set(Calendar.MONTH, ((Integer) evt.getNewValue()).intValue());
 				setCalendar(c, false);
