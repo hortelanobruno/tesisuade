@@ -194,7 +194,7 @@ public void ponerPanel(JPanel panel) {
 
 
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+	javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

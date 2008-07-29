@@ -1,29 +1,25 @@
 /*
- * PanelMotorBusqueda.java
+ * testPanel.java
  *
- * Created on 29 de julio de 2008, 00:42
+ * Created on July 29, 2008, 11:09 AM
  */
 
 package panels;
 
-import varios.JCalendar;
-import gui.Main;
+import com.toedter.calendar.JCalendar;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.JButton;
 
 /**
  *
- * @author  Administrador
+ * @author  Admin
  */
-public class PanelMotorBusqueda extends javax.swing.JPanel {
+public class testPanel extends javax.swing.JPanel {
 
-    private Main main;
-    /** Creates new form PanelMotorBusqueda */
-    public PanelMotorBusqueda(Main main) {
-        this.main = main;
+    /** Creates new form testPanel */
+    public testPanel() {
         initComponents();
-        
     }
 
     /** This method is called from within the constructor to
@@ -35,9 +31,6 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -59,25 +52,16 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
         textFieldFechaIda = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jPanel7 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        panelDinamico = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
 
         jLabel3.setText("Adultos");
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setSelected(true);
         jRadioButton1.setText("Ida y vuelta");
 
-        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Solo ida");
 
-        buttonGroup1.add(jRadioButton3);
         jRadioButton3.setText("Multiples Destinos");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -112,11 +96,6 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
         jTextField2.setText("Escriba ciudad destino");
 
         buttonBuscarVuelos.setText("Buscar vuelos");
-        buttonBuscarVuelos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonBuscarVuelosActionPerformed(evt);
-            }
-        });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
 
@@ -229,142 +208,41 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
                 .addGap(33, 33, 33))
         );
 
-        javax.swing.GroupLayout panelDinamicoLayout = new javax.swing.GroupLayout(panelDinamico);
-        panelDinamico.setLayout(panelDinamicoLayout);
-        panelDinamicoLayout.setHorizontalGroup(
-            panelDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 504, Short.MAX_VALUE)
-        );
-        panelDinamicoLayout.setVerticalGroup(
-            panelDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 383, Short.MAX_VALUE)
-        );
-
-        jScrollPane1.setViewportView(panelDinamico);
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("Vuelos", jPanel1);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 887, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 407, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Paquetes", jPanel2);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 887, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 407, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Hoteles", jPanel3);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 887, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 407, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Autos", jPanel4);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 892, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(24, 24, 24)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(25, 25, 25)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+            .addGap(0, 347, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-// Abrir frame del calendario
-    new JCalendar(this,((JButton)evt.getSource()).getMnemonic(),new Date(),new Locale("id"),true,true);
-    
-}//GEN-LAST:event_jButton1ActionPerformed
-
 private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 // TODO add your handling code here:
-    new JCalendar(this,((JButton)evt.getSource()).getMnemonic(),new Date(),new Locale("id"),true,true);
+//    new JCalendar(this,((JButton)evt.getSource()).getMnemonic(),new Date(),new Locale("id"),true,true);
 }//GEN-LAST:event_jButton2ActionPerformed
 
-private void buttonBuscarVuelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarVuelosActionPerformed
-
-    testPanel test = new testPanel();
-   panelDinamico.add(test);
-   test.setVisible(true);
-   test = new testPanel();    
-   panelDinamico.add(test);
-   test.setVisible(true);
-   test = new testPanel();    
-   panelDinamico.add(test);
-   test.setVisible(true);
-   test = new testPanel();    
-   panelDinamico.add(test);
-   test.setVisible(true);
-    
-}//GEN-LAST:event_buttonBuscarVuelosActionPerformed
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+// Abrir frame del calendario
+   // new JCalendar(this,((JButton)evt.getSource()).getMnemonic(),new Date(),new Locale("id"),true,true);
+}//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBuscarVuelos;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton buttonOpcionesAvanzadas;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -376,40 +254,15 @@ private void buttonBuscarVuelosActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JPanel panelDinamico;
     private javax.swing.JTextField textFieldFechaIda;
     private javax.swing.JTextField textFieldFechaVuelta;
     // End of variables declaration//GEN-END:variables
 
-    public javax.swing.JTextField getTextFieldFechaIda() {
-        return textFieldFechaIda;
-    }
-
-    public void setTextFieldFechaIda(javax.swing.JTextField textFieldFechaIda) {
-        this.textFieldFechaIda = textFieldFechaIda;
-    }
-
-    public javax.swing.JTextField getTextFieldFechaVuelta() {
-        return textFieldFechaVuelta;
-    }
-
-    public void setTextFieldFechaVuelta(javax.swing.JTextField textFieldFechaVuelta) {
-        this.textFieldFechaVuelta = textFieldFechaVuelta;
-    }
-
 }
-
