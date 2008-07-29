@@ -229,17 +229,7 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
                 .addGap(33, 33, 33))
         );
 
-        javax.swing.GroupLayout panelDinamicoLayout = new javax.swing.GroupLayout(panelDinamico);
-        panelDinamico.setLayout(panelDinamicoLayout);
-        panelDinamicoLayout.setHorizontalGroup(
-            panelDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 504, Short.MAX_VALUE)
-        );
-        panelDinamicoLayout.setVerticalGroup(
-            panelDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 383, Short.MAX_VALUE)
-        );
-
+        panelDinamico.setLayout(new java.awt.GridLayout(0, 1));
         jScrollPane1.setViewportView(panelDinamico);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -347,18 +337,22 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 private void buttonBuscarVuelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarVuelosActionPerformed
 
     testPanel test = new testPanel();
+    test.setVisible(true);
    panelDinamico.add(test);
+   
+   test = new testPanel();
    test.setVisible(true);
+   panelDinamico.add(test);
+   
    test = new testPanel();    
-   panelDinamico.add(test);
    test.setVisible(true);
-   test = new testPanel();    
    panelDinamico.add(test);
+   
+   test = new testPanel();
    test.setVisible(true);
-   test = new testPanel();    
    panelDinamico.add(test);
-   test.setVisible(true);
-    
+   
+    this.repaint();
 }//GEN-LAST:event_buttonBuscarVuelosActionPerformed
 
 
