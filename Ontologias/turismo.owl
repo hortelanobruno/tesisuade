@@ -26,9 +26,52 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Ticket_de_translado">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Rent_car"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="nombre_empresa_alquiler"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:ID="Ticket_de_vuelo"/>
     </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Escala"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Viaje"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Fecha"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="fecha_salida"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Traslado"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="tieneTranslado"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Rent_car"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Asiento"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -39,62 +82,19 @@
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="tiene_precio"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="Precio"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Escala"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="fecha_salida"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="Fecha"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Viaje"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#Fecha"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="fecha_entrada"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="tieneTranslado"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="Traslado"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Rent_car"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Asiento"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     <owl:disjointWith>
       <owl:Class rdf:ID="Comida"/>
     </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Precio"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="tiene_precio"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:ID="Personas"/>
     </owl:disjointWith>
@@ -104,19 +104,19 @@
     <owl:disjointWith>
       <owl:Class rdf:ID="Habitacion"/>
     </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#Rent_car"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="nombre_empresa_alquiler"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:ID="Aerolinea"/>
     </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="fecha_entrada"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Fecha"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:ID="Reserva_de_alojamiento"/>
     </owl:disjointWith>
@@ -220,36 +220,6 @@
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#Ticket_de_vuelo">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="cantidad_pasajeros"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#Personas"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="fecha_arribo"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#Fecha"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="fecha_partida"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#Fecha"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:about="#Aerolinea"/>
     </owl:disjointWith>
@@ -265,6 +235,29 @@
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
+          <owl:Class rdf:about="#Personas"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="cantidad_pasajeros"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Rent_car"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Reserva_de_alojamiento"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Fecha"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Alojamiento"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
           <owl:Class rdf:about="#Aerolinea"/>
         </owl:someValuesFrom>
         <owl:onProperty>
@@ -274,35 +267,12 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#Pais"/>
-        </owl:someValuesFrom>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="tiene_destino"/>
+          <owl:ObjectProperty rdf:about="#tiene_precio"/>
         </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#Ticket_de_translado"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Reserva_de_alojamiento"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Fecha"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Rent_car"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Alojamiento"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Restriction>
         <owl:someValuesFrom>
-          <owl:Class rdf:about="#Pais"/>
+          <owl:Class rdf:about="#Precio"/>
         </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="tiene_origen"/>
-        </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointWith>
@@ -311,6 +281,16 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#Escala"/>
     </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Fecha"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="fecha_partida"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:about="#Asiento"/>
     </owl:disjointWith>
@@ -318,14 +298,34 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#Personas"/>
     </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="fecha_arribo"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Fecha"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="tiene_origen"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Pais"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="#Comida"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
-          <owl:Class rdf:about="#Precio"/>
+          <owl:Class rdf:about="#Pais"/>
         </owl:someValuesFrom>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#tiene_precio"/>
+          <owl:ObjectProperty rdf:ID="tiene_destino"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -830,6 +830,11 @@
     <owl:disjointWith rdf:resource="#Ticket_de_vuelo"/>
   </owl:Class>
   <owl:Class rdf:about="#Reserva_de_alojamiento">
+    <owl:disjointWith rdf:resource="#Precio"/>
+    <owl:disjointWith rdf:resource="#Escala"/>
+    <owl:disjointWith rdf:resource="#Asiento"/>
+    <owl:disjointWith rdf:resource="#Personas"/>
+    <owl:disjointWith rdf:resource="#Viaje"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -838,19 +843,14 @@
         <owl:someValuesFrom rdf:resource="#Habitacion"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#Precio"/>
-    <owl:disjointWith rdf:resource="#Escala"/>
-    <owl:disjointWith rdf:resource="#Asiento"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Personas"/>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="cantidad_personas"/>
+          <owl:ObjectProperty rdf:about="#ciudad"/>
         </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Pais"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#Personas"/>
-    <owl:disjointWith rdf:resource="#Viaje"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#Fecha"/>
@@ -861,12 +861,36 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Precio"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#tiene_precio"/>
         </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#Precio"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Ticket_de_vuelo"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="cantidad_estrellas"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Alojamiento"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Personas"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="cantidad_personas"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Habitacion"/>
+    <owl:disjointWith rdf:resource="#Alojamiento"/>
+    <owl:disjointWith rdf:resource="#Fecha"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Rent_car"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Comida"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -875,18 +899,7 @@
         <owl:someValuesFrom rdf:resource="#Fecha"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#Ticket_de_vuelo"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Alojamiento"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="cantidad_estrellas"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#Habitacion"/>
-    <owl:disjointWith rdf:resource="#Alojamiento"/>
-    <owl:disjointWith rdf:resource="#Fecha"/>
+    <owl:disjointWith rdf:resource="#Excursion"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#Alojamiento"/>
@@ -895,27 +908,14 @@
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Rent_car"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Comida"/>
-    <owl:disjointWith rdf:resource="#Excursion"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Pais"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#ciudad"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="#Traslado"/>
     <owl:disjointWith rdf:resource="#Aerolinea"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Alojamiento"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:ID="tipo_de_alojamiento"/>
         </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Alojamiento"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
@@ -1242,10 +1242,6 @@
   </Fecha>
   <Valor rdf:ID="Valor_13"/>
   <Fecha rdf:ID="Fecha_1"/>
-  <rdf:Description rdf:ID="Valor_2">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></rdfs:comment>
-  </rdf:Description>
   <Fecha rdf:ID="Fecha_5"/>
   <Pais rdf:ID="Argentina">
     <Ciudad rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1258,6 +1254,7 @@
   <Fecha rdf:ID="Fecha_3"/>
   <Turista rdf:ID="Ida_9"/>
   <owl:AllDifferent/>
+  <Aerolinea rdf:ID="Aerolineas_Argentinas"/>
   <Cabañas rdf:ID="Cabañas_8"/>
   <Familiar rdf:ID="Familiar_7">
     <esTransladoDe>
@@ -1277,6 +1274,7 @@
       </Ticket_de_translado>
     </esTransladoDe>
   </Familiar>
+  <Alojamiento rdf:ID="alojamiento_1"/>
   <owl:AllDifferent/>
   <Pais rdf:ID="Brasil">
     <Ciudad rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
