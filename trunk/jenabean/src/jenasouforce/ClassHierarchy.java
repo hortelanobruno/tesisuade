@@ -59,6 +59,7 @@ public class ClassHierarchy {
     
     public void showHierarchy2( PrintStream out, OntModel m ) {
         // create an iterator over the root classes that are not anonymous class expressions
+    	
         Iterator i = m.listIndividuals()
                       .filterDrop( new Filter() {
                                     public boolean accept( Object o ) {
@@ -70,7 +71,11 @@ public class ClassHierarchy {
         }
     }
 
-
+    public void creoInd(OntModel m){
+    	/*Resource ind = new Resource();
+    	m.createIndividual(ind);*/
+    	m.createClass("brunoooooo");
+    }
     // Internal implementation methods
     //////////////////////////////////
 
