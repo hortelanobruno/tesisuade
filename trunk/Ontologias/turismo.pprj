@@ -1,4 +1,4 @@
-; Tue Jul 15 16:05:24 ART 2008
+; Wed Jul 30 19:09:16 ART 2008
 ; 
 ;+ (version "3.4")
 ;+ (build "Build 500")
@@ -6,11 +6,12 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[turismo_ProjectKB_Class312]
-		[turismo_ProjectKB_Class313]
-		[turismo_ProjectKB_Class314]
-		[turismo_ProjectKB_Class315]
-		[turismo_ProjectKB_Class316]))
+		[turismo_ProjectKB_Class76]
+		[turismo_ProjectKB_Class77]
+		[turismo_ProjectKB_Class78]
+		[turismo_ProjectKB_Class79]
+		[turismo_ProjectKB_Class80]
+		[turismo_ProjectKB_Class81]))
 
 ([CLSES_TAB] of  Widget
 
@@ -3061,9 +3062,6 @@
 	(name "OWL-DEFAULT-ANNOT-PROP-IN-VIEW")
 	(string_value "http://www.w3.org/2000/01/rdf-schema#comment"))
 
-([KB_883917_Class1] of  Map
-)
-
 ([KB_886778_Instance_12] of  Property_List
 )
 
@@ -5322,6 +5320,9 @@
 ([KB_941921_Instance_7] of  Property_List
 )
 
+([KB_993807_Class0] of  Map
+)
+
 ([OWL_ProjectKB_Instance_3] of  Integer
 
 	(integer_value 500)
@@ -5602,8 +5603,8 @@
 		"http://www.w3.org/2001/XMLSchema#gMonth"
 		"http://www.w3.org/2003/11/swrlb#subtractDayTimeDurations"
 		"http://protege.stanford.edu/plugins/owl/protege#inferredType"
-		"http://www.w3.org/2002/07/owl#differentFrom"
 		"http://www.w3.org/2003/11/swrl#arguments"
+		"http://www.w3.org/2002/07/owl#differentFrom"
 		"http://www.w3.org/2001/XMLSchema#NOTATION"
 		"http://www.w3.org/2003/11/swrlb#subtractTimes"
 		"http://www.w3.org/2003/11/swrlb#subtractDatTimeDurationFromTime"
@@ -5629,8 +5630,8 @@
 		"http://www.w3.org/2003/11/swrlb#mode"
 		"http://www.w3.org/2002/07/owl#DeprecatedProperty"
 		"http://www.w3.org/2002/07/owl#ComplementClass"
-		"http://www.w3.org/2000/01/rdf-schema#seeAlso"
 		":PAL-NAME"
+		"http://www.w3.org/2000/01/rdf-schema#seeAlso"
 		"http://www.w3.org/2000/01/rdf-schema#Literal"
 		":NAME"
 		"http://www.w3.org/2002/07/owl#InverseFunctionalProperty"
@@ -5728,110 +5729,113 @@
 	(property_list [XY_Instance_725])
 	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
 
-([turismo_ProjectKB_Class10] of  Widget
+([turismo_ProjectKB_Class1] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class11])
-	(widget_class_name "edu.stanford.smi.RemoteKBTab.WordNetTab"))
-
-([turismo_ProjectKB_Class11] of  Property_List
-)
-
-([turismo_ProjectKB_Class12] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class13])
-	(widget_class_name "edu.stanford.smi.protegex.changes.ChangesTab"))
-
-([turismo_ProjectKB_Class13] of  Property_List
-)
-
-([turismo_ProjectKB_Class14] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class15])
-	(widget_class_name "ezpal.EZPalTab"))
-
-([turismo_ProjectKB_Class15] of  Property_List
-)
-
-([turismo_ProjectKB_Class16] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class17])
-	(widget_class_name "edu.stanford.smi.protegex.fctab.FacetConstraintsTab"))
-
-([turismo_ProjectKB_Class17] of  Property_List
-)
-
-([turismo_ProjectKB_Class18] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class19])
-	(widget_class_name "edu.stanford.smi.protegex.changes.changesKBViewTab.ChangesKBViewTab"))
-
-([turismo_ProjectKB_Class19] of  Property_List
-)
-
-([turismo_ProjectKB_Class2] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class3])
+	(property_list [turismo_ProjectKB_Class2])
 	(widget_class_name "TGViztab.TGVizTab"))
 
-([turismo_ProjectKB_Class20] of  Widget
+([turismo_ProjectKB_Class10] of  Property_List
+)
+
+([turismo_ProjectKB_Class11] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class21])
+	(property_list [turismo_ProjectKB_Class12])
+	(widget_class_name "edu.stanford.smi.protegex.changes.ChangesTab"))
+
+([turismo_ProjectKB_Class12] of  Property_List
+)
+
+([turismo_ProjectKB_Class13] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismo_ProjectKB_Class14])
+	(widget_class_name "ezpal.EZPalTab"))
+
+([turismo_ProjectKB_Class14] of  Property_List
+)
+
+([turismo_ProjectKB_Class15] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismo_ProjectKB_Class16])
+	(widget_class_name "edu.stanford.smi.protegex.fctab.FacetConstraintsTab"))
+
+([turismo_ProjectKB_Class16] of  Property_List
+)
+
+([turismo_ProjectKB_Class17] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismo_ProjectKB_Class18])
+	(widget_class_name "edu.stanford.smi.protegex.changes.changesKBViewTab.ChangesKBViewTab"))
+
+([turismo_ProjectKB_Class18] of  Property_List
+)
+
+([turismo_ProjectKB_Class19] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismo_ProjectKB_Class20])
 	(widget_class_name "edu.stanford.smi.protegex.xml.tab.XMLTab"))
 
-([turismo_ProjectKB_Class21] of  Property_List
+([turismo_ProjectKB_Class2] of  Property_List
 )
 
-([turismo_ProjectKB_Class22] of  Widget
+([turismo_ProjectKB_Class20] of  Property_List
+)
+
+([turismo_ProjectKB_Class21] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class23])
+	(property_list [turismo_ProjectKB_Class22])
 	(widget_class_name "edu.stanford.smi.protegex.prompt.PromptTab"))
 
-([turismo_ProjectKB_Class23] of  Property_List
+([turismo_ProjectKB_Class22] of  Property_List
 )
 
-([turismo_ProjectKB_Class24] of  Widget
+([turismo_ProjectKB_Class23] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class25])
+	(property_list [turismo_ProjectKB_Class24])
 	(widget_class_name "edu.stanford.smi.protege.widget.ProtegePropertiesTab"))
 
-([turismo_ProjectKB_Class25] of  Property_List
+([turismo_ProjectKB_Class24] of  Property_List
 )
 
-([turismo_ProjectKB_Class26] of  Widget
+([turismo_ProjectKB_Class25] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class27])
+	(property_list [turismo_ProjectKB_Class26])
 	(widget_class_name "edu.stanford.smi.protegex.widget.pal.PalConstraintsTab"))
 
-([turismo_ProjectKB_Class27] of  Property_List
+([turismo_ProjectKB_Class26] of  Property_List
 )
 
-([turismo_ProjectKB_Class28] of  Widget
+([turismo_ProjectKB_Class27] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class29])
+	(property_list [turismo_ProjectKB_Class28])
 	(widget_class_name "edu.stanford.smi.protege.widget.instance_tree.KnowledgeTreeTab"))
 
-([turismo_ProjectKB_Class29] of  Property_List
+([turismo_ProjectKB_Class28] of  Property_List
 )
 
-([turismo_ProjectKB_Class3] of  Property_List
-)
-
-([turismo_ProjectKB_Class30] of  Widget
+([turismo_ProjectKB_Class29] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class31])
+	(property_list [turismo_ProjectKB_Class30])
 	(widget_class_name "edu.stanford.smi.protege.widget.instance_tree.InstanceTreeTab"))
+
+([turismo_ProjectKB_Class3] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismo_ProjectKB_Class4])
+	(widget_class_name "dfki.protege.ontoviz_tab.OntovizTab"))
+
+([turismo_ProjectKB_Class30] of  Property_List
+)
 
 ([turismo_ProjectKB_Class305] of  String
 
@@ -5843,150 +5847,152 @@
 	(boolean_value TRUE)
 	(name "parser_namespace_database_inclusion_version"))
 
-([turismo_ProjectKB_Class31] of  Property_List
+([turismo_ProjectKB_Class31] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismo_ProjectKB_Class32])
+	(widget_class_name "edu.stanford.smi.protegex.changes.stats.ChangeStatisticsTab"))
+
+([turismo_ProjectKB_Class32] of  Property_List
 )
 
-([turismo_ProjectKB_Class312] of  String
+([turismo_ProjectKB_Class33] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismo_ProjectKB_Class34])
+	(widget_class_name "se.liu.ida.JessTab.JessTab"))
+
+([turismo_ProjectKB_Class34] of  Property_List
+)
+
+([turismo_ProjectKB_Class35] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismo_ProjectKB_Class36])
+	(widget_class_name "ca.uvic.csr.shrimp.jambalaya.JambalayaTab"))
+
+([turismo_ProjectKB_Class36] of  Property_List
+)
+
+([turismo_ProjectKB_Class37] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismo_ProjectKB_Class38])
+	(widget_class_name "edu.stanford.smi.protegex.datamaster.DataMasterTab"))
+
+([turismo_ProjectKB_Class38] of  Property_List
+)
+
+([turismo_ProjectKB_Class39] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismo_ProjectKB_Class40])
+	(widget_class_name "org.algernon.kb.okbc.protege.plugins.AlgernonTab"))
+
+([turismo_ProjectKB_Class4] of  Property_List
+)
+
+([turismo_ProjectKB_Class40] of  Property_List
+)
+
+([turismo_ProjectKB_Class41] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismo_ProjectKB_Class42])
+	(widget_class_name "edu.stanford.smi.protegex.widget.pal.PalQueriesTab"))
+
+([turismo_ProjectKB_Class42] of  Property_List
+)
+
+([turismo_ProjectKB_Class43] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismo_ProjectKB_Class44])
+	(widget_class_name "edu.stanford.smi.protegex.chatPlugin.ChatTab"))
+
+([turismo_ProjectKB_Class44] of  Property_List
+)
+
+([turismo_ProjectKB_Class45] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismo_ProjectKB_Class46])
+	(widget_class_name "edu.stanford.smi.RemoteKBTab.UMLSTab"))
+
+([turismo_ProjectKB_Class46] of  Property_List
+)
+
+([turismo_ProjectKB_Class47] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismo_ProjectKB_Class48])
+	(widget_class_name "edu.stanford.smi.protegex.server_changes.prompt.UsersTab"))
+
+([turismo_ProjectKB_Class48] of  Property_List
+)
+
+([turismo_ProjectKB_Class49] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismo_ProjectKB_Class50])
+	(widget_class_name "uk.ac.man.cs.mig.coode.owlviz.ui.OWLVizTab"))
+
+([turismo_ProjectKB_Class5] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismo_ProjectKB_Class6])
+	(widget_class_name "script.ProtegeScriptTab"))
+
+([turismo_ProjectKB_Class50] of  Property_List
+)
+
+([turismo_ProjectKB_Class6] of  Property_List
+)
+
+([turismo_ProjectKB_Class7] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismo_ProjectKB_Class8])
+	(widget_class_name "edu.stanford.smi.protege.keywordsearch.StringSearch"))
+
+([turismo_ProjectKB_Class76] of  String
 
 	(name "http://www.w3.org/2002/07/owl#Class")
 	(string_value "%3ANAME"))
 
-([turismo_ProjectKB_Class313] of  String
+([turismo_ProjectKB_Class77] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([turismo_ProjectKB_Class314] of  String
+([turismo_ProjectKB_Class78] of  String
+
+	(name "http://www.owl-ontologies.com/Ontology1211842062.owl#Aerolinea")
+	(string_value "http%3A%2F%2Fwww.owl-ontologies.com%2FOntology1211842062.owl%23tipo_de_translado"))
+
+([turismo_ProjectKB_Class79] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
 
-([turismo_ProjectKB_Class315] of  String
+([turismo_ProjectKB_Class8] of  Property_List
+)
+
+([turismo_ProjectKB_Class80] of  String
 
 	(name "http://www.w3.org/2002/07/owl#Thing")
 	(string_value "%3ANAME"))
 
-([turismo_ProjectKB_Class316] of  String
+([turismo_ProjectKB_Class81] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([turismo_ProjectKB_Class32] of  Widget
+([turismo_ProjectKB_Class9] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class33])
-	(widget_class_name "edu.stanford.smi.protegex.changes.stats.ChangeStatisticsTab"))
-
-([turismo_ProjectKB_Class33] of  Property_List
-)
-
-([turismo_ProjectKB_Class34] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class35])
-	(widget_class_name "se.liu.ida.JessTab.JessTab"))
-
-([turismo_ProjectKB_Class35] of  Property_List
-)
-
-([turismo_ProjectKB_Class36] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class37])
-	(widget_class_name "ca.uvic.csr.shrimp.jambalaya.JambalayaTab"))
-
-([turismo_ProjectKB_Class37] of  Property_List
-)
-
-([turismo_ProjectKB_Class38] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class39])
-	(widget_class_name "edu.stanford.smi.protegex.datamaster.DataMasterTab"))
-
-([turismo_ProjectKB_Class39] of  Property_List
-)
-
-([turismo_ProjectKB_Class4] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class5])
-	(widget_class_name "dfki.protege.ontoviz_tab.OntovizTab"))
-
-([turismo_ProjectKB_Class40] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class41])
-	(widget_class_name "org.algernon.kb.okbc.protege.plugins.AlgernonTab"))
-
-([turismo_ProjectKB_Class41] of  Property_List
-)
-
-([turismo_ProjectKB_Class42] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class43])
-	(widget_class_name "edu.stanford.smi.protegex.widget.pal.PalQueriesTab"))
-
-([turismo_ProjectKB_Class43] of  Property_List
-)
-
-([turismo_ProjectKB_Class44] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class45])
-	(widget_class_name "edu.stanford.smi.protegex.chatPlugin.ChatTab"))
-
-([turismo_ProjectKB_Class45] of  Property_List
-)
-
-([turismo_ProjectKB_Class46] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class47])
-	(widget_class_name "edu.stanford.smi.RemoteKBTab.UMLSTab"))
-
-([turismo_ProjectKB_Class47] of  Property_List
-)
-
-([turismo_ProjectKB_Class48] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class49])
-	(widget_class_name "edu.stanford.smi.protegex.server_changes.prompt.UsersTab"))
-
-([turismo_ProjectKB_Class49] of  Property_List
-)
-
-([turismo_ProjectKB_Class5] of  Property_List
-)
-
-([turismo_ProjectKB_Class50] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class51])
-	(widget_class_name "uk.ac.man.cs.mig.coode.owlviz.ui.OWLVizTab"))
-
-([turismo_ProjectKB_Class51] of  Property_List
-)
-
-([turismo_ProjectKB_Class6] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class7])
-	(widget_class_name "script.ProtegeScriptTab"))
-
-([turismo_ProjectKB_Class7] of  Property_List
-)
-
-([turismo_ProjectKB_Class8] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo_ProjectKB_Class9])
-	(widget_class_name "edu.stanford.smi.protege.keywordsearch.StringSearch"))
-
-([turismo_ProjectKB_Class9] of  Property_List
-)
+	(property_list [turismo_ProjectKB_Class10])
+	(widget_class_name "edu.stanford.smi.RemoteKBTab.WordNetTab"))
 
 ([turismo_ProjectKB_Instance_97] of  Property_List
 )
@@ -6357,19 +6363,6 @@
 
 	(name "vertical_stretcher")
 	(string_value "http://www.w3.org/2002/07/owl#imports"))
-
-([XY_Instance_217] of  Widget
-
-	(height 0)
-	(is_hidden FALSE)
-	(name ":OWL-ONTOLOGY-PREFIXES")
-	(property_list [XY_Instance_218])
-	(width 0)
-	(x 0)
-	(y 0))
-
-([XY_Instance_218] of  Property_List
-)
 
 ([XY_Instance_235] of  Widget
 
