@@ -1,4 +1,4 @@
-; Sun Jul 06 23:17:24 GMT 2008
+; Wed Jul 30 23:52:51 GMT 2008
 ; 
 ;+ (version "3.4")
 ;+ (build "Build 128")
@@ -6,11 +6,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[turismo2_ProjectKB_Instance_20226]
-		[turismo2_ProjectKB_Instance_20227]
-		[turismo2_ProjectKB_Instance_20228]
-		[turismo2_ProjectKB_Instance_20229]
-		[turismo2_ProjectKB_Instance_20230]))
+		[turismoOriginal_ProjectKB_Instance_287]
+		[turismoOriginal_ProjectKB_Instance_288]
+		[turismoOriginal_ProjectKB_Instance_289]
+		[turismoOriginal_ProjectKB_Instance_290]
+		[turismoOriginal_ProjectKB_Instance_291]))
 
 ([CLSES_TAB] of  Widget
 
@@ -244,6 +244,9 @@
 	(property_list [Instance_88])
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
+([KB_125686_Instance_0] of  Map
+)
+
 ([KB_301165_Instance_1013] of  Widget
 
 	(is_hidden FALSE)
@@ -348,9 +351,6 @@
 	(property_list [turismo2_ProjectKB_Instance_10100])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLFormWidget"))
 
-([KB_391804_Instance_0] of  Map
-)
-
 ([KB_444675_Instance_0] of  String
 
 	(name "SwitchableClassDefinitionType")
@@ -369,7 +369,7 @@
 ([KB_529239_Instance_52] of  String
 
 	(name "owl_file_name")
-	(string_value "turismo2.owl"))
+	(string_value "turismoOriginal.owl"))
 
 ([KB_632156_Instance_0] of  String
 
@@ -534,12 +534,12 @@
 	(customized_instance_widgets
 		[PAL_FORM_WIDGET]
 		[KB_713803_Instance_477]
-		[KB_713803_Instance_780]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
-		[KB_713803_Instance_693]
+		[KB_713803_Instance_780]
 		[KB_301165_Instance_856]
-		[KB_713803_Instance_648]
+		[KB_713803_Instance_693]
 		[KB_691299_Instance_537]
+		[KB_713803_Instance_648]
 		[KB_691299_Instance_398]
 		[KB_303942_Instance_68]
 		[KB_938545_Instance_166]
@@ -623,17 +623,17 @@
 		":SYSTEM-CLASS"
 		"owl:oneOf"
 		"owl:DataRange"
-		"rdf:Property"
 		"owl:DeprecatedProperty"
-		"owl:Class"
+		"rdf:Property"
 		"owl:DeprecatedClass"
+		"owl:Class"
 		"rdf:Statement"
 		"rdf:type"
-		"rdf:subject"
 		"rdfs:Class"
+		"rdf:subject"
 		"rdf:predicate"
-		"rdf:object"
 		":OWL-ANONYMOUS-ROOT"
+		"rdf:object"
 		"rdfs:Container"
 		"rdf:Alt"
 		"rdf:Bag"
@@ -745,231 +745,6 @@
 
 	(boolean_value TRUE)
 	(name "ButtonDisplayed-Add"))
-
-([turismo2_ProjectKB_Instance_10001] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10002])
-	(widget_class_name "se.liu.ida.JessTab.JessTab"))
-
-([turismo2_ProjectKB_Instance_10002] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10003] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10004])
-	(widget_class_name "edu.stanford.smi.protege.widget.ProtegePropertiesTab"))
-
-([turismo2_ProjectKB_Instance_10004] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10005] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10006])
-	(widget_class_name "ezpal.EZPalTab"))
-
-([turismo2_ProjectKB_Instance_10006] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10007] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10008])
-	(widget_class_name "edu.stanford.smi.protegex.server_changes.prompt.UsersTab"))
-
-([turismo2_ProjectKB_Instance_10008] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10009] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10010])
-	(widget_class_name "ca.uvic.csr.shrimp.jambalaya.JambalayaTab"))
-
-([turismo2_ProjectKB_Instance_10010] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10011] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10012])
-	(widget_class_name "edu.stanford.smi.protege.widget.instance_tree.InstanceTreeTab"))
-
-([turismo2_ProjectKB_Instance_10012] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10013] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10014])
-	(widget_class_name "edu.stanford.smi.protegex.widget.pal.PalConstraintsTab"))
-
-([turismo2_ProjectKB_Instance_10014] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10015] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10016])
-	(widget_class_name "edu.stanford.smi.RemoteKBTab.WordNetTab"))
-
-([turismo2_ProjectKB_Instance_10016] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10017] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10018])
-	(widget_class_name "uk.ac.man.cs.mig.coode.owlviz.ui.OWLVizTab"))
-
-([turismo2_ProjectKB_Instance_10018] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10019] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10020])
-	(widget_class_name "edu.stanford.smi.RemoteKBTab.UMLSTab"))
-
-([turismo2_ProjectKB_Instance_10020] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10021] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10022])
-	(widget_class_name "TGViztab.TGVizTab"))
-
-([turismo2_ProjectKB_Instance_10022] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10023] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10024])
-	(widget_class_name "org.algernon.kb.okbc.protege.plugins.AlgernonTab"))
-
-([turismo2_ProjectKB_Instance_10024] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10025] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10026])
-	(widget_class_name "edu.stanford.smi.protegex.changes.changesKBViewTab.ChangesKBViewTab"))
-
-([turismo2_ProjectKB_Instance_10026] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10027] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10028])
-	(widget_class_name "edu.stanford.smi.protegex.xml.tab.XMLTab"))
-
-([turismo2_ProjectKB_Instance_10028] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10029] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10030])
-	(widget_class_name "edu.stanford.smi.protegex.widget.pal.PalQueriesTab"))
-
-([turismo2_ProjectKB_Instance_10030] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10031] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10032])
-	(widget_class_name "edu.stanford.smi.protegex.chatPlugin.ChatTab"))
-
-([turismo2_ProjectKB_Instance_10032] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10033] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10034])
-	(widget_class_name "edu.stanford.smi.protege.keywordsearch.StringSearch"))
-
-([turismo2_ProjectKB_Instance_10034] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10035] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10036])
-	(widget_class_name "script.ProtegeScriptTab"))
-
-([turismo2_ProjectKB_Instance_10036] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10037] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10038])
-	(widget_class_name "edu.stanford.smi.protegex.changes.ChangesTab"))
-
-([turismo2_ProjectKB_Instance_10038] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10039] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10040])
-	(widget_class_name "edu.stanford.smi.protegex.fctab.FacetConstraintsTab"))
-
-([turismo2_ProjectKB_Instance_10040] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10041] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10042])
-	(widget_class_name "edu.stanford.smi.protege.widget.instance_tree.KnowledgeTreeTab"))
-
-([turismo2_ProjectKB_Instance_10042] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10043] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10044])
-	(widget_class_name "edu.stanford.smi.protegex.datamaster.DataMasterTab"))
-
-([turismo2_ProjectKB_Instance_10044] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10045] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10046])
-	(widget_class_name "dfki.protege.ontoviz_tab.OntovizTab"))
-
-([turismo2_ProjectKB_Instance_10046] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10047] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10048])
-	(widget_class_name "edu.stanford.smi.protegex.changes.stats.ChangeStatisticsTab"))
-
-([turismo2_ProjectKB_Instance_10048] of  Property_List
-)
-
-([turismo2_ProjectKB_Instance_10049] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [turismo2_ProjectKB_Instance_10050])
-	(widget_class_name "edu.stanford.smi.protegex.prompt.PromptTab"))
-
-([turismo2_ProjectKB_Instance_10050] of  Property_List
-)
 
 ([turismo2_ProjectKB_Instance_10083] of  Property_List
 )
@@ -7274,31 +7049,6 @@
 	(x 0)
 	(y 270))
 
-([turismo2_ProjectKB_Instance_20226] of  String
-
-	(name "owl:Thing")
-	(string_value "%3ANAME"))
-
-([turismo2_ProjectKB_Instance_20227] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([turismo2_ProjectKB_Instance_20228] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([turismo2_ProjectKB_Instance_20229] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
-
-([turismo2_ProjectKB_Instance_20230] of  String
-
-	(name "owl:Class")
-	(string_value "%3ANAME"))
-
 ([turismo2_ProjectKB_Instance_21] of  Property_List
 
 	(properties
@@ -7732,3 +7482,253 @@
 
 	(boolean_value TRUE)
 	(name "ButtonDisplayed-Create a new value"))
+
+([turismoOriginal_ProjectKB_Instance_1] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_2])
+	(widget_class_name "se.liu.ida.JessTab.JessTab"))
+
+([turismoOriginal_ProjectKB_Instance_10] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_11] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_12])
+	(widget_class_name "edu.stanford.smi.protege.widget.instance_tree.InstanceTreeTab"))
+
+([turismoOriginal_ProjectKB_Instance_12] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_13] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_14])
+	(widget_class_name "edu.stanford.smi.protegex.widget.pal.PalConstraintsTab"))
+
+([turismoOriginal_ProjectKB_Instance_14] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_15] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_16])
+	(widget_class_name "edu.stanford.smi.RemoteKBTab.WordNetTab"))
+
+([turismoOriginal_ProjectKB_Instance_16] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_17] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_18])
+	(widget_class_name "uk.ac.man.cs.mig.coode.owlviz.ui.OWLVizTab"))
+
+([turismoOriginal_ProjectKB_Instance_18] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_19] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_20])
+	(widget_class_name "edu.stanford.smi.RemoteKBTab.UMLSTab"))
+
+([turismoOriginal_ProjectKB_Instance_2] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_20] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_21] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_22])
+	(widget_class_name "TGViztab.TGVizTab"))
+
+([turismoOriginal_ProjectKB_Instance_22] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_23] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_24])
+	(widget_class_name "org.algernon.kb.okbc.protege.plugins.AlgernonTab"))
+
+([turismoOriginal_ProjectKB_Instance_24] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_25] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_26])
+	(widget_class_name "edu.stanford.smi.protegex.changes.changesKBViewTab.ChangesKBViewTab"))
+
+([turismoOriginal_ProjectKB_Instance_26] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_27] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_28])
+	(widget_class_name "edu.stanford.smi.protegex.xml.tab.XMLTab"))
+
+([turismoOriginal_ProjectKB_Instance_28] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_287] of  String
+
+	(name "owl:Thing")
+	(string_value "%3ANAME"))
+
+([turismoOriginal_ProjectKB_Instance_288] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([turismoOriginal_ProjectKB_Instance_289] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([turismoOriginal_ProjectKB_Instance_29] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_30])
+	(widget_class_name "edu.stanford.smi.protegex.widget.pal.PalQueriesTab"))
+
+([turismoOriginal_ProjectKB_Instance_290] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
+
+([turismoOriginal_ProjectKB_Instance_291] of  String
+
+	(name "owl:Class")
+	(string_value "%3ANAME"))
+
+([turismoOriginal_ProjectKB_Instance_3] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_4])
+	(widget_class_name "edu.stanford.smi.protege.widget.ProtegePropertiesTab"))
+
+([turismoOriginal_ProjectKB_Instance_30] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_31] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_32])
+	(widget_class_name "edu.stanford.smi.protegex.chatPlugin.ChatTab"))
+
+([turismoOriginal_ProjectKB_Instance_32] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_33] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_34])
+	(widget_class_name "edu.stanford.smi.protege.keywordsearch.StringSearch"))
+
+([turismoOriginal_ProjectKB_Instance_34] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_35] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_36])
+	(widget_class_name "script.ProtegeScriptTab"))
+
+([turismoOriginal_ProjectKB_Instance_36] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_37] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_38])
+	(widget_class_name "edu.stanford.smi.protegex.changes.ChangesTab"))
+
+([turismoOriginal_ProjectKB_Instance_38] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_39] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_40])
+	(widget_class_name "edu.stanford.smi.protegex.fctab.FacetConstraintsTab"))
+
+([turismoOriginal_ProjectKB_Instance_4] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_40] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_41] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_42])
+	(widget_class_name "edu.stanford.smi.protege.widget.instance_tree.KnowledgeTreeTab"))
+
+([turismoOriginal_ProjectKB_Instance_42] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_43] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_44])
+	(widget_class_name "edu.stanford.smi.protegex.datamaster.DataMasterTab"))
+
+([turismoOriginal_ProjectKB_Instance_44] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_45] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_46])
+	(widget_class_name "dfki.protege.ontoviz_tab.OntovizTab"))
+
+([turismoOriginal_ProjectKB_Instance_46] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_47] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_48])
+	(widget_class_name "edu.stanford.smi.protegex.changes.stats.ChangeStatisticsTab"))
+
+([turismoOriginal_ProjectKB_Instance_48] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_49] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_50])
+	(widget_class_name "edu.stanford.smi.protegex.prompt.PromptTab"))
+
+([turismoOriginal_ProjectKB_Instance_5] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_6])
+	(widget_class_name "ezpal.EZPalTab"))
+
+([turismoOriginal_ProjectKB_Instance_50] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_6] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_7] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_8])
+	(widget_class_name "edu.stanford.smi.protegex.server_changes.prompt.UsersTab"))
+
+([turismoOriginal_ProjectKB_Instance_8] of  Property_List
+)
+
+([turismoOriginal_ProjectKB_Instance_9] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [turismoOriginal_ProjectKB_Instance_10])
+	(widget_class_name "ca.uvic.csr.shrimp.jambalaya.JambalayaTab"))
