@@ -1,4 +1,4 @@
-; Wed Jul 30 23:52:51 GMT 2008
+; Thu Jul 31 23:17:59 GMT 2008
 ; 
 ;+ (version "3.4")
 ;+ (build "Build 128")
@@ -6,11 +6,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[turismoOriginal_ProjectKB_Instance_287]
-		[turismoOriginal_ProjectKB_Instance_288]
-		[turismoOriginal_ProjectKB_Instance_289]
-		[turismoOriginal_ProjectKB_Instance_290]
-		[turismoOriginal_ProjectKB_Instance_291]))
+		[turismoOriginal_ProjectKB_Instance_160]
+		[turismoOriginal_ProjectKB_Instance_161]
+		[turismoOriginal_ProjectKB_Instance_162]
+		[turismoOriginal_ProjectKB_Instance_163]
+		[turismoOriginal_ProjectKB_Instance_164]))
 
 ([CLSES_TAB] of  Widget
 
@@ -244,9 +244,6 @@
 	(property_list [Instance_88])
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_125686_Instance_0] of  Map
-)
-
 ([KB_301165_Instance_1013] of  Widget
 
 	(is_hidden FALSE)
@@ -389,6 +386,9 @@
 	(name "owl:ObjectProperty")
 	(property_list [turismo2_ProjectKB_Instance_10831])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLFormWidget"))
+
+([KB_706206_Instance_0] of  Map
+)
 
 ([KB_713803_Instance_303] of  Widget
 
@@ -534,12 +534,12 @@
 	(customized_instance_widgets
 		[PAL_FORM_WIDGET]
 		[KB_713803_Instance_477]
-		[INSTANCE_ANNOTATION_FORM_WIDGET]
 		[KB_713803_Instance_780]
-		[KB_301165_Instance_856]
+		[INSTANCE_ANNOTATION_FORM_WIDGET]
 		[KB_713803_Instance_693]
-		[KB_691299_Instance_537]
+		[KB_301165_Instance_856]
 		[KB_713803_Instance_648]
+		[KB_691299_Instance_537]
 		[KB_691299_Instance_398]
 		[KB_303942_Instance_68]
 		[KB_938545_Instance_166]
@@ -623,17 +623,17 @@
 		":SYSTEM-CLASS"
 		"owl:oneOf"
 		"owl:DataRange"
-		"owl:DeprecatedProperty"
 		"rdf:Property"
-		"owl:DeprecatedClass"
+		"owl:DeprecatedProperty"
 		"owl:Class"
+		"owl:DeprecatedClass"
 		"rdf:Statement"
 		"rdf:type"
-		"rdfs:Class"
 		"rdf:subject"
+		"rdfs:Class"
 		"rdf:predicate"
-		":OWL-ANONYMOUS-ROOT"
 		"rdf:object"
+		":OWL-ANONYMOUS-ROOT"
 		"rdfs:Container"
 		"rdf:Alt"
 		"rdf:Bag"
@@ -7519,6 +7519,31 @@
 ([turismoOriginal_ProjectKB_Instance_16] of  Property_List
 )
 
+([turismoOriginal_ProjectKB_Instance_160] of  String
+
+	(name "owl:Thing")
+	(string_value "%3ANAME"))
+
+([turismoOriginal_ProjectKB_Instance_161] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([turismoOriginal_ProjectKB_Instance_162] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([turismoOriginal_ProjectKB_Instance_163] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
+
+([turismoOriginal_ProjectKB_Instance_164] of  String
+
+	(name "owl:Class")
+	(string_value "%3ANAME"))
+
 ([turismoOriginal_ProjectKB_Instance_17] of  Widget
 
 	(is_hidden TRUE)
@@ -7576,36 +7601,11 @@
 ([turismoOriginal_ProjectKB_Instance_28] of  Property_List
 )
 
-([turismoOriginal_ProjectKB_Instance_287] of  String
-
-	(name "owl:Thing")
-	(string_value "%3ANAME"))
-
-([turismoOriginal_ProjectKB_Instance_288] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([turismoOriginal_ProjectKB_Instance_289] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
 ([turismoOriginal_ProjectKB_Instance_29] of  Widget
 
 	(is_hidden TRUE)
 	(property_list [turismoOriginal_ProjectKB_Instance_30])
 	(widget_class_name "edu.stanford.smi.protegex.widget.pal.PalQueriesTab"))
-
-([turismoOriginal_ProjectKB_Instance_290] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
-
-([turismoOriginal_ProjectKB_Instance_291] of  String
-
-	(name "owl:Class")
-	(string_value "%3ANAME"))
 
 ([turismoOriginal_ProjectKB_Instance_3] of  Widget
 
