@@ -68,6 +68,8 @@ public class Main extends javax.swing.JFrame {
         jLabel1.setText("Pantalla principal del asistente de viajes");
 
         jProgressBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jProgressBar1.setIndeterminate(true);
+        jProgressBar1.setStringPainted(true);
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
