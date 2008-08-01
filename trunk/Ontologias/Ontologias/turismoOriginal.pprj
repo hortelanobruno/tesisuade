@@ -1,4 +1,4 @@
-; Thu Jul 31 20:23:43 ART 2008
+; Thu Jul 31 22:19:08 ART 2008
 ; 
 ;+ (version "3.4")
 ;+ (build "Build 500")
@@ -6,11 +6,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[turismoOriginal_ProjectKB_Class228]
-		[turismoOriginal_ProjectKB_Class229]
-		[turismoOriginal_ProjectKB_Class230]
-		[turismoOriginal_ProjectKB_Class231]
-		[turismoOriginal_ProjectKB_Class232]))
+		[turismoOriginal_ProjectKB_Class502]
+		[turismoOriginal_ProjectKB_Class503]
+		[turismoOriginal_ProjectKB_Class504]
+		[turismoOriginal_ProjectKB_Class505]
+		[turismoOriginal_ProjectKB_Class506]))
 
 ([CLSES_TAB] of  Widget
 
@@ -7768,33 +7768,8 @@
 	(boolean_value TRUE)
 	(name "parser_namespace_database_inclusion_version"))
 
-([turismoOriginal_ProjectKB_Class228] of  String
-
-	(name "http://www.w3.org/2002/07/owl#Class")
-	(string_value "%3ANAME"))
-
-([turismoOriginal_ProjectKB_Class229] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
 ([turismoOriginal_ProjectKB_Class23] of  Property_List
 )
-
-([turismoOriginal_ProjectKB_Class230] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
-
-([turismoOriginal_ProjectKB_Class231] of  String
-
-	(name "http://www.w3.org/2002/07/owl#Thing")
-	(string_value "%3ANAME"))
-
-([turismoOriginal_ProjectKB_Class232] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
 
 ([turismoOriginal_ProjectKB_Class24] of  Widget
 
@@ -7930,6 +7905,31 @@
 	(is_hidden TRUE)
 	(property_list [turismoOriginal_ProjectKB_Class51])
 	(widget_class_name "uk.ac.man.cs.mig.coode.owlviz.ui.OWLVizTab"))
+
+([turismoOriginal_ProjectKB_Class502] of  String
+
+	(name "http://www.w3.org/2002/07/owl#Class")
+	(string_value "%3ANAME"))
+
+([turismoOriginal_ProjectKB_Class503] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([turismoOriginal_ProjectKB_Class504] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
+
+([turismoOriginal_ProjectKB_Class505] of  String
+
+	(name "http://www.w3.org/2002/07/owl#Thing")
+	(string_value "%3ANAME"))
+
+([turismoOriginal_ProjectKB_Class506] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
 
 ([turismoOriginal_ProjectKB_Class51] of  Property_List
 )
