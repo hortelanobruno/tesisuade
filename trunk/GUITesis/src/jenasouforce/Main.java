@@ -70,8 +70,9 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 //	        m.read( "http://www.w3.org/2001/sw/WebOnt/guide-src/wine" );
 	        m = loadOntModelFromOwlFile("C:\\Documents and Settings\\Admin\\Desktop\\Ontologias\\Ontologias\\vocabulario.owl");
 	        ClassHierarchy classh = new ClassHierarchy();
+                classh.creoInd(m);
 	        classh.showHierarchy2( System.out, m );
-	        classh.creoInd(m);
+	        
 	        classh.showHierarchy( System.out, m );
 		}
 		

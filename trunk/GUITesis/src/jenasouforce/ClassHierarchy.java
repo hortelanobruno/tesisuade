@@ -3,6 +3,7 @@ package jenasouforce;
 import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
 import com.hp.hpl.jena.shared.PrefixMapping;
 import com.hp.hpl.jena.util.iterator.Filter;
 
@@ -75,6 +76,8 @@ public class ClassHierarchy {
     	/*Resource ind = new Resource();
     	m.createIndividual(ind);*/
     	m.createClass("brunoooooo");
+        
+        //m.createIndividual(m.toString() + "#BRUNOLI",m.toString() + "#direccion");
     }
     // Internal implementation methods
     //////////////////////////////////
