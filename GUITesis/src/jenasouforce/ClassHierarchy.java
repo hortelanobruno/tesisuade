@@ -72,13 +72,7 @@ public class ClassHierarchy {
         }
     }
 
-    public void creoInd(OntModel m){
-    	/*Resource ind = new Resource();
-    	m.createIndividual(ind);*/
-    	m.createClass("brunoooooo");
-        
-        //m.createIndividual(m.toString() + "#BRUNOLI",m.toString() + "#direccion");
-    }
+
     // Internal implementation methods
     //////////////////////////////////
 
