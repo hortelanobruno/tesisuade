@@ -26,10 +26,16 @@ package jenasouforce;
 	///////////////
 	import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.Writer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 	/**
@@ -68,9 +74,21 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 	                                            "file:testing/reasoners/bugs/food.owl" );*/
 
 //	        m.read( "http://www.w3.org/2001/sw/WebOnt/guide-src/wine" );
-	        m = loadOntModelFromOwlFile("C:\\Documents and Settings\\Admin\\Desktop\\Ontologias\\Ontologias\\vocabulario.owl");
-	        ClassHierarchy classh = new ClassHierarchy();
-                classh.creoInd(m);
+	        m = loadOntModelFromOwlFile("C:\\Documents and Settings\\Administrador\\Escritorio\\Tesis\\Ontologias\\Ontologias\\pruebas\\prueba.owl");
+	        String uri = m.getNsPrefixMap().values().iterator().next().toString();
+                
+                OntClass Window = m.createClass(uri + "NESTOR");
+                Individual throughTheLens = m.createIndividual(uri + "NestorEnBloque", Window);
+                FileOutputStream fileout = null;
+                try {
+                    fileout = new FileOutputStream(new File("c:\\pureba.owl"));
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                m.write(fileout,"RDF/XML-ABBREV");
+                ClassHierarchy classh = new ClassHierarchy();
+
 	        classh.showHierarchy2( System.out, m );
 	        
 	        classh.showHierarchy( System.out, m );
