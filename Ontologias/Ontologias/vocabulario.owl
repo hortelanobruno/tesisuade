@@ -30,17 +30,17 @@
     <sinonimos rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >calle</sinonimos>
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >address</traduccion>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >direction</traduccion>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >address</traduccion>
   </Palabra>
   <Palabra rdf:ID="clase">
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >kind</traduccion>
+    >type</traduccion>
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >sort</traduccion>
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >type</traduccion>
+    >kind</traduccion>
     <sinonimos rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >tipo</sinonimos>
   </Palabra>
