@@ -29,6 +29,7 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
         Locale[] locales = Calendar.getAvailableLocales();
         this.dateChooserFechaIda.setLocale(locales[136]);
         this.dateChooserFechaVuelta.setLocale(locales[136]);
+        this.panelOtraCiudad.setVisible(false);
     }
 
     /** This method is called from within the constructor to
@@ -41,6 +42,7 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -67,10 +69,6 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
         panelDinamico = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         panelOpcionesAvanzadasVuelosDefault = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jLocaleChooser1 = new com.toedter.components.JLocaleChooser();
-        jCalendar1 = new com.toedter.calendar.JCalendar();
         jPanel3 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -80,7 +78,26 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jDateChooser3 = new com.toedter.calendar.JDateChooser();
         jSeparator1 = new javax.swing.JSeparator();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        panelHabitaciones = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        comboBoxHabitaciones = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        jRadioButton5 = new javax.swing.JRadioButton();
+        panelOtraCiudad = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser4 = new com.toedter.calendar.JDateChooser();
+        jButton2 = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -279,46 +296,25 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Vuelos", jPanel1);
 
-        jDateChooser1.setDateFormatString("dd MM, YYYY");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(jLocaleChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(79, 79, 79)
-                .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(435, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(jLocaleChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(379, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Paquetes", jPanel2);
-
         jLabel6.setText("En que ciudad desea alojarse");
 
         jLabel7.setText("Fecha entrada (check in)");
 
         jLabel8.setText("Fecha salida (check out)");
+
+        panelHabitaciones.setLayout(new java.awt.GridLayout(0, 1));
+        jScrollPane3.setViewportView(panelHabitaciones);
+
+        jLabel9.setText("Habitaciones");
+
+        comboBoxHabitaciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
+        comboBoxHabitaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxHabitacionesActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("buscar hoteles");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -339,8 +335,19 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
                             .addComponent(jTextField3)))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)))
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel9)
+                        .addGap(37, 37, 37)
+                        .addComponent(comboBoxHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(96, 96, 96)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(294, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(269, 269, 269))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,7 +366,18 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
                     .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(222, Short.MAX_VALUE))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(comboBoxHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(31, 31, 31)
+                .addComponent(jButton1)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -369,7 +387,7 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(350, Short.MAX_VALUE))
+                .addContainerGap(320, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,15 +399,138 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Hoteles", jPanel3);
 
+        jLabel10.setText("Ciudad en que retira el auto");
+
+        jTextField4.setText("Escriba ciudad...");
+
+        jLabel11.setText("Ciudad donde regresa:");
+
+        buttonGroup2.add(jRadioButton4);
+        jRadioButton4.setMnemonic('1');
+        jRadioButton4.setSelected(true);
+        jRadioButton4.setText("misma de retiro");
+        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton4ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup2.add(jRadioButton5);
+        jRadioButton5.setMnemonic('2');
+        jRadioButton5.setText("otra");
+        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton5ActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("Ciudad en que regresa el auto");
+
+        jTextField5.setText("Escriba ciudad...");
+
+        javax.swing.GroupLayout panelOtraCiudadLayout = new javax.swing.GroupLayout(panelOtraCiudad);
+        panelOtraCiudad.setLayout(panelOtraCiudadLayout);
+        panelOtraCiudadLayout.setHorizontalGroup(
+            panelOtraCiudadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelOtraCiudadLayout.createSequentialGroup()
+                .addComponent(jLabel12)
+                .addGap(69, 69, 69)
+                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(108, Short.MAX_VALUE))
+        );
+        panelOtraCiudadLayout.setVerticalGroup(
+            panelOtraCiudadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelOtraCiudadLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelOtraCiudadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel13.setText("Fecha de retiro");
+
+        jLabel14.setText("Fecha de regreso");
+
+        jButton2.setText("buscar autos");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addGap(37, 37, 37)
+                                .addComponent(jRadioButton4)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRadioButton5))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(82, 82, 82)
+                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(panelOtraCiudad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(123, 123, 123))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addGap(143, 143, 143)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton2)
+                                    .addComponent(jDateChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(240, 240, 240))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jRadioButton4)
+                    .addComponent(jRadioButton5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelOtraCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel13)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel14)
+                    .addComponent(jDateChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(jButton2)
+                .addContainerGap(131, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 996, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(409, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(227, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Autos", jPanel4);
@@ -400,21 +541,33 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1001, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-private void buttonBuscarVuelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarVuelosActionPerformed
+private void toggleButtonOpcionesAvanzadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleButtonOpcionesAvanzadasActionPerformed
+// Toggle button opciones avanzadas vuelos
+    if(((JToggleButton)evt.getSource()).isSelected()){
+        panelOpcionesAvanzadasVuelos = new PanelOpcionesAvanzadasVuelos(this);
+        panelOpcionesAvanzadasVuelos.setVisible(true);
+        panelOpcionesAvanzadasVuelosDefault.add(panelOpcionesAvanzadasVuelos);
+        this.repaint();
+    }else{
+        panelOpcionesAvanzadasVuelosDefault.removeAll();
+        this.repaint();
+    }
+}//GEN-LAST:event_toggleButtonOpcionesAvanzadasActionPerformed
 
-   testPanel test = new testPanel();
+private void buttonBuscarVuelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarVuelosActionPerformed
+testPanel test = new testPanel();
    test.setVisible(true);
    panelDinamico.add(test);
    
@@ -431,37 +584,57 @@ private void buttonBuscarVuelosActionPerformed(java.awt.event.ActionEvent evt) {
    panelDinamico.add(test);
    
     this.repaint();
-     
 }//GEN-LAST:event_buttonBuscarVuelosActionPerformed
 
-private void toggleButtonOpcionesAvanzadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleButtonOpcionesAvanzadasActionPerformed
-// Toggle button opciones avanzadas vuelos
-    if(((JToggleButton)evt.getSource()).isSelected()){
-        panelOpcionesAvanzadasVuelos = new PanelOpcionesAvanzadasVuelos(this);
-        panelOpcionesAvanzadasVuelos.setVisible(true);
-        panelOpcionesAvanzadasVuelosDefault.add(panelOpcionesAvanzadasVuelos);
-        this.repaint();
-    }else{
-        panelOpcionesAvanzadasVuelosDefault.removeAll();
-        this.repaint();
-    }
+private void comboBoxHabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxHabitacionesActionPerformed
+//LLena el scroll de paneles de habitaciones
+    int cant = Integer.parseInt(comboBoxHabitaciones.getSelectedItem().toString());
+    panelHabitaciones.removeAll();
+    PanelHabitacion pHabitacion[] = new PanelHabitacion[cant];
     
-}//GEN-LAST:event_toggleButtonOpcionesAvanzadasActionPerformed
+    for(int i = 0 ; i < cant ; i++){
+        pHabitacion[i] = new PanelHabitacion();
+        String numHab = pHabitacion[i].getLabelNumeroHabitaciones().getText();
+        numHab = numHab + (i+1);
+        pHabitacion[i].getLabelNumeroHabitaciones().setText(numHab);
+        panelHabitaciones.add(pHabitacion[i]);
+    }
+    this.repaint();
+}//GEN-LAST:event_comboBoxHabitacionesActionPerformed
+
+private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+// TODO add your handling code here:
+    this.panelOtraCiudad.setVisible(true);
+}//GEN-LAST:event_jRadioButton5ActionPerformed
+
+private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+// TODO add your handling code here:
+    this.panelOtraCiudad.setVisible(false);
+}//GEN-LAST:event_jRadioButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBuscarVuelos;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox comboBoxHabitaciones;
     private com.toedter.calendar.JDateChooser dateChooserFechaIda;
     private com.toedter.calendar.JDateChooser dateChooserFechaVuelta;
-    private com.toedter.calendar.JCalendar jCalendar1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private com.toedter.calendar.JDateChooser jDateChooser3;
+    private com.toedter.calendar.JDateChooser jDateChooser4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -469,7 +642,7 @@ private void toggleButtonOpcionesAvanzadasActionPerformed(java.awt.event.ActionE
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private com.toedter.components.JLocaleChooser jLocaleChooser1;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -481,15 +654,22 @@ private void toggleButtonOpcionesAvanzadasActionPerformed(java.awt.event.ActionE
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     private javax.swing.JPanel panelDinamico;
+    private javax.swing.JPanel panelHabitaciones;
     private javax.swing.JPanel panelOpcionesAvanzadasVuelosDefault;
+    private javax.swing.JPanel panelOtraCiudad;
     private javax.swing.JToggleButton toggleButtonOpcionesAvanzadas;
     // End of variables declaration//GEN-END:variables
 

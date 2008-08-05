@@ -7,7 +7,9 @@ package gui;
 
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -34,6 +36,17 @@ public class FramePrincipal extends javax.swing.JFrame {
         this.setLookAndFeel();
         isPanelPrincipalSelected = true;
         iniciaCuenta();
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+		this.addWindowListener(new java.awt.event.WindowAdapter() {
+		    public void windowClosing(WindowEvent winEvt) {
+		    	if (JOptionPane.showConfirmDialog(FramePrincipal.getFrames()[0],
+						"Esta seguro que desea cerrar la aplicacion?",
+						"Asistente de viajes", JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE) == 0) {
+					System.exit(0);
+				}	
+		    }
+		});
     }
 
     /** This method is called from within the constructor to
@@ -67,7 +80,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Asistente de Viajes");
 
         itemsToolBar.setFloatable(false);
@@ -130,6 +143,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         jMenu1.add(jSeparator1);
 
         jMenuItem2.setText("Salir");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         menuBar.add(jMenu1);
@@ -209,7 +227,21 @@ private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         ponerPanel(panelSinonimos);
     }
 }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+// TODO add your handling code here:
+    this.CloseApplication();
+}//GEN-LAST:event_jMenuItem2ActionPerformed
     
+
+private void CloseApplication() {
+		if (JOptionPane.showConfirmDialog(this,
+				"Esta seguro que desea cerrar la aplicacion?",
+				"Asistente de Viajes", JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE) == 0) {
+			System.exit(0);
+		}
+	}
 private void setLookAndFeel() throws HeadlessException {
         try {
                 UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
