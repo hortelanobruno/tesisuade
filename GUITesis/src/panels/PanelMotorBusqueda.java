@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.Locale;
 import javax.swing.JButton;
 import javax.swing.JToggleButton;
+import vistas.VistaMotorBusqueda;
 
 /**
  *
@@ -22,9 +23,13 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
 
     private FramePrincipal main;
     private PanelOpcionesAvanzadasVuelos panelOpcionesAvanzadasVuelos;
+    private VistaMotorBusqueda vistaMotorBusqueda;
+    
+    
     /** Creates new form PanelMotorBusqueda */
-    public PanelMotorBusqueda(FramePrincipal main) {
+    public PanelMotorBusqueda(FramePrincipal main, VistaMotorBusqueda vista) {
         this.main = main;
+        this.vistaMotorBusqueda = vista;
         initComponents();
         Locale[] locales = Calendar.getAvailableLocales();
         this.dateChooserFechaIda.setLocale(locales[136]);
@@ -612,7 +617,18 @@ private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     this.panelOtraCiudad.setVisible(false);
 }//GEN-LAST:event_jRadioButton4ActionPerformed
 
+public void setVistaMotorBusqueda(VistaMotorBusqueda vista){
+    this.vistaMotorBusqueda = vista;
+}
 
+public VistaMotorBusqueda getVistaMotorBusqueda(){
+    return this.vistaMotorBusqueda;
+}
+    
+public void update(){
+    
+}
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBuscarVuelos;
     private javax.swing.ButtonGroup buttonGroup1;
