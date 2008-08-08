@@ -8,7 +8,6 @@ package gui;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -16,6 +15,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import panels.PanelMotorBusqueda;
 import panels.PanelSinonimos;
+import vistas.VistaMotorBusqueda;
 
 /**
  *
@@ -29,9 +29,11 @@ public class FramePrincipal extends javax.swing.JFrame {
     private PanelMotorBusqueda panelMotorBusqueda;
     private PanelSinonimos panelSinonimos;
     private JPanel activePanel;
-
+    private VistaMotorBusqueda vistaMotorBusqueda;
+    
     /** Creates new form FramePrincipal */
-    public FramePrincipal() {
+    public FramePrincipal(VistaMotorBusqueda vista) {
+        this.vistaMotorBusqueda = vista;
         initComponents();
         this.setLookAndFeel();
         isPanelPrincipalSelected = true;
@@ -216,8 +218,8 @@ public class FramePrincipal extends javax.swing.JFrame {
 
 private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
     if (!isPanelMotorBusquedaSelected) {
-        panelMotorBusqueda = new PanelMotorBusqueda(this);
-        ponerPanel(panelMotorBusqueda);
+        setPanelMotorBusqueda(new PanelMotorBusqueda(this,vistaMotorBusqueda));
+        ponerPanel(getPanelMotorBusqueda());
     }
 }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -272,7 +274,7 @@ public void ponerPanel(JPanel panel) {
             this.repaint();
         }
         if(isPanelMotorBusquedaSelected) {
-            this.remove(panelMotorBusqueda);
+            this.remove(getPanelMotorBusqueda());
             this.repaint();
         }
         if(isPanelSinonimosSelected) {
@@ -284,7 +286,7 @@ public void ponerPanel(JPanel panel) {
         if(panel instanceof PanelMotorBusqueda) {
             this.isPanelPrincipalSelected = false;
             this.isPanelSinonimosSelected = false;
-            this.setActivePanel(panelMotorBusqueda);
+            this.setActivePanel(getPanelMotorBusqueda());
             this.isPanelMotorBusquedaSelected = true;
         }
         if(panel instanceof PanelSinonimos){
@@ -338,6 +340,14 @@ public boolean esImpar(int iNumero) {
       hilo.start();
     }
   }
+
+    public PanelMotorBusqueda getPanelMotorBusqueda() {
+        return panelMotorBusqueda;
+    }
+
+    public void setPanelMotorBusqueda(PanelMotorBusqueda panelMotorBusqueda) {
+        this.panelMotorBusqueda = panelMotorBusqueda;
+    }
 class ThreadCarga extends Thread {
     public void run() {
       int min = 0;
@@ -381,16 +391,7 @@ class ThreadCarga extends Thread {
       //hilo = null;
     }
   }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FramePrincipal().setVisible(true);
-            }
-        });
-    }
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToolBar itemsToolBar;
