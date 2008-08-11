@@ -7,6 +7,7 @@ package gui;
 
 import modelo.BusinessDelegate;
 import vistas.VistaMotorBusqueda;
+import vistas.VistaSinonimos;
 
 /**
  *
@@ -19,8 +20,9 @@ public class Main {
         try {
             modelo = new BusinessDelegate();
             VistaMotorBusqueda vistaMotorBusqueda = new VistaMotorBusqueda(modelo);
-        
-            FramePrincipal frame = new FramePrincipal(vistaMotorBusqueda);
+            VistaSinonimos vistaSinonimos = new VistaSinonimos(modelo);
+            
+            FramePrincipal frame = new FramePrincipal(vistaMotorBusqueda,vistaSinonimos);
             frame.setVisible(true);
             
             vistaMotorBusqueda.setRef(frame);
