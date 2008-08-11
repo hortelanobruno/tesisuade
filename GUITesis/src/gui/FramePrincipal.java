@@ -16,6 +16,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import panels.PanelMotorBusqueda;
 import panels.PanelSinonimos;
 import vistas.VistaMotorBusqueda;
+import vistas.VistaSinonimos;
 
 /**
  *
@@ -30,10 +31,12 @@ public class FramePrincipal extends javax.swing.JFrame {
     private PanelSinonimos panelSinonimos;
     private JPanel activePanel;
     private VistaMotorBusqueda vistaMotorBusqueda;
+    private VistaSinonimos vistaSinonimos;
     
     /** Creates new form FramePrincipal */
-    public FramePrincipal(VistaMotorBusqueda vista) {
-        this.vistaMotorBusqueda = vista;
+    public FramePrincipal(VistaMotorBusqueda vistaMotor, VistaSinonimos vistaSin) {
+        this.vistaMotorBusqueda = vistaMotor;
+        this.vistaSinonimos = vistaSin;
         initComponents();
         this.setLookAndFeel();
         isPanelPrincipalSelected = true;
@@ -225,7 +228,7 @@ private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
 private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
     if (!isPanelSinonimosSelected) {
-        panelSinonimos = new PanelSinonimos(this);
+        panelSinonimos = new PanelSinonimos(this,vistaSinonimos);
         ponerPanel(panelSinonimos);
     }
 }//GEN-LAST:event_jMenuItem4ActionPerformed
