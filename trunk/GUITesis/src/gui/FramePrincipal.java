@@ -32,6 +32,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private JPanel activePanel;
     private VistaMotorBusqueda vistaMotorBusqueda;
     private VistaSinonimos vistaSinonimos;
+    private String defaultOWLPath;
     
     /** Creates new form FramePrincipal */
     public FramePrincipal(VistaMotorBusqueda vistaMotor, VistaSinonimos vistaSin) {
@@ -228,8 +229,8 @@ private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
 private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
     if (!isPanelSinonimosSelected) {
-        panelSinonimos = new PanelSinonimos(this,vistaSinonimos);
-        ponerPanel(panelSinonimos);
+            setPanelSinonimos(new PanelSinonimos(this, vistaSinonimos));
+        ponerPanel(getPanelSinonimos());
     }
 }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -281,7 +282,7 @@ public void ponerPanel(JPanel panel) {
             this.repaint();
         }
         if(isPanelSinonimosSelected) {
-            this.remove(panelSinonimos);
+            this.remove(getPanelSinonimos());
             this.repaint();
         }
 
@@ -295,7 +296,7 @@ public void ponerPanel(JPanel panel) {
         if(panel instanceof PanelSinonimos){
             this.isPanelPrincipalSelected = false;
             this.isPanelMotorBusquedaSelected = false;
-            this.setActivePanel(panelSinonimos);
+            this.setActivePanel(getPanelSinonimos());
             this.isPanelSinonimosSelected = true;
         }
 
@@ -350,6 +351,22 @@ public boolean esImpar(int iNumero) {
 
     public void setPanelMotorBusqueda(PanelMotorBusqueda panelMotorBusqueda) {
         this.panelMotorBusqueda = panelMotorBusqueda;
+    }
+
+    public String getDefaultOWLPath() {
+        return defaultOWLPath;
+    }
+
+    public void setDefaultOWLPath(String defaultOWLPath) {
+        this.defaultOWLPath = defaultOWLPath;
+    }
+
+    public PanelSinonimos getPanelSinonimos() {
+        return panelSinonimos;
+    }
+
+    public void setPanelSinonimos(PanelSinonimos panelSinonimos) {
+        this.panelSinonimos = panelSinonimos;
     }
 class ThreadCarga extends Thread {
     public void run() {

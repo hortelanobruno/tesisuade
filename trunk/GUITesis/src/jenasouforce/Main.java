@@ -24,7 +24,7 @@ package jenasouforce;
 
 	// Imports
 	///////////////
-	import java.io.File;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -74,7 +74,7 @@ import java.util.logging.Logger;
 	                                            "file:testing/reasoners/bugs/food.owl" );*/
 
 //	        m.read( "http://www.w3.org/2001/sw/WebOnt/guide-src/wine" );
-	        m = loadOntModelFromOwlFile("C:\\Documents and Settings\\Administrador\\Escritorio\\Tesis\\Ontologias\\Ontologias\\pruebas\\prueba.owl");
+	        m = loadOntModelFromOwlFile("C:\\Documents and Settings\\Administrador\\Escritorio\\Tesis\\Ontologias\\Ontologias\\vocabulario2.owl");
 	        String uri = m.getNsPrefixMap().values().iterator().next().toString();
                 
                 OntClass Window = m.createClass(uri + "NESTOR");
@@ -88,7 +88,6 @@ import java.util.logging.Logger;
                 
                 m.write(fileout,"RDF/XML-ABBREV");
                 ClassHierarchy classh = new ClassHierarchy();
-
 	        classh.showHierarchy2( System.out, m );
 	        
 	        classh.showHierarchy( System.out, m );
