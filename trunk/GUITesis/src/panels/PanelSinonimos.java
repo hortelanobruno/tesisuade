@@ -6,11 +6,12 @@
 
 package panels;
 
-import GUI.FileChooser;
+import gui.FileChooser;
 import controladores.ControladorPanelSinonimos;
 import gui.FramePrincipal;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.DefaultListModel;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -206,6 +207,22 @@ public void update() {
         if(cargarInstancia){
             String instancia = eventoTree.getPath().getLastPathComponent().toString();
             IndividualVO individual = (IndividualVO) ((BusinessDelegate)vista.getModelo()).obtenerIndividual(instancia);
+            ArrayList<String> sinonimos = individual.getSinonimos();
+            ArrayList<String> traduccion = individual.getTraduccion();
+            String nombre = individual.getNombreInstancia();
+            labelPalabra.setText(nombre);
+            listSinonimo.setModel(new DefaultListModel());
+            DefaultListModel dlm = (DefaultListModel) listSinonimo.getModel();
+            Iterator itSin = sinonimos.iterator();
+            while(itSin.hasNext()){
+                dlm.addElement(itSin.next().toString());
+            }
+            listTraduccion.setModel(new DefaultListModel());
+            DefaultListModel dlm2 = (DefaultListModel) listTraduccion.getModel();
+            Iterator itTra = traduccion.iterator();
+            while(itTra.hasNext()){
+                dlm2.addElement(itTra.next().toString());
+            }
         }
     }else{
         
@@ -230,7 +247,7 @@ public void cargarTree(){
     }
     treeIndividual.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
     public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
-        buttonCargarActionPerformed(evt);
+            buttonCargarActionPerformed(evt);    
     }
     });
     jScrollPane1.setViewportView(treeIndividual);
@@ -240,7 +257,7 @@ public void cargarTree(){
 private void buttonCargarActionPerformed(javax.swing.event.TreeSelectionEvent evt) {
         // Cargar solicitud en tablas
         this.eventoTree = evt;
-        if(!eventoTree.getPath().getLastPathComponent().toString().equals("Solicitudes")){
+        if(!eventoTree.getPath().getLastPathComponent().toString().equals("Palabras")){
                 ((ControladorPanelSinonimos) vista.getControlador()).doCargarInstancia(true);
         }
 }
@@ -250,7 +267,7 @@ public void setCargarArbol(boolean flag){
 
 
 private void initComponents2(){
-    DefaultMutableTreeNode abuelo = new DefaultMutableTreeNode("Palabra");
+    DefaultMutableTreeNode abuelo = new DefaultMutableTreeNode("Palabras");
     DefaultTreeModel modelo = new DefaultTreeModel(abuelo);
     treeIndividual = new JTree(modelo);
     jScrollPane1.setViewportView(treeIndividual);

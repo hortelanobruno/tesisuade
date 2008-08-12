@@ -47,9 +47,33 @@ public class ApiJena {
 
         while (i.hasNext()) {
            Individual indi = ((Individual) i.next());
-           if(indi.getURI().equals(ind)){
+           if(indi.getLocalName().equals(ind)){
                individual = new IndividualVO();
-               //falta setear datos
+               ArrayList<String> sinonimo = new ArrayList<String>();
+               ArrayList<String> traduccion = new ArrayList<String>();
+                for ( StmtIterator sIter = indi.listProperties(); sIter.hasNext() ; )
+                {
+                    Statement s = (Statement) sIter.next() ;
+                    Triple tri = s.asTriple();
+                    if(tri.getObject().isLiteral()){
+                        if(tri.getPredicate().getLocalName().equals("sinonimo")){
+                            sinonimo.add((String) tri.getMatchObject().getLiteral().getValue());
+                        }else{
+                            traduccion.add((String) tri.getMatchObject().getLiteral().getValue());
+                        }
+                    }else{
+                        if(tri.getPredicate().getLocalName().equals("sinonimo")){
+                            sinonimo.add((String) tri.getObject().getLocalName());
+                        }else{
+                            traduccion.add((String) tri.getObject().getLocalName());
+                        }
+                    }
+                }
+               individual.setNombreInstancia(ind);
+               individual.setSinonimos(sinonimo);
+               individual.setTraduccion(traduccion);
+               individual.setUri(indi.getURI());
+               return individual;
            }
         }
         return individual;
@@ -64,7 +88,7 @@ public class ApiJena {
                                     }} );
 
         while (i.hasNext()) {
-           individuals.add(((Individual) i.next()).getURI());
+           individuals.add(((Individual) i.next()).getLocalName());
         }
  
         return individuals;
