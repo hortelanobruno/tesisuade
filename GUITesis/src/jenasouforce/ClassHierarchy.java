@@ -158,9 +158,6 @@ public class ClassHierarchy {
             }else{
             	System.out.println("   Propiedad: "+tri.getPredicate().getLocalName()+"\n   Valor: "+tri.getObject().getLocalName()) ;
             }
-            
-            
-
         }
         
         

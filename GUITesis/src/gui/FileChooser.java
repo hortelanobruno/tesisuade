@@ -4,7 +4,7 @@
  * Created on 24 de mayo de 2008, 15:45
  */
 
-package GUI;
+package gui;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;

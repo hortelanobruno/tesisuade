@@ -5,6 +5,8 @@
 
 package gui;
 
+import controladores.ControladorPanelMotorBusqueda;
+import controladores.ControladorPanelSinonimos;
 import modelo.BusinessDelegate;
 import vistas.VistaMotorBusqueda;
 import vistas.VistaSinonimos;
@@ -26,6 +28,10 @@ public class Main {
             frame.setVisible(true);
             
             vistaMotorBusqueda.setRef(frame);
+            vistaSinonimos.setRef(frame);
+            
+            new ControladorPanelMotorBusqueda(modelo,vistaMotorBusqueda);
+            new ControladorPanelSinonimos(modelo, vistaSinonimos);
         }catch(Exception e){
         }
     }
