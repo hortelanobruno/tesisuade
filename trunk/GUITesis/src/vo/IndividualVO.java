@@ -11,13 +11,24 @@ import java.util.ArrayList;
  *
  * @author Administrador
  */
-public class InstanciaVO {
+public class IndividualVO {
 
     private String nombreInstancia;
     private String uri;
     private ArrayList<String> sinonimos;
     private ArrayList<String> traduccion;
 
+    public IndividualVO() {
+    }
+
+    public IndividualVO(String nombreInstancia, String uri, ArrayList<String> sinonimos, ArrayList<String> traduccion) {
+        this.nombreInstancia = nombreInstancia;
+        this.uri = uri;
+        this.sinonimos = sinonimos;
+        this.traduccion = traduccion;
+    }
+
+    
     public String getNombreInstancia() {
         return nombreInstancia;
     }

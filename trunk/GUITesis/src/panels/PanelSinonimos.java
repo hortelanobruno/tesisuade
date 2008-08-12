@@ -17,6 +17,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import modelo.BusinessDelegate;
 import vistas.VistaSinonimos;
+import vo.IndividualVO;
 
 /**
  *
@@ -204,6 +205,7 @@ public void update() {
         cargarTree();
         if(cargarInstancia){
             String instancia = eventoTree.getPath().getLastPathComponent().toString();
+            IndividualVO individual = (IndividualVO) ((BusinessDelegate)vista.getModelo()).obtenerIndividual(instancia);
         }
     }else{
         
