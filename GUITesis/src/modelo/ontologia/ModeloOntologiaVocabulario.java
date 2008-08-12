@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.util.List;
 import jenasouforce.ApiJena;
 import jenasouforce.ClassHierarchy;
+import vo.IndividualVO;
 
 /**
  *
@@ -26,6 +27,10 @@ public class ModeloOntologiaVocabulario {
     
     public ModeloOntologiaVocabulario() {
         jena = new ApiJena();
+    }
+
+    public IndividualVO getIndividual(String ind) {
+        return jena.showIndividual(m,ind);
     }
 
     public List<String> getInstancias(String url){
