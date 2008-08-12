@@ -6,10 +6,16 @@
 
 package panels;
 
+import GUI.FileChooser;
+import controladores.ControladorPanelSinonimos;
 import gui.FramePrincipal;
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JTree;
+import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import modelo.BusinessDelegate;
 import vistas.VistaSinonimos;
 
 /**
@@ -18,8 +24,15 @@ import vistas.VistaSinonimos;
  */
 public class PanelSinonimos extends javax.swing.JPanel {
 
+    private FileChooser chooser;
     private FramePrincipal main;
     private VistaSinonimos vista;
+    private String urlOWL;
+    private String chooserButton;
+    private boolean cargarArbol;
+    private TreeSelectionEvent eventoTree;
+    private boolean cargarInstancia;
+    
     /** Creates new form PanelSinonimos */
     public PanelSinonimos(FramePrincipal main, VistaSinonimos vista) {
         this.main = main;
@@ -61,6 +74,11 @@ public class PanelSinonimos extends javax.swing.JPanel {
         jLabel1.setText("Ontologia Vocabulario");
 
         buttonExaminar.setText("Examinar");
+        buttonExaminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonExaminarActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(treeIndividual);
 
@@ -168,12 +186,73 @@ public class PanelSinonimos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void initComponents2(){
-        DefaultMutableTreeNode abuelo = new DefaultMutableTreeNode("Palabra");
-        DefaultTreeModel modelo = new DefaultTreeModel(abuelo);
-	treeIndividual = new JTree(modelo);
-        jScrollPane1.setViewportView(treeIndividual);
+private void buttonExaminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExaminarActionPerformed
+//Filechooser para elegir el archivo owl
+    chooser = new FileChooser(main, true, main.getDefaultOWLPath());
+    setUrlOWL(chooser.getPath());
+    setChooserButton(chooser.getButton());
+    if (chooserButton.equals("Cancel")) {
+
+    } else {
+            // Cargar los table
+            ((ControladorPanelSinonimos) vista.getControlador()).doCargarOWL(true);
     }
+}//GEN-LAST:event_buttonExaminarActionPerformed
+
+public void update() {
+    if(cargarArbol){
+        cargarTree();
+        if(cargarInstancia){
+            String instancia = eventoTree.getPath().getLastPathComponent().toString();
+        }
+    }else{
+        
+    }
+}
+
+public void cargarTree(){
+    ArrayList<String> individuals = (ArrayList<String>) ((BusinessDelegate)vista.getModelo()).obtenerInstanciasVocabuario(urlOWL);
+
+    DefaultMutableTreeNode abuelo = new DefaultMutableTreeNode("Palabras");
+    DefaultTreeModel modelo = new DefaultTreeModel(abuelo);
+    treeIndividual = new JTree(modelo);
+    DefaultMutableTreeNode[] padre = new DefaultMutableTreeNode[individuals.size()];
+    Iterator it = individuals.iterator();
+    int i = 0;
+    while(it.hasNext()){
+            padre[i] = new DefaultMutableTreeNode(it.next().toString());
+            i++;
+    }
+    for(int j = 0 ; j < padre.length ; j++){
+            modelo.insertNodeInto(padre[j],abuelo, j);
+    }
+    treeIndividual.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+    public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+        buttonCargarActionPerformed(evt);
+    }
+    });
+    jScrollPane1.setViewportView(treeIndividual);
+
+}
+
+private void buttonCargarActionPerformed(javax.swing.event.TreeSelectionEvent evt) {
+        // Cargar solicitud en tablas
+        this.eventoTree = evt;
+        if(!eventoTree.getPath().getLastPathComponent().toString().equals("Solicitudes")){
+                ((ControladorPanelSinonimos) vista.getControlador()).doCargarInstancia(true);
+        }
+}
+public void setCargarArbol(boolean flag){
+    this.cargarArbol = flag;
+}
+
+
+private void initComponents2(){
+    DefaultMutableTreeNode abuelo = new DefaultMutableTreeNode("Palabra");
+    DefaultTreeModel modelo = new DefaultTreeModel(abuelo);
+    treeIndividual = new JTree(modelo);
+    jScrollPane1.setViewportView(treeIndividual);
+}
     
     
     
@@ -197,5 +276,29 @@ public class PanelSinonimos extends javax.swing.JPanel {
     private javax.swing.JTextField textFieldURL;
     private javax.swing.JTree treeIndividual;
     // End of variables declaration//GEN-END:variables
+
+    public String getUrlOWL() {
+        return urlOWL;
+    }
+
+    public void setUrlOWL(String urlOWL) {
+        this.urlOWL = urlOWL;
+    }
+
+    public String getChooserButton() {
+        return chooserButton;
+    }
+
+    public void setChooserButton(String chooserButton) {
+        this.chooserButton = chooserButton;
+    }
+
+    public boolean isCargarInstancia() {
+        return cargarInstancia;
+    }
+
+    public void setCargarInstancia(boolean cargarInstancia) {
+        this.cargarInstancia = cargarInstancia;
+    }
 
 }

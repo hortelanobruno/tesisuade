@@ -22,9 +22,16 @@ public class VistaSinonimos extends Vista{
     }
 
     public void actualizar() {
-            getRef().getPanelMotorBusqueda().update();
+            getRef().getPanelSinonimos().update();
     }
 
+    public void cargarInstancia(boolean instancia){
+        ref.getPanelSinonimos().setCargarInstancia(instancia);
+    }
+    public void cargarArbol(boolean b){
+        ref.getPanelSinonimos().setCargarArbol(b);
+    }
+    
     public FramePrincipal getRef() {
         return ref;
     }
