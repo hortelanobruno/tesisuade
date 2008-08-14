@@ -56,16 +56,20 @@ public class ApiJena {
                     Statement s = (Statement) sIter.next() ;
                     Triple tri = s.asTriple();
                     if(tri.getObject().isLiteral()){
-                        if(tri.getPredicate().getLocalName().equals("sinonimo")){
-                            sinonimo.add((String) tri.getMatchObject().getLiteral().getValue());
-                        }else{
-                            traduccion.add((String) tri.getMatchObject().getLiteral().getValue());
+                        if(!tri.getPredicate().getLocalName().equals("type")){
+                            if(tri.getPredicate().getLocalName().equals("sinonimo")){
+                                sinonimo.add((String) tri.getMatchObject().getLiteral().getValue());
+                            }else{
+                                traduccion.add((String) tri.getMatchObject().getLiteral().getValue());
+                            }
                         }
                     }else{
-                        if(tri.getPredicate().getLocalName().equals("sinonimo")){
+                        if(!tri.getPredicate().getLocalName().equals("type")){
+                            if(tri.getPredicate().getLocalName().equals("sinonimo")){
                             sinonimo.add((String) tri.getObject().getLocalName());
                         }else{
                             traduccion.add((String) tri.getObject().getLocalName());
+                        }
                         }
                     }
                 }
