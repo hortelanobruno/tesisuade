@@ -21,6 +21,26 @@ public class ControladorPanelSinonimos extends Controlador {
         // TODO Auto-generated constructor stub
     }
     
+    public void doAgregarSinonimo(boolean b){
+        ((VistaSinonimos)vista).agregarSin(b);
+        vista.actualizar();
+    }
+    
+    public void doAgregarTraduccion(boolean b){
+        ((VistaSinonimos)vista).agregarTra(b);
+        vista.actualizar();
+    }
+    
+    public void doRemoverSinonimo(boolean b){
+        ((VistaSinonimos)vista).removerSin(b);
+        vista.actualizar();
+    }
+    
+    public void doRemoverTraduccion(boolean b){
+        ((VistaSinonimos)vista).removerTra(b);
+        vista.actualizar();
+    }
+    
     public void doCargarOWL(boolean b){
         ((VistaSinonimos)vista).cargarArbol(b);
         vista.actualizar();
