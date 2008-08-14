@@ -18,6 +18,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 import modelo.BusinessDelegate;
+import varios.DefaultMutableListModel;
 import vistas.VistaSinonimos;
 import vo.IndividualVO;
 
@@ -322,23 +323,23 @@ public void grabarOntologiaVocabulario(){
 
 public void cargarIndividualInPanel(){
     String instancia = eventoTree.getPath().getLastPathComponent().toString();
-            IndividualVO individual = (IndividualVO) ((BusinessDelegate)vista.getModelo()).obtenerIndividual(instancia);
-            ArrayList<String> sinonimos = individual.getSinonimos();
-            ArrayList<String> traduccion = individual.getTraduccion();
-            String nombre = individual.getNombreInstancia();
-            labelPalabra.setText(nombre);
-            listSinonimo.setModel(new DefaultListModel());
-            DefaultListModel dlm = (DefaultListModel) listSinonimo.getModel();
-            Iterator itSin = sinonimos.iterator();
-            while(itSin.hasNext()){
-                dlm.addElement(itSin.next().toString());
-            }
-            listTraduccion.setModel(new DefaultListModel());
-            DefaultListModel dlm2 = (DefaultListModel) listTraduccion.getModel();
-            Iterator itTra = traduccion.iterator();
-            while(itTra.hasNext()){
-                dlm2.addElement(itTra.next().toString());
-            }
+    IndividualVO individual = (IndividualVO) ((BusinessDelegate)vista.getModelo()).obtenerIndividual(instancia);
+    ArrayList<String> sinonimos = individual.getSinonimos();
+    ArrayList<String> traduccion = individual.getTraduccion();
+    String nombre = individual.getNombreInstancia();
+    labelPalabra.setText(nombre);
+    listSinonimo.setModel(new DefaultMutableListModel());
+    DefaultMutableListModel dlm = (DefaultMutableListModel) listSinonimo.getModel();
+    Iterator itSin = sinonimos.iterator();
+    while(itSin.hasNext()){
+        dlm.addElement(itSin.next().toString());
+    }
+    listTraduccion.setModel(new DefaultMutableListModel());
+    DefaultMutableListModel dlm2 = (DefaultMutableListModel) listTraduccion.getModel();
+    Iterator itTra = traduccion.iterator();
+    while(itTra.hasNext()){
+        dlm2.addElement(itTra.next().toString());
+    }
 }
 
 public void cargarTree(){
