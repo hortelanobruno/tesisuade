@@ -11,7 +11,6 @@ import controladores.ControladorPanelSinonimos;
 import gui.FramePrincipal;
 import java.util.ArrayList;
 import java.util.Iterator;
-import javax.swing.DefaultListModel;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -76,8 +75,6 @@ public class PanelSinonimos extends javax.swing.JPanel {
         buttonAddTraduccion = new javax.swing.JButton();
         buttonRemoveTraduccion = new javax.swing.JButton();
         labelPalabra = new javax.swing.JLabel();
-        textFieldSinonimos = new javax.swing.JTextField();
-        textFieldTraduccion = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(1023, 532));
 
@@ -141,17 +138,13 @@ public class PanelSinonimos extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                        .addComponent(textFieldTraduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
                         .addComponent(buttonAddTraduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonRemoveTraduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                        .addComponent(textFieldSinonimos, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
                         .addComponent(buttonAddSinonimo, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonRemoveSinonimo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -174,16 +167,12 @@ public class PanelSinonimos extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(buttonRemoveSinonimo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonAddSinonimo)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(textFieldSinonimos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(textFieldTraduccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4)
                     .addComponent(buttonAddTraduccion)
                     .addComponent(buttonRemoveTraduccion))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -250,16 +239,11 @@ private void buttonCargarActionPerformed(javax.swing.event.TreeSelectionEvent ev
 
 
 private void buttonAddSinonimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddSinonimoActionPerformed
-    if(!textFieldSinonimos.getText().isEmpty()){
-        ((ControladorPanelSinonimos) vista.getControlador()).doAgregarSinonimo(true);
-    }
-    
+    ((ControladorPanelSinonimos) vista.getControlador()).doAgregarSinonimo(true);
 }//GEN-LAST:event_buttonAddSinonimoActionPerformed
 
 private void buttonAddTraduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddTraduccionActionPerformed
-    if(!textFieldTraduccion.getText().isEmpty()){
         ((ControladorPanelSinonimos) vista.getControlador()).doAgregarTraduccion(true);    
-    }
 }//GEN-LAST:event_buttonAddTraduccionActionPerformed
 
 private void buttonRemoveSinonimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveSinonimoActionPerformed
@@ -401,8 +385,6 @@ private void initComponents2(){
     private javax.swing.JLabel labelPalabra;
     private javax.swing.JList listSinonimo;
     private javax.swing.JList listTraduccion;
-    private javax.swing.JTextField textFieldSinonimos;
-    private javax.swing.JTextField textFieldTraduccion;
     private javax.swing.JTextField textFieldURL;
     private javax.swing.JTree treeIndividual;
     // End of variables declaration//GEN-END:variables
