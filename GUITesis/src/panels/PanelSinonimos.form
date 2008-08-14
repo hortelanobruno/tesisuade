@@ -31,8 +31,8 @@
                       <Component id="buttonExaminar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jScrollPane1" min="-2" pref="176" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="217" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -51,8 +51,8 @@
               </Group>
               <EmptySpace pref="27" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" min="-2" pref="426" max="-2" attributes="1"/>
                   <Component id="jPanel1" max="32767" attributes="1"/>
+                  <Component id="jScrollPane1" min="-2" pref="426" max="-2" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -96,14 +96,18 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="162" max="32767" attributes="0"/>
+                          <EmptySpace pref="61" max="32767" attributes="0"/>
+                          <Component id="textFieldTraduccion" min="-2" pref="71" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="buttonAddTraduccion" min="-2" pref="23" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="buttonRemoveTraduccion" min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="176" max="32767" attributes="0"/>
+                          <EmptySpace pref="71" max="32767" attributes="0"/>
+                          <Component id="textFieldSinonimos" min="-2" pref="75" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="buttonAddSinonimo" min="-2" pref="21" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="buttonRemoveSinonimo" min="-2" pref="22" max="-2" attributes="0"/>
@@ -132,13 +136,19 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="buttonRemoveSinonimo" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="buttonAddSinonimo" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldSinonimos" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" pref="111" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldTraduccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <Component id="buttonAddTraduccion" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="buttonRemoveTraduccion" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -177,6 +187,7 @@
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                   <StringArray count="0"/>
                 </Property>
+                <Property name="selectionMode" type="int" value="0"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -193,6 +204,7 @@
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                   <StringArray count="0"/>
                 </Property>
+                <Property name="selectionMode" type="int" value="0"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -203,6 +215,9 @@
               <Image iconType="3" name="/iconos/add_obj.gif"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddSinonimoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="buttonRemoveSinonimo">
           <Properties>
@@ -210,6 +225,9 @@
               <Image iconType="3" name="/iconos/delete_obj.gif"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRemoveSinonimoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="buttonAddTraduccion">
           <Properties>
@@ -217,6 +235,9 @@
               <Image iconType="3" name="/iconos/add_obj.gif"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddTraduccionActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="buttonRemoveTraduccion">
           <Properties>
@@ -224,8 +245,15 @@
               <Image iconType="3" name="/iconos/delete_obj.gif"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRemoveTraduccionActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelPalabra">
+        </Component>
+        <Component class="javax.swing.JTextField" name="textFieldSinonimos">
+        </Component>
+        <Component class="javax.swing.JTextField" name="textFieldTraduccion">
         </Component>
       </SubComponents>
     </Container>

@@ -25,9 +25,38 @@ public class VistaSinonimos extends Vista{
             getRef().getPanelSinonimos().update();
     }
 
+    public void agregarSin(boolean b){
+        ref.getPanelSinonimos().setAgregarSinonimo(b);
+        ref.getPanelSinonimos().setAgregarTraduccion(false);
+        ref.getPanelSinonimos().setRemoverSinonimo(false);
+        ref.getPanelSinonimos().setRemoverTraduccion(false);
+    }
+    
+    public void agregarTra(boolean b){
+        ref.getPanelSinonimos().setAgregarSinonimo(false);
+        ref.getPanelSinonimos().setAgregarTraduccion(b);
+        ref.getPanelSinonimos().setRemoverSinonimo(false);
+        ref.getPanelSinonimos().setRemoverTraduccion(false);
+    }
+    
+    public void removerSin(boolean b){
+        ref.getPanelSinonimos().setAgregarSinonimo(false);
+        ref.getPanelSinonimos().setAgregarTraduccion(false);
+        ref.getPanelSinonimos().setRemoverSinonimo(b);
+        ref.getPanelSinonimos().setRemoverTraduccion(false);
+    }
+    
+    public void removerTra(boolean b){
+        ref.getPanelSinonimos().setAgregarSinonimo(false);
+        ref.getPanelSinonimos().setAgregarTraduccion(false);
+        ref.getPanelSinonimos().setRemoverSinonimo(false);
+        ref.getPanelSinonimos().setRemoverTraduccion(b);
+    }
+    
     public void cargarInstancia(boolean instancia){
         ref.getPanelSinonimos().setCargarInstancia(instancia);
     }
+    
     public void cargarArbol(boolean b){
         ref.getPanelSinonimos().setCargarArbol(b);
     }

@@ -16,6 +16,7 @@ import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 import modelo.BusinessDelegate;
 import vistas.VistaSinonimos;
 import vo.IndividualVO;
@@ -34,6 +35,10 @@ public class PanelSinonimos extends javax.swing.JPanel {
     private boolean cargarArbol;
     private TreeSelectionEvent eventoTree;
     private boolean cargarInstancia;
+    private boolean agregarSinonimo;
+    private boolean agregarTraduccion;
+    private boolean removerSinonimo;
+    private boolean removerTraduccion;
     
     /** Creates new form PanelSinonimos */
     public PanelSinonimos(FramePrincipal main, VistaSinonimos vista) {
@@ -70,6 +75,8 @@ public class PanelSinonimos extends javax.swing.JPanel {
         buttonAddTraduccion = new javax.swing.JButton();
         buttonRemoveTraduccion = new javax.swing.JButton();
         labelPalabra = new javax.swing.JLabel();
+        textFieldSinonimos = new javax.swing.JTextField();
+        textFieldTraduccion = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(1023, 532));
 
@@ -90,17 +97,39 @@ public class PanelSinonimos extends javax.swing.JPanel {
 
         jLabel4.setText("Traduccion");
 
+        listSinonimo.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(listSinonimo);
 
+        listTraduccion.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane3.setViewportView(listTraduccion);
 
         buttonAddSinonimo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/add_obj.gif"))); // NOI18N
+        buttonAddSinonimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAddSinonimoActionPerformed(evt);
+            }
+        });
 
         buttonRemoveSinonimo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/delete_obj.gif"))); // NOI18N
+        buttonRemoveSinonimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRemoveSinonimoActionPerformed(evt);
+            }
+        });
 
         buttonAddTraduccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/add_obj.gif"))); // NOI18N
+        buttonAddTraduccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAddTraduccionActionPerformed(evt);
+            }
+        });
 
         buttonRemoveTraduccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/delete_obj.gif"))); // NOI18N
+        buttonRemoveTraduccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRemoveTraduccionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -111,13 +140,17 @@ public class PanelSinonimos extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                        .addComponent(textFieldTraduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
                         .addComponent(buttonAddTraduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonRemoveTraduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                        .addComponent(textFieldSinonimos, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
                         .addComponent(buttonAddSinonimo, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonRemoveSinonimo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -140,12 +173,16 @@ public class PanelSinonimos extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(buttonRemoveSinonimo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonAddSinonimo)
-                    .addComponent(jLabel3))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(textFieldSinonimos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(textFieldTraduccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(buttonAddTraduccion)
                     .addComponent(buttonRemoveTraduccion))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -167,8 +204,8 @@ public class PanelSinonimos extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(buttonExaminar))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(441, 441, 441))
         );
@@ -182,8 +219,8 @@ public class PanelSinonimos extends javax.swing.JPanel {
                     .addComponent(textFieldURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -201,11 +238,90 @@ private void buttonExaminarActionPerformed(java.awt.event.ActionEvent evt) {//GE
     }
 }//GEN-LAST:event_buttonExaminarActionPerformed
 
+
+private void buttonCargarActionPerformed(javax.swing.event.TreeSelectionEvent evt) {
+        // Cargar solicitud en tablas
+        this.eventoTree = evt;
+        if(!eventoTree.getPath().getLastPathComponent().toString().equals("Palabras")){
+                ((ControladorPanelSinonimos) vista.getControlador()).doCargarInstancia(true);
+        }
+}
+
+
+private void buttonAddSinonimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddSinonimoActionPerformed
+    if(!textFieldSinonimos.getText().isEmpty()){
+        ((ControladorPanelSinonimos) vista.getControlador()).doAgregarSinonimo(true);
+    }
+    
+}//GEN-LAST:event_buttonAddSinonimoActionPerformed
+
+private void buttonAddTraduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddTraduccionActionPerformed
+    if(!textFieldTraduccion.getText().isEmpty()){
+        ((ControladorPanelSinonimos) vista.getControlador()).doAgregarTraduccion(true);    
+    }
+}//GEN-LAST:event_buttonAddTraduccionActionPerformed
+
+private void buttonRemoveSinonimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveSinonimoActionPerformed
+    if(listSinonimo.getSelectedIndex() != -1){
+        ((ControladorPanelSinonimos) vista.getControlador()).doRemoverSinonimo(true);
+    }
+}//GEN-LAST:event_buttonRemoveSinonimoActionPerformed
+
+private void buttonRemoveTraduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveTraduccionActionPerformed
+    if(listTraduccion.getSelectedIndex() != -1){
+        ((ControladorPanelSinonimos) vista.getControlador()).doRemoverTraduccion(true);
+    }
+}//GEN-LAST:event_buttonRemoveTraduccionActionPerformed
+
 public void update() {
     if(cargarArbol){
         cargarTree();
         if(cargarInstancia){
-            String instancia = eventoTree.getPath().getLastPathComponent().toString();
+            cargarIndividualInPanel();
+        }else{
+            if(isAgregarSinonimo()){
+                agregarSinonimo();
+                grabarOntologiaVocabulario();
+            } else if(isAgregarTraduccion()){
+                agregarTraduccion();
+                grabarOntologiaVocabulario();
+            } else if(isRemoverSinonimo()){
+                removerSinonimo();
+                grabarOntologiaVocabulario();
+            } else if(isRemoverTraduccion()){
+                removerTraduccion();
+                grabarOntologiaVocabulario();
+            } else{
+                
+            }
+        }
+    }else{
+        
+    }
+}
+
+public void agregarSinonimo(){
+    
+}
+
+public void agregarTraduccion(){
+    
+}
+
+public void removerSinonimo(){
+    
+}
+
+public void removerTraduccion(){
+    
+}
+
+public void grabarOntologiaVocabulario(){
+    
+}
+
+public void cargarIndividualInPanel(){
+    String instancia = eventoTree.getPath().getLastPathComponent().toString();
             IndividualVO individual = (IndividualVO) ((BusinessDelegate)vista.getModelo()).obtenerIndividual(instancia);
             ArrayList<String> sinonimos = individual.getSinonimos();
             ArrayList<String> traduccion = individual.getTraduccion();
@@ -223,10 +339,6 @@ public void update() {
             while(itTra.hasNext()){
                 dlm2.addElement(itTra.next().toString());
             }
-        }
-    }else{
-        
-    }
 }
 
 public void cargarTree(){
@@ -251,16 +363,12 @@ public void cargarTree(){
     }
     });
     jScrollPane1.setViewportView(treeIndividual);
-
+    Object root = treeIndividual.getModel().getRoot();
+    TreePath path = new TreePath(root);
+    treeIndividual.expandPath(path);
 }
 
-private void buttonCargarActionPerformed(javax.swing.event.TreeSelectionEvent evt) {
-        // Cargar solicitud en tablas
-        this.eventoTree = evt;
-        if(!eventoTree.getPath().getLastPathComponent().toString().equals("Palabras")){
-                ((ControladorPanelSinonimos) vista.getControlador()).doCargarInstancia(true);
-        }
-}
+
 public void setCargarArbol(boolean flag){
     this.cargarArbol = flag;
 }
@@ -292,6 +400,8 @@ private void initComponents2(){
     private javax.swing.JLabel labelPalabra;
     private javax.swing.JList listSinonimo;
     private javax.swing.JList listTraduccion;
+    private javax.swing.JTextField textFieldSinonimos;
+    private javax.swing.JTextField textFieldTraduccion;
     private javax.swing.JTextField textFieldURL;
     private javax.swing.JTree treeIndividual;
     // End of variables declaration//GEN-END:variables
@@ -318,6 +428,38 @@ private void initComponents2(){
 
     public void setCargarInstancia(boolean cargarInstancia) {
         this.cargarInstancia = cargarInstancia;
+    }
+
+    public boolean isAgregarSinonimo() {
+        return agregarSinonimo;
+    }
+
+    public void setAgregarSinonimo(boolean agregarSinonimo) {
+        this.agregarSinonimo = agregarSinonimo;
+    }
+
+    public boolean isAgregarTraduccion() {
+        return agregarTraduccion;
+    }
+
+    public void setAgregarTraduccion(boolean agregarTraduccion) {
+        this.agregarTraduccion = agregarTraduccion;
+    }
+
+    public boolean isRemoverSinonimo() {
+        return removerSinonimo;
+    }
+
+    public void setRemoverSinonimo(boolean removerSinonimo) {
+        this.removerSinonimo = removerSinonimo;
+    }
+
+    public boolean isRemoverTraduccion() {
+        return removerTraduccion;
+    }
+
+    public void setRemoverTraduccion(boolean removerTraduccion) {
+        this.removerTraduccion = removerTraduccion;
     }
 
 }
