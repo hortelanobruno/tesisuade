@@ -9,15 +9,20 @@ package panels;
 import gui.FileChooser;
 import controladores.ControladorPanelSinonimos;
 import gui.FramePrincipal;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.BorderFactory;
+import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 import modelo.BusinessDelegate;
+import varios.DefaultListCellEditor;
 import varios.DefaultMutableListModel;
+import varios.JListMutable;
 import vistas.VistaSinonimos;
 import vo.IndividualVO;
 
@@ -46,6 +51,7 @@ public class PanelSinonimos extends javax.swing.JPanel {
         this.vista = vista;
         initComponents();
         initComponents2();
+        
     }
 
     /** This method is called from within the constructor to
@@ -66,15 +72,15 @@ public class PanelSinonimos extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        listSinonimo = new javax.swing.JList();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        listTraduccion = new javax.swing.JList();
         buttonAddSinonimo = new javax.swing.JButton();
         buttonRemoveSinonimo = new javax.swing.JButton();
         buttonAddTraduccion = new javax.swing.JButton();
         buttonRemoveTraduccion = new javax.swing.JButton();
         labelPalabra = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        listMutableSinonimos = new JListMutable(new DefaultMutableListModel());
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listMutableTraduccion = new JListMutable(new DefaultMutableListModel());
 
         setPreferredSize(new java.awt.Dimension(1023, 532));
 
@@ -94,12 +100,6 @@ public class PanelSinonimos extends javax.swing.JPanel {
         jLabel3.setText("Sinonimo");
 
         jLabel4.setText("Traduccion");
-
-        listSinonimo.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane2.setViewportView(listSinonimo);
-
-        listTraduccion.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane3.setViewportView(listTraduccion);
 
         buttonAddSinonimo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/add_obj.gif"))); // NOI18N
         buttonAddSinonimo.addActionListener(new java.awt.event.ActionListener() {
@@ -129,31 +129,37 @@ public class PanelSinonimos extends javax.swing.JPanel {
             }
         });
 
+        listMutableSinonimos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane4.setViewportView(listMutableSinonimos);
+
+        listMutableTraduccion.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane2.setViewportView(listMutableTraduccion);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
                         .addComponent(buttonAddTraduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonRemoveTraduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
                         .addComponent(buttonAddSinonimo, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonRemoveSinonimo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                        .addComponent(labelPalabra, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))
+                        .addComponent(labelPalabra, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33))
         );
         jPanel1Layout.setVerticalGroup(
@@ -168,16 +174,16 @@ public class PanelSinonimos extends javax.swing.JPanel {
                     .addComponent(buttonRemoveSinonimo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonAddSinonimo)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
                     .addComponent(buttonAddTraduccion)
                     .addComponent(buttonRemoveTraduccion))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -197,7 +203,7 @@ public class PanelSinonimos extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(441, 441, 441))
+                .addGap(474, 474, 474))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,17 +249,17 @@ private void buttonAddSinonimoActionPerformed(java.awt.event.ActionEvent evt) {/
 }//GEN-LAST:event_buttonAddSinonimoActionPerformed
 
 private void buttonAddTraduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddTraduccionActionPerformed
-        ((ControladorPanelSinonimos) vista.getControlador()).doAgregarTraduccion(true);    
+    ((ControladorPanelSinonimos) vista.getControlador()).doAgregarTraduccion(true);    
 }//GEN-LAST:event_buttonAddTraduccionActionPerformed
 
 private void buttonRemoveSinonimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveSinonimoActionPerformed
-    if(listSinonimo.getSelectedIndex() != -1){
+    if(listMutableSinonimos.getSelectedIndex() != -1){
         ((ControladorPanelSinonimos) vista.getControlador()).doRemoverSinonimo(true);
     }
 }//GEN-LAST:event_buttonRemoveSinonimoActionPerformed
 
 private void buttonRemoveTraduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveTraduccionActionPerformed
-    if(listTraduccion.getSelectedIndex() != -1){
+    if(listMutableTraduccion.getSelectedIndex() != -1){
         ((ControladorPanelSinonimos) vista.getControlador()).doRemoverTraduccion(true);
     }
 }//GEN-LAST:event_buttonRemoveTraduccionActionPerformed
@@ -312,14 +318,16 @@ public void cargarIndividualInPanel(){
     ArrayList<String> traduccion = individual.getTraduccion();
     String nombre = individual.getNombreInstancia();
     labelPalabra.setText(nombre);
-    listSinonimo.setModel(new DefaultMutableListModel());
-    DefaultMutableListModel dlm = (DefaultMutableListModel) listSinonimo.getModel();
+    listMutableSinonimos.setModel(new DefaultMutableListModel());
+    DefaultMutableListModel dlm = (DefaultMutableListModel) listMutableSinonimos.getModel();
+    
     Iterator itSin = sinonimos.iterator();
     while(itSin.hasNext()){
         dlm.addElement(itSin.next().toString());
     }
-    listTraduccion.setModel(new DefaultMutableListModel());
-    DefaultMutableListModel dlm2 = (DefaultMutableListModel) listTraduccion.getModel();
+    
+    listMutableTraduccion.setModel(new DefaultMutableListModel());
+    DefaultMutableListModel dlm2 = (DefaultMutableListModel) listMutableTraduccion.getModel();
     Iterator itTra = traduccion.iterator();
     while(itTra.hasNext()){
         dlm2.addElement(itTra.next().toString());
@@ -364,8 +372,21 @@ private void initComponents2(){
     DefaultTreeModel modelo = new DefaultTreeModel(abuelo);
     treeIndividual = new JTree(modelo);
     jScrollPane1.setViewportView(treeIndividual);
-}
     
+    //Crear lista mutable sinonimos
+    
+    JTextField tf = new JTextField();
+    tf.setBorder(BorderFactory.createLineBorder(Color.black));
+    listMutableSinonimos.setListCellEditor(new DefaultListCellEditor(tf));
+    listMutableSinonimos.setVisibleRowCount(-1);
+    
+    //Crear lista mutable traduccion
+    
+    JTextField tf2 = new JTextField();
+    tf.setBorder(BorderFactory.createLineBorder(Color.black));
+    listMutableTraduccion.setListCellEditor(new DefaultListCellEditor(tf2));
+    listMutableTraduccion.setVisibleRowCount(-1);
+}
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -381,10 +402,10 @@ private void initComponents2(){
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel labelPalabra;
-    private javax.swing.JList listSinonimo;
-    private javax.swing.JList listTraduccion;
+    private varios.JListMutable listMutableSinonimos;
+    private varios.JListMutable listMutableTraduccion;
     private javax.swing.JTextField textFieldURL;
     private javax.swing.JTree treeIndividual;
     // End of variables declaration//GEN-END:variables

@@ -37,14 +37,17 @@ public class JListMutable extends JList implements CellEditorListener{
     protected Component editorComp = null; 
     protected int editingIndex = -1; 
     protected ListCellEditor editor = null; 
-    private PropertyChangeListener editorRemover = null; 
- 
+    private PropertyChangeListener editorRemover = null;
+
+    public JListMutable() {
+    }
+    
     public JListMutable(ListModel dataModel){ 
         super(dataModel); 
         init(); 
     } 
  
-    private void init(){ 
+    public void init(){ 
         getActionMap().put("startEditing", new StartEditingAction());                                                             //NOI18N 
         getActionMap().put("cancel", new CancelEditingAction());                                                                  //NOI18N 
         addMouseListener(new MouseListener()); 
