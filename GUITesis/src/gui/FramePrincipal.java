@@ -14,8 +14,10 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import panels.PanelMotorBusqueda;
+import panels.PanelNuevaOntologia;
 import panels.PanelSinonimos;
 import vistas.VistaMotorBusqueda;
+import vistas.VistaNuevaOntologia;
 import vistas.VistaSinonimos;
 
 /**
@@ -26,17 +28,21 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     private boolean isPanelPrincipalSelected;
     private boolean isPanelMotorBusquedaSelected;
+    private boolean isPanelNuevaOntologiaSelected;
     private boolean isPanelSinonimosSelected;
     private PanelMotorBusqueda panelMotorBusqueda;
     private PanelSinonimos panelSinonimos;
+    private PanelNuevaOntologia panelNuevaOntologia;
     private JPanel activePanel;
     private VistaMotorBusqueda vistaMotorBusqueda;
     private VistaSinonimos vistaSinonimos;
+    private VistaNuevaOntologia vistaNuevaOntologia;
     private String defaultOWLPath;
     
     /** Creates new form FramePrincipal */
-    public FramePrincipal(VistaMotorBusqueda vistaMotor, VistaSinonimos vistaSin) {
+    public FramePrincipal(VistaMotorBusqueda vistaMotor, VistaSinonimos vistaSin, VistaNuevaOntologia vistaNuevaOnt) {
         this.vistaMotorBusqueda = vistaMotor;
+        this.vistaNuevaOntologia = vistaNuevaOnt;
         this.vistaSinonimos = vistaSin;
         initComponents();
         this.setLookAndFeel();
@@ -84,6 +90,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -133,7 +140,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(31, 31, 31)
                 .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addContainerGap(286, Short.MAX_VALUE))
         );
 
         jMenu1.setText("File");
@@ -188,6 +195,14 @@ public class FramePrincipal extends javax.swing.JFrame {
         jMenuItem6.setText("OWL Explorer");
         jMenu6.add(jMenuItem6);
 
+        jMenuItem7.setText("New Ontologi");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem7);
+
         menuBar.add(jMenu6);
 
         jMenu3.setText("Help");
@@ -211,8 +226,8 @@ public class FramePrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(itemsToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(statusToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -228,15 +243,21 @@ private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
 private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
     if (!isPanelSinonimosSelected) {
-            setPanelSinonimos(new PanelSinonimos(this, vistaSinonimos));
+        setPanelSinonimos(new PanelSinonimos(this, vistaSinonimos));
         ponerPanel(getPanelSinonimos());
     }
 }//GEN-LAST:event_jMenuItem4ActionPerformed
 
 private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-// TODO add your handling code here:
     this.CloseApplication();
 }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    if (!isPanelNuevaOntologiaSelected) {
+        setPanelNuevaOntologia(new PanelNuevaOntologia(this, vistaNuevaOntologia));
+        ponerPanel(getPanelNuevaOntologia());
+    }
+}//GEN-LAST:event_jMenuItem7ActionPerformed
     
 
 private void CloseApplication() {
@@ -284,21 +305,33 @@ public void ponerPanel(JPanel panel) {
             this.remove(getPanelSinonimos());
             this.repaint();
         }
-
+        if(isPanelNuevaOntologiaSelected){
+            this.remove(getPanelNuevaOntologia());
+            this.repaint();
+        }
 
         if(panel instanceof PanelMotorBusqueda) {
             this.isPanelPrincipalSelected = false;
             this.isPanelSinonimosSelected = false;
+            this.isPanelNuevaOntologiaSelected = false;
             this.setActivePanel(getPanelMotorBusqueda());
             this.isPanelMotorBusquedaSelected = true;
         }
         if(panel instanceof PanelSinonimos){
             this.isPanelPrincipalSelected = false;
             this.isPanelMotorBusquedaSelected = false;
+            this.isPanelNuevaOntologiaSelected = false;
             this.setActivePanel(getPanelSinonimos());
             this.isPanelSinonimosSelected = true;
         }
-
+        if(panel instanceof PanelNuevaOntologia){
+            this.isPanelPrincipalSelected = false;
+            this.isPanelMotorBusquedaSelected = false;
+            this.isPanelSinonimosSelected = false;
+            this.setActivePanel(getPanelSinonimos());
+            this.isPanelNuevaOntologiaSelected = true;
+        }
+        
 
 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -320,30 +353,13 @@ javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(statusToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        
+   //Esto hace que la aplicacion aparezca maximizada.
    //     this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 }
 
-Thread hilo;
-  Object objeto = new Object();
-  boolean pideParar = false;
+
   
-public boolean esImpar(int iNumero) {
-  if (iNumero%2!=0)
-    return true;
-  else
-    return false;
-}
-
-  public void iniciaCuenta() {
-    if( hilo == null ) {
-      hilo = new ThreadCarga();
-      pideParar = false;
-      hilo.start();
-    }
-  }
-
     public PanelMotorBusqueda getPanelMotorBusqueda() {
         return panelMotorBusqueda;
     }
@@ -367,7 +383,44 @@ public boolean esImpar(int iNumero) {
     public void setPanelSinonimos(PanelSinonimos panelSinonimos) {
         this.panelSinonimos = panelSinonimos;
     }
-class ThreadCarga extends Thread {
+
+    public PanelNuevaOntologia getPanelNuevaOntologia() {
+        return panelNuevaOntologia;
+    }
+
+    public void setPanelNuevaOntologia(PanelNuevaOntologia panelNuevaOntologia) {
+        this.panelNuevaOntologia = panelNuevaOntologia;
+    }
+
+    public boolean isIsPanelNuevaOntologiaSelected() {
+        return isPanelNuevaOntologiaSelected;
+    }
+
+    public void setIsPanelNuevaOntologiaSelected(boolean isPanelNuevaOntologiaSelected) {
+        this.isPanelNuevaOntologiaSelected = isPanelNuevaOntologiaSelected;
+    }
+
+//Thread para cargar el progressBar
+Thread hilo;
+  Object objeto = new Object();
+  boolean pideParar = false;
+  
+public boolean esImpar(int iNumero) {
+  if (iNumero%2!=0)
+    return true;
+  else
+    return false;
+}
+
+  public void iniciaCuenta() {
+    if( hilo == null ) {
+      hilo = new ThreadCarga();
+      pideParar = false;
+      hilo.start();
+    }
+  }
+  
+  class ThreadCarga extends Thread {
     public void run() {
       int min = 0;
       int max = 100;
@@ -410,7 +463,9 @@ class ThreadCarga extends Thread {
       //hilo = null;
     }
   }
-
+  
+// Termina el kilombo del progressbar
+  
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToolBar itemsToolBar;
@@ -429,6 +484,7 @@ class ThreadCarga extends Thread {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JMenuBar menuBar;
