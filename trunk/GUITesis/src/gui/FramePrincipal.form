@@ -78,6 +78,14 @@
                 <Property name="text" type="java.lang.String" value="OWL Explorer"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="New Ontologi"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem7ActionPerformed"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu3">
@@ -124,8 +132,8 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="itemsToolBar" min="-2" pref="25" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="panelPrincipal" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="126" max="32767" attributes="0"/>
+              <Component id="panelPrincipal" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="statusToolBar" min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -198,7 +206,7 @@
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="jProgressBar1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="178" max="32767" attributes="0"/>
+                  <EmptySpace pref="286" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

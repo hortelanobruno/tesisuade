@@ -6,14 +6,21 @@
 
 package panels;
 
+import gui.FramePrincipal;
+import vistas.VistaNuevaOntologia;
+
 /**
  *
  * @author  Administrador
  */
 public class PanelNuevaOntologia extends javax.swing.JPanel {
 
+    private FramePrincipal main;
+    private VistaNuevaOntologia vistaNuevaOntologia;
     /** Creates new form PanelNuevaOntologia */
-    public PanelNuevaOntologia() {
+    public PanelNuevaOntologia(FramePrincipal ref, VistaNuevaOntologia vistaN) {
+        this.main = ref;
+        this.vistaNuevaOntologia = vistaN;
         initComponents();
     }
 

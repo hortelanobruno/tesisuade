@@ -6,9 +6,11 @@
 package gui;
 
 import controladores.ControladorPanelMotorBusqueda;
+import controladores.ControladorPanelNuevaOntologia;
 import controladores.ControladorPanelSinonimos;
 import modelo.BusinessDelegate;
 import vistas.VistaMotorBusqueda;
+import vistas.VistaNuevaOntologia;
 import vistas.VistaSinonimos;
 
 /**
@@ -23,15 +25,18 @@ public class Main {
             modelo = new BusinessDelegate();
             VistaMotorBusqueda vistaMotorBusqueda = new VistaMotorBusqueda(modelo);
             VistaSinonimos vistaSinonimos = new VistaSinonimos(modelo);
+            VistaNuevaOntologia vistaNuevaOntologia = new VistaNuevaOntologia(modelo);
             
-            FramePrincipal frame = new FramePrincipal(vistaMotorBusqueda,vistaSinonimos);
+            FramePrincipal frame = new FramePrincipal(vistaMotorBusqueda,vistaSinonimos,vistaNuevaOntologia);
             frame.setVisible(true);
             
             vistaMotorBusqueda.setRef(frame);
             vistaSinonimos.setRef(frame);
+            vistaNuevaOntologia.setRef(frame);
             
             new ControladorPanelMotorBusqueda(modelo,vistaMotorBusqueda);
             new ControladorPanelSinonimos(modelo, vistaSinonimos);
+            new ControladorPanelNuevaOntologia(modelo, vistaNuevaOntologia);
         }catch(Exception e){
         }
     }
