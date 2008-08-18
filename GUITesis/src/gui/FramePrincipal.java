@@ -38,7 +38,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private VistaSinonimos vistaSinonimos;
     private VistaNuevaOntologia vistaNuevaOntologia;
     private String defaultOWLPath;
-    
+
     /** Creates new form FramePrincipal */
     public FramePrincipal(VistaMotorBusqueda vistaMotor, VistaSinonimos vistaSin, VistaNuevaOntologia vistaNuevaOnt) {
         this.vistaMotorBusqueda = vistaMotor;
@@ -47,18 +47,9 @@ public class FramePrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLookAndFeel();
         isPanelPrincipalSelected = true;
-        iniciaCuenta();
-        this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-		this.addWindowListener(new java.awt.event.WindowAdapter() {
-		    public void windowClosing(WindowEvent winEvt) {
-		    	if (JOptionPane.showConfirmDialog(FramePrincipal.getFrames()[0],
-						"Esta seguro que desea cerrar la aplicacion?",
-						"Asistente de viajes", JOptionPane.YES_NO_OPTION,
-						JOptionPane.QUESTION_MESSAGE) == 0) {
-					System.exit(0);
-				}	
-		    }
-		});
+        iniciaCuenta();//De la progress bar
+        initComponents2();
+        cargarConfiguracion();
     }
 
     /** This method is called from within the constructor to
@@ -234,9 +225,29 @@ public class FramePrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void initComponents2() {
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+
+            public void windowClosing(WindowEvent winEvt) {
+                if (JOptionPane.showConfirmDialog(FramePrincipal.getFrames()[0],
+                        "Esta seguro que desea cerrar la aplicacion?",
+                        "Asistente de viajes", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE) == 0) {
+                    System.exit(0);
+                }
+            }
+        });
+    }
+
+
+    public void cargarConfiguracion(){
+
+    }
+
 private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
     if (!isPanelMotorBusquedaSelected) {
-        setPanelMotorBusqueda(new PanelMotorBusqueda(this,vistaMotorBusqueda));
+        setPanelMotorBusqueda(new PanelMotorBusqueda(this, vistaMotorBusqueda));
         ponerPanel(getPanelMotorBusqueda());
     }
 }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -258,108 +269,86 @@ private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         ponerPanel(getPanelNuevaOntologia());
     }
 }//GEN-LAST:event_jMenuItem7ActionPerformed
-    
 
-private void CloseApplication() {
-		if (JOptionPane.showConfirmDialog(this,
-				"Esta seguro que desea cerrar la aplicacion?",
-				"Asistente de Viajes", JOptionPane.YES_NO_OPTION,
-				JOptionPane.QUESTION_MESSAGE) == 0) {
-			System.exit(0);
-		}
-	}
-private void setLookAndFeel() throws HeadlessException {
-        try {
-                UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-                SwingUtilities.updateComponentTreeUI(this);
-
-                Toolkit t = Toolkit.getDefaultToolkit();
-                this
-                                .setLocation((int) (t.getScreenSize().getWidth() - this
-                                                .getWidth()) / 2, (int) (t.getScreenSize()
-                                                .getHeight() - this.getHeight()) / 2);
-        } catch (ClassNotFoundException ex) {
-
-        } catch (InstantiationException ex) {
-
-        } catch (IllegalAccessException ex) {
-
-        } catch (UnsupportedLookAndFeelException ex) {
-
+    private void CloseApplication() {
+        if (JOptionPane.showConfirmDialog(this,
+                "Esta seguro que desea cerrar la aplicacion?",
+                "Asistente de Viajes", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE) == 0) {
+            System.exit(0);
         }
-}
-public void setActivePanel(JPanel activePanel) {
-	this.activePanel = activePanel;
-}
+    }
 
-public void ponerPanel(JPanel panel) {
-        if(isPanelPrincipalSelected) {
+    private void setLookAndFeel() throws HeadlessException {
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+            SwingUtilities.updateComponentTreeUI(this);
+
+            Toolkit t = Toolkit.getDefaultToolkit();
+            this.setLocation((int) (t.getScreenSize().getWidth() - this.getWidth()) / 2, (int) (t.getScreenSize().getHeight() - this.getHeight()) / 2);
+        } catch (ClassNotFoundException ex) {
+        } catch (InstantiationException ex) {
+        } catch (IllegalAccessException ex) {
+        } catch (UnsupportedLookAndFeelException ex) {
+        }
+    }
+
+    public void setActivePanel(JPanel activePanel) {
+        this.activePanel = activePanel;
+    }
+
+    public void ponerPanel(JPanel panel) {
+        if (isPanelPrincipalSelected) {
             this.remove(panelPrincipal);
             this.repaint();
         }
-        if(isPanelMotorBusquedaSelected) {
+        if (isPanelMotorBusquedaSelected) {
             this.remove(getPanelMotorBusqueda());
             this.repaint();
         }
-        if(isPanelSinonimosSelected) {
+        if (isPanelSinonimosSelected) {
             this.remove(getPanelSinonimos());
             this.repaint();
         }
-        if(isPanelNuevaOntologiaSelected){
+        if (isPanelNuevaOntologiaSelected) {
             this.remove(getPanelNuevaOntologia());
             this.repaint();
         }
 
-        if(panel instanceof PanelMotorBusqueda) {
+        if (panel instanceof PanelMotorBusqueda) {
             this.isPanelPrincipalSelected = false;
             this.isPanelSinonimosSelected = false;
             this.isPanelNuevaOntologiaSelected = false;
             this.setActivePanel(getPanelMotorBusqueda());
             this.isPanelMotorBusquedaSelected = true;
         }
-        if(panel instanceof PanelSinonimos){
+        if (panel instanceof PanelSinonimos) {
             this.isPanelPrincipalSelected = false;
             this.isPanelMotorBusquedaSelected = false;
             this.isPanelNuevaOntologiaSelected = false;
             this.setActivePanel(getPanelSinonimos());
             this.isPanelSinonimosSelected = true;
         }
-        if(panel instanceof PanelNuevaOntologia){
+        if (panel instanceof PanelNuevaOntologia) {
             this.isPanelPrincipalSelected = false;
             this.isPanelMotorBusquedaSelected = false;
             this.isPanelSinonimosSelected = false;
             this.setActivePanel(getPanelSinonimos());
             this.isPanelNuevaOntologiaSelected = true;
         }
-        
 
-javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(itemsToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
-            .addComponent(statusToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(itemsToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE).addComponent(statusToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE).addGroup(layout.createSequentialGroup().addContainerGap().addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(itemsToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(statusToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-   //Esto hace que la aplicacion aparezca maximizada.
-   //     this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addComponent(itemsToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addGap(18, 18, Short.MAX_VALUE).addComponent(statusToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)));
+    //Esto hace que la aplicacion aparezca maximizada.
+    //     this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-}
+    }
 
-
-  
     public PanelMotorBusqueda getPanelMotorBusqueda() {
         return panelMotorBusqueda;
     }
@@ -398,75 +387,73 @@ javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 
     public void setIsPanelNuevaOntologiaSelected(boolean isPanelNuevaOntologiaSelected) {
         this.isPanelNuevaOntologiaSelected = isPanelNuevaOntologiaSelected;
+    }//Thread para cargar el progressBar
+    Thread hilo;
+    Object objeto = new Object();
+    boolean pideParar = false;
+
+    public boolean esImpar(int iNumero) {
+        if (iNumero % 2 != 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-//Thread para cargar el progressBar
-Thread hilo;
-  Object objeto = new Object();
-  boolean pideParar = false;
-  
-public boolean esImpar(int iNumero) {
-  if (iNumero%2!=0)
-    return true;
-  else
-    return false;
-}
+    public void iniciaCuenta() {
+        if (hilo == null) {
+            hilo = new ThreadCarga();
+            pideParar = false;
+            hilo.start();
+        }
+    }
 
-  public void iniciaCuenta() {
-    if( hilo == null ) {
-      hilo = new ThreadCarga();
-      pideParar = false;
-      hilo.start();
-    }
-  }
-  
-  class ThreadCarga extends Thread {
-    public void run() {
-      int min = 0;
-      int max = 100;
-      int aux = 1;
-      jProgressBar1.setValue( min );
-      jProgressBar1.setMinimum( min );
-      jProgressBar1.setMaximum( max );
-      while(true){
-      if(esImpar(aux)){
-          for (int i=min; i <= max; i++ ) {
-            jProgressBar1.setValue( i );
-            repaint();
-            synchronized( objeto ) {
-              if( pideParar )
-                break;
-              try {
-                objeto.wait( 10 );
-              } catch( InterruptedException e ) {
-                // Se ignoran las excepciones
-              }
+    class ThreadCarga extends Thread {
+
+        public void run() {
+            int min = 0;
+            int max = 100;
+            int aux = 1;
+            jProgressBar1.setValue(min);
+            jProgressBar1.setMinimum(min);
+            jProgressBar1.setMaximum(max);
+            while (true) {
+                if (esImpar(aux)) {
+                    for (int i = min; i <= max; i++) {
+                        jProgressBar1.setValue(i);
+                        repaint();
+                        synchronized (objeto) {
+                            if (pideParar) {
+                                break;
+                            }
+                            try {
+                                objeto.wait(10);
+                            } catch (InterruptedException e) {
+                                // Se ignoran las excepciones
+                            }
+                        }
+                    }
+                } else {
+                    for (int i = max; i >= min; i--) {
+                        jProgressBar1.setValue(i);
+                        repaint();
+                        synchronized (objeto) {
+                            if (pideParar) {
+                                break;
+                            }
+                            try {
+                                objeto.wait(10);
+                            } catch (InterruptedException e) {
+                                // Se ignoran las excepciones
+                            }
+                        }
+                    }
+                }
+                aux++;
             }
-          }
-      }else{
-          for (int i=max; i >= min; i-- ) {
-            jProgressBar1.setValue( i );
-            repaint();
-            synchronized( objeto ) {
-              if( pideParar )
-                break;
-              try {
-                objeto.wait( 10 );
-              } catch( InterruptedException e ) {
-                // Se ignoran las excepciones
-              }
-            }
-          }
-      }
-      aux++;
-      }
-      //hilo = null;
-    }
-  }
-  
-// Termina el kilombo del progressbar
-  
-    
+        //hilo = null;
+        }
+    }// Termina el kilombo del progressbar
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToolBar itemsToolBar;
     private javax.swing.JButton jButton1;
@@ -491,5 +478,4 @@ public boolean esImpar(int iNumero) {
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JToolBar statusToolBar;
     // End of variables declaration//GEN-END:variables
-    
 }
