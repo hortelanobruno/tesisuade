@@ -120,7 +120,7 @@ public class ClassHierarchy {
      */
     public void renderClassDescription( PrintStream out, OntClass c, int depth ) {
         indent( out, depth );
-
+        //System.out.println("DEPTH :" + depth);
         if (c.isRestriction()) {
             renderRestriction( out, (Restriction) c.as( Restriction.class ) );
         }
@@ -204,7 +204,7 @@ public class ClassHierarchy {
     /** Generate the indentation */
     protected void indent( PrintStream out, int depth ) {
         for (int i = 0;  i < depth; i++) {
-            out.print( "aa" );
+            out.print( "  " );
         }
     }
 
