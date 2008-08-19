@@ -128,7 +128,7 @@ public class ClassHierarchy {
             if (!c.isAnon()) {
                 out.print( "Class " );
                 renderURI( out, c.getModel(), c.getURI() );
-                out.print( ' ' );
+                out.print( "    " );
             }
             else {
                 renderAnonymous( out, c, "class" );
@@ -204,7 +204,7 @@ public class ClassHierarchy {
     /** Generate the indentation */
     protected void indent( PrintStream out, int depth ) {
         for (int i = 0;  i < depth; i++) {
-            out.print( "  " );
+            out.print( "aa" );
         }
     }
 

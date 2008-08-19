@@ -106,15 +106,21 @@ public class ApiJena {
         return individuals;
     }
 
-    public ArrayList<String> showClass(OntModel m){
-        ArrayList<String> classes = new ArrayList<String>();
+    public HashMap<String,String> showClass(OntModel m){
+        HashMap<String,String> classes = new HashMap<String,String>();
         Iterator i = m.listClasses().filterDrop(new Filter() { public boolean accept( Object o ) {
                                         return ((Resource) o).isAnon();
                                     }} );
         while (i.hasNext()) {
-           classes.add(((OntClass) i.next()).getLocalName());
+           OntClass cls = ((OntClass) i.next());
+           if( cls.getSuperClass() != null){
+                classes.put(cls.getLocalName(), cls.getSuperClass().getLocalName());
+           }else{
+               classes.put(cls.getLocalName(),"");
+           }  
         }
         return classes;
     }
     
+   
 }

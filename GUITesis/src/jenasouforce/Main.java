@@ -74,21 +74,21 @@ import java.util.logging.Logger;
 	                                            "file:testing/reasoners/bugs/food.owl" );*/
 
 //	        m.read( "http://www.w3.org/2001/sw/WebOnt/guide-src/wine" );
-	        m = loadOntModelFromOwlFile("C:\\Documents and Settings\\Administrador\\Escritorio\\Tesis\\Ontologias\\Ontologias\\vocabulario2.owl");
-	        String uri = m.getNsPrefixMap().values().iterator().next().toString();
-                
-                OntClass Window = m.createClass(uri + "NESTOR");
-                Individual throughTheLens = m.createIndividual(uri + "NestorEnBloque", Window);
-                FileOutputStream fileout = null;
-                try {
-                    fileout = new FileOutputStream(new File("c:\\pureba.owl"));
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-                m.write(fileout,"RDF/XML-ABBREV");
+	        m = loadOntModelFromOwlFile("C:\\Documents and Settings\\Administrador\\Escritorio\\Tesis\\Ontologias\\Ontologias\\turismoOriginal.owl");
+//	        String uri = m.getNsPrefixMap().values().iterator().next().toString();
+//                
+//                OntClass Window = m.createClass(uri + "NESTOR");
+//                Individual throughTheLens = m.createIndividual(uri + "NestorEnBloque", Window);
+//                FileOutputStream fileout = null;
+//                try {
+//                    fileout = new FileOutputStream(new File("c:\\pureba.owl"));
+//                } catch (FileNotFoundException ex) {
+//                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//                
+//                m.write(fileout,"RDF/XML-ABBREV");
                 ClassHierarchy classh = new ClassHierarchy();
-	        classh.showHierarchy2( System.out, m );
+	        //classh.showHierarchy2( System.out, m );
 	        
 	        classh.showHierarchy( System.out, m );
 		}
