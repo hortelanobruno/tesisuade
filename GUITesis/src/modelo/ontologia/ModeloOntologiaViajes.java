@@ -11,32 +11,30 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.List;
 import jenasouforce.ApiJena;
-import jenasouforce.ClassHierarchy;
-import vo.IndividualSinonimoVO;
 
 /**
  *
  * @author Administrador
  */
-public class ModeloOntologiaVocabulario {
+public class ModeloOntologiaViajes {
 
-    private OntModel m;
     private ApiJena jena;
+    private OntModel m;
     
-    public ModeloOntologiaVocabulario() {
+    public ModeloOntologiaViajes() {
         jena = new ApiJena();
     }
 
-    public IndividualSinonimoVO getIndividual(String ind) {
-        return jena.showIndividualOfSinonimo(m,ind);
-    }
-
-    public List<String> getInstancias(String url){
+    public OntModel getOntologia(String url){
         m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
         m = loadOntModelFromOwlFile(url);
-        return jena.showIndividuals(m);
+        return m;
+    }
+
+    public OntModel nuevaOntologia() {
+        m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
+        return m;
     }
     
     private OntModel loadOntModelFromOwlFile(String owlfile) {

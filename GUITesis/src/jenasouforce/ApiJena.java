@@ -7,6 +7,7 @@ package jenasouforce;
 
 import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.ontology.Individual;
+import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.Restriction;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -21,7 +22,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import vo.IndividualVO;
+import vo.IndividualSinonimoVO;
 
 /**
  *
@@ -37,8 +38,15 @@ public class ApiJena {
     public ApiJena() {
     }
 
-    public IndividualVO showIndividual(OntModel m, String ind) {
-        IndividualVO individual = null;
+    public String getURIOntologia(OntModel m){
+        String uri = m.getNsPrefixMap().values().iterator().next().toString();
+        uri = uri.substring(0, uri.length() -1);
+        return uri;
+    }
+    
+    
+    public IndividualSinonimoVO showIndividualOfSinonimo(OntModel m, String ind) {
+        IndividualSinonimoVO individual = null;
         Iterator i = m.listIndividuals()
                       .filterDrop( new Filter() {
                                     public boolean accept( Object o ) {
@@ -48,7 +56,7 @@ public class ApiJena {
         while (i.hasNext()) {
            Individual indi = ((Individual) i.next());
            if(indi.getLocalName().equals(ind)){
-               individual = new IndividualVO();
+               individual = new IndividualSinonimoVO();
                ArrayList<String> sinonimo = new ArrayList<String>();
                ArrayList<String> traduccion = new ArrayList<String>();
                 for ( StmtIterator sIter = indi.listProperties(); sIter.hasNext() ; )
@@ -97,6 +105,16 @@ public class ApiJena {
  
         return individuals;
     }
-    
+
+    public ArrayList<String> showClass(OntModel m){
+        ArrayList<String> classes = new ArrayList<String>();
+        Iterator i = m.listClasses().filterDrop(new Filter() { public boolean accept( Object o ) {
+                                        return ((Resource) o).isAnon();
+                                    }} );
+        while (i.hasNext()) {
+           classes.add(((OntClass) i.next()).getLocalName());
+        }
+        return classes;
+    }
     
 }
