@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JTree;
 import vo.IndividualSinonimoVO;
 
 /**
@@ -106,21 +107,34 @@ public class ApiJena {
         return individuals;
     }
 
-    public HashMap<String,String> showClass(OntModel m){
-        HashMap<String,String> classes = new HashMap<String,String>();
+    public void showClass(OntModel m, JTree tree){
         Iterator i = m.listClasses().filterDrop(new Filter() { public boolean accept( Object o ) {
                                         return ((Resource) o).isAnon();
                                     }} );
         while (i.hasNext()) {
            OntClass cls = ((OntClass) i.next());
-           if( cls.getSuperClass() != null){
-                classes.put(cls.getLocalName(), cls.getSuperClass().getLocalName());
-           }else{
-               classes.put(cls.getLocalName(),"");
-           }  
+           showClass(tree,cls,null,new ArrayList(), 0 );
         }
-        return classes;
     }
     
+   private void showClass(JTree tree, OntClass cls, OntClass sub, List occurs, int depth ) {
+        renderClassDescription(tree, cls,sub, depth );
+
+        // recurse to the next level down
+        if (cls.canAs( OntClass.class )  &&  !occurs.contains( cls )) {
+            for (Iterator i = cls.listSubClasses( true );  i.hasNext(); ) {
+                OntClass subs = (OntClass) i.next();
+
+                // we push this expression on the occurs list before we recurse
+                occurs.add( cls );
+                showClass( tree, cls, subs, occurs, depth + 1 );
+                occurs.remove( cls );
+            }
+        }
+    }
    
+   private void renderClassDescription(JTree tree,  OntClass cls, OntClass sub, int depth ) {
+//        tree.a
+//        classes.put(cls.getLocalName(),depth);
+    }
 }
