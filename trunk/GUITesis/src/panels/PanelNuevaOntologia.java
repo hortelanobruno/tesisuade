@@ -11,7 +11,9 @@ import controladores.ControladorPanelNuevaOntologia;
 import gui.FileChooser;
 import gui.FramePrincipal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Set;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -394,21 +396,35 @@ private void cargarPanelMetadata(){
 
 private void cargarPanelClases(){
     // Vaciar arbol
-    ArrayList<String> classes = apiJena.showClass(ontologia);
+    HashMap<String,String> classes = apiJena.showClass(ontologia);
     
     DefaultMutableTreeNode abuelo = new DefaultMutableTreeNode("Classes");
     DefaultTreeModel modelo = new DefaultTreeModel(abuelo);
     treeClasses = new JTree(modelo);
     DefaultMutableTreeNode[] padre = new DefaultMutableTreeNode[classes.size()];
-    Iterator it = classes.iterator();
-    int i = 0;
-    while(it.hasNext()){
-            padre[i] = new DefaultMutableTreeNode(it.next().toString());
-            i++;
+    Set<String> aaa = classes.keySet();
+    Iterator keys = aaa.iterator();
+    Iterator values = classes.values().iterator();
+    int aux=0;
+    while(keys.hasNext()){
+        padre[aux] = new DefaultMutableTreeNode(keys.next().toString());
+        modelo.insertNodeInto(padre[aux],abuelo, aux);
+        aux++;
     }
-    for(int j = 0 ; j < padre.length ; j++){
-            modelo.insertNodeInto(padre[j],abuelo, j);
+    aux=0;
+    while(values.hasNext()){
+        String valor = values.next().toString();
+        if(!valor.isEmpty()){
+            for(int i = 0 ; i < padre.length ; i++){
+                if(padre[i].equals(valor)){
+                    
+                }
+            }
+        }
     }
+    
+    
+    
     treeClasses.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
     public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
             buttonCargarActionPerformed(evt);    
