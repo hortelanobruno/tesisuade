@@ -8,6 +8,7 @@ package controladores;
 import mvcframework.Controlador;
 import mvcframework.ProxyModelo;
 import mvcframework.Vista;
+import vistas.VistaNuevaOntologia;
 
 /**
  *
@@ -18,5 +19,19 @@ public class ControladorPanelNuevaOntologia extends Controlador{
     public ControladorPanelNuevaOntologia(ProxyModelo mod, Vista vis) {
         super(mod, vis);
         // TODO Auto-generated constructor stub
+    }
+    
+    public void doCargarOWL(boolean b){
+        ((VistaNuevaOntologia)vista).cargarOntologia(b);
+        vista.actualizar();
+    }
+    
+    public void doNuevaOWL(boolean b){
+        ((VistaNuevaOntologia)vista).nuevaOntologia(b);
+        vista.actualizar();
+    }
+    
+    public void doCargarClase(boolean b){
+        
     }
 }

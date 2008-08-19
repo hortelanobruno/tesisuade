@@ -22,9 +22,19 @@ public class VistaNuevaOntologia extends Vista {
     }
 
     public void actualizar() {
-            getRef().getPanelSinonimos().update();
+            getRef().getPanelNuevaOntologia().update();
     }
 
+    public void cargarOntologia(boolean b){
+        ref.getPanelNuevaOntologia().setNuevaOntologia(false);
+        ref.getPanelNuevaOntologia().setCargarOntologia(b);
+    }
+    
+    public void nuevaOntologia(boolean b){
+        ref.getPanelNuevaOntologia().setCargarOntologia(false);
+        ref.getPanelNuevaOntologia().setNuevaOntologia(b);
+    }
+    
     public FramePrincipal getRef() {
         return ref;
     }

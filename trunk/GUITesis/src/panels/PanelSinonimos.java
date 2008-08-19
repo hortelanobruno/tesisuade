@@ -24,7 +24,7 @@ import varios.DefaultListCellEditor;
 import varios.DefaultMutableListModel;
 import varios.JListMutable;
 import vistas.VistaSinonimos;
-import vo.IndividualVO;
+import vo.IndividualSinonimoVO;
 
 /**
  *
@@ -313,7 +313,7 @@ public void grabarOntologiaVocabulario(){
 
 public void cargarIndividualInPanel(){
     String instancia = eventoTree.getPath().getLastPathComponent().toString();
-    IndividualVO individual = (IndividualVO) ((BusinessDelegate)vista.getModelo()).obtenerIndividual(instancia);
+    IndividualSinonimoVO individual = (IndividualSinonimoVO) ((BusinessDelegate)vista.getModelo()).obtenerIndividual(instancia);
     ArrayList<String> sinonimos = individual.getSinonimos();
     ArrayList<String> traduccion = individual.getTraduccion();
     String nombre = individual.getNombreInstancia();
