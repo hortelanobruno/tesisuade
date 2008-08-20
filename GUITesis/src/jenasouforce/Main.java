@@ -31,6 +31,7 @@ import java.io.InputStream;
 
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Resource;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.Writer;
@@ -75,22 +76,38 @@ import java.util.logging.Logger;
 
 //	        m.read( "http://www.w3.org/2001/sw/WebOnt/guide-src/wine" );
 	        m = loadOntModelFromOwlFile("C:\\Documents and Settings\\Admin\\Desktop\\Ontologias\\Ontologias\\turismoOriginal.owl");
-//	        String uri = m.getNsPrefixMap().values().iterator().next().toString();
-//                
-//                OntClass Window = m.createClass(uri + "NESTOR");
-//                Individual throughTheLens = m.createIndividual(uri + "NestorEnBloque", Window);
-//                FileOutputStream fileout = null;
-//                try {
-//                    fileout = new FileOutputStream(new File("c:\\pureba.owl"));
-//                } catch (FileNotFoundException ex) {
-//                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//                
-//                m.write(fileout,"RDF/XML-ABBREV");
-                ClassHierarchy classh = new ClassHierarchy();
+	        m.getNsPrefixMap();
+                String uri = m.getNsPrefixMap().get("").toString();
+                
+                m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
+
+                
+                m.createOntology(uri);
+                OntClass window = m.createClass(uri + "NESTOR");
+                OntClass window2 = m.createClass(uri + "NESTOR_HIJO");
+                window2.addSuperClass(window);
+                OntClass window3 = m.createClass(uri + "NESTOR_HIJO_DE HIJO");
+                m.getOntClass(uri + "NESTOR_HIJO").addSubClass(window3);
+                ObjectProperty part = m.createObjectProperty(uri + "part");
+                ObjectProperty body = m.createObjectProperty(uri + "body");
+                DatatypeProperty part2 = m.createDatatypeProperty(uri + "part2");
+                DatatypeProperty body2 = m.createDatatypeProperty(uri + "body2");
+                
+                //part2.setRange(m.rd);
+                
+                //Individual throughTheLens = m.createIndividual(uri + "NestorEnBloque", window);
+                FileOutputStream fileout = null;
+                try {
+                    fileout = new FileOutputStream(new File("c:\\pureba.owl"));
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                m.write(fileout,"RDF/XML-ABBREV");
+                //ClassHierarchy classh = new ClassHierarchy();
 	        //classh.showHierarchy2( System.out, m );
 	        
-	        classh.showHierarchy( System.out, m );
+	        //classh.showHierarchy( System.out, m );
 		}
 		
 		
