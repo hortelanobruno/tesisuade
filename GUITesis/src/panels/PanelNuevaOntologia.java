@@ -10,6 +10,7 @@ import com.hp.hpl.jena.ontology.OntModel;
 import controladores.ControladorPanelNuevaOntologia;
 import gui.FileChooser;
 import gui.FramePrincipal;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -18,6 +19,7 @@ import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
 import jenasouforce.ApiJena;
 import modelo.BusinessDelegate;
@@ -39,6 +41,9 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
     private OntModel ontologia;
     private ApiJena apiJena;
     private TreeSelectionEvent eventoTree;
+    private DefaultTreeModel modelo;
+    private DefaultMutableTreeNode abuelo;
+    private Toolkit toolkit = Toolkit.getDefaultToolkit();
     /** Creates new form PanelNuevaOntologia */
     public PanelNuevaOntologia(FramePrincipal ref, VistaNuevaOntologia vistaN) {
         this.main = ref;
@@ -76,6 +81,8 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         textFieldClassName = new javax.swing.JTextField();
+        buttonRemoverClass = new javax.swing.JButton();
+        buttonAgregarClass = new javax.swing.JButton();
         panelProperties = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         panelTabbedObjectProperty = new javax.swing.JPanel();
@@ -144,6 +151,20 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
 
         jLabel4.setText("Class");
 
+        buttonRemoverClass.setText("Rem");
+        buttonRemoverClass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRemoverClassActionPerformed(evt);
+            }
+        });
+
+        buttonAgregarClass.setText("Add");
+        buttonAgregarClass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAgregarClassActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelClassesLayout = new javax.swing.GroupLayout(panelClasses);
         panelClasses.setLayout(panelClassesLayout);
         panelClassesLayout.setHorizontalGroup(
@@ -171,14 +192,22 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                                     .addComponent(jButton3)
                                     .addGap(6, 6, 6)
                                     .addComponent(jButton1)))))
-                    .addComponent(jLabel2))
+                    .addGroup(panelClassesLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonAgregarClass)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonRemoverClass)))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         panelClassesLayout.setVerticalGroup(
             panelClassesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelClassesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addGroup(panelClassesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(buttonRemoverClass)
+                    .addComponent(buttonAgregarClass))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelClassesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelClassesLayout.createSequentialGroup()
@@ -194,7 +223,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                             .addComponent(jButton4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -304,8 +333,6 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Individuals", panelIndividuals);
 
-        jTabbedPane1.setSelectedIndex(0);
-
         buttonAbrirOntologia.setText("Abrir Ontologia");
         buttonAbrirOntologia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -383,6 +410,16 @@ private void buttonGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 // TODO add your handling code here:
 }//GEN-LAST:event_buttonGrabarActionPerformed
 
+private void buttonAgregarClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarClassActionPerformed
+// TODO add your handling code here:
+    addObject("New Node " + 11);
+}//GEN-LAST:event_buttonAgregarClassActionPerformed
+
+private void buttonRemoverClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverClassActionPerformed
+// TODO add your handling code here:
+    removeCurrentNode();
+}//GEN-LAST:event_buttonRemoverClassActionPerformed
+
 private void cargarPaneles(){
    cargarPanelMetadata();
    cargarPanelClases();
@@ -398,10 +435,10 @@ private void cargarPanelClases(){
     // Vaciar arbol
     
     
-    DefaultMutableTreeNode abuelo = new DefaultMutableTreeNode("Classes");
-    DefaultTreeModel modelo = new DefaultTreeModel(abuelo);
+    abuelo = new DefaultMutableTreeNode("Classes");
+    modelo = new DefaultTreeModel(abuelo);
     treeClasses = new JTree(modelo);
-    apiJena.showClass(ontologia,treeClasses);
+    apiJena.showClass(ontologia,treeClasses,modelo,abuelo);
 //    DefaultMutableTreeNode[] padre = new DefaultMutableTreeNode[classes.size()];
 //    Set<String> aaa = classes.keySet();
 //    Iterator keys = aaa.iterator();
@@ -476,10 +513,64 @@ public void cargarOntologia(){
         
 }
 
+public DefaultMutableTreeNode addObject(Object child) {
+        DefaultMutableTreeNode parentNode = null;
+        TreePath parentPath = treeClasses.getSelectionPath();
+        
+        if (parentPath == null) {
+            parentNode = abuelo;
+        } else {
+            parentNode = (DefaultMutableTreeNode)
+                         (parentPath.getLastPathComponent());
+        }
+
+        return addObject(parentNode, child, true);
+}
+
+public DefaultMutableTreeNode addObject(DefaultMutableTreeNode parent,
+                                            Object child, 
+                                            boolean shouldBeVisible) {
+        DefaultMutableTreeNode childNode = 
+                new DefaultMutableTreeNode(child);
+
+        if (parent == null) {
+            parent = abuelo;
+        }
+	
+	//It is key to invoke this on the TreeModel, and NOT DefaultMutableTreeNode
+        modelo.insertNodeInto(childNode, parent, 
+                                 parent.getChildCount());
+
+        //Make sure the user can see the lovely new node.
+        if (shouldBeVisible) {
+            treeClasses.scrollPathToVisible(new TreePath(childNode.getPath()));
+        }
+        return childNode;
+}
+
+public void removeCurrentNode() {
+        TreePath currentSelection = treeClasses.getSelectionPath();
+        if (currentSelection != null) {
+            DefaultMutableTreeNode currentNode = (DefaultMutableTreeNode)
+                         (currentSelection.getLastPathComponent());
+            MutableTreeNode parent = (MutableTreeNode)(currentNode.getParent());
+            if (parent != null) {
+                modelo.removeNodeFromParent(currentNode);
+                return;
+            }
+        } 
+
+        // Either there was no selection, or the root was selected.
+        toolkit.beep();
+}
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAbrirOntologia;
+    private javax.swing.JButton buttonAgregarClass;
     private javax.swing.JButton buttonGrabar;
     private javax.swing.JButton buttonNuevaOntologia;
+    private javax.swing.JButton buttonRemoverClass;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
