@@ -9,20 +9,22 @@ import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.ontology.Restriction;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
-import com.hp.hpl.jena.shared.PrefixMapping;
 import com.hp.hpl.jena.util.iterator.Filter;
-import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JTree;
+import javax.swing.text.Position;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 import vo.IndividualSinonimoVO;
 
 /**
@@ -107,18 +109,18 @@ public class ApiJena {
         return individuals;
     }
 
-    public void showClass(OntModel m, JTree tree){
+    public void showClass(OntModel m, JTree tree, DefaultTreeModel model,DefaultMutableTreeNode rootNode){
         Iterator i = m.listClasses().filterDrop(new Filter() { public boolean accept( Object o ) {
                                         return ((Resource) o).isAnon();
                                     }} );
         while (i.hasNext()) {
            OntClass cls = ((OntClass) i.next());
-           showClass(tree,cls,null,new ArrayList(), 0 );
+           showClass(tree,model,rootNode,cls,null,new ArrayList(), 0 );
         }
     }
     
-   private void showClass(JTree tree, OntClass cls, OntClass sub, List occurs, int depth ) {
-        renderClassDescription(tree, cls,sub, depth );
+   private void showClass(JTree tree, DefaultTreeModel model,DefaultMutableTreeNode rootNode, OntClass cls, OntClass sub, List occurs, int depth ) {
+        renderClassDescription(tree,model,rootNode, cls,sub, depth );
 
         // recurse to the next level down
         if (cls.canAs( OntClass.class )  &&  !occurs.contains( cls )) {
@@ -127,14 +129,47 @@ public class ApiJena {
 
                 // we push this expression on the occurs list before we recurse
                 occurs.add( cls );
-                showClass( tree, cls, subs, occurs, depth + 1 );
+                showClass(tree,model,rootNode, cls, subs, occurs, depth + 1 );
                 occurs.remove( cls );
             }
         }
     }
    
-   private void renderClassDescription(JTree tree,  OntClass cls, OntClass sub, int depth ) {
-//        tree.a
+   
+
+   
+   private void renderClassDescription(JTree tree, DefaultTreeModel model, DefaultMutableTreeNode rootNode, OntClass cls, OntClass sub, int depth ) {
+        
+        if(sub != null){
+            DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(sub.getLocalName().toString());
+            DefaultMutableTreeNode parent = null;
+            
+            for(int i = 0 ; i < tree.getRowCount() ; i++){
+                DefaultMutableTreeNode parent2 = (DefaultMutableTreeNode) tree.getPathForRow(i).getLastPathComponent();
+                
+                if(parent2.getLastChild().toString().equals(cls.getLocalName().toString())){
+                    parent = parent2;
+                }    
+            }
+            if (cls == null) {
+                parent = rootNode;
+            }
+//            }else{
+//                parent = (DefaultMutableTreeNode) (parentPath.getLastPathComponent());
+//            }
+            //It is key to invoke this on the TreeModel, and NOT DefaultMutableTreeNode
+            System.out.println("1");
+            model.insertNodeInto(childNode, parent, 
+                                     parent.getChildCount());
+        }else{
+            DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(cls.getLocalName().toString());
+            DefaultMutableTreeNode parent = null;
+            parent = rootNode;
+            System.out.println("1");
+            model.insertNodeInto(childNode, parent, 
+                                     parent.getChildCount());
+        }
+       
 //        classes.put(cls.getLocalName(),depth);
     }
 }

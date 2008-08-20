@@ -100,7 +100,7 @@ public class DynamicTree extends JPanel {
     public DefaultMutableTreeNode addObject(Object child) {
         DefaultMutableTreeNode parentNode = null;
         TreePath parentPath = tree.getSelectionPath();
-
+        
         if (parentPath == null) {
             parentNode = rootNode;
         } else {
