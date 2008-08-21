@@ -13,6 +13,9 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.util.iterator.Filter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -117,6 +120,37 @@ public class ApiJena {
         return clases;
     }
     
+    public void addClass(OntModel m, String clase, String padre){
+        String uri = m.getNsPrefixMap().get("").toString();
+        OntClass ontClass = m.createClass(uri + clase);
+        m.getOntClass(uri + padre).addSubClass(ontClass);
+    }
+    
+    
+    public void grabarOntologia(OntModel m, String url){
+        FileOutputStream fileout = null;
+        try {
+            fileout = new FileOutputStream(new File(url));
+        } catch (FileNotFoundException ex) {
+            
+        }
+        m.write(fileout,"RDF/XML-ABBREV");
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   //USO INTERNO 
    private void showClass(HashMap<String,String> clases, OntClass cls, OntClass sub, List occurs, int depth ) {
         renderClassDescription(clases,cls,sub, depth );
 
