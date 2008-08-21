@@ -11,9 +11,9 @@ import controladores.ControladorPanelNuevaOntologia;
 import gui.FileChooser;
 import gui.FramePrincipal;
 import java.awt.Toolkit;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map.Entry;
 import java.util.Set;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
@@ -44,6 +44,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
     private DefaultTreeModel modelo;
     private DefaultMutableTreeNode abuelo;
     private Toolkit toolkit = Toolkit.getDefaultToolkit();
+    private HashMap<String,DefaultMutableTreeNode> mapaNodos;
     /** Creates new form PanelNuevaOntologia */
     public PanelNuevaOntologia(FramePrincipal ref, VistaNuevaOntologia vistaN) {
         this.main = ref;
@@ -51,6 +52,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
         ontologia = null;
         apiJena = new ApiJena();
         initComponents();
+        initComponents2();
     }
 
 
@@ -384,6 +386,10 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
+private void initComponents2(){
+    mapaNodos = new HashMap<String, DefaultMutableTreeNode>();
+}
 private void buttonNuevaOntologiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNuevaOntologiaActionPerformed
     ((ControladorPanelNuevaOntologia) vistaNuevaOntologia.getControlador()).doNuevaOWL(true);
 }//GEN-LAST:event_buttonNuevaOntologiaActionPerformed
@@ -438,32 +444,25 @@ private void cargarPanelClases(){
     abuelo = new DefaultMutableTreeNode("Classes");
     modelo = new DefaultTreeModel(abuelo);
     treeClasses = new JTree(modelo);
-    apiJena.showClass(ontologia,treeClasses,modelo,abuelo);
-//    DefaultMutableTreeNode[] padre = new DefaultMutableTreeNode[classes.size()];
-//    Set<String> aaa = classes.keySet();
-//    Iterator keys = aaa.iterator();
-//    Iterator values = classes.values().iterator();
-    int aux=0;
-//    while(keys.hasNext()){
-//        padre[aux] = new DefaultMutableTreeNode(keys.next().toString());
-//        modelo.insertNodeInto(padre[aux],abuelo, aux);
-//        aux++;
-//    }
-//    aux=0;
-//    
-//    while(values.hasNext()){
-//        String valor = values.next().toString();
-//        if(!valor.isEmpty()){
-//            for(int i = 0 ; i < padre.length ; i++){
-//                if(padre[i].equals(valor)){
-//                    
-//                }
-//            }
-//        }
-//    }
-//    
+    HashMap<String,String> mapaClases = apiJena.showClass(ontologia);
     
-    
+    Set<Entry<String,String>> setClases = mapaClases.entrySet();
+    Iterator itClases = setClases.iterator();
+    DefaultMutableTreeNode node = null;
+    while(itClases.hasNext()){
+        Entry<String,String> clase = (Entry<String, String>) itClases.next();
+        node = new DefaultMutableTreeNode(clase.getKey());
+        mapaNodos.put(clase.getKey(), node);
+    }
+    itClases = setClases.iterator();
+    while(itClases.hasNext()){
+        Entry<String,String> clase = (Entry<String, String>) itClases.next();
+        if(clase.getValue().isEmpty()){
+            abuelo.add(mapaNodos.get(clase.getKey()));
+        }else{
+            mapaNodos.get(clase.getValue()).add(mapaNodos.get(clase.getKey()));
+        }
+    }
     treeClasses.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
     public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
             buttonCargarActionPerformed(evt);    
