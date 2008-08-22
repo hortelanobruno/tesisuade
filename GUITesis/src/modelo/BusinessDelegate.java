@@ -1,6 +1,7 @@
 package modelo;
 
 import com.hp.hpl.jena.ontology.OntModel;
+import java.util.HashMap;
 import java.util.List;
 import modelo.ontologia.ModeloOntologiaViajes;
 import modelo.ontologia.ModeloOntologiaVocabulario;
@@ -28,12 +29,28 @@ public class BusinessDelegate extends ProxyModelo
         return modOntologiaVocabulario.getIndividual(ind);
     }
     
-    public OntModel nuevaOntologia(){
-        return modeloOntologiaViajes.nuevaOntologia();
+    public void nuevaOntologia(){
+        modeloOntologiaViajes.nuevaOntologia();
     }
     
-    public OntModel obtenerOntologia(String url){
-        return modeloOntologiaViajes.getOntologia(url);
+    public void cargarOntologia(String url){
+        modeloOntologiaViajes.cargarOntologia(url);
+    }
+    
+    public void grabarOntologia(String url){
+        modeloOntologiaViajes.guardarOntologia(url);
+    }
+    
+    public String getURIOntologia(){
+        return modeloOntologiaViajes.getURIOntologia();
+    }
+    
+    public HashMap<String,String> showClasses(){
+        return modeloOntologiaViajes.showClasses();
+    }
+    
+    public void addClass(String hijo, String padre){
+        modeloOntologiaViajes.addClass(hijo,padre);
     }
 }
 

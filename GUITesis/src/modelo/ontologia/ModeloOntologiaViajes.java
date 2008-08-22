@@ -11,6 +11,7 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.HashMap;
 import jenasouforce.ApiJena;
 
 /**
@@ -26,15 +27,13 @@ public class ModeloOntologiaViajes {
         jena = new ApiJena();
     }
 
-    public OntModel getOntologia(String url){
+    public void cargarOntologia(String url){
         m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
         m = loadOntModelFromOwlFile(url);
-        return m;
     }
 
-    public OntModel nuevaOntologia() {
+    public void nuevaOntologia() {
         m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
-        return m;
     }
     
     private OntModel loadOntModelFromOwlFile(String owlfile) {
@@ -51,5 +50,21 @@ public class ModeloOntologiaViajes {
                 e.printStackTrace();
         }
         return ontmodel;
+    }
+    
+    public void guardarOntologia(String url){
+        jena.grabarOntologia(m, url);
+    }
+    
+    public String getURIOntologia(){
+        return jena.getURIOntologia(m);
+    }
+    
+    public HashMap<String,String> showClasses(){
+        return jena.showClass(m);
+    }
+    
+    public void addClass(String h, String p){
+        jena.addClass(m, h, p);
     }
 }

@@ -223,8 +223,9 @@ public class PanelSinonimos extends javax.swing.JPanel {
 
 private void buttonExaminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExaminarActionPerformed
 //Filechooser para elegir el archivo owl
-    chooser = new FileChooser(main, true, main.getDefaultOWLPath());
+    chooser = new FileChooser(main, true, main.getConfiguration().getDefaultURLOWLSinonimos());
     setUrlOWL(chooser.getPath());
+    main.getConfiguration().setDefaultURLOWLSinonimos(chooser.getPath());
     setChooserButton(chooser.getButton());
     if (chooserButton.equals("Cancel")) {
 

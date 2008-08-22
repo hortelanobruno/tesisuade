@@ -5,6 +5,8 @@
  */
 package gui;
 
+import Varios.XMLWrapper;
+import configuration.Configuration;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
@@ -16,6 +18,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import panels.PanelMotorBusqueda;
 import panels.PanelNuevaOntologia;
 import panels.PanelSinonimos;
+import varios.Constantes;
 import vistas.VistaMotorBusqueda;
 import vistas.VistaNuevaOntologia;
 import vistas.VistaSinonimos;
@@ -26,6 +29,7 @@ import vistas.VistaSinonimos;
  */
 public class FramePrincipal extends javax.swing.JFrame {
 
+    private FileChooser chooser;
     private boolean isPanelPrincipalSelected;
     private boolean isPanelMotorBusquedaSelected;
     private boolean isPanelNuevaOntologiaSelected;
@@ -37,7 +41,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private VistaMotorBusqueda vistaMotorBusqueda;
     private VistaSinonimos vistaSinonimos;
     private VistaNuevaOntologia vistaNuevaOntologia;
-    private String defaultOWLPath;
+    private Configuration configuration;
 
     /** Creates new form FramePrincipal */
     public FramePrincipal(VistaMotorBusqueda vistaMotor, VistaSinonimos vistaSin, VistaNuevaOntologia vistaNuevaOnt) {
@@ -63,6 +67,9 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         itemsToolBar = new javax.swing.JToolBar();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
         statusToolBar = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         panelPrincipal = new javax.swing.JPanel();
@@ -80,8 +87,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JSeparator();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -89,11 +99,24 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         itemsToolBar.setFloatable(false);
 
-        jButton2.setText("jButton2");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/protege/project.new.gif"))); // NOI18N
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         itemsToolBar.add(jButton2);
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/protege/project.open.gif"))); // NOI18N
+        jButton3.setFocusable(false);
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        itemsToolBar.add(jButton3);
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/protege/project.save.gif"))); // NOI18N
+        jButton4.setFocusable(false);
+        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        itemsToolBar.add(jButton4);
+        itemsToolBar.add(jSeparator2);
 
         statusToolBar.setFloatable(false);
 
@@ -183,16 +206,33 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         jMenu6.setText("OWL");
 
-        jMenuItem6.setText("OWL Explorer");
-        jMenu6.add(jMenuItem6);
-
-        jMenuItem7.setText("New Ontologi");
+        jMenuItem7.setText("New Ontology");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
             }
         });
         jMenu6.add(jMenuItem7);
+
+        jMenuItem6.setText("Open Ontology");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem6);
+
+        jMenuItem9.setText("Cerrar Ontology");
+        jMenu6.add(jMenuItem9);
+        jMenu6.add(jSeparator3);
+
+        jMenuItem8.setText("Save Ontology");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem8);
 
         menuBar.add(jMenu6);
 
@@ -230,19 +270,35 @@ public class FramePrincipal extends javax.swing.JFrame {
         this.addWindowListener(new java.awt.event.WindowAdapter() {
 
             public void windowClosing(WindowEvent winEvt) {
-                if (JOptionPane.showConfirmDialog(FramePrincipal.getFrames()[0],
-                        "Esta seguro que desea cerrar la aplicacion?",
-                        "Asistente de viajes", JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE) == 0) {
-                    System.exit(0);
-                }
+                CloseApplication();
             }
         });
     }
 
+    private void CloseApplication() {
+        if (JOptionPane.showConfirmDialog(this,
+                "Esta seguro que desea cerrar la aplicacion?",
+                "Asistente de Viajes", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE) == 0) {
+            guardarConfiguracion();
+            System.exit(0);
+        }
+    }
+    
+    public void guardarConfiguracion(){
+        XMLWrapper xml = new XMLWrapper();
+        xml.parseXMLSolFab(getConfiguration());
+    }
 
     public void cargarConfiguracion(){
-
+        XMLWrapper xml = new XMLWrapper();
+        Configuration conf = xml.parseConfiguracion(Constantes.CONFIGURATION);
+        if(conf != null){
+            this.setConfiguration(conf);
+        }else{
+            conf = new Configuration();
+            this.setConfiguration(conf);
+        }  
     }
 
 private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -267,17 +323,33 @@ private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     if (!isPanelNuevaOntologiaSelected) {
         setPanelNuevaOntologia(new PanelNuevaOntologia(this, vistaNuevaOntologia));
         ponerPanel(getPanelNuevaOntologia());
+        getPanelNuevaOntologia().modoNuevo();
     }
 }//GEN-LAST:event_jMenuItem7ActionPerformed
 
-    private void CloseApplication() {
-        if (JOptionPane.showConfirmDialog(this,
-                "Esta seguro que desea cerrar la aplicacion?",
-                "Asistente de Viajes", JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE) == 0) {
-            System.exit(0);
-        }
+private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+// Abrir ontologia
+    chooser = new FileChooser(this, true, this.getConfiguration().getDefaultURLOWLViajes());
+    
+    if (chooser.getButton().equals("Cancel")) {
+
+    } else {
+            if (!isPanelNuevaOntologiaSelected) {
+                setPanelNuevaOntologia(new PanelNuevaOntologia(this, vistaNuevaOntologia));
+                ponerPanel(getPanelNuevaOntologia());
+                getConfiguration().setDefaultURLOWLViajes(chooser.getPath());
+                getPanelNuevaOntologia().setUrlOWL(chooser.getPath());
+                getPanelNuevaOntologia().modoCargar();
+            }
     }
+}//GEN-LAST:event_jMenuItem6ActionPerformed
+
+private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    if (!isPanelNuevaOntologiaSelected) {
+         getPanelNuevaOntologia().guardarOntologia();
+    }
+}//GEN-LAST:event_jMenuItem8ActionPerformed
+
 
     private void setLookAndFeel() throws HeadlessException {
         try {
@@ -357,14 +429,6 @@ private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         this.panelMotorBusqueda = panelMotorBusqueda;
     }
 
-    public String getDefaultOWLPath() {
-        return defaultOWLPath;
-    }
-
-    public void setDefaultOWLPath(String defaultOWLPath) {
-        this.defaultOWLPath = defaultOWLPath;
-    }
-
     public PanelSinonimos getPanelSinonimos() {
         return panelSinonimos;
     }
@@ -406,6 +470,14 @@ private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             pideParar = false;
             hilo.start();
         }
+    }
+
+    public Configuration getConfiguration() {
+        return configuration;
+    }
+
+    public void setConfiguration(Configuration configuration) {
+        this.configuration = configuration;
     }
 
     class ThreadCarga extends Thread {
@@ -458,6 +530,8 @@ private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JToolBar itemsToolBar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -472,8 +546,12 @@ private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JToolBar.Separator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JToolBar statusToolBar;

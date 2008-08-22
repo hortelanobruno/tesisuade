@@ -35,13 +35,10 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
 
     private FramePrincipal main;
     private VistaNuevaOntologia vistaNuevaOntologia;
-    private FileChooser chooser;
     private String urlOWL;
     private String chooserButton;
     private boolean cargarOntologia;
     private boolean nuevaOntologia;
-    private OntModel ontologia;
-    private ApiJena apiJena;
     private TreeSelectionEvent eventoTree;
     private DefaultTreeModel modelo;
     private DefaultMutableTreeNode abuelo;
@@ -51,8 +48,6 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
     public PanelNuevaOntologia(FramePrincipal ref, VistaNuevaOntologia vistaN) {
         this.main = ref;
         this.vistaNuevaOntologia = vistaN;
-        ontologia = null;
-        apiJena = new ApiJena();
         initComponents();
         initComponents2();
     }
@@ -104,15 +99,12 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
         listPropertiesDatatype = new javax.swing.JList();
         panelPropertyDefault = new javax.swing.JPanel();
         panelIndividuals = new javax.swing.JPanel();
-        buttonAbrirOntologia = new javax.swing.JButton();
-        buttonNuevaOntologia = new javax.swing.JButton();
-        buttonGrabar = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1023, 532));
 
         jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                CambiarPanel(evt);
+                CambiarTabbedPanel(evt);
             }
         });
 
@@ -391,54 +383,21 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Individuals", panelIndividuals);
 
-        buttonAbrirOntologia.setText("Abrir Ontologia");
-        buttonAbrirOntologia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonAbrirOntologiaActionPerformed(evt);
-            }
-        });
-
-        buttonNuevaOntologia.setText("Nueva Ontologia");
-        buttonNuevaOntologia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonNuevaOntologiaActionPerformed(evt);
-            }
-        });
-
-        buttonGrabar.setText("Guardar");
-        buttonGrabar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonGrabarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonNuevaOntologia)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonAbrirOntologia))
-                    .addComponent(buttonGrabar)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 920, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 920, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(93, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonAbrirOntologia)
-                    .addComponent(buttonNuevaOntologia))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(45, 45, 45)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addComponent(buttonGrabar)
-                .addContainerGap())
+                .addContainerGap(44, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -447,32 +406,37 @@ private void initComponents2(){
     panelAgregarNombre.setVisible(false);
     mapaNodos = new HashMap<String, DefaultMutableTreeNode>();
 }
-private void buttonNuevaOntologiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNuevaOntologiaActionPerformed
+
+public void modoCargar(){
+    ((ControladorPanelNuevaOntologia) vistaNuevaOntologia.getControlador()).doCargarOWL(true);
+}
+
+public void modoNuevo(){
     ((ControladorPanelNuevaOntologia) vistaNuevaOntologia.getControlador()).doNuevaOWL(true);
-}//GEN-LAST:event_buttonNuevaOntologiaActionPerformed
+}
 
-private void buttonAbrirOntologiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAbrirOntologiaActionPerformed
-//Filechooser para elegir el archivo owl
-    chooser = new FileChooser(main, true, main.getDefaultOWLPath());
-    setUrlOWL(chooser.getPath());
-    setChooserButton(chooser.getButton());
-    if (getChooserButton().equals("Cancel")) {
+public void guardarOntologia(){
+    //Grabar ontologia
+    ((BusinessDelegate)vistaNuevaOntologia.getModelo()).grabarOntologia(urlOWL);
+}
 
-    } else {
-            // Cargar los table
-            ((ControladorPanelNuevaOntologia) vistaNuevaOntologia.getControlador()).doCargarOWL(true);
+public void update() {
+    if(cargarOntologia){
+        cargarOntologia();
+        cargarPaneles();
+    }else{
+        if(nuevaOntologia){
+            nuevaOntologia();
+            cargarPanelMetadata();
+        }
     }
-}//GEN-LAST:event_buttonAbrirOntologiaActionPerformed
+}
 
-private void CambiarPanel(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_CambiarPanel
+private void CambiarTabbedPanel(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_CambiarTabbedPanel
 // TODO add your handling code here:
     
-}//GEN-LAST:event_CambiarPanel
+}//GEN-LAST:event_CambiarTabbedPanel
 
-private void buttonGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGrabarActionPerformed
-// TODO add your handling code here:
-    apiJena.grabarOntologia(ontologia, urlOWL);
-}//GEN-LAST:event_buttonGrabarActionPerformed
 
 private void buttonAgregarClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarClassActionPerformed
 // TODO add your handling code here:
@@ -513,7 +477,8 @@ private void cargarPaneles(){
 }
 
 private void cargarPanelMetadata(){
-    this.getTextFieldURI().setText(apiJena.getURIOntologia(ontologia));
+    String uri = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).getURIOntologia();
+    this.getTextFieldURI().setText(uri);
 }
 
 private void cargarPanelClases(){
@@ -523,7 +488,7 @@ private void cargarPanelClases(){
     abuelo = new DefaultMutableTreeNode("Classes");
     modelo = new DefaultTreeModel(abuelo);
     treeClasses = new JTree(modelo);
-    HashMap<String,String> mapaClases = apiJena.showClass(ontologia);
+    HashMap<String,String> mapaClases = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).showClasses();
     
     Set<Entry<String,String>> setClases = mapaClases.entrySet();
     Iterator itClases = setClases.iterator();
@@ -570,25 +535,14 @@ private void cargarPanelInstancia(){
     
 }
 
-public void update() {
-    if(cargarOntologia){
-        cargarOntologia();
-        cargarPaneles();
-    }else{
-        if(nuevaOntologia){
-            nuevaOntologia();
-            cargarPanelMetadata();
-        }
-    }
-}
+
 
 public void nuevaOntologia(){
-    setOntologia(((BusinessDelegate) vistaNuevaOntologia.getModelo()).nuevaOntologia());
+    ((BusinessDelegate) vistaNuevaOntologia.getModelo()).nuevaOntologia();
 }
 
 public void cargarOntologia(){
-    setOntologia(((BusinessDelegate) vistaNuevaOntologia.getModelo()).obtenerOntologia(getUrlOWL()));
-        
+    ((BusinessDelegate) vistaNuevaOntologia.getModelo()).cargarOntologia(getUrlOWL());       
 }
 
 private DefaultMutableTreeNode addObject(Object child) {
@@ -619,7 +573,9 @@ private DefaultMutableTreeNode addObject(DefaultMutableTreeNode parent,
         modelo.insertNodeInto(childNode, parent, 
                                  parent.getChildCount());
         mapaNodos.put(childNode.getUserObject().toString(), childNode);
-        apiJena.addClass(ontologia, childNode.getUserObject().toString(), parent.getUserObject().toString());
+        String hijo = childNode.getUserObject().toString();
+        String padre = parent.getUserObject().toString();
+        ((BusinessDelegate)vistaNuevaOntologia.getModelo()).addClass(hijo,padre);
         //Make sure the user can see the lovely new node.
         if (shouldBeVisible) {
             treeClasses.scrollPathToVisible(new TreePath(childNode.getPath()));
@@ -646,11 +602,8 @@ private void removeCurrentNode() {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonAbrirOntologia;
     private javax.swing.JButton buttonAgregarClass;
     private javax.swing.JButton buttonCancelNombre;
-    private javax.swing.JButton buttonGrabar;
-    private javax.swing.JButton buttonNuevaOntologia;
     private javax.swing.JButton buttonOkNombre;
     private javax.swing.JButton buttonRemoverClass;
     private javax.swing.JButton jButton1;
@@ -709,14 +662,6 @@ private void removeCurrentNode() {
 
     public void setCargarOntologia(boolean cargarOntologia) {
         this.cargarOntologia = cargarOntologia;
-    }
-
-    public OntModel getOntologia() {
-        return ontologia;
-    }
-
-    public void setOntologia(OntModel ontologia) {
-        this.ontologia = ontologia;
     }
 
     public boolean isNuevaOntologia() {
