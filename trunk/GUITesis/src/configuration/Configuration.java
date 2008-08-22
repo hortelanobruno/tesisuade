@@ -5,35 +5,33 @@
 
 package configuration;
 
-import java.util.ArrayList;
 
-/**
- *
- * @author Administrador
- */
+import java.util.Vector;
+
+
 public class Configuration {
 
-    private ArrayList<String> ontologiasViajes;
-    private ArrayList<String> ontologiasVocabulario;
+    private Vector<String> ontologiasViajes;
+    private Vector<String> ontologiasVocabulario;
     private String defaultURLOWLSinonimos;
     private String defaultURLOWLViajes;
     
     public Configuration() {
     }
 
-    public ArrayList<String> getOntologiasViajes() {
+    public Vector<String> getOntologiasViajes() {
         return ontologiasViajes;
     }
 
-    public void setOntologiasViajes(ArrayList<String> ontologiasViajes) {
+    public void setOntologiasViajes(Vector<String> ontologiasViajes) {
         this.ontologiasViajes = ontologiasViajes;
     }
 
-    public ArrayList<String> getOntologiasVocabulario() {
+    public Vector<String> getOntologiasVocabulario() {
         return ontologiasVocabulario;
     }
 
-    public void setOntologiasVocabulario(ArrayList<String> ontologiasVocabulario) {
+    public void setOntologiasVocabulario(Vector<String> ontologiasVocabulario) {
         this.ontologiasVocabulario = ontologiasVocabulario;
     }
 
@@ -58,7 +56,7 @@ public class Configuration {
         String[] aa = urlCompleta.split("\\\\");
         a = a + aa[0];
         for(int i = 1 ; i < aa.length -1 ; i++){
-            a = a + "\\\\" + aa[i];
+            a = a + "\\" + aa[i];
         }
         return a;
     }

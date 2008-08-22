@@ -330,9 +330,7 @@ private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
 // Abrir ontologia
     chooser = new FileChooser(this, true, this.getConfiguration().getDefaultURLOWLViajes());
-    
     if (chooser.getButton().equals("Cancel")) {
-
     } else {
             if (!isPanelNuevaOntologiaSelected) {
                 setPanelNuevaOntologia(new PanelNuevaOntologia(this, vistaNuevaOntologia));

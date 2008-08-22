@@ -225,12 +225,12 @@ private void buttonExaminarActionPerformed(java.awt.event.ActionEvent evt) {//GE
 //Filechooser para elegir el archivo owl
     chooser = new FileChooser(main, true, main.getConfiguration().getDefaultURLOWLSinonimos());
     setUrlOWL(chooser.getPath());
-    main.getConfiguration().setDefaultURLOWLSinonimos(chooser.getPath());
     setChooserButton(chooser.getButton());
     if (chooserButton.equals("Cancel")) {
 
     } else {
             // Cargar los table
+            main.getConfiguration().setDefaultURLOWLSinonimos(chooser.getPath());
             ((ControladorPanelSinonimos) vista.getControlador()).doCargarOWL(true);
     }
 }//GEN-LAST:event_buttonExaminarActionPerformed
