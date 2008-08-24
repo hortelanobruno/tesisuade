@@ -25,6 +25,7 @@ public class ModeloOntologiaVocabulario {
 
     private OntModel m;
     private ApiJena jena;
+    private String url;
     
     public ModeloOntologiaVocabulario() {
         jena = new ApiJena();
@@ -40,9 +41,13 @@ public class ModeloOntologiaVocabulario {
     public List<String> getInstancias(String url){
         m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
         m = loadOntModelFromOwlFile(url);
+        this.url = url;
         return jena.showIndividuals(m);
     }
 
+    public void guardarOntologiaSinonimo(){
+        jena.grabarOntologia(m, url);
+    }
     
     private OntModel loadOntModelFromOwlFile(String owlfile) {
         OntModel ontmodel = null;

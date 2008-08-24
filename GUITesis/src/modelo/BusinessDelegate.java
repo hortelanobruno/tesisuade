@@ -28,6 +28,10 @@ public class BusinessDelegate extends ProxyModelo
         return modOntologiaVocabulario.getInstancias(url);
     }
     
+    public void guardarOntologiaSinonimos(){
+        modOntologiaVocabulario.guardarOntologiaSinonimo();
+    }
+    
     public IndividualSinonimoVO obtenerIndividual(String ind){
         return modOntologiaVocabulario.getIndividual(ind);
     }
