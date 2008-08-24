@@ -4,7 +4,7 @@
  * Created on 18 de agosto de 2008, 10:02
  */
 
-package panels;
+package panels.nuevaontologia;
 
 import com.hp.hpl.jena.ontology.OntModel;
 import controladores.ControladorPanelNuevaOntologia;

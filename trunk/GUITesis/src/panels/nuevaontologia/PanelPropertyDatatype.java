@@ -4,7 +4,7 @@
  * Created on 18 de agosto de 2008, 11:11
  */
 
-package panels;
+package panels.nuevaontologia;
 
 /**
  *

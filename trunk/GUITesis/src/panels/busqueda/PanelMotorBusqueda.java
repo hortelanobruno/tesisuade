@@ -4,9 +4,11 @@
  * Created on 29 de julio de 2008, 00:42
  */
 
-package panels;
+package panels.busqueda;
 
 
+import panels.*;
+import panels.busqueda.PanelOpcionesAvanzadasVuelos;
 import gui.FramePrincipal;
 import java.util.Calendar;
 import java.util.Date;

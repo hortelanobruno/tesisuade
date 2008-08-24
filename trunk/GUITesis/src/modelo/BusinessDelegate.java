@@ -21,6 +21,9 @@ public class BusinessDelegate extends ProxyModelo
         modeloOntologiaViajes = new ModeloOntologiaViajes();
     }
 	
+    public void agregarSinonimo(String instancia, String sin){
+        modOntologiaVocabulario.addSinonimo(instancia,sin);
+    }
     public List<String> obtenerInstanciasVocabuario(String url){
         return modOntologiaVocabulario.getInstancias(url);
     }

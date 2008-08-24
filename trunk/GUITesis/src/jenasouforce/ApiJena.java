@@ -46,6 +46,14 @@ public class ApiJena {
         return uri;
     }
     
+    public void addSinonimo(OntModel m, String ind, String sin){
+        String uri = getURIOntologia(m);
+        uri = uri + "#";
+        Individual individual = m.getIndividual(uri+ind);
+        
+        individual.addProperty(m.getProperty(uri+"sinonimo"), sin);
+        System.out.println("jajaja");
+    }
     
     public IndividualSinonimoVO showIndividualOfSinonimo(OntModel m, String ind) {
         IndividualSinonimoVO individual = null;

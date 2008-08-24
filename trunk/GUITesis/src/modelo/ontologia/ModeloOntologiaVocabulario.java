@@ -5,6 +5,7 @@
 
 package modelo.ontologia;
 
+import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
@@ -33,11 +34,15 @@ public class ModeloOntologiaVocabulario {
         return jena.showIndividualOfSinonimo(m,ind);
     }
 
+    public void addSinonimo(String ins, String sin){
+        jena.addSinonimo(m,ins,sin);
+    }
     public List<String> getInstancias(String url){
         m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
         m = loadOntModelFromOwlFile(url);
         return jena.showIndividuals(m);
     }
+
     
     private OntModel loadOntModelFromOwlFile(String owlfile) {
         OntModel ontmodel = null;
