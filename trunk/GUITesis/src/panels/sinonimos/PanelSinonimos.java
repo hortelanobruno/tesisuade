@@ -10,6 +10,7 @@ import gui.FileChooser;
 import controladores.ControladorPanelSinonimos;
 import gui.FramePrincipal;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.BorderFactory;
@@ -45,6 +46,7 @@ public class PanelSinonimos extends javax.swing.JPanel {
     private boolean removerSinonimo;
     private boolean removerTraduccion;
     private int indexDefault = 0;
+    private String sinoSelec;
     
     /** Creates new form PanelSinonimos */
     public PanelSinonimos(FramePrincipal main, VistaSinonimos vista) {
@@ -82,6 +84,7 @@ public class PanelSinonimos extends javax.swing.JPanel {
         listMutableSinonimos = new JListMutable(new DefaultMutableListModel());
         jScrollPane2 = new javax.swing.JScrollPane();
         listMutableTraduccion = new JListMutable(new DefaultMutableListModel());
+        buttonGuardar = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1023, 532));
 
@@ -184,8 +187,15 @@ public class PanelSinonimos extends javax.swing.JPanel {
                     .addComponent(buttonRemoveTraduccion))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
+                .addGap(17, 17, 17))
         );
+
+        buttonGuardar.setText("Guardar");
+        buttonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonGuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -194,6 +204,7 @@ public class PanelSinonimos extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonGuardar)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(26, 26, 26)
@@ -204,7 +215,7 @@ public class PanelSinonimos extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(474, 474, 474))
+                .addContainerGap(441, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,10 +226,12 @@ public class PanelSinonimos extends javax.swing.JPanel {
                     .addComponent(buttonExaminar)
                     .addComponent(textFieldURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(buttonGuardar)
+                .addGap(23, 23, 23))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -265,6 +278,11 @@ private void buttonRemoveTraduccionActionPerformed(java.awt.event.ActionEvent ev
         ((ControladorPanelSinonimos) vista.getControlador()).doRemoverTraduccion(true);
     }
 }//GEN-LAST:event_buttonRemoveTraduccionActionPerformed
+
+private void buttonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGuardarActionPerformed
+// TODO add your handling code here:
+    ((BusinessDelegate)vista.getModelo()).guardarOntologiaSinonimos();
+}//GEN-LAST:event_buttonGuardarActionPerformed
 
 public void update() {
     if(cargarArbol){
@@ -397,6 +415,7 @@ private void initComponents2(){
     private javax.swing.JButton buttonAddSinonimo;
     private javax.swing.JButton buttonAddTraduccion;
     private javax.swing.JButton buttonExaminar;
+    private javax.swing.JButton buttonGuardar;
     private javax.swing.JButton buttonRemoveSinonimo;
     private javax.swing.JButton buttonRemoveTraduccion;
     private javax.swing.JLabel jLabel1;
