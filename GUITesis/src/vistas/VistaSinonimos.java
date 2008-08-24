@@ -26,6 +26,7 @@ public class VistaSinonimos extends Vista{
     }
 
     public void agregarSin(boolean b){
+        ref.getPanelSinonimos().setCargarInstancia(false);
         ref.getPanelSinonimos().setAgregarSinonimo(b);
         ref.getPanelSinonimos().setAgregarTraduccion(false);
         ref.getPanelSinonimos().setRemoverSinonimo(false);
@@ -33,6 +34,7 @@ public class VistaSinonimos extends Vista{
     }
     
     public void agregarTra(boolean b){
+        ref.getPanelSinonimos().setCargarInstancia(false);
         ref.getPanelSinonimos().setAgregarSinonimo(false);
         ref.getPanelSinonimos().setAgregarTraduccion(b);
         ref.getPanelSinonimos().setRemoverSinonimo(false);
@@ -40,6 +42,7 @@ public class VistaSinonimos extends Vista{
     }
     
     public void removerSin(boolean b){
+        ref.getPanelSinonimos().setCargarInstancia(false);
         ref.getPanelSinonimos().setAgregarSinonimo(false);
         ref.getPanelSinonimos().setAgregarTraduccion(false);
         ref.getPanelSinonimos().setRemoverSinonimo(b);
@@ -47,6 +50,7 @@ public class VistaSinonimos extends Vista{
     }
     
     public void removerTra(boolean b){
+        ref.getPanelSinonimos().setCargarInstancia(false);
         ref.getPanelSinonimos().setAgregarSinonimo(false);
         ref.getPanelSinonimos().setAgregarTraduccion(false);
         ref.getPanelSinonimos().setRemoverSinonimo(false);

@@ -4,7 +4,7 @@
  * Created on 5 de agosto de 2008, 01:36
  */
 
-package panels;
+package panels.busqueda;
 
 /**
  *

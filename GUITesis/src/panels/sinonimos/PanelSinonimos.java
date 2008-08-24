@@ -4,7 +4,7 @@
  * Created on 31 de julio de 2008, 23:33
  */
 
-package panels;
+package panels.sinonimos;
 
 import gui.FileChooser;
 import controladores.ControladorPanelSinonimos;
@@ -44,6 +44,7 @@ public class PanelSinonimos extends javax.swing.JPanel {
     private boolean agregarTraduccion;
     private boolean removerSinonimo;
     private boolean removerTraduccion;
+    private int indexDefault = 0;
     
     /** Creates new form PanelSinonimos */
     public PanelSinonimos(FramePrincipal main, VistaSinonimos vista) {
@@ -273,16 +274,12 @@ public void update() {
         }else{
             if(isAgregarSinonimo()){
                 agregarSinonimo();
-                grabarOntologiaVocabulario();
             } else if(isAgregarTraduccion()){
                 agregarTraduccion();
-                grabarOntologiaVocabulario();
             } else if(isRemoverSinonimo()){
                 removerSinonimo();
-                grabarOntologiaVocabulario();
             } else if(isRemoverTraduccion()){
                 removerTraduccion();
-                grabarOntologiaVocabulario();
             } else{
                 
             }
@@ -293,19 +290,25 @@ public void update() {
 }
 
 public void agregarSinonimo(){
-    
+    DefaultMutableListModel model = (DefaultMutableListModel) listMutableSinonimos.getModel();
+    model.addElement(new String("Defalut"+indexDefault++));
+    String instancia = labelPalabra.getText();
+    ((BusinessDelegate)vista.getModelo()).agregarSinonimo(instancia,"Defalut"+indexDefault);
 }
 
 public void agregarTraduccion(){
-    
+    DefaultMutableListModel model = (DefaultMutableListModel) listMutableTraduccion.getModel();
+    model.addElement(new String("Defalut"+indexDefault++));
 }
 
 public void removerSinonimo(){
-    
+    DefaultMutableListModel model = (DefaultMutableListModel) listMutableSinonimos.getModel();
+    model.remove(listMutableSinonimos.getSelectedIndex());
 }
 
 public void removerTraduccion(){
-    
+    DefaultMutableListModel model = (DefaultMutableListModel) listMutableTraduccion.getModel();
+    model.remove(listMutableTraduccion.getSelectedIndex());
 }
 
 public void grabarOntologiaVocabulario(){
