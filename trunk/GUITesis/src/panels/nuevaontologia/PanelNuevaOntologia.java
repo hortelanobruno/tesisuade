@@ -15,10 +15,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Set;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
@@ -405,6 +407,15 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
 private void initComponents2(){
     panelAgregarNombre.setVisible(false);
     mapaNodos = new HashMap<String, DefaultMutableTreeNode>();
+    
+    ImageIcon leafIcon = new ImageIcon("iconos/protege/TreeBold.gif");
+    if (leafIcon != null) {
+        DefaultTreeCellRenderer renderer = 
+            new DefaultTreeCellRenderer();
+        renderer.setLeafIcon(leafIcon);
+        treeClasses.setCellRenderer(renderer);
+    }
+
 }
 
 public void modoCargar(){
@@ -516,8 +527,25 @@ private void cargarPanelClases(){
     Object root = treeClasses.getModel().getRoot();
     TreePath path = new TreePath(root);
     treeClasses.expandPath(path);
-    
+    ImageIcon leafIcon = createImageIcon("/iconos/protege/TreeBold.gif");
+    if (leafIcon != null) {
+        DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
+        renderer.setLeafIcon(leafIcon);
+        treeClasses.setCellRenderer(renderer);
+    }
 }
+
+protected static ImageIcon createImageIcon(String path) {
+    java.net.URL imgURL = PanelNuevaOntologia.class.getResource(path);
+    if (imgURL != null) {
+        return new ImageIcon(imgURL);
+    } else {
+        System.err.println("Couldn't find file: " + path);
+        return null;
+    }
+}
+
+
 
 private void buttonCargarActionPerformed(javax.swing.event.TreeSelectionEvent evt) {
         // Cargar solicitud en tablas

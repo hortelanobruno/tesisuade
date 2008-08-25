@@ -24,6 +24,10 @@ public class VistaNuevaOntologia extends Vista {
     public void actualizar() {
             getRef().getPanelNuevaOntologia().update();
     }
+    
+    public void cargarClase(boolean b){
+        
+    }
 
     public void cargarOntologia(boolean b){
         ref.getPanelNuevaOntologia().setNuevaOntologia(false);

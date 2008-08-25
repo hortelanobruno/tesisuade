@@ -32,6 +32,7 @@ public class ControladorPanelNuevaOntologia extends Controlador{
     }
     
     public void doCargarClase(boolean b){
-        
+        ((VistaNuevaOntologia)vista).cargarClase(b);
+        vista.actualizar();
     }
 }

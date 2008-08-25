@@ -9,6 +9,7 @@ import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
@@ -46,13 +47,35 @@ public class ApiJena {
         return uri;
     }
     
+    //terminar
+    public void removerTraduccion(OntModel m, String ind, String sin){
+        String uri = getURIOntologia(m);
+        uri = uri + "#";
+        Individual individual = m.getIndividual(uri+ind);
+        //individual.removeProperty(m.getProperty(uri+"traduccion"), sin);
+    }
+    
+    //terminar
+    public void removerSinonimo(OntModel m, String ind, String sin){
+        String uri = getURIOntologia(m);
+        uri = uri + "#";
+        Individual individual = m.getIndividual(uri+ind);
+        //individual.removeProperty(m.getProperty(uri+"sinonimo"), sin);
+    }
+    
+    public void agregarTraduccion(OntModel m, String ind, String sin){
+        String uri = getURIOntologia(m);
+        uri = uri + "#";
+        Individual individual = m.getIndividual(uri+ind);
+        individual.addProperty(m.getProperty(uri+"traduccion"), sin);
+    }
+    
+    
     public void addSinonimo(OntModel m, String ind, String sin){
         String uri = getURIOntologia(m);
         uri = uri + "#";
         Individual individual = m.getIndividual(uri+ind);
-        
         individual.addProperty(m.getProperty(uri+"sinonimo"), sin);
-        System.out.println("jajaja");
     }
     
     public IndividualSinonimoVO showIndividualOfSinonimo(OntModel m, String ind) {
