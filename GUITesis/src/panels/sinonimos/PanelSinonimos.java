@@ -14,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
 import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
@@ -80,10 +81,20 @@ public class PanelSinonimos extends javax.swing.JPanel {
         buttonAddTraduccion = new javax.swing.JButton();
         buttonRemoveTraduccion = new javax.swing.JButton();
         labelPalabra = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        listMutableSinonimos = new JListMutable(new DefaultMutableListModel());
         jScrollPane2 = new javax.swing.JScrollPane();
-        listMutableTraduccion = new JListMutable(new DefaultMutableListModel());
+        listSinonimos = new javax.swing.JList();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        listTraduccion = new javax.swing.JList();
+        panelAgregarSin = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        textFieldAgregarSin = new javax.swing.JTextField();
+        panelAgregarTraduccion = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        textFieldAgregarTra = new javax.swing.JTextField();
         buttonGuardar = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1023, 532));
@@ -133,61 +144,159 @@ public class PanelSinonimos extends javax.swing.JPanel {
             }
         });
 
-        listMutableSinonimos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane4.setViewportView(listMutableSinonimos);
+        listSinonimos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane2.setViewportView(listSinonimos);
 
-        listMutableTraduccion.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane2.setViewportView(listMutableTraduccion);
+        listTraduccion.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane3.setViewportView(listTraduccion);
+
+        jLabel5.setText("Nombre");
+
+        jButton1.setText("Ca");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Ok");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelAgregarSinLayout = new javax.swing.GroupLayout(panelAgregarSin);
+        panelAgregarSin.setLayout(panelAgregarSinLayout);
+        panelAgregarSinLayout.setHorizontalGroup(
+            panelAgregarSinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAgregarSinLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(textFieldAgregarSin, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap())
+        );
+        panelAgregarSinLayout.setVerticalGroup(
+            panelAgregarSinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAgregarSinLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelAgregarSinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(textFieldAgregarSin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        jLabel6.setText("Nombre");
+
+        jButton5.setText("Ok");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Ca");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelAgregarTraduccionLayout = new javax.swing.GroupLayout(panelAgregarTraduccion);
+        panelAgregarTraduccion.setLayout(panelAgregarTraduccionLayout);
+        panelAgregarTraduccionLayout.setHorizontalGroup(
+            panelAgregarTraduccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAgregarTraduccionLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(textFieldAgregarTra, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addContainerGap())
+        );
+        panelAgregarTraduccionLayout.setVerticalGroup(
+            panelAgregarTraduccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAgregarTraduccionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelAgregarTraduccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton5)
+                    .addComponent(textFieldAgregarTra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+                            .addComponent(panelAgregarTraduccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(buttonAddSinonimo, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(buttonRemoveSinonimo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(labelPalabra, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(panelAgregarSin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 249, Short.MAX_VALUE)
                         .addComponent(buttonAddTraduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonRemoveTraduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
-                        .addComponent(buttonAddSinonimo, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonRemoveSinonimo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                        .addComponent(labelPalabra, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(33, 33, 33))
+                        .addComponent(buttonRemoveTraduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelPalabra, javax.swing.GroupLayout.DEFAULT_SIZE, 14, Short.MAX_VALUE))
-                .addGap(28, 28, 28)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(labelPalabra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(buttonRemoveSinonimo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonAddSinonimo)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(panelAgregarSin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
                     .addComponent(buttonAddTraduccion)
-                    .addComponent(buttonRemoveTraduccion))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+                    .addComponent(buttonRemoveTraduccion)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelAgregarTraduccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         buttonGuardar.setText("Guardar");
@@ -215,7 +324,7 @@ public class PanelSinonimos extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(441, Short.MAX_VALUE))
+                .addContainerGap(385, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,11 +334,11 @@ public class PanelSinonimos extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(buttonExaminar)
                     .addComponent(textFieldURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonGuardar)
                 .addGap(23, 23, 23))
         );
@@ -260,21 +369,21 @@ private void buttonCargarActionPerformed(javax.swing.event.TreeSelectionEvent ev
 
 
 private void buttonAddSinonimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddSinonimoActionPerformed
-    ((ControladorPanelSinonimos) vista.getControlador()).doAgregarSinonimo(true);
+    this.panelAgregarSin.setVisible(true);
 }//GEN-LAST:event_buttonAddSinonimoActionPerformed
 
 private void buttonAddTraduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddTraduccionActionPerformed
-    ((ControladorPanelSinonimos) vista.getControlador()).doAgregarTraduccion(true);    
+    this.panelAgregarTraduccion.setVisible(true);
 }//GEN-LAST:event_buttonAddTraduccionActionPerformed
 
 private void buttonRemoveSinonimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveSinonimoActionPerformed
-    if(listMutableSinonimos.getSelectedIndex() != -1){
+    if(listSinonimos.getSelectedIndex() != -1){
         ((ControladorPanelSinonimos) vista.getControlador()).doRemoverSinonimo(true);
     }
 }//GEN-LAST:event_buttonRemoveSinonimoActionPerformed
 
 private void buttonRemoveTraduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveTraduccionActionPerformed
-    if(listMutableTraduccion.getSelectedIndex() != -1){
+    if(listTraduccion.getSelectedIndex() != -1){
         ((ControladorPanelSinonimos) vista.getControlador()).doRemoverTraduccion(true);
     }
 }//GEN-LAST:event_buttonRemoveTraduccionActionPerformed
@@ -283,6 +392,24 @@ private void buttonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 // TODO add your handling code here:
     ((BusinessDelegate)vista.getModelo()).guardarOntologiaSinonimos();
 }//GEN-LAST:event_buttonGuardarActionPerformed
+
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    ((ControladorPanelSinonimos) vista.getControlador()).doAgregarSinonimo(true);
+}//GEN-LAST:event_jButton2ActionPerformed
+
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+   this.textFieldAgregarSin.setText("");
+   this.panelAgregarSin.setVisible(false);
+}//GEN-LAST:event_jButton1ActionPerformed
+
+private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    ((ControladorPanelSinonimos) vista.getControlador()).doAgregarTraduccion(true);    
+}//GEN-LAST:event_jButton5ActionPerformed
+
+private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    this.textFieldAgregarTra.setText("");   
+    this.panelAgregarTraduccion.setVisible(false);
+}//GEN-LAST:event_jButton3ActionPerformed
 
 public void update() {
     if(cargarArbol){
@@ -308,30 +435,38 @@ public void update() {
 }
 
 public void agregarSinonimo(){
-    DefaultMutableListModel model = (DefaultMutableListModel) listMutableSinonimos.getModel();
-    model.addElement(new String("Defalut"+indexDefault++));
+    DefaultListModel model = (DefaultListModel) listSinonimos.getModel();
+    model.addElement(new String(textFieldAgregarSin.getText()));
     String instancia = labelPalabra.getText();
-    ((BusinessDelegate)vista.getModelo()).agregarSinonimo(instancia,"Defalut"+indexDefault);
+    ((BusinessDelegate)vista.getModelo()).agregarSinonimo(instancia,textFieldAgregarSin.getText());
+    textFieldAgregarSin.setText("");
+    this.panelAgregarSin.setVisible(false);
 }
 
 public void agregarTraduccion(){
-    DefaultMutableListModel model = (DefaultMutableListModel) listMutableTraduccion.getModel();
-    model.addElement(new String("Defalut"+indexDefault++));
+    DefaultListModel model = (DefaultListModel) listTraduccion.getModel();
+    model.addElement(new String(textFieldAgregarTra.getText()));
+    String instancia = labelPalabra.getText();
+    ((BusinessDelegate)vista.getModelo()).agregarTraduccion(instancia,textFieldAgregarTra.getText());
+    textFieldAgregarTra.setText("");
+    this.panelAgregarTraduccion.setVisible(false);
 }
 
 public void removerSinonimo(){
-    DefaultMutableListModel model = (DefaultMutableListModel) listMutableSinonimos.getModel();
-    model.remove(listMutableSinonimos.getSelectedIndex());
+    DefaultListModel model = (DefaultListModel) listSinonimos.getModel();
+    String instancia = labelPalabra.getText();
+    ((BusinessDelegate)vista.getModelo()).removerSinonimo(instancia,model.getElementAt(listSinonimos.getSelectedIndex()).toString());
+    model.remove(listSinonimos.getSelectedIndex());
 }
 
 public void removerTraduccion(){
-    DefaultMutableListModel model = (DefaultMutableListModel) listMutableTraduccion.getModel();
-    model.remove(listMutableTraduccion.getSelectedIndex());
+    DefaultListModel model = (DefaultListModel) listTraduccion.getModel();
+    String instancia = labelPalabra.getText();
+    ((BusinessDelegate)vista.getModelo()).removerTraduccion(instancia,model.getElementAt(listSinonimos.getSelectedIndex()).toString());
+    model.remove(listTraduccion.getSelectedIndex());
 }
 
-public void grabarOntologiaVocabulario(){
-    
-}
+
 
 public void cargarIndividualInPanel(){
     String instancia = eventoTree.getPath().getLastPathComponent().toString();
@@ -340,16 +475,16 @@ public void cargarIndividualInPanel(){
     ArrayList<String> traduccion = individual.getTraduccion();
     String nombre = individual.getNombreInstancia();
     labelPalabra.setText(nombre);
-    listMutableSinonimos.setModel(new DefaultMutableListModel());
-    DefaultMutableListModel dlm = (DefaultMutableListModel) listMutableSinonimos.getModel();
+    listSinonimos.setModel(new DefaultListModel());
+    DefaultListModel dlm = (DefaultListModel) listSinonimos.getModel();
     
     Iterator itSin = sinonimos.iterator();
     while(itSin.hasNext()){
         dlm.addElement(itSin.next().toString());
     }
     
-    listMutableTraduccion.setModel(new DefaultMutableListModel());
-    DefaultMutableListModel dlm2 = (DefaultMutableListModel) listMutableTraduccion.getModel();
+    listTraduccion.setModel(new DefaultListModel());
+    DefaultListModel dlm2 = (DefaultListModel) listTraduccion.getModel();
     Iterator itTra = traduccion.iterator();
     while(itTra.hasNext()){
         dlm2.addElement(itTra.next().toString());
@@ -397,17 +532,14 @@ private void initComponents2(){
     
     //Crear lista mutable sinonimos
     
-    JTextField tf = new JTextField();
-    tf.setBorder(BorderFactory.createLineBorder(Color.black));
-    listMutableSinonimos.setListCellEditor(new DefaultListCellEditor(tf));
-    listMutableSinonimos.setVisibleRowCount(-1);
+    listSinonimos.setVisibleRowCount(-1);
     
     //Crear lista mutable traduccion
     
-    JTextField tf2 = new JTextField();
-    tf.setBorder(BorderFactory.createLineBorder(Color.black));
-    listMutableTraduccion.setListCellEditor(new DefaultListCellEditor(tf2));
-    listMutableTraduccion.setVisibleRowCount(-1);
+    listTraduccion.setVisibleRowCount(-1);
+    
+    panelAgregarSin.setVisible(false);
+    panelAgregarTraduccion.setVisible(false);
 }
     
     
@@ -418,17 +550,27 @@ private void initComponents2(){
     private javax.swing.JButton buttonGuardar;
     private javax.swing.JButton buttonRemoveSinonimo;
     private javax.swing.JButton buttonRemoveTraduccion;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel labelPalabra;
-    private varios.JListMutable listMutableSinonimos;
-    private varios.JListMutable listMutableTraduccion;
+    private javax.swing.JList listSinonimos;
+    private javax.swing.JList listTraduccion;
+    private javax.swing.JPanel panelAgregarSin;
+    private javax.swing.JPanel panelAgregarTraduccion;
+    private javax.swing.JTextField textFieldAgregarSin;
+    private javax.swing.JTextField textFieldAgregarTra;
     private javax.swing.JTextField textFieldURL;
     private javax.swing.JTree treeIndividual;
     // End of variables declaration//GEN-END:variables

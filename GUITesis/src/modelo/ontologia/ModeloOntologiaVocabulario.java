@@ -34,10 +34,23 @@ public class ModeloOntologiaVocabulario {
     public IndividualSinonimoVO getIndividual(String ind) {
         return jena.showIndividualOfSinonimo(m,ind);
     }
-
+    
+    public void removerTraduccion(String ins, String sin){
+        jena.removerTraduccion(m,ins,sin);
+    }
+    
+    public void removerSinonimo(String ins, String sin){
+        jena.removerSinonimo(m,ins,sin);
+    }
+    
+    public void agregarTraduccion(String ins, String sin){
+        jena.agregarTraduccion(m,ins,sin);
+    }
+    
     public void addSinonimo(String ins, String sin){
         jena.addSinonimo(m,ins,sin);
     }
+    
     public List<String> getInstancias(String url){
         m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
         m = loadOntModelFromOwlFile(url);
