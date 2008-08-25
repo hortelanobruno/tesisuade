@@ -20,6 +20,10 @@ public class BusinessDelegate extends ProxyModelo
         modeloOntologiaViajes = new ModeloOntologiaViajes();
     }
     
+    public List<String> ClassProperty(String clase){
+        return modeloOntologiaViajes.ClassProperty(clase);
+    }
+    
     public List<String> showDatatypeProperties(){
         return modeloOntologiaViajes.showDatatypeProperties();
     }

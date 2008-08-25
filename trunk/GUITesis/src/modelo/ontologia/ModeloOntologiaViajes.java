@@ -28,6 +28,11 @@ public class ModeloOntologiaViajes {
         jena = new ApiJena();
     }
 
+    //Terminar
+    public List<String> ClassProperty(String clase){
+        return null;
+    }
+    
     public void cargarOntologia(String url){
         m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
         m = loadOntModelFromOwlFile(url);
@@ -69,10 +74,12 @@ public class ModeloOntologiaViajes {
         jena.addClass(m, h, p);
     }
     
+    //Terminar
     public List<String> showDatatypeProperties(){
         return null;
     }
     
+    //Terminar
     public List<String> showObjectProperties(){
         return null;
     }
