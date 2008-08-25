@@ -14,7 +14,6 @@ public class XMLWrapper
 	{
 
 	}
-	
         
         public Configuration parseConfiguracion(String url){
             FileReaderWrapper fileReader = new FileReaderWrapper(url);

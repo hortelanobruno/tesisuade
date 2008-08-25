@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import jenasouforce.ApiJena;
 
 /**
@@ -66,5 +67,13 @@ public class ModeloOntologiaViajes {
     
     public void addClass(String h, String p){
         jena.addClass(m, h, p);
+    }
+    
+    public List<String> showDatatypeProperties(){
+        return null;
+    }
+    
+    public List<String> showObjectProperties(){
+        return null;
     }
 }
