@@ -15,6 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTree;
@@ -40,11 +41,13 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
     private String chooserButton;
     private boolean cargarOntologia;
     private boolean nuevaOntologia;
+    private boolean cargarClase;
     private TreeSelectionEvent eventoTree;
     private DefaultTreeModel modelo;
     private DefaultMutableTreeNode abuelo;
     private Toolkit toolkit = Toolkit.getDefaultToolkit();
     private HashMap<String,DefaultMutableTreeNode> mapaNodos;
+    
     /** Creates new form PanelNuevaOntologia */
     public PanelNuevaOntologia(FramePrincipal ref, VistaNuevaOntologia vistaN) {
         this.main = ref;
@@ -114,12 +117,6 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(1023, 532));
 
-        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                CambiarTabbedPanel(evt);
-            }
-        });
-
         jLabel1.setText("Ontology URI");
 
         javax.swing.GroupLayout panelMetadataLayout = new javax.swing.GroupLayout(panelMetadata);
@@ -140,7 +137,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textFieldURI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(376, Short.MAX_VALUE))
+                .addContainerGap(364, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Metadata", panelMetadata);
@@ -272,7 +269,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                 .addComponent(panelAgregarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelClassesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
                     .addGroup(panelClassesLayout.createSequentialGroup()
                         .addGroup(panelClassesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -377,7 +374,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                 .addGroup(panelPropertiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(panelPropertyDefault, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
                     .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Properties", panelProperties);
@@ -418,7 +415,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -454,8 +451,8 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                             .addComponent(jLabel9))
                         .addGap(15, 15, 15)
                         .addGroup(panelIndividualsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))))
                 .addGap(26, 26, 26))
         );
 
@@ -492,6 +489,7 @@ private void initComponents2(){
         treeClasses.setCellRenderer(renderer);
     }
 
+    setCargarClase(false);
 }
 
 public void modoCargar(){
@@ -508,22 +506,28 @@ public void guardarOntologia(){
 }
 
 public void update() {
+    if(nuevaOntologia){
+        nuevaOntologia();
+        cargarPanelMetadata();
+    }
     if(cargarOntologia){
         cargarOntologia();
         cargarPaneles();
-    }else{
-        if(nuevaOntologia){
-            nuevaOntologia();
-            cargarPanelMetadata();
-        }
+    }
+    if(isCargarClase()){
+        cargarClase();
     }
 }
 
-private void CambiarTabbedPanel(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_CambiarTabbedPanel
-// TODO add your handling code here:
-    
-}//GEN-LAST:event_CambiarTabbedPanel
-
+public void cargarClase(){
+    String instancia = treeClasses.getSelectionPath().getLastPathComponent().toString();
+    List<String> propiedades = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).ClassProperty(instancia);
+    listProperties.removeAll();
+    DefaultListModel model = ((DefaultListModel)listProperties.getModel());
+    for(int i = 0 ; i < propiedades.size() ; i++){
+        model.addElement(propiedades.get(i));
+    }
+}
 
 private void buttonAgregarClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarClassActionPerformed
 // TODO add your handling code here:
@@ -622,15 +626,29 @@ protected static ImageIcon createImageIcon(String path) {
 }
 
 private void buttonCargarActionPerformed(javax.swing.event.TreeSelectionEvent evt) {
-        this.eventoTree = evt;
-        if(!eventoTree.getPath().getLastPathComponent().toString().equals("Classes")){
-                ((ControladorPanelNuevaOntologia) vistaNuevaOntologia.getControlador()).doCargarClase(true);
-        }
+    this.eventoTree = evt;
+    if(!eventoTree.getPath().getLastPathComponent().toString().equals("Classes")){
+            ((ControladorPanelNuevaOntologia) vistaNuevaOntologia.getControlador()).doCargarClase(true);
+    }
 }
 
 private void cargarPanelProperty(){
     List<String> datatypeProperties = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).showDatatypeProperties();
     List<String> objectProperties = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).showObjectProperties();
+    
+    listPropertiesDatatype.removeAll();
+    listPropertiesObject.removeAll();
+    
+    
+    DefaultListModel model1 = (DefaultListModel) listPropertiesDatatype.getModel();
+    DefaultListModel model2 = (DefaultListModel) listPropertiesObject.getModel();
+    
+    for(int i = 0 ; i < datatypeProperties.size() ; i++){
+        model1.addElement(datatypeProperties.get(i));
+    }
+    for(int i = 0 ; i < objectProperties.size() ; i++){
+        model2.addElement(objectProperties.get(i));
+    }
 }
 
 private void cargarPanelInstancia(){
@@ -654,10 +672,10 @@ private void cargarPanelInstancia(){
 }
 
 private void buttonCargarInstanciasActionPerformed(javax.swing.event.TreeSelectionEvent evt) {
-        this.eventoTree = evt;
-        if(!eventoTree.getPath().getLastPathComponent().toString().equals("Classes")){
-                
-        }
+    this.eventoTree = evt;
+    if(!eventoTree.getPath().getLastPathComponent().toString().equals("Classes")){
+
+    }
 }
 
 
@@ -813,6 +831,14 @@ private void removeCurrentNode() {
 
     public void setTextFieldURI(javax.swing.JTextField textFieldURI) {
         this.textFieldURI = textFieldURI;
+    }
+
+    public boolean isCargarClase() {
+        return cargarClase;
+    }
+
+    public void setCargarClase(boolean cargarClase) {
+        this.cargarClase = cargarClase;
     }
 
 }

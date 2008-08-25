@@ -26,16 +26,20 @@ public class VistaNuevaOntologia extends Vista {
     }
     
     public void cargarClase(boolean b){
-        
+        ref.getPanelNuevaOntologia().setNuevaOntologia(false);
+        ref.getPanelNuevaOntologia().setCargarOntologia(false);
+        ref.getPanelNuevaOntologia().setCargarClase(b);
     }
 
     public void cargarOntologia(boolean b){
         ref.getPanelNuevaOntologia().setNuevaOntologia(false);
+        ref.getPanelNuevaOntologia().setCargarClase(false);
         ref.getPanelNuevaOntologia().setCargarOntologia(b);
     }
     
     public void nuevaOntologia(boolean b){
         ref.getPanelNuevaOntologia().setCargarOntologia(false);
+        ref.getPanelNuevaOntologia().setCargarClase(false);
         ref.getPanelNuevaOntologia().setNuevaOntologia(b);
     }
     
