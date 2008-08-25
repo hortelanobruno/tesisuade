@@ -1,6 +1,5 @@
 package modelo;
 
-import com.hp.hpl.jena.ontology.OntModel;
 import java.util.HashMap;
 import java.util.List;
 import modelo.ontologia.ModeloOntologiaViajes;
@@ -20,7 +19,15 @@ public class BusinessDelegate extends ProxyModelo
         modOntologiaVocabulario = new ModeloOntologiaVocabulario();
         modeloOntologiaViajes = new ModeloOntologiaViajes();
     }
+    
+    public List<String> showDatatypeProperties(){
+        return modeloOntologiaViajes.showDatatypeProperties();
+    }
 	
+    public List<String> showObjectProperties(){
+        return modeloOntologiaViajes.showObjectProperties();
+    }
+    
     public void removerTraduccion(String ins, String sin){
         modOntologiaVocabulario.removerTraduccion(ins,sin);
     }

@@ -6,13 +6,13 @@
 
 package panels.nuevaontologia;
 
-import com.hp.hpl.jena.ontology.OntModel;
+
 import controladores.ControladorPanelNuevaOntologia;
-import gui.FileChooser;
 import gui.FramePrincipal;
 import java.awt.Toolkit;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 import javax.swing.ImageIcon;
@@ -24,7 +24,6 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
-import jenasouforce.ApiJena;
 import modelo.BusinessDelegate;
 import varios.Constantes;
 import vistas.VistaNuevaOntologia;
@@ -101,6 +100,17 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
         listPropertiesDatatype = new javax.swing.JList();
         panelPropertyDefault = new javax.swing.JPanel();
         panelIndividuals = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        treeClasses2 = new javax.swing.JTree();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        listIndividuals = new javax.swing.JList();
+        panelIndividualData = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        panelIndividualProperties = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(1023, 532));
 
@@ -130,7 +140,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textFieldURI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(364, Short.MAX_VALUE))
+                .addContainerGap(376, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Metadata", panelMetadata);
@@ -262,7 +272,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                 .addComponent(panelAgregarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelClassesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
                     .addGroup(panelClassesLayout.createSequentialGroup()
                         .addGroup(panelClassesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -342,7 +352,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
         panelPropertyDefault.setLayout(panelPropertyDefaultLayout);
         panelPropertyDefaultLayout.setHorizontalGroup(
             panelPropertyDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 511, Short.MAX_VALUE)
+            .addGap(0, 607, Short.MAX_VALUE)
         );
         panelPropertyDefaultLayout.setVerticalGroup(
             panelPropertyDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,30 +367,96 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelPropertyDefault, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addComponent(panelPropertyDefault, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         panelPropertiesLayout.setVerticalGroup(
             panelPropertiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPropertiesLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(panelPropertiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(panelPropertiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(panelPropertyDefault, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
-                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Properties", panelProperties);
+
+        jScrollPane5.setViewportView(treeClasses2);
+
+        jLabel8.setText("Hierarchy");
+
+        jLabel9.setText("Individuals");
+
+        listIndividuals.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane6.setViewportView(listIndividuals);
+
+        jLabel10.setText("Individual");
+
+        panelIndividualProperties.setLayout(new java.awt.GridLayout(0, 1));
+        jScrollPane7.setViewportView(panelIndividualProperties);
+
+        javax.swing.GroupLayout panelIndividualDataLayout = new javax.swing.GroupLayout(panelIndividualData);
+        panelIndividualData.setLayout(panelIndividualDataLayout);
+        panelIndividualDataLayout.setHorizontalGroup(
+            panelIndividualDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelIndividualDataLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(panelIndividualDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelIndividualDataLayout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(50, 50, 50)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+        panelIndividualDataLayout.setVerticalGroup(
+            panelIndividualDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelIndividualDataLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(panelIndividualDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout panelIndividualsLayout = new javax.swing.GroupLayout(panelIndividuals);
         panelIndividuals.setLayout(panelIndividualsLayout);
         panelIndividualsLayout.setHorizontalGroup(
             panelIndividualsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 915, Short.MAX_VALUE)
+            .addGroup(panelIndividualsLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(panelIndividualsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(panelIndividualsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelIndividualsLayout.createSequentialGroup()
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addComponent(panelIndividualData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))
+                    .addGroup(panelIndividualsLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addContainerGap(603, Short.MAX_VALUE))))
         );
         panelIndividualsLayout.setVerticalGroup(
             panelIndividualsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
+            .addGroup(panelIndividualsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelIndividualsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelIndividualData, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelIndividualsLayout.createSequentialGroup()
+                        .addGroup(panelIndividualsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
+                        .addGap(15, 15, 15)
+                        .addGroup(panelIndividualsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE))))
+                .addGap(26, 26, 26))
         );
 
         jTabbedPane1.addTab("Individuals", panelIndividuals);
@@ -545,10 +621,7 @@ protected static ImageIcon createImageIcon(String path) {
     }
 }
 
-
-
 private void buttonCargarActionPerformed(javax.swing.event.TreeSelectionEvent evt) {
-        // Cargar solicitud en tablas
         this.eventoTree = evt;
         if(!eventoTree.getPath().getLastPathComponent().toString().equals("Classes")){
                 ((ControladorPanelNuevaOntologia) vistaNuevaOntologia.getControlador()).doCargarClase(true);
@@ -556,13 +629,36 @@ private void buttonCargarActionPerformed(javax.swing.event.TreeSelectionEvent ev
 }
 
 private void cargarPanelProperty(){
-    
+    List<String> datatypeProperties = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).showDatatypeProperties();
+    List<String> objectProperties = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).showObjectProperties();
 }
 
 private void cargarPanelInstancia(){
-    
+    //Cargar Arbol
+    treeClasses2 = new JTree(modelo);
+    treeClasses2.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+    public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+            buttonCargarInstanciasActionPerformed(evt);    
+    }
+    });
+    jScrollPane5.setViewportView(treeClasses2);
+    Object root = treeClasses2.getModel().getRoot();
+    TreePath path = new TreePath(root);
+    treeClasses2.expandPath(path);
+    ImageIcon leafIcon = createImageIcon("/iconos/protege/TreeBold.gif");
+    if (leafIcon != null) {
+        DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
+        renderer.setLeafIcon(leafIcon);
+        treeClasses2.setCellRenderer(renderer);
+    }
 }
 
+private void buttonCargarInstanciasActionPerformed(javax.swing.event.TreeSelectionEvent evt) {
+        this.eventoTree = evt;
+        if(!eventoTree.getPath().getLastPathComponent().toString().equals("Classes")){
+                
+        }
+}
 
 
 public void nuevaOntologia(){
@@ -639,23 +735,33 @@ private void removeCurrentNode() {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JList listIndividuals;
     private javax.swing.JList listProperties;
     private javax.swing.JList listPropertiesDatatype;
     private javax.swing.JList listPropertiesObject;
     private javax.swing.JPanel panelAgregarNombre;
     private javax.swing.JPanel panelClasses;
+    private javax.swing.JPanel panelIndividualData;
+    private javax.swing.JPanel panelIndividualProperties;
     private javax.swing.JPanel panelIndividuals;
     private javax.swing.JPanel panelMetadata;
     private javax.swing.JPanel panelProperties;
@@ -666,6 +772,7 @@ private void removeCurrentNode() {
     private javax.swing.JTextField textFieldNombreClase;
     private javax.swing.JTextField textFieldURI;
     private javax.swing.JTree treeClasses;
+    private javax.swing.JTree treeClasses2;
     // End of variables declaration//GEN-END:variables
 
     public String getUrlOWL() {
