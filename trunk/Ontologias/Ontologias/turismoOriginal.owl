@@ -6,9 +6,14 @@
     xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+<<<<<<< .mine
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+=======
     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+>>>>>>> .r102
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xml:base="http://www.owl-ontologies.com/Ontology1215043110.owl">
   <owl:Ontology rdf:about=""/>
@@ -234,9 +239,15 @@
     <owl:disjointWith rdf:resource="#Avion"/>
     <owl:disjointWith rdf:resource="#Translado"/>
   </owl:Class>
+<<<<<<< .mine
+  <owl:ObjectProperty rdf:ID="tipo_alojamiento">
+    <rdfs:domain rdf:resource="#Reserva_alojamiento"/>
+    <rdfs:range rdf:resource="#Alojamiento"/>
+=======
   <owl:ObjectProperty rdf:ID="tipo_alojamiento">
     <rdfs:range rdf:resource="#Alojamiento"/>
     <rdfs:domain rdf:resource="#Reserva_alojamiento"/>
+>>>>>>> .r102
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="tipo_asiento">
     <rdfs:range rdf:resource="#Asiento"/>
@@ -264,6 +275,8 @@
     <rdfs:domain rdf:resource="#Ticket_Translado"/>
     <rdfs:range rdf:resource="#Ciudad"/>
   </owl:ObjectProperty>
+<<<<<<< .mine
+=======
   <owl:ObjectProperty rdf:ID="hacia">
     <rdfs:range rdf:resource="#Ciudad"/>
     <rdfs:domain rdf:resource="#Ticket_Viaje"/>
@@ -276,18 +289,32 @@
     <rdfs:domain rdf:resource="#Hotel"/>
     <rdfs:range rdf:resource="#Habitacion"/>
   </owl:ObjectProperty>
+>>>>>>> .r102
   <owl:ObjectProperty rdf:ID="desde">
-    <rdfs:range rdf:resource="#Ciudad"/>
     <rdfs:domain rdf:resource="#Ticket_Viaje"/>
+    <rdfs:range rdf:resource="#Ciudad"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="tipo_translado">
     <rdfs:range rdf:resource="#Translado"/>
     <rdfs:domain rdf:resource="#Ticket_Translado"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="habitacion">
-    <rdfs:domain rdf:resource="#Reserva_alojamiento"/>
+  <owl:ObjectProperty rdf:ID="habitaciones">
     <rdfs:range rdf:resource="#Habitacion"/>
+    <rdfs:domain rdf:resource="#Hotel"/>
   </owl:ObjectProperty>
+<<<<<<< .mine
+  <owl:ObjectProperty rdf:ID="desde">
+    <rdfs:range rdf:resource="#Ciudad"/>
+    <rdfs:domain rdf:resource="#Ticket_Viaje"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="tipo_translado">
+    <rdfs:domain rdf:resource="#Ticket_Translado"/>
+    <rdfs:range rdf:resource="#Translado"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="habitacion">
+    <rdfs:range rdf:resource="#Habitacion"/>
+    <rdfs:domain rdf:resource="#Reserva_alojamiento"/>
+=======
   <owl:ObjectProperty rdf:ID="pertenece">
     <rdfs:domain rdf:resource="#Ciudad"/>
     <rdfs:range rdf:resource="#Pais"/>
@@ -302,15 +329,51 @@
         </owl:unionOf>
       </owl:Class>
     </rdfs:domain>
+>>>>>>> .r102
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="pertenece">
+    <rdfs:range rdf:resource="#Pais"/>
+    <rdfs:domain rdf:resource="#Ciudad"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:ID="precio">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Habitacion"/>
+          <owl:Class rdf:about="#Translado"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
   </owl:DatatypeProperty>
   <owl:DatatypeProperty rdf:ID="aire_acondicionado">
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
     <rdfs:domain rdf:resource="#Auto"/>
   </owl:DatatypeProperty>
+<<<<<<< .mine
+  <owl:DatatypeProperty rdf:ID="clase">
+=======
   <owl:DatatypeProperty rdf:ID="clase">
     <rdfs:domain rdf:resource="#Auto"/>
+>>>>>>> .r102
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+<<<<<<< .mine
+    <rdfs:domain rdf:resource="#Auto"/>
+=======
+>>>>>>> .r102
   </owl:DatatypeProperty>
+<<<<<<< .mine
+  <owl:DatatypeProperty rdf:ID="cantidad_personas">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Habitacion"/>
+          <owl:Class rdf:about="#Reserva_alojamiento"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+=======
   <owl:DatatypeProperty rdf:ID="cantidad_personas">
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
     <rdfs:domain>
@@ -321,10 +384,17 @@
         </owl:unionOf>
       </owl:Class>
     </rdfs:domain>
+>>>>>>> .r102
   </owl:DatatypeProperty>
+<<<<<<< .mine
+  <owl:DatatypeProperty rdf:ID="cantidad_pasajeros">
+    <rdfs:domain rdf:resource="#Ticket_Viaje"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+=======
   <owl:DatatypeProperty rdf:ID="cantidad_pasajeros">
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
     <rdfs:domain rdf:resource="#Ticket_Viaje"/>
+>>>>>>> .r102
   </owl:DatatypeProperty>
   <owl:DatatypeProperty rdf:ID="restaurant">
     <rdfs:domain rdf:resource="#Hotel"/>
@@ -342,7 +412,12 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
     <rdfs:domain rdf:resource="#Ticket_Viaje"/>
   </owl:DatatypeProperty>
+<<<<<<< .mine
   <owl:DatatypeProperty rdf:ID="fecha_entrada">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+=======
+  <owl:DatatypeProperty rdf:ID="fecha_entrada">
+>>>>>>> .r102
     <rdfs:domain>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -351,15 +426,26 @@
         </owl:unionOf>
       </owl:Class>
     </rdfs:domain>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
   </owl:DatatypeProperty>
+<<<<<<< .mine
   <owl:DatatypeProperty rdf:ID="horario_regreso">
     <rdfs:domain rdf:resource="#Ticket_Viaje"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
   </owl:DatatypeProperty>
   <owl:DatatypeProperty rdf:ID="piscina">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
     <rdfs:domain rdf:resource="#Hotel"/>
+=======
+  <owl:DatatypeProperty rdf:ID="horario_regreso">
+    <rdfs:domain rdf:resource="#Ticket_Viaje"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="piscina">
+>>>>>>> .r102
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="barrio">
+    <rdfs:domain rdf:resource="#Hotel"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
   </owl:DatatypeProperty>
   <owl:DatatypeProperty rdf:ID="barrio">
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
@@ -400,6 +486,7 @@
     <rdfs:domain rdf:resource="#Alojamiento"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
   </owl:DatatypeProperty>
+<<<<<<< .mine
   <owl:DatatypeProperty rdf:ID="marca">
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdfs:domain rdf:resource="#Translado"/>
@@ -408,6 +495,31 @@
     <rdfs:domain rdf:resource="#Habitacion"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
   </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="modelo">
+=======
+  <owl:DatatypeProperty rdf:ID="marca">
+>>>>>>> .r102
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Translado"/>
+  </owl:DatatypeProperty>
+<<<<<<< .mine
+  <owl:DatatypeProperty rdf:ID="nombre_empresa">
+    <rdfs:domain rdf:resource="#Avion"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+=======
+  <owl:DatatypeProperty rdf:ID="tipo">
+    <rdfs:domain rdf:resource="#Habitacion"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+>>>>>>> .r102
+  </owl:DatatypeProperty>
+<<<<<<< .mine
+  <Ciudad rdf:ID="Florianopolis">
+    <pertenece>
+      <Pais rdf:ID="Brasil"/>
+    </pertenece>
+  </Ciudad>
+  <Avion rdf:ID="Avion_747">
+=======
   <owl:DatatypeProperty rdf:ID="modelo">
     <rdfs:domain rdf:resource="#Translado"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
@@ -424,9 +536,29 @@
   <Avion rdf:ID="Avion_747">
     <nombre_empresa rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >American Airlines</nombre_empresa>
+>>>>>>> .r102
+    <tipo_asiento>
+<<<<<<< .mine
+      <Asiento rdf:ID="Ejecutivo"/>
+=======
+      <Asiento rdf:ID="Turista_sin_restricciones"/>
+>>>>>>> .r102
+    </tipo_asiento>
+<<<<<<< .mine
+    <tipo_asiento>
+      <Asiento rdf:ID="Turista_con_restricciones"/>
+    </tipo_asiento>
     <tipo_asiento>
       <Asiento rdf:ID="Turista_sin_restricciones"/>
     </tipo_asiento>
+    <nombre_empresa rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >American Airlines</nombre_empresa>
+  </Avion>
+  <Ciudad rdf:ID="Rawson">
+    <pertenece>
+      <Pais rdf:ID="Argentina"/>
+    </pertenece>
+=======
     <tipo_asiento>
       <Asiento rdf:ID="Turista_con_restricciones"/>
     </tipo_asiento>
@@ -438,6 +570,7 @@
     <pertenece>
       <Pais rdf:ID="Argentina"/>
     </pertenece>
+>>>>>>> .r102
   </Ciudad>
   <Ticket_Viaje rdf:ID="Viaje_a_Cordoba">
     <desde>
@@ -462,6 +595,8 @@
     </hacia>
     <tipo_viaje>
       <Avion rdf:ID="Avion_474">
+<<<<<<< .mine
+=======
         <nombre_empresa rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
         >LAN</nombre_empresa>
         <tipo_asiento rdf:resource="#Turista_con_restricciones"/>
@@ -469,13 +604,27 @@
         <tipo_asiento>
           <Asiento rdf:ID="Primera"/>
         </tipo_asiento>
+>>>>>>> .r102
         <tipo_asiento rdf:resource="#Turista_sin_restricciones"/>
+<<<<<<< .mine
+        <tipo_asiento>
+          <Asiento rdf:ID="Primera"/>
+        </tipo_asiento>
+        <tipo_asiento rdf:resource="#Ejecutivo"/>
+        <tipo_asiento rdf:resource="#Turista_con_restricciones"/>
+        <nombre_empresa rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >LAN</nombre_empresa>
+=======
+>>>>>>> .r102
       </Avion>
     </tipo_viaje>
     <fecha_entrada rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
     >2008-07-14</fecha_entrada>
     <tipo_asiento rdf:resource="#Primera"/>
   </Ticket_Viaje>
+<<<<<<< .mine
+  <Ticket_Translado rdf:ID="Ticket_1">
+=======
   <Ticket_Translado rdf:ID="Ticket_1">
     <regresa_en_la_misma_ciudad rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
     >false</regresa_en_la_misma_ciudad>
@@ -635,7 +784,73 @@
     <tipo_alojamiento rdf:resource="#Hilton"/>
     <fecha_salida rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
     >2008-08-31</fecha_salida>
+>>>>>>> .r102
+<<<<<<< .mine
+    <regresa_en_la_misma_ciudad rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >false</regresa_en_la_misma_ciudad>
+    <ciudad>
+      <Ciudad rdf:ID="Buenos_Aires">
+        <pertenece rdf:resource="#Argentina"/>
+      </Ciudad>
+    </ciudad>
+    <fecha_salida rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2008-07-19</fecha_salida>
+    <tipo_translado>
+      <Auto rdf:ID="Gol_1.6">
+        <precio rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >100.0</precio>
+        <clase rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >economico</clase>
+        <direccion_asistida rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >true</direccion_asistida>
+        <modelo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Gol 1.6</modelo>
+        <marca rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Volkswagen</marca>
+        <aire_acondicionado rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >false</aire_acondicionado>
+      </Auto>
+    </tipo_translado>
     <fecha_entrada rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2008-07-05</fecha_entrada>
+  </Ticket_Translado>
+  <Ticket_Viaje rdf:ID="Viaje_a_Jujuy">
+    <horario_regreso rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2008-08-10T18:30:00</horario_regreso>
+    <cantidad_escalas rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >2</cantidad_escalas>
+    <desde rdf:resource="#Cordoba"/>
+    <hora_salida rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2008-08-18T10:00:00</hora_salida>
+    <tipo_asiento rdf:resource="#Primera"/>
+    <tipo_viaje rdf:resource="#Avion_747"/>
+    <hacia rdf:resource="#Florianopolis"/>
+    <cantidad_pasajeros rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >2</cantidad_pasajeros>
+  </Ticket_Viaje>
+  <Ticket_Translado rdf:ID="Ticket_2">
+    <ciudad rdf:resource="#Mendoza"/>
+    <ciudad_regreso rdf:resource="#Cordoba"/>
+    <regresa_en_la_misma_ciudad rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</regresa_en_la_misma_ciudad>
+    <fecha_salida rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2008-08-31</fecha_salida>
+    <tipo_translado rdf:resource="#Gol_1.6"/>
+=======
+>>>>>>> .r102
+    <fecha_entrada rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+<<<<<<< .mine
+    >2008-08-23</fecha_entrada>
+  </Ticket_Translado>
+  <Ciudad rdf:ID="San_martin_de_los_andes">
+    <pertenece rdf:resource="#Argentina"/>
+  </Ciudad>
+  <Micro rdf:ID="Micro_29">
+    <marca rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></marca>
+  </Micro>
+  <Cabaña rdf:ID="Andes">
+=======
     >2008-08-14</fecha_entrada>
     <habitacion rdf:resource="#Cuadruple"/>
     <cantidad_personas rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
@@ -645,8 +860,125 @@
     <ciudad rdf:resource="#Cordoba"/>
     <direccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Nicaragua 854</direccion>
+>>>>>>> .r102
+    <cantidad_estrellas rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >3</cantidad_estrellas>
+    <direccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Los Andes 254</direccion>
+    <ciudad rdf:resource="#Mendoza"/>
+  </Cabaña>
+<<<<<<< .mine
+  <Ciudad rdf:ID="Trelew">
+    <pertenece rdf:resource="#Argentina"/>
+  </Ciudad>
+  <Hotel rdf:ID="Hilton">
+    <cantidad_estrellas rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >5</cantidad_estrellas>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hotel de gran categoria, con todos los lujos....</rdfs:comment>
+    <restaurant rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</restaurant>
+    <ciudad rdf:resource="#Buenos_Aires"/>
+    <habitaciones>
+      <Habitacion rdf:ID="Doble">
+        <tipo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >habitacion para 2 personas</tipo>
+        <precio rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >100.0</precio>
+        <cantidad_personas rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >2</cantidad_personas>
+      </Habitacion>
+    </habitaciones>
+    <direccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Macacha Guemes 351</direccion>
+    <internet rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</internet>
+    <gimnasio rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</gimnasio>
+    <habitaciones>
+      <Habitacion rdf:ID="suit">
+        <cantidad_personas rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >3</cantidad_personas>
+        <precio rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >350.0</precio>
+        <tipo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >suit amplia para 3 personas</tipo>
+      </Habitacion>
+    </habitaciones>
+    <piscina rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</piscina>
+    <barrio rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Puerto Madero</barrio>
+  </Hotel>
+  <Habitacion rdf:ID="Triple">
+    <cantidad_personas rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >3</cantidad_personas>
+    <precio rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >300.0</precio>
+    <tipo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Habitacion para 3 personas</tipo>
+  </Habitacion>
+  <Auto rdf:ID="Megane">
+    <clase rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></clase>
+    <aire_acondicionado rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</aire_acondicionado>
+    <precio rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >240.0</precio>
+    <direccion_asistida rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</direccion_asistida>
+    <marca rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></marca>
+    <modelo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></modelo>
+  </Auto>
+  <Pais rdf:ID="Uruguay"/>
+  <Habitacion rdf:ID="Single">
+    <tipo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Habitacion individul</tipo>
+    <precio rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >30.5</precio>
+    <cantidad_personas rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >1</cantidad_personas>
+  </Habitacion>
+  <Ciudad rdf:ID="San_salvador_de_jujuy">
+=======
+  <Hostel rdf:ID="Paisajes">
+    <cantidad_estrellas rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >3</cantidad_estrellas>
+  </Hostel>
+  <Ciudad rdf:ID="Bariloche">
+>>>>>>> .r102
+    <pertenece rdf:resource="#Argentina"/>
+  </Ciudad>
+<<<<<<< .mine
+  <Pais rdf:ID="Chile"/>
+  <Habitacion rdf:ID="Cuadruple">
+    <cantidad_personas rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >4</cantidad_personas>
+    <precio rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >450.0</precio>
+    <tipo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Habitacioon para cuatro personas</tipo>
+  </Habitacion>
+  <Reserva_alojamiento rdf:ID="Reserva_2">
+    <tipo_alojamiento rdf:resource="#Hilton"/>
+    <cantidad_personas rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >4</cantidad_personas>
+    <habitacion rdf:resource="#Cuadruple"/>
+    <cantidad_habitaciones rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >1</cantidad_habitaciones>
+    <fecha_entrada rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2008-08-14</fecha_entrada>
+    <fecha_salida rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2008-08-31</fecha_salida>
+  </Reserva_alojamiento>
+  <Cabaña rdf:ID="Piuque">
     <cantidad_estrellas rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
     >2</cantidad_estrellas>
+    <ciudad rdf:resource="#Cordoba"/>
+    <direccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Nicaragua 854</direccion>
   </Cabaña>
   <Hostel rdf:ID="Paisajes">
     <cantidad_estrellas rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
@@ -657,24 +989,31 @@
   </Ciudad>
   <Pais rdf:ID="Paraguay"/>
   <Hostel rdf:ID="Gonzalez_Hostel"/>
+=======
+  <Pais rdf:ID="Paraguay"/>
+  <Hostel rdf:ID="Gonzalez_Hostel"/>
+>>>>>>> .r102
   <Pais rdf:ID="Bolivia"/>
   <Reserva_alojamiento rdf:ID="Reserva_1">
+<<<<<<< .mine
+=======
     <cantidad_personas rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
     >4</cantidad_personas>
     <fecha_entrada rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
     >2008-07-05</fecha_entrada>
     <cantidad_habitaciones rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
     >2</cantidad_habitaciones>
+>>>>>>> .r102
     <tipo_alojamiento>
       <Hotel rdf:ID="Alvear_Palace">
         <restaurant rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
         >true</restaurant>
         <direccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
         >Av. Alvear 1891</direccion>
-        <piscina rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
-        >true</piscina>
         <barrio rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
         ></barrio>
+        <piscina rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >true</piscina>
         <habitaciones rdf:resource="#suit"/>
         <barrio rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
         >Recoleta</barrio>
@@ -690,19 +1029,38 @@
         >5</cantidad_estrellas>
       </Hotel>
     </tipo_alojamiento>
+    <habitacion rdf:resource="#Doble"/>
+    <cantidad_habitaciones rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >2</cantidad_habitaciones>
     <fecha_salida rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
     >2008-07-12</fecha_salida>
+<<<<<<< .mine
+    <fecha_entrada rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2008-07-05</fecha_entrada>
+    <cantidad_personas rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >4</cantidad_personas>
+=======
     <habitacion rdf:resource="#Doble"/>
+>>>>>>> .r102
   </Reserva_alojamiento>
   <Ciudad rdf:ID="Santiago_de_chile">
     <pertenece rdf:resource="#Chile"/>
   </Ciudad>
+<<<<<<< .mine
+  <rdf:Description rdf:ID="Cabaña_1">
+    <cantidad_estrellas rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >3</cantidad_estrellas>
+    <direccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Los Andes 254</direccion>
+  </rdf:Description>
+=======
   <rdf:Description rdf:ID="Cabaña_1">
     <direccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Los Andes 254</direccion>
     <cantidad_estrellas rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
     >3</cantidad_estrellas>
   </rdf:Description>
+>>>>>>> .r102
 </rdf:RDF>
 
 <!-- Created with Protege (with OWL Plugin 3.4, Build 128)  http://protege.stanford.edu -->
