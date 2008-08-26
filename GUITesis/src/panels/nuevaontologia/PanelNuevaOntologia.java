@@ -115,7 +115,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
         listIndividuals = new javax.swing.JList();
         panelIndividualData = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        textFieldNombreIndividual = new javax.swing.JTextField();
         jScrollPane7 = new javax.swing.JScrollPane();
         panelIndividualProperties = new javax.swing.JPanel();
 
@@ -408,7 +408,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                     .addGroup(panelIndividualDataLayout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(50, 50, 50)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(textFieldNombreIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
@@ -417,7 +417,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
             .addGroup(panelIndividualDataLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(panelIndividualDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldNombreIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
@@ -524,10 +524,12 @@ public void guardarOntologia(){
 
 public void update() {
     if(nuevaOntologia){
+        vaciarPaneles();
         nuevaOntologia();
-        cargarPanelMetadata();
+        cargarOntologiaDefault();
     }
     if(cargarOntologia){
+        vaciarPaneles();
         cargarOntologia();
         cargarPaneles();
     }
@@ -735,7 +737,7 @@ public void cargarObjectProperty(){
     panel.getListDomain().setModel(model);
     DefaultListModel model2 = (DefaultListModel) panel.getListRange().getModel();
     for(int i = 0 ; i < propiedades.getRange().size() ; i++){
-        model.addElement(propiedades.getRange().get(i));
+        model2.addElement(propiedades.getRange().get(i));
     }
     panel.getListRange().setModel(model2);
     
@@ -754,6 +756,29 @@ public void cargarClase(){
     listProperties.setModel(model);
 }
 
+
+public void cargarOntologiaDefault(){
+    cargarPanelMetadata();
+    cargarPanelClases();
+    cargarPanelProperty();
+}
+
+
+public void vaciarPaneles(){
+    textFieldURI.setText("");
+    textFieldNombreClase.setText("");
+    treeClasses.setModel(new DefaultTreeModel(abuelo));
+    treeClasses2.setModel(new DefaultTreeModel(abuelo));
+    textFieldClassName.setText("");
+    listProperties.setModel(new DefaultListModel());
+    listPropertiesDatatype.setModel(new DefaultListModel());
+    listPropertiesObject.setModel(new DefaultListModel());
+    panelPropertyDefault.removeAll();
+    listIndividuals.setModel(new DefaultListModel());
+    textFieldNombreIndividual.setText("");
+    panelIndividualProperties.removeAll();
+    this.repaint();
+}
 
 //Uso Interno
 
@@ -850,7 +875,6 @@ protected static ImageIcon createImageIcon(String path) {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JList listIndividuals;
     private javax.swing.JList listProperties;
     private javax.swing.JList listPropertiesDatatype;
@@ -867,6 +891,7 @@ protected static ImageIcon createImageIcon(String path) {
     private javax.swing.JPanel panelTabbedObjectProperty;
     private javax.swing.JTextField textFieldClassName;
     private javax.swing.JTextField textFieldNombreClase;
+    private javax.swing.JTextField textFieldNombreIndividual;
     private javax.swing.JTextField textFieldURI;
     private javax.swing.JTree treeClasses;
     private javax.swing.JTree treeClasses2;

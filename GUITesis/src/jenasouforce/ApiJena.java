@@ -11,6 +11,8 @@ import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.ObjectProperty;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.ontology.OntResource;
+import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
@@ -19,6 +21,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -69,11 +72,16 @@ public class ApiJena {
         String uri = getURIOntologia(m);
         uri = uri + "#";
         ObjectProperty property = m.getObjectProperty(uri+pro);
+        Iterator ii = m.listClasses().toList().iterator();
+        while(ii.hasNext()){
+            ii.next().toString();
+        }
         vo.setName(property.getLocalName());
         ArrayList<String> range = new ArrayList<String>();
         range.add(property.getRange().getLocalName());
         vo.setRange(range);
         ArrayList<String> domain = new ArrayList<String>();
+        //property.getDomain().getLocalName() para uno solo
         Iterator i = m.listClasses().filterDrop(new Filter() { public boolean accept( Object o ) {
                                 return ((Resource) o).isAnon();
                             }} );
@@ -115,17 +123,62 @@ public class ApiJena {
         return propiedades;
     }
     
+    //Terminar, no agarra todas las properties
     public List<String> getProperty(OntModel m, String c){
         ArrayList<String> propiedades = new ArrayList<String>();
         String uri = getURIOntologia(m);
         uri = uri + "#";
         OntClass clase = m.getOntClass(uri+c);
-        for ( StmtIterator sIter = clase.listProperties(); sIter.hasNext() ; )
-        {
-            Statement s = (Statement) sIter.next() ;
-            Triple tri = s.asTriple();
-            propiedades.add(tri.getPredicate().getLocalName());
+//        Iterator it = m.listDatatypeProperties().toList().iterator();
+//        while(it.hasNext()){
+//            DatatypeProperty dp = (DatatypeProperty) it.next();
+//            
+//            if(dp.getDomain().getLocalName() == null){
+//                
+//            }else{
+//                //es el nombre
+//            }
+//            Iterator itDom = dp.listDomain().toList().iterator();
+//            while(itDom.hasNext()){
+//                OntClass dom = (OntClass) itDom.next();
+//                if(dom.getLocalName().equalsIgnoreCase(c)){
+//                    propiedades.add(dp.getLocalName());
+//                }
+//            }
+//        }
+//        Iterator it2 = m.listObjectProperties().toList().iterator();
+//        while(it2.hasNext()){
+//            ObjectProperty dp = (ObjectProperty) it2.next();
+//            Iterator itDom2 = dp.listDomain().toList().iterator();
+//            while(itDom2.hasNext()){
+//                OntClass dom = (OntClass) itDom2.next();
+//                if(dom.getLocalName().equalsIgnoreCase(c)){
+//                    propiedades.add(dp.getLocalName());
+//                }
+//            }
+//        }
+        Iterator it =  clase.listDeclaredProperties()
+                      .filterDrop( new Filter() {
+                                    public boolean accept( Object o ) {
+                                        return ((Resource) o).isAnon();
+                                    }} );
+        Iterator i = clase.listDeclaredProperties().toList().iterator();
+        while (i.hasNext()) {
+           Property pro = ((Property) i.next());
+           propiedades.add(pro.getLocalName());
         }
+//        for ( StmtIterator sIter = clase.listProperties(); sIter.hasNext() ; )
+//        {
+//            Statement s = (Statement) sIter.next() ;
+//            Triple tri = s.asTriple();
+//            if(tri.getObject().isLiteral()){
+//            	System.out.println("   Propiedad: "+tri.getPredicate().getLocalName()+"\n   Valor: "+tri.getMatchObject().getLiteral().getValue()) ;
+//                propiedades.add(tri.getPredicate().getLocalName());
+//            }else{
+//            	System.out.println("   Propiedad: "+tri.getPredicate().getLocalName()+"\n   Valor: "+tri.getObject().getLocalName()) ;
+//                propiedades.add(tri.getPredicate().getLocalName());
+//            }
+//        }
         return propiedades;
     }
     
