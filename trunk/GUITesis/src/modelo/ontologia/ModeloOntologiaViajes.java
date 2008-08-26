@@ -8,6 +8,9 @@ package modelo.ontologia;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.reasoner.ReasonerRegistry;
+import com.hp.hpl.jena.reasoner.dig.DIGReasoner;
+import com.hp.hpl.jena.reasoner.dig.DIGReasonerFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -35,8 +38,13 @@ public class ModeloOntologiaViajes {
         return jena.getProperty(m,clase);
     }
     
+    //Aca agregue el rasonador, testearlo.
     public void cargarOntologia(String url){
-        m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
+        DIGReasoner r = (DIGReasoner) ReasonerRegistry.theRegistry().create( DIGReasonerFactory.URI, null );
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_MEM );
+        spec.setReasoner( r );
+        m = ModelFactory.createOntologyModel(spec, null );
+        //m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
         m = loadOntModelFromOwlFile(url);
     }
 

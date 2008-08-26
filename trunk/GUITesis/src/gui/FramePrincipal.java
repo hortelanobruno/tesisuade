@@ -223,6 +223,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         jMenu6.add(jMenuItem6);
 
         jMenuItem9.setText("Cerrar Ontology");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem9);
         jMenu6.add(jSeparator3);
 
@@ -348,6 +353,13 @@ private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }
 }//GEN-LAST:event_jMenuItem8ActionPerformed
 
+private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+// Cerrar ontologia
+    if(!isPanelPrincipalSelected){
+        ponerPanel(getPanelPrincipal());
+    }
+}//GEN-LAST:event_jMenuItem9ActionPerformed
+
 
     private void setLookAndFeel() throws HeadlessException {
         try {
@@ -369,7 +381,7 @@ private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
     public void ponerPanel(JPanel panel) {
         if (isPanelPrincipalSelected) {
-            this.remove(panelPrincipal);
+            this.remove(getPanelPrincipal());
             this.repaint();
         }
         if (isPanelMotorBusquedaSelected) {
@@ -391,22 +403,29 @@ private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             this.isPanelNuevaOntologiaSelected = false;
             this.setActivePanel(getPanelMotorBusqueda());
             this.isPanelMotorBusquedaSelected = true;
-        }
+        } else
         if (panel instanceof PanelSinonimos) {
             this.isPanelPrincipalSelected = false;
             this.isPanelMotorBusquedaSelected = false;
             this.isPanelNuevaOntologiaSelected = false;
             this.setActivePanel(getPanelSinonimos());
             this.isPanelSinonimosSelected = true;
-        }
+        } else
         if (panel instanceof PanelNuevaOntologia) {
             this.isPanelPrincipalSelected = false;
             this.isPanelMotorBusquedaSelected = false;
             this.isPanelSinonimosSelected = false;
             this.setActivePanel(getPanelSinonimos());
             this.isPanelNuevaOntologiaSelected = true;
+        } else{
+            this.isPanelPrincipalSelected = true;
+            this.isPanelMotorBusquedaSelected = false;
+            this.isPanelSinonimosSelected = false;
+            this.isPanelNuevaOntologiaSelected = false;
+            this.setActivePanel(getPanelPrincipal());
         }
-
+        
+        
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -476,6 +495,14 @@ private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
     public void setConfiguration(Configuration configuration) {
         this.configuration = configuration;
+    }
+
+    public javax.swing.JPanel getPanelPrincipal() {
+        return panelPrincipal;
+    }
+
+    public void setPanelPrincipal(javax.swing.JPanel panelPrincipal) {
+        this.panelPrincipal = panelPrincipal;
     }
 
     class ThreadCarga extends Thread {
