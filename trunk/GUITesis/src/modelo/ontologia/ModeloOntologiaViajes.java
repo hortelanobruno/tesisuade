@@ -14,6 +14,8 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import jenasouforce.ApiJena;
+import vo.DatatypePropertyVO;
+import vo.ObjectPropertyVO;
 
 /**
  *
@@ -28,9 +30,9 @@ public class ModeloOntologiaViajes {
         jena = new ApiJena();
     }
 
-    //Terminar
+    
     public List<String> ClassProperty(String clase){
-        return null;
+        return jena.getProperty(m,clase);
     }
     
     public void cargarOntologia(String url){
@@ -74,13 +76,19 @@ public class ModeloOntologiaViajes {
         jena.addClass(m, h, p);
     }
     
-    //Terminar
     public List<String> showDatatypeProperties(){
-        return null;
+        return jena.getDatatypeProperties(m);
     }
     
-    //Terminar
     public List<String> showObjectProperties(){
-        return null;
+        return jena.getObjectProperties(m);
+    }
+    
+    public DatatypePropertyVO getDatatypeProperty(String pro){
+        return jena.getDatatypeProperty(m,pro);
+    }
+    
+    public ObjectPropertyVO getObjectProperty(String pro){
+        return jena.getObjectProperty(m,pro);
     }
 }

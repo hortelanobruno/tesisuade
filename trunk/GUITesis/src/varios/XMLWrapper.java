@@ -2,7 +2,6 @@ package Varios;
 
 
 
-
 import com.thoughtworks.xstream.XStream;
 import configuration.Configuration;
 import varios.Constantes;

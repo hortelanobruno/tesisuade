@@ -5,7 +5,9 @@ import java.util.List;
 import modelo.ontologia.ModeloOntologiaViajes;
 import modelo.ontologia.ModeloOntologiaVocabulario;
 import mvcframework.ProxyModelo;
+import vo.DatatypePropertyVO;
 import vo.IndividualSinonimoVO;
+import vo.ObjectPropertyVO;
 
 
 
@@ -18,6 +20,14 @@ public class BusinessDelegate extends ProxyModelo
     public BusinessDelegate() {
         modOntologiaVocabulario = new ModeloOntologiaVocabulario();
         modeloOntologiaViajes = new ModeloOntologiaViajes();
+    }
+    
+    public DatatypePropertyVO getDatatypeProperty(String pro){
+        return modeloOntologiaViajes.getDatatypeProperty(pro);
+    }
+    
+    public ObjectPropertyVO getObjectProperty(String pro){
+        return modeloOntologiaViajes.getObjectProperty(pro);
     }
     
     public List<String> ClassProperty(String clase){

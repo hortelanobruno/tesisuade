@@ -75,39 +75,43 @@ import java.util.logging.Logger;
 	                                            "file:testing/reasoners/bugs/food.owl" );*/
 
 //	        m.read( "http://www.w3.org/2001/sw/WebOnt/guide-src/wine" );
-	        m = loadOntModelFromOwlFile("C:\\Documents and Settings\\Admin\\Desktop\\Ontologias\\Ontologias\\turismoOriginal.owl");
+	        m = loadOntModelFromOwlFile("C:\\Documents and Settings\\Administrador\\Escritorio\\Tesis\\Ontologias\\Ontologias\\turismoOriginal.owl");
 	        m.getNsPrefixMap();
                 String uri = m.getNsPrefixMap().get("").toString();
                 
-                m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
-
                 
-                m.createOntology(uri);
-                OntClass window = m.createClass(uri + "NESTOR");
-                OntClass window2 = m.createClass(uri + "NESTOR_HIJO");
-                window2.addSuperClass(window);
-                OntClass window3 = m.createClass(uri + "NESTOR_HIJO_DE HIJO");
-                m.getOntClass(uri + "NESTOR_HIJO").addSubClass(window3);
-                ObjectProperty part = m.createObjectProperty(uri + "part");
-                ObjectProperty body = m.createObjectProperty(uri + "body");
-                DatatypeProperty part2 = m.createDatatypeProperty(uri + "part2");
-                DatatypeProperty body2 = m.createDatatypeProperty(uri + "body2");
+                ObjectProperty pro = m.getObjectProperty(uri+"ciudad");
+                System.out.println("jaja");
                 
-                //part2.setRange(m.rd);
-                
-                //Individual throughTheLens = m.createIndividual(uri + "NestorEnBloque", window);
-                FileOutputStream fileout = null;
-                try {
-                    fileout = new FileOutputStream(new File("c:\\pureba.owl"));
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-                m.write(fileout,"RDF/XML-ABBREV");
-                //ClassHierarchy classh = new ClassHierarchy();
-	        //classh.showHierarchy2( System.out, m );
-	        
-	        //classh.showHierarchy( System.out, m );
+//                m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
+//
+//                
+//                m.createOntology(uri);
+//                OntClass window = m.createClass(uri + "NESTOR");
+//                OntClass window2 = m.createClass(uri + "NESTOR_HIJO");
+//                window2.addSuperClass(window);
+//                OntClass window3 = m.createClass(uri + "NESTOR_HIJO_DE HIJO");
+//                m.getOntClass(uri + "NESTOR_HIJO").addSubClass(window3);
+//                ObjectProperty part = m.createObjectProperty(uri + "part");
+//                ObjectProperty body = m.createObjectProperty(uri + "body");
+//                DatatypeProperty part2 = m.createDatatypeProperty(uri + "part2");
+//                DatatypeProperty body2 = m.createDatatypeProperty(uri + "body2");
+//                
+//                //part2.setRange(m.rd);
+//                
+//                //Individual throughTheLens = m.createIndividual(uri + "NestorEnBloque", window);
+//                FileOutputStream fileout = null;
+//                try {
+//                    fileout = new FileOutputStream(new File("c:\\pureba.owl"));
+//                } catch (FileNotFoundException ex) {
+//                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//                
+//                m.write(fileout,"RDF/XML-ABBREV");
+//                //ClassHierarchy classh = new ClassHierarchy();
+//	        //classh.showHierarchy2( System.out, m );
+//	        
+//	        //classh.showHierarchy( System.out, m );
 		}
 		
 		
