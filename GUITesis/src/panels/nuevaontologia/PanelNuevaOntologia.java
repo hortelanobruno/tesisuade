@@ -509,6 +509,14 @@ public void modoNuevo(){
     ((ControladorPanelNuevaOntologia) vistaNuevaOntologia.getControlador()).doNuevaOWL(true);
 }
 
+public void nuevaOntologia(){
+    ((BusinessDelegate) vistaNuevaOntologia.getModelo()).nuevaOntologia();
+}
+
+public void cargarOntologia(){
+    ((BusinessDelegate) vistaNuevaOntologia.getModelo()).cargarOntologia(getUrlOWL());       
+}
+
 public void guardarOntologia(){
     //Grabar ontologia
     ((BusinessDelegate)vistaNuevaOntologia.getModelo()).grabarOntologia(urlOWL);
@@ -534,55 +542,7 @@ public void update() {
     }
 }
 
-public void cargarDatatypeProperty(){
-    panelPropertyDefault.removeAll();
-    PanelPropertyDatatype panel = new PanelPropertyDatatype();
-    String propiedad = listPropertiesDatatype.getSelectedValue().toString();
-    DatatypePropertyVO propiedades = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).getDatatypeProperty(propiedad);
-    panel.getTextFieldNombre().setText(propiedades.getName());
-    DefaultListModel model = (DefaultListModel) panel.getListDomain().getModel();
-    for(int i = 0 ; i < propiedades.getDomain().size() ; i++){
-        model.addElement(propiedades.getDomain().get(i));
-    }
-    panel.getListDomain().setModel(model);
-    String range = propiedades.getRange();
-    range = range.substring(0, 1).toUpperCase() + range.substring(1);
-    panel.getComboBoxRange().setSelectedItem(range);
-    
-    panelPropertyDefault.add(panel);
-}
 
-public void cargarObjectProperty(){
-    panelPropertyDefault.removeAll();
-    PanelPropertyObject panel = new PanelPropertyObject();
-    String propiedad = listPropertiesObject.getSelectedValue().toString();
-    ObjectPropertyVO propiedades = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).getObjectProperty(propiedad);
-    panel.getTextFieldNombre().setText(propiedades.getName());
-    DefaultListModel model = (DefaultListModel) panel.getListDomain().getModel();
-    for(int i = 0 ; i < propiedades.getDomain().size() ; i++){
-        model.addElement(propiedades.getDomain().get(i));
-    }
-    panel.getListDomain().setModel(model);
-    DefaultListModel model2 = (DefaultListModel) panel.getListRange().getModel();
-    for(int i = 0 ; i < propiedades.getRange().size() ; i++){
-        model.addElement(propiedades.getRange().get(i));
-    }
-    panel.getListRange().setModel(model2);
-    
-    panelPropertyDefault.add(panel);
-}
-
-public void cargarClase(){
-    String instancia = treeClasses.getSelectionPath().getLastPathComponent().toString();
-    List<String> propiedades = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).ClassProperty(instancia);
-    listProperties.removeAll();
-    listProperties.setModel(new DefaultListModel());
-    DefaultListModel model = ((DefaultListModel)listProperties.getModel());
-    for(int i = 0 ; i < propiedades.size() ; i++){
-        model.addElement(propiedades.get(i));
-    }
-    listProperties.setModel(model);
-}
 
 private void buttonAgregarClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarClassActionPerformed
 // TODO add your handling code here:
@@ -624,6 +584,20 @@ private void listPropertiesDatatypeValueChanged(javax.swing.event.ListSelectionE
 // Se selecciono un datatype propiedad en el panel de propiedades
     ((ControladorPanelNuevaOntologia) vistaNuevaOntologia.getControlador()).doCargarDatatypeProperty(true);
 }//GEN-LAST:event_listPropertiesDatatypeValueChanged
+
+private void buttonCargarActionPerformed(javax.swing.event.TreeSelectionEvent evt) {
+    this.eventoTree = evt;
+    if(!eventoTree.getPath().getLastPathComponent().toString().equals("Classes")){
+            ((ControladorPanelNuevaOntologia) vistaNuevaOntologia.getControlador()).doCargarClase(true);
+    }
+}
+
+private void buttonCargarInstanciasActionPerformed(javax.swing.event.TreeSelectionEvent evt) {
+    this.eventoTree = evt;
+    if(!eventoTree.getPath().getLastPathComponent().toString().equals("Classes")){
+
+    }
+}
 
 private void cargarPaneles(){
    cargarPanelMetadata();
@@ -680,22 +654,9 @@ private void cargarPanelClases(){
     }
 }
 
-protected static ImageIcon createImageIcon(String path) {
-    java.net.URL imgURL = PanelNuevaOntologia.class.getResource(path);
-    if (imgURL != null) {
-        return new ImageIcon(imgURL);
-    } else {
-        System.err.println("Couldn't find file: " + path);
-        return null;
-    }
-}
 
-private void buttonCargarActionPerformed(javax.swing.event.TreeSelectionEvent evt) {
-    this.eventoTree = evt;
-    if(!eventoTree.getPath().getLastPathComponent().toString().equals("Classes")){
-            ((ControladorPanelNuevaOntologia) vistaNuevaOntologia.getControlador()).doCargarClase(true);
-    }
-}
+
+
 
 private void cargarPanelProperty(){
     List<String> datatypeProperties = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).showDatatypeProperties();
@@ -742,21 +703,59 @@ private void cargarPanelInstancia(){
     }
 }
 
-private void buttonCargarInstanciasActionPerformed(javax.swing.event.TreeSelectionEvent evt) {
-    this.eventoTree = evt;
-    if(!eventoTree.getPath().getLastPathComponent().toString().equals("Classes")){
 
+public void cargarDatatypeProperty(){
+    panelPropertyDefault.removeAll();
+    PanelPropertyDatatype panel = new PanelPropertyDatatype();
+    String propiedad = listPropertiesDatatype.getSelectedValue().toString();
+    DatatypePropertyVO propiedades = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).getDatatypeProperty(propiedad);
+    panel.getTextFieldNombre().setText(propiedades.getName());
+    DefaultListModel model = (DefaultListModel) panel.getListDomain().getModel();
+    for(int i = 0 ; i < propiedades.getDomain().size() ; i++){
+        model.addElement(propiedades.getDomain().get(i));
     }
+    panel.getListDomain().setModel(model);
+    String range = propiedades.getRange();
+    range = range.substring(0, 1).toUpperCase() + range.substring(1);
+    panel.getComboBoxRange().setSelectedItem(range);
+    
+    panelPropertyDefault.add(panel);
+}
+
+public void cargarObjectProperty(){
+    panelPropertyDefault.removeAll();
+    PanelPropertyObject panel = new PanelPropertyObject();
+    String propiedad = listPropertiesObject.getSelectedValue().toString();
+    ObjectPropertyVO propiedades = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).getObjectProperty(propiedad);
+    panel.getTextFieldNombre().setText(propiedades.getName());
+    DefaultListModel model = (DefaultListModel) panel.getListDomain().getModel();
+    for(int i = 0 ; i < propiedades.getDomain().size() ; i++){
+        model.addElement(propiedades.getDomain().get(i));
+    }
+    panel.getListDomain().setModel(model);
+    DefaultListModel model2 = (DefaultListModel) panel.getListRange().getModel();
+    for(int i = 0 ; i < propiedades.getRange().size() ; i++){
+        model.addElement(propiedades.getRange().get(i));
+    }
+    panel.getListRange().setModel(model2);
+    
+    panelPropertyDefault.add(panel);
+}
+
+public void cargarClase(){
+    String instancia = treeClasses.getSelectionPath().getLastPathComponent().toString();
+    List<String> propiedades = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).ClassProperty(instancia);
+    listProperties.removeAll();
+    listProperties.setModel(new DefaultListModel());
+    DefaultListModel model = ((DefaultListModel)listProperties.getModel());
+    for(int i = 0 ; i < propiedades.size() ; i++){
+        model.addElement(propiedades.get(i));
+    }
+    listProperties.setModel(model);
 }
 
 
-public void nuevaOntologia(){
-    ((BusinessDelegate) vistaNuevaOntologia.getModelo()).nuevaOntologia();
-}
-
-public void cargarOntologia(){
-    ((BusinessDelegate) vistaNuevaOntologia.getModelo()).cargarOntologia(getUrlOWL());       
-}
+//Uso Interno
 
 private DefaultMutableTreeNode addObject(Object child) {
         DefaultMutableTreeNode parentNode = null;
@@ -813,6 +812,15 @@ private void removeCurrentNode() {
         toolkit.beep();
 }
 
+protected static ImageIcon createImageIcon(String path) {
+    java.net.URL imgURL = PanelNuevaOntologia.class.getResource(path);
+    if (imgURL != null) {
+        return new ImageIcon(imgURL);
+    } else {
+        System.err.println("Couldn't find file: " + path);
+        return null;
+    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAgregarClass;
