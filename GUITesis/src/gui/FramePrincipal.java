@@ -16,6 +16,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import panels.busqueda.PanelMotorBusqueda;
+import panels.configuracion.PanelConfiguracion;
 import panels.nuevaontologia.PanelNuevaOntologia;
 import panels.sinonimos.PanelSinonimos;
 import varios.Constantes;
@@ -34,9 +35,11 @@ public class FramePrincipal extends javax.swing.JFrame {
     private boolean isPanelMotorBusquedaSelected;
     private boolean isPanelNuevaOntologiaSelected;
     private boolean isPanelSinonimosSelected;
+    private boolean isPanelConfiguracionSelected;
     private PanelMotorBusqueda panelMotorBusqueda;
     private PanelSinonimos panelSinonimos;
     private PanelNuevaOntologia panelNuevaOntologia;
+    private PanelConfiguracion panelConfiguracion;
     private JPanel activePanel;
     private VistaMotorBusqueda vistaMotorBusqueda;
     private VistaSinonimos vistaSinonimos;
@@ -181,6 +184,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         jMenu2.setText("Edit");
 
         jMenuItem3.setText("Configuracion");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
 
         menuBar.add(jMenu2);
@@ -348,7 +356,7 @@ private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_jMenuItem6ActionPerformed
 
 private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-    if (!isPanelNuevaOntologiaSelected) {
+    if (isPanelNuevaOntologiaSelected) {
          getPanelNuevaOntologia().guardarOntologia();
     }
 }//GEN-LAST:event_jMenuItem8ActionPerformed
@@ -359,6 +367,14 @@ private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         ponerPanel(getPanelPrincipal());
     }
 }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+// Cargar configuracion
+    if(!isPanelConfiguracionSelected){
+        setPanelConfiguracion(new PanelConfiguracion(this));
+        ponerPanel(getPanelConfiguracion());
+    }
+}//GEN-LAST:event_jMenuItem3ActionPerformed
 
 
     private void setLookAndFeel() throws HeadlessException {
@@ -396,8 +412,21 @@ private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             this.remove(getPanelNuevaOntologia());
             this.repaint();
         }
+        if (isPanelConfiguracionSelected){
+            this.remove(getPanelConfiguracion());
+            this.repaint();
+        }
 
+        if (panel instanceof PanelConfiguracion){
+            this.isPanelConfiguracionSelected = true;
+            this.isPanelPrincipalSelected = false;
+            this.isPanelSinonimosSelected = false;
+            this.isPanelNuevaOntologiaSelected = false;
+            this.setActivePanel(getPanelConfiguracion());
+            this.isPanelMotorBusquedaSelected = false;
+        } else
         if (panel instanceof PanelMotorBusqueda) {
+            this.isPanelConfiguracionSelected = false;
             this.isPanelPrincipalSelected = false;
             this.isPanelSinonimosSelected = false;
             this.isPanelNuevaOntologiaSelected = false;
@@ -405,6 +434,7 @@ private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             this.isPanelMotorBusquedaSelected = true;
         } else
         if (panel instanceof PanelSinonimos) {
+            this.isPanelConfiguracionSelected = false;
             this.isPanelPrincipalSelected = false;
             this.isPanelMotorBusquedaSelected = false;
             this.isPanelNuevaOntologiaSelected = false;
@@ -412,12 +442,14 @@ private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             this.isPanelSinonimosSelected = true;
         } else
         if (panel instanceof PanelNuevaOntologia) {
+            this.isPanelConfiguracionSelected = false;
             this.isPanelPrincipalSelected = false;
             this.isPanelMotorBusquedaSelected = false;
             this.isPanelSinonimosSelected = false;
             this.setActivePanel(getPanelSinonimos());
             this.isPanelNuevaOntologiaSelected = true;
         } else{
+            this.isPanelConfiguracionSelected = false;
             this.isPanelPrincipalSelected = true;
             this.isPanelMotorBusquedaSelected = false;
             this.isPanelSinonimosSelected = false;
@@ -504,6 +536,23 @@ private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     public void setPanelPrincipal(javax.swing.JPanel panelPrincipal) {
         this.panelPrincipal = panelPrincipal;
     }
+
+    public boolean isIsPanelConfiguracionSelected() {
+        return isPanelConfiguracionSelected;
+    }
+
+    public void setIsPanelConfiguracionSelected(boolean isPanelConfiguracion) {
+        this.isPanelConfiguracionSelected = isPanelConfiguracion;
+    }
+
+    public PanelConfiguracion getPanelConfiguracion() {
+        return panelConfiguracion;
+    }
+
+    public void setPanelConfiguracion(PanelConfiguracion panelConfiguracion) {
+        this.panelConfiguracion = panelConfiguracion;
+    }
+
 
     class ThreadCarga extends Thread {
 
