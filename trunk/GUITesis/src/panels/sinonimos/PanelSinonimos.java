@@ -22,9 +22,9 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 import modelo.BusinessDelegate;
-import varios.DefaultListCellEditor;
-import varios.DefaultMutableListModel;
-import varios.JListMutable;
+import varios.components.DefaultListCellEditor;
+import varios.components.DefaultMutableListModel;
+import varios.components.JListMutable;
 import vistas.VistaSinonimos;
 import vo.IndividualSinonimoVO;
 

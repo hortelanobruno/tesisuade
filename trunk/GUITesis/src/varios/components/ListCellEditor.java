@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package varios;
+package varios.components;
 
 import java.awt.Component;
 import javax.swing.CellEditor;

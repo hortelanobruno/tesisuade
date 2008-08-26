@@ -15,6 +15,7 @@ public class Configuration {
     private Vector<String> ontologiasVocabulario;
     private String defaultURLOWLSinonimos;
     private String defaultURLOWLViajes;
+    private String owlDirectory;
     
     public Configuration() {
     }
@@ -59,6 +60,14 @@ public class Configuration {
             a = a + "\\" + aa[i];
         }
         return a;
+    }
+
+    public String getOwlDirectory() {
+        return owlDirectory;
+    }
+
+    public void setOwlDirectory(String owlDirectory) {
+        this.owlDirectory = parsearURL(owlDirectory);
     }
 
 }
