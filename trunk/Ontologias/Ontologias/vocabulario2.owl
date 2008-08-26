@@ -1,92 +1,51 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
-    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
-    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
-    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-    xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns="http://www.owl-ontologies.com/Ontology1217967578.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xml:base="http://www.owl-ontologies.com/Ontology1217967578.owl">
   <owl:Ontology rdf:about=""/>
   <owl:Class rdf:ID="palabra"/>
-  <owl:DatatypeProperty rdf:ID="traduccion">
-    <rdfs:domain rdf:resource="#palabra"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-  </owl:DatatypeProperty>
   <owl:DatatypeProperty rdf:ID="sinonimo">
     <rdfs:domain rdf:resource="#palabra"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
   </owl:DatatypeProperty>
-  <palabra rdf:ID="precio">
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >costo</sinonimo>
+  <owl:DatatypeProperty rdf:ID="traduccion">
+    <rdfs:domain rdf:resource="#palabra"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <palabra rdf:ID="reserva_de_alojamiento">
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >price</traduccion>
+    >reserve_of_housing</traduccion>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pedido_de_hospedaje</sinonimo>
   </palabra>
-  <palabra rdf:ID="excursion">
+  <palabra rdf:ID="pasajero">
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >travesia</sinonimo>
+    >turista</sinonimo>
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >expedicion</sinonimo>
+    >viajante</sinonimo>
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >excursion</traduccion>
-  </palabra>
-  <palabra rdf:ID="modelo">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >model</traduccion>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >tipo</sinonimo>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >edicion</sinonimo>
-  </palabra>
-  <palabra rdf:ID="hora">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >time</traduccion>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >tiempo</sinonimo>
-  </palabra>
-  <palabra rdf:ID="pais">
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >destino</sinonimo>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >country</traduccion>
-  </palabra>
-  <palabra rdf:ID="auto">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >car</traduccion>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >automovil</sinonimo>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >coche</sinonimo>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >vehiculo</sinonimo>
-  </palabra>
-  <palabra rdf:ID="viaje">
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >traslado</sinonimo>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >trip</traduccion>
-  </palabra>
-  <palabra rdf:ID="extrahotelero">
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >no hotelero</sinonimo>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >not hotel</traduccion>
-  </palabra>
-  <palabra rdf:ID="tren">
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >ferrocarril</sinonimo>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >train</traduccion>
+    >passenger</traduccion>
   </palabra>
   <palabra rdf:ID="rent-car">
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >alquiler_de_auto</sinonimo>
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >rent_car</traduccion>
+  </palabra>
+  <palabra rdf:ID="primera">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >superior</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >first</traduccion>
   </palabra>
   <palabra rdf:ID="alojamiento">
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -95,6 +54,60 @@
     >hospedaje</sinonimo>
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >estadia</sinonimo>
+  </palabra>
+  <palabra rdf:ID="fecha">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dia</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >date</traduccion>
+  </palabra>
+  <palabra rdf:ID="turista">
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >tourist</traduccion>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >estandar</sinonimo>
+  </palabra>
+  <palabra rdf:ID="extrahotelero">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >no hotelero</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >not hotel</traduccion>
+  </palabra>
+  <palabra rdf:ID="cabaña">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >chalet</sinonimo>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >bungalow</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cabin</traduccion>
+  </palabra>
+  <palabra rdf:ID="ticket_de_vuelo">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >reserva_de_aereo</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ticket_of_flight</traduccion>
+  </palabra>
+  <palabra rdf:ID="gimnasio">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >salon de deportes</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >gym</traduccion>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >gymnasium</traduccion>
+  </palabra>
+  <palabra rdf:ID="mediano">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >promedio</sinonimo>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >medio</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >medium</traduccion>
+  </palabra>
+  <palabra rdf:ID="precio">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >costo</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >price</traduccion>
   </palabra>
   <palabra rdf:ID="business">
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -106,13 +119,195 @@
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >business</traduccion>
   </palabra>
-  <palabra rdf:ID="mediano">
+  <palabra rdf:ID="traslado">
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >medium</traduccion>
+    >movement</traduccion>
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >promedio</sinonimo>
+    >movil</sinonimo>
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >medio</sinonimo>
+    >desplazamiento</sinonimo>
+  </palabra>
+  <palabra rdf:ID="comida">
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >food</traduccion>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pension</sinonimo>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cena</sinonimo>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >almuerzo</sinonimo>
+  </palabra>
+  <palabra rdf:ID="hotel">
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >hotel</traduccion>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >apart hotel</sinonimo>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pension</sinonimo>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >albergue</sinonimo>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >posada</sinonimo>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >parador</sinonimo>
+  </palabra>
+  <palabra rdf:ID="marca">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >empresa</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >mark</traduccion>
+  </palabra>
+  <palabra rdf:ID="aereo">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >avion</sinonimo>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >vuelo</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >air</traduccion>
+  </palabra>
+  <palabra rdf:ID="viaje">
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >trip</traduccion>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >traslado</sinonimo>
+  </palabra>
+  <palabra rdf:ID="asiento">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >categoria</sinonimo>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ubicacion</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >category</traduccion>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >seat</traduccion>
+  </palabra>
+  <palabra rdf:ID="grande">
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >large</traduccion>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >espacioso</sinonimo>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >amplio</sinonimo>
+  </palabra>
+  <palabra rdf:ID="habitacion">
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >bedroom</traduccion>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >room</traduccion>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cuarto</sinonimo>
+  </palabra>
+  <palabra rdf:ID="hostel">
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >hostel</traduccion>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >hosteria</sinonimo>
+  </palabra>
+  <palabra rdf:ID="personas">
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >people</traduccion>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >viajeros</sinonimo>
+  </palabra>
+  <palabra rdf:ID="escala">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >parada</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >stop over</traduccion>
+  </palabra>
+  <palabra rdf:ID="familiar">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >estandar</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >normally-sized_car</traduccion>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >family_car</traduccion>
+  </palabra>
+  <palabra rdf:ID="moneda">
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >currency</traduccion>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >tipo_de_cambio</sinonimo>
+  </palabra>
+  <palabra rdf:ID="direccion">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >calle</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >street</traduccion>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >address</traduccion>
+  </palabra>
+  <palabra rdf:ID="niños">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >menores_mayores_de_3_años</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >children</traduccion>
+  </palabra>
+  <palabra rdf:ID="avion">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >aeroplano</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >plane</traduccion>
+  </palabra>
+  <palabra rdf:ID="direccion_asistida">
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Assist_direction</traduccion>
+  </palabra>
+  <palabra rdf:ID="triples">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >tres_personas</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >triple</traduccion>
+  </palabra>
+  <palabra rdf:ID="hora">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >tiempo</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >time</traduccion>
+  </palabra>
+  <palabra rdf:ID="ciudad">
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >city</traduccion>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >town</traduccion>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >capital</sinonimo>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >localidad</sinonimo>
+  </palabra>
+  <palabra rdf:ID="ciudad_regreso">
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >return_city</traduccion>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >lugar_regreso</sinonimo>
+  </palabra>
+  <palabra rdf:ID="valor">
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >value</traduccion>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >monto</sinonimo>
+  </palabra>
+  <palabra rdf:ID="auto">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >automovil</sinonimo>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >coche</sinonimo>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >vehiculo</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >car</traduccion>
+  </palabra>
+  <palabra rdf:ID="aire_acondicionado">
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >air_conditioning</traduccion>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acondicionador_de_aire</sinonimo>
+  </palabra>
+  <palabra rdf:ID="tren">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ferrocarril</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >train</traduccion>
   </palabra>
   <palabra rdf:ID="clase">
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -132,229 +327,23 @@
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >mayores</sinonimo>
   </palabra>
-  <palabra rdf:ID="comida">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >food</traduccion>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pension</sinonimo>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >cena</sinonimo>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >almuerzo</sinonimo>
-  </palabra>
-  <palabra rdf:ID="asiento">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >category</traduccion>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >seat</traduccion>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >categoria</sinonimo>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >ubicacion</sinonimo>
-  </palabra>
-  <palabra rdf:ID="traslado">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >movement</traduccion>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >movil</sinonimo>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >desplazamiento</sinonimo>
-  </palabra>
-  <palabra rdf:ID="personas">
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >viajeros</sinonimo>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >people</traduccion>
-  </palabra>
-  <palabra rdf:ID="direccion_asistida">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Assist_direction</traduccion>
-  </palabra>
-  <palabra rdf:ID="maritimo">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >sea</traduccion>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >mar</sinonimo>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >agua</sinonimo>
-  </palabra>
-  <palabra rdf:ID="ciudad">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >city</traduccion>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >town</traduccion>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >capital</sinonimo>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >localidad</sinonimo>
-  </palabra>
-  <palabra rdf:ID="bebes">
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >menores_de_3_años</sinonimo>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >babies</traduccion>
-  </palabra>
-  <palabra rdf:ID="marca">
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >empresa</sinonimo>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >mark</traduccion>
-  </palabra>
-  <palabra rdf:ID="familiar">
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >estandar</sinonimo>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >normally-sized_car</traduccion>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >family_car</traduccion>
-  </palabra>
-  <palabra rdf:ID="avion">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >plane</traduccion>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >aeroplano</sinonimo>
-  </palabra>
-  <palabra rdf:ID="aerolinea">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >airline</traduccion>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >aereo</sinonimo>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >vuelo</sinonimo>
-  </palabra>
-  <palabra rdf:ID="fecha">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >date</traduccion>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >dia</sinonimo>
-  </palabra>
-  <palabra rdf:ID="grande">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >large</traduccion>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >espacioso</sinonimo>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >amplio</sinonimo>
-  </palabra>
-  <palabra rdf:ID="aire_acondicionado">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >air_conditioning</traduccion>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >acondicionador_de_aire</sinonimo>
-  </palabra>
-  <palabra rdf:ID="pasajero">
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >turista</sinonimo>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >viajante</sinonimo>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >passenger</traduccion>
-  </palabra>
-  <palabra rdf:ID="valor">
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >monto</sinonimo>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >value</traduccion>
-  </palabra>
   <palabra rdf:ID="micro">
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >bus</traduccion>
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >bus</sinonimo>
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >tierra</sinonimo>
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >omnibus</sinonimo>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >bus</traduccion>
   </palabra>
-  <palabra rdf:ID="reserva_de_alojamiento">
+  <palabra rdf:ID="maritimo">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >mar</sinonimo>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >agua</sinonimo>
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >reserve_of_housing</traduccion>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pedido_de_hospedaje</sinonimo>
-  </palabra>
-  <palabra rdf:ID="hotel">
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >apart hotel</sinonimo>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pension</sinonimo>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >albergue</sinonimo>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >posada</sinonimo>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >parador</sinonimo>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >hotel</traduccion>
-  </palabra>
-  <palabra rdf:ID="barrio">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >neighborhood</traduccion>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >jurisdiccion</sinonimo>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >vecindario</sinonimo>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >distrito</sinonimo>
-  </palabra>
-  <palabra rdf:ID="moneda">
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >tipo_de_cambio</sinonimo>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >currency</traduccion>
-  </palabra>
-  <palabra rdf:ID="hostel">
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >hosteria</sinonimo>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >hostel</traduccion>
-  </palabra>
-  <palabra rdf:ID="ciudad_regreso">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >return_city</traduccion>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >lugar_regreso</sinonimo>
-  </palabra>
-  <palabra rdf:ID="cabaña">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >cabin</traduccion>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >chalet</sinonimo>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >bungalow</sinonimo>
-  </palabra>
-  <palabra rdf:ID="piscina">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >swimming pool</traduccion>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pileta</sinonimo>
-  </palabra>
-  <palabra rdf:ID="ticket_de_vuelo">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >ticket_of_flight</traduccion>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >reserva_de_aereo</sinonimo>
-  </palabra>
-  <palabra rdf:ID="triples">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >triple</traduccion>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >tres_personas</sinonimo>
-  </palabra>
-  <palabra rdf:ID="direccion">
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >calle</sinonimo>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >street</traduccion>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >address</traduccion>
-  </palabra>
-  <palabra rdf:ID="aereo">
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >avion</sinonimo>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >vuelo</sinonimo>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >air</traduccion>
+    >sea</traduccion>
   </palabra>
   <palabra rdf:ID="economico">
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -368,58 +357,70 @@
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >pequeño</sinonimo>
   </palabra>
-  <palabra rdf:ID="habitacion">
+  <palabra rdf:ID="aerolinea">
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >bedroom</traduccion>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >room</traduccion>
+    >airline</traduccion>
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >cuarto</sinonimo>
+    >aereo</sinonimo>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >vuelo</sinonimo>
   </palabra>
-  <palabra rdf:ID="niños">
+  <palabra rdf:ID="bebes">
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >children</traduccion>
+    >babies</traduccion>
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >menores_mayores_de_3_años</sinonimo>
+    >menores_de_3_años</sinonimo>
   </palabra>
-  <palabra rdf:ID="escala">
+  <palabra rdf:ID="modelo">
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >stop over</traduccion>
+    >model</traduccion>
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >parada</sinonimo>
-  </palabra>
-  <palabra rdf:ID="dobles">
+    >tipo</sinonimo>
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >dos_personas</sinonimo>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >double</traduccion>
-  </palabra>
-  <palabra rdf:ID="gimnasio">
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >salon de deportes</sinonimo>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >gym</traduccion>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >gymnasium</traduccion>
-  </palabra>
-  <palabra rdf:ID="turista">
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >estandar</sinonimo>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >tourist</traduccion>
-  </palabra>
-  <palabra rdf:ID="primera">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >first</traduccion>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >superior</sinonimo>
+    >edicion</sinonimo>
   </palabra>
   <palabra rdf:ID="ticket_de_traslado">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >ticket_of_movement</traduccion>
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >reserva_de_movil</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ticket_of_movement</traduccion>
+  </palabra>
+  <palabra rdf:ID="excursion">
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >excursion</traduccion>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >travesia</sinonimo>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >expedicion</sinonimo>
+  </palabra>
+  <palabra rdf:ID="dobles">
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >double</traduccion>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dos_personas</sinonimo>
+  </palabra>
+  <palabra rdf:ID="piscina">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pileta</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >swimming pool</traduccion>
+  </palabra>
+  <palabra rdf:ID="pais">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >destino</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >country</traduccion>
+  </palabra>
+  <palabra rdf:ID="barrio">
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >jurisdiccion</sinonimo>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >vecindario</sinonimo>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >distrito</sinonimo>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >neighborhood</traduccion>
   </palabra>
 </rdf:RDF>
 
-<!-- Created with Protege (with OWL Plugin 3.2.1, Build 365)  http://protege.stanford.edu -->
+<!-- Created with Protege (with OWL Plugin 3.4, Build 128)  http://protege.stanford.edu -->
