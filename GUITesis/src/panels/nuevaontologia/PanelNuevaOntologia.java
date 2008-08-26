@@ -28,6 +28,8 @@ import javax.swing.tree.TreePath;
 import modelo.BusinessDelegate;
 import varios.Constantes;
 import vistas.VistaNuevaOntologia;
+import vo.DatatypePropertyVO;
+import vo.ObjectPropertyVO;
 
 /**
  *
@@ -42,6 +44,8 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
     private boolean cargarOntologia;
     private boolean nuevaOntologia;
     private boolean cargarClase;
+    private boolean cargarObjectProperty;
+    private boolean cargarDatatypeProperty;
     private TreeSelectionEvent eventoTree;
     private DefaultTreeModel modelo;
     private DefaultMutableTreeNode abuelo;
@@ -282,7 +286,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                             .addComponent(jButton3)
                             .addComponent(jButton4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -290,6 +294,12 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
 
         jLabel5.setText("Object Properties");
 
+        listPropertiesObject.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listPropertiesObject.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listPropertiesObjectValueChanged(evt);
+            }
+        });
         jScrollPane3.setViewportView(listPropertiesObject);
 
         javax.swing.GroupLayout panelTabbedObjectPropertyLayout = new javax.swing.GroupLayout(panelTabbedObjectProperty);
@@ -318,6 +328,11 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
         jLabel6.setText("Datatype properties");
 
         listPropertiesDatatype.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listPropertiesDatatype.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listPropertiesDatatypeValueChanged(evt);
+            }
+        });
         jScrollPane4.setViewportView(listPropertiesDatatype);
 
         javax.swing.GroupLayout panelTabbedDatatypePropertyLayout = new javax.swing.GroupLayout(panelTabbedDatatypeProperty);
@@ -344,17 +359,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
         jTabbedPane2.addTab("Datatype", panelTabbedDatatypeProperty);
 
         panelPropertyDefault.setPreferredSize(new java.awt.Dimension(200, 100));
-
-        javax.swing.GroupLayout panelPropertyDefaultLayout = new javax.swing.GroupLayout(panelPropertyDefault);
-        panelPropertyDefault.setLayout(panelPropertyDefaultLayout);
-        panelPropertyDefaultLayout.setHorizontalGroup(
-            panelPropertyDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 607, Short.MAX_VALUE)
-        );
-        panelPropertyDefaultLayout.setVerticalGroup(
-            panelPropertyDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 365, Short.MAX_VALUE)
-        );
+        panelPropertyDefault.setLayout(new java.awt.GridLayout(0, 1));
 
         javax.swing.GroupLayout panelPropertiesLayout = new javax.swing.GroupLayout(panelProperties);
         panelProperties.setLayout(panelPropertiesLayout);
@@ -490,6 +495,10 @@ private void initComponents2(){
     }
 
     setCargarClase(false);
+    setCargarDatatypeProperty(false);
+    setCargarObjectProperty(false);
+    setCargarOntologia(false);
+    setNuevaOntologia(false);
 }
 
 public void modoCargar(){
@@ -517,16 +526,62 @@ public void update() {
     if(isCargarClase()){
         cargarClase();
     }
+    if(isCargarDatatypeProperty()){
+        cargarDatatypeProperty();
+    }
+    if(isCargarObjectProperty()){
+        cargarObjectProperty();
+    }
+}
+
+public void cargarDatatypeProperty(){
+    panelPropertyDefault.removeAll();
+    PanelPropertyDatatype panel = new PanelPropertyDatatype();
+    String propiedad = listPropertiesDatatype.getSelectedValue().toString();
+    DatatypePropertyVO propiedades = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).getDatatypeProperty(propiedad);
+    panel.getTextFieldNombre().setText(propiedades.getName());
+    DefaultListModel model = (DefaultListModel) panel.getListDomain().getModel();
+    for(int i = 0 ; i < propiedades.getDomain().size() ; i++){
+        model.addElement(propiedades.getDomain().get(i));
+    }
+    panel.getListDomain().setModel(model);
+    String range = propiedades.getRange();
+    range = range.substring(0, 1).toUpperCase() + range.substring(1);
+    panel.getComboBoxRange().setSelectedItem(range);
+    
+    panelPropertyDefault.add(panel);
+}
+
+public void cargarObjectProperty(){
+    panelPropertyDefault.removeAll();
+    PanelPropertyObject panel = new PanelPropertyObject();
+    String propiedad = listPropertiesObject.getSelectedValue().toString();
+    ObjectPropertyVO propiedades = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).getObjectProperty(propiedad);
+    panel.getTextFieldNombre().setText(propiedades.getName());
+    DefaultListModel model = (DefaultListModel) panel.getListDomain().getModel();
+    for(int i = 0 ; i < propiedades.getDomain().size() ; i++){
+        model.addElement(propiedades.getDomain().get(i));
+    }
+    panel.getListDomain().setModel(model);
+    DefaultListModel model2 = (DefaultListModel) panel.getListRange().getModel();
+    for(int i = 0 ; i < propiedades.getRange().size() ; i++){
+        model.addElement(propiedades.getRange().get(i));
+    }
+    panel.getListRange().setModel(model2);
+    
+    panelPropertyDefault.add(panel);
 }
 
 public void cargarClase(){
     String instancia = treeClasses.getSelectionPath().getLastPathComponent().toString();
     List<String> propiedades = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).ClassProperty(instancia);
     listProperties.removeAll();
+    listProperties.setModel(new DefaultListModel());
     DefaultListModel model = ((DefaultListModel)listProperties.getModel());
     for(int i = 0 ; i < propiedades.size() ; i++){
         model.addElement(propiedades.get(i));
     }
+    listProperties.setModel(model);
 }
 
 private void buttonAgregarClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarClassActionPerformed
@@ -559,6 +614,16 @@ private void buttonCancelNombreActionPerformed(java.awt.event.ActionEvent evt) {
     textFieldNombreClase.setText("");
     panelAgregarNombre.setVisible(false);
 }//GEN-LAST:event_buttonCancelNombreActionPerformed
+
+private void listPropertiesObjectValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listPropertiesObjectValueChanged
+// Se selecciono un object propiedad en el panel de propiedades
+    ((ControladorPanelNuevaOntologia) vistaNuevaOntologia.getControlador()).doCargarObjectProperty(true);
+}//GEN-LAST:event_listPropertiesObjectValueChanged
+
+private void listPropertiesDatatypeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listPropertiesDatatypeValueChanged
+// Se selecciono un datatype propiedad en el panel de propiedades
+    ((ControladorPanelNuevaOntologia) vistaNuevaOntologia.getControlador()).doCargarDatatypeProperty(true);
+}//GEN-LAST:event_listPropertiesDatatypeValueChanged
 
 private void cargarPaneles(){
    cargarPanelMetadata();
@@ -640,6 +705,9 @@ private void cargarPanelProperty(){
     listPropertiesObject.removeAll();
     
     
+    listPropertiesDatatype.setModel(new DefaultListModel());
+    listPropertiesObject.setModel(new DefaultListModel());
+    
     DefaultListModel model1 = (DefaultListModel) listPropertiesDatatype.getModel();
     DefaultListModel model2 = (DefaultListModel) listPropertiesObject.getModel();
     
@@ -649,6 +717,9 @@ private void cargarPanelProperty(){
     for(int i = 0 ; i < objectProperties.size() ; i++){
         model2.addElement(objectProperties.get(i));
     }
+    
+    listPropertiesDatatype.setModel(model1);
+    listPropertiesObject.setModel(model2);
 }
 
 private void cargarPanelInstancia(){
@@ -839,6 +910,22 @@ private void removeCurrentNode() {
 
     public void setCargarClase(boolean cargarClase) {
         this.cargarClase = cargarClase;
+    }
+
+    public boolean isCargarObjectProperty() {
+        return cargarObjectProperty;
+    }
+
+    public void setCargarObjectProperty(boolean cargarObjectProperty) {
+        this.cargarObjectProperty = cargarObjectProperty;
+    }
+
+    public boolean isCargarDatatypeProperty() {
+        return cargarDatatypeProperty;
+    }
+
+    public void setCargarDatatypeProperty(boolean cargarDatatypeProperty) {
+        this.cargarDatatypeProperty = cargarDatatypeProperty;
     }
 
 }

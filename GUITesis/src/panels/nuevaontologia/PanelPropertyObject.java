@@ -6,6 +6,8 @@
 
 package panels.nuevaontologia;
 
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author  Administrador
@@ -15,6 +17,7 @@ public class PanelPropertyObject extends javax.swing.JPanel {
     /** Creates new form PanelPropertyObject */
     public PanelPropertyObject() {
         initComponents();
+        initComponents2();
     }
 
     /** This method is called from within the constructor to
@@ -27,13 +30,13 @@ public class PanelPropertyObject extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        textFieldNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        listDomain = new javax.swing.JList();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
+        listRange = new javax.swing.JList();
 
         setPreferredSize(new java.awt.Dimension(511, 365));
 
@@ -41,13 +44,13 @@ public class PanelPropertyObject extends javax.swing.JPanel {
 
         jLabel2.setText("Domain");
 
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jList1);
+        listDomain.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(listDomain);
 
         jLabel3.setText("Range");
 
-        jList2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane2.setViewportView(jList2);
+        listRange.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane2.setViewportView(listRange);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -59,7 +62,7 @@ public class PanelPropertyObject extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(75, 75, 75)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(24, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -77,7 +80,7 @@ public class PanelPropertyObject extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -90,16 +93,44 @@ public class PanelPropertyObject extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
+    public void initComponents2(){
+        listDomain.setModel(new DefaultListModel());
+        listRange.setModel(new DefaultListModel());
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JList jList1;
-    private javax.swing.JList jList2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JList listDomain;
+    private javax.swing.JList listRange;
+    private javax.swing.JTextField textFieldNombre;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JList getListDomain() {
+        return listDomain;
+    }
+
+    public void setListDomain(javax.swing.JList listDomain) {
+        this.listDomain = listDomain;
+    }
+
+    public javax.swing.JList getListRange() {
+        return listRange;
+    }
+
+    public void setListRange(javax.swing.JList listRange) {
+        this.listRange = listRange;
+    }
+
+    public javax.swing.JTextField getTextFieldNombre() {
+        return textFieldNombre;
+    }
+
+    public void setTextFieldNombre(javax.swing.JTextField textFieldNombre) {
+        this.textFieldNombre = textFieldNombre;
+    }
 
 }

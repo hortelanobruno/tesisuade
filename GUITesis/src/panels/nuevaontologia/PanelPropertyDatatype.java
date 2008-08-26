@@ -6,6 +6,8 @@
 
 package panels.nuevaontologia;
 
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author  Administrador
@@ -15,6 +17,7 @@ public class PanelPropertyDatatype extends javax.swing.JPanel {
     /** Creates new form PanelPropertyDatatype */
     public PanelPropertyDatatype() {
         initComponents();
+        initComponents2();
     }
 
     /** This method is called from within the constructor to
@@ -27,21 +30,23 @@ public class PanelPropertyDatatype extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        textFieldNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        listDomain = new javax.swing.JList();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        comboBoxRange = new javax.swing.JComboBox();
 
         jLabel1.setText("Property");
 
         jLabel2.setText("Domain");
 
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jList1);
+        listDomain.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(listDomain);
 
         jLabel3.setText("Range");
+
+        comboBoxRange.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "String", "Integer", "Double", "Float", "Boolean" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -57,11 +62,11 @@ public class PanelPropertyDatatype extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(comboBoxRange, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(78, 78, 78)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)))
+                        .addComponent(textFieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -70,7 +75,7 @@ public class PanelPropertyDatatype extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -78,20 +83,48 @@ public class PanelPropertyDatatype extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBoxRange, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    public void initComponents2(){
+        listDomain.setModel(new DefaultListModel());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox comboBoxRange;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JList listDomain;
+    private javax.swing.JTextField textFieldNombre;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JComboBox getComboBoxRange() {
+        return comboBoxRange;
+    }
+
+    public void setComboBoxRange(javax.swing.JComboBox comboBoxRange) {
+        this.comboBoxRange = comboBoxRange;
+    }
+
+    public javax.swing.JList getListDomain() {
+        return listDomain;
+    }
+
+    public void setListDomain(javax.swing.JList listDomain) {
+        this.listDomain = listDomain;
+    }
+
+    public javax.swing.JTextField getTextFieldNombre() {
+        return textFieldNombre;
+    }
+
+    public void setTextFieldNombre(javax.swing.JTextField textFieldNombre) {
+        this.textFieldNombre = textFieldNombre;
+    }
 
 }

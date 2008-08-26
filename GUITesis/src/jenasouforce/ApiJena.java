@@ -6,10 +6,11 @@
 package jenasouforce;
 
 import com.hp.hpl.jena.graph.Triple;
+import com.hp.hpl.jena.ontology.DatatypeProperty;
 import com.hp.hpl.jena.ontology.Individual;
+import com.hp.hpl.jena.ontology.ObjectProperty;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
@@ -22,10 +23,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import javax.swing.JTree;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
+import vo.DatatypePropertyVO;
 import vo.IndividualSinonimoVO;
+import vo.ObjectPropertyVO;
 
 /**
  *
@@ -41,6 +41,95 @@ public class ApiJena {
     public ApiJena() {
     }
 
+    
+    public DatatypePropertyVO getDatatypeProperty(OntModel m, String pro){
+        DatatypePropertyVO vo = new DatatypePropertyVO();
+        String uri = getURIOntologia(m);
+        uri = uri + "#";
+        DatatypeProperty property = m.getDatatypeProperty(uri+pro);
+        vo.setName(property.getLocalName());
+        vo.setRange(property.getRange().getLocalName());
+        ArrayList<String> domain = new ArrayList<String>();
+        Iterator i = m.listClasses().filterDrop(new Filter() { public boolean accept( Object o ) {
+                                return ((Resource) o).isAnon();
+                            }} );
+        while (i.hasNext()) {
+           OntClass cls = ((OntClass) i.next());
+           if(cls.hasProperty(m.getProperty(uri+pro))){
+               domain.add(cls.getLocalName());
+           }
+        }
+        vo.setDomain(domain);
+        return vo;
+    }
+    
+    
+    public ObjectPropertyVO getObjectProperty(OntModel m, String pro){
+        ObjectPropertyVO vo = new ObjectPropertyVO();
+        String uri = getURIOntologia(m);
+        uri = uri + "#";
+        ObjectProperty property = m.getObjectProperty(uri+pro);
+        vo.setName(property.getLocalName());
+        ArrayList<String> range = new ArrayList<String>();
+        range.add(property.getRange().getLocalName());
+        vo.setRange(range);
+        ArrayList<String> domain = new ArrayList<String>();
+        Iterator i = m.listClasses().filterDrop(new Filter() { public boolean accept( Object o ) {
+                                return ((Resource) o).isAnon();
+                            }} );
+        while (i.hasNext()) {
+           OntClass cls = ((OntClass) i.next());
+           if(cls.hasProperty(m.getProperty(uri+pro))){
+               domain.add(cls.getLocalName());
+           }
+        }
+        vo.setDomain(domain);
+        return vo;
+    }
+    
+    public List<String> getObjectProperties(OntModel m){
+        ArrayList<String> propiedades = new ArrayList<String>();
+        Iterator i =  m.listObjectProperties()
+                      .filterDrop( new Filter() {
+                                    public boolean accept( Object o ) {
+                                        return ((Resource) o).isAnon();
+                                    }} );
+        while (i.hasNext()) {
+           ObjectProperty pro = ((ObjectProperty) i.next());
+           propiedades.add(pro.getLocalName());
+        }
+        return propiedades;
+    }
+    
+    public List<String> getDatatypeProperties(OntModel m){
+        ArrayList<String> propiedades = new ArrayList<String>();
+        Iterator i =  m.listDatatypeProperties()
+                      .filterDrop( new Filter() {
+                                    public boolean accept( Object o ) {
+                                        return ((Resource) o).isAnon();
+                                    }} );
+        while (i.hasNext()) {
+           DatatypeProperty pro = ((DatatypeProperty) i.next());
+           propiedades.add(pro.getLocalName());
+        }
+        return propiedades;
+    }
+    
+    public List<String> getProperty(OntModel m, String c){
+        ArrayList<String> propiedades = new ArrayList<String>();
+        String uri = getURIOntologia(m);
+        uri = uri + "#";
+        OntClass clase = m.getOntClass(uri+c);
+        for ( StmtIterator sIter = clase.listProperties(); sIter.hasNext() ; )
+        {
+            Statement s = (Statement) sIter.next() ;
+            Triple tri = s.asTriple();
+            propiedades.add(tri.getPredicate().getLocalName());
+        }
+        return propiedades;
+    }
+    
+    
     public String getURIOntologia(OntModel m){
         String uri = m.getNsPrefixMap().values().iterator().next().toString();
         uri = uri.substring(0, uri.length() -1);
