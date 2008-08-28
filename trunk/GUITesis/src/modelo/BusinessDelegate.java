@@ -1,13 +1,17 @@
 package modelo;
 
+import configuration.Configuration;
 import java.util.HashMap;
 import java.util.List;
+import modelo.motor.ModeloMotorBusqueda;
 import modelo.ontologia.ModeloOntologiaViajes;
 import modelo.ontologia.ModeloOntologiaVocabulario;
 import mvcframework.ProxyModelo;
 import vo.DatatypePropertyVO;
 import vo.IndividualSinonimoVO;
 import vo.ObjectPropertyVO;
+import vo.busqueda.ConsultaVueloVO;
+import vo.busqueda.IndividualVueloVO;
 
 
 
@@ -16,10 +20,23 @@ public class BusinessDelegate extends ProxyModelo
 
     private ModeloOntologiaVocabulario modOntologiaVocabulario;
     private ModeloOntologiaViajes modeloOntologiaViajes;
+    private ModeloMotorBusqueda modeloMotorBusqueda;
+    private Configuration conf;
     
     public BusinessDelegate() {
         modOntologiaVocabulario = new ModeloOntologiaVocabulario();
         modeloOntologiaViajes = new ModeloOntologiaViajes();
+        modeloMotorBusqueda = new ModeloMotorBusqueda();
+    }
+    
+    public void cargarConfiguracion(Configuration conf){
+        this.conf = conf;
+        modeloMotorBusqueda.setConfig(conf);
+        modeloMotorBusqueda.cargarModelos();
+    }
+    
+    public List<IndividualVueloVO> buscarVuelos(ConsultaVueloVO consulta){
+        return modeloMotorBusqueda.buscarVuelos(consulta);
     }
     
     public DatatypePropertyVO getDatatypeProperty(String pro){
@@ -90,6 +107,14 @@ public class BusinessDelegate extends ProxyModelo
     
     public void addClass(String hijo, String padre){
         modeloOntologiaViajes.addClass(hijo,padre);
+    }
+
+    public Configuration getConf() {
+        return conf;
+    }
+
+    public void setConf(Configuration conf) {
+        this.conf = conf;
     }
 }
 
