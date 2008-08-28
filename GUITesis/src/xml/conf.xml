@@ -1,4 +1,7 @@
 <configuration>
+  <ontologiasViajes>
+    <string>C:\\Documents and Settings\\Administrador\\Escritorio\\Tesis\\Ontologias\\Ontologias\\turismoOriginal.owl</string>
+  </ontologiasViajes>
   <defaultURLOWLSinonimos>C:\\Documents and Settings\\Administrador\\Escritorio\\Tesis\\Ontologias\\Ontologias\</defaultURLOWLSinonimos>
   <defaultURLOWLViajes>C:\\Documents and Settings\\Administrador\\Escritorio\\Tesis\\Ontologias\\Ontologias\</defaultURLOWLViajes>
 </configuration>

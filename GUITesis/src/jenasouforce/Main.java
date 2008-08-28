@@ -80,7 +80,7 @@ import java.util.logging.Logger;
                 String uri = m.getNsPrefixMap().get("").toString();
                 
                 
-                ObjectProperty pro = m.getObjectProperty(uri+"ciudad");
+          //      ObjectProperty pro = m.getObjectProperty(uri+"ciudad");
                 System.out.println("jaja");
                 
 //                m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
@@ -108,10 +108,10 @@ import java.util.logging.Logger;
 //                }
 //                
 //                m.write(fileout,"RDF/XML-ABBREV");
-//                //ClassHierarchy classh = new ClassHierarchy();
-//	        //classh.showHierarchy2( System.out, m );
-//	        
-//	        //classh.showHierarchy( System.out, m );
+                ClassHierarchy classh = new ClassHierarchy();
+	        classh.showHierarchy2( System.out, m );
+	        
+	        classh.showHierarchy( System.out, m );
 		}
 		
 		

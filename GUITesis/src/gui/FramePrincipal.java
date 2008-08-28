@@ -57,7 +57,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         isPanelPrincipalSelected = true;
         iniciaCuenta();//De la progress bar
         initComponents2();
-        cargarConfiguracion();
+        
     }
 
     /** This method is called from within the constructor to
@@ -309,11 +309,15 @@ public class FramePrincipal extends javax.swing.JFrame {
         Configuration conf = xml.parseConfiguracion(Constantes.CONFIGURATION);
         if(conf != null){
             this.setConfiguration(conf);
-            ((BusinessDelegate)vistaMotorBusqueda.getModelo()).cargarConfiguracion(conf);
+            recargarConfiguracion();
         }else{
             conf = new Configuration();
             this.setConfiguration(conf);
         }  
+    }
+    
+    public void recargarConfiguracion(){
+        ((BusinessDelegate)vistaMotorBusqueda.getModelo()).cargarConfiguracion(this.getConfiguration());
     }
 
 private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed

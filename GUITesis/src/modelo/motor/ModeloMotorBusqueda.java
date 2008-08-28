@@ -26,11 +26,12 @@ import vo.busqueda.IndividualVueloVO;
 public class ModeloMotorBusqueda {
 
     private ApiJena jena;
-    private List<OntModel> ontologias;
+    private ArrayList<OntModel> ontologias;
     private Configuration config;
     
     public ModeloMotorBusqueda() {
         jena = new ApiJena();
+        ontologias = new ArrayList<OntModel>();
     }
 
     public List<IndividualVueloVO> buscarVuelos(ConsultaVueloVO consulta){

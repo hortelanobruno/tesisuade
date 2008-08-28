@@ -22,6 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -58,40 +59,60 @@ public class ApiJena {
         
         while (i.hasNext()) {
             Individual ind = (Individual) i.next();
+            propiedades = new HashMap<String,String>();
             for ( StmtIterator sIter = ind.listProperties(); sIter.hasNext() ; )
             {
                 Statement s = (Statement) sIter.next() ;
                 Triple tri = s.asTriple();
-                propiedades = new HashMap<String,String>();
                 if(tri.getObject().isLiteral()){
-                    propiedades.put(tri.getPredicate().getLocalName(),(String) tri.getMatchObject().getLiteral().getValue());
+                    propiedades.put(tri.getPredicate().getLocalName(),tri.getMatchObject().getLiteral().getValue().toString());
                     //System.out.println("   Propiedad: "+tri.getPredicate().getLocalName()+"\n   Valor: "+tri.getMatchObject().getLiteral().getValue()) ;
                 }else{
                     propiedades.put(tri.getPredicate().getLocalName(),tri.getObject().getLocalName());
                     //System.out.println("   Propiedad: "+tri.getPredicate().getLocalName()+"\n   Valor: "+tri.getObject().getLocalName()) ;
                 }
+            }
+            if(propiedades.get("type").equalsIgnoreCase("Ticket_Viaje")){
                 if(coincideVuelo(vuelo,propiedades)){
-                    IndividualVueloVO invue = new IndividualVueloVO();
+                    IndividualVueloVO invue = cargarIndividualVueloVO(propiedades);
+                    invue.setNameIndividual(ind.getLocalName());
+                    invue.setUri(ind.getURI());
                     lista.add(invue);
                 }
-            } 
+            }
         }
         return lista;
     }
     
+    //falta cargar la parte de opciones avanzadas y adultos, ninios y bebes
+    public IndividualVueloVO cargarIndividualVueloVO(HashMap<String,String> p){
+        IndividualVueloVO invue = new IndividualVueloVO();
+        invue.setCiudadOrigen(p.get("desde"));
+        invue.setCiudadDestino(p.get("hacia"));
+        invue.setFechaIda(p.get("hora_salida"));
+        invue.setFechaVuelta(p.get("horario_regreso"));
+        return invue;
+    }
     //falta la coincidencia de adultos,bebes y ninios y las opciones avanzadas
     public boolean coincideVuelo(ConsultaVueloVO vuelo, HashMap<String,String> propiedades){
         boolean b = true;
-        if(!propiedades.containsKey(vuelo.getCiudadDestino())){
+        if(!propiedades.get("hacia").equalsIgnoreCase(vuelo.getCiudadDestino())){
             b = false;
         }
-        if(!propiedades.containsKey(vuelo.getCiudadOrigen())){
+        if(!propiedades.get("desde").equalsIgnoreCase(vuelo.getCiudadOrigen())){
             b = false;
         }
-        if(!propiedades.containsKey(vuelo.getFechaIda().toString())){
+        //vuelo.getFechaIda().toLocal    en owl es 2008-08-14
+        String fechaida = vuelo.getFechaIda().toLocaleString().split(" ")[0];
+        String[] fechaparseada = fechaida.split("/");
+        String fechaidaposta = fechaparseada[2]+"-"+fechaparseada[1]+"-"+fechaparseada[0];
+        if(!propiedades.get("hora_salida").substring(0, 10).equalsIgnoreCase(fechaidaposta)){
             b = false;
         }
-        if(!propiedades.containsKey(vuelo.getFechaVuelta().toString())){
+        String fechavuelta = vuelo.getFechaVuelta().toLocaleString().split(" ")[0];
+        String[] fechaparseada2 = fechavuelta.split("/");
+        String fechavueltaposta = fechaparseada2[2]+"-"+fechaparseada2[1]+"-"+fechaparseada2[0];
+        if(!propiedades.get("horario_regreso").substring(0, 10).equalsIgnoreCase(fechavueltaposta)){
             b = false;
         }
         return b;

@@ -8,6 +8,7 @@ package panels.configuracion;
 
 import gui.FileChooser;
 import gui.FramePrincipal;
+import java.util.Vector;
 import javax.swing.DefaultListModel;
 
 /**
@@ -163,8 +164,12 @@ private void buttonAddOntViajesActionPerformed(java.awt.event.ActionEvent evt) {
     chooser = new FileChooser(this.main, true, this.main.getConfiguration().getOwlDirectory());
     if (chooser.getButton().equals("Cancel")) {
     } else {
-            
-            
+        ((DefaultListModel)listOntologiasViajes.getModel()).addElement(chooser.path);
+        if(main.getConfiguration().getOntologiasViajes() == null){
+            main.getConfiguration().setOntologiasViajes(new Vector<String>());
+            main.getConfiguration().getOntologiasViajes().add(chooser.path);
+        }
+        main.recargarConfiguracion();
     }
 }//GEN-LAST:event_buttonAddOntViajesActionPerformed
 

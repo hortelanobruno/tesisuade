@@ -38,6 +38,8 @@ public class Main {
             new ControladorPanelMotorBusqueda(modelo,vistaMotorBusqueda);
             new ControladorPanelSinonimos(modelo, vistaSinonimos);
             new ControladorPanelNuevaOntologia(modelo, vistaNuevaOntologia);
+            
+            frame.cargarConfiguracion();
         }catch(Exception e){
         }
     }
