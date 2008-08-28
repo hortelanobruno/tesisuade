@@ -269,9 +269,7 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
-                .addGap(139, 139, 139))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
         );
 
         panelOpcionesAvanzadasVuelosDefault.setLayout(new java.awt.GridLayout(0, 1));
@@ -295,7 +293,7 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, 0, 459, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -637,9 +635,9 @@ public void mostrarResultado(List<IndividualVueloVO> indVuelos){
 
 //faltaria cargarle las opciones avanzadas
 public void cargarPanelBusquedaVuelo(PanelResultadoVuelo panel,IndividualVueloVO ind){
-    panel.getLabelCantAdultos().setText(""+ind.getAdultos());
-    panel.getLabelCantBebes().setText(""+ind.getBebes());
-    panel.getLabelCantNinios().setText(""+ind.getNinios());
+    //panel.getLabelCantAdultos().setText(""+ind.getAdultos());
+   // panel.getLabelCantBebes().setText(""+ind.getBebes());
+   // panel.getLabelCantNinios().setText(""+ind.getNinios());
     panel.getLabelCiudadDestino().setText(ind.getCiudadDestino());
     panel.getLabelCiudadOrigen().setText(ind.getCiudadOrigen());
     panel.getLabelFechaIda().setText(ind.getFechaIda().toString());

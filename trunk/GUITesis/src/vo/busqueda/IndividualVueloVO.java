@@ -16,8 +16,8 @@ public class IndividualVueloVO {
 
     private String uri;
     private String nameIndividual;
-    private Date fechaIda;
-    private Date fechaVuelta;
+    private String fechaIda;
+    private String fechaVuelta;
     private String ciudadOrigen;
     private String ciudadDestino;
     private int adultos;
@@ -28,7 +28,7 @@ public class IndividualVueloVO {
     public IndividualVueloVO() {
     }
 
-    public IndividualVueloVO(String uri, String nameIndividual, Date fechaIda, Date fechaVuelta, String ciudadOrigen, String ciudadDestino, int adultos, int ninios, int bebes, HashMap<String, String> propiedadesAvanzadas) {
+    public IndividualVueloVO(String uri, String nameIndividual, String fechaIda, String fechaVuelta, String ciudadOrigen, String ciudadDestino, int adultos, int ninios, int bebes, HashMap<String, String> propiedadesAvanzadas) {
         this.uri = uri;
         this.nameIndividual = nameIndividual;
         this.fechaIda = fechaIda;
@@ -59,19 +59,19 @@ public class IndividualVueloVO {
         this.nameIndividual = nameIndividual;
     }
 
-    public Date getFechaIda() {
+    public String getFechaIda() {
         return fechaIda;
     }
 
-    public void setFechaIda(Date fechaIda) {
+    public void setFechaIda(String fechaIda) {
         this.fechaIda = fechaIda;
     }
 
-    public Date getFechaVuelta() {
+    public String getFechaVuelta() {
         return fechaVuelta;
     }
 
-    public void setFechaVuelta(Date fechaVuelta) {
+    public void setFechaVuelta(String fechaVuelta) {
         this.fechaVuelta = fechaVuelta;
     }
 

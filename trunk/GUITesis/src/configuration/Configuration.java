@@ -18,6 +18,11 @@ public class Configuration {
     private String owlDirectory;
     
     public Configuration() {
+        defaultURLOWLSinonimos = new String();
+        defaultURLOWLViajes = new String();
+        owlDirectory = new String();
+        ontologiasViajes = new Vector<String>();
+        ontologiasVocabulario = new Vector<String>();
     }
 
     public Vector<String> getOntologiasViajes() {
