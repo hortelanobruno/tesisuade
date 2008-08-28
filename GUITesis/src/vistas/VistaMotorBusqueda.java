@@ -13,8 +13,12 @@ public class VistaMotorBusqueda extends Vista {
             super(mod);
     }
 
+    public void busquedaVuelos(boolean b){
+        getRef().getPanelMotorBusqueda().setBuscarVuelos(b);
+    }
+    
     public void actualizar() {
-            getRef().getPanelMotorBusqueda().update();
+        getRef().getPanelMotorBusqueda().update();
     }
 
     public FramePrincipal getRef() {

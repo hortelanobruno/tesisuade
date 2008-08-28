@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import modelo.BusinessDelegate;
 import panels.busqueda.PanelMotorBusqueda;
 import panels.configuracion.PanelConfiguracion;
 import panels.nuevaontologia.PanelNuevaOntologia;
@@ -308,6 +309,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         Configuration conf = xml.parseConfiguracion(Constantes.CONFIGURATION);
         if(conf != null){
             this.setConfiguration(conf);
+            ((BusinessDelegate)vistaMotorBusqueda.getModelo()).cargarConfiguracion(conf);
         }else{
             conf = new Configuration();
             this.setConfiguration(conf);

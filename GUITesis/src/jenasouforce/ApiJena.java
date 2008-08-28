@@ -29,6 +29,8 @@ import java.util.Map;
 import vo.DatatypePropertyVO;
 import vo.IndividualSinonimoVO;
 import vo.ObjectPropertyVO;
+import vo.busqueda.ConsultaVueloVO;
+import vo.busqueda.IndividualVueloVO;
 
 /**
  *
@@ -44,6 +46,56 @@ public class ApiJena {
     public ApiJena() {
     }
 
+    
+    public ArrayList<IndividualVueloVO> buscarVuelo(OntModel m, ConsultaVueloVO vuelo){
+        ArrayList<IndividualVueloVO> lista = new ArrayList<IndividualVueloVO>();
+        HashMap<String,String> propiedades = new HashMap<String,String>();
+        Iterator i = m.listIndividuals()
+                      .filterDrop( new Filter() {
+                                    public boolean accept( Object o ) {
+                                        return ((Resource) o).isAnon();
+                                    }} );
+        
+        while (i.hasNext()) {
+            Individual ind = (Individual) i.next();
+            for ( StmtIterator sIter = ind.listProperties(); sIter.hasNext() ; )
+            {
+                Statement s = (Statement) sIter.next() ;
+                Triple tri = s.asTriple();
+                propiedades = new HashMap<String,String>();
+                if(tri.getObject().isLiteral()){
+                    propiedades.put(tri.getPredicate().getLocalName(),(String) tri.getMatchObject().getLiteral().getValue());
+                    //System.out.println("   Propiedad: "+tri.getPredicate().getLocalName()+"\n   Valor: "+tri.getMatchObject().getLiteral().getValue()) ;
+                }else{
+                    propiedades.put(tri.getPredicate().getLocalName(),tri.getObject().getLocalName());
+                    //System.out.println("   Propiedad: "+tri.getPredicate().getLocalName()+"\n   Valor: "+tri.getObject().getLocalName()) ;
+                }
+                if(coincideVuelo(vuelo,propiedades)){
+                    IndividualVueloVO invue = new IndividualVueloVO();
+                    lista.add(invue);
+                }
+            } 
+        }
+        return lista;
+    }
+    
+    //falta la coincidencia de adultos,bebes y ninios y las opciones avanzadas
+    public boolean coincideVuelo(ConsultaVueloVO vuelo, HashMap<String,String> propiedades){
+        boolean b = true;
+        if(!propiedades.containsKey(vuelo.getCiudadDestino())){
+            b = false;
+        }
+        if(!propiedades.containsKey(vuelo.getCiudadOrigen())){
+            b = false;
+        }
+        if(!propiedades.containsKey(vuelo.getFechaIda().toString())){
+            b = false;
+        }
+        if(!propiedades.containsKey(vuelo.getFechaVuelta().toString())){
+            b = false;
+        }
+        return b;
+    }
     
     public DatatypePropertyVO getDatatypeProperty(OntModel m, String pro){
         DatatypePropertyVO vo = new DatatypePropertyVO();

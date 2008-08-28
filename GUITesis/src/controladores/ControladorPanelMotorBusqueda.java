@@ -8,6 +8,7 @@ package controladores;
 import mvcframework.Controlador;
 import mvcframework.ProxyModelo;
 import mvcframework.Vista;
+import vistas.VistaMotorBusqueda;
 
 /**
  *
@@ -18,5 +19,10 @@ public class ControladorPanelMotorBusqueda extends Controlador {
     public ControladorPanelMotorBusqueda(ProxyModelo mod, Vista vis) {
         super(mod, vis);
         // TODO Auto-generated constructor stub
+    }
+    
+    public void doBuscarVuelos(boolean b){
+         ((VistaMotorBusqueda)vista).busquedaVuelos(b);
+        vista.actualizar();
     }
 }
