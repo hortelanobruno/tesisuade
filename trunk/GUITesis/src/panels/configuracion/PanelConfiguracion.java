@@ -6,6 +6,7 @@
 
 package panels.configuracion;
 
+import GUI.DirectoryChooser;
 import gui.FileChooser;
 import gui.FramePrincipal;
 import java.util.Vector;
@@ -19,6 +20,7 @@ public class PanelConfiguracion extends javax.swing.JPanel {
 
     private FramePrincipal main;
     private FileChooser chooser;
+    private DirectoryChooser dirChooser;
     
     /** Creates new form PanelConfiguracion */
     public PanelConfiguracion(FramePrincipal ref) {
@@ -46,7 +48,7 @@ public class PanelConfiguracion extends javax.swing.JPanel {
         textFieldOntVocabulario = new javax.swing.JTextField();
         buttonChangeOntVocabulario = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        textFieldDirOnt = new javax.swing.JTextField();
         buttonChageDirectorioOntologia = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1023, 532));
@@ -107,7 +109,7 @@ public class PanelConfiguracion extends javax.swing.JPanel {
                     .addComponent(textFieldOntVocabulario, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
                     .addComponent(buttonChangeOntVocabulario)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+                    .addComponent(textFieldDirOnt, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
                     .addComponent(buttonChageDirectorioOntologia))
                 .addContainerGap())
         );
@@ -131,7 +133,7 @@ public class PanelConfiguracion extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textFieldDirOnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonChageDirectorioOntologia)
                 .addContainerGap(91, Short.MAX_VALUE))
@@ -158,6 +160,25 @@ public class PanelConfiguracion extends javax.swing.JPanel {
     
     public void initComponents2(){
         listOntologiasViajes.setModel(new DefaultListModel());
+        
+        //carga viajes
+        Vector<String> viajes = main.getConfiguration().getOntologiasViajes();
+        if(viajes != null){
+            DefaultListModel model = (DefaultListModel) listOntologiasViajes.getModel();
+            for(int i=0 ; i<viajes.size() ; i++){
+                model.addElement(viajes.elementAt(i));
+            }
+        }
+        
+        //cargar vocabulario
+        if(main.getConfiguration().getOntologiasVocabulario() != null){
+            String vocabulario = main.getConfiguration().getOntologiasVocabulario().elementAt(0);
+            textFieldOntVocabulario.setText(vocabulario);
+        }
+        
+        //carga directorio de ontologia
+        String dirOnt = main.getConfiguration().getOwlDirectory();
+        textFieldDirOnt.setText(dirOnt);
     }
     
 private void buttonAddOntViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddOntViajesActionPerformed
@@ -168,6 +189,8 @@ private void buttonAddOntViajesActionPerformed(java.awt.event.ActionEvent evt) {
         if(main.getConfiguration().getOntologiasViajes() == null){
             main.getConfiguration().setOntologiasViajes(new Vector<String>());
             main.getConfiguration().getOntologiasViajes().add(chooser.path);
+        }else{
+            main.getConfiguration().getOntologiasViajes().add(chooser.path);
         }
         main.recargarConfiguracion();
     }
@@ -175,14 +198,35 @@ private void buttonAddOntViajesActionPerformed(java.awt.event.ActionEvent evt) {
 
 private void buttonRemoverOntViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverOntViajesActionPerformed
 // TODO add your handling code here:
+    String viaje = listOntologiasViajes.getSelectedValue().toString();
+    main.getConfiguration().getOntologiasViajes().remove(viaje);
+    DefaultListModel model = (DefaultListModel) listOntologiasViajes.getModel();
+    model.removeElement(viaje);
+    main.recargarConfiguracion();
 }//GEN-LAST:event_buttonRemoverOntViajesActionPerformed
 
 private void buttonChangeOntVocabularioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeOntVocabularioActionPerformed
-// TODO add your handling code here:
+    chooser = new FileChooser(this.main, true, this.main.getConfiguration().getOwlDirectory());
+    if (chooser.getButton().equals("Cancel")) {
+    } else {
+        textFieldOntVocabulario.setText(chooser.path);
+        if(main.getConfiguration().getOntologiasVocabulario() == null){
+            main.getConfiguration().setOntologiasVocabulario(new Vector<String>());
+            main.getConfiguration().getOntologiasVocabulario().add(chooser.path);
+        }else{
+            main.getConfiguration().getOntologiasVocabulario().add(chooser.path);
+        }
+        main.recargarConfiguracion();
+    }
 }//GEN-LAST:event_buttonChangeOntVocabularioActionPerformed
 
 private void buttonChageDirectorioOntologiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChageDirectorioOntologiaActionPerformed
-// TODO add your handling code here:
+    dirChooser = new DirectoryChooser(this.main, true);
+    String folder = dirChooser.getPath();
+    textFieldDirOnt.setText(folder);
+    main.getConfiguration().setOwlDirectory(folder);
+    main.recargarConfiguracion();
+ 
 }//GEN-LAST:event_buttonChageDirectorioOntologiaActionPerformed
 
 
@@ -196,8 +240,8 @@ private void buttonChageDirectorioOntologiaActionPerformed(java.awt.event.Action
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JList listOntologiasViajes;
+    private javax.swing.JTextField textFieldDirOnt;
     private javax.swing.JTextField textFieldOntVocabulario;
     // End of variables declaration//GEN-END:variables
 

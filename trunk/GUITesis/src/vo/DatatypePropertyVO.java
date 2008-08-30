@@ -51,8 +51,8 @@ public class DatatypePropertyVO {
             this.range = "Date";
         } else if(range.equalsIgnoreCase("String")){
             this.range = "String";
-        } else if(range.equalsIgnoreCase("Integer")){
-            this.range = "Integer";
+        } else if(range.equalsIgnoreCase("int")){
+            this.range = "Int";
         } else if(range.equalsIgnoreCase("Double")){
             this.range = "Double";
         } else if(range.equalsIgnoreCase("Float")){

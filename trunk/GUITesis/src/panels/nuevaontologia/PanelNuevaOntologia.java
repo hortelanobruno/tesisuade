@@ -718,7 +718,6 @@ public void cargarDatatypeProperty(){
     }
     panel.getListDomain().setModel(model);
     String range = propiedades.getRange();
-    range = range.substring(0, 1).toUpperCase() + range.substring(1);
     panel.getComboBoxRange().setSelectedItem(range);
     
     panelPropertyDefault.add(panel);

@@ -5,17 +5,25 @@
 
 package jenasouforce;
 
+import com.hp.hpl.jena.datatypes.RDFDatatype;
 import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.ontology.DatatypeProperty;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.ObjectProperty;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.ontology.OntResource;
+import com.hp.hpl.jena.ontology.UnionClass;
+import com.hp.hpl.jena.ontology.impl.OntResourceImpl;
+import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.hp.hpl.jena.rdf.model.impl.StatementImpl;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.util.iterator.Filter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -126,14 +134,16 @@ public class ApiJena {
         vo.setName(property.getLocalName());
         vo.setRange(property.getRange().getLocalName());
         ArrayList<String> domain = new ArrayList<String>();
-        Iterator i = m.listClasses().filterDrop(new Filter() { public boolean accept( Object o ) {
-                                return ((Resource) o).isAnon();
-                            }} );
-        while (i.hasNext()) {
-           OntClass cls = ((OntClass) i.next());
-           if(cls.hasProperty(m.getProperty(uri+pro))){
-               domain.add(cls.getLocalName());
-           }
+        OntResource dom = property.getDomain();
+        if(dom.canAs(UnionClass.class)){
+            UnionClass uc = (UnionClass)dom.as(UnionClass.class);
+            ExtendedIterator domainIt= uc.listOperands();
+            while(domainIt.hasNext()){
+                OntClass mc = (OntClass) domainIt.next();
+                domain.add(mc.getLocalName());
+            }
+        }else{
+            domain.add(property.getDomain().getLocalName());
         }
         vo.setDomain(domain);
         return vo;
@@ -154,15 +164,16 @@ public class ApiJena {
         range.add(property.getRange().getLocalName());
         vo.setRange(range);
         ArrayList<String> domain = new ArrayList<String>();
-        //property.getDomain().getLocalName() para uno solo
-        Iterator i = m.listClasses().filterDrop(new Filter() { public boolean accept( Object o ) {
-                                return ((Resource) o).isAnon();
-                            }} );
-        while (i.hasNext()) {
-           OntClass cls = ((OntClass) i.next());
-           if(cls.hasProperty(m.getProperty(uri+pro))){
-               domain.add(cls.getLocalName());
-           }
+        OntResource dom = property.getDomain();
+        if(dom.canAs(UnionClass.class)){
+            UnionClass uc = (UnionClass)dom.as(UnionClass.class);
+            ExtendedIterator domainIt= uc.listOperands();
+            while(domainIt.hasNext()){
+                OntClass mc = (OntClass) domainIt.next();
+                domain.add(mc.getLocalName());
+            }
+        }else{
+            domain.add(property.getDomain().getLocalName());
         }
         vo.setDomain(domain);
         return vo;
@@ -202,56 +213,7 @@ public class ApiJena {
         String uri = getURIOntologia(m);
         uri = uri + "#";
         OntClass clase = m.getOntClass(uri+c);
-//        Iterator it = m.listDatatypeProperties().toList().iterator();
-//        while(it.hasNext()){
-//            DatatypeProperty dp = (DatatypeProperty) it.next();
-//            
-//            if(dp.getDomain().getLocalName() == null){
-//                
-//            }else{
-//                //es el nombre
-//            }
-//            Iterator itDom = dp.listDomain().toList().iterator();
-//            while(itDom.hasNext()){
-//                OntClass dom = (OntClass) itDom.next();
-//                if(dom.getLocalName().equalsIgnoreCase(c)){
-//                    propiedades.add(dp.getLocalName());
-//                }
-//            }
-//        }
-//        Iterator it2 = m.listObjectProperties().toList().iterator();
-//        while(it2.hasNext()){
-//            ObjectProperty dp = (ObjectProperty) it2.next();
-//            Iterator itDom2 = dp.listDomain().toList().iterator();
-//            while(itDom2.hasNext()){
-//                OntClass dom = (OntClass) itDom2.next();
-//                if(dom.getLocalName().equalsIgnoreCase(c)){
-//                    propiedades.add(dp.getLocalName());
-//                }
-//            }
-//        }
-        Iterator it =  clase.listDeclaredProperties()
-                      .filterDrop( new Filter() {
-                                    public boolean accept( Object o ) {
-                                        return ((Resource) o).isAnon();
-                                    }} );
-        Iterator i = clase.listDeclaredProperties().toList().iterator();
-        while (i.hasNext()) {
-           Property pro = ((Property) i.next());
-           propiedades.add(pro.getLocalName());
-        }
-//        for ( StmtIterator sIter = clase.listProperties(); sIter.hasNext() ; )
-//        {
-//            Statement s = (Statement) sIter.next() ;
-//            Triple tri = s.asTriple();
-//            if(tri.getObject().isLiteral()){
-//            	System.out.println("   Propiedad: "+tri.getPredicate().getLocalName()+"\n   Valor: "+tri.getMatchObject().getLiteral().getValue()) ;
-//                propiedades.add(tri.getPredicate().getLocalName());
-//            }else{
-//            	System.out.println("   Propiedad: "+tri.getPredicate().getLocalName()+"\n   Valor: "+tri.getObject().getLocalName()) ;
-//                propiedades.add(tri.getPredicate().getLocalName());
-//            }
-//        }
+        clase.listProperties().toList();
         return propiedades;
     }
     
@@ -262,20 +224,24 @@ public class ApiJena {
         return uri;
     }
     
-    //terminar
+    
     public void removerTraduccion(OntModel m, String ind, String sin){
         String uri = getURIOntologia(m);
         uri = uri + "#";
         Individual individual = m.getIndividual(uri+ind);
-        //individual.removeProperty(m.getProperty(uri+"traduccion"), sin);
+        OntProperty proper = m.getOntProperty(uri+"traduccion");
+        Literal lit = m.createLiteral(sin);
+        individual.removeProperty(proper, lit);
     }
     
-    //terminar
+    
     public void removerSinonimo(OntModel m, String ind, String sin){
         String uri = getURIOntologia(m);
         uri = uri + "#";
         Individual individual = m.getIndividual(uri+ind);
-        //individual.removeProperty(m.getProperty(uri+"sinonimo"), sin);
+        OntProperty proper = m.getOntProperty(uri+"sinonimo");
+        Literal lit = m.createLiteral(sin);
+        individual.removeProperty(proper, lit);
     }
     
     public void agregarTraduccion(OntModel m, String ind, String sin){
