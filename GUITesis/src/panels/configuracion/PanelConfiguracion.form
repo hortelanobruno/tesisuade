@@ -64,7 +64,7 @@
                       <Component id="textFieldOntVocabulario" alignment="0" pref="565" max="32767" attributes="0"/>
                       <Component id="buttonChangeOntVocabulario" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField1" alignment="0" pref="565" max="32767" attributes="0"/>
+                      <Component id="textFieldDirOnt" alignment="0" pref="565" max="32767" attributes="0"/>
                       <Component id="buttonChageDirectorioOntologia" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -92,7 +92,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+                  <Component id="textFieldDirOnt" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="buttonChageDirectorioOntologia" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="91" max="32767" attributes="0"/>
@@ -159,7 +159,7 @@
             <Property name="text" type="java.lang.String" value="Directorio Ontologias"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="textFieldDirOnt">
         </Component>
         <Component class="javax.swing.JButton" name="buttonChageDirectorioOntologia">
           <Properties>

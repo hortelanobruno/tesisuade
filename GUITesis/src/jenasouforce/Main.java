@@ -75,7 +75,7 @@ import java.util.logging.Logger;
 	                                            "file:testing/reasoners/bugs/food.owl" );*/
 
 //	        m.read( "http://www.w3.org/2001/sw/WebOnt/guide-src/wine" );
-	        m = loadOntModelFromOwlFile("C:\\Documents and Settings\\Administrador\\Escritorio\\Tesis\\Ontologias\\Ontologias\\turismoOriginal.owl");
+	        m = loadOntModelFromOwlFile("C:\\Documents and Settings\\Administrador\\Escritorio\\Tesis\\Ontologias\\Ontologias\\vocabulario2.owl");
 	        m.getNsPrefixMap();
                 String uri = m.getNsPrefixMap().get("").toString();
                 

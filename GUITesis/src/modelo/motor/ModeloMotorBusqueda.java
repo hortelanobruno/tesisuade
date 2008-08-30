@@ -48,6 +48,7 @@ public class ModeloMotorBusqueda {
     public void cargarModelos(){
         Vector<String> ontos = config.getOntologiasViajes();
         OntModel m = null;
+        ontologias = new ArrayList<OntModel>();
         for(int i = 0 ; i < ontos.size() ; i++){
             m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
             m = loadOntModelFromOwlFile(ontos.elementAt(i));
