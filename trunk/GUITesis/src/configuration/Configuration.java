@@ -61,7 +61,7 @@ public class Configuration {
         String a = new String();
         String[] aa = urlCompleta.split("\\\\");
         a = a + aa[0];
-        for(int i = 1 ; i < aa.length -1 ; i++){
+        for(int i = 1 ; i < aa.length ; i++){
             a = a + "\\" + aa[i];
         }
         return a;
@@ -72,7 +72,7 @@ public class Configuration {
     }
 
     public void setOwlDirectory(String owlDirectory) {
-        this.owlDirectory = parsearURL(owlDirectory);
+        this.owlDirectory = parsearURL(owlDirectory)+"\\";
     }
 
 }
