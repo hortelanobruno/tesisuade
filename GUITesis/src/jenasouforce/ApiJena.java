@@ -5,7 +5,6 @@
 
 package jenasouforce;
 
-import com.hp.hpl.jena.datatypes.RDFDatatype;
 import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.ontology.DatatypeProperty;
 import com.hp.hpl.jena.ontology.Individual;
@@ -15,22 +14,16 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.ontology.OntResource;
 import com.hp.hpl.jena.ontology.UnionClass;
-import com.hp.hpl.jena.ontology.impl.OntResourceImpl;
 import com.hp.hpl.jena.rdf.model.Literal;
-import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
-import com.hp.hpl.jena.rdf.model.impl.StatementImpl;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.util.iterator.Filter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -213,7 +206,58 @@ public class ApiJena {
         String uri = getURIOntologia(m);
         uri = uri + "#";
         OntClass clase = m.getOntClass(uri+c);
-        clase.listProperties().toList();
+        Iterator i =  m.listObjectProperties()
+                      .filterDrop( new Filter() {
+                                    public boolean accept( Object o ) {
+                                        return ((Resource) o).isAnon();
+                                    }} );
+        while (i.hasNext()) {
+           ObjectProperty pro = ((ObjectProperty) i.next());
+           String obcPro = pro.getLocalName();
+           ArrayList<String> domain = new ArrayList<String>();
+           OntResource dom = pro.getDomain();
+           if(dom.canAs(UnionClass.class)){
+                UnionClass uc = (UnionClass)dom.as(UnionClass.class);
+                ExtendedIterator domainIt= uc.listOperands();
+                while(domainIt.hasNext()){
+                    OntClass mc = (OntClass) domainIt.next();
+                    domain.add(mc.getLocalName());
+                }
+           }else{
+                domain.add(pro.getDomain().getLocalName());
+           }
+           for(int j=0 ; j<domain.size() ; j++){
+               if(domain.get(j).equalsIgnoreCase(c)){
+                   propiedades.add(obcPro);
+               }
+           }
+        }
+        i =  m.listDatatypeProperties()
+                      .filterDrop( new Filter() {
+                                    public boolean accept( Object o ) {
+                                        return ((Resource) o).isAnon();
+                                    }} );
+        while (i.hasNext()) {
+           DatatypeProperty pro = ((DatatypeProperty) i.next());
+           String datPro = pro.getLocalName();
+           ArrayList<String> domain = new ArrayList<String>();
+           OntResource dom = pro.getDomain();
+           if(dom.canAs(UnionClass.class)){
+                UnionClass uc = (UnionClass)dom.as(UnionClass.class);
+                ExtendedIterator domainIt= uc.listOperands();
+                while(domainIt.hasNext()){
+                    OntClass mc = (OntClass) domainIt.next();
+                    domain.add(mc.getLocalName());
+                }
+           }else{
+                domain.add(pro.getDomain().getLocalName());
+           }
+           for(int j=0 ; j < domain.size() ; j++){
+               if(domain.get(j).equalsIgnoreCase(c)){
+                   propiedades.add(datPro);
+               }
+           }
+        }                       
         return propiedades;
     }
     

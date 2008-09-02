@@ -1,3 +1,5 @@
+package varios.components;
+
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.FontMetrics;
@@ -103,80 +105,7 @@ public class IconNodeTreeExample extends JFrame {
   }
 }
 
-class IconNodeRenderer extends DefaultTreeCellRenderer {
 
-  public Component getTreeCellRendererComponent(JTree tree, Object value,
-      boolean sel, boolean expanded, boolean leaf, int row,
-      boolean hasFocus) {
-
-    super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf,
-        row, hasFocus);
-
-    Icon icon = ((IconNode) value).getIcon();
-
-    if (icon == null) {
-      Hashtable icons = (Hashtable) tree.getClientProperty("JTree.icons");
-      String name = ((IconNode) value).getIconName();
-      if ((icons != null) && (name != null)) {
-        icon = (Icon) icons.get(name);
-        if (icon != null) {
-          setIcon(icon);
-        }
-      }
-    } else {
-      setIcon(icon);
-    }
-
-    return this;
-  }
-}
-
-class IconNode extends DefaultMutableTreeNode {
-
-  protected Icon icon;
-
-  protected String iconName;
-
-  public IconNode() {
-    this(null);
-  }
-
-  public IconNode(Object userObject) {
-    this(userObject, true, null);
-  }
-
-  public IconNode(Object userObject, boolean allowsChildren, Icon icon) {
-    super(userObject, allowsChildren);
-    this.icon = icon;
-  }
-
-  public void setIcon(Icon icon) {
-    this.icon = icon;
-  }
-
-  public Icon getIcon() {
-    return icon;
-  }
-
-  public String getIconName() {
-    if (iconName != null) {
-      return iconName;
-    } else {
-      String str = userObject.toString();
-      int index = str.lastIndexOf(".");
-      if (index != -1) {
-        return str.substring(++index);
-      } else {
-        return null;
-      }
-    }
-  }
-
-  public void setIconName(String name) {
-    iconName = name;
-  }
-
-}
 
 class TextIcons extends MetalIconFactory.TreeLeafIcon {
 
