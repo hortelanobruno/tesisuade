@@ -1,0 +1,9 @@
+<configuration>
+  <ontologiasViajes>
+    <string>C:\Documents and Settings\Administrador\Mis documentos\workspace\NetBeans\GUITesis\src\owl\turismoOriginal.owl</string>
+  </ontologiasViajes>
+  <ontologiasVocabulario/>
+  <defaultURLOWLSinonimos></defaultURLOWLSinonimos>
+  <defaultURLOWLViajes></defaultURLOWLViajes>
+  <owlDirectory>C:\Documents and Settings\Administrador\Mis documentos\workspace\NetBeans\GUITesis\src\owl\</owlDirectory>
+</configuration>
