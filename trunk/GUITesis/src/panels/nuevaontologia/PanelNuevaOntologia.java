@@ -620,6 +620,7 @@ private void cargarPanelClases(){
     abuelo = new DefaultMutableTreeNode("Classes");
     modelo = new DefaultTreeModel(abuelo);
     treeClasses = new JTree(modelo);
+    
     HashMap<String,String> mapaClases = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).showClasses();
     
     Set<Entry<String,String>> setClases = mapaClases.entrySet();
