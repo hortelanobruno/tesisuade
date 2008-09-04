@@ -51,6 +51,10 @@ public class ModeloOntologiaViajes {
     public void nuevaOntologia() {
         m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
     }
+
+    public void removeObjectProperty(String property) {
+        jena.removeObjectProperty(m,property);
+    }
     
     private OntModel loadOntModelFromOwlFile(String owlfile) {
         OntModel ontmodel = null;

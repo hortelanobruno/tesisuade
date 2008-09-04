@@ -70,10 +70,15 @@ public class FramePrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         itemsToolBar = new javax.swing.JToolBar();
+        buttonBuscarVuelo = new javax.swing.JButton();
+        buttonBuscarHotel = new javax.swing.JButton();
+        buttonBuscarAuto = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JToolBar.Separator();
+        jSeparator4 = new javax.swing.JToolBar.Separator();
+        buttonSetting = new javax.swing.JButton();
         statusToolBar = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         panelPrincipal = new javax.swing.JPanel();
@@ -97,11 +102,31 @@ public class FramePrincipal extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem10 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Asistente de Viajes");
 
         itemsToolBar.setFloatable(false);
+
+        buttonBuscarVuelo.setText("BV");
+        buttonBuscarVuelo.setFocusable(false);
+        buttonBuscarVuelo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        buttonBuscarVuelo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        itemsToolBar.add(buttonBuscarVuelo);
+
+        buttonBuscarHotel.setText("BH");
+        buttonBuscarHotel.setFocusable(false);
+        buttonBuscarHotel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        buttonBuscarHotel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        itemsToolBar.add(buttonBuscarHotel);
+
+        buttonBuscarAuto.setText("BA");
+        buttonBuscarAuto.setFocusable(false);
+        buttonBuscarAuto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        buttonBuscarAuto.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        itemsToolBar.add(buttonBuscarAuto);
+        itemsToolBar.add(jSeparator2);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/protege/project.new.gif"))); // NOI18N
         jButton2.setFocusable(false);
@@ -120,7 +145,13 @@ public class FramePrincipal extends javax.swing.JFrame {
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         itemsToolBar.add(jButton4);
-        itemsToolBar.add(jSeparator2);
+        itemsToolBar.add(jSeparator4);
+
+        buttonSetting.setText("Setting");
+        buttonSetting.setFocusable(false);
+        buttonSetting.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        buttonSetting.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        itemsToolBar.add(buttonSetting);
 
         statusToolBar.setFloatable(false);
 
@@ -251,6 +282,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         menuBar.add(jMenu6);
 
         jMenu3.setText("Help");
+
+        jMenuItem10.setText("Ayuda");
+        jMenu3.add(jMenuItem10);
+
         menuBar.add(jMenu3);
 
         setJMenuBar(menuBar);
@@ -607,6 +642,10 @@ private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         }
     }// Termina el kilombo del progressbar
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonBuscarAuto;
+    private javax.swing.JButton buttonBuscarHotel;
+    private javax.swing.JButton buttonBuscarVuelo;
+    private javax.swing.JButton buttonSetting;
     private javax.swing.JToolBar itemsToolBar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -620,6 +659,7 @@ private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -632,6 +672,7 @@ private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JToolBar statusToolBar;

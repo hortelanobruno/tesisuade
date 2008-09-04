@@ -18,13 +18,13 @@ import vo.busqueda.IndividualVueloVO;
 public class BusinessDelegate extends ProxyModelo 
 {
 
-    private ModeloOntologiaVocabulario modOntologiaVocabulario;
+    private ModeloOntologiaVocabulario modeloOntologiaVocabulario;
     private ModeloOntologiaViajes modeloOntologiaViajes;
     private ModeloMotorBusqueda modeloMotorBusqueda;
     private Configuration conf;
     
     public BusinessDelegate() {
-        modOntologiaVocabulario = new ModeloOntologiaVocabulario();
+        modeloOntologiaVocabulario = new ModeloOntologiaVocabulario();
         modeloOntologiaViajes = new ModeloOntologiaViajes();
         modeloMotorBusqueda = new ModeloMotorBusqueda();
     }
@@ -51,6 +51,10 @@ public class BusinessDelegate extends ProxyModelo
         return modeloOntologiaViajes.ClassProperty(clase);
     }
     
+    public void removeObjectProperty(String property){
+        modeloOntologiaViajes.removeObjectProperty(property);
+    }
+    
     public List<String> showDatatypeProperties(){
         return modeloOntologiaViajes.showDatatypeProperties();
     }
@@ -60,29 +64,29 @@ public class BusinessDelegate extends ProxyModelo
     }
     
     public void removerTraduccion(String ins, String sin){
-        modOntologiaVocabulario.removerTraduccion(ins,sin);
+        modeloOntologiaVocabulario.removerTraduccion(ins,sin);
     }
     
     public void removerSinonimo(String ins, String sin){
-        modOntologiaVocabulario.removerSinonimo(ins,sin);
+        modeloOntologiaVocabulario.removerSinonimo(ins,sin);
     }
     
     public void agregarTraduccion(String instancia, String sin){
-        modOntologiaVocabulario.agregarTraduccion(instancia,sin);
+        modeloOntologiaVocabulario.agregarTraduccion(instancia,sin);
     }
     public void agregarSinonimo(String instancia, String sin){
-        modOntologiaVocabulario.addSinonimo(instancia,sin);
+        modeloOntologiaVocabulario.addSinonimo(instancia,sin);
     }
     public List<String> obtenerInstanciasVocabuario(String url){
-        return modOntologiaVocabulario.getInstancias(url);
+        return modeloOntologiaVocabulario.getInstancias(url);
     }
     
     public void guardarOntologiaSinonimos(){
-        modOntologiaVocabulario.guardarOntologiaSinonimo();
+        modeloOntologiaVocabulario.guardarOntologiaSinonimo();
     }
     
     public IndividualSinonimoVO obtenerIndividual(String ind){
-        return modOntologiaVocabulario.getIndividual(ind);
+        return modeloOntologiaVocabulario.getIndividual(ind);
     }
     
     public void nuevaOntologia(){
