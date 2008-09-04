@@ -17,6 +17,7 @@ public class DirectoryChooser extends javax.swing.JDialog {
     /** Creates new form DirectoryChooser */
     private String path;
 
+    
     public DirectoryChooser(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
