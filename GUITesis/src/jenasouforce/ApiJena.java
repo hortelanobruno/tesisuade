@@ -200,7 +200,7 @@ public class ApiJena {
         return propiedades;
     }
     
-    //Terminar, no agarra todas las properties
+    
     public List<String> getProperty(OntModel m, String c){
         ArrayList<String> propiedades = new ArrayList<String>();
         String uri = getURIOntologia(m);
@@ -266,6 +266,13 @@ public class ApiJena {
         String uri = m.getNsPrefixMap().values().iterator().next().toString();
         uri = uri.substring(0, uri.length() -1);
         return uri;
+    }
+
+    //Testear
+    public void removeObjectProperty(OntModel m, String property) {
+        String uri = getURIOntologia(m);
+        uri = uri + "#";
+        m.getOntProperty(uri+property).remove();   
     }
     
     

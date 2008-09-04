@@ -109,8 +109,8 @@ import java.util.logging.Logger;
 //                
 //                m.write(fileout,"RDF/XML-ABBREV");
                 ClassHierarchy classh = new ClassHierarchy();
-	        classh.showHierarchy2( System.out, m );
-	        
+	        //classh.showHierarchy2( System.out, m );
+	        m.getOntClass(uri+"palabra").remove();
 	        classh.showHierarchy( System.out, m );
 		}
 		
