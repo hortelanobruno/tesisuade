@@ -48,17 +48,17 @@ public class DatatypePropertyVO {
 
     public void setRange(String range) {
         if(range.equalsIgnoreCase("Date")){
-            this.range = "Date";
+            this.range = "date";
         } else if(range.equalsIgnoreCase("String")){
-            this.range = "String";
+            this.range = "string";
         } else if(range.equalsIgnoreCase("int")){
-            this.range = "Int";
+            this.range = "int";
         } else if(range.equalsIgnoreCase("Double")){
-            this.range = "Double";
+            this.range = "double";
         } else if(range.equalsIgnoreCase("Float")){
-            this.range = "Float";
+            this.range = "float";
         } else if(range.equalsIgnoreCase("Boolean")){
-            this.range = "Boolean";
+            this.range = "boolean";
         }
     }
 

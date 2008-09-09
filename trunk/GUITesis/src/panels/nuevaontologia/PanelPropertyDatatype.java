@@ -57,7 +57,7 @@ public class PanelPropertyDatatype extends javax.swing.JPanel {
 
         jLabel3.setText("Range");
 
-        comboBoxRange.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "String", "Int", "Double", "Float", "Boolean" }));
+        comboBoxRange.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "date", "string", "int", "double", "float", "boolean" }));
         comboBoxRange.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxRangeActionPerformed(evt);

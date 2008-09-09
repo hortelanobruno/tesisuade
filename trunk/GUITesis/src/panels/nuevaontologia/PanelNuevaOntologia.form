@@ -856,11 +856,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddIndividualActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="buttonRemoveIndividual">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Rem"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRemoveIndividualActionPerformed"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="panelAddIndividual">
 
@@ -903,11 +909,17 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Ad"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonOkIndividualActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonCancelIndividual">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Ca"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCancelIndividualActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

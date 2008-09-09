@@ -573,18 +573,38 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                     .addComponent(textFieldNombreIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE))
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))
         );
 
         buttonAddIndividual.setText("Add");
+        buttonAddIndividual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAddIndividualActionPerformed(evt);
+            }
+        });
 
         buttonRemoveIndividual.setText("Rem");
+        buttonRemoveIndividual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRemoveIndividualActionPerformed(evt);
+            }
+        });
 
         jLabel13.setText("Nombre");
 
         buttonOkIndividual.setText("Ad");
+        buttonOkIndividual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonOkIndividualActionPerformed(evt);
+            }
+        });
 
         buttonCancelIndividual.setText("Ca");
+        buttonCancelIndividual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelIndividualActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelAddIndividualLayout = new javax.swing.GroupLayout(panelAddIndividual);
         panelAddIndividual.setLayout(panelAddIndividualLayout);
@@ -655,8 +675,8 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(panelAddIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE))
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE))))
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE))
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))))
                 .addGap(26, 26, 26))
         );
 
@@ -685,6 +705,7 @@ private void initComponents2(){
     panelAgregarNombre.setVisible(false);
     panelAddDatatypeProperty.setVisible(false);
     panelAddObjectProperty.setVisible(false);
+    panelAddIndividual.setVisible(false);
     mapaNodos = new HashMap<String, DefaultMutableTreeNode>();
     
     ImageIcon leafIcon = new ImageIcon("iconos/protege/TreeBold.gif");
@@ -752,33 +773,35 @@ public void update() {
 
 
 public void cargarIndividual(){
-    String ind = listIndividuals.getSelectedValue().toString();
-    IndividualViajesVO indVO = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).obtenerIndividualViajes(ind);
-    textFieldNombreIndividual.setText(indVO.getNombre());
-    
-    HashMap<String,HashMap<String,String>> datatypeProperties = indVO.getDatatypeProperties();
-    //nombrepropiedad,valor,tipo
-    for(int i=0; i< datatypeProperties.size() ; i++){
-        HashMap<String,String> propiedad = datatypeProperties.get(i);
-        String nombre = (String) datatypeProperties.keySet().toArray()[i];
-        PanelIndividualDatatypeProperty panelData = new PanelIndividualDatatypeProperty();
-        panelData.getLabelNombrePropiedad().setText(nombre);
-        panelData.getComboBoxType().setSelectedItem(propiedad.get(0));
-        panelData.getTextFieldValorProperty().setText((String) propiedad.keySet().toArray()[0]);
-        panelIndividualProperties.add(panelData);
+    if(!listIndividuals.isSelectionEmpty()){
+         String ind = listIndividuals.getSelectedValue().toString();
+        IndividualViajesVO indVO = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).obtenerIndividualViajes(ind);
+        textFieldNombreIndividual.setText(indVO.getNombre());
+        panelIndividualProperties.removeAll();
+        HashMap<String,HashMap<String,String>> datatypeProperties = indVO.getDatatypeProperties();
+        Set<String> keys = datatypeProperties.keySet();
+        //nombrepropiedad,valor,tipo
+        for(int i=0; i< datatypeProperties.size() ; i++){
+            HashMap<String,String> propiedad = datatypeProperties.get(keys.toArray()[i]);
+            String nombre = (String) datatypeProperties.keySet().toArray()[i];
+            PanelIndividualDatatypeProperty panelData = new PanelIndividualDatatypeProperty();
+            panelData.getLabelNombrePropiedad().setText(nombre);
+            panelData.getComboBoxType().setSelectedItem(propiedad.values().toArray()[0]);
+            panelData.getTextFieldValorProperty().setText((String) propiedad.keySet().toArray()[0]);
+            panelIndividualProperties.add(panelData);
+        }
+
+        HashMap<String,String> objectProperties = indVO.getObjectProperties();
+        //nombrepropiedad,valor,range
+        for(int i=0 ; i < objectProperties.size() ; i++){
+            String nombre = (String) objectProperties.keySet().toArray()[i];
+            String valor = (String) objectProperties.values().toArray()[i];
+            PanelIndividualObjectProperty panelObj = new PanelIndividualObjectProperty();
+            panelObj.getLabelNombrePropiedad().setText(nombre);
+            panelObj.getTextFieldValorPropiedad().setText(valor);
+            panelIndividualProperties.add(panelObj);
+        }   
     }
-    
-    HashMap<String,String> objectProperties = indVO.getObjectProperties();
-    //nombrepropiedad,valor,range
-    for(int i=0 ; i < objectProperties.size() ; i++){
-        String nombre = (String) objectProperties.keySet().toArray()[i];
-        String valor = objectProperties.get(i);
-        PanelIndividualObjectProperty panelObj = new PanelIndividualObjectProperty();
-        panelObj.getLabelNombrePropiedad().setText(nombre);
-        panelObj.getTextFieldValorPropiedad().setText(valor);
-        panelIndividualProperties.add(panelObj);
-    }
-    
 }
 
 
@@ -897,6 +920,39 @@ private void listIndividualsValueChanged(javax.swing.event.ListSelectionEvent ev
     ((ControladorPanelNuevaOntologia) getVistaNuevaOntologia().getControlador()).doCargarIndividual(true);
 }//GEN-LAST:event_listIndividualsValueChanged
 
+private void buttonOkIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkIndividualActionPerformed
+   String ind = textFieldAddIndividual.getText();
+   String clase = treeClasses2.getSelectionPath().getLastPathComponent().toString();
+   if(!ind.isEmpty()){
+        ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).addIndividual(ind,clase);
+        DefaultListModel model = (DefaultListModel) listIndividuals.getModel();
+        model.addElement(ind);
+        panelAddIndividual.setVisible(false);
+        textFieldAddIndividual.setText("");
+   }
+}//GEN-LAST:event_buttonOkIndividualActionPerformed
+
+private void buttonAddIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddIndividualActionPerformed
+    panelAddIndividual.setVisible(true);
+}//GEN-LAST:event_buttonAddIndividualActionPerformed
+
+private void buttonRemoveIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveIndividualActionPerformed
+    panelAddIndividual.setVisible(false);
+    DefaultListModel model = (DefaultListModel) listIndividuals.getModel();
+    if(!listIndividuals.isSelectionEmpty()){
+        int aux = listIndividuals.getSelectedIndex();
+        String nombre = model.getElementAt(aux).toString();
+        model.removeElementAt(aux);
+        ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).removeIndividual(nombre);
+        model.removeElementAt(aux);
+    }
+}//GEN-LAST:event_buttonRemoveIndividualActionPerformed
+
+private void buttonCancelIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelIndividualActionPerformed
+    panelAddIndividual.setVisible(false);
+    textFieldAddIndividual.setText("");
+}//GEN-LAST:event_buttonCancelIndividualActionPerformed
+
 private void buttonCargarActionPerformed(javax.swing.event.TreeSelectionEvent evt) {
     this.eventoTree = evt;
     if(!eventoTree.getPath().getLastPathComponent().toString().equals("Classes")){
@@ -911,7 +967,7 @@ private void buttonCargarInstanciasActionPerformed(javax.swing.event.TreeSelecti
         String clase = eventoTree.getPath().getLastPathComponent().toString();
         ArrayList<String> individuals = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).listIndividuals(clase);
         DefaultListModel model = (DefaultListModel) listIndividuals.getModel();
-        model.removeAllElements();
+        model.clear();
         for(int i=0 ; i<individuals.size() ; i++){
             model.addElement(individuals.get(i));
         }

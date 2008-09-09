@@ -48,6 +48,10 @@ public class ModeloOntologiaViajes {
         jena.addDomain(m,pro,domain);
     }
 
+    public void addIndividual(String ind,String clase) {
+        jena.addIndividual(m,ind,clase);
+    }
+
     public void addObjectProperty(String obj) {
         jena.addObjectProperty(m,obj);
     }
@@ -100,6 +104,10 @@ public class ModeloOntologiaViajes {
 
     public void removeDomain(String pro, String domain) {
         jena.removeDomain(m,pro,domain);
+    }
+
+    public void removeIndividual(String ind) {
+        jena.removeIndividual(m,ind);
     }
 
     public void removeObjectProperty(String property) {
