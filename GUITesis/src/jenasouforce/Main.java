@@ -25,7 +25,9 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.util.iterator.Filter;
@@ -105,12 +107,23 @@ public class Main {
 //                }
 //                
 //                m.write(fileout,"RDF/XML-ABBREV");
-        
 
+
+        OntClass clase = m.getOntClass(uri+"NESTOR");
+        Individual ind = m.createIndividual("instancia2",clase);
+        Property pro = m.getProperty(uri+"propiedad1");
+        Literal v= m.createTypedLiteral(10);
+        ind.setPropertyValue(pro,v);
+        
+        Property pro2 = m.getProperty(uri+"objectProperty_3");
+        Individual ind2 = m.getIndividual(uri+"instancia1");
+        
+        ind.setPropertyValue(pro2, ind2);
+        
         ClassHierarchy classh = new ClassHierarchy();
         classh.showHierarchy2( System.out, m );
         //Remover una clase FUNCA
-        classh.showHierarchy( System.out, m );
+        //classh.showHierarchy( System.out, m );
         //m.getOntClass(uri+"palabra").remove();
         //classh.showHierarchy( System.out, m );
         //Remover una propiedad, si esta propiedad esta en alguna clase desaparece FUNCA
@@ -120,6 +133,7 @@ public class Main {
         //
         //m.getOntClass(uri+"NESTOR").remove();
         //m.getIndividual(uri+"instancia1").remove();
+        
 //                System.out.println("removiiiiiiii");
 //                List<String>    ind = showIndividuals(m);
 //                for(int j=0 ; j < ind.size() ; j++){
