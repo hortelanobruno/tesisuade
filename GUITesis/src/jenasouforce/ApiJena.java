@@ -56,6 +56,12 @@ public class ApiJena {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
+    public void addIndividual(OntModel m, String ind, String cla) {
+        String uri = getURIOntologiaConNumeral(m);
+        OntClass clase = m.getOntClass(uri+cla);
+        m.createIndividual(ind, clase);
+    }
+
     public void addObjectProperty(OntModel m, String obj) {
         String uri = getURIOntologia(m);
         m.createObjectProperty(uri + obj);
@@ -295,6 +301,12 @@ public class ApiJena {
         uri = uri.substring(0, uri.length() - 1);
         return uri;
     }
+    
+    public String getURIOntologiaConNumeral(OntModel m) {
+        String uri = m.getNsPrefixMap().values().iterator().next().toString();
+        uri = uri.substring(0, uri.length());
+        return uri;
+    }
 
     public ArrayList<String> listIndividuals(OntModel m, String clase) {
         ArrayList<String> individuals = new ArrayList<String>();
@@ -328,7 +340,7 @@ public class ApiJena {
 
     public IndividualViajesVO obtenerIndividualViajes(OntModel m, String ind) {
         IndividualViajesVO indViajes = new IndividualViajesVO();
-        String uri = getURIOntologia(m);
+        String uri = getURIOntologiaConNumeral(m);
         Individual individual = m.getIndividual(uri+ind);
         indViajes.setNombre(individual.getLocalName());
         HashMap<String,String> objectProperties = new HashMap<String,String>();
@@ -339,14 +351,15 @@ public class ApiJena {
             Triple tri = s.asTriple();
             if(tri.getObject().isLiteral()){
                 HashMap<String,String> datosDatatype = new HashMap<String,String>();
-                String[] tipo = tri.getObject().getLiteralDatatype().getJavaClass().getName().split(".");
+                String[] tipo = tri.getObject().getLiteralDatatype().getURI().split("#");
                 datosDatatype.put(tri.getMatchObject().getLiteral().getValue().toString() , tipo[tipo.length-1]);
                 String nombre = tri.getPredicate().getLocalName();
                 datatypeProperties.put(nombre, datosDatatype);
             }else{
                 String valor = tri.getObject().getLocalName();
                 String nombre = tri.getPredicate().getLocalName();
-                objectProperties.put(nombre, valor);
+                if(!nombre.equalsIgnoreCase("type"))
+                    objectProperties.put(nombre, valor);
             }
         }
         indViajes.setDatatypeProperties(datatypeProperties);
@@ -367,6 +380,11 @@ public class ApiJena {
 
     public void removeDomain(OntModel m, String pro, String domain) {
         throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    public void removeIndividual(OntModel m, String ind) {
+        String uri = getURIOntologiaConNumeral(m);
+        m.getIndividual(uri+ind).remove();
     }
 
     public void removeObjectProperty(OntModel m, String property) {

@@ -36,7 +36,15 @@ public class BusinessDelegate extends ProxyModelo
         modeloMotorBusqueda.setConfig(conf);
         modeloMotorBusqueda.cargarModelos();
     }
+    
+    public void addIndividual(String ind,String clase){
+        modeloOntologiaViajes.addIndividual(ind,clase);
+    }
 
+    public void removeIndividual(String ind){
+        modeloOntologiaViajes.removeIndividual(ind);
+    }
+    
     public ArrayList<String> listIndividuals(String clase){
        return modeloOntologiaViajes.listIndividuals(clase);
     }
