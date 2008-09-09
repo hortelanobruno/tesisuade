@@ -11,7 +11,7 @@ package panels.nuevaontologia;
  * @author  Admin
  */
 public class PanelIndividualObjectProperty extends javax.swing.JPanel {
-
+    
     /** Creates new form PanelIndividualObjectProperty */
     public PanelIndividualObjectProperty() {
         initComponents();
@@ -67,5 +67,29 @@ public class PanelIndividualObjectProperty extends javax.swing.JPanel {
     private javax.swing.JLabel labelNombrePropiedad;
     private javax.swing.JTextField textFieldValorPropiedad;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JButton getJButton1() {
+        return jButton1;
+    }
+
+    public void setJButton1(javax.swing.JButton jButton1) {
+        this.jButton1 = jButton1;
+    }
+
+    public javax.swing.JLabel getLabelNombrePropiedad() {
+        return labelNombrePropiedad;
+    }
+
+    public void setLabelNombrePropiedad(javax.swing.JLabel labelNombrePropiedad) {
+        this.labelNombrePropiedad = labelNombrePropiedad;
+    }
+
+    public javax.swing.JTextField getTextFieldValorPropiedad() {
+        return textFieldValorPropiedad;
+    }
+
+    public void setTextFieldValorPropiedad(javax.swing.JTextField textFieldValorPropiedad) {
+        this.textFieldValorPropiedad = textFieldValorPropiedad;
+    }
 
 }

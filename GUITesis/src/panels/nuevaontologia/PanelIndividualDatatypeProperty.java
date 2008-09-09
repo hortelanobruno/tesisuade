@@ -68,4 +68,28 @@ public class PanelIndividualDatatypeProperty extends javax.swing.JPanel {
     private javax.swing.JTextField textFieldValorProperty;
     // End of variables declaration//GEN-END:variables
 
+    public javax.swing.JComboBox getComboBoxType() {
+        return comboBoxType;
+    }
+
+    public void setComboBoxType(javax.swing.JComboBox comboBoxType) {
+        this.comboBoxType = comboBoxType;
+    }
+
+    public javax.swing.JLabel getLabelNombrePropiedad() {
+        return labelNombrePropiedad;
+    }
+
+    public void setLabelNombrePropiedad(javax.swing.JLabel labelNombrePropiedad) {
+        this.labelNombrePropiedad = labelNombrePropiedad;
+    }
+
+    public javax.swing.JTextField getTextFieldValorProperty() {
+        return textFieldValorProperty;
+    }
+
+    public void setTextFieldValorProperty(javax.swing.JTextField textFieldValorProperty) {
+        this.textFieldValorProperty = textFieldValorProperty;
+    }
+
 }

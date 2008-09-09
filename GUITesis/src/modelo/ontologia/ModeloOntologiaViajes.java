@@ -14,10 +14,12 @@ import com.hp.hpl.jena.reasoner.dig.DIGReasonerFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import jenasouforce.ApiJena;
 import vo.DatatypePropertyVO;
+import vo.IndividualViajesVO;
 import vo.ObjectPropertyVO;
 
 /**
@@ -37,6 +39,22 @@ public class ModeloOntologiaViajes {
     public List<String> ClassProperty(String clase){
         return jena.getProperty(m,clase);
     }
+
+    public void addDatatypeProperty(String obj) {
+        jena.addDatatypeProperty(m,obj);
+    }
+
+    public void addDomain(String pro, String domain) {
+        jena.addDomain(m,pro,domain);
+    }
+
+    public void addObjectProperty(String obj) {
+        jena.addObjectProperty(m,obj);
+    }
+
+    public void addRange(String pro, String range) {
+        jena.addRange(m,pro,range);
+    }
     
     //Aca agregue el rasonador, testearlo.
     public void cargarOntologia(String url){
@@ -48,12 +66,48 @@ public class ModeloOntologiaViajes {
         m = loadOntModelFromOwlFile(url);
     }
 
+    public void changeNameDatatypeProperty(String old, String name) {
+        jena.changeNameDatatypeProperty(m,old,name);
+    }
+
+    public void changeNameObjectProperty(String old, String name) {
+        jena.changeNameObjectProperty(m,old,name);
+    }
+
+    public void changeRange(String pro, String range) {
+        jena.changeRange(m,pro,range);
+    }
+
+    public ArrayList<String> listIndividuals(String clase) {
+        return jena.listIndividuals(m,clase);
+    }
+
     public void nuevaOntologia() {
         m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
     }
 
+    public IndividualViajesVO obtenerIndividual(String ind) {
+        return jena.obtenerIndividualViajes(m,ind);
+    }
+
+    public void removeClass(String clase) {
+        jena.removeClass(m,clase);
+    }
+
+    public void removeDatatypeProperty(String obj) {
+        jena.removeDatatypeProperty(m,obj);
+    }
+
+    public void removeDomain(String pro, String domain) {
+        jena.removeDomain(m,pro,domain);
+    }
+
     public void removeObjectProperty(String property) {
         jena.removeObjectProperty(m,property);
+    }
+
+    public void removeRange(String pro, String range) {
+        jena.removeRange(m,pro,range);
     }
     
     private OntModel loadOntModelFromOwlFile(String owlfile) {

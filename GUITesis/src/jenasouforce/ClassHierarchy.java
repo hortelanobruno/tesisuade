@@ -154,8 +154,11 @@ public class ClassHierarchy {
             Statement s = (Statement) sIter.next() ;
             Triple tri = s.asTriple();
             if(tri.getObject().isLiteral()){
-            	System.out.println("   Propiedad: "+tri.getPredicate().getLocalName()+"\n   Valor: "+tri.getMatchObject().getLiteral().getValue()) ;
+            	System.out.println("DATATYPE");
+                System.out.println("   Propiedad: "+tri.getPredicate().getLocalName()+"\n   Valor: "+tri.getMatchObject().getLiteral().getValue()) ;
+                System.out.println(tri.getObject().getLiteralDatatype().getJavaClass().getName());
             }else{
+                System.out.println("OBJECT");
             	System.out.println("   Propiedad: "+tri.getPredicate().getLocalName()+"\n   Valor: "+tri.getObject().getLocalName()) ;
             }
         }
