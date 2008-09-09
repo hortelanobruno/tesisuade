@@ -21,6 +21,11 @@ public class ControladorPanelNuevaOntologia extends Controlador{
         // TODO Auto-generated constructor stub
     }
     
+    public void doCargarIndividual(boolean b){
+        ((VistaNuevaOntologia)vista).cargarIndividual(b);
+        vista.actualizar();
+    }
+    
     public void doCargarObjectProperty(boolean b){
         ((VistaNuevaOntologia)vista).cargarObjectProperty(b);
         vista.actualizar();

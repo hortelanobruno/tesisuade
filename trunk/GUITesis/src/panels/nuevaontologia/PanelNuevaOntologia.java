@@ -10,6 +10,7 @@ package panels.nuevaontologia;
 import controladores.ControladorPanelNuevaOntologia;
 import gui.FramePrincipal;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -29,6 +30,7 @@ import modelo.BusinessDelegate;
 import varios.Constantes;
 import vistas.VistaNuevaOntologia;
 import vo.DatatypePropertyVO;
+import vo.IndividualViajesVO;
 import vo.ObjectPropertyVO;
 
 /**
@@ -46,6 +48,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
     private boolean cargarClase;
     private boolean cargarObjectProperty;
     private boolean cargarDatatypeProperty;
+    private boolean cargarIndividual;
     private TreeSelectionEvent eventoTree;
     private DefaultTreeModel modelo;
     private DefaultMutableTreeNode abuelo;
@@ -83,9 +86,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         textFieldClassName = new javax.swing.JTextField();
         buttonRemoverClass = new javax.swing.JButton();
@@ -132,6 +133,13 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
         textFieldNombreIndividual = new javax.swing.JTextField();
         jScrollPane7 = new javax.swing.JScrollPane();
         panelIndividualProperties = new javax.swing.JPanel();
+        buttonAddIndividual = new javax.swing.JButton();
+        buttonRemoveIndividual = new javax.swing.JButton();
+        panelAddIndividual = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        textFieldAddIndividual = new javax.swing.JTextField();
+        buttonOkIndividual = new javax.swing.JButton();
+        buttonCancelIndividual = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1023, 532));
 
@@ -171,16 +179,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
 
         jButton1.setText("Remove");
 
-        jButton2.setText("Create OP");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         jButton3.setText("Add P");
-
-        jButton4.setText("Create DP");
 
         jLabel4.setText("Class");
 
@@ -259,21 +258,16 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                         .addGap(39, 39, 39)
                         .addGroup(panelClassesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelClassesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(panelClassesLayout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addGap(34, 34, 34)
-                                    .addComponent(textFieldClassName))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelClassesLayout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(58, 58, 58)
-                                    .addComponent(jButton2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jButton4)
-                                    .addGap(6, 6, 6)
-                                    .addComponent(jButton3)
-                                    .addGap(6, 6, 6)
-                                    .addComponent(jButton1)))))
+                            .addGroup(panelClassesLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(34, 34, 34)
+                                .addComponent(textFieldClassName, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelClassesLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(52, 52, 52)
+                                .addComponent(jButton3)
+                                .addGap(6, 6, 6)
+                                .addComponent(jButton1))))
                     .addGroup(panelClassesLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(panelAgregarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -300,10 +294,8 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                         .addGap(68, 68, 68)
                         .addGroup(panelClassesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jButton2)
                             .addComponent(jButton1)
-                            .addComponent(jButton3)
-                            .addComponent(jButton4))
+                            .addComponent(jButton3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -336,8 +328,18 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
         });
 
         buttonCancelObjectProperty.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/protege/cancel.gif"))); // NOI18N
+        buttonCancelObjectProperty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelObjectPropertyActionPerformed(evt);
+            }
+        });
 
         buttonOkObjectProperty.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/protege/ok.gif"))); // NOI18N
+        buttonOkObjectProperty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonOkObjectPropertyActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("Nombre");
 
@@ -411,6 +413,11 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
         jScrollPane4.setViewportView(listPropertiesDatatype);
 
         jButton7.setText("RDP");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         buttonAddDatatypeProperty.setText("ADP");
         buttonAddDatatypeProperty.addActionListener(new java.awt.event.ActionListener() {
@@ -420,8 +427,18 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
         });
 
         buttonOkDatatypeProperty.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/protege/ok.gif"))); // NOI18N
+        buttonOkDatatypeProperty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonOkDatatypePropertyActionPerformed(evt);
+            }
+        });
 
         buttonCancelDatatypeProperty.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/protege/cancel.gif"))); // NOI18N
+        buttonCancelDatatypeProperty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelDatatypePropertyActionPerformed(evt);
+            }
+        });
 
         jLabel12.setText("Nombre");
 
@@ -522,6 +539,11 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
         jLabel9.setText("Individuals");
 
         listIndividuals.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listIndividuals.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listIndividualsValueChanged(evt);
+            }
+        });
         jScrollPane6.setViewportView(listIndividuals);
 
         jLabel10.setText("Individual");
@@ -536,23 +558,56 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
             .addGroup(panelIndividualDataLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(panelIndividualDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelIndividualDataLayout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(50, 50, 50)
-                        .addComponent(textFieldNombreIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(textFieldNombreIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         panelIndividualDataLayout.setVerticalGroup(
             panelIndividualDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelIndividualDataLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addContainerGap()
                 .addGroup(panelIndividualDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldNombreIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE))
+        );
+
+        buttonAddIndividual.setText("Add");
+
+        buttonRemoveIndividual.setText("Rem");
+
+        jLabel13.setText("Nombre");
+
+        buttonOkIndividual.setText("Ad");
+
+        buttonCancelIndividual.setText("Ca");
+
+        javax.swing.GroupLayout panelAddIndividualLayout = new javax.swing.GroupLayout(panelAddIndividual);
+        panelAddIndividual.setLayout(panelAddIndividualLayout);
+        panelAddIndividualLayout.setHorizontalGroup(
+            panelAddIndividualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAddIndividualLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textFieldAddIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonOkIndividual)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonCancelIndividual)
                 .addContainerGap())
+        );
+        panelAddIndividualLayout.setVerticalGroup(
+            panelAddIndividualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAddIndividualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(textFieldAddIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonOkIndividual)
+                .addComponent(buttonCancelIndividual)
+                .addComponent(jLabel13))
         );
 
         javax.swing.GroupLayout panelIndividualsLayout = new javax.swing.GroupLayout(panelIndividuals);
@@ -564,16 +619,22 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                 .addGroup(panelIndividualsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(10, 10, 10)
                 .addGroup(panelIndividualsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelIndividualsLayout.createSequentialGroup()
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIndividualsLayout.createSequentialGroup()
+                        .addGroup(panelIndividualsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                            .addGroup(panelIndividualsLayout.createSequentialGroup()
+                                .addComponent(buttonAddIndividual)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonRemoveIndividual))
+                            .addComponent(panelAddIndividual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelIndividualData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))
+                        .addGap(102, 102, 102))
                     .addGroup(panelIndividualsLayout.createSequentialGroup()
                         .addComponent(jLabel9)
-                        .addContainerGap(603, Short.MAX_VALUE))))
+                        .addContainerGap(617, Short.MAX_VALUE))))
         );
         panelIndividualsLayout.setVerticalGroup(
             panelIndividualsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -587,8 +648,15 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                             .addComponent(jLabel9))
                         .addGap(15, 15, 15)
                         .addGroup(panelIndividualsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelIndividualsLayout.createSequentialGroup()
+                                .addGroup(panelIndividualsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(buttonAddIndividual)
+                                    .addComponent(buttonRemoveIndividual))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(panelAddIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE))
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE))))
                 .addGap(26, 26, 26))
         );
 
@@ -608,7 +676,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -632,27 +700,28 @@ private void initComponents2(){
     setCargarObjectProperty(false);
     setCargarOntologia(false);
     setNuevaOntologia(false);
+    setCargarIndividual(false);
 }
 
 public void modoCargar(){
-    ((ControladorPanelNuevaOntologia) vistaNuevaOntologia.getControlador()).doCargarOWL(true);
+    ((ControladorPanelNuevaOntologia) getVistaNuevaOntologia().getControlador()).doCargarOWL(true);
 }
 
 public void modoNuevo(){
-    ((ControladorPanelNuevaOntologia) vistaNuevaOntologia.getControlador()).doNuevaOWL(true);
+    ((ControladorPanelNuevaOntologia) getVistaNuevaOntologia().getControlador()).doNuevaOWL(true);
 }
 
 public void nuevaOntologia(){
-    ((BusinessDelegate) vistaNuevaOntologia.getModelo()).nuevaOntologia();
+    ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).nuevaOntologia();
 }
 
 public void cargarOntologia(){
-    ((BusinessDelegate) vistaNuevaOntologia.getModelo()).cargarOntologia(getUrlOWL());       
+    ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).cargarOntologia(getUrlOWL());       
 }
 
 public void guardarOntologia(){
     //Grabar ontologia
-    ((BusinessDelegate)vistaNuevaOntologia.getModelo()).grabarOntologia(urlOWL);
+    ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).grabarOntologia(urlOWL);
 }
 
 public void update() {
@@ -675,6 +744,41 @@ public void update() {
     if(isCargarObjectProperty()){
         cargarObjectProperty();
     }
+    
+    if(isCargarIndividual()){
+        cargarIndividual();
+    }
+}
+
+
+public void cargarIndividual(){
+    String ind = listIndividuals.getSelectedValue().toString();
+    IndividualViajesVO indVO = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).obtenerIndividualViajes(ind);
+    textFieldNombreIndividual.setText(indVO.getNombre());
+    
+    HashMap<String,HashMap<String,String>> datatypeProperties = indVO.getDatatypeProperties();
+    //nombrepropiedad,valor,tipo
+    for(int i=0; i< datatypeProperties.size() ; i++){
+        HashMap<String,String> propiedad = datatypeProperties.get(i);
+        String nombre = (String) datatypeProperties.keySet().toArray()[i];
+        PanelIndividualDatatypeProperty panelData = new PanelIndividualDatatypeProperty();
+        panelData.getLabelNombrePropiedad().setText(nombre);
+        panelData.getComboBoxType().setSelectedItem(propiedad.get(0));
+        panelData.getTextFieldValorProperty().setText((String) propiedad.keySet().toArray()[0]);
+        panelIndividualProperties.add(panelData);
+    }
+    
+    HashMap<String,String> objectProperties = indVO.getObjectProperties();
+    //nombrepropiedad,valor,range
+    for(int i=0 ; i < objectProperties.size() ; i++){
+        String nombre = (String) objectProperties.keySet().toArray()[i];
+        String valor = objectProperties.get(i);
+        PanelIndividualObjectProperty panelObj = new PanelIndividualObjectProperty();
+        panelObj.getLabelNombrePropiedad().setText(nombre);
+        panelObj.getTextFieldValorPropiedad().setText(valor);
+        panelIndividualProperties.add(panelObj);
+    }
+    
 }
 
 
@@ -712,17 +816,13 @@ private void buttonCancelNombreActionPerformed(java.awt.event.ActionEvent evt) {
 
 private void listPropertiesObjectValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listPropertiesObjectValueChanged
 // Se selecciono un object propiedad en el panel de propiedades
-    ((ControladorPanelNuevaOntologia) vistaNuevaOntologia.getControlador()).doCargarObjectProperty(true);
+    ((ControladorPanelNuevaOntologia) getVistaNuevaOntologia().getControlador()).doCargarObjectProperty(true);
 }//GEN-LAST:event_listPropertiesObjectValueChanged
 
 private void listPropertiesDatatypeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listPropertiesDatatypeValueChanged
 // Se selecciono un datatype propiedad en el panel de propiedades
-    ((ControladorPanelNuevaOntologia) vistaNuevaOntologia.getControlador()).doCargarDatatypeProperty(true);
+    ((ControladorPanelNuevaOntologia) getVistaNuevaOntologia().getControlador()).doCargarDatatypeProperty(true);
 }//GEN-LAST:event_listPropertiesDatatypeValueChanged
-
-private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_jButton2ActionPerformed
 
 private void buttonAddObjectPropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddObjectPropertyActionPerformed
 // TODO add your handling code here:
@@ -737,26 +837,84 @@ private void buttonAddDatatypePropertyActionPerformed(java.awt.event.ActionEvent
 private void buttonRemoveObjectPropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveObjectPropertyActionPerformed
 // TODO add your handling code here:
     panelAddObjectProperty.setVisible(false);
-    DefaultListModel model = (DefaultListModel) listPropertiesObject.getModel();
+    DefaultListModel model = (DefaultListModel) getListPropertiesObject().getModel();
     if(!listPropertiesObject.isSelectionEmpty()){
-        int aux = listPropertiesObject.getSelectedIndex();
+        int aux = getListPropertiesObject().getSelectedIndex();
         String nombre = model.getElementAt(aux).toString();
         model.removeElementAt(aux);
-        ((BusinessDelegate)vistaNuevaOntologia.getModelo()).removeObjectProperty(nombre);
+        ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).removeObjectProperty(nombre);
+        model.removeElementAt(aux);
     }
 }//GEN-LAST:event_buttonRemoveObjectPropertyActionPerformed
+
+private void buttonOkObjectPropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkObjectPropertyActionPerformed
+// Agrega Object Property
+   String pro = textFeildNameObjectProperty.getText();
+   if(!pro.isEmpty()){
+        ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).addObjectProperty(pro);
+        DefaultListModel model = (DefaultListModel) getListPropertiesObject().getModel();
+        model.addElement(pro);
+        panelAddObjectProperty.setVisible(false);
+        textFeildNameObjectProperty.setText("");
+   }
+    
+}//GEN-LAST:event_buttonOkObjectPropertyActionPerformed
+
+private void buttonCancelObjectPropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelObjectPropertyActionPerformed
+    panelAddObjectProperty.setVisible(false);
+    textFeildNameObjectProperty.setText("");
+}//GEN-LAST:event_buttonCancelObjectPropertyActionPerformed
+
+private void buttonOkDatatypePropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkDatatypePropertyActionPerformed
+   String pro = textFieldNameDatatypeProperty.getText();
+   if(!pro.isEmpty()){
+        ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).addDatatypeProperty(pro);
+        DefaultListModel model = (DefaultListModel) getListPropertiesDatatype().getModel();
+        model.addElement(pro);
+        panelAddDatatypeProperty.setVisible(false);
+        textFieldNameDatatypeProperty.setText("");
+   }
+}//GEN-LAST:event_buttonOkDatatypePropertyActionPerformed
+
+private void buttonCancelDatatypePropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelDatatypePropertyActionPerformed
+    panelAddDatatypeProperty.setVisible(false);
+    textFieldNameDatatypeProperty.setText("");
+}//GEN-LAST:event_buttonCancelDatatypePropertyActionPerformed
+
+private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    panelAddDatatypeProperty.setVisible(false);
+    DefaultListModel model = (DefaultListModel) getListPropertiesDatatype().getModel();
+    if(!listPropertiesDatatype.isSelectionEmpty()){
+        int aux = getListPropertiesDatatype().getSelectedIndex();
+        String nombre = model.getElementAt(aux).toString();
+        model.removeElementAt(aux);
+        ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).removeDatatypeProperty(nombre);
+        model.removeElementAt(aux);
+    }
+}//GEN-LAST:event_jButton7ActionPerformed
+
+private void listIndividualsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listIndividualsValueChanged
+    ((ControladorPanelNuevaOntologia) getVistaNuevaOntologia().getControlador()).doCargarIndividual(true);
+}//GEN-LAST:event_listIndividualsValueChanged
 
 private void buttonCargarActionPerformed(javax.swing.event.TreeSelectionEvent evt) {
     this.eventoTree = evt;
     if(!eventoTree.getPath().getLastPathComponent().toString().equals("Classes")){
-            ((ControladorPanelNuevaOntologia) vistaNuevaOntologia.getControlador()).doCargarClase(true);
+            ((ControladorPanelNuevaOntologia) getVistaNuevaOntologia().getControlador()).doCargarClase(true);
     }
 }
 
 private void buttonCargarInstanciasActionPerformed(javax.swing.event.TreeSelectionEvent evt) {
     this.eventoTree = evt;
     if(!eventoTree.getPath().getLastPathComponent().toString().equals("Classes")){
-
+        //Cargar ListIndividuals
+        String clase = eventoTree.getPath().getLastPathComponent().toString();
+        ArrayList<String> individuals = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).listIndividuals(clase);
+        DefaultListModel model = (DefaultListModel) listIndividuals.getModel();
+        model.removeAllElements();
+        for(int i=0 ; i<individuals.size() ; i++){
+            model.addElement(individuals.get(i));
+        }
     }
 }
 
@@ -768,7 +926,7 @@ private void cargarPaneles(){
 }
 
 private void cargarPanelMetadata(){
-    String uri = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).getURIOntologia();
+    String uri = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).getURIOntologia();
     this.getTextFieldURI().setText(uri);
 }
 
@@ -780,7 +938,7 @@ private void cargarPanelClases(){
     modelo = new DefaultTreeModel(abuelo);
     treeClasses = new JTree(modelo);
     
-    HashMap<String,String> mapaClases = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).showClasses();
+    HashMap<String,String> mapaClases = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).showClasses();
     
     Set<Entry<String,String>> setClases = mapaClases.entrySet();
     Iterator itClases = setClases.iterator();
@@ -821,18 +979,18 @@ private void cargarPanelClases(){
 
 
 private void cargarPanelProperty(){
-    List<String> datatypeProperties = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).showDatatypeProperties();
-    List<String> objectProperties = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).showObjectProperties();
+    List<String> datatypeProperties = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).showDatatypeProperties();
+    List<String> objectProperties = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).showObjectProperties();
     
-    listPropertiesDatatype.removeAll();
-    listPropertiesObject.removeAll();
+        getListPropertiesDatatype().removeAll();
+        getListPropertiesObject().removeAll();
     
     
-    listPropertiesDatatype.setModel(new DefaultListModel());
-    listPropertiesObject.setModel(new DefaultListModel());
+        getListPropertiesDatatype().setModel(new DefaultListModel());
+        getListPropertiesObject().setModel(new DefaultListModel());
     
-    DefaultListModel model1 = (DefaultListModel) listPropertiesDatatype.getModel();
-    DefaultListModel model2 = (DefaultListModel) listPropertiesObject.getModel();
+    DefaultListModel model1 = (DefaultListModel) getListPropertiesDatatype().getModel();
+    DefaultListModel model2 = (DefaultListModel) getListPropertiesObject().getModel();
     
     for(int i = 0 ; i < datatypeProperties.size() ; i++){
         model1.addElement(datatypeProperties.get(i));
@@ -841,8 +999,8 @@ private void cargarPanelProperty(){
         model2.addElement(objectProperties.get(i));
     }
     
-    listPropertiesDatatype.setModel(model1);
-    listPropertiesObject.setModel(model2);
+        getListPropertiesDatatype().setModel(model1);
+        getListPropertiesObject().setModel(model2);
 }
 
 private void cargarPanelInstancia(){
@@ -868,9 +1026,10 @@ private void cargarPanelInstancia(){
 
 public void cargarDatatypeProperty(){
     panelPropertyDefault.removeAll();
-    PanelPropertyDatatype panel = new PanelPropertyDatatype();
-    String propiedad = listPropertiesDatatype.getSelectedValue().toString();
-    DatatypePropertyVO propiedades = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).getDatatypeProperty(propiedad);
+    PanelPropertyDatatype panel = new PanelPropertyDatatype(this);
+    String propiedad = getListPropertiesDatatype().getSelectedValue().toString();
+    DatatypePropertyVO propiedades = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).getDatatypeProperty(propiedad);
+    panel.setPropiedad(propiedades);
     panel.getTextFieldNombre().setText(propiedades.getName());
     DefaultListModel model = (DefaultListModel) panel.getListDomain().getModel();
     for(int i = 0 ; i < propiedades.getDomain().size() ; i++){
@@ -885,9 +1044,10 @@ public void cargarDatatypeProperty(){
 
 public void cargarObjectProperty(){
     panelPropertyDefault.removeAll();
-    PanelPropertyObject panel = new PanelPropertyObject();
-    String propiedad = listPropertiesObject.getSelectedValue().toString();
-    ObjectPropertyVO propiedades = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).getObjectProperty(propiedad);
+    PanelPropertyObject panel = new PanelPropertyObject(this);
+    String propiedad = getListPropertiesObject().getSelectedValue().toString();
+    ObjectPropertyVO propiedades = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).getObjectProperty(propiedad);
+    panel.setPropiedad(propiedades);
     panel.getTextFieldNombre().setText(propiedades.getName());
     DefaultListModel model = (DefaultListModel) panel.getListDomain().getModel();
     for(int i = 0 ; i < propiedades.getDomain().size() ; i++){
@@ -905,7 +1065,7 @@ public void cargarObjectProperty(){
 
 public void cargarClase(){
     String instancia = treeClasses.getSelectionPath().getLastPathComponent().toString();
-    List<String> propiedades = ((BusinessDelegate)vistaNuevaOntologia.getModelo()).ClassProperty(instancia);
+    List<String> propiedades = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).ClassProperty(instancia);
     listProperties.removeAll();
     listProperties.setModel(new DefaultListModel());
     DefaultListModel model = ((DefaultListModel)listProperties.getModel());
@@ -930,8 +1090,8 @@ public void vaciarPaneles(){
     treeClasses2.setModel(new DefaultTreeModel(abuelo));
     textFieldClassName.setText("");
     listProperties.setModel(new DefaultListModel());
-    listPropertiesDatatype.setModel(new DefaultListModel());
-    listPropertiesObject.setModel(new DefaultListModel());
+        getListPropertiesDatatype().setModel(new DefaultListModel());
+        getListPropertiesObject().setModel(new DefaultListModel());
     panelPropertyDefault.removeAll();
     listIndividuals.setModel(new DefaultListModel());
     textFieldNombreIndividual.setText("");
@@ -971,7 +1131,7 @@ private DefaultMutableTreeNode addObject(DefaultMutableTreeNode parent,
         mapaNodos.put(childNode.getUserObject().toString(), childNode);
         String hijo = childNode.getUserObject().toString();
         String padre = parent.getUserObject().toString();
-        ((BusinessDelegate)vistaNuevaOntologia.getModelo()).addClass(hijo,padre);
+        ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).addClass(hijo,padre);
         //Make sure the user can see the lovely new node.
         if (shouldBeVisible) {
             treeClasses.scrollPathToVisible(new TreePath(childNode.getPath()));
@@ -988,10 +1148,11 @@ private DefaultMutableTreeNode addObject(DefaultMutableTreeNode parent,
             if (parent != null) {
                 modelo.removeNodeFromParent(currentNode);
                 mapaNodos.remove(currentNode.getUserObject().toString());
+                ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).removeClass(currentNode.getUserObject().toString());
                 return;
             }
         } 
-
+        
         // Either there was no selection, or the root was selected.
         toolkit.beep();
 }
@@ -1008,25 +1169,28 @@ protected static ImageIcon createImageIcon(String path) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAddDatatypeProperty;
+    private javax.swing.JButton buttonAddIndividual;
     private javax.swing.JButton buttonAddObjectProperty;
     private javax.swing.JButton buttonAgregarClass;
     private javax.swing.JButton buttonCancelDatatypeProperty;
+    private javax.swing.JButton buttonCancelIndividual;
     private javax.swing.JButton buttonCancelNombre;
     private javax.swing.JButton buttonCancelObjectProperty;
     private javax.swing.JButton buttonOkDatatypeProperty;
+    private javax.swing.JButton buttonOkIndividual;
     private javax.swing.JButton buttonOkNombre;
     private javax.swing.JButton buttonOkObjectProperty;
+    private javax.swing.JButton buttonRemoveIndividual;
     private javax.swing.JButton buttonRemoveObjectProperty;
     private javax.swing.JButton buttonRemoverClass;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1049,6 +1213,7 @@ protected static ImageIcon createImageIcon(String path) {
     private javax.swing.JList listPropertiesDatatype;
     private javax.swing.JList listPropertiesObject;
     private javax.swing.JPanel panelAddDatatypeProperty;
+    private javax.swing.JPanel panelAddIndividual;
     private javax.swing.JPanel panelAddObjectProperty;
     private javax.swing.JPanel panelAgregarNombre;
     private javax.swing.JPanel panelClasses;
@@ -1061,6 +1226,7 @@ protected static ImageIcon createImageIcon(String path) {
     private javax.swing.JPanel panelTabbedDatatypeProperty;
     private javax.swing.JPanel panelTabbedObjectProperty;
     private javax.swing.JTextField textFeildNameObjectProperty;
+    private javax.swing.JTextField textFieldAddIndividual;
     private javax.swing.JTextField textFieldClassName;
     private javax.swing.JTextField textFieldNameDatatypeProperty;
     private javax.swing.JTextField textFieldNombreClase;
@@ -1132,6 +1298,46 @@ protected static ImageIcon createImageIcon(String path) {
 
     public void setCargarDatatypeProperty(boolean cargarDatatypeProperty) {
         this.cargarDatatypeProperty = cargarDatatypeProperty;
+    }
+
+    public VistaNuevaOntologia getVistaNuevaOntologia() {
+        return vistaNuevaOntologia;
+    }
+
+    public void setVistaNuevaOntologia(VistaNuevaOntologia vistaNuevaOntologia) {
+        this.vistaNuevaOntologia = vistaNuevaOntologia;
+    }
+
+    public javax.swing.JList getListPropertiesDatatype() {
+        return listPropertiesDatatype;
+    }
+
+    public void setListPropertiesDatatype(javax.swing.JList listPropertiesDatatype) {
+        this.listPropertiesDatatype = listPropertiesDatatype;
+    }
+
+    public javax.swing.JList getListPropertiesObject() {
+        return listPropertiesObject;
+    }
+
+    public void setListPropertiesObject(javax.swing.JList listPropertiesObject) {
+        this.listPropertiesObject = listPropertiesObject;
+    }
+
+    public FramePrincipal getMain() {
+        return main;
+    }
+
+    public void setMain(FramePrincipal main) {
+        this.main = main;
+    }
+
+    public boolean isCargarIndividual() {
+        return cargarIndividual;
+    }
+
+    public void setCargarIndividual(boolean cargarIndividual) {
+        this.cargarIndividual = cargarIndividual;
     }
 
 }

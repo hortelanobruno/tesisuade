@@ -1,29 +1,24 @@
 package jenasouforce;
 
-
-	/*****************************************************************************
-	 * Source code information
-	 * -----------------------
-	 * Original author    Ian Dickinson, HP Labs Bristol
-	 * Author email       ian.dickinson@hp.com
-	 * Package            Jena 2
-	 * Web                http://sourceforge.net/projects/jena/
-	 * Created            22-Aug-2003
-	 * Filename           $RCSfile: Main.java.html,v $
-	 * Revision           $Revision: 1.4 $
-	 * Release status     $State: Exp $
-	 *
-	 * Last modified on   $Date: 2007/01/17 10:44:18 $
-	 *               by   $Author: andy_seaborne $
-	 *
-	 * (c) Copyright 2002, 2003, 2004, 2005, 2006, 2007 Hewlett-Packard Development Company, LP
-	 * (see footer for full conditions)
-	 *****************************************************************************/
-
-
-
-	// Imports
-	///////////////
+/*****************************************************************************
+ * Source code information
+ * -----------------------
+ * Original author    Ian Dickinson, HP Labs Bristol
+ * Author email       ian.dickinson@hp.com
+ * Package            Jena 2
+ * Web                http://sourceforge.net/projects/jena/
+ * Created            22-Aug-2003
+ * Filename           $RCSfile: Main.java.html,v $
+ * Revision           $Revision: 1.4 $
+ * Release status     $State: Exp $
+ *
+ * Last modified on   $Date: 2007/01/17 10:44:18 $
+ *               by   $Author: andy_seaborne $
+ *
+ * (c) Copyright 2002, 2003, 2004, 2005, 2006, 2007 Hewlett-Packard Development Company, LP
+ * (see footer for full conditions)
+ *****************************************************************************/// Imports
+///////////////
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -32,57 +27,59 @@ import java.io.InputStream;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import com.hp.hpl.jena.util.iterator.Filter;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * <p>
+ * Execution wrapper for class hierarchy example
+ * </p>
+ *
+ * @author Ian Dickinson, HP Labs
+ *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
+ * @version CVS $Id: Main.java.html,v 1.4 2007/01/17 10:44:18 andy_seaborne Exp $
+ */
+public class Main {
+    // Constants
+    //////////////////////////////////
 
-	/**
-	 * <p>
-	 * Execution wrapper for class hierarchy example
-	 * </p>
-	 *
-	 * @author Ian Dickinson, HP Labs
-	 *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
-	 * @version CVS $Id: Main.java.html,v 1.4 2007/01/17 10:44:18 andy_seaborne Exp $
-	 */
-	public class Main {
-	    // Constants
-	    //////////////////////////////////
+    // Static variables
+    //////////////////////////////////
 
-	    // Static variables
-	    //////////////////////////////////
+    // Instance variables
+    //////////////////////////////////
 
-	    // Instance variables
-	    //////////////////////////////////
+    // Constructors
+    //////////////////////////////////
 
-	    // Constructors
-	    //////////////////////////////////
+    // External signature methods
+    //////////////////////////////////
+    public Main() {
+        // TODO Auto-generated constructor stub
 
-	    // External signature methods
-	    //////////////////////////////////
 
-		public Main() {
-			// TODO Auto-generated constructor stub
-	        OntModel m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
-
-	        // we have a local copy of the wine ontology
+        // we have a local copy of the wine ontology
 /*	        m.getDocumentManager().addAltEntry( "http://www.w3.org/2001/sw/WebOnt/guide-src/wine",
-	                                            "file:testing/reasoners/bugs/wine.owl" );
-	        m.getDocumentManager().addAltEntry( "http://www.w3.org/2001/sw/WebOnt/guide-src/food",
-	                                            "file:testing/reasoners/bugs/food.owl" );*/
+        "file:testing/reasoners/bugs/wine.owl" );
+        m.getDocumentManager().addAltEntry( "http://www.w3.org/2001/sw/WebOnt/guide-src/food",
+        "file:testing/reasoners/bugs/food.owl" );*/
 
 //	        m.read( "http://www.w3.org/2001/sw/WebOnt/guide-src/wine" );
-	        m = loadOntModelFromOwlFile("C:\\Documents and Settings\\Administrador\\Escritorio\\Tesis\\Ontologias\\Ontologias\\vocabulario2.owl");
-	        m.getNsPrefixMap();
-                String uri = m.getNsPrefixMap().get("").toString();
-                
-                
-          //      ObjectProperty pro = m.getObjectProperty(uri+"ciudad");
-                System.out.println("jaja");
-                
+        OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
+        m = loadOntModelFromOwlFile("C:\\Documents and Settings\\Administrador\\Escritorio\\Tesis\\Ontologias\\Ontologias\\pruebas\\prueba.owl");
+        m.getNsPrefixMap();
+        String uri = m.getNsPrefixMap().get("").toString();
+
+        //ObjectProperty pro = m.getObjectProperty(uri+"ciudad");
+
 //                m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
 //
 //                
@@ -108,39 +105,196 @@ import java.util.logging.Logger;
 //                }
 //                
 //                m.write(fileout,"RDF/XML-ABBREV");
-                ClassHierarchy classh = new ClassHierarchy();
-	        //classh.showHierarchy2( System.out, m );
-	        m.getOntClass(uri+"palabra").remove();
-	        classh.showHierarchy( System.out, m );
-		}
-		
-		
-		
-	    public static void main( String[] args ) {
-	    	new Main();
-	    }
+        
 
+        ClassHierarchy classh = new ClassHierarchy();
+        classh.showHierarchy2( System.out, m );
+        //Remover una clase FUNCA
+        classh.showHierarchy( System.out, m );
+        //m.getOntClass(uri+"palabra").remove();
+        //classh.showHierarchy( System.out, m );
+        //Remover una propiedad, si esta propiedad esta en alguna clase desaparece FUNCA
+        //imprimirObjectProperties(m);
+        //m.getObjectProperty(uri+"propiedad2").remove();
+        //imprimirObjectProperties(m);
+        //
+        //m.getOntClass(uri+"NESTOR").remove();
+        //m.getIndividual(uri+"instancia1").remove();
+//                System.out.println("removiiiiiiii");
+//                List<String>    ind = showIndividuals(m);
+//                for(int j=0 ; j < ind.size() ; j++){
+//                    System.out.println(ind.get(j));
+//                }
+        //add domain
+//        OntClass clase = m.getOntClass(uri + "NESTOR");
+//        OntClass clase2 = m.getOntClass(uri + "clasesBRUNO");
+//        ObjectProperty property = m.getObjectProperty(uri + "propiedad2");
+//        property.addDomain(clase);
+//        property.addDomain(clase2);
+//        ArrayList<String> domain = new ArrayList<String>();
+//        OntResource dom = property.getDomain();
+//        if (dom != null) {
+//            if (dom.canAs(UnionClass.class)) {
+//                UnionClass uc = (UnionClass) dom.as(UnionClass.class);
+//                ExtendedIterator domainIt = uc.listOperands();
+//                while (domainIt.hasNext()) {
+//                    OntClass mc = (OntClass) domainIt.next();
+//                    domain.add(mc.getLocalName());
+//                }
+//            } else {
+//                domain.add(property.getDomain().getLocalName());
+//            }
+//        }
+//        for (int i = 0; i < domain.size(); i++) {
+//            System.out.println(domain.get(i) + "1");
+//        }
+//        //remove domain
+//        property.removeDomain(clase);
+//        domain = new ArrayList<String>();
+//        dom = property.getDomain();
+//        if (dom != null) {
+//            if (dom.canAs(UnionClass.class)) {
+//                UnionClass uc = (UnionClass) dom.as(UnionClass.class);
+//                ExtendedIterator domainIt = uc.listOperands();
+//                while (domainIt.hasNext()) {
+//                    OntClass mc = (OntClass) domainIt.next();
+//                    domain.add(mc.getLocalName());
+//                }
+//            } else {
+//                domain.add(property.getDomain().getLocalName());
+//            }
+//        }
+//        for (int i = 0; i < domain.size(); i++) {
+//            System.out.println(domain.get(i) + "2");
+//        }
+//
+//
+//        DatatypeProperty dataproperty = m.getDatatypeProperty(uri + "propiedad1");
 
-		private OntModel loadOntModelFromOwlFile(String owlfile) {
+    }
 
-			OntModel ontmodel = null;
-			InputStream is = null;
+    public ArrayList<String> showIndividuals(OntModel m) {
+        ArrayList<String> individuals = new ArrayList<String>();
+        Iterator i = m.listIndividuals().filterDrop(new Filter() {
 
-			// OWL_MEM es la especificacion para modelos OWL almacenados en memoria
-			ontmodel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
+            public boolean accept(Object o) {
+                return ((Resource) o).isAnon();
+            }
+        });
 
-			try {
-				is = new FileInputStream(new File(owlfile));
-				ontmodel.read(is, "");
-				System.out.println("Se ha cargado una instancia OntModel.");
-			} catch (Exception e) {
-				System.out.println("Se ha producido una excepcion controlada.");
-				e.printStackTrace();
-			}
-			return ontmodel;
-		}
-		
+        while (i.hasNext()) {
+            individuals.add(((Individual) i.next()).getLocalName());
+        }
 
-	}
+        return individuals;
+    }
+
+    public List<String> getProperty(OntModel m, String c) {
+        ArrayList<String> propiedades = new ArrayList<String>();
+        String uri = m.getNsPrefixMap().get("").toString();
+
+        OntClass clase = m.getOntClass(uri + c);
+        Iterator i = m.listObjectProperties().filterDrop(new Filter() {
+
+            public boolean accept(Object o) {
+                return ((Resource) o).isAnon();
+            }
+        });
+        while (i.hasNext()) {
+            ObjectProperty pro = ((ObjectProperty) i.next());
+            String obcPro = pro.getLocalName();
+            ArrayList<String> domain = new ArrayList<String>();
+            OntResource dom = pro.getDomain();
+            if (dom != null) {
+                if (dom.canAs(UnionClass.class)) {
+                    UnionClass uc = (UnionClass) dom.as(UnionClass.class);
+                    ExtendedIterator domainIt = uc.listOperands();
+                    while (domainIt.hasNext()) {
+                        OntClass mc = (OntClass) domainIt.next();
+                        domain.add(mc.getLocalName());
+                    }
+                } else {
+                    domain.add(pro.getDomain().getLocalName());
+                }
+            }
+            for (int j = 0; j < domain.size(); j++) {
+                if (domain.get(j).equalsIgnoreCase(c)) {
+                    propiedades.add(obcPro);
+                }
+            }
+        }
+        i = m.listDatatypeProperties().filterDrop(new Filter() {
+
+            public boolean accept(Object o) {
+                return ((Resource) o).isAnon();
+            }
+        });
+        while (i.hasNext()) {
+            DatatypeProperty pro = ((DatatypeProperty) i.next());
+            String datPro = pro.getLocalName();
+            ArrayList<String> domain = new ArrayList<String>();
+            OntResource dom = pro.getDomain();
+            if (dom != null) {
+                if (dom.canAs(UnionClass.class)) {
+                    UnionClass uc = (UnionClass) dom.as(UnionClass.class);
+                    ExtendedIterator domainIt = uc.listOperands();
+                    while (domainIt.hasNext()) {
+                        OntClass mc = (OntClass) domainIt.next();
+                        domain.add(mc.getLocalName());
+                    }
+                } else {
+                    domain.add(pro.getDomain().getLocalName());
+                }
+            }
+
+            for (int j = 0; j < domain.size(); j++) {
+                if (domain.get(j).equalsIgnoreCase(c)) {
+                    propiedades.add(datPro);
+                }
+            }
+        }
+        return propiedades;
+    }
+
+    public void imprimirObjectProperties(OntModel m) {
+        ArrayList<String> propiedades = new ArrayList<String>();
+        Iterator i = m.listObjectProperties().filterDrop(new Filter() {
+
+            public boolean accept(Object o) {
+                return ((Resource) o).isAnon();
+            }
+        });
+        while (i.hasNext()) {
+            ObjectProperty pro = ((ObjectProperty) i.next());
+            propiedades.add(pro.getLocalName());
+        }
+        for (int j = 0; j < propiedades.size(); j++) {
+            System.out.println(propiedades.get(j));
+        }
+    }
+
+    public static void main(String[] args) {
+        new Main();
+    }
+
+    private OntModel loadOntModelFromOwlFile(String owlfile) {
+
+        OntModel ontmodel = null;
+        InputStream is = null;
+
+        // OWL_MEM es la especificacion para modelos OWL almacenados en memoria
+        ontmodel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
+
+        try {
+            is = new FileInputStream(new File(owlfile));
+            ontmodel.read(is, "");
+            System.out.println("Se ha cargado una instancia OntModel.");
+        } catch (Exception e) {
+            System.out.println("Se ha producido una excepcion controlada.");
+            e.printStackTrace();
+        }
+        return ontmodel;
+    }
+}
 
 

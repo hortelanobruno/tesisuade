@@ -3,10 +3,11 @@
  *
  * Created on 18 de agosto de 2008, 10:59
  */
-
 package panels.nuevaontologia;
 
 import javax.swing.DefaultListModel;
+import modelo.BusinessDelegate;
+import vo.ObjectPropertyVO;
 
 /**
  *
@@ -14,11 +15,17 @@ import javax.swing.DefaultListModel;
  */
 public class PanelPropertyObject extends javax.swing.JPanel {
 
+    private PanelNuevaOntologia panel;
+    private ObjectPropertyVO propiedad;
+
     /** Creates new form PanelPropertyObject */
-    public PanelPropertyObject() {
+    public PanelPropertyObject(PanelNuevaOntologia pan) {
+        panel = pan;
         initComponents();
         initComponents2();
     }
+
+    
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -37,6 +44,11 @@ public class PanelPropertyObject extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         listRange = new javax.swing.JList();
+        buttonAddDomain = new javax.swing.JButton();
+        buttonRemoveDomain = new javax.swing.JButton();
+        buttonAddRange = new javax.swing.JButton();
+        buttonRemoveRange = new javax.swing.JButton();
+        buttonChangeName = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(511, 365));
 
@@ -52,6 +64,41 @@ public class PanelPropertyObject extends javax.swing.JPanel {
         listRange.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(listRange);
 
+        buttonAddDomain.setText("Ad");
+        buttonAddDomain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAddDomainActionPerformed(evt);
+            }
+        });
+
+        buttonRemoveDomain.setText("Re");
+        buttonRemoveDomain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRemoveDomainActionPerformed(evt);
+            }
+        });
+
+        buttonAddRange.setText("Ad");
+        buttonAddRange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAddRangeActionPerformed(evt);
+            }
+        });
+
+        buttonRemoveRange.setText("Re");
+        buttonRemoveRange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRemoveRangeActionPerformed(evt);
+            }
+        });
+
+        buttonChangeName.setText("Ch");
+        buttonChangeName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonChangeNameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -61,18 +108,32 @@ public class PanelPropertyObject extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(75, 75, 75)
-                        .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(24, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonChangeName)
+                        .addGap(32, 32, 32))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(55, 55, 55)
+                                .addComponent(buttonAddDomain)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonRemoveDomain))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(41, 41, 41))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(55, 55, 55)
+                                .addComponent(buttonAddRange)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                                .addComponent(buttonRemoveRange)
+                                .addGap(79, 79, 79))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,25 +141,87 @@ public class PanelPropertyObject extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonChangeName))
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(buttonAddDomain)
+                    .addComponent(buttonRemoveDomain)
+                    .addComponent(buttonAddRange)
+                    .addComponent(buttonRemoveRange))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(65, 65, 65))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+//Aca falta agrega la forma de obtener el domain
+private void buttonAddDomainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddDomainActionPerformed
+    PanelDomain dom = new PanelDomain(true,panel.getMain(), true, panel, this);
+    dom.setVisible(true);
+}//GEN-LAST:event_buttonAddDomainActionPerformed
+
+private void buttonRemoveDomainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveDomainActionPerformed
+    //Remove domain
+    String dom = listDomain.getSelectedValue().toString();
+    ((BusinessDelegate) panel.getVistaNuevaOntologia().getModelo()).removeDomain(propiedad.getName(), dom);
+    DefaultListModel mode = (DefaultListModel) listDomain.getModel();
+    mode.removeElement(dom);
+}//GEN-LAST:event_buttonRemoveDomainActionPerformed
+
+//Aca falta agregar la forma de obtener el range, similar a la del domain
+private void buttonAddRangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddRangeActionPerformed
+    PanelDomain dom = new PanelDomain(false,panel.getMain(), true, panel, this);
+    dom.setVisible(true); 
+}//GEN-LAST:event_buttonAddRangeActionPerformed
+
+private void buttonRemoveRangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveRangeActionPerformed
+    //Remove Range
+    String dom = listRange.getSelectedValue().toString();
+    ((BusinessDelegate) panel.getVistaNuevaOntologia().getModelo()).removeRange(propiedad.getName(), dom);
+    DefaultListModel mode = (DefaultListModel) listRange.getModel();
+    mode.removeElement(dom);
+}//GEN-LAST:event_buttonRemoveRangeActionPerformed
+
+private void buttonChangeNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeNameActionPerformed
+    String name = textFieldNombre.getText();
+    if (!name.isEmpty()) {
+        String oldName = propiedad.getName();
+        ((BusinessDelegate) panel.getVistaNuevaOntologia().getModelo()).changeNameDatatypeProperty(oldName, name);
+        DefaultListModel model = (DefaultListModel) panel.getListPropertiesObject().getModel();
+        int index = model.indexOf(oldName);
+        model.remove(index);
+        model.add(index, name);
+        propiedad.setName(name);
+    }
+}//GEN-LAST:event_buttonChangeNameActionPerformed
+
+public void addDomain(String name) {
+    ((BusinessDelegate) panel.getVistaNuevaOntologia().getModelo()).addDomain(propiedad.getName(), name);
+    DefaultListModel mode = (DefaultListModel) listDomain.getModel();
+    mode.addElement(name);
+}
+
+public void addRange(String name) {
+    ((BusinessDelegate) panel.getVistaNuevaOntologia().getModelo()).addRange(propiedad.getName(), name);
+    DefaultListModel mode = (DefaultListModel) listRange.getModel();
+    mode.addElement(name);
+}
     public void initComponents2(){
         listDomain.setModel(new DefaultListModel());
         listRange.setModel(new DefaultListModel());
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonAddDomain;
+    private javax.swing.JButton buttonAddRange;
+    private javax.swing.JButton buttonChangeName;
+    private javax.swing.JButton buttonRemoveDomain;
+    private javax.swing.JButton buttonRemoveRange;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -131,6 +254,14 @@ public class PanelPropertyObject extends javax.swing.JPanel {
 
     public void setTextFieldNombre(javax.swing.JTextField textFieldNombre) {
         this.textFieldNombre = textFieldNombre;
+    }
+
+    public ObjectPropertyVO getPropiedad() {
+        return propiedad;
+    }
+
+    public void setPropiedad(ObjectPropertyVO propiedad) {
+        this.propiedad = propiedad;
     }
 
 }

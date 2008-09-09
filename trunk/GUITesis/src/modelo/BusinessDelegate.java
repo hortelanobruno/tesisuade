@@ -1,6 +1,7 @@
 package modelo;
 
 import configuration.Configuration;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import modelo.motor.ModeloMotorBusqueda;
@@ -9,6 +10,7 @@ import modelo.ontologia.ModeloOntologiaVocabulario;
 import mvcframework.ProxyModelo;
 import vo.DatatypePropertyVO;
 import vo.IndividualSinonimoVO;
+import vo.IndividualViajesVO;
 import vo.ObjectPropertyVO;
 import vo.busqueda.ConsultaVueloVO;
 import vo.busqueda.IndividualVueloVO;
@@ -33,6 +35,54 @@ public class BusinessDelegate extends ProxyModelo
         this.conf = conf;
         modeloMotorBusqueda.setConfig(conf);
         modeloMotorBusqueda.cargarModelos();
+    }
+
+    public ArrayList<String> listIndividuals(String clase){
+       return modeloOntologiaViajes.listIndividuals(clase);
+    }
+    
+    public void changeNameDatatypeProperty(String old, String name){
+        modeloOntologiaViajes.changeNameDatatypeProperty(old,name);
+    }
+    
+    public void removeRange(String pro, String range){
+        modeloOntologiaViajes.removeRange(pro,range);
+    }
+    
+    public void addRange(String pro, String range){
+        modeloOntologiaViajes.addRange(pro,range);
+    }
+    
+    public void chageRange(String pro, String range){
+        modeloOntologiaViajes.changeRange(pro,range);
+    }
+    
+    public void addDomain(String pro, String domain){
+        modeloOntologiaViajes.addDomain(pro,domain);
+    }
+    
+    public void removeDomain(String pro, String domain){
+        modeloOntologiaViajes.removeDomain(pro,domain);
+    }
+    
+    public void changeNameObjectProperty(String old, String name){
+        modeloOntologiaViajes.changeNameObjectProperty(old,name);
+    }
+    
+    public void removeClass(String clase){
+        modeloOntologiaViajes.removeClass(clase);
+    }
+
+    public void addDatatypeProperty(String obj){
+        modeloOntologiaViajes.addDatatypeProperty(obj);
+    }
+    
+    public void addObjectProperty(String obj){
+        modeloOntologiaViajes.addObjectProperty(obj);
+    }
+    
+    public void removeDatatypeProperty(String obj){
+        modeloOntologiaViajes.removeDatatypeProperty(obj);
     }
     
     public List<IndividualVueloVO> buscarVuelos(ConsultaVueloVO consulta){
@@ -87,6 +137,10 @@ public class BusinessDelegate extends ProxyModelo
     
     public IndividualSinonimoVO obtenerIndividual(String ind){
         return modeloOntologiaVocabulario.getIndividual(ind);
+    }
+    
+    public IndividualViajesVO obtenerIndividualViajes(String ind){
+        return modeloOntologiaViajes.obtenerIndividual(ind);
     }
     
     public void nuevaOntologia(){

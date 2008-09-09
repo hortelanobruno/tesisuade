@@ -7,6 +7,8 @@
 package panels.nuevaontologia;
 
 import javax.swing.DefaultListModel;
+import modelo.BusinessDelegate;
+import vo.DatatypePropertyVO;
 
 /**
  *
@@ -14,11 +16,17 @@ import javax.swing.DefaultListModel;
  */
 public class PanelPropertyDatatype extends javax.swing.JPanel {
 
+    private PanelNuevaOntologia panel;
+    private DatatypePropertyVO propiedad;
+    
     /** Creates new form PanelPropertyDatatype */
-    public PanelPropertyDatatype() {
+    public PanelPropertyDatatype(PanelNuevaOntologia pan) {
+        panel = pan;
         initComponents();
         initComponents2();
     }
+
+    
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -36,6 +44,9 @@ public class PanelPropertyDatatype extends javax.swing.JPanel {
         listDomain = new javax.swing.JList();
         jLabel3 = new javax.swing.JLabel();
         comboBoxRange = new javax.swing.JComboBox();
+        buttonAddDomain = new javax.swing.JButton();
+        buttonRemoveDomain = new javax.swing.JButton();
+        buttonChangeName = new javax.swing.JButton();
 
         jLabel1.setText("Property");
 
@@ -47,6 +58,32 @@ public class PanelPropertyDatatype extends javax.swing.JPanel {
         jLabel3.setText("Range");
 
         comboBoxRange.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "String", "Int", "Double", "Float", "Boolean" }));
+        comboBoxRange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxRangeActionPerformed(evt);
+            }
+        });
+
+        buttonAddDomain.setText("Ad");
+        buttonAddDomain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAddDomainActionPerformed(evt);
+            }
+        });
+
+        buttonRemoveDomain.setText("Re");
+        buttonRemoveDomain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRemoveDomainActionPerformed(evt);
+            }
+        });
+
+        buttonChangeName.setText("Ch");
+        buttonChangeName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonChangeNameActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -56,17 +93,22 @@ public class PanelPropertyDatatype extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(69, 69, 69)
+                        .addComponent(buttonAddDomain)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonRemoveDomain)
+                        .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(comboBoxRange, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(78, 78, 78)
-                        .addComponent(textFieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonChangeName))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -75,25 +117,74 @@ public class PanelPropertyDatatype extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonChangeName))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttonAddDomain)
+                        .addComponent(buttonRemoveDomain)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBoxRange, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(72, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboBoxRange, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(184, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+private void buttonChangeNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeNameActionPerformed
+    String name = textFieldNombre.getText();
+    if(!name.isEmpty()){
+        String oldName = propiedad.getName();
+        ((BusinessDelegate)panel.getVistaNuevaOntologia().getModelo()).changeNameObjectProperty(oldName,name);
+        DefaultListModel model = (DefaultListModel) panel.getListPropertiesDatatype().getModel();
+        int index = model.indexOf(oldName);
+        model.remove(index);
+        model.add(index, name);
+        propiedad.setName(name);
+    }
+}//GEN-LAST:event_buttonChangeNameActionPerformed
+
+//Aca falta agrega la forma de obtener el domain
+private void buttonAddDomainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddDomainActionPerformed
+    PanelDomain dom = new PanelDomain(true,panel.getMain(), true, panel, this);
+    dom.setVisible(true);
+}//GEN-LAST:event_buttonAddDomainActionPerformed
+
+private void buttonRemoveDomainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveDomainActionPerformed
+    //Remove domain
+    String dom = listDomain.getSelectedValue().toString();
+    ((BusinessDelegate)panel.getVistaNuevaOntologia().getModelo()).removeDomain(propiedad.getName(),dom);
+    DefaultListModel mode = (DefaultListModel) listDomain.getModel();
+    mode.removeElement(dom);
+}//GEN-LAST:event_buttonRemoveDomainActionPerformed
+
+private void comboBoxRangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxRangeActionPerformed
+    String name = comboBoxRange.getSelectedItem().toString();
+    ((BusinessDelegate)panel.getVistaNuevaOntologia().getModelo()).chageRange(propiedad.getName(),name);
+}//GEN-LAST:event_comboBoxRangeActionPerformed
+
+public void addDomain(String name) {
+    ((BusinessDelegate)panel.getVistaNuevaOntologia().getModelo()).addDomain(propiedad.getName(),name);
+    DefaultListModel mode = (DefaultListModel) listDomain.getModel();
+    mode.addElement(name);
+}
     
     public void initComponents2(){
         listDomain.setModel(new DefaultListModel());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonAddDomain;
+    private javax.swing.JButton buttonChangeName;
+    private javax.swing.JButton buttonRemoveDomain;
     private javax.swing.JComboBox comboBoxRange;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -125,6 +216,14 @@ public class PanelPropertyDatatype extends javax.swing.JPanel {
 
     public void setTextFieldNombre(javax.swing.JTextField textFieldNombre) {
         this.textFieldNombre = textFieldNombre;
+    }
+
+    public DatatypePropertyVO getPropiedad() {
+        return propiedad;
+    }
+
+    public void setPropiedad(DatatypePropertyVO propiedad) {
+        this.propiedad = propiedad;
     }
 
 }
