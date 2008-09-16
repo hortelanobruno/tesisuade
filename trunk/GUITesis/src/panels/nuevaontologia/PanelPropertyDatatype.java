@@ -18,6 +18,7 @@ public class PanelPropertyDatatype extends javax.swing.JPanel {
 
     private PanelNuevaOntologia panel;
     private DatatypePropertyVO propiedad;
+    private String propertyDatatypeNameAux;
     
     /** Creates new form PanelPropertyDatatype */
     public PanelPropertyDatatype(PanelNuevaOntologia pan) {
@@ -46,9 +47,17 @@ public class PanelPropertyDatatype extends javax.swing.JPanel {
         comboBoxRange = new javax.swing.JComboBox();
         buttonAddDomain = new javax.swing.JButton();
         buttonRemoveDomain = new javax.swing.JButton();
-        buttonChangeName = new javax.swing.JButton();
 
         jLabel1.setText("Property");
+
+        textFieldNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textFieldNombreFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textFieldNombreFocusLost(evt);
+            }
+        });
 
         jLabel2.setText("Domain");
 
@@ -57,7 +66,7 @@ public class PanelPropertyDatatype extends javax.swing.JPanel {
 
         jLabel3.setText("Range");
 
-        comboBoxRange.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "date", "string", "int", "double", "float", "boolean" }));
+        comboBoxRange.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "date", "string", "int", "float", "boolean" }));
         comboBoxRange.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxRangeActionPerformed(evt);
@@ -78,13 +87,6 @@ public class PanelPropertyDatatype extends javax.swing.JPanel {
             }
         });
 
-        buttonChangeName.setText("Ch");
-        buttonChangeName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonChangeNameActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,16 +101,16 @@ public class PanelPropertyDatatype extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonRemoveDomain)
                         .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(comboBoxRange, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel3)
+                        .addGap(126, 126, 126))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonChangeName))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addComponent(comboBoxRange, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -117,8 +119,7 @@ public class PanelPropertyDatatype extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonChangeName))
+                    .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -127,30 +128,13 @@ public class PanelPropertyDatatype extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(buttonAddDomain)
                         .addComponent(buttonRemoveDomain)))
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboBoxRange, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(184, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxRange, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-private void buttonChangeNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeNameActionPerformed
-    String name = textFieldNombre.getText();
-    if(!name.isEmpty()){
-        String oldName = propiedad.getName();
-        ((BusinessDelegate)panel.getVistaNuevaOntologia().getModelo()).changeNameObjectProperty(oldName,name);
-        DefaultListModel model = (DefaultListModel) panel.getListPropertiesDatatype().getModel();
-        int index = model.indexOf(oldName);
-        model.remove(index);
-        model.add(index, name);
-        propiedad.setName(name);
-    }
-}//GEN-LAST:event_buttonChangeNameActionPerformed
 
 //Aca falta agrega la forma de obtener el domain
 private void buttonAddDomainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddDomainActionPerformed
@@ -167,9 +151,31 @@ private void buttonRemoveDomainActionPerformed(java.awt.event.ActionEvent evt) {
 }//GEN-LAST:event_buttonRemoveDomainActionPerformed
 
 private void comboBoxRangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxRangeActionPerformed
-    String name = comboBoxRange.getSelectedItem().toString();
-    ((BusinessDelegate)panel.getVistaNuevaOntologia().getModelo()).chageRange(propiedad.getName(),name);
+    if(comboBoxRange.getSelectedIndex() != -1){
+        String name = comboBoxRange.getSelectedItem().toString();
+        ((BusinessDelegate)panel.getVistaNuevaOntologia().getModelo()).changeRange(propiedad.getName(),name);
+    }
 }//GEN-LAST:event_comboBoxRangeActionPerformed
+
+private void textFieldNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldNombreFocusGained
+// Focus gained del text field del datatype property
+    propertyDatatypeNameAux = textFieldNombre.getText();
+}//GEN-LAST:event_textFieldNombreFocusGained
+
+private void textFieldNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldNombreFocusLost
+    if(!propertyDatatypeNameAux.equalsIgnoreCase(textFieldNombre.getText())){
+        String name = textFieldNombre.getText();
+        if(!name.isEmpty()){
+            ((BusinessDelegate)panel.getVistaNuevaOntologia().getModelo()).changeNameDatatypeProperty(propertyDatatypeNameAux,name);
+            DefaultListModel model = (DefaultListModel) panel.getListPropertiesDatatype().getModel();
+            int index = model.indexOf(propertyDatatypeNameAux);
+            model.remove(index);
+            model.add(index, name);
+            propiedad.setName(name);
+            panel.getListPropertiesDatatype().setSelectedIndex(index);
+        }
+    }
+}//GEN-LAST:event_textFieldNombreFocusLost
 
 public void addDomain(String name) {
     ((BusinessDelegate)panel.getVistaNuevaOntologia().getModelo()).addDomain(propiedad.getName(),name);
@@ -183,7 +189,6 @@ public void addDomain(String name) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAddDomain;
-    private javax.swing.JButton buttonChangeName;
     private javax.swing.JButton buttonRemoveDomain;
     private javax.swing.JComboBox comboBoxRange;
     private javax.swing.JLabel jLabel1;

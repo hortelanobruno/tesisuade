@@ -144,6 +144,7 @@ private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         DefaultMutableTreeNode abuelo = new DefaultMutableTreeNode("Classes");
         DefaultTreeModel modelo = new DefaultTreeModel(abuelo);
         treeClasses = new JTree(modelo);
+        
 
         HashMap<String,String> mapaClases = ((BusinessDelegate) panel.getVistaNuevaOntologia().getModelo()).showClasses();
         mapaNodos = new HashMap<String, DefaultMutableTreeNode>();

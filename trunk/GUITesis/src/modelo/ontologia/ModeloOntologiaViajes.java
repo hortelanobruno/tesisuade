@@ -44,6 +44,10 @@ public class ModeloOntologiaViajes {
         jena.addDatatypeProperty(m,obj);
     }
 
+    public void addDatatypePropertyToClass(String clase, String pro) {
+        jena.addDatatypePropertyToClass(m,clase,pro);
+    }
+
     public void addDomain(String pro, String domain) {
         jena.addDomain(m,pro,domain);
     }
@@ -54,6 +58,10 @@ public class ModeloOntologiaViajes {
 
     public void addObjectProperty(String obj) {
         jena.addObjectProperty(m,obj);
+    }
+
+    public void addObjectPropertyToClass(String clase, String pro) {
+        jena.addObjectPropertyToClass(m,clase,pro);
     }
 
     public void addRange(String pro, String range) {
@@ -68,6 +76,14 @@ public class ModeloOntologiaViajes {
         m = ModelFactory.createOntologyModel(spec, null );
         //m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
         m = loadOntModelFromOwlFile(url);
+    }
+
+    public void changeIndividualClass(String old, String nuevo) {
+        jena.changeIndividualClass(m,old,nuevo);
+    }
+
+    public void changeNameClass(String old, String nuevo) {
+        jena.changeNameClass(m,old,nuevo);
     }
 
     public void changeNameDatatypeProperty(String old, String name) {
@@ -112,6 +128,10 @@ public class ModeloOntologiaViajes {
 
     public void removeObjectProperty(String property) {
         jena.removeObjectProperty(m,property);
+    }
+
+    public void removePropertyOfClass(String clase, String pro) {
+        jena.removePropertyOfClass(m,clase,pro);
     }
 
     public void removeRange(String pro, String range) {

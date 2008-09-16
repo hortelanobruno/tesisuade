@@ -19,6 +19,7 @@ import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.util.iterator.Filter;
+import com.hp.hpl.jena.vocabulary.XSD;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -48,27 +49,53 @@ public class ApiJena {
     }
 
     public void addDatatypeProperty(OntModel m, String obj) {
-        String uri = getURIOntologia(m);
-        m.createDatatypeProperty(uri + obj);
+        String uri = getURIOntologiaConNumeral(m);
+        DatatypeProperty pro = m.createDatatypeProperty(uri + obj);
+        //arsenal
     }
 
+    public void addDatatypePropertyToClass(OntModel m, String clase, String pro) {
+        String uri = getURIOntologiaConNumeral(m);
+        OntClass clasee = m.getOntClass(uri+clase);
+        DatatypeProperty proo = m.getDatatypeProperty(uri+pro);
+        proo.addDomain(clasee);
+    }
+
+    
     public void addDomain(OntModel m, String pro, String domain) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        String uri = getURIOntologiaConNumeral(m);
+        OntProperty property = m.getOntProperty(uri+pro);
+        OntClass clase = m.getOntClass(uri+domain);
+        property.addDomain(clase);
     }
 
+    //Terminar
     public void addIndividual(OntModel m, String ind, String cla) {
         String uri = getURIOntologiaConNumeral(m);
         OntClass clase = m.getOntClass(uri+cla);
-        m.createIndividual(ind, clase);
+        Individual individual = m.createIndividual(uri+ind, clase);
+        
+        //aca hay que recorrer la clase en la que pertenece el individual y cargar las propiedades vacias
     }
 
     public void addObjectProperty(OntModel m, String obj) {
-        String uri = getURIOntologia(m);
+        String uri = getURIOntologiaConNumeral(m);
         m.createObjectProperty(uri + obj);
     }
 
+    public void addObjectPropertyToClass(OntModel m, String clase, String pro) {
+        String uri = getURIOntologiaConNumeral(m);
+        OntClass clasee = m.getOntClass(uri+clase);
+        ObjectProperty proo = m.getObjectProperty(uri+pro);
+        proo.addDomain(clasee);
+    }
+
+    
     public void addRange(OntModel m, String pro, String range) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        String uri = getURIOntologiaConNumeral(m);
+        OntProperty property = m.getOntProperty(uri+pro);
+        OntClass clase = m.getOntClass(uri+range);
+        property.addRange(clase);
     }
 
     public ArrayList<IndividualVueloVO> buscarVuelo(OntModel m, ConsultaVueloVO vuelo) {
@@ -116,16 +143,136 @@ public class ApiJena {
         return invue;
     }
 
+    //Testear
+    public void changeIndividualClass(OntModel m, String old, String nuevo) {
+        String uri = getURIOntologiaConNumeral(m);
+        Individual oldInd = m.getIndividual(uri+old);
+        Individual newInd = m.createIndividual(uri+nuevo, oldInd.getOntClass());
+        for (StmtIterator sIter = oldInd.listProperties(); sIter.hasNext();) {
+            Statement s = (Statement) sIter.next();
+            newInd.addProperty(s.getPredicate(), s.getObject());
+        }
+    }
+
+    //Testear
+    public void changeNameClass(OntModel m, String old, String nuevo) {
+        String uri = getURIOntologiaConNumeral(m);
+        OntClass oldclass = m.getOntClass(uri+old);
+        OntClass newclass = m.createClass(uri+nuevo);
+        if(oldclass.getSuperClass() != null){
+            newclass.addSuperClass(oldclass.getSuperClass());
+        }
+        if(oldclass.getSubClass() != null){
+            newclass.addSubClass(oldclass.getSubClass());
+        }
+        String oldclassname = oldclass.getLocalName();
+        Iterator i = m.listObjectProperties().filterDrop(new Filter() {
+
+            public boolean accept(Object o) {
+                return ((Resource) o).isAnon();
+            }
+        });
+        while (i.hasNext()) {
+            ObjectProperty pro = ((ObjectProperty) i.next());
+            ArrayList<String> domain = new ArrayList<String>();
+            OntResource dom = pro.getDomain();
+            if(dom != null){
+                if (dom.canAs(UnionClass.class)) {
+                    UnionClass uc = (UnionClass) dom.as(UnionClass.class);
+                    ExtendedIterator domainIt = uc.listOperands();
+                    while (domainIt.hasNext()) {
+                        OntClass mc = (OntClass) domainIt.next();
+                        domain.add(mc.getLocalName());
+                    }
+                } else {
+                    domain.add(pro.getDomain().getLocalName());
+                }
+            }
+            for (int j = 0; j < domain.size(); j++) {
+                if (domain.get(j).equalsIgnoreCase(oldclassname)) {
+                    newclass.addProperty(pro, pro.getURI());
+                }
+            }
+        }
+        i = m.listDatatypeProperties().filterDrop(new Filter() {
+
+            public boolean accept(Object o) {
+                return ((Resource) o).isAnon();
+            }
+        });
+        while (i.hasNext()) {
+            DatatypeProperty pro = ((DatatypeProperty) i.next());
+            ArrayList<String> domain = new ArrayList<String>();
+            OntResource dom = pro.getDomain();
+            if(dom != null){
+                if (dom.canAs(UnionClass.class)) {
+                    UnionClass uc = (UnionClass) dom.as(UnionClass.class);
+                    ExtendedIterator domainIt = uc.listOperands();
+                    while (domainIt.hasNext()) {
+                        OntClass mc = (OntClass) domainIt.next();
+                        domain.add(mc.getLocalName());
+                    }
+                } else {
+                    domain.add(pro.getDomain().getLocalName());
+                }
+            }
+            for (int j = 0; j < domain.size(); j++) {
+                if (domain.get(j).equalsIgnoreCase(oldclassname)) {
+                    newclass.addProperty(pro, pro.getURI());
+                }
+            }
+        }
+        oldclass.remove();
+    }
+
+    //Testear
     public void changeNameDatatypeProperty(OntModel m, String old, String name) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        String uri = getURIOntologiaConNumeral(m);
+        DatatypeProperty proOld = m.getDatatypeProperty(uri+old);
+        DatatypeProperty proNew = m.createDatatypeProperty(uri+name);
+        if(proOld.getRange() != null){
+            proNew.setRange(proOld.getRange());
+        }
+        if(proOld.getDomain() != null){
+            proNew.setDomain(proOld.getDomain());        
+        }
+        proOld.remove();
     }
 
+    //Testear
     public void changeNameObjectProperty(OntModel m, String old, String name) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        String uri = getURIOntologiaConNumeral(m);
+        ObjectProperty proOld = m.getObjectProperty(uri+old);
+        ObjectProperty proNew = m.createObjectProperty(uri+name);
+        if(proOld.getRange() != null){
+            proNew.setRange(proOld.getRange());
+        }
+        if(proOld.getDomain() != null){
+            proNew.setDomain(proOld.getDomain());  
+        }
+        proOld.remove();
     }
 
+    //Testear
     public void changeRange(OntModel m, String pro, String range) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        //date, string, int, double, float, boolean
+        String uri = getURIOntologiaConNumeral(m);
+        DatatypeProperty proOld = m.getDatatypeProperty(uri+pro);
+        if(range.equalsIgnoreCase("int")){
+            proOld.setRange(XSD.xint);
+        }
+        if(range.equalsIgnoreCase("date")){
+            proOld.setRange(XSD.date);
+        }
+        if(range.equalsIgnoreCase("string")){
+            proOld.setRange(XSD.xstring);
+        }
+        if(range.equalsIgnoreCase("float")){
+            proOld.setRange(XSD.xfloat);
+        }
+        if(range.equalsIgnoreCase("boolean")){
+            proOld.setRange(XSD.xboolean);
+        }
     }
     //falta la coincidencia de adultos,bebes y ninios y las opciones avanzadas
     public boolean coincideVuelo(ConsultaVueloVO vuelo, HashMap<String, String> propiedades) {
@@ -152,33 +299,38 @@ public class ApiJena {
         return b;
     }
 
+    //Testear
     public DatatypePropertyVO getDatatypeProperty(OntModel m, String pro) {
         DatatypePropertyVO vo = new DatatypePropertyVO();
         String uri = getURIOntologia(m);
         uri = uri + "#";
         DatatypeProperty property = m.getDatatypeProperty(uri + pro);
         vo.setName(property.getLocalName());
-        vo.setRange(property.getRange().getLocalName());
+        if(property.getRange() != null){
+            vo.setRange(property.getRange().getLocalName());
+        }
         ArrayList<String> domain = new ArrayList<String>();
         OntResource dom = property.getDomain();
-        if (dom.canAs(UnionClass.class)) {
-            UnionClass uc = (UnionClass) dom.as(UnionClass.class);
-            ExtendedIterator domainIt = uc.listOperands();
-            while (domainIt.hasNext()) {
-                OntClass mc = (OntClass) domainIt.next();
-                domain.add(mc.getLocalName());
+        if(dom != null){
+            if (dom.canAs(UnionClass.class)) {
+                UnionClass uc = (UnionClass) dom.as(UnionClass.class);
+                ExtendedIterator domainIt = uc.listOperands();
+                while (domainIt.hasNext()) {
+                    OntClass mc = (OntClass) domainIt.next();
+                    domain.add(mc.getLocalName());
+                }
+            } else {
+                domain.add(property.getDomain().getLocalName());
             }
-        } else {
-            domain.add(property.getDomain().getLocalName());
         }
         vo.setDomain(domain);
         return vo;
     }
 
+    
     public ObjectPropertyVO getObjectProperty(OntModel m, String pro) {
         ObjectPropertyVO vo = new ObjectPropertyVO();
-        String uri = getURIOntologia(m);
-        uri = uri + "#";
+        String uri = getURIOntologiaConNumeral(m);
         ObjectProperty property = m.getObjectProperty(uri + pro);
         Iterator ii = m.listClasses().toList().iterator();
         while (ii.hasNext()) {
@@ -186,19 +338,23 @@ public class ApiJena {
         }
         vo.setName(property.getLocalName());
         ArrayList<String> range = new ArrayList<String>();
-        range.add(property.getRange().getLocalName());
+        if(property.getRange() != null){
+            range.add(property.getRange().getLocalName());
+        }
         vo.setRange(range);
         ArrayList<String> domain = new ArrayList<String>();
         OntResource dom = property.getDomain();
-        if (dom.canAs(UnionClass.class)) {
-            UnionClass uc = (UnionClass) dom.as(UnionClass.class);
-            ExtendedIterator domainIt = uc.listOperands();
-            while (domainIt.hasNext()) {
-                OntClass mc = (OntClass) domainIt.next();
-                domain.add(mc.getLocalName());
+        if(dom != null){
+            if (dom.canAs(UnionClass.class)) {
+                UnionClass uc = (UnionClass) dom.as(UnionClass.class);
+                ExtendedIterator domainIt = uc.listOperands();
+                while (domainIt.hasNext()) {
+                    OntClass mc = (OntClass) domainIt.next();
+                    domain.add(mc.getLocalName());
+                }
+            } else {
+                domain.add(property.getDomain().getLocalName());
             }
-        } else {
-            domain.add(property.getDomain().getLocalName());
         }
         vo.setDomain(domain);
         return vo;
@@ -250,15 +406,17 @@ public class ApiJena {
             String obcPro = pro.getLocalName();
             ArrayList<String> domain = new ArrayList<String>();
             OntResource dom = pro.getDomain();
-            if (dom.canAs(UnionClass.class)) {
-                UnionClass uc = (UnionClass) dom.as(UnionClass.class);
-                ExtendedIterator domainIt = uc.listOperands();
-                while (domainIt.hasNext()) {
-                    OntClass mc = (OntClass) domainIt.next();
-                    domain.add(mc.getLocalName());
+            if(dom != null){
+                if (dom.canAs(UnionClass.class)) {
+                    UnionClass uc = (UnionClass) dom.as(UnionClass.class);
+                    ExtendedIterator domainIt = uc.listOperands();
+                    while (domainIt.hasNext()) {
+                        OntClass mc = (OntClass) domainIt.next();
+                        domain.add(mc.getLocalName());
+                    }
+                } else {
+                    domain.add(pro.getDomain().getLocalName());
                 }
-            } else {
-                domain.add(pro.getDomain().getLocalName());
             }
             for (int j = 0; j < domain.size(); j++) {
                 if (domain.get(j).equalsIgnoreCase(c)) {
@@ -277,15 +435,17 @@ public class ApiJena {
             String datPro = pro.getLocalName();
             ArrayList<String> domain = new ArrayList<String>();
             OntResource dom = pro.getDomain();
-            if (dom.canAs(UnionClass.class)) {
-                UnionClass uc = (UnionClass) dom.as(UnionClass.class);
-                ExtendedIterator domainIt = uc.listOperands();
-                while (domainIt.hasNext()) {
-                    OntClass mc = (OntClass) domainIt.next();
-                    domain.add(mc.getLocalName());
+            if(dom != null){
+                if (dom.canAs(UnionClass.class)) {
+                    UnionClass uc = (UnionClass) dom.as(UnionClass.class);
+                    ExtendedIterator domainIt = uc.listOperands();
+                    while (domainIt.hasNext()) {
+                        OntClass mc = (OntClass) domainIt.next();
+                        domain.add(mc.getLocalName());
+                    }
+                } else {
+                    domain.add(pro.getDomain().getLocalName());
                 }
-            } else {
-                domain.add(pro.getDomain().getLocalName());
             }
             for (int j = 0; j < domain.size(); j++) {
                 if (domain.get(j).equalsIgnoreCase(c)) {
@@ -368,8 +528,8 @@ public class ApiJena {
     }
 
     public void removeClass(OntModel m, String clase) {
-        String uri = getURIOntologia(m);
-        m.getOntClass(uri + "palabra").remove();
+        String uri = getURIOntologiaConNumeral(m);
+        m.getOntClass(uri +clase).remove();
     }
 
     public void removeDatatypeProperty(OntModel m, String obj) {
@@ -378,8 +538,12 @@ public class ApiJena {
         m.getDatatypeProperty(uri + obj).remove();
     }
 
+    //Testear
     public void removeDomain(OntModel m, String pro, String domain) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        String uri = getURIOntologiaConNumeral(m);
+        OntProperty property = m.getOntProperty(uri+pro);
+        OntClass clase = m.getOntClass(uri+domain);
+        property.removeDomain(clase);
     }
 
     public void removeIndividual(OntModel m, String ind) {
@@ -393,8 +557,28 @@ public class ApiJena {
         m.getObjectProperty(uri + property).remove();
     }
 
+    //Testear
+    public void removePropertyOfClass(OntModel m, String clase, String pro) {
+        String uri = getURIOntologiaConNumeral(m);
+        List<String> data = getDatatypeProperties(m);
+        List<String> obj = getObjectProperties(m);
+        if(data.contains(pro)){
+            DatatypeProperty datapro = m.getDatatypeProperty(uri+pro);
+            OntClass ontclass = m.getOntClass(uri+clase);
+            datapro.removeDomain(ontclass);
+        }else if(obj.contains(pro)){
+            ObjectProperty objpro = m.getObjectProperty(uri+pro);
+            OntClass ontclass = m.getOntClass(uri+clase);
+            objpro.removeDomain(ontclass);
+        }
+    }
+
+    //Testear
     public void removeRange(OntModel m, String pro, String range) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        String uri = getURIOntologiaConNumeral(m);
+        ObjectProperty objpro = m.getObjectProperty(uri+pro);
+        OntClass clase = m.getOntClass(uri+range);
+        objpro.removeRange(clase);
     }
 
     public void removerTraduccion(OntModel m, String ind, String sin) {
@@ -509,7 +693,9 @@ public class ApiJena {
     public void addClass(OntModel m, String clase, String padre) {
         String uri = m.getNsPrefixMap().get("").toString();
         OntClass ontClass = m.createClass(uri + clase);
-        m.getOntClass(uri + padre).addSubClass(ontClass);
+        if(padre != null){
+            m.getOntClass(uri + padre).addSubClass(ontClass);
+        }
     }
 
     public void grabarOntologia(OntModel m, String url) {

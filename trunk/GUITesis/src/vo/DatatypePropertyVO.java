@@ -53,8 +53,6 @@ public class DatatypePropertyVO {
             this.range = "string";
         } else if(range.equalsIgnoreCase("int")){
             this.range = "int";
-        } else if(range.equalsIgnoreCase("Double")){
-            this.range = "double";
         } else if(range.equalsIgnoreCase("Float")){
             this.range = "float";
         } else if(range.equalsIgnoreCase("Boolean")){
