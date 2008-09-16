@@ -17,6 +17,7 @@ public class PanelPropertyObject extends javax.swing.JPanel {
 
     private PanelNuevaOntologia panel;
     private ObjectPropertyVO propiedad;
+    private String objectPropertyNameAux;
 
     /** Creates new form PanelPropertyObject */
     public PanelPropertyObject(PanelNuevaOntologia pan) {
@@ -48,11 +49,19 @@ public class PanelPropertyObject extends javax.swing.JPanel {
         buttonRemoveDomain = new javax.swing.JButton();
         buttonAddRange = new javax.swing.JButton();
         buttonRemoveRange = new javax.swing.JButton();
-        buttonChangeName = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(511, 365));
 
         jLabel1.setText("Property");
+
+        textFieldNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textFieldNombreFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textFieldNombreFocusLost(evt);
+            }
+        });
 
         jLabel2.setText("Domain");
 
@@ -92,13 +101,6 @@ public class PanelPropertyObject extends javax.swing.JPanel {
             }
         });
 
-        buttonChangeName.setText("Ch");
-        buttonChangeName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonChangeNameActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,10 +111,7 @@ public class PanelPropertyObject extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonChangeName)
-                        .addGap(32, 32, 32))
+                        .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -141,8 +140,7 @@ public class PanelPropertyObject extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonChangeName))
+                    .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -187,18 +185,25 @@ private void buttonRemoveRangeActionPerformed(java.awt.event.ActionEvent evt) {/
     mode.removeElement(dom);
 }//GEN-LAST:event_buttonRemoveRangeActionPerformed
 
-private void buttonChangeNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeNameActionPerformed
-    String name = textFieldNombre.getText();
-    if (!name.isEmpty()) {
-        String oldName = propiedad.getName();
-        ((BusinessDelegate) panel.getVistaNuevaOntologia().getModelo()).changeNameDatatypeProperty(oldName, name);
+private void textFieldNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldNombreFocusGained
+// Se gano el foco del text field del nombre del object property
+    objectPropertyNameAux = textFieldNombre.getText();
+}//GEN-LAST:event_textFieldNombreFocusGained
+
+private void textFieldNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldNombreFocusLost
+// TODO add your handling code here:
+    if(!objectPropertyNameAux.equalsIgnoreCase(textFieldNombre.getText())){
+        String name = textFieldNombre.getText();
+        if (!name.isEmpty()) {
+        ((BusinessDelegate) panel.getVistaNuevaOntologia().getModelo()).changeNameObjectProperty(objectPropertyNameAux, name);
         DefaultListModel model = (DefaultListModel) panel.getListPropertiesObject().getModel();
-        int index = model.indexOf(oldName);
+        int index = model.indexOf(objectPropertyNameAux);
         model.remove(index);
         model.add(index, name);
         propiedad.setName(name);
     }
-}//GEN-LAST:event_buttonChangeNameActionPerformed
+    }
+}//GEN-LAST:event_textFieldNombreFocusLost
 
 public void addDomain(String name) {
     ((BusinessDelegate) panel.getVistaNuevaOntologia().getModelo()).addDomain(propiedad.getName(), name);
@@ -219,7 +224,6 @@ public void addRange(String name) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAddDomain;
     private javax.swing.JButton buttonAddRange;
-    private javax.swing.JButton buttonChangeName;
     private javax.swing.JButton buttonRemoveDomain;
     private javax.swing.JButton buttonRemoveRange;
     private javax.swing.JLabel jLabel1;

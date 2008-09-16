@@ -109,20 +109,33 @@ public class Main {
 //                m.write(fileout,"RDF/XML-ABBREV");
 
 
-        OntClass clase = m.getOntClass(uri+"NESTOR");
-        Individual ind = m.createIndividual("instancia2",clase);
-        Property pro = m.getProperty(uri+"propiedad1");
-        Literal v= m.createTypedLiteral(10);
-        ind.setPropertyValue(pro,v);
+        OntClass clase = m.getOntClass(uri+"clasesBRUNO");
+        DatatypeProperty pro = m.getDatatypeProperty(uri+"propiedad1");
+        pro.addDomain(clase);
         
-        Property pro2 = m.getProperty(uri+"objectProperty_3");
-        Individual ind2 = m.getIndividual(uri+"instancia1");
         
-        ind.setPropertyValue(pro2, ind2);
         
-        ClassHierarchy classh = new ClassHierarchy();
-        classh.showHierarchy2( System.out, m );
-        //Remover una clase FUNCA
+//        Individual ind = m.createIndividual("instancia2",clase);
+//        
+//        Literal v= m.createTypedLiteral(10);
+//        ind.setPropertyValue(pro,v);
+//        
+//        Property pro2 = m.getProperty(uri+"objectProperty_3");
+//        Individual ind2 = m.getIndividual(uri+"instancia1");
+//        
+//        ind.setPropertyValue(pro2, ind2);
+        
+        FileOutputStream fileout = null;
+        try {
+            fileout = new FileOutputStream(new File("C:\\Documents and Settings\\Administrador\\Escritorio\\Tesis\\Ontologias\\Ontologias\\pruebas\\prueba.owl"));
+        } catch (FileNotFoundException ex) {
+        }
+        m.write(fileout, "RDF/XML-ABBREV");
+        
+        
+//        ClassHierarchy classh = new ClassHierarchy();
+//        classh.showHierarchy2( System.out, m );
+//        //Remover una clase FUNCA
         //classh.showHierarchy( System.out, m );
         //m.getOntClass(uri+"palabra").remove();
         //classh.showHierarchy( System.out, m );

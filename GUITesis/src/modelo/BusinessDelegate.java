@@ -37,6 +37,13 @@ public class BusinessDelegate extends ProxyModelo
         modeloMotorBusqueda.cargarModelos();
     }
     
+    public void addDatatypePropertyToClass(String clase, String pro){
+        modeloOntologiaViajes.addDatatypePropertyToClass(clase,pro);
+    }
+    
+    public void addObjectPropertyToClass(String clase, String pro){
+        modeloOntologiaViajes.addObjectPropertyToClass(clase,pro);
+    }
     public void addIndividual(String ind,String clase){
         modeloOntologiaViajes.addIndividual(ind,clase);
     }
@@ -47,6 +54,18 @@ public class BusinessDelegate extends ProxyModelo
     
     public ArrayList<String> listIndividuals(String clase){
        return modeloOntologiaViajes.listIndividuals(clase);
+    }
+    
+    public void removePropertyOfClass(String clase, String pro){
+        modeloOntologiaViajes.removePropertyOfClass(clase,pro);
+    }
+    
+    public void changeNameClass(String old, String nuevo){
+        modeloOntologiaViajes.changeNameClass(old,nuevo);
+    }
+    
+    public void changeIndividualClass(String old, String nuevo){
+        modeloOntologiaViajes.changeIndividualClass(old,nuevo);    
     }
     
     public void changeNameDatatypeProperty(String old, String name){
@@ -61,7 +80,7 @@ public class BusinessDelegate extends ProxyModelo
         modeloOntologiaViajes.addRange(pro,range);
     }
     
-    public void chageRange(String pro, String range){
+    public void changeRange(String pro, String range){
         modeloOntologiaViajes.changeRange(pro,range);
     }
     

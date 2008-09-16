@@ -30,7 +30,7 @@ public class PanelIndividualDatatypeProperty extends javax.swing.JPanel {
         textFieldValorProperty = new javax.swing.JTextField();
         labelNombrePropiedad = new javax.swing.JLabel();
 
-        comboBoxType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "date", "string", "int", "double", "float", "boolean" }));
+        comboBoxType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "date", "string", "int", "float", "boolean" }));
 
         labelNombrePropiedad.setText("Nombre Propiedad");
 

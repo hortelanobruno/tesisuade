@@ -4,6 +4,6 @@
   </ontologiasViajes>
   <ontologiasVocabulario/>
   <defaultURLOWLSinonimos></defaultURLOWLSinonimos>
-  <defaultURLOWLViajes></defaultURLOWLViajes>
+  <defaultURLOWLViajes>C:\\Documents and Settings\\Administrador\\Escritorio\\Tesis\\Ontologias\\Ontologias\\pruebas\\prueba.owl</defaultURLOWLViajes>
   <owlDirectory>C:\Documents and Settings\Administrador\Mis documentos\workspace\NetBeans\GUITesis\src\owl\</owlDirectory>
 </configuration>
