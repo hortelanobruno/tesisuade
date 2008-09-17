@@ -19,6 +19,7 @@ package jenasouforce;
  * (see footer for full conditions)
  *****************************************************************************/// Imports
 ///////////////
+import com.hp.hpl.jena.graph.Triple;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -29,12 +30,15 @@ import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.util.iterator.Filter;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -109,11 +113,43 @@ public class Main {
 //                m.write(fileout,"RDF/XML-ABBREV");
 
 
-        OntClass clase = m.getOntClass(uri+"clasesBRUNO");
-        DatatypeProperty pro = m.getDatatypeProperty(uri+"propiedad1");
-        pro.addDomain(clase);
         
+ OntClass clase = m.getOntClass(uri+"NESTOR");
+ Individual ind = m.createIndividual("instancia2",clase);
+ Property pro = m.getProperty(uri+"propiedad1");
+ Literal v= m.createTypedLiteral(10);
+ ind.setPropertyValue(pro,v);
+
+Property pro2 = m.getProperty(uri+"objectProperty_3");
+ Individual ind2 = m.getIndividual(uri+"instancia1");
         
+ ind.setPropertyValue(pro2, ind2);
+ for ( StmtIterator sIter = ind.listProperties(); sIter.hasNext() ; )
+{
+    Statement s = (Statement) sIter.next() ;
+    Triple tri = s.asTriple();
+    if(tri.getObject().isLiteral()){
+        HashMap<String,String> datosDatatype = new HashMap<String,String>();
+        if(tri.getObject().getLiteralDatatype() != null){
+            String[] tipo = tri.getObject().getLiteralDatatype().getURI().split("#");
+            datosDatatype.put(tri.getMatchObject().getLiteral().getValue().toString() , tipo[tipo.length-1]);
+            String nombre = tri.getPredicate().getLocalName();
+
+        }else{
+            String nombre = tri.getPredicate().getLocalName();
+
+        }
+    }else{
+        String valor = null;
+        if(!tri.getObject().isBlank()){
+            valor = tri.getObject().getLocalName();
+        }
+        String nombre = tri.getPredicate().getLocalName();
+
+
+    }
+}
+
         
 //        Individual ind = m.createIndividual("instancia2",clase);
 //        

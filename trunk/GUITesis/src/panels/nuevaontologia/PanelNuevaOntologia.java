@@ -819,10 +819,14 @@ public void cargarIndividual(){
         for(int i=0; i< datatypeProperties.size() ; i++){
             HashMap<String,String> propiedad = datatypeProperties.get(keys.toArray()[i]);
             String nombre = (String) datatypeProperties.keySet().toArray()[i];
+            String type = propiedad.values().toArray()[0].toString();
             PanelIndividualDatatypeProperty panelData = new PanelIndividualDatatypeProperty();
+            if(propiedad.keySet().toArray()[0] != null){
+                String valor = propiedad.keySet().toArray()[0].toString();
+                panelData.getTextFieldValorProperty().setText(valor);
+            }
             panelData.getLabelNombrePropiedad().setText(nombre);
-            panelData.getComboBoxType().setSelectedItem(propiedad.values().toArray()[0]);
-            panelData.getTextFieldValorProperty().setText((String) propiedad.keySet().toArray()[0]);
+            panelData.getComboBoxType().setSelectedItem(type);
             panelIndividualProperties.add(panelData);
         }
 
@@ -833,7 +837,9 @@ public void cargarIndividual(){
             String valor = (String) objectProperties.values().toArray()[i];
             PanelIndividualObjectProperty panelObj = new PanelIndividualObjectProperty();
             panelObj.getLabelNombrePropiedad().setText(nombre);
-            panelObj.getTextFieldValorPropiedad().setText(valor);
+            if(valor != null){
+                panelObj.getTextFieldValorPropiedad().setText(valor);
+            }
             panelIndividualProperties.add(panelObj);
         }   
     }
