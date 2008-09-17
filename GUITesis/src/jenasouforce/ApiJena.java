@@ -14,6 +14,8 @@ import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.ontology.OntResource;
 import com.hp.hpl.jena.ontology.UnionClass;
 import com.hp.hpl.jena.rdf.model.Literal;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
@@ -74,8 +76,18 @@ public class ApiJena {
         String uri = getURIOntologiaConNumeral(m);
         OntClass clase = m.getOntClass(uri+cla);
         Individual individual = m.createIndividual(uri+ind, clase);
-        
-        //aca hay que recorrer la clase en la que pertenece el individual y cargar las propiedades vacias
+//        List<String> properties = getProperty(m, cla);
+//        List<String> datatypeproperties = getDatatypeProperties(m);
+//        List<String> objectproperties = getObjectProperties(m);
+//        for(int i=0 ; i < properties.size() ; i++){
+//            if(datatypeproperties.contains(properties.get(i))){
+//                DatatypeProperty dpro = m.getDatatypeProperty(uri+properties.get(i));
+//                individual.addProperty(dpro, "");
+//            }else if(objectproperties.contains(properties.get(i))){
+//                ObjectProperty opro = m.getObjectProperty(uri+properties.get(i));
+//                individual.addProperty(opro, m.createResource());
+//            }
+//        }
     }
 
     public void addObjectProperty(OntModel m, String obj) {
@@ -505,21 +517,43 @@ public class ApiJena {
         indViajes.setNombre(individual.getLocalName());
         HashMap<String,String> objectProperties = new HashMap<String,String>();
         HashMap<String,HashMap<String,String>> datatypeProperties = new HashMap<String,HashMap<String,String>>();
+        //Cargo las propiedades que tiene seteada el individual y cargo las que no tiene seteadas
         for ( StmtIterator sIter = individual.listProperties(); sIter.hasNext() ; )
         {
             Statement s = (Statement) sIter.next() ;
             Triple tri = s.asTriple();
             if(tri.getObject().isLiteral()){
                 HashMap<String,String> datosDatatype = new HashMap<String,String>();
-                String[] tipo = tri.getObject().getLiteralDatatype().getURI().split("#");
-                datosDatatype.put(tri.getMatchObject().getLiteral().getValue().toString() , tipo[tipo.length-1]);
-                String nombre = tri.getPredicate().getLocalName();
-                datatypeProperties.put(nombre, datosDatatype);
+                if(tri.getObject().getLiteralDatatype() != null){
+                    String[] tipo = tri.getObject().getLiteralDatatype().getURI().split("#");
+                    datosDatatype.put(tri.getMatchObject().getLiteral().getValue().toString() , tipo[tipo.length-1]);
+                    String nombre = tri.getPredicate().getLocalName();
+                    datatypeProperties.put(nombre, datosDatatype);
+                }
             }else{
                 String valor = tri.getObject().getLocalName();
                 String nombre = tri.getPredicate().getLocalName();
                 if(!nombre.equalsIgnoreCase("type"))
                     objectProperties.put(nombre, valor);
+            }
+        }
+        //Probar
+        
+        List<String> propiedades = getProperty(m, individual.getOntClass().getLocalName());
+        for( int i=0 ; i < propiedades.size() ; i++ )
+        {
+            Property pro = m.getProperty(uri+propiedades.get(i));
+            if(pro.isLiteral()){
+                HashMap<String,String> datosDatatype = new HashMap<String,String>();
+                if(!datatypeProperties.containsKey(propiedades.get(i))){
+                    DatatypeProperty data = m.getDatatypeProperty(uri+propiedades.get(i));
+                    datosDatatype.put(null , data.getRange().getLocalName());
+                    datatypeProperties.put(propiedades.get(i), datosDatatype);
+                }
+            }else{
+                if(!objectProperties.containsKey(propiedades.get(i))){
+                    objectProperties.put(propiedades.get(i), null);
+                }
             }
         }
         indViajes.setDatatypeProperties(datatypeProperties);
