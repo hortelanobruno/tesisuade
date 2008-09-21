@@ -124,7 +124,7 @@ public class BusinessDelegate extends ProxyModelo
         return modeloOntologiaViajes.getObjectProperty(pro);
     }
     
-    public List<String> ClassProperty(String clase){
+    public HashMap<String,String> ClassProperty(String clase){
         return modeloOntologiaViajes.ClassProperty(clase);
     }
     

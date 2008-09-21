@@ -36,7 +36,7 @@ public class ModeloOntologiaViajes {
     }
 
     
-    public List<String> ClassProperty(String clase){
+    public HashMap<String,String> ClassProperty(String clase){
         return jena.getProperty(m,clase);
     }
 
