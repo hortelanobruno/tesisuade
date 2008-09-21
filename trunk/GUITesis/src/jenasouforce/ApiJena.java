@@ -402,13 +402,17 @@ public class ApiJena {
         return propiedades;
     }
 
-    public List<String> getProperty(OntModel m, String c) {
-        ArrayList<String> propiedades = new ArrayList<String>();
-        String uri = getURIOntologia(m);
-        uri = uri + "#";
+    //Testear la parte de los padres
+    public HashMap<String,String> getProperty(OntModel m, String c) {
+        HashMap<String,String> propiedades = new HashMap<String,String>();
+        String uri = getURIOntologiaConNumeral(m);
         OntClass clase = m.getOntClass(uri + c);
+        List<String> padres = new ArrayList<String>();
+        while(clase.getSuperClass() != null){
+            clase = clase.getSuperClass();
+            padres.add(clase.getLocalName());
+        }
         Iterator i = m.listObjectProperties().filterDrop(new Filter() {
-
             public boolean accept(Object o) {
                 return ((Resource) o).isAnon();
             }
@@ -432,7 +436,7 @@ public class ApiJena {
             }
             for (int j = 0; j < domain.size(); j++) {
                 if (domain.get(j).equalsIgnoreCase(c)) {
-                    propiedades.add(obcPro);
+                    propiedades.put(obcPro,"oown");
                 }
             }
         }
@@ -461,10 +465,69 @@ public class ApiJena {
             }
             for (int j = 0; j < domain.size(); j++) {
                 if (domain.get(j).equalsIgnoreCase(c)) {
-                    propiedades.add(datPro);
+                    propiedades.put(datPro,"down");
                 }
             }
         }
+        for(int q=0 ; q < padres.size() ; q ++){
+            i = m.listObjectProperties().filterDrop(new Filter() {
+                public boolean accept(Object o) {
+                    return ((Resource) o).isAnon();
+                }
+            });
+            while (i.hasNext()) {
+                ObjectProperty pro = ((ObjectProperty) i.next());
+                String obcPro = pro.getLocalName();
+                ArrayList<String> domain = new ArrayList<String>();
+                OntResource dom = pro.getDomain();
+                if(dom != null){
+                    if (dom.canAs(UnionClass.class)) {
+                        UnionClass uc = (UnionClass) dom.as(UnionClass.class);
+                        ExtendedIterator domainIt = uc.listOperands();
+                        while (domainIt.hasNext()) {
+                            OntClass mc = (OntClass) domainIt.next();
+                            domain.add(mc.getLocalName());
+                        }
+                    } else {
+                        domain.add(pro.getDomain().getLocalName());
+                    }
+                }
+                for (int j = 0; j < domain.size(); j++) {
+                    if (domain.get(j).equalsIgnoreCase(padres.get(q))) {
+                        propiedades.put(obcPro,"oinherited");
+                    }
+                }
+            }
+            i = m.listDatatypeProperties().filterDrop(new Filter() {
+
+                public boolean accept(Object o) {
+                    return ((Resource) o).isAnon();
+                }
+            });
+            while (i.hasNext()) {
+                DatatypeProperty pro = ((DatatypeProperty) i.next());
+                String datPro = pro.getLocalName();
+                ArrayList<String> domain = new ArrayList<String>();
+                OntResource dom = pro.getDomain();
+                if(dom != null){
+                    if (dom.canAs(UnionClass.class)) {
+                        UnionClass uc = (UnionClass) dom.as(UnionClass.class);
+                        ExtendedIterator domainIt = uc.listOperands();
+                        while (domainIt.hasNext()) {
+                            OntClass mc = (OntClass) domainIt.next();
+                            domain.add(mc.getLocalName());
+                        }
+                    } else {
+                        domain.add(pro.getDomain().getLocalName());
+                    }
+                }
+                for (int j = 0; j < domain.size(); j++) {
+                    if (domain.get(j).equalsIgnoreCase(padres.get(q))) {
+                        propiedades.put(datPro,"dinherited");
+                    }
+                }
+            }
+        } 
         return propiedades;
     }
 
@@ -539,20 +602,21 @@ public class ApiJena {
         }
         //Probar
         
-        List<String> propiedades = getProperty(m, individual.getOntClass().getLocalName());
+        HashMap<String,String> propiedades = getProperty(m, individual.getOntClass().getLocalName());
+        String[] prop = (String[]) propiedades.keySet().toArray();
         for( int i=0 ; i < propiedades.size() ; i++ )
         {
-            Property pro = m.getProperty(uri+propiedades.get(i));
+            Property pro = m.getProperty(uri+prop[i]);
             if(pro.isLiteral()){
                 HashMap<String,String> datosDatatype = new HashMap<String,String>();
-                if(!datatypeProperties.containsKey(propiedades.get(i))){
-                    DatatypeProperty data = m.getDatatypeProperty(uri+propiedades.get(i));
+                if(!datatypeProperties.containsKey(prop[i])){
+                    DatatypeProperty data = m.getDatatypeProperty(uri+prop[i]);
                     datosDatatype.put(null , data.getRange().getLocalName());
-                    datatypeProperties.put(propiedades.get(i), datosDatatype);
+                    datatypeProperties.put(prop[i], datosDatatype);
                 }
             }else{
-                if(!objectProperties.containsKey(propiedades.get(i))){
-                    objectProperties.put(propiedades.get(i), null);
+                if(!objectProperties.containsKey(prop[i])){
+                    objectProperties.put(prop[i], null);
                 }
             }
         }
