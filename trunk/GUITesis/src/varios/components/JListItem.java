@@ -13,9 +13,9 @@ import javax.swing.ImageIcon;
  */
 public class JListItem {
 
-  private final String title;
+  private String title;
 
-  private final String imagePath;
+  private String imagePath;
 
   private ImageIcon image;
 
@@ -24,6 +24,10 @@ public class JListItem {
     this.imagePath = imagePath;
   }
 
+  public void setTitle(String title){
+      this.title = title;
+  }
+  
   public String getTitle() {
     return title;
   }

@@ -7,13 +7,17 @@
 package panels.nuevaontologia;
 
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JList;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 import modelo.BusinessDelegate;
+import varios.components.JListCellRenderer;
+import varios.components.JListItem;
 
 /**
  *
@@ -45,14 +49,12 @@ public class PanelListProperties extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        treeProperties = new javax.swing.JTree();
         buttonAddPropertie = new javax.swing.JButton();
         buttonRemovePropertie = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listProperties = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jScrollPane1.setViewportView(treeProperties);
 
         buttonAddPropertie.setText("Add");
         buttonAddPropertie.addActionListener(new java.awt.event.ActionListener() {
@@ -68,14 +70,17 @@ public class PanelListProperties extends javax.swing.JDialog {
             }
         });
 
+        listProperties.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(listProperties);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonAddPropertie)
                     .addComponent(buttonRemovePropertie))
@@ -86,14 +91,14 @@ public class PanelListProperties extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(buttonAddPropertie)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonRemovePropertie)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                        .addComponent(buttonRemovePropertie))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
@@ -101,40 +106,24 @@ public class PanelListProperties extends javax.swing.JDialog {
 
     
     public void initComponents2(){
-        DefaultMutableTreeNode abuelo = new DefaultMutableTreeNode("Classes");
-        DefaultTreeModel modelo = new DefaultTreeModel(abuelo);
-        treeProperties = new JTree(modelo);
-        
         datatypeProperties = ((BusinessDelegate) nuevaOntologia.getVistaNuevaOntologia().getModelo()).showDatatypeProperties();
         objectProperties = ((BusinessDelegate) nuevaOntologia.getVistaNuevaOntologia().getModelo()).showObjectProperties();
-        
-        DefaultMutableTreeNode node = null;
+        DefaultListModel model = new DefaultListModel();
         for(int i=0 ; i < datatypeProperties.size() ; i++){
             String propiedad = datatypeProperties.get(i);
             if(!propiedadesCargadas.contains(propiedad)){
-                node = new DefaultMutableTreeNode(propiedad);
-                abuelo.add(node);
+                model.addElement(new JListItem(propiedad,"src\\iconos\\protege\\OWLDatatypeProperty.GIF"));
             }
         }
         for(int i=0 ; i < objectProperties.size() ; i++){
             String propiedad = objectProperties.get(i);
             if(!propiedadesCargadas.contains(propiedad)){
-                node = new DefaultMutableTreeNode(propiedad);
-                abuelo.add(node);
+                model.addElement(new JListItem(propiedad,"src\\iconos\\protege\\OWLObjectProperty.GIF"));
             }
-        } 
-        jScrollPane1.setViewportView(treeProperties);
-        Object root = treeProperties.getModel().getRoot();
-        TreePath path = new TreePath(root);
-        treeProperties.expandPath(path);
-        ImageIcon leafIcon = createImageIcon("/iconos/protege/TreeBold.gif");
-        if (leafIcon != null) {
-            DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
-            renderer.setLeafIcon(leafIcon);
-            treeProperties.setCellRenderer(renderer);
         }
-        
-        
+        listProperties = new JList(model);
+        listProperties.setCellRenderer(new JListCellRenderer());
+        jScrollPane1.setViewportView(listProperties);
     }
     
     
@@ -151,7 +140,8 @@ public class PanelListProperties extends javax.swing.JDialog {
     
 private void buttonAddPropertieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddPropertieActionPerformed
 // Agregar propiedad seleccionada
-    String instancia = treeProperties.getSelectionPath().getLastPathComponent().toString();
+    JListItem item = (JListItem) listProperties.getSelectedValue();
+    String instancia = item.getTitle();
     if(instancia != null){
         if(datatypeProperties.contains(instancia)){
             nuevaOntologia.addClassProperty(this.clase,instancia,"datatype");
@@ -174,7 +164,7 @@ private void buttonRemovePropertieActionPerformed(java.awt.event.ActionEvent evt
     private javax.swing.JButton buttonAddPropertie;
     private javax.swing.JButton buttonRemovePropertie;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTree treeProperties;
+    private javax.swing.JList listProperties;
     // End of variables declaration//GEN-END:variables
 
 }
