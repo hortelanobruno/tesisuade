@@ -127,9 +127,9 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                                      <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="buttonAddProperty" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="buttonRemoveProperty" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -166,8 +166,8 @@
                               <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="buttonRemoveProperty" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="buttonAddProperty" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPane2" pref="216" max="32767" attributes="0"/>
@@ -217,20 +217,20 @@
                 <Property name="text" type="java.lang.String" value="Properties"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="buttonRemoveProperty">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Remove"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRemovePropertyActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton3">
+            <Component class="javax.swing.JButton" name="buttonAddProperty">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add P"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddPropertyActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
@@ -242,6 +242,7 @@
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="textFieldClassNameFocusGained"/>
                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="textFieldClassNameFocusLost"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textFieldClassNameKeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="buttonRemoverClass">
@@ -304,6 +305,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="textFieldNombreClase">
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textFieldNombreClaseKeyTyped"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonOkNombre">
                   <Properties>
@@ -516,6 +520,9 @@
                           </Events>
                         </Component>
                         <Component class="javax.swing.JTextField" name="textFieldNameObjectProperty">
+                          <Events>
+                            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textFieldNameObjectPropertyKeyTyped"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel11">
                           <Properties>
@@ -675,6 +682,9 @@
                           </Events>
                         </Component>
                         <Component class="javax.swing.JTextField" name="textFieldNameDatatypeProperty">
+                          <Events>
+                            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textFieldNameDatatypePropertyKeyTyped"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel12">
                           <Properties>
@@ -760,9 +770,9 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="panelAddIndividual" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane6" pref="291" max="32767" attributes="1"/>
+                                      <Component id="jScrollPane6" pref="289" max="32767" attributes="1"/>
                                   </Group>
-                                  <Component id="jScrollPane5" alignment="0" pref="349" max="32767" attributes="1"/>
+                                  <Component id="jScrollPane5" alignment="0" pref="347" max="32767" attributes="1"/>
                               </Group>
                           </Group>
                       </Group>
@@ -846,7 +856,7 @@
                               <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane7" pref="341" max="32767" attributes="0"/>
+                          <Component id="jScrollPane7" pref="339" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -861,6 +871,7 @@
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="textFieldNombreIndividualFocusGained"/>
                     <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="textFieldNombreIndividualFocusLost"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textFieldNombreIndividualKeyTyped"/>
                   </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane7">
@@ -914,6 +925,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="textFieldAddIndividual">
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textFieldAddIndividualKeyTyped"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonOkIndividual">
                   <Properties>

@@ -60,7 +60,8 @@ public class ApiJena {
         String uri = getURIOntologiaConNumeral(m);
         OntClass clasee = m.getOntClass(uri+clase);
         DatatypeProperty proo = m.getDatatypeProperty(uri+pro);
-        proo.addDomain(clasee);
+        //proo.addDomain(clasee);
+        clasee.addProperty(proo, proo.getURI());
     }
 
     

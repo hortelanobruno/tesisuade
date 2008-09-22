@@ -173,6 +173,8 @@ private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         if (leafIcon != null) {
             DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
             renderer.setLeafIcon(leafIcon);
+            renderer.setOpenIcon(leafIcon);
+            renderer.setClosedIcon(leafIcon);
             treeClasses.setCellRenderer(renderer);
         }
     }
