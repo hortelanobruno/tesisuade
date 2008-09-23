@@ -29,6 +29,7 @@ import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
@@ -113,126 +114,41 @@ public class Main {
 //                m.write(fileout,"RDF/XML-ABBREV");
 
 
+
+//      Funca
+//        UnionClass ontUn = m.createUnionClass(null,
+//                       m.createList(new RDFNode[]{clase1, clase2}));
         
- OntClass clase = m.getOntClass(uri+"NESTOR");
- Individual ind = m.createIndividual("instancia2",clase);
- Property pro = m.getProperty(uri+"propiedad1");
- Literal v= m.createTypedLiteral(10);
- ind.setPropertyValue(pro,v);
-
-Property pro2 = m.getProperty(uri+"objectProperty_3");
- Individual ind2 = m.getIndividual(uri+"instancia1");
-        
- ind.setPropertyValue(pro2, ind2);
- for ( StmtIterator sIter = ind.listProperties(); sIter.hasNext() ; )
-{
-    Statement s = (Statement) sIter.next() ;
-    Triple tri = s.asTriple();
-    if(tri.getObject().isLiteral()){
-        HashMap<String,String> datosDatatype = new HashMap<String,String>();
-        if(tri.getObject().getLiteralDatatype() != null){
-            String[] tipo = tri.getObject().getLiteralDatatype().getURI().split("#");
-            datosDatatype.put(tri.getMatchObject().getLiteral().getValue().toString() , tipo[tipo.length-1]);
-            String nombre = tri.getPredicate().getLocalName();
-
-        }else{
-            String nombre = tri.getPredicate().getLocalName();
-
+        OntClass clase1 = m.getOntClass(uri + "lopes");
+        ObjectProperty pro = m.getObjectProperty(uri + "objpro1");
+        List<String> domain = new ArrayList<String>();
+        UnionClass uc = (UnionClass) pro.getDomain().as(UnionClass.class);
+        ExtendedIterator domainIt = uc.listOperands();
+        while (domainIt.hasNext()) {
+            OntClass mc = (OntClass) domainIt.next();
+            domain.add(mc.getLocalName());
         }
-    }else{
-        String valor = null;
-        if(!tri.getObject().isBlank()){
-            valor = tri.getObject().getLocalName();
+        OntClass clases[] = new OntClass[domain.size()];
+        for(int i=0 ; i < domain.size() ; i++){
+            clases[i] = m.getOntClass(uri+domain.get(i));
         }
-        String nombre = tri.getPredicate().getLocalName();
-
-
-    }
-}
+        RDFNode nodes[] = new RDFNode[domain.size()+1];
+        for(int i=0 ; i < domain.size() ; i++){
+            nodes[i] = clases[i];
+        }
+        nodes[nodes.length-1] = clase1;
+        UnionClass ontUn = m.createUnionClass(null,m.createList(nodes));
+        pro.setDomain(ontUn);
 
         
-//        Individual ind = m.createIndividual("instancia2",clase);
-//        
-//        Literal v= m.createTypedLiteral(10);
-//        ind.setPropertyValue(pro,v);
-//        
-//        Property pro2 = m.getProperty(uri+"objectProperty_3");
-//        Individual ind2 = m.getIndividual(uri+"instancia1");
-//        
-//        ind.setPropertyValue(pro2, ind2);
         
+        //Grabaaaaaaaaaaaaaaaaa
         FileOutputStream fileout = null;
         try {
             fileout = new FileOutputStream(new File("C:\\Documents and Settings\\Administrador\\Escritorio\\Tesis\\Ontologias\\Ontologias\\pruebas\\prueba.owl"));
         } catch (FileNotFoundException ex) {
         }
         m.write(fileout, "RDF/XML-ABBREV");
-        
-        
-//        ClassHierarchy classh = new ClassHierarchy();
-//        classh.showHierarchy2( System.out, m );
-//        //Remover una clase FUNCA
-        //classh.showHierarchy( System.out, m );
-        //m.getOntClass(uri+"palabra").remove();
-        //classh.showHierarchy( System.out, m );
-        //Remover una propiedad, si esta propiedad esta en alguna clase desaparece FUNCA
-        //imprimirObjectProperties(m);
-        //m.getObjectProperty(uri+"propiedad2").remove();
-        //imprimirObjectProperties(m);
-        //
-        //m.getOntClass(uri+"NESTOR").remove();
-        //m.getIndividual(uri+"instancia1").remove();
-        
-//                System.out.println("removiiiiiiii");
-//                List<String>    ind = showIndividuals(m);
-//                for(int j=0 ; j < ind.size() ; j++){
-//                    System.out.println(ind.get(j));
-//                }
-        //add domain
-//        OntClass clase = m.getOntClass(uri + "NESTOR");
-//        OntClass clase2 = m.getOntClass(uri + "clasesBRUNO");
-//        ObjectProperty property = m.getObjectProperty(uri + "propiedad2");
-//        property.addDomain(clase);
-//        property.addDomain(clase2);
-//        ArrayList<String> domain = new ArrayList<String>();
-//        OntResource dom = property.getDomain();
-//        if (dom != null) {
-//            if (dom.canAs(UnionClass.class)) {
-//                UnionClass uc = (UnionClass) dom.as(UnionClass.class);
-//                ExtendedIterator domainIt = uc.listOperands();
-//                while (domainIt.hasNext()) {
-//                    OntClass mc = (OntClass) domainIt.next();
-//                    domain.add(mc.getLocalName());
-//                }
-//            } else {
-//                domain.add(property.getDomain().getLocalName());
-//            }
-//        }
-//        for (int i = 0; i < domain.size(); i++) {
-//            System.out.println(domain.get(i) + "1");
-//        }
-//        //remove domain
-//        property.removeDomain(clase);
-//        domain = new ArrayList<String>();
-//        dom = property.getDomain();
-//        if (dom != null) {
-//            if (dom.canAs(UnionClass.class)) {
-//                UnionClass uc = (UnionClass) dom.as(UnionClass.class);
-//                ExtendedIterator domainIt = uc.listOperands();
-//                while (domainIt.hasNext()) {
-//                    OntClass mc = (OntClass) domainIt.next();
-//                    domain.add(mc.getLocalName());
-//                }
-//            } else {
-//                domain.add(property.getDomain().getLocalName());
-//            }
-//        }
-//        for (int i = 0; i < domain.size(); i++) {
-//            System.out.println(domain.get(i) + "2");
-//        }
-//
-//
-//        DatatypeProperty dataproperty = m.getDatatypeProperty(uri + "propiedad1");
 
     }
 

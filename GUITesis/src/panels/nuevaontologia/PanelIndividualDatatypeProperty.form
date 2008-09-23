@@ -56,9 +56,15 @@
             <StringItem index="4" value="boolean"/>
           </StringArray>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textFieldValorProperty">
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="textFieldValorPropertyFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="textFieldValorPropertyFocusLost"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textFieldValorPropertyKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelNombrePropiedad">
       <Properties>

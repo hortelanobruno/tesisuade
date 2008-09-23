@@ -78,6 +78,10 @@ public class ModeloOntologiaViajes {
         m = loadOntModelFromOwlFile(url);
     }
 
+    public void cargarPropiedadIndividual(String ind, String pro, String valor) {
+        jena.cargarPropiedadIndividual(m,ind,pro,valor);
+    }
+
     public void changeIndividualClass(String old, String nuevo) {
         jena.changeIndividualClass(m,old,nuevo);
     }

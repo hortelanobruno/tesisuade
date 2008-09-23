@@ -49,46 +49,89 @@ public class ApiJena {
 
     public ApiJena() {
     }
-
+    
     public void addDatatypeProperty(OntModel m, String obj) {
         String uri = getURIOntologiaConNumeral(m);
         DatatypeProperty pro = m.createDatatypeProperty(uri + obj);
-        //arsenal
     }
 
+    
     public void addDatatypePropertyToClass(OntModel m, String clase, String pro) {
         String uri = getURIOntologiaConNumeral(m);
         OntClass clasee = m.getOntClass(uri+clase);
         DatatypeProperty proo = m.getDatatypeProperty(uri+pro);
-        //proo.addDomain(clasee);
-        clasee.addProperty(proo, proo.getURI());
+        if(proo.getDomain() == null){
+            proo.addDomain(clasee);
+        }else{
+            OntResource dom = proo.getDomain();
+            if (dom.canAs(UnionClass.class)) {
+                List<String> domain = new ArrayList<String>();
+                UnionClass uc = (UnionClass) dom.as(UnionClass.class);
+                ExtendedIterator domainIt = uc.listOperands();
+                while (domainIt.hasNext()) {
+                    OntClass mc = (OntClass) domainIt.next();
+                    domain.add(mc.getLocalName());
+                }
+                OntClass clases[] = new OntClass[domain.size()];
+                for(int i=0 ; i < domain.size() ; i++){
+                    clases[i] = m.getOntClass(uri+domain.get(i));
+                }
+                RDFNode nodes[] = new RDFNode[domain.size()+1];
+                for(int i=0 ; i < domain.size() ; i++){
+                    nodes[i] = clases[i];
+                }
+                nodes[nodes.length-1] = clasee;
+                UnionClass ontUn = m.createUnionClass(null,m.createList(nodes));
+                proo.setDomain(ontUn);
+            } else {
+                OntResource domm = (OntResource) proo.getDomain();
+                UnionClass ontUn = m.createUnionClass(null,m.createList(new RDFNode[]{domm, clasee}));
+                proo.setDomain(ontUn);
+            }
+        }
     }
 
     
-    public void addDomain(OntModel m, String pro, String domain) {
+    public void addDomain(OntModel m, String pro, String domaina) {
         String uri = getURIOntologiaConNumeral(m);
         OntProperty property = m.getOntProperty(uri+pro);
-        OntClass clase = m.getOntClass(uri+domain);
-        property.addDomain(clase);
+        OntClass clase = m.getOntClass(uri+domaina);
+        if(property.getDomain() == null){
+            property.addDomain(clase);
+        }else{
+            OntResource dom = property.getDomain();
+            if (dom.canAs(UnionClass.class)) {
+                List<String> domain = new ArrayList<String>();
+                UnionClass uc = (UnionClass) dom.as(UnionClass.class);
+                ExtendedIterator domainIt = uc.listOperands();
+                while (domainIt.hasNext()) {
+                    OntClass mc = (OntClass) domainIt.next();
+                    domain.add(mc.getLocalName());
+                }
+                OntClass clases[] = new OntClass[domain.size()];
+                for(int i=0 ; i < domain.size() ; i++){
+                    clases[i] = m.getOntClass(uri+domain.get(i));
+                }
+                RDFNode nodes[] = new RDFNode[domain.size()+1];
+                for(int i=0 ; i < domain.size() ; i++){
+                    nodes[i] = clases[i];
+                }
+                nodes[nodes.length-1] = clase;
+                UnionClass ontUn = m.createUnionClass(null,m.createList(nodes));
+                property.setDomain(ontUn);
+            } else {
+                OntResource domm = (OntResource) property.getDomain();
+                UnionClass ontUn = m.createUnionClass(null,m.createList(new RDFNode[]{domm, clase}));
+                property.setDomain(ontUn);
+            }
+        }
     }
 
-    //Terminar
+    
     public void addIndividual(OntModel m, String ind, String cla) {
         String uri = getURIOntologiaConNumeral(m);
         OntClass clase = m.getOntClass(uri+cla);
         Individual individual = m.createIndividual(uri+ind, clase);
-//        List<String> properties = getProperty(m, cla);
-//        List<String> datatypeproperties = getDatatypeProperties(m);
-//        List<String> objectproperties = getObjectProperties(m);
-//        for(int i=0 ; i < properties.size() ; i++){
-//            if(datatypeproperties.contains(properties.get(i))){
-//                DatatypeProperty dpro = m.getDatatypeProperty(uri+properties.get(i));
-//                individual.addProperty(dpro, "");
-//            }else if(objectproperties.contains(properties.get(i))){
-//                ObjectProperty opro = m.getObjectProperty(uri+properties.get(i));
-//                individual.addProperty(opro, m.createResource());
-//            }
-//        }
     }
 
     public void addObjectProperty(OntModel m, String obj) {
@@ -100,7 +143,35 @@ public class ApiJena {
         String uri = getURIOntologiaConNumeral(m);
         OntClass clasee = m.getOntClass(uri+clase);
         ObjectProperty proo = m.getObjectProperty(uri+pro);
-        proo.addDomain(clasee);
+        if(proo.getDomain() == null){
+            proo.addDomain(clasee);
+        }else{
+            OntResource dom = proo.getDomain();
+            if (dom.canAs(UnionClass.class)) {
+                List<String> domain = new ArrayList<String>();
+                UnionClass uc = (UnionClass) dom.as(UnionClass.class);
+                ExtendedIterator domainIt = uc.listOperands();
+                while (domainIt.hasNext()) {
+                    OntClass mc = (OntClass) domainIt.next();
+                    domain.add(mc.getLocalName());
+                }
+                OntClass clases[] = new OntClass[domain.size()];
+                for(int i=0 ; i < domain.size() ; i++){
+                    clases[i] = m.getOntClass(uri+domain.get(i));
+                }
+                RDFNode nodes[] = new RDFNode[domain.size()+1];
+                for(int i=0 ; i < domain.size() ; i++){
+                    nodes[i] = clases[i];
+                }
+                nodes[nodes.length-1] = clasee;
+                UnionClass ontUn = m.createUnionClass(null,m.createList(nodes));
+                proo.setDomain(ontUn);
+            } else {
+                OntResource domm = (OntResource) proo.getDomain();
+                UnionClass ontUn = m.createUnionClass(null,m.createList(new RDFNode[]{domm, clasee}));
+                proo.setDomain(ontUn);
+            }
+        }
     }
 
     
@@ -108,7 +179,35 @@ public class ApiJena {
         String uri = getURIOntologiaConNumeral(m);
         OntProperty property = m.getOntProperty(uri+pro);
         OntClass clase = m.getOntClass(uri+range);
-        property.addRange(clase);
+        if(property.getRange() == null){
+            property.addRange(clase);
+        }else{
+            OntResource dom = property.getRange();
+            if (dom.canAs(UnionClass.class)) {
+                List<String> range2 = new ArrayList<String>();
+                UnionClass uc = (UnionClass) dom.as(UnionClass.class);
+                ExtendedIterator domainIt = uc.listOperands();
+                while (domainIt.hasNext()) {
+                    OntClass mc = (OntClass) domainIt.next();
+                    range2.add(mc.getLocalName());
+                }
+                OntClass clases[] = new OntClass[range2.size()];
+                for(int i=0 ; i < range2.size() ; i++){
+                    clases[i] = m.getOntClass(uri+range2.get(i));
+                }
+                RDFNode nodes[] = new RDFNode[range2.size()+1];
+                for(int i=0 ; i < range2.size() ; i++){
+                    nodes[i] = clases[i];
+                }
+                nodes[nodes.length-1] = clase;
+                UnionClass ontUn = m.createUnionClass(null,m.createList(nodes));
+                property.setRange(ontUn);
+            } else {
+                OntResource domm = (OntResource) property.getRange();
+                UnionClass ontUn = m.createUnionClass(null,m.createList(new RDFNode[]{domm, clase}));
+                property.setRange(ontUn);
+            }
+        }
     }
 
     public ArrayList<IndividualVueloVO> buscarVuelo(OntModel m, ConsultaVueloVO vuelo) {
@@ -154,6 +253,20 @@ public class ApiJena {
         invue.setFechaIda(p.get("hora_salida"));
         invue.setFechaVuelta(p.get("horario_regreso"));
         return invue;
+    }
+
+    //Terminar
+    public void cargarPropiedadIndividual(OntModel m, String ind, String pro, String valor) {
+        String uri = getURIOntologiaConNumeral(m);
+        Individual individual = m.getIndividual(uri+ind);
+        OntProperty propiedad = m.getOntProperty(uri+pro);
+        if(propiedad.isDatatypeProperty()){
+            DatatypeProperty datatypeProperty = m.getDatatypeProperty(uri+pro);
+            individual.addProperty(datatypeProperty,valor);
+        }else{
+            ObjectProperty objectProperty = m.getObjectProperty(uri+pro);
+            individual.addProperty(objectProperty,valor);
+        }
     }
 
     //Testear
@@ -428,7 +541,7 @@ public class ApiJena {
                     UnionClass uc = (UnionClass) dom.as(UnionClass.class);
                     ExtendedIterator domainIt = uc.listOperands();
                     while (domainIt.hasNext()) {
-                        OntClass mc = (OntClass) domainIt.next();
+                        OntResource mc = (OntResource) domainIt.next();
                         domain.add(mc.getLocalName());
                     }
                 } else {
@@ -457,7 +570,7 @@ public class ApiJena {
                     UnionClass uc = (UnionClass) dom.as(UnionClass.class);
                     ExtendedIterator domainIt = uc.listOperands();
                     while (domainIt.hasNext()) {
-                        OntClass mc = (OntClass) domainIt.next();
+                        OntResource mc = (OntResource) domainIt.next();
                         domain.add(mc.getLocalName());
                     }
                 } else {
@@ -486,7 +599,7 @@ public class ApiJena {
                         UnionClass uc = (UnionClass) dom.as(UnionClass.class);
                         ExtendedIterator domainIt = uc.listOperands();
                         while (domainIt.hasNext()) {
-                            OntClass mc = (OntClass) domainIt.next();
+                            OntResource mc = (OntResource) domainIt.next();
                             domain.add(mc.getLocalName());
                         }
                     } else {
@@ -515,7 +628,7 @@ public class ApiJena {
                         UnionClass uc = (UnionClass) dom.as(UnionClass.class);
                         ExtendedIterator domainIt = uc.listOperands();
                         while (domainIt.hasNext()) {
-                            OntClass mc = (OntClass) domainIt.next();
+                            OntResource mc = (OntResource) domainIt.next();
                             domain.add(mc.getLocalName());
                         }
                     } else {
@@ -602,22 +715,21 @@ public class ApiJena {
             }
         }
         //Probar
-        
         HashMap<String,String> propiedades = getProperty(m, individual.getOntClass().getLocalName());
-        String[] prop = (String[]) propiedades.keySet().toArray();
+        Object[] prop = propiedades.keySet().toArray();
         for( int i=0 ; i < propiedades.size() ; i++ )
         {
-            Property pro = m.getProperty(uri+prop[i]);
-            if(pro.isLiteral()){
+            OntProperty pro = m.getOntProperty(uri+prop[i]);
+            if(pro.isDatatypeProperty()){
                 HashMap<String,String> datosDatatype = new HashMap<String,String>();
                 if(!datatypeProperties.containsKey(prop[i])){
                     DatatypeProperty data = m.getDatatypeProperty(uri+prop[i]);
                     datosDatatype.put(null , data.getRange().getLocalName());
-                    datatypeProperties.put(prop[i], datosDatatype);
+                    datatypeProperties.put(prop[i].toString(), datosDatatype);
                 }
             }else{
                 if(!objectProperties.containsKey(prop[i])){
-                    objectProperties.put(prop[i], null);
+                    objectProperties.put(prop[i].toString(), null);
                 }
             }
         }

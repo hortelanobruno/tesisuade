@@ -44,6 +44,7 @@ import vo.ObjectPropertyVO;
  */
 public class PanelNuevaOntologia extends javax.swing.JPanel {
 
+    private int varEnter;
     private FramePrincipal main;
     private VistaNuevaOntologia vistaNuevaOntologia;
     private String urlOWL;
@@ -863,10 +864,17 @@ public void update() {
     }
 }
 
+public void cargarPropiedadIndividual(String pro,String valor){
+    JListItem item = (JListItem) listIndividuals.getSelectedValue();
+    String ind = item.getTitle();
+    ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).cargarPropiedadIndividual(ind,pro,valor);
+}
+
 
 public void cargarIndividual(){
     if(!listIndividuals.isSelectionEmpty()){
-         String ind = listIndividuals.getSelectedValue().toString();
+        JListItem item = (JListItem) listIndividuals.getSelectedValue();
+        String ind = item.getTitle();
         IndividualViajesVO indVO = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).obtenerIndividualViajes(ind);
         textFieldNombreIndividual.setText(indVO.getNombre());
         panelIndividualProperties.removeAll();
@@ -877,7 +885,7 @@ public void cargarIndividual(){
             HashMap<String,String> propiedad = datatypeProperties.get(keys.toArray()[i]);
             String nombre = (String) datatypeProperties.keySet().toArray()[i];
             String type = propiedad.values().toArray()[0].toString();
-            PanelIndividualDatatypeProperty panelData = new PanelIndividualDatatypeProperty();
+            PanelIndividualDatatypeProperty panelData = new PanelIndividualDatatypeProperty(this);
             if(propiedad.keySet().toArray()[0] != null){
                 String valor = propiedad.keySet().toArray()[0].toString();
                 panelData.getTextFieldValorProperty().setText(valor);
@@ -886,13 +894,12 @@ public void cargarIndividual(){
             panelData.getComboBoxType().setSelectedItem(type);
             panelIndividualProperties.add(panelData);
         }
-
         HashMap<String,String> objectProperties = indVO.getObjectProperties();
         //nombrepropiedad,valor,range
         for(int i=0 ; i < objectProperties.size() ; i++){
             String nombre = (String) objectProperties.keySet().toArray()[i];
             String valor = (String) objectProperties.values().toArray()[i];
-            PanelIndividualObjectProperty panelObj = new PanelIndividualObjectProperty();
+            PanelIndividualObjectProperty panelObj = new PanelIndividualObjectProperty(this);
             panelObj.getLabelNombrePropiedad().setText(nombre);
             if(valor != null){
                 panelObj.getTextFieldValorPropiedad().setText(valor);
@@ -1071,21 +1078,24 @@ private void buttonCancelIndividualActionPerformed(java.awt.event.ActionEvent ev
 
 private void textFieldClassNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldClassNameFocusGained
 // Focus gained del text field del nombre de la clase
+    varEnter = 0;
     classNameAux = textFieldClassName.getText();
 }//GEN-LAST:event_textFieldClassNameFocusGained
 
 //FALTA CARGAR EL ARBOL
 private void textFieldClassNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldClassNameFocusLost
 // Cuando pierde el foco del text field del nombre de la clase
-    if(!classNameAux.equalsIgnoreCase(textFieldClassName.getText())){
-        String name = textFieldClassName.getText();
-        if(!name.isEmpty()){
-            ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).changeNameClass(classNameAux,textFieldClassName.getText());
-            DefaultMutableTreeNode node = mapaNodos.get(classNameAux);
-            node.setUserObject(textFieldClassName.getText());
-            mapaNodos.remove(classNameAux);
-            mapaNodos.put(textFieldClassName.getText(), node);
-        }   
+    if(varEnter == 0){
+        if(!classNameAux.equalsIgnoreCase(textFieldClassName.getText())){
+            String name = textFieldClassName.getText();
+            if(!name.isEmpty()){
+                ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).changeNameClass(classNameAux,textFieldClassName.getText());
+                DefaultMutableTreeNode node = mapaNodos.get(classNameAux);
+                node.setUserObject(textFieldClassName.getText());
+                mapaNodos.remove(classNameAux);
+                mapaNodos.put(textFieldClassName.getText(), node);
+            }   
+        }
     }
 }//GEN-LAST:event_textFieldClassNameFocusLost
 
@@ -1154,6 +1164,8 @@ private void textFieldClassNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRS
     Character a = new Character( ' ' );
     if(a.equals(evt.getKeyChar())){
         evt.setKeyChar('_');
+    }else if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+        varEnter = 1;
     }
 }//GEN-LAST:event_textFieldClassNameKeyTyped
 
@@ -1207,6 +1219,11 @@ private void buttonCargarInstanciasActionPerformed(javax.swing.event.TreeSelecti
         listIndividuals.setCellRenderer(new JListCellRenderer());
         jScrollPane6.setViewportView(listIndividuals);
     }
+}
+
+
+public List<String> getIndividuals(String clase) {
+    return ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).listIndividuals(clase);
 }
 
 private void cargarPaneles(){
@@ -1328,12 +1345,11 @@ public void cargarDatatypeProperty(){
         panel.getTextFieldNombre().setText(propiedades.getName());
         DefaultListModel model = (DefaultListModel) panel.getListDomain().getModel();
         for(int i = 0 ; i < propiedades.getDomain().size() ; i++){
-            model.addElement(propiedades.getDomain().get(i));
+            model.addElement(new JListItem(propiedades.getDomain().get(i),"src/iconos/protege/TreeBold.gif"));
         }
         panel.getListDomain().setModel(model);
         String range = propiedades.getRange();
         panel.getComboBoxRange().setSelectedItem(range);
-
         panelPropertyDefault.add(panel);
     }
 }
@@ -1348,12 +1364,12 @@ public void cargarObjectProperty(){
         panel.getTextFieldNombre().setText(propiedades.getName());
         DefaultListModel model = (DefaultListModel) panel.getListDomain().getModel();
         for(int i = 0 ; i < propiedades.getDomain().size() ; i++){
-            model.addElement(propiedades.getDomain().get(i));
+            model.addElement( new JListItem(propiedades.getDomain().get(i),"src/iconos/protege/TreeBold.gif"));
         }
         panel.getListDomain().setModel(model);
         DefaultListModel model2 = (DefaultListModel) panel.getListRange().getModel();
         for(int i = 0 ; i < propiedades.getRange().size() ; i++){
-            model2.addElement(propiedades.getRange().get(i));
+            model2.addElement(new JListItem(propiedades.getRange().get(i),"src/iconos/protege/TreeBold.gif"));
         }
         panel.getListRange().setModel(model2);
         panelPropertyDefault.add(panel);
@@ -1413,7 +1429,7 @@ public void vaciarPaneles(){
 
 public List<String> getPropiedadesCargadas(){
     ArrayList<String> pro = new ArrayList<String>();
-    ListModel model =  listProperties.getModel();
+    DefaultListModel model = (DefaultListModel) listProperties.getModel();
     for(int i=0 ; i< model.getSize() ; i++){
         JListItem item = (JListItem) model.getElementAt(i);
         pro.add(item.getTitle());
@@ -1422,7 +1438,6 @@ public List<String> getPropiedadesCargadas(){
 }
 
 public void addClassProperty(String clase, String instancia, String tipo) {
-    //arsenal
     DefaultListModel model = (DefaultListModel) listProperties.getModel();
     if(tipo.equalsIgnoreCase("datatype")){
         model.addElement(new JListItem(instancia, "src\\iconos\\protege\\OWLDatatypeProperty.GIF"));

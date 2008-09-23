@@ -6,15 +6,21 @@
 
 package panels.nuevaontologia;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author  Admin
  */
 public class PanelIndividualDatatypeProperty extends javax.swing.JPanel {
 
+    private int varEnter;
+    private PanelNuevaOntologia ontologia;
+    
     /** Creates new form PanelIndividualDataProperties */
-    public PanelIndividualDatatypeProperty() {
+    public PanelIndividualDatatypeProperty(PanelNuevaOntologia nueva) {
         initComponents();
+        this.ontologia = nueva;
     }
 
     /** This method is called from within the constructor to
@@ -31,6 +37,21 @@ public class PanelIndividualDatatypeProperty extends javax.swing.JPanel {
         labelNombrePropiedad = new javax.swing.JLabel();
 
         comboBoxType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "date", "string", "int", "float", "boolean" }));
+        comboBoxType.setEnabled(false);
+
+        textFieldValorProperty.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textFieldValorPropertyFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textFieldValorPropertyFocusLost(evt);
+            }
+        });
+        textFieldValorProperty.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textFieldValorPropertyKeyTyped(evt);
+            }
+        });
 
         labelNombrePropiedad.setText("Nombre Propiedad");
 
@@ -60,6 +81,25 @@ public class PanelIndividualDatatypeProperty extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+private void textFieldValorPropertyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldValorPropertyKeyTyped
+    if(evt.getKeyChar() == KeyEvent.VK_ENTER){
+        varEnter = 1;
+        ontologia.cargarPropiedadIndividual(labelNombrePropiedad.getText(),textFieldValorProperty.getText());
+    }else{
+        varEnter = 0;
+    }
+}//GEN-LAST:event_textFieldValorPropertyKeyTyped
+
+private void textFieldValorPropertyFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldValorPropertyFocusGained
+    varEnter = 0;
+}//GEN-LAST:event_textFieldValorPropertyFocusGained
+
+private void textFieldValorPropertyFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldValorPropertyFocusLost
+    if(varEnter == 0){
+        ontologia.cargarPropiedadIndividual(labelNombrePropiedad.getText(),textFieldValorProperty.getText());
+    }
+}//GEN-LAST:event_textFieldValorPropertyFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
