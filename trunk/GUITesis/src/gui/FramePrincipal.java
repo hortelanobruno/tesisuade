@@ -57,7 +57,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         isPanelPrincipalSelected = true;
         iniciaCuenta();//De la progress bar
         initComponents2();
-        
+
     }
 
     /** This method is called from within the constructor to
@@ -132,18 +132,33 @@ public class FramePrincipal extends javax.swing.JFrame {
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         itemsToolBar.add(jButton2);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/protege/project.open.gif"))); // NOI18N
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         itemsToolBar.add(jButton3);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/protege/project.save.gif"))); // NOI18N
         jButton4.setFocusable(false);
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         itemsToolBar.add(jButton4);
         itemsToolBar.add(jSeparator4);
 
@@ -333,26 +348,26 @@ public class FramePrincipal extends javax.swing.JFrame {
             System.exit(0);
         }
     }
-    
-    public void guardarConfiguracion(){
+
+    public void guardarConfiguracion() {
         XMLWrapper xml = new XMLWrapper();
         xml.parseXMLSolFab(getConfiguration());
     }
 
-    public void cargarConfiguracion(){
+    public void cargarConfiguracion() {
         XMLWrapper xml = new XMLWrapper();
         Configuration conf = xml.parseConfiguracion(Constantes.CONFIGURATION);
-        if(conf != null){
+        if (conf != null) {
             this.setConfiguration(conf);
             recargarConfiguracion();
-        }else{
+        } else {
             conf = new Configuration();
             this.setConfiguration(conf);
-        }  
+        }
     }
-    
-    public void recargarConfiguracion(){
-        ((BusinessDelegate)vistaMotorBusqueda.getModelo()).cargarConfiguracion(this.getConfiguration());
+
+    public void recargarConfiguracion() {
+        ((BusinessDelegate) vistaMotorBusqueda.getModelo()).cargarConfiguracion(this.getConfiguration());
     }
 
 private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -374,18 +389,18 @@ private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_jMenuItem2ActionPerformed
 
 private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-    if (!isPanelNuevaOntologiaSelected) {
-        setPanelNuevaOntologia(new PanelNuevaOntologia(this, vistaNuevaOntologia));
-        ponerPanel(getPanelNuevaOntologia());
-        getPanelNuevaOntologia().modoNuevo();
-    }
+    nuevaOntologia();
 }//GEN-LAST:event_jMenuItem7ActionPerformed
 
 private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
 // Abrir ontologia
-    chooser = new FileChooser(this, true, this.getConfiguration().getOwlDirectory());
-    if (chooser.getButton().equals("Cancel")) {
-    } else {
+    abrirOntologia();
+}//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    public void abrirOntologia() {
+        chooser = new FileChooser(this, true, this.getConfiguration().getOwlDirectory());
+        if (chooser.getButton().equals("Cancel")) {
+        } else {
             if (!isPanelNuevaOntologiaSelected) {
                 setPanelNuevaOntologia(new PanelNuevaOntologia(this, vistaNuevaOntologia));
                 ponerPanel(getPanelNuevaOntologia());
@@ -393,30 +408,54 @@ private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
                 getPanelNuevaOntologia().setUrlOWL(chooser.getPath());
                 getPanelNuevaOntologia().modoCargar();
             }
+        }
     }
-}//GEN-LAST:event_jMenuItem6ActionPerformed
 
-private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+public void guardarOntologia(){
     if (isPanelNuevaOntologiaSelected) {
-         getPanelNuevaOntologia().guardarOntologia();
+        getPanelNuevaOntologia().guardarOntologia();
     }
+}
+    
+    
+private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    guardarOntologia();
 }//GEN-LAST:event_jMenuItem8ActionPerformed
 
 private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
 // Cerrar ontologia
-    if(!isPanelPrincipalSelected){
+    if (!isPanelPrincipalSelected) {
         ponerPanel(getPanelPrincipal());
     }
 }//GEN-LAST:event_jMenuItem9ActionPerformed
 
 private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
 // Cargar configuracion
-    if(!isPanelConfiguracionSelected){
+    if (!isPanelConfiguracionSelected) {
         setPanelConfiguracion(new PanelConfiguracion(this));
         ponerPanel(getPanelConfiguracion());
     }
 }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    nuevaOntologia();
+}//GEN-LAST:event_jButton2ActionPerformed
+
+private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    abrirOntologia();
+}//GEN-LAST:event_jButton3ActionPerformed
+
+private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    guardarOntologia();
+}//GEN-LAST:event_jButton4ActionPerformed
+
+public void nuevaOntologia() {
+    if (!isPanelNuevaOntologiaSelected) {
+        setPanelNuevaOntologia(new PanelNuevaOntologia(this, vistaNuevaOntologia));
+        ponerPanel(getPanelNuevaOntologia());
+        getPanelNuevaOntologia().modoNuevo();
+    }
+}
 
     private void setLookAndFeel() throws HeadlessException {
         try {
@@ -453,43 +492,40 @@ private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             this.remove(getPanelNuevaOntologia());
             this.repaint();
         }
-        if (isPanelConfiguracionSelected){
+        if (isPanelConfiguracionSelected) {
             this.remove(getPanelConfiguracion());
             this.repaint();
         }
 
-        if (panel instanceof PanelConfiguracion){
+        if (panel instanceof PanelConfiguracion) {
             this.isPanelConfiguracionSelected = true;
             this.isPanelPrincipalSelected = false;
             this.isPanelSinonimosSelected = false;
             this.isPanelNuevaOntologiaSelected = false;
             this.setActivePanel(getPanelConfiguracion());
             this.isPanelMotorBusquedaSelected = false;
-        } else
-        if (panel instanceof PanelMotorBusqueda) {
+        } else if (panel instanceof PanelMotorBusqueda) {
             this.isPanelConfiguracionSelected = false;
             this.isPanelPrincipalSelected = false;
             this.isPanelSinonimosSelected = false;
             this.isPanelNuevaOntologiaSelected = false;
             this.setActivePanel(getPanelMotorBusqueda());
             this.isPanelMotorBusquedaSelected = true;
-        } else
-        if (panel instanceof PanelSinonimos) {
+        } else if (panel instanceof PanelSinonimos) {
             this.isPanelConfiguracionSelected = false;
             this.isPanelPrincipalSelected = false;
             this.isPanelMotorBusquedaSelected = false;
             this.isPanelNuevaOntologiaSelected = false;
             this.setActivePanel(getPanelSinonimos());
             this.isPanelSinonimosSelected = true;
-        } else
-        if (panel instanceof PanelNuevaOntologia) {
+        } else if (panel instanceof PanelNuevaOntologia) {
             this.isPanelConfiguracionSelected = false;
             this.isPanelPrincipalSelected = false;
             this.isPanelMotorBusquedaSelected = false;
             this.isPanelSinonimosSelected = false;
             this.setActivePanel(getPanelSinonimos());
             this.isPanelNuevaOntologiaSelected = true;
-        } else{
+        } else {
             this.isPanelConfiguracionSelected = false;
             this.isPanelPrincipalSelected = true;
             this.isPanelMotorBusquedaSelected = false;
@@ -497,8 +533,8 @@ private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             this.isPanelNuevaOntologiaSelected = false;
             this.setActivePanel(getPanelPrincipal());
         }
-        
-        
+
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -593,7 +629,6 @@ private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     public void setPanelConfiguracion(PanelConfiguracion panelConfiguracion) {
         this.panelConfiguracion = panelConfiguracion;
     }
-
 
     class ThreadCarga extends Thread {
 

@@ -7,6 +7,8 @@ package panels.nuevaontologia;
 
 import javax.swing.DefaultListModel;
 import modelo.BusinessDelegate;
+import varios.components.JListCellRenderer;
+import varios.components.JListItem;
 import vo.ObjectPropertyVO;
 
 /**
@@ -206,19 +208,27 @@ private void textFieldNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_textFieldNombreFocusLost
 
 public void addDomain(String name) {
-    ((BusinessDelegate) panel.getVistaNuevaOntologia().getModelo()).addDomain(propiedad.getName(), name);
-    DefaultListModel mode = (DefaultListModel) listDomain.getModel();
-    mode.addElement(name);
+    DefaultListModel model = (DefaultListModel) listDomain.getModel();
+    if(!model.contains(name)){
+        ((BusinessDelegate) panel.getVistaNuevaOntologia().getModelo()).addDomain(propiedad.getName(), name);
+        DefaultListModel mode = (DefaultListModel) listDomain.getModel();
+        mode.addElement(new JListItem(name,"src/iconos/protege/TreeBold.gif"));
+    }
 }
 
 public void addRange(String name) {
-    ((BusinessDelegate) panel.getVistaNuevaOntologia().getModelo()).addRange(propiedad.getName(), name);
-    DefaultListModel mode = (DefaultListModel) listRange.getModel();
-    mode.addElement(name);
+    DefaultListModel model = (DefaultListModel) listRange.getModel();
+    if(!model.contains(name)){
+        ((BusinessDelegate) panel.getVistaNuevaOntologia().getModelo()).addRange(propiedad.getName(), name);
+        DefaultListModel mode = (DefaultListModel) listRange.getModel();
+        mode.addElement(new JListItem(name,"src/iconos/protege/TreeBold.gif"));
+    }
 }
     public void initComponents2(){
         listDomain.setModel(new DefaultListModel());
         listRange.setModel(new DefaultListModel());
+        listDomain.setCellRenderer(new JListCellRenderer());
+        listRange.setCellRenderer(new JListCellRenderer());
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

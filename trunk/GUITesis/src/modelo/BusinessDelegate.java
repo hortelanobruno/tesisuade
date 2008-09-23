@@ -36,6 +36,10 @@ public class BusinessDelegate extends ProxyModelo
         modeloMotorBusqueda.setConfig(conf);
         modeloMotorBusqueda.cargarModelos();
     }
+
+    public void cargarPropiedadIndividual(String ind, String pro, String valor){
+        modeloOntologiaViajes.cargarPropiedadIndividual(ind,pro,valor);
+    }
     
     public void addDatatypePropertyToClass(String clase, String pro){
         modeloOntologiaViajes.addDatatypePropertyToClass(clase,pro);

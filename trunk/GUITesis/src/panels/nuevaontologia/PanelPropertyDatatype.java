@@ -8,6 +8,8 @@ package panels.nuevaontologia;
 
 import javax.swing.DefaultListModel;
 import modelo.BusinessDelegate;
+import varios.components.JListCellRenderer;
+import varios.components.JListItem;
 import vo.DatatypePropertyVO;
 
 /**
@@ -26,8 +28,6 @@ public class PanelPropertyDatatype extends javax.swing.JPanel {
         initComponents();
         initComponents2();
     }
-
-    
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -178,13 +178,16 @@ private void textFieldNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_textFieldNombreFocusLost
 
 public void addDomain(String name) {
-    ((BusinessDelegate)panel.getVistaNuevaOntologia().getModelo()).addDomain(propiedad.getName(),name);
-    DefaultListModel mode = (DefaultListModel) listDomain.getModel();
-    mode.addElement(name);
+    DefaultListModel model = (DefaultListModel) listDomain.getModel();
+    if(!model.contains(name)){
+        ((BusinessDelegate)panel.getVistaNuevaOntologia().getModelo()).addDomain(propiedad.getName(),name);
+        model.addElement(new JListItem(name, "src/iconos/protege/TreeBold.gif"));
+    }
 }
     
     public void initComponents2(){
         listDomain.setModel(new DefaultListModel());
+        listDomain.setCellRenderer(new JListCellRenderer());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
