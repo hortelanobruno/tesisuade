@@ -170,7 +170,12 @@ private void buttonRemoveDomainActionPerformed(java.awt.event.ActionEvent evt) {
     String dom = listDomain.getSelectedValue().toString();
     ((BusinessDelegate) panel.getVistaNuevaOntologia().getModelo()).removeDomain(propiedad.getName(), dom);
     DefaultListModel mode = (DefaultListModel) listDomain.getModel();
-    mode.removeElement(dom);
+    for(int i = 0 ; i < mode.size() ; i++){
+        JListItem item = (JListItem) mode.get(i);
+        if(item.getTitle().equals(dom)){
+            mode.removeElement(item);
+        }
+    }
 }//GEN-LAST:event_buttonRemoveDomainActionPerformed
 
 //Aca falta agregar la forma de obtener el range, similar a la del domain
@@ -184,7 +189,12 @@ private void buttonRemoveRangeActionPerformed(java.awt.event.ActionEvent evt) {/
     String dom = listRange.getSelectedValue().toString();
     ((BusinessDelegate) panel.getVistaNuevaOntologia().getModelo()).removeRange(propiedad.getName(), dom);
     DefaultListModel mode = (DefaultListModel) listRange.getModel();
-    mode.removeElement(dom);
+    for(int i = 0 ; i < mode.size() ; i++){
+        JListItem item = (JListItem) mode.get(i);
+        if(item.getTitle().equals(dom)){
+            mode.removeElement(item);
+        }
+    }
 }//GEN-LAST:event_buttonRemoveRangeActionPerformed
 
 private void textFieldNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldNombreFocusGained

@@ -692,44 +692,74 @@ public class ApiJena {
         String uri = getURIOntologiaConNumeral(m);
         Individual individual = m.getIndividual(uri+ind);
         indViajes.setNombre(individual.getLocalName());
-        HashMap<String,String> objectProperties = new HashMap<String,String>();
-        HashMap<String,HashMap<String,String>> datatypeProperties = new HashMap<String,HashMap<String,String>>();
+        List<ObjectPropertyVO> objectProperties = new ArrayList<ObjectPropertyVO>();
+        List<DatatypePropertyVO> datatypeProperties = new ArrayList<DatatypePropertyVO>();
         //Cargo las propiedades que tiene seteada el individual y cargo las que no tiene seteadas
         for ( StmtIterator sIter = individual.listProperties(); sIter.hasNext() ; )
         {
             Statement s = (Statement) sIter.next() ;
             Triple tri = s.asTriple();
             if(tri.getObject().isLiteral()){
-                HashMap<String,String> datosDatatype = new HashMap<String,String>();
+                DatatypePropertyVO datapro = new DatatypePropertyVO();
                 if(tri.getObject().getLiteralDatatype() != null){
                     String[] tipo = tri.getObject().getLiteralDatatype().getURI().split("#");
-                    datosDatatype.put(tri.getMatchObject().getLiteral().getValue().toString() , tipo[tipo.length-1]);
+                    datapro.setRange(tipo[tipo.length-1]);
+                    datapro.setValor(tri.getMatchObject().getLiteral().getValue().toString());
                     String nombre = tri.getPredicate().getLocalName();
-                    datatypeProperties.put(nombre, datosDatatype);
+                    datapro.setName(nombre);
+                    datatypeProperties.add(datapro);
                 }
             }else{
                 String valor = tri.getObject().getLocalName();
                 String nombre = tri.getPredicate().getLocalName();
-                if(!nombre.equalsIgnoreCase("type"))
-                    objectProperties.put(nombre, valor);
+                if(!nombre.equalsIgnoreCase("type")){
+                    ObjectPropertyVO objpro = new ObjectPropertyVO();
+                    ObjectProperty oo = m.getObjectProperty(uri+nombre);
+                    List<String> lista = new ArrayList<String>();
+                    lista.add(oo.getRange().getLocalName());
+                    objpro.setRange(lista);
+                    objpro.setValor(valor);
+                    objpro.setName(nombre);
+                    objectProperties.add(objpro);
+                }
             }
         }
-        //Probar
         HashMap<String,String> propiedades = getProperty(m, individual.getOntClass().getLocalName());
         Object[] prop = propiedades.keySet().toArray();
         for( int i=0 ; i < propiedades.size() ; i++ )
         {
             OntProperty pro = m.getOntProperty(uri+prop[i]);
             if(pro.isDatatypeProperty()){
-                HashMap<String,String> datosDatatype = new HashMap<String,String>();
-                if(!datatypeProperties.containsKey(prop[i])){
+                int aux=0;
+                for(int j=0 ; j < datatypeProperties.size() ; j++){
+                    DatatypePropertyVO datapro2 = datatypeProperties.get(j);
+                    if(datapro2.getName().equalsIgnoreCase(prop[i].toString())){
+                        aux++;
+                    }
+                }
+                if(aux == 0){
+                    DatatypePropertyVO datapro = new DatatypePropertyVO();
                     DatatypeProperty data = m.getDatatypeProperty(uri+prop[i]);
-                    datosDatatype.put(null , data.getRange().getLocalName());
-                    datatypeProperties.put(prop[i].toString(), datosDatatype);
+                    datapro.setRange(data.getRange().getLocalName());
+                    datapro.setName(prop[i].toString());
+                    datatypeProperties.add(datapro);
                 }
             }else{
-                if(!objectProperties.containsKey(prop[i])){
-                    objectProperties.put(prop[i].toString(), null);
+                int aux=0;
+                for(int j=0 ; j < objectProperties.size() ; j++){
+                    ObjectPropertyVO objpro = objectProperties.get(j);
+                    if(objpro.getName().equalsIgnoreCase(prop[i].toString())){
+                        aux++;
+                    }
+                }
+                if(aux ==0){
+                    ObjectPropertyVO objpro = new ObjectPropertyVO();
+                    objpro.setName(prop[i].toString());
+                    ObjectProperty oo = m.getObjectProperty(uri+prop[i].toString());
+                    List<String> lista = new ArrayList<String>();
+                    lista.add(oo.getRange().getLocalName());
+                    objpro.setRange(lista);
+                    objectProperties.add(objpro);
                 }
             }
         }
@@ -783,8 +813,7 @@ public class ApiJena {
             objpro.removeDomain(ontclass);
         }
     }
-
-    //Testear
+    
     public void removeRange(OntModel m, String pro, String range) {
         String uri = getURIOntologiaConNumeral(m);
         ObjectProperty objpro = m.getObjectProperty(uri+pro);

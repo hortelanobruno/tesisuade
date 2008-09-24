@@ -16,6 +16,7 @@ public class ObjectPropertyVO {
     private String name;
     private List<String> domain;
     private List<String> range;
+    private String valor;
     
     public ObjectPropertyVO() {
     }
@@ -49,6 +50,14 @@ public class ObjectPropertyVO {
 
     public void setRange(List<String> range) {
         this.range = range;
+    }
+
+    public String getValor() {
+        return valor;
+    }
+
+    public void setValor(String valor) {
+        this.valor = valor;
     }
 
     
