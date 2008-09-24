@@ -85,6 +85,11 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="textFieldURI">
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="textFieldURIFocusGained"/>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="textFieldURIFocusLost"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textFieldURIKeyTyped"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

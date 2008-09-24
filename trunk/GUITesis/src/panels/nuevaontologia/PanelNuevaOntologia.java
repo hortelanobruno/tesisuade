@@ -19,10 +19,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTree;
-import javax.swing.ListModel;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
@@ -44,7 +42,9 @@ import vo.ObjectPropertyVO;
  */
 public class PanelNuevaOntologia extends javax.swing.JPanel {
 
-    private int varEnter;
+    private int varEnterNameClass;
+    private int varEnterNameIndividual;
+    private int varEnterURI;
     private FramePrincipal main;
     private VistaNuevaOntologia vistaNuevaOntologia;
     private String urlOWL;
@@ -153,6 +153,20 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1023, 532));
 
         jLabel1.setText("Ontology URI");
+
+        textFieldURI.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textFieldURIFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textFieldURIFocusLost(evt);
+            }
+        });
+        textFieldURI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textFieldURIKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelMetadataLayout = new javax.swing.GroupLayout(panelMetadata);
         panelMetadata.setLayout(panelMetadataLayout);
@@ -798,7 +812,7 @@ private void initComponents2(){
     panelAddIndividual.setVisible(false);
     mapaNodos = new HashMap<String, DefaultMutableTreeNode>();
     
-    ImageIcon leafIcon = new ImageIcon("iconos/protege/TreeBold.gif");
+    ImageIcon leafIcon = new ImageIcon(Constantes.ICONTREE);
     if (leafIcon != null) {
         DefaultTreeCellRenderer renderer = 
             new DefaultTreeCellRenderer();
@@ -994,7 +1008,7 @@ private void buttonOkObjectPropertyActionPerformed(java.awt.event.ActionEvent ev
    if(!pro.isEmpty()){
         ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).addObjectProperty(pro);
         DefaultListModel model = (DefaultListModel) getListPropertiesObject().getModel();
-        model.addElement(new JListItem(pro,"src\\iconos\\protege\\OWLObjectProperty.GIF"));
+        model.addElement(new JListItem(pro,Constantes.ICONOBJECTPROPERTY));
         panelAddObjectProperty.setVisible(false);
         textFieldNameObjectProperty.setText("");
    }
@@ -1011,7 +1025,7 @@ private void buttonOkDatatypePropertyActionPerformed(java.awt.event.ActionEvent 
    if(!pro.isEmpty()){
         ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).addDatatypeProperty(pro);
         DefaultListModel model = (DefaultListModel) getListPropertiesDatatype().getModel();
-        model.addElement(new JListItem(pro,"src\\iconos\\protege\\OWLDatatypeProperty.GIF"));
+        model.addElement(new JListItem(pro,Constantes.ICONDATATYPEPROPERTY));
         panelAddDatatypeProperty.setVisible(false);
         textFieldNameDatatypeProperty.setText("");
    }
@@ -1045,7 +1059,7 @@ private void buttonOkIndividualActionPerformed(java.awt.event.ActionEvent evt) {
    if(!ind.isEmpty()){
         ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).addIndividual(ind,clase);
         DefaultListModel model = (DefaultListModel) listIndividuals.getModel();
-        model.addElement(new JListItem(ind,"src\\iconos\\protege\\OWLIndividual.gif"));
+        model.addElement(new JListItem(ind,Constantes.ICONINDIVIDUAL));
         panelAddIndividual.setVisible(false);
         textFieldAddIndividual.setText("");
    }
@@ -1074,14 +1088,20 @@ private void buttonCancelIndividualActionPerformed(java.awt.event.ActionEvent ev
 
 private void textFieldClassNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldClassNameFocusGained
 // Focus gained del text field del nombre de la clase
-    varEnter = 0;
+    varEnterNameClass = 0;
     classNameAux = textFieldClassName.getText();
 }//GEN-LAST:event_textFieldClassNameFocusGained
 
 //FALTA CARGAR EL ARBOL
 private void textFieldClassNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldClassNameFocusLost
 // Cuando pierde el foco del text field del nombre de la clase
-    if(varEnter == 0){
+    if(varEnterNameClass == 0){
+        cambiarNombreClase();
+    }
+}//GEN-LAST:event_textFieldClassNameFocusLost
+
+public void cambiarNombreClase(){
+    if(varEnterNameClass == 0){
         if(!classNameAux.equalsIgnoreCase(textFieldClassName.getText())){
             String name = textFieldClassName.getText();
             if(!name.isEmpty()){
@@ -1093,8 +1113,8 @@ private void textFieldClassNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-F
             }   
         }
     }
-}//GEN-LAST:event_textFieldClassNameFocusLost
-
+}
+    
 private void buttonAddPropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddPropertyActionPerformed
     List<String> pro = getPropiedadesCargadas();
     String name = textFieldClassName.getText();
@@ -1117,10 +1137,17 @@ private void buttonRemovePropertyActionPerformed(java.awt.event.ActionEvent evt)
 private void textFieldNombreIndividualFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldNombreIndividualFocusGained
 // Gano el foco para el text field del nombre de la instancia
     individualNameAux = textFieldNombreIndividual.getText();
+    varEnterNameIndividual = 0;
 }//GEN-LAST:event_textFieldNombreIndividualFocusGained
 
 private void textFieldNombreIndividualFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldNombreIndividualFocusLost
 // TODO add your handling code here:
+    if(varEnterNameIndividual == 0){
+        cambiarNombreIndividual();
+    }
+}//GEN-LAST:event_textFieldNombreIndividualFocusLost
+
+public void cambiarNombreIndividual(){
     if(!individualNameAux.equalsIgnoreCase(textFieldNombreIndividual.getText())){
         String name = textFieldNombreIndividual.getText();
         if(!name.isEmpty()){
@@ -1137,7 +1164,7 @@ private void textFieldNombreIndividualFocusLost(java.awt.event.FocusEvent evt) {
             }
         }
     }
-}//GEN-LAST:event_textFieldNombreIndividualFocusLost
+}
 
 private void tabbedPropertyTypeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabbedPropertyTypeStateChanged
     if(tabbedPropertyType.getSelectedIndex() == 0){
@@ -1160,8 +1187,12 @@ private void textFieldClassNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRS
     Character a = new Character( ' ' );
     if(a.equals(evt.getKeyChar())){
         evt.setKeyChar('_');
+        varEnterNameClass = 0;
     }else if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-        varEnter = 1;
+        varEnterNameClass = 1;
+        cambiarNombreClase();
+    }else{
+        varEnterNameClass = 0;
     }
 }//GEN-LAST:event_textFieldClassNameKeyTyped
 
@@ -1190,8 +1221,38 @@ private void textFieldNombreIndividualKeyTyped(java.awt.event.KeyEvent evt) {//G
     Character a = new Character( ' ' );
     if(a.equals(evt.getKeyChar())){
         evt.setKeyChar('_');
+        varEnterNameIndividual = 0;
+    } else if(evt.getKeyChar() == KeyEvent.VK_ENTER){
+        varEnterNameIndividual = 1;
+        cambiarNombreIndividual();
+    }else{
+        varEnterNameIndividual = 0;
     }
 }//GEN-LAST:event_textFieldNombreIndividualKeyTyped
+
+private void textFieldURIFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldURIFocusGained
+    varEnterURI = 0;
+}//GEN-LAST:event_textFieldURIFocusGained
+
+private void textFieldURIFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldURIFocusLost
+    if(varEnterURI == 0){
+        cambiarURI();
+    }
+}//GEN-LAST:event_textFieldURIFocusLost
+
+private void textFieldURIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldURIKeyTyped
+    if(evt.getKeyChar() == KeyEvent.VK_ENTER){
+        varEnterURI = 1;
+        cambiarURI();
+    }else{
+        varEnterURI = 0;
+    }
+}//GEN-LAST:event_textFieldURIKeyTyped
+
+//Falta hacer
+public void cambiarURI(){
+    
+}
 
 private void buttonCargarActionPerformed(javax.swing.event.TreeSelectionEvent evt) {
     this.eventoTree = evt;
@@ -1209,7 +1270,7 @@ private void buttonCargarInstanciasActionPerformed(javax.swing.event.TreeSelecti
         listIndividuals.removeAll();
         DefaultListModel model = new DefaultListModel();
         for(int i=0 ; i < individuals.size() ; i++){
-             model.addElement(new JListItem(individuals.get(i),"src\\iconos\\protege\\OWLIndividual.gif"));
+             model.addElement(new JListItem(individuals.get(i),Constantes.ICONINDIVIDUAL));
         }
         listIndividuals.setModel(model);
         listIndividuals.setCellRenderer(new JListCellRenderer());
@@ -1270,7 +1331,7 @@ private void cargarPanelClases(){
     Object root = treeClasses.getModel().getRoot();
     TreePath path = new TreePath(root);
     treeClasses.expandPath(path);
-    ImageIcon leafIcon = createImageIcon("/iconos/protege/TreeBold.gif");
+    ImageIcon leafIcon = createImageIcon(Constantes.ICONTREE);
     if (leafIcon != null) {
         DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
         renderer.setLeafIcon(leafIcon);
@@ -1293,7 +1354,7 @@ private void cargarPanelProperty(){
     
     DefaultListModel model = new DefaultListModel();
     for(int i=0 ; i < datatypeProperties.size() ; i++){
-         model.addElement(new JListItem(datatypeProperties.get(i),"src\\iconos\\protege\\OWLDatatypeProperty.GIF"));
+         model.addElement(new JListItem(datatypeProperties.get(i),Constantes.ICONDATATYPEPROPERTY));
     }
     listPropertiesDatatype.setModel(model);
     listPropertiesDatatype.setCellRenderer(new JListCellRenderer());
@@ -1301,7 +1362,7 @@ private void cargarPanelProperty(){
     
     DefaultListModel model2 = new DefaultListModel();
     for(int i=0 ; i < objectProperties.size() ; i++){
-         model2.addElement(new JListItem(objectProperties.get(i),"src\\iconos\\protege\\OWLObjectProperty.GIF"));
+         model2.addElement(new JListItem(objectProperties.get(i),Constantes.ICONOBJECTPROPERTY));
     }
     listPropertiesObject.setModel(model2);
     listPropertiesObject.setCellRenderer(new JListCellRenderer());
@@ -1320,7 +1381,7 @@ private void cargarPanelInstancia(){
     Object root = treeClasses2.getModel().getRoot();
     TreePath path = new TreePath(root);
     treeClasses2.expandPath(path);
-    ImageIcon leafIcon = createImageIcon("/iconos/protege/TreeBold.gif");
+    ImageIcon leafIcon = createImageIcon(Constantes.ICONTREE);
     if (leafIcon != null) {
         DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
         renderer.setLeafIcon(leafIcon);
@@ -1341,7 +1402,7 @@ public void cargarDatatypeProperty(){
         panel.getTextFieldNombre().setText(propiedades.getName());
         DefaultListModel model = (DefaultListModel) panel.getListDomain().getModel();
         for(int i = 0 ; i < propiedades.getDomain().size() ; i++){
-            model.addElement(new JListItem(propiedades.getDomain().get(i),"src/iconos/protege/TreeBold.gif"));
+            model.addElement(new JListItem(propiedades.getDomain().get(i),Constantes.ICONTREE));
         }
         panel.getListDomain().setModel(model);
         String range = propiedades.getRange();
@@ -1360,12 +1421,12 @@ public void cargarObjectProperty(){
         panel.getTextFieldNombre().setText(propiedades.getName());
         DefaultListModel model = (DefaultListModel) panel.getListDomain().getModel();
         for(int i = 0 ; i < propiedades.getDomain().size() ; i++){
-            model.addElement( new JListItem(propiedades.getDomain().get(i),"src/iconos/protege/TreeBold.gif"));
+            model.addElement( new JListItem(propiedades.getDomain().get(i),Constantes.ICONTREE));
         }
         panel.getListDomain().setModel(model);
         DefaultListModel model2 = (DefaultListModel) panel.getListRange().getModel();
         for(int i = 0 ; i < propiedades.getRange().size() ; i++){
-            model2.addElement(new JListItem(propiedades.getRange().get(i),"src/iconos/protege/TreeBold.gif"));
+            model2.addElement(new JListItem(propiedades.getRange().get(i),Constantes.ICONTREE));
         }
         panel.getListRange().setModel(model2);
         panelPropertyDefault.add(panel);
@@ -1384,13 +1445,13 @@ public void cargarClase(){
             String propiedad = (String) itkey.next();
             String value = (String) itvalue.next();
             if(value.equalsIgnoreCase("down")){
-                model.addElement(new JListItem(propiedad,"src\\iconos\\protege\\OWLDatatypeProperty.GIF"));
+                model.addElement(new JListItem(propiedad,Constantes.ICONDATATYPEPROPERTY));
             }else if(value.equalsIgnoreCase("oown")){
-                model.addElement(new JListItem(propiedad,"src\\iconos\\protege\\OWLObjectProperty.GIF"));
+                model.addElement(new JListItem(propiedad,Constantes.ICONOBJECTPROPERTY));
             }else if(value.equalsIgnoreCase("dinherited")){
-                model.addElement(new JListItem(propiedad,"src\\iconos\\protege\\OWLDatatypePropertyInherited.GIF"));
+                model.addElement(new JListItem(propiedad,Constantes.ICONINHERITEDDATATYPEPROPERTY));
             }else if(value.equalsIgnoreCase("oinherited")){
-                model.addElement(new JListItem(propiedad,"src\\iconos\\protege\\OWLObjectPropertyInherited.GIF"));
+                model.addElement(new JListItem(propiedad,Constantes.ICONINHERITEDOBJECTPROPERTY));
             }
         }
         listProperties.setModel(model);
@@ -1436,10 +1497,10 @@ public List<String> getPropiedadesCargadas(){
 public void addClassProperty(String clase, String instancia, String tipo) {
     DefaultListModel model = (DefaultListModel) listProperties.getModel();
     if(tipo.equalsIgnoreCase("datatype")){
-        model.addElement(new JListItem(instancia, "src\\iconos\\protege\\OWLDatatypeProperty.GIF"));
+        model.addElement(new JListItem(instancia, Constantes.ICONDATATYPEPROPERTY));
         ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).addDatatypePropertyToClass(clase,instancia);
     }else{
-        model.addElement(new JListItem(instancia, "src\\iconos\\protege\\OWLObjectProperty.GIF"));
+        model.addElement(new JListItem(instancia, Constantes.ICONOBJECTPROPERTY));
         ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).addObjectPropertyToClass(clase,instancia);
     } 
 }

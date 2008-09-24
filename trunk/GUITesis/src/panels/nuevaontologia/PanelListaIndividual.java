@@ -6,9 +6,11 @@
 
 package panels.nuevaontologia;
 
+import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import varios.Constantes;
 import varios.components.JListCellRenderer;
 import varios.components.JListItem;
 
@@ -26,6 +28,8 @@ public class PanelListaIndividual extends javax.swing.JDialog {
     public PanelListaIndividual(java.awt.Frame parent, boolean modal,PanelIndividualObjectProperty nueva, String nombre,String pro) {
         super(parent, modal);
         initComponents();
+        Toolkit t = Toolkit.getDefaultToolkit();
+            this.setLocation((int) (t.getScreenSize().getWidth() - this.getWidth()) / 2, (int) (t.getScreenSize().getHeight() - this.getHeight()) / 2);
         this.panel = nueva;
         this.clase = nombre;
         this.propiedad = pro;
@@ -102,7 +106,7 @@ public class PanelListaIndividual extends javax.swing.JDialog {
         List<String> individuals = panel.getOntologia().getIndividuals(clase);
         DefaultListModel model = (DefaultListModel) listIndividual.getModel();
         for(int i = 0 ; i < individuals.size() ; i++){
-            model.addElement(new JListItem(individuals.get(i),"src\\iconos\\protege\\OWLIndividual.gif"));
+            model.addElement(new JListItem(individuals.get(i),Constantes.ICONINDIVIDUAL));
         }
         listIndividual.setModel(model);
         jScrollPane1.setViewportView(listIndividual);

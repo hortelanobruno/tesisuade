@@ -6,8 +6,10 @@
 
 package panels.nuevaontologia;
 
+import java.awt.event.KeyEvent;
 import javax.swing.DefaultListModel;
 import modelo.BusinessDelegate;
+import varios.Constantes;
 import varios.components.JListCellRenderer;
 import varios.components.JListItem;
 import vo.DatatypePropertyVO;
@@ -19,6 +21,7 @@ import vo.DatatypePropertyVO;
 public class PanelPropertyDatatype extends javax.swing.JPanel {
 
     private PanelNuevaOntologia panel;
+    private int varEnter;
     private DatatypePropertyVO propiedad;
     private String propertyDatatypeNameAux;
     
@@ -56,6 +59,11 @@ public class PanelPropertyDatatype extends javax.swing.JPanel {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 textFieldNombreFocusLost(evt);
+            }
+        });
+        textFieldNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textFieldNombreKeyTyped(evt);
             }
         });
 
@@ -165,9 +173,29 @@ private void comboBoxRangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 private void textFieldNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldNombreFocusGained
 // Focus gained del text field del datatype property
     propertyDatatypeNameAux = textFieldNombre.getText();
+    varEnter = 0;
 }//GEN-LAST:event_textFieldNombreFocusGained
 
 private void textFieldNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldNombreFocusLost
+    if(varEnter == 0){
+        cambiarNombrePropiedad();
+    }
+}//GEN-LAST:event_textFieldNombreFocusLost
+
+private void textFieldNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldNombreKeyTyped
+    Character a = new Character( ' ' );
+    if(a.equals(evt.getKeyChar())){
+        evt.setKeyChar('_');
+        varEnter = 0;
+    } else if(evt.getKeyChar() == KeyEvent.VK_ENTER){
+        varEnter = 1;
+        cambiarNombrePropiedad();
+    }else{
+        varEnter = 0;
+    }
+}//GEN-LAST:event_textFieldNombreKeyTyped
+
+public void cambiarNombrePropiedad(){
     if(!propertyDatatypeNameAux.equalsIgnoreCase(textFieldNombre.getText())){
         String name = textFieldNombre.getText();
         if(!name.isEmpty()){
@@ -180,13 +208,14 @@ private void textFieldNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRS
             panel.getListPropertiesDatatype().setSelectedIndex(index);
         }
     }
-}//GEN-LAST:event_textFieldNombreFocusLost
+}
+
 
 public void addDomain(String name) {
     DefaultListModel model = (DefaultListModel) listDomain.getModel();
     if(!model.contains(name)){
         ((BusinessDelegate)panel.getVistaNuevaOntologia().getModelo()).addDomain(propiedad.getName(),name);
-        model.addElement(new JListItem(name, "src/iconos/protege/TreeBold.gif"));
+        model.addElement(new JListItem(name, Constantes.ICONTREE));
     }
 }
     

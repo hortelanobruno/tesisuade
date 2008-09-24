@@ -6,6 +6,7 @@
 
 package panels.nuevaontologia;
 
+import java.awt.Toolkit;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -17,6 +18,7 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 import modelo.BusinessDelegate;
+import varios.Constantes;
 
 /**
  *
@@ -38,6 +40,8 @@ public class PanelDomain extends javax.swing.JDialog {
         this.panel = panel;
         proDatatype = data;
         proObject = null;
+        Toolkit t = Toolkit.getDefaultToolkit();
+            this.setLocation((int) (t.getScreenSize().getWidth() - this.getWidth()) / 2, (int) (t.getScreenSize().getHeight() - this.getHeight()) / 2);
         initComponents2();
     }
     
@@ -169,7 +173,7 @@ private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         Object root = treeClasses.getModel().getRoot();
         TreePath path = new TreePath(root);
         treeClasses.expandPath(path);
-        ImageIcon leafIcon = createImageIcon("/iconos/protege/TreeBold.gif");
+        ImageIcon leafIcon = createImageIcon(Constantes.ICONTREE);
         if (leafIcon != null) {
             DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
             renderer.setLeafIcon(leafIcon);

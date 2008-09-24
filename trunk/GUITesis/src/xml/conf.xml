@@ -3,7 +3,7 @@
     <string>C:\Documents and Settings\Administrador\Mis documentos\workspace\NetBeans\GUITesis\src\owl\turismoOriginal.owl</string>
   </ontologiasViajes>
   <ontologiasVocabulario/>
-  <defaultURLOWLSinonimos></defaultURLOWLSinonimos>
+  <defaultURLOWLSinonimos>C:\\Documents and Settings\\Administrador\\Escritorio\\Tesis\\Ontologias\\Copia (2) de Ontologias\\vocabulario2.owl</defaultURLOWLSinonimos>
   <defaultURLOWLViajes>C:\\Documents and Settings\\Administrador\\Escritorio\\Tesis\\Ontologias\\Ontologias\\pruebas\\prueba.owl</defaultURLOWLViajes>
   <owlDirectory>C:\Documents and Settings\Administrador\Mis documentos\workspace\NetBeans\GUITesis\src\owl\</owlDirectory>
 </configuration>

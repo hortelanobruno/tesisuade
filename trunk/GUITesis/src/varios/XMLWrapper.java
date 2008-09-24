@@ -19,14 +19,12 @@ public class XMLWrapper
             String config = fileReader.obtenerContenido();
             XStream xstream = new XStream();
             xstream.alias("configuration", Configuration.class);
-            System.out.println("1");
             Configuration configuration = null;
             try{
                 configuration = (Configuration) xstream.fromXML(config);
             }catch(Exception e){
                 System.out.println(e.getMessage());
             }
-            System.out.println("2");
             return configuration;
         }
         
