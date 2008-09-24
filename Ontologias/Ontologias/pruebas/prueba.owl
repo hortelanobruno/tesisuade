@@ -1,25 +1,59 @@
-<?xml version="1.0"?>
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns="http://www.owl-ontologies.com/Ontology1217604904.owl#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-  xml:base="http://www.owl-ontologies.com/Ontology1217604904.owl">
-  <owl:Ontology rdf:about=""/>
-  <owl:Class rdf:ID="NESTOR"/>
-  <owl:Class rdf:ID="clasesBRUNO"/>
-  <owl:ObjectProperty rdf:ID="propiedad2">
-    <rdfs:range rdf:resource="#NESTOR"/>
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns="http://www.owl-ontologies.com/Ontology1222120332.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+  <owl:Ontology rdf:about="http://www.owl-ontologies.com/Ontology1222120332.owl"/>
+  <owl:Class rdf:about="http://www.owl-ontologies.com/Ontology1222120332.owl#bruno"/>
+  <owl:Class rdf:about="http://www.owl-ontologies.com/Ontology1222120332.owl#hernanjojo"/>
+  <owl:Class rdf:about="http://www.owl-ontologies.com/Ontology1222120332.owl#juancito">
+    <data3 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >http://www.owl-ontologies.com/Ontology1222120332.owl#data3</data3>
+    <data1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >http://www.owl-ontologies.com/Ontology1222120332.owl#data1</data1>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.owl-ontologies.com/Ontology1222120332.owl#brunoli">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.owl-ontologies.com/Ontology1222120332.owl#brunohijo"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.owl-ontologies.com/Ontology1222120332.owl#brunohijo">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/Ontology1222120332.owl#bruno"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.owl-ontologies.com/Ontology1222120332.owl#jojo">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/Ontology1222120332.owl#juancito"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.owl-ontologies.com/Ontology1222120332.owl#hijo">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/Ontology1222120332.owl#hernanjojo"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/Ontology1222120332.owl#objpro2">
+    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/Ontology1222120332.owl#bruno"/>
+    <rdfs:range rdf:resource="http://www.owl-ontologies.com/Ontology1222120332.owl#juancito"/>
   </owl:ObjectProperty>
-  <owl:DatatypeProperty rdf:ID="propiedad1">
+  <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/Ontology1222120332.owl#objpro1">
+    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/Ontology1222120332.owl#hernanjojo"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/Ontology1222120332.owl#data3">
+    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/Ontology1222120332.owl#bruno"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:domain rdf:resource="#NESTOR"/>
   </owl:DatatypeProperty>
-  <NESTOR rdf:ID="instancia1">
-    <propiedad1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >aaa</propiedad1>
-  </NESTOR>
+  <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/Ontology1222120332.owl#data1">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/Ontology1222120332.owl#bruno"/>
+  </owl:DatatypeProperty>
+  <juancito rdf:about="http://www.owl-ontologies.com/Ontology1222120332.owl#jorge3"/>
+  <juancito rdf:about="http://www.owl-ontologies.com/Ontology1222120332.owl#jorge"/>
+  <bruno rdf:about="http://www.owl-ontologies.com/Ontology1222120332.owl#gato">
+    <objpro2>jorge3</objpro2>
+    <data3 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >juancarlos</data3>
+    <data1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >bruno</data1>
+  </bruno>
+  <hernanjojo rdf:about="http://www.owl-ontologies.com/Ontology1222120332.owl#lkje"/>
 </rdf:RDF>
-
-<!-- Created with Protege (with OWL Plugin 3.4, Build 128)  http://protege.stanford.edu -->
