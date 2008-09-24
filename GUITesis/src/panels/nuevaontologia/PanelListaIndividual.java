@@ -1,7 +1,7 @@
 /*
- * PanelListIndividual.java
+ * PanelListaIndividual.java
  *
- * Created on 22 de septiembre de 2008, 21:13
+ * Created on 23 de septiembre de 2008, 09:14
  */
 
 package panels.nuevaontologia;
@@ -16,16 +16,20 @@ import varios.components.JListItem;
  *
  * @author  Administrador
  */
-public class PanelListIndividual extends javax.swing.JPanel {
+public class PanelListaIndividual extends javax.swing.JDialog {
 
     private PanelIndividualObjectProperty panel;
     private String clase;
-    /** Creates new form PanelListIndividual */
-    public PanelListIndividual(PanelIndividualObjectProperty nueva, String nombre) {
+    private String propiedad;
+    
+    /** Creates new form PanelListaIndividual */
+    public PanelListaIndividual(java.awt.Frame parent, boolean modal,PanelIndividualObjectProperty nueva, String nombre,String pro) {
+        super(parent, modal);
         initComponents();
-        initComponents2();
         this.panel = nueva;
         this.clase = nombre;
+        this.propiedad = pro;
+        initComponents2();
     }
 
     /** This method is called from within the constructor to
@@ -39,16 +43,18 @@ public class PanelListIndividual extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         listIndividual = new javax.swing.JList();
-        buttonAgregarIndividual = new javax.swing.JButton();
+        buttonAddIndividual = new javax.swing.JButton();
         buttonCancelIndividual = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         listIndividual.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(listIndividual);
 
-        buttonAgregarIndividual.setText("Add");
-        buttonAgregarIndividual.addActionListener(new java.awt.event.ActionListener() {
+        buttonAddIndividual.setText("Add");
+        buttonAddIndividual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonAgregarIndividualActionPerformed(evt);
+                buttonAddIndividualActionPerformed(evt);
             }
         });
 
@@ -59,33 +65,35 @@ public class PanelListIndividual extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonAgregarIndividual)
+                    .addComponent(buttonAddIndividual)
                     .addComponent(buttonCancelIndividual))
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(buttonAgregarIndividual)
+                        .addGap(67, 67, 67)
+                        .addComponent(buttonAddIndividual)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonCancelIndividual)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     public void initComponents2(){
@@ -96,22 +104,27 @@ public class PanelListIndividual extends javax.swing.JPanel {
         for(int i = 0 ; i < individuals.size() ; i++){
             model.addElement(new JListItem(individuals.get(i),"src\\iconos\\protege\\OWLIndividual.gif"));
         }
+        listIndividual.setModel(model);
+        jScrollPane1.setViewportView(listIndividual);
     }
     
-private void buttonAgregarIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarIndividualActionPerformed
+    
+private void buttonAddIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddIndividualActionPerformed
     JListItem item = (JListItem) listIndividual.getSelectedValue();
     String nombre = item.getTitle();
     this.panel.getTextFieldValorPropiedad().setText(nombre);
+    this.panel.getOntologia().cargarPropiedadIndividual(propiedad, nombre);
     this.setVisible(false);
-}//GEN-LAST:event_buttonAgregarIndividualActionPerformed
+}//GEN-LAST:event_buttonAddIndividualActionPerformed
 
 private void buttonCancelIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelIndividualActionPerformed
     this.setVisible(false);
 }//GEN-LAST:event_buttonCancelIndividualActionPerformed
 
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonAgregarIndividual;
+    private javax.swing.JButton buttonAddIndividual;
     private javax.swing.JButton buttonCancelIndividual;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList listIndividual;

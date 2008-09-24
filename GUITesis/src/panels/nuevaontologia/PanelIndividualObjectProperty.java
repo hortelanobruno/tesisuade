@@ -13,11 +13,12 @@ package panels.nuevaontologia;
 public class PanelIndividualObjectProperty extends javax.swing.JPanel {
     
     private PanelNuevaOntologia ontologia;
-    
+    private String clase;
     /** Creates new form PanelIndividualObjectProperty */
-    public PanelIndividualObjectProperty(PanelNuevaOntologia nueva) {
+    public PanelIndividualObjectProperty(PanelNuevaOntologia nueva,String clase) {
         initComponents();
         this.ontologia = nueva;
+        this.clase = clase;
     }
 
     /** This method is called from within the constructor to
@@ -70,7 +71,8 @@ public class PanelIndividualObjectProperty extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    //Aca tiene que abrir una lista de individuals
+    PanelListaIndividual panel = new PanelListaIndividual(ontologia.getMain(),true,this,clase,labelNombrePropiedad.getText());
+    panel.setVisible(true);
 }//GEN-LAST:event_jButton1ActionPerformed
 
 

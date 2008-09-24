@@ -878,31 +878,27 @@ public void cargarIndividual(){
         IndividualViajesVO indVO = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).obtenerIndividualViajes(ind);
         textFieldNombreIndividual.setText(indVO.getNombre());
         panelIndividualProperties.removeAll();
-        HashMap<String,HashMap<String,String>> datatypeProperties = indVO.getDatatypeProperties();
-        Set<String> keys = datatypeProperties.keySet();
+        List<DatatypePropertyVO> datatypeProperties = indVO.getDatatypeProperties();
         //nombrepropiedad,valor,tipo
         for(int i=0; i< datatypeProperties.size() ; i++){
-            HashMap<String,String> propiedad = datatypeProperties.get(keys.toArray()[i]);
-            String nombre = (String) datatypeProperties.keySet().toArray()[i];
-            String type = propiedad.values().toArray()[0].toString();
+            DatatypePropertyVO datapro = datatypeProperties.get(i);
             PanelIndividualDatatypeProperty panelData = new PanelIndividualDatatypeProperty(this);
-            if(propiedad.keySet().toArray()[0] != null){
-                String valor = propiedad.keySet().toArray()[0].toString();
+            if(datapro.getValor() != null){
+                String valor = datapro.getValor();
                 panelData.getTextFieldValorProperty().setText(valor);
             }
-            panelData.getLabelNombrePropiedad().setText(nombre);
-            panelData.getComboBoxType().setSelectedItem(type);
+            panelData.getLabelNombrePropiedad().setText(datapro.getName());
+            panelData.getComboBoxType().setSelectedItem(datapro.getRange());
             panelIndividualProperties.add(panelData);
         }
-        HashMap<String,String> objectProperties = indVO.getObjectProperties();
+        List<ObjectPropertyVO> objectProperties = indVO.getObjectProperties();
         //nombrepropiedad,valor,range
         for(int i=0 ; i < objectProperties.size() ; i++){
-            String nombre = (String) objectProperties.keySet().toArray()[i];
-            String valor = (String) objectProperties.values().toArray()[i];
-            PanelIndividualObjectProperty panelObj = new PanelIndividualObjectProperty(this);
-            panelObj.getLabelNombrePropiedad().setText(nombre);
-            if(valor != null){
-                panelObj.getTextFieldValorPropiedad().setText(valor);
+            ObjectPropertyVO objpro = objectProperties.get(i);
+            PanelIndividualObjectProperty panelObj = new PanelIndividualObjectProperty(this,objpro.getRange().get(0));
+            panelObj.getLabelNombrePropiedad().setText(objpro.getName());
+            if(objpro.getValor() != null){
+                panelObj.getTextFieldValorPropiedad().setText(objpro.getValor());
             }
             panelIndividualProperties.add(panelObj);
         }   

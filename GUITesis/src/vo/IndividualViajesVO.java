@@ -6,6 +6,7 @@
 package vo;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -14,19 +15,19 @@ import java.util.HashMap;
 public class IndividualViajesVO {
 
     private String nombre;
-    private HashMap<String,HashMap<String,String>> datatypeProperties;
-    private HashMap<String,String> objectProperties;
+    private List<DatatypePropertyVO> datatypeProperties;
+    private List<ObjectPropertyVO> objectProperties;
 
     public IndividualViajesVO() {
     }
 
-    public IndividualViajesVO(String nombre, HashMap<String, HashMap<String, String>> datatypeProperties, HashMap<String, String> objectProperties) {
+    public IndividualViajesVO(String nombre, List<DatatypePropertyVO> datatypeProperties, List<ObjectPropertyVO> objectProperties) {
         this.nombre = nombre;
         this.datatypeProperties = datatypeProperties;
         this.objectProperties = objectProperties;
     }
 
-    public HashMap<String, HashMap<String, String>> getDatatypeProperties() {
+    public List<DatatypePropertyVO> getDatatypeProperties() {
         return datatypeProperties;
     }
 
@@ -34,11 +35,11 @@ public class IndividualViajesVO {
         return nombre;
     }
 
-    public HashMap<String,String> getObjectProperties() {
+    public List<ObjectPropertyVO> getObjectProperties() {
         return objectProperties;
     }
 
-    public void setDatatypeProperties(HashMap<String, HashMap<String, String>> datatypeProperties) {
+    public void setDatatypeProperties(List<DatatypePropertyVO> datatypeProperties) {
         this.datatypeProperties = datatypeProperties;
     }
 
@@ -46,7 +47,7 @@ public class IndividualViajesVO {
         this.nombre = nombre;
     }
 
-    public void setObjectProperties(HashMap<String, String> objectProperties) {
+    public void setObjectProperties(List<ObjectPropertyVO> objectProperties) {
         this.objectProperties = objectProperties;
     }
 }

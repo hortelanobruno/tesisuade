@@ -16,6 +16,7 @@ public class DatatypePropertyVO {
     private String name;
     private List<String> domain;
     private String range;
+    private String valor;
     
     public DatatypePropertyVO() {
     }
@@ -58,6 +59,14 @@ public class DatatypePropertyVO {
         } else if(range.equalsIgnoreCase("Boolean")){
             this.range = "boolean";
         }
+    }
+
+    public String getValor() {
+        return valor;
+    }
+
+    public void setValor(String valor) {
+        this.valor = valor;
     }
 
     

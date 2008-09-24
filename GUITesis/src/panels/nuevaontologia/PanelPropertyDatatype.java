@@ -147,7 +147,12 @@ private void buttonRemoveDomainActionPerformed(java.awt.event.ActionEvent evt) {
     String dom = listDomain.getSelectedValue().toString();
     ((BusinessDelegate)panel.getVistaNuevaOntologia().getModelo()).removeDomain(propiedad.getName(),dom);
     DefaultListModel mode = (DefaultListModel) listDomain.getModel();
-    mode.removeElement(dom);
+    for(int i = 0 ; i < mode.size() ; i++){
+        JListItem item = (JListItem) mode.get(i);
+        if(item.getTitle().equals(dom)){
+            mode.removeElement(item);
+        }
+    }
 }//GEN-LAST:event_buttonRemoveDomainActionPerformed
 
 private void comboBoxRangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxRangeActionPerformed
