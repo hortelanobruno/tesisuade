@@ -6,6 +6,7 @@
 
 package gui;
 
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -45,7 +46,8 @@ public class FileChooser extends javax.swing.JDialog {
 			ex.printStackTrace();
 		}
 		initComponents();
-
+                Toolkit t = Toolkit.getDefaultToolkit();
+            this.setLocation((int) (t.getScreenSize().getWidth() - this.getWidth()) / 2, (int) (t.getScreenSize().getHeight() - this.getHeight()) / 2);
 		fileChooser.addChoosableFileFilter(new OWLFilter());
 		path = "";
 		button = "";

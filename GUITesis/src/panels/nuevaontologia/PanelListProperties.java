@@ -6,6 +6,7 @@
 
 package panels.nuevaontologia;
 
+import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -32,6 +33,8 @@ public class PanelListProperties extends javax.swing.JDialog {
         this.propiedadesCargadas = propiedadesCargadas;
         this.clase = clase;
         initComponents();
+        Toolkit t = Toolkit.getDefaultToolkit();
+            this.setLocation((int) (t.getScreenSize().getWidth() - this.getWidth()) / 2, (int) (t.getScreenSize().getHeight() - this.getHeight()) / 2);
         initComponents2();
     }
 

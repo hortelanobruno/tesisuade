@@ -5,8 +5,10 @@
  */
 package panels.nuevaontologia;
 
+import java.awt.event.KeyEvent;
 import javax.swing.DefaultListModel;
 import modelo.BusinessDelegate;
+import varios.Constantes;
 import varios.components.JListCellRenderer;
 import varios.components.JListItem;
 import vo.ObjectPropertyVO;
@@ -18,6 +20,7 @@ import vo.ObjectPropertyVO;
 public class PanelPropertyObject extends javax.swing.JPanel {
 
     private PanelNuevaOntologia panel;
+    private int varEnter;
     private ObjectPropertyVO propiedad;
     private String objectPropertyNameAux;
 
@@ -62,6 +65,11 @@ public class PanelPropertyObject extends javax.swing.JPanel {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 textFieldNombreFocusLost(evt);
+            }
+        });
+        textFieldNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textFieldNombreKeyTyped(evt);
             }
         });
 
@@ -200,29 +208,49 @@ private void buttonRemoveRangeActionPerformed(java.awt.event.ActionEvent evt) {/
 private void textFieldNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldNombreFocusGained
 // Se gano el foco del text field del nombre del object property
     objectPropertyNameAux = textFieldNombre.getText();
+    varEnter = 0;
 }//GEN-LAST:event_textFieldNombreFocusGained
 
 private void textFieldNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldNombreFocusLost
 // TODO add your handling code here:
+    if(varEnter == 0){
+        cambiarNombrePropiedad();
+    }
+}//GEN-LAST:event_textFieldNombreFocusLost
+
+private void textFieldNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldNombreKeyTyped
+    Character a = new Character( ' ' );
+    if(a.equals(evt.getKeyChar())){
+        evt.setKeyChar('_');
+        varEnter = 0;
+    } else if(evt.getKeyChar() == KeyEvent.VK_ENTER){
+        varEnter = 1;
+        cambiarNombrePropiedad();
+    }else{
+        varEnter = 0;
+    }
+}//GEN-LAST:event_textFieldNombreKeyTyped
+
+public void cambiarNombrePropiedad(){
     if(!objectPropertyNameAux.equalsIgnoreCase(textFieldNombre.getText())){
         String name = textFieldNombre.getText();
         if (!name.isEmpty()) {
-        ((BusinessDelegate) panel.getVistaNuevaOntologia().getModelo()).changeNameObjectProperty(objectPropertyNameAux, name);
-        DefaultListModel model = (DefaultListModel) panel.getListPropertiesObject().getModel();
-        int index = model.indexOf(objectPropertyNameAux);
-        model.remove(index);
-        model.add(index, name);
-        propiedad.setName(name);
+            ((BusinessDelegate) panel.getVistaNuevaOntologia().getModelo()).changeNameObjectProperty(objectPropertyNameAux, name);
+            DefaultListModel model = (DefaultListModel) panel.getListPropertiesObject().getModel();
+            int index = model.indexOf(objectPropertyNameAux);
+            model.remove(index);
+            model.add(index, name);
+            propiedad.setName(name);
+        }
     }
-    }
-}//GEN-LAST:event_textFieldNombreFocusLost
+}
 
 public void addDomain(String name) {
     DefaultListModel model = (DefaultListModel) listDomain.getModel();
     if(!model.contains(name)){
         ((BusinessDelegate) panel.getVistaNuevaOntologia().getModelo()).addDomain(propiedad.getName(), name);
         DefaultListModel mode = (DefaultListModel) listDomain.getModel();
-        mode.addElement(new JListItem(name,"src/iconos/protege/TreeBold.gif"));
+        mode.addElement(new JListItem(name,Constantes.ICONTREE));
     }
 }
 
@@ -231,7 +259,7 @@ public void addRange(String name) {
     if(!model.contains(name)){
         ((BusinessDelegate) panel.getVistaNuevaOntologia().getModelo()).addRange(propiedad.getName(), name);
         DefaultListModel mode = (DefaultListModel) listRange.getModel();
-        mode.addElement(new JListItem(name,"src/iconos/protege/TreeBold.gif"));
+        mode.addElement(new JListItem(name,Constantes.ICONTREE));
     }
 }
     public void initComponents2(){

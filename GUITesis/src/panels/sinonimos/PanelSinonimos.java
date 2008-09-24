@@ -12,12 +12,15 @@ import gui.FramePrincipal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 import modelo.BusinessDelegate;
+import varios.Constantes;
 import vistas.VistaSinonimos;
 import vo.IndividualSinonimoVO;
 
@@ -455,7 +458,7 @@ public void removerSinonimo(){
 public void removerTraduccion(){
     DefaultListModel model = (DefaultListModel) listTraduccion.getModel();
     String instancia = labelPalabra.getText();
-    ((BusinessDelegate)vista.getModelo()).removerTraduccion(instancia,model.getElementAt(listSinonimos.getSelectedIndex()).toString());
+    ((BusinessDelegate)vista.getModelo()).removerTraduccion(instancia,model.getElementAt(listTraduccion.getSelectedIndex()).toString());
     model.remove(listTraduccion.getSelectedIndex());
 }
 
@@ -505,7 +508,16 @@ public void cargarTree(){
             buttonCargarActionPerformed(evt);    
     }
     });
-    jScrollPane1.setViewportView(treeIndividual);
+    ImageIcon leafIcon = new ImageIcon(Constantes.ICONINDIVIDUAL);
+    if (leafIcon != null) {
+        DefaultTreeCellRenderer renderer = 
+            new DefaultTreeCellRenderer();
+        renderer.setOpenIcon(leafIcon);
+        renderer.setClosedIcon(leafIcon);
+        renderer.setLeafIcon(leafIcon);
+        treeIndividual.setCellRenderer(renderer);
+        jScrollPane1.setViewportView(treeIndividual);
+    }
     Object root = treeIndividual.getModel().getRoot();
     TreePath path = new TreePath(root);
     treeIndividual.expandPath(path);
@@ -521,7 +533,17 @@ private void initComponents2(){
     DefaultMutableTreeNode abuelo = new DefaultMutableTreeNode("Palabras");
     DefaultTreeModel modelo = new DefaultTreeModel(abuelo);
     treeIndividual = new JTree(modelo);
-    jScrollPane1.setViewportView(treeIndividual);
+        
+    ImageIcon leafIcon = new ImageIcon(Constantes.ICONINDIVIDUAL);
+    if (leafIcon != null) {
+        DefaultTreeCellRenderer renderer = 
+            new DefaultTreeCellRenderer();
+        renderer.setOpenIcon(leafIcon);
+        renderer.setClosedIcon(leafIcon);
+        renderer.setLeafIcon(leafIcon);
+        treeIndividual.setCellRenderer(renderer);
+        jScrollPane1.setViewportView(treeIndividual);
+    }
     
     //Crear lista mutable sinonimos
     

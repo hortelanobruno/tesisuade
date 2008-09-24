@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import java.awt.Toolkit;
 import javax.swing.JFileChooser;
 
 /**
@@ -21,7 +22,8 @@ public class DirectoryChooser extends javax.swing.JDialog {
     public DirectoryChooser(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
+        Toolkit t = Toolkit.getDefaultToolkit();
+            this.setLocation((int) (t.getScreenSize().getWidth() - this.getWidth()) / 2, (int) (t.getScreenSize().getHeight() - this.getHeight()) / 2);
         fileChooser.setDialogTitle("Elija la carpeta");
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         fileChooser.setAcceptAllFileFilterUsed(false);

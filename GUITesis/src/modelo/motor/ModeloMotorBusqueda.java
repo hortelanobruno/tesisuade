@@ -64,7 +64,6 @@ public class ModeloMotorBusqueda {
         try {
                 is = new FileInputStream(new File(owlfile));
                 ontmodel.read(is, "");
-                System.out.println("Se ha cargado una instancia OntModel.");
         } catch (Exception e) {
                 System.out.println("Se ha producido una excepcion controlada.");
                 e.printStackTrace();
