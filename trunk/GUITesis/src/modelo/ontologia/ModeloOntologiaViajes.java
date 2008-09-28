@@ -102,6 +102,20 @@ public class ModeloOntologiaViajes {
         jena.changeRange(m,pro,range);
     }
 
+    public List<String> generarOntologiaBusqueda(String ont, String sin) {
+        DIGReasoner r = (DIGReasoner) ReasonerRegistry.theRegistry().create( DIGReasonerFactory.URI, null );
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_MEM );
+        spec.setReasoner( r );
+        OntModel ontologia = ModelFactory.createOntologyModel(spec, null );
+        ontologia = loadOntModelFromOwlFile(ont);
+        OntModel sinonimo = ModelFactory.createOntologyModel(spec, null );
+        sinonimo = loadOntModelFromOwlFile(sin);
+        OntModel nueva = ModelFactory.createOntologyModel(spec, null );
+        List<String> errores = jena.generarOntologiaBusqueda(ontologia,sinonimo,nueva);
+        jena.grabarOntologia(nueva,ont);
+        return errores;
+    }
+
     public ArrayList<String> listIndividuals(String clase) {
         return jena.listIndividuals(m,clase);
     }

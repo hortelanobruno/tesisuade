@@ -3,15 +3,17 @@
  *
  * Created on August 26, 2008, 1:00 PM
  */
-
 package panels.configuracion;
 
 import GUI.DirectoryChooser;
 import gui.FileChooser;
 import gui.FramePrincipal;
+import java.util.List;
 import java.util.Vector;
 import javax.swing.DefaultListModel;
+import modelo.BusinessDelegate;
 import varios.FileCopy;
+import vistas.VistaConfiguracion;
 
 /**
  *
@@ -22,10 +24,12 @@ public class PanelConfiguracion extends javax.swing.JPanel {
     private FramePrincipal main;
     private FileChooser chooser;
     private DirectoryChooser dirChooser;
-    
+    private VistaConfiguracion vista;
+
     /** Creates new form PanelConfiguracion */
-    public PanelConfiguracion(FramePrincipal ref) {
+    public PanelConfiguracion(FramePrincipal ref, VistaConfiguracion vista) {
         this.main = ref;
+        this.vista = vista;
         initComponents();
         initComponents2();
     }
@@ -158,48 +162,51 @@ public class PanelConfiguracion extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    public void initComponents2(){
+    public void initComponents2() {
         listOntologiasViajes.setModel(new DefaultListModel());
-        
+
         //carga viajes
         Vector<String> viajes = main.getConfiguration().getOntologiasViajes();
-        if(viajes != null){
+        if (viajes != null) {
             DefaultListModel model = (DefaultListModel) listOntologiasViajes.getModel();
-            for(int i=0 ; i<viajes.size() ; i++){
-                String[] nombre = viajes.elementAt(i).split("\\\\");
-                model.addElement(nombre[nombre.length-1]);
+            for (int i = 0; i < viajes.size(); i++) {
+                String[] nombre = viajes.elementAt(i).split("/");
+                model.addElement(nombre[nombre.length - 1]);
             }
         }
-        
+
         //cargar vocabulario
         Vector<String> voc = main.getConfiguration().getOntologiasVocabulario();
-        if(voc != null){
-            for(int i=0 ; i < voc.size() ; i++){
+        if (voc != null) {
+            for (int i = 0; i < voc.size(); i++) {
                 String vocabulario = main.getConfiguration().getOntologiasVocabulario().elementAt(i);
                 textFieldOntVocabulario.setText(vocabulario);
             }
         }
-        
+
         //carga directorio de ontologia
         String dirOnt = main.getConfiguration().getOwlDirectory();
         textFieldDirOnt.setText(dirOnt);
     }
-    
+
 private void buttonAddOntViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddOntViajesActionPerformed
     chooser = new FileChooser(this.main, true, this.main.getConfiguration().getOwlDirectory());
     if (chooser.getButton().equals("Cancel")) {
     } else {
-        String urlNew = chooser.path.split("\\\\")[ chooser.path.split("\\\\").length-1];
-        ((DefaultListModel)listOntologiasViajes.getModel()).addElement(urlNew);
+        String urlNew = chooser.path.split("/")[chooser.path.split("/").length - 1];
         FileCopy copy = new FileCopy();
-        copy.Copiar(chooser.path,this.main.getConfiguration().getOwlDirectory()+urlNew);
-        if(main.getConfiguration().getOntologiasViajes() == null){
+        copy.copiar(chooser.path, this.main.getConfiguration().getOwlDirectory() + urlNew);
+        //Aca transformo, si va todo bien muestro un cartel con OK, sino un cartel con el error
+        List<String> errores = ((BusinessDelegate)this.vista.getModelo()).generarOntologiaBusqueda(this.main.getConfiguration().getOwlDirectory() + urlNew,this.main.getConfiguration().getOntologiasVocabulario().get(0));
+        
+        
+        if (main.getConfiguration().getOntologiasViajes() == null) {
             main.getConfiguration().setOntologiasViajes(new Vector<String>());
-            main.getConfiguration().getOntologiasViajes().add(this.main.getConfiguration().getOwlDirectory()+urlNew);
-        }else{
-            main.getConfiguration().getOntologiasViajes().add(this.main.getConfiguration().getOwlDirectory()+urlNew);
+            main.getConfiguration().getOntologiasViajes().add(this.main.getConfiguration().getOwlDirectory() + urlNew);
+        } else {
+            main.getConfiguration().getOntologiasViajes().add(this.main.getConfiguration().getOwlDirectory() + urlNew);
         }
+        ((DefaultListModel) listOntologiasViajes.getModel()).addElement(urlNew);
         main.recargarConfiguracion();
     }
 }//GEN-LAST:event_buttonAddOntViajesActionPerformed
@@ -207,9 +214,22 @@ private void buttonAddOntViajesActionPerformed(java.awt.event.ActionEvent evt) {
 private void buttonRemoverOntViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverOntViajesActionPerformed
 // TODO add your handling code here:
     String viaje = listOntologiasViajes.getSelectedValue().toString();
-    main.getConfiguration().getOntologiasViajes().remove(viaje);
     DefaultListModel model = (DefaultListModel) listOntologiasViajes.getModel();
     model.removeElement(viaje);
+    Vector<String> viajes = main.getConfiguration().getOntologiasViajes();
+    int aux = -1;
+    for (int i = 0; i < viajes.size(); i++) {
+        String ele = viajes.elementAt(i);
+        String[] elements = ele.split("/");
+        if (elements[elements.length - 1].equalsIgnoreCase(viaje)) {
+            aux = i;
+            viaje = ele;
+            break;
+        }
+    }
+    main.getConfiguration().getOntologiasViajes().remove(aux);
+    FileCopy copy = new FileCopy();
+    copy.eliminar(viaje);
     main.recargarConfiguracion();
 }//GEN-LAST:event_buttonRemoverOntViajesActionPerformed
 
@@ -217,13 +237,12 @@ private void buttonChangeOntVocabularioActionPerformed(java.awt.event.ActionEven
     chooser = new FileChooser(this.main, true, this.main.getConfiguration().getOwlDirectory());
     if (chooser.getButton().equals("Cancel")) {
     } else {
+        String urlNew = chooser.path.split("/")[chooser.path.split("/").length - 1];
+        FileCopy copy = new FileCopy();
+        copy.copiar(chooser.path, this.main.getConfiguration().getOwlDirectory() + urlNew);
         textFieldOntVocabulario.setText(chooser.path);
-        if(main.getConfiguration().getOntologiasVocabulario() == null){
-            main.getConfiguration().setOntologiasVocabulario(new Vector<String>());
-            main.getConfiguration().getOntologiasVocabulario().add(chooser.path);
-        }else{
-            main.getConfiguration().getOntologiasVocabulario().add(chooser.path);
-        }
+        main.getConfiguration().setOntologiasVocabulario(new Vector<String>());
+        main.getConfiguration().getOntologiasVocabulario().add(this.main.getConfiguration().getOwlDirectory() + urlNew);
         main.recargarConfiguracion();
     }
 }//GEN-LAST:event_buttonChangeOntVocabularioActionPerformed
@@ -231,13 +250,16 @@ private void buttonChangeOntVocabularioActionPerformed(java.awt.event.ActionEven
 private void buttonChageDirectorioOntologiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChageDirectorioOntologiaActionPerformed
     dirChooser = new DirectoryChooser(this.main, true);
     String folder = dirChooser.getPath();
-    folder = folder+"\\";
+    folder = folder + "/";
     textFieldDirOnt.setText(folder);
     main.getConfiguration().setOwlDirectory(folder);
     main.recargarConfiguracion();
- 
+
 }//GEN-LAST:event_buttonChageDirectorioOntologiaActionPerformed
 
+public void update(){
+    
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAddOntViajes;

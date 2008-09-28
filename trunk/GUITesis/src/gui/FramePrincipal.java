@@ -21,6 +21,7 @@ import panels.configuracion.PanelConfiguracion;
 import panels.nuevaontologia.PanelNuevaOntologia;
 import panels.sinonimos.PanelSinonimos;
 import varios.Constantes;
+import vistas.VistaConfiguracion;
 import vistas.VistaMotorBusqueda;
 import vistas.VistaNuevaOntologia;
 import vistas.VistaSinonimos;
@@ -45,13 +46,15 @@ public class FramePrincipal extends javax.swing.JFrame {
     private VistaMotorBusqueda vistaMotorBusqueda;
     private VistaSinonimos vistaSinonimos;
     private VistaNuevaOntologia vistaNuevaOntologia;
+    private VistaConfiguracion vistaConfiguracion;
     private Configuration configuration;
 
     /** Creates new form FramePrincipal */
-    public FramePrincipal(VistaMotorBusqueda vistaMotor, VistaSinonimos vistaSin, VistaNuevaOntologia vistaNuevaOnt) {
+    public FramePrincipal(VistaMotorBusqueda vistaMotor, VistaSinonimos vistaSin, VistaNuevaOntologia vistaNuevaOnt, VistaConfiguracion vistaConf) {
         this.vistaMotorBusqueda = vistaMotor;
         this.vistaNuevaOntologia = vistaNuevaOnt;
         this.vistaSinonimos = vistaSin;
+        this.vistaConfiguracion = vistaConf;
         initComponents();
         this.setLookAndFeel();
         isPanelPrincipalSelected = true;
@@ -432,7 +435,7 @@ private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
 // Cargar configuracion
     if (!isPanelConfiguracionSelected) {
-        setPanelConfiguracion(new PanelConfiguracion(this));
+        setPanelConfiguracion(new PanelConfiguracion(this,vistaConfiguracion));
         ponerPanel(getPanelConfiguracion());
     }
 }//GEN-LAST:event_jMenuItem3ActionPerformed

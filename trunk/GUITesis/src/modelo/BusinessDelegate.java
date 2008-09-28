@@ -37,6 +37,10 @@ public class BusinessDelegate extends ProxyModelo
         modeloMotorBusqueda.cargarModelos();
     }
 
+    public List<String> generarOntologiaBusqueda(String ont, String sin){
+        return modeloOntologiaViajes.generarOntologiaBusqueda(ont,sin);
+    }
+    
     public void cargarPropiedadIndividual(String ind, String pro, String valor){
         modeloOntologiaViajes.cargarPropiedadIndividual(ind,pro,valor);
     }

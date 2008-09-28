@@ -110,13 +110,13 @@ public class PanelListProperties extends javax.swing.JDialog {
         for(int i=0 ; i < datatypeProperties.size() ; i++){
             String propiedad = datatypeProperties.get(i);
             if(!propiedadesCargadas.contains(propiedad)){
-                model.addElement(new JListItem(propiedad,"src\\iconos\\protege\\OWLDatatypeProperty.GIF"));
+                model.addElement(new JListItem(propiedad,"src/iconos/protege/OWLDatatypeProperty.GIF"));
             }
         }
         for(int i=0 ; i < objectProperties.size() ; i++){
             String propiedad = objectProperties.get(i);
             if(!propiedadesCargadas.contains(propiedad)){
-                model.addElement(new JListItem(propiedad,"src\\iconos\\protege\\OWLObjectProperty.GIF"));
+                model.addElement(new JListItem(propiedad,"src/iconos/protege/OWLObjectProperty.GIF"));
             }
         }
         listProperties = new JList(model);
