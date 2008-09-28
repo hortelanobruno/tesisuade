@@ -32,7 +32,7 @@ public class FileChooser extends javax.swing.JDialog {
 
 	public FileChooser(java.awt.Frame parent, boolean modal, String XmlPath) {
 		super(parent, modal);
-		XmlPath = XmlPath + "\\";
+		XmlPath = XmlPath + "/";
 		try {
 			javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager
 					.getSystemLookAndFeelClassName());
@@ -116,7 +116,7 @@ public class FileChooser extends javax.swing.JDialog {
 	private void fileChooserActionPerformed(java.awt.event.ActionEvent evt) {
 		if (evt.getActionCommand().equals("ApproveSelection")) {
 			path = fileChooser.getSelectedFile().getPath()
-					.replace("\\", "\\\\");
+					.replace("\\", "/");
 			file = fileChooser.getSelectedFile().getName();
 			button = "Aceptar";
 		} else if (evt.getActionCommand().equals("CancelSelection")) {

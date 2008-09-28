@@ -228,10 +228,8 @@ public class ApiJena {
                 Triple tri = s.asTriple();
                 if (tri.getObject().isLiteral()) {
                     propiedades.put(tri.getPredicate().getLocalName(), tri.getMatchObject().getLiteral().getValue().toString());
-                //System.out.println("   Propiedad: "+tri.getPredicate().getLocalName()+"\n   Valor: "+tri.getMatchObject().getLiteral().getValue()) ;
                 } else {
                     propiedades.put(tri.getPredicate().getLocalName(), tri.getObject().getLocalName());
-                //System.out.println("   Propiedad: "+tri.getPredicate().getLocalName()+"\n   Valor: "+tri.getObject().getLocalName()) ;
                 }
             }
             if (propiedades.get("type").equalsIgnoreCase("Ticket_Viaje")) {
@@ -423,6 +421,92 @@ public class ApiJena {
             b = false;
         }
         return b;
+    }
+
+    public String convertirPropiedad(OntModel sinonimo, String propiedad){
+        String uri = getURIOntologiaConNumeral(sinonimo);
+        List<String> individuals = showIndividuals(sinonimo);
+        for(int i=0 ; i < individuals.size() ; i++){
+            Individual individual = sinonimo.getIndividual(uri+individuals.get(i));
+            for ( StmtIterator sIter = individual.listProperties(); sIter.hasNext() ; )
+            {
+                Statement s = (Statement) sIter.next() ;
+                Triple tri = s.asTriple();
+                String name = individual.getLocalName();
+                if(tri.getObject().isLiteral()){
+                    String valor = tri.getMatchObject().getLiteral().getValue().toString();
+                    if(valor.equalsIgnoreCase(propiedad)){
+                        return name;
+                    }
+                }else{
+                    String valor = tri.getObject().getLocalName();
+                    String nombre = tri.getPredicate().getLocalName();
+                    if(!nombre.equalsIgnoreCase("type")){
+                        if(valor.equalsIgnoreCase(propiedad)){
+                            return name;
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+    
+    public List<String> generarOntologiaBusqueda(OntModel ontologia, OntModel sinonimo, OntModel nueva) {
+        List<String> errores = new ArrayList<String>();
+        String uriOntologia = getURIOntologiaConNumeral(ontologia);
+        String uriNuevaOntologia = getURIOntologiaConNumeral(nueva);
+        //arsenal
+        List<String> individuals = showIndividuals(ontologia);
+        for(int i=0 ; i < individuals.size() ; i++){
+            Individual individual = ontologia.getIndividual(uriOntologia+individuals.get(i));
+            OntClass clase = individual.getOntClass();
+            Individual indNuevo = nueva.createIndividual(uriNuevaOntologia+individuals.get(i),clase);
+            for ( StmtIterator sIter = individual.listProperties(); sIter.hasNext() ; )
+            {
+                Statement s = (Statement) sIter.next() ;
+                Triple tri = s.asTriple();
+                if(tri.getObject().isLiteral()){
+                    //Datatype
+                    String propiedad = tri.getPredicate().getLocalName();
+                    String valor = tri.getMatchObject().getLiteral().getValue().toString();
+                    String propiedadNueva = convertirPropiedad(sinonimo,propiedad);
+                    if(propiedadNueva != null){
+                        OntProperty proNueva = nueva.getOntProperty(uriNuevaOntologia+propiedadNueva);
+                        if(proNueva == null){
+                            OntProperty pro = nueva.createOntProperty(uriNuevaOntologia+propiedadNueva);
+                            indNuevo.addProperty(pro, valor);
+                        }else{
+                            indNuevo.addProperty(proNueva, valor);
+                        }
+                    }else{
+                        errores.add(propiedad);
+                    }
+                }else{
+                    //Object
+                    String propiedad = tri.getPredicate().getLocalName();
+                    String valor = tri.getObject().getLocalName();
+                    if(!propiedad.equalsIgnoreCase("type")){
+                        String propiedadNueva = convertirPropiedad(sinonimo,propiedad);
+                        if(propiedadNueva != null){
+                            OntProperty proNueva = nueva.getOntProperty(uriNuevaOntologia+propiedadNueva);
+                            if(proNueva == null){
+                                OntProperty pro = nueva.createOntProperty(uriNuevaOntologia+propiedadNueva);
+                                indNuevo.addProperty(pro, valor);
+                            }else{
+                                indNuevo.addProperty(proNueva, valor);
+                            }
+                        }else{
+                            errores.add(propiedad);
+                        }
+                    }
+                }
+            }
+        }
+        if(errores.isEmpty()){
+            errores.add("Ok");
+        }
+        return errores;
     }
 
     //Testear

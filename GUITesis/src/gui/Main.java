@@ -10,6 +10,7 @@ import controladores.ControladorPanelMotorBusqueda;
 import controladores.ControladorPanelNuevaOntologia;
 import controladores.ControladorPanelSinonimos;
 import modelo.BusinessDelegate;
+import vistas.VistaConfiguracion;
 import vistas.VistaMotorBusqueda;
 import vistas.VistaNuevaOntologia;
 import vistas.VistaSinonimos;
@@ -27,8 +28,9 @@ public class Main {
             VistaMotorBusqueda vistaMotorBusqueda = new VistaMotorBusqueda(modelo);
             VistaSinonimos vistaSinonimos = new VistaSinonimos(modelo);
             VistaNuevaOntologia vistaNuevaOntologia = new VistaNuevaOntologia(modelo);
+            VistaConfiguracion vistaConfiguracion = new VistaConfiguracion(modelo);
             
-            FramePrincipal frame = new FramePrincipal(vistaMotorBusqueda,vistaSinonimos,vistaNuevaOntologia);
+            FramePrincipal frame = new FramePrincipal(vistaMotorBusqueda,vistaSinonimos,vistaNuevaOntologia,vistaConfiguracion);
             frame.setVisible(true);
             
             vistaMotorBusqueda.setRef(frame);

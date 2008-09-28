@@ -5,6 +5,7 @@
 
 package varios;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class FileCopy {
         
     }
 
-    public void Copiar(String urlOrigen, String urlDestino){
+    public void copiar(String urlOrigen, String urlDestino){
         try{
             FileInputStream fis = new FileInputStream(urlOrigen); 
             FileOutputStream fos = new FileOutputStream(urlDestino); 
@@ -32,4 +33,13 @@ public class FileCopy {
          }catch (IOException ex) {}
     }
 
+    public void eliminar(String urlOrigen){
+        File f = new File(urlOrigen);
+        if(f.exists()){ 
+            f.delete();
+        }else{ 
+            System.out.println("El directorio no existe :("); 
+        } 
+    }
+    
 }
