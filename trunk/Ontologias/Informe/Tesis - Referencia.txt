@@ -1,0 +1,8 @@
+
+Referencias de ontologia:
+
+http://jena.sourceforge.net/                                        Sitio Oficial de Jena 2
+http://protege.stanford.edu/plugins/owl/api/guide.html
+http://www.w3.org/TR/2004/REC-owl-ref-20040210/
+http://www.w3.org/2001/sw/WebOnt/
+http://www.w3.org/TR/owl-features/
