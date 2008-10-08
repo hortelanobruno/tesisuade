@@ -96,10 +96,10 @@
         <Container class="javax.swing.JPanel" name="panelClasses">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Classes">
-                <Property name="tabTitle" type="java.lang.String" value="Classes"/>
+              <JTabbedPaneConstraints tabName="Clases">
+                <Property name="tabTitle" type="java.lang.String" value="Clases"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/iconos/protege/TreeBold.gif"/>
+                  <Image iconType="3" name="/iconos/protege/TreeBold2.gif"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -132,9 +132,9 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                                      <Component id="buttonAddProperty" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                      <Component id="buttonRemoveProperty" min="-2" max="-2" attributes="0"/>
+                                      <Component id="buttonAddProperty" min="-2" pref="37" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="buttonRemoveProperty" min="-2" pref="36" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -171,11 +171,11 @@
                               <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="buttonRemoveProperty" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="buttonAddProperty" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="buttonRemoveProperty" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="buttonAddProperty" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane2" pref="216" max="32767" attributes="0"/>
+                              <Component id="jScrollPane2" pref="214" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -214,17 +214,19 @@
             </Container>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Hierarchy"/>
+                <Property name="text" type="java.lang.String" value="Jerarquia"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Properties"/>
+                <Property name="text" type="java.lang.String" value="Propiedades"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="buttonRemoveProperty">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Remove"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/iconos/protege/removeProperty.gif"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRemovePropertyActionPerformed"/>
@@ -232,7 +234,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="buttonAddProperty">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Add P"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/iconos/protege/Prueba.gif"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddPropertyActionPerformed"/>
@@ -240,7 +244,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Class"/>
+                <Property name="text" type="java.lang.String" value="Clase"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="textFieldClassName">
@@ -341,8 +345,8 @@
         <Container class="javax.swing.JPanel" name="panelProperties">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Properties">
-                <Property name="tabTitle" type="java.lang.String" value="Properties"/>
+              <JTabbedPaneConstraints tabName="Propiedades">
+                <Property name="tabTitle" type="java.lang.String" value="Propiedades"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/iconos/protege/OWLObjectProperty.gif"/>
                 </Property>
@@ -398,7 +402,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane3" alignment="0" pref="249" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane3" alignment="0" pref="255" max="32767" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="panelAddObjectProperty" alignment="0" max="32767" attributes="1"/>
                                       <Group type="102" alignment="0" attributes="0">
@@ -426,7 +430,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="panelAddObjectProperty" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane3" pref="257" max="32767" attributes="0"/>
+                              <Component id="jScrollPane3" pref="255" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -460,7 +464,9 @@
                     </Container>
                     <Component class="javax.swing.JButton" name="buttonAddObjectProperty">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="AOP"/>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/iconos/protege/createObjectProperty.gif"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddObjectPropertyActionPerformed"/>
@@ -468,7 +474,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="buttonRemoveObjectProperty">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="ROP"/>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/iconos/protege/removeObjectProperty.gif"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRemoveObjectPropertyActionPerformed"/>
@@ -483,7 +491,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="textFieldNameObjectProperty" pref="106" max="32767" attributes="0"/>
+                                  <Component id="textFieldNameObjectProperty" pref="126" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="buttonOkObjectProperty" min="-2" pref="23" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -559,7 +567,7 @@
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="30" max="32767" attributes="0"/>
+                                      <EmptySpace pref="40" max="32767" attributes="0"/>
                                       <Component id="buttonAddDatatypeProperty" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="buttonRemoveDatatypeProperty" min="-2" max="-2" attributes="0"/>
@@ -585,7 +593,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="panelAddDatatypeProperty" min="-2" pref="25" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane4" pref="255" max="32767" attributes="0"/>
+                              <Component id="jScrollPane4" pref="253" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -619,7 +627,9 @@
                     </Container>
                     <Component class="javax.swing.JButton" name="buttonRemoveDatatypeProperty">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="RDP"/>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/iconos/protege/removeDatatypeProperty.gif"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRemoveDatatypePropertyActionPerformed"/>
@@ -627,7 +637,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="buttonAddDatatypeProperty">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="ADP"/>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/iconos/protege/createDatatypeProperty.gif"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddDatatypePropertyActionPerformed"/>
@@ -719,8 +731,8 @@
         <Container class="javax.swing.JPanel" name="panelIndividuals">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Individuals">
-                <Property name="tabTitle" type="java.lang.String" value="Individuals"/>
+              <JTabbedPaneConstraints tabName="Instancia">
+                <Property name="tabTitle" type="java.lang.String" value="Instancia"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/iconos/protege/OWLIndividual.gif"/>
                 </Property>
@@ -737,33 +749,33 @@
                           <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jScrollPane5" alignment="0" min="-2" pref="217" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="panelAddIndividual" max="32767" attributes="1"/>
-                                  <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jScrollPane6" alignment="1" min="-2" pref="258" max="-2" attributes="1"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="panelIndividualData" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jPanel1" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane6" alignment="1" min="-2" pref="226" max="-2" attributes="1"/>
+                                  <Component id="panelAddIndividual" max="32767" attributes="1"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="617" max="32767" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="panelIndividualData" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="panelIndividualData" alignment="1" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -771,11 +783,11 @@
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jPanel1" min="-2" pref="24" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="panelAddIndividual" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane6" pref="289" max="32767" attributes="1"/>
+                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane6" pref="274" max="32767" attributes="1"/>
                                   </Group>
                                   <Component id="jScrollPane5" alignment="0" pref="347" max="32767" attributes="1"/>
                               </Group>
@@ -800,12 +812,12 @@
             </Container>
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Hierarchy"/>
+                <Property name="text" type="java.lang.String" value="Jerarquia"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Individuals"/>
+                <Property name="text" type="java.lang.String" value="Instancias"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane6">
@@ -869,7 +881,7 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="jLabel10">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Individual"/>
+                    <Property name="text" type="java.lang.String" value="Instancia"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="textFieldNombreIndividual">
@@ -908,7 +920,7 @@
                           <Component id="buttonOkIndividual" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="buttonCancelIndividual" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="41" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -936,7 +948,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonOkIndividual">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Ad"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/iconos/protege/ok.gif"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonOkIndividualActionPerformed"/>
@@ -944,7 +958,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonCancelIndividual">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Ca"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/iconos/protege/cancel.gif"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCancelIndividualActionPerformed"/>
@@ -958,18 +974,22 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="buttonAddIndividual" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="buttonRemoveIndividual" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="148" max="32767" attributes="0"/>
+                          <EmptySpace pref="125" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="buttonAddIndividual" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonRemoveIndividual" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="buttonAddIndividual" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="buttonRemoveIndividual" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -977,7 +997,9 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="buttonAddIndividual">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Add"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/iconos/protege/createIndividual.gif"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddIndividualActionPerformed"/>
@@ -985,7 +1007,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonRemoveIndividual">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Rem"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/iconos/protege/removeIndividual.gif"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRemoveIndividualActionPerformed"/>

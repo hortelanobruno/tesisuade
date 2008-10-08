@@ -112,7 +112,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         itemsToolBar.setFloatable(false);
 
-        buttonBuscarVuelo.setText("BV");
+        buttonBuscarVuelo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/vuelo.gif"))); // NOI18N
         buttonBuscarVuelo.setFocusable(false);
         buttonBuscarVuelo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonBuscarVuelo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -124,14 +124,14 @@ public class FramePrincipal extends javax.swing.JFrame {
         buttonBuscarHotel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         itemsToolBar.add(buttonBuscarHotel);
 
-        buttonBuscarAuto.setText("BA");
+        buttonBuscarAuto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/auto.gif"))); // NOI18N
         buttonBuscarAuto.setFocusable(false);
         buttonBuscarAuto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonBuscarAuto.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         itemsToolBar.add(buttonBuscarAuto);
         itemsToolBar.add(jSeparator2);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/protege/project.new.gif"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo.gif"))); // NOI18N
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -142,7 +142,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         });
         itemsToolBar.add(jButton2);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/protege/project.open.gif"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/abrir.gif"))); // NOI18N
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -153,7 +153,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         });
         itemsToolBar.add(jButton3);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/protege/project.save.gif"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/grabar.gif"))); // NOI18N
         jButton4.setFocusable(false);
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -165,7 +165,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         itemsToolBar.add(jButton4);
         itemsToolBar.add(jSeparator4);
 
-        buttonSetting.setText("Setting");
+        buttonSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/setting.gif"))); // NOI18N
         buttonSetting.setFocusable(false);
         buttonSetting.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonSetting.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -210,7 +210,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                 .addContainerGap(286, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("File");
+        jMenu1.setText("Archivo");
 
         jMenuItem1.setText("Nueva Busqueda");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -231,7 +231,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         menuBar.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Editar");
 
         jMenuItem3.setText("Configuracion");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -262,9 +262,9 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         menuBar.add(jMenu5);
 
-        jMenu6.setText("OWL");
+        jMenu6.setText("Ontologia");
 
-        jMenuItem7.setText("New Ontology");
+        jMenuItem7.setText("Nueva Ontologia");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
@@ -272,7 +272,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem7);
 
-        jMenuItem6.setText("Open Ontology");
+        jMenuItem6.setText("Abrir Ontologia");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
@@ -280,7 +280,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem6);
 
-        jMenuItem9.setText("Cerrar Ontology");
+        jMenuItem9.setText("Cerrar Ontologia");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem9ActionPerformed(evt);
@@ -289,7 +289,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         jMenu6.add(jMenuItem9);
         jMenu6.add(jSeparator3);
 
-        jMenuItem8.setText("Save Ontology");
+        jMenuItem8.setText("Grabar Ontologia");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem8ActionPerformed(evt);
@@ -299,9 +299,9 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         menuBar.add(jMenu6);
 
-        jMenu3.setText("Help");
+        jMenu3.setText("Ayuda");
 
-        jMenuItem10.setText("Ayuda");
+        jMenuItem10.setText("Acerca de");
         jMenu3.add(jMenuItem10);
 
         menuBar.add(jMenu3);
@@ -312,20 +312,20 @@ public class FramePrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(itemsToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
             .addComponent(statusToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(itemsToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(itemsToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(itemsToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 

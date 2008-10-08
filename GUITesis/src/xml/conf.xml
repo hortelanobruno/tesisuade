@@ -3,7 +3,7 @@
   <ontologiasVocabulario>
     <string>C:/Documents and Settings/Administrador/Mis documentos/workspace/NetBeans/GUITesis/src/owl/vocabulario2.owl</string>
   </ontologiasVocabulario>
-  <defaultURLOWLSinonimos></defaultURLOWLSinonimos>
-  <defaultURLOWLViajes></defaultURLOWLViajes>
+  <defaultURLOWLSinonimos>C:/Documents and Settings/Administrador/Escritorio/Tesis/Ontologias/Ontologias/vocabulario2.owl</defaultURLOWLSinonimos>
+  <defaultURLOWLViajes>C:/Documents and Settings/Administrador/Mis documentos/workspace/NetBeans/GUITesis/src/owl/vocabulario2.owl</defaultURLOWLViajes>
   <owlDirectory>C:/Documents and Settings/Administrador/Mis documentos/workspace/NetBeans/GUITesis/src/owl/</owlDirectory>
 </configuration>

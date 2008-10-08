@@ -17,6 +17,6 @@ public class Constantes
     public static final String ICONINHERITEDDATATYPEPROPERTY = "src/iconos/protege/OWLDatatypePropertyInherited.GIF";
     public static final String ICONINHERITEDOBJECTPROPERTY = "src/iconos/protege/OWLObjectPropertyInherited.GIF";
     public static final String ICONINDIVIDUAL = "src/iconos/protege/OWLIndividual.gif";
-    public static final String ICONTREE = "src/iconos/protege/TreeBold.gif";
+    public static final String ICONTREE = "src/iconos/protege/TreeBold2.gif";
     public static final String CONFIGURATION = "src/xml/conf.xml";
 }
