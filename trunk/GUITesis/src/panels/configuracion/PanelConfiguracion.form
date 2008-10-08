@@ -125,7 +125,7 @@
         </Container>
         <Component class="javax.swing.JButton" name="buttonRemoverOntViajes">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Rem"/>
+            <Property name="text" type="java.lang.String" value="Remover"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRemoverOntViajesActionPerformed"/>
@@ -133,7 +133,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="buttonAddOntViajes">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Add"/>
+            <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddOntViajesActionPerformed"/>
@@ -148,7 +148,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="buttonChangeOntVocabulario">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Change"/>
+            <Property name="text" type="java.lang.String" value="Cambiar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonChangeOntVocabularioActionPerformed"/>
@@ -163,7 +163,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="buttonChageDirectorioOntologia">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Change"/>
+            <Property name="text" type="java.lang.String" value="Cambiar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonChageDirectorioOntologiaActionPerformed"/>

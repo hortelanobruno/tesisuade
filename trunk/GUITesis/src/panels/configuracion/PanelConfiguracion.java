@@ -65,14 +65,14 @@ public class PanelConfiguracion extends javax.swing.JPanel {
         listOntologiasViajes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(listOntologiasViajes);
 
-        buttonRemoverOntViajes.setText("Rem");
+        buttonRemoverOntViajes.setText("Remover");
         buttonRemoverOntViajes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRemoverOntViajesActionPerformed(evt);
             }
         });
 
-        buttonAddOntViajes.setText("Add");
+        buttonAddOntViajes.setText("Agregar");
         buttonAddOntViajes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddOntViajesActionPerformed(evt);
@@ -81,7 +81,7 @@ public class PanelConfiguracion extends javax.swing.JPanel {
 
         jLabel2.setText("Ontologia Vocabulario");
 
-        buttonChangeOntVocabulario.setText("Change");
+        buttonChangeOntVocabulario.setText("Cambiar");
         buttonChangeOntVocabulario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonChangeOntVocabularioActionPerformed(evt);
@@ -90,7 +90,7 @@ public class PanelConfiguracion extends javax.swing.JPanel {
 
         jLabel3.setText("Directorio Ontologias");
 
-        buttonChageDirectorioOntologia.setText("Change");
+        buttonChageDirectorioOntologia.setText("Cambiar");
         buttonChageDirectorioOntologia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonChageDirectorioOntologiaActionPerformed(evt);
