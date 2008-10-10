@@ -67,9 +67,10 @@ return (Template.test(YourNumber)) ? 1 : 0 //Compara "YourNumber" con el formato
 
 
 function validarResetPwd(){
-	var password1 = this.form1.password1.value.length
-	var password2 = this.form1.password2.value.length
-	var usuario   = this.form1.listaUsuarios.selectedIndex
+    
+    var password1 = this.form1.password1.value.length
+    var password2 = this.form1.password2.value.length
+    var usuario   = this.form1.listaUsuarios.selectedIndex
     var aux = 0;
     if(usuario == -1 ){
 		document.getElementById('menu').style.visibility = 'visible';
