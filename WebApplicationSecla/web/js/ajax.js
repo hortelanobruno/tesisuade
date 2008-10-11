@@ -27,6 +27,53 @@ function processRequestCargarDatosUsuario() {
     }
 }
 
+function verBoleta() {
+    var usuario = this.form1.usuarios.value
+    var url = "../verBoleta?usuario="+ usuario;
+    initRequest(url);
+    req.onreadystatechange = processRequestVerBoleta;
+    req.open("GET", url, true); 
+    req.send(null);
+}
+
+function processRequestVerBoleta() {
+    //"<table width='100%' border='1' cellpadding='1' cellspacing='0' bordercolor='#4D6FAC'>"
+    //"<tr><td align='center'>Numero</td><td align='center'>Estado</td><td align='center'>Fecha rendicion</td><td align='center'>Beneficiario</td><td align='center'>Monto</td><td align='center'>Motivo</td><td align='center'>Confirmar</td></tr>"
+    //"<tr><td align='center'>"+boleta.getNumero()+"</td><td align='center'>"+boleta.getEstadoboleta()+"</td><td align='center'>"+boleta.getFecharendicion()+"</td><td align='center'>"+boleta.getBeneficiario()+"</td><td align='center'>"+boleta.getMonto()+"</td><td></td><td align='center'><input id='"+boleta.getNumero()+"' name='"+boleta.getNumero()+"' type='checkbox' value='' /></td></tr>"
+    //"<tr><td align='center'>"+boleta.getNumero()+"</td><td align='center'>"+boleta.getEstadoboleta()+"</td><td></td><td></td><td></td><td align='center'>"+boleta.getMotivo()+"</td><td align='center'><input name='"+boleta.getNumero()+"' id='"+boleta.getNumero()+"' type='checkbox' value='' /></td></tr>"
+    //"</table>"
+    if (req.readyState == 4) {
+      if (req.status == 200) {
+          var estado = req.responseXML.getElementsByTagName("estado")[0].childNodes[0].nodeValue;
+          if(estado == 'vacio'){
+              var div = document.getElementById("boletas");
+              div.innerHTML = "<table><tr><tdalign='center'>No hay boletas por confirmar</td></tr></table>";    
+          }else{
+              var cantidad = req.responseXML.getElementsByTagName("cantidad");
+              var div = document.getElementById("boletas");
+              var datos = "<table width='100%' border='1' cellpadding='1' cellspacing='0' bordercolor='#4D6FAC'>"
+              datos = datos + "<tr><td align='center'>Numero</td><td align='center'>Estado</td><td align='center'>Fecha rendicion</td><td align='center'>Beneficiario</td><td align='center'>Monto</td><td align='center'>Motivo</td><td align='center'>Confirmar</td></tr>";
+              for(var i=0 ; i < cantidad ; i++){
+                  var boleta = req.responseXML.getElementsByTagName("boleta"+(i+1));
+                  var beneficiario = boleta.childNodes[0].nodeValue;
+                  var estadoboleta = boleta.childNodes[1].nodeValue;
+                  var fecharendicion = boleta.childNodes[2].nodeValue;
+                  var motivo = boleta.childNodes[3].nodeValue;
+                  var monto = boleta.childNodes[4].nodeValue;
+                  var numero = boleta.childNodes[5].nodeValue;
+                  if(motivo == ''){
+                      datos = datos + "<tr><td align='center'>"+numero+"</td><td align='center'>"+estadoboleta+"</td><td align='center'>"+fecharendicion+"</td><td align='center'>"+beneficiario+"</td><td align='center'>"+monto+"</td><td></td><td align='center'><input id='"+numero+"' name='"+numero+"' type='checkbox' value='' /></td></tr>";
+                  }else{
+                      datos = datos + "<tr><td align='center'>"+numero+"</td><td align='center'>"+estadoboleta+"</td><td></td><td></td><td></td><td align='center'>"+motivo+"</td><td align='center'><input name='"+numero+"' id='"+numero+"' type='checkbox' value='' /></td></tr>";
+                  }
+              }
+              datos = datos + "</table>"
+          }
+          alert("Response2");
+          
+      }
+    }
+}
 
 
 
