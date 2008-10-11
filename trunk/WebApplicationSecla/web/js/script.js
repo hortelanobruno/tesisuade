@@ -134,20 +134,6 @@ function confirmarBoletas(){
 }
 
 
-function cargarBoletas()
-{
-	var usuario = this.form1.usuarios.selectedIndex;
-	var aux=0;	
-	if(usuario == -1 ){
-		document.getElementById('usuario').style.visibility = 'visible';
-		aux++;
-	}else{
-		document.getElementById('usuario').style.visibility = 'hidden';
-	}
-	if(aux == 0 ){
-		this.form1.submit(); 	
-	}
-}
 
 function validarCompletarBoleta()
 {

@@ -91,15 +91,15 @@
           <tr>
                 <td height="30px" colspan="3" align="center">
                 <%
-				user = request.getParameter("usuarios");
-				if(user != null){
-					if(!numeros.isEmpty()){
-						out.print("<input name='confirmar' type='button' value='Confirmar' onclick='confirmarBoletas()' />");
-						out.print("<input name='validar' type='hidden' id='validar' value='"+numeros.get(0)+"' />	");
-						out.print("<input name='validar2' type='hidden' id='validar2' value='"+numeros.size()+"' />	");
-					}					
-				}
-				%>
+                    user = request.getParameter("usuarios");
+                    if(user != null){
+                            if(!numeros.isEmpty()){
+                                    out.print("<input name='confirmar' type='button' value='Confirmar' onclick='confirmarBoletas()' />");
+                                    out.print("<input name='validar' type='hidden' id='validar' value='"+numeros.get(0)+"' />	");
+                                    out.print("<input name='validar2' type='hidden' id='validar2' value='"+numeros.size()+"' />	");
+                            }					
+                    }
+                %>
                 </td>
               </tr>
           </table>

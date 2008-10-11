@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="../estilo/estilo.css" type="text/css" />
 <title>Sistema de control de recibos</title>
 <script language="javascript" type="text/javascript" src="../js/script.js"></script>
+<script language="javascript" type="text/javascript" src="../js/ajax.js"></script>
 </head>
 
 <body>
@@ -37,7 +38,7 @@
 
 		<tr>
           <td class="bodyText">
-          <form method="post" action="verboleta2.jsp" name="form1" target="_parent">
+          <form method="post" action="verboleta.jsp" name="form1" target="_parent">
           <table width="100%" cellpadding="1" cellspacing="5">
           <tr>
           <td colspan="3" align="center" bgcolor="#4D6FAC">
@@ -49,24 +50,30 @@
           <tr>
           <td> Usuario </td>
           <td>
-          <select name="usuarios" style="width:180px" id="usuario" onchange="cargarBoletas()">
+          <select name="usuarios" style="width:180px" id="usuario" onchange="verBoleta()">
 		   		<option value=""></option>
            <%
-				for(int i=0 ; i < usuario.length; i++){
-					out.print("<option value="+usuario[i]+">"+usuario[i]+"</option>");
-				}
-			%>
-          </select>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="usuario" style="visibility:hidden">Debe seleccionar un campo</label>
+                    for(int i=0 ; i < usuario.length; i++){
+                            out.print("<option value="+usuario[i]+">"+usuario[i]+"</option>");
+                    }
+            %>
+          </select>&nbsp;&nbsp;&nbsp;&nbsp;
           </td>
           </tr>
           <tr height="20px"><td></td>
+          </tr>
+          </tr>
+          <tr><td>
+          <div id="boletas"></div>
+          </td>
           </tr>
           </table>
           </form>
           </td>
         </tr>
-</table>    </td>
-    <td width="50">
+        </table>    
+        </td>
+        <td width="50">
 	</td>
   </tr>
   <tr>

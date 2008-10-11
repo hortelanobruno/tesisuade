@@ -9,6 +9,10 @@
         <servlet-name>datosUsuario</servlet-name>
         <servlet-class>ajax.DatosUsuarioServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>verBoleta</servlet-name>
+        <servlet-class>ajax.VerBoletaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>validateSrv</servlet-name>
         <url-pattern>/validate</url-pattern>
@@ -16,6 +20,10 @@
     <servlet-mapping>
         <servlet-name>datosUsuario</servlet-name>
         <url-pattern>/datosUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>verBoleta</servlet-name>
+        <url-pattern>/verBoleta</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
