@@ -30,6 +30,7 @@
 <link rel="stylesheet" href="../estilo/estilo.css" type="text/css" />
 <title>Sistema de control de recibos</title>
 <script language="javascript" type="text/javascript" src="../js/script.js"></script>
+<script language="javascript" type="text/javascript" src="../js/ajax.js"></script>
 </head>
 
 <body>
@@ -60,8 +61,7 @@
             </tr>
           	<tr>
                 <td valign="top">Usuarios</td>
-                <td>&nbsp;</td>
-                <td><select name="listaUsuarios" size="10" style="width:300px" id="listaUsuarios">
+                <td><select name="listaUsuarios" size="10" style="width:200px" id="listaUsuarios" onchange="cargaraDatosUsuario()">
                 <%
 					DBManager manager = new DBManager();
 					String usu[] = manager.operatorList();
@@ -70,8 +70,19 @@
 					}
 				%>
                   </select> 
-                  <br><label class="error" id="menu" style="visibility:hidden">Debe seleccionar un campo</label>
-                </td>
+                  <br><label class="error" id="menu" style="visibility:hidden"></label></td>
+                <td valign="top">
+                    <table>
+                        <tr><td>Responsable : </td><td><label id="res"></label></td>
+                        </tr>
+                        <tr><td>Secretaria: </td><td><label id="sec"></label></td>
+                        </tr>
+                        <tr><td>Funcion : </td><td><label id="fun"></label></td>
+                        </tr>
+                        <tr><td>Contrase&ntilde;a Actual : </td><td><label id="pwd"></label></td>
+                        </tr>
+                  </table>
+              </td>
             </tr>
             <tr >
                 <td colspan="3" height="30px"></td>
@@ -79,12 +90,12 @@
             <tr>
                 <td>Contrase&ntilde;a nueva</td>
                 <td>&nbsp;</td>
-                <td><input name="password1" type="password" size="30" />&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="pwd1" style="visibility:hidden">Debe completar el campo</label></td>
+                <td><input name="password1" type="password" size="30" />&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="pwd1" style="visibility:hidden"></label></td>
             </tr>
             <tr>
                 <td>Repetir contrase&ntilde;a</td>
                 <td>&nbsp;</td>
-                <td><input name="password2" type="password" size="30" />&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="pwd2" style="visibility:hidden">Debe completar el campo</label></td>
+                <td><input name="password2" type="password" size="30" />&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="pwd2" style="visibility:hidden"></label></td>
             </tr>
             <tr >
                 <td colspan="3"><label class="error" id="pwds" style="visibility:hidden">Los passwords son diferentes</label></td>

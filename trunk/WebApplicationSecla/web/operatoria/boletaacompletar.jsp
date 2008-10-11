@@ -79,26 +79,26 @@ window.onload = function() {
           <tr>
           <td>Numero de recibo</td>
           <td><select name="boletas" style="width:180px" id="boletas">
-           <%
-				for(int i=0 ; i < boletas.size(); i++){
-					out.print("<option value="+boletas.get(i)+">"+boletas.get(i)+"</option>");
-				}
-			%>
-          </select>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="boleta" style="visibility:hidden">Debe seleccionar un campo</label></td>
+          <%
+            for(int i=0 ; i < boletas.size(); i++){
+                    out.print("<option value="+boletas.get(i)+">"+boletas.get(i)+"</option>");
+            }
+	  %>
+          </select>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="boleta" style="visibility:hidden"></label></td>
           </tr>
           <tr>
           <td>Fecha de rendici&oacute;n</td>
           <td><input name="date" type="text" size="30" id="fecha" readonly="readonly"/>
 			<img src="../img/calendario.png"  width="20" height="20" id="selector" />
-          &nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="fecha2" style="visibility:hidden">Debe seleccionar una fecha</label></td>
+          &nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="fecha2" style="visibility:hidden"></label></td>
           </tr>
           <tr>
           <td>Beneficiario</td>
-          <td><input name="beneficiario" type="text" size="30" />&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="beneficiario" style="visibility:hidden">Debe completar el campo</label></td>
+          <td><input name="beneficiario" type="text" size="30" />&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="beneficiario" style="visibility:hidden"></label></td>
           </tr>
           <tr>
           <td>Monto</td>
-          <td><input name="monto" type="text" size="30" />&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="monto" style="visibility:hidden">Debe completar el campo</label><label class="error" id="monto2" style="visibility:hidden">Debe ser un mumero</label></td>
+          <td><input name="monto" type="text" size="30" />&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="monto" style="visibility:hidden"></label></td>
           </tr>
           <tr >
           <td colspan="2" height="30px"></td>

@@ -355,6 +355,7 @@ public class DBManager {
 			Connection conn = con.getCon();
 			PreparedStatement stmt;
 			try {
+                                monto = monto.replace(',', '.');
 				stmt = conn.prepareStatement("update boletas set fecharendicion = ? , beneficiario = ?, monto = ?, estadoboleta = 'completada', estadotransaccion = 'a confirmar' where numero = ?");
 				stmt.setString(1, fecha);
 				stmt.setString(2, beneficiario);
@@ -381,16 +382,21 @@ public class DBManager {
 			Connection conn = con.getCon();
 			PreparedStatement stmt;
 			try {
+                                stmt = conn.prepareStatement("SELECT usuario FROM usuarios where responsable like ?");
+                                stmt.setString(1, op);
+                                ResultSet srs = stmt.executeQuery();
+				srs.next();
+				String usuario = srs.getString("usuario");
 				stmt = conn.prepareStatement("SELECT count(*) as count FROM boletas where numero BETWEEN  ? and ?");
 				stmt.setInt(1, numMin);
 				stmt.setInt(2, numMax);
-				ResultSet srs = stmt.executeQuery();
+				srs = stmt.executeQuery();
 				srs.next();
 				int cant = srs.getInt("count");
 				if(cant == 0 ){
 					for(int i=numMin ; i < numMax +1 ; i++){
 						stmt = conn.prepareStatement("insert into boletas values (?,?,'','','','','pendiente','')");
-						stmt.setString(1, op);
+						stmt.setString(1, usuario);
 						stmt.setInt(2, i);
 						stmt.execute();	
 					}
