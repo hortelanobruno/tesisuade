@@ -2,7 +2,7 @@ function retornarFecha()
 {
 	  //--------------- LOCALIZEABLE GLOBALS ---------------
 	var d=new Date();
-	var monthname=new Array("January","February","March","April","May","June","July","August","September","October","November",	"December");
+	var monthname=new Array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre",	"Diciembre");
 	//Ensure correct for language. English is "January 1, 2004"
 	var TODAY = monthname[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
 	//---------------   END LOCALIZEABLE   ---------------
@@ -72,34 +72,49 @@ function validarResetPwd(){
     var password2 = this.form1.password2.value.length
     var usuario   = this.form1.listaUsuarios.selectedIndex
     var aux = 0;
+    
     if(usuario == -1 ){
-		document.getElementById('menu').style.visibility = 'visible';
-		aux++;
-	}else{
-		document.getElementById('menu').style.visibility = 'hidden';
-	}
-	if(password1 == 0){
-		document.getElementById('pwd1').style.visibility = 'visible';
-		aux++;
-	}else{
-		document.getElementById('pwd1').style.visibility = 'hidden';
-	}
-	if(password2 == 0){
-		document.getElementById('pwd2').style.visibility = 'visible';
-		aux++;
-	}else{
-		document.getElementById('pwd2').style.visibility = 'hidden';
-	}
-	if(aux == 0 ){
-		if (this.form1.password2.value == this.form1.password1.value){
-			var usuarioValue = this.form1.listaUsuarios.options[usuario].value
-			this.form1.submit(); 	
-		}else{
-			document.getElementById('pwds').style.visibility = 'visible';
-			this.form1.password1.value = ''
-			this.form1.password2.value = ''
-		}	
-	}
+      document.getElementById('menu').textContent = "Debe seleccionar un campo";
+      document.getElementById('menu').style.visibility = 'visible';
+      aux++;
+    }else{
+      document.getElementById('menu').style.visibility = 'hidden';
+    }
+    if(password1 == 0){
+      document.getElementById('pwd1').textContent = "Debe completar el campo";
+      document.getElementById('pwd1').style.visibility = 'visible';
+      aux++;
+    }else{
+        if(password2.length < 4){
+          ument.getElementById('pwd1').textContent = "Minimo 4 caracteres";
+          document.getElementById('pwd1').style.visibility = 'visible';
+          aux
+        }else{
+          document.getElementById('pwd1').style.visibility = 'hidden';
+        }
+    }
+    if(password2 == 0){
+      document.getElementById('pwd2').textContent = "Debe completar el campo";
+      document.getElementById('pwd2').style.visibility = 'visible';
+      aux++;
+    }else{
+        if(password2.length < 4){
+          document.getElementById('pwd2').textContent = "Minimo 4 caracteres";
+          document.getElementById('pwd2').style.visibility = 'visible';
+          aux   
+        }else{
+          document.getElementById('pwd2').style.visibility = 'hidden';
+        }
+    }
+    if(aux == 0 ){
+      if (this.form1.password2.value == this.form1.password1.value){
+        this.form1.submit(); 	
+      }else{
+        document.getElementById('pwds').style.visibility = 'visible';
+        this.form1.password1.value = ''
+        this.form1.password2.value = ''
+      }	
+    }
 }
 
 function confirmarBoletas(){
@@ -142,38 +157,46 @@ function validarCompletarBoleta()
 	var fecha = this.form1.date.value.length;
 	var aux=0;
 	if(boleta == -1 ){
+                document.getElementById('boleta').textContent = "Debe seleccionar un campo";
 		document.getElementById('boleta').style.visibility = 'visible';
 		aux++;
 	}else{
 		document.getElementById('boleta').style.visibility = 'hidden';
 	}
 	if(monto==0){
+                document.getElementById('monto').textContent = "Debe completar el campo";
 		document.getElementById('monto').style.visibility = 'visible';
 		aux++;
 	}else{
 		document.getElementById('monto').style.visibility = 'hidden';
 	}
 	if(fecha==0){
+                document.getElementById('fecha2').textContent = "Debe seleccionar una fecha";
 		document.getElementById('fecha2').style.visibility = 'visible';
 		aux++;
 	}else{
 		document.getElementById('fecha2').style.visibility = 'hidden';
 	}
 	if(beneficiario==0){
+                document.getElementById('beneficiario').textContent = "Debe completar el campo";
 		document.getElementById('beneficiario').style.visibility = 'visible';
 		aux++;
 	}else{
 		document.getElementById('beneficiario').style.visibility = 'hidden';
 	}
 	if(aux == 0 ){
-		if (/^([0-9])*$/.test(monto)){
-			this.form1.submit(); 	
-		}else{
-			document.getElementById('monto2').style.visibility = 'visible';
-			this.form1.monto.value = ''
-		}	
+            var valor = this.form1.monto.value;
+            if(/^[0-9]+(,[0-9]+)*$/.test(valor)){
+                    this.form1.submit();  
+            }else{ 
+              document.getElementById('monto').textContent = "Debe ser un mumero";
+              document.getElementById('monto').style.visibility = 'visible';
+              this.form1.monto.value = ''  
+                    	
+            } 
 	}
 }
+
 
 
 function validarAnularBoleta(){
@@ -255,93 +278,87 @@ function validarAltaArea(){
 	var aux = 0;
 
 
-	if(responsable==0){
-		document.getElementById('resp').style.visibility = 'visible';
-		document.getElementById('resp2').style.visibility = 'hidden';
-		aux++;
+	if(responsable==0){  
+          document.getElementById('resp').textContent = "Debe completar el campo";
+          document.getElementById('resp').style.visibility = 'visible';
+          aux++;
 	}else{
-		if(responsable < 3){
-			document.getElementById('resp2').style.visibility = 'visible';
-			document.getElementById('resp').style.visibility = 'hidden';
-			aux++;
-		}else{
-			document.getElementById('resp').style.visibility = 'hidden';
-			document.getElementById('resp2').style.visibility = 'hidden';			
-		}
+          if(responsable < 3){
+            document.getElementById('resp').textContent = "Minimo 3 caracteres";
+            document.getElementById('resp').style.visibility = 'visible';
+            aux++;
+          }else{
+            document.getElementById('resp').style.visibility = 'hidden';		
+          }
 	}
 	if(funcion == 0){
-		document.getElementById('fun').style.visibility = 'visible';
-		document.getElementById('fun2').style.visibility = 'hidden';
-		aux++;
+          document.getElementById('fun').textContent = "Debe completar el campo";
+          document.getElementById('fun').style.visibility = 'visible';
+          aux++;
 	}else{
-		if(funcion < 3){
-			document.getElementById('fun2').style.visibility = 'visible';
-			document.getElementById('fun').style.visibility = 'hidden';
-			aux++
-		}else{
-			document.getElementById('fun').style.visibility = 'hidden';
-			document.getElementById('fun2').style.visibility = 'hidden';	
-		}
+          if(funcion < 3){
+            document.getElementById('fun').textContent = "Minimo 3 caracteres";  
+            document.getElementById('fun').style.visibility = 'visible';
+            aux++
+          }else{
+            document.getElementById('fun').style.visibility = 'hidden';
+          }
 	}
 	if(secretaria == 0){
-		document.getElementById('sec').style.visibility = 'visible';
-		document.getElementById('sec2').style.visibility = 'hidden';	
-		aux++;
+            document.getElementById('sec').textContent = "Debe completar el campo";
+            document.getElementById('sec').style.visibility = 'visible';
+            aux++;
 	}else{
-		if(secretaria < 3){
-			document.getElementById('sec2').style.visibility = 'visible';
-			document.getElementById('sec').style.visibility = 'hidden';	
-			aux++
-		}else{
-			document.getElementById('sec').style.visibility = 'hidden';
-			document.getElementById('sec2').style.visibility = 'hidden';		
-		}
+          if(secretaria < 3){
+            document.getElementById('sec').textContent = "Minimo 3 caracteres"; 
+            document.getElementById('sec').style.visibility = 'visible';	
+            aux++
+          }else{
+            document.getElementById('sec').style.visibility = 'hidden';	
+          }
 	}
 	if(usuario == 0){
-		document.getElementById('usu').style.visibility = 'visible';
-		document.getElementById('usu2').style.visibility = 'hidden';	
-		aux++;
+            document.getElementById('usu').textContent = "Debe completar el campo";
+            document.getElementById('usu').style.visibility = 'visible';
+            aux++;
 	}else{
-		if(usuario < 4){
-			document.getElementById('usu2').style.visibility = 'visible';
-			document.getElementById('usu').style.visibility = 'hidden';	
-			aux++;
-		}else{
-			document.getElementById('usu').style.visibility = 'hidden';
-			document.getElementById('usu2').style.visibility = 'hidden';		
-		}
+          if(usuario < 4){
+              document.getElementById('usu').textContent = "Minimo 4 caracteres"; 
+              document.getElementById('usu').style.visibility = 'visible';	
+              aux++;
+          }else{
+              document.getElementById('usu').style.visibility = 'hidden';
+          }
 	}
 	if(password1 == 0){
-		document.getElementById('pwd1').style.visibility = 'visible';
-		document.getElementById('pwd12').style.visibility = 'hidden';
-		aux++;
+            document.getElementById('pwd1').textContent = "Debe completar el campo";
+            document.getElementById('pwd1').style.visibility = 'visible';
+            aux++;
 	}else{
-		if(password1 < 4){
-			document.getElementById('pwd12').style.visibility = 'visible';
-			document.getElementById('pwd1').style.visibility = 'hidden';
-			aux++;	
-		}else{
-			document.getElementById('pwd1').style.visibility = 'hidden';
-			document.getElementById('pwd12').style.visibility = 'hidden';	
-		}
+          if(password1 < 4){
+              document.getElementById('pwd1').textContent = "Minimo 4 caracteres"; 
+              document.getElementById('pwd1').style.visibility = 'visible';
+              aux++;	
+          }else{
+              document.getElementById('pwd1').style.visibility = 'hidden';
+          }
 	}
 	if(password2 == 0){
-		document.getElementById('pwd2').style.visibility = 'visible';
-		document.getElementById('pwd22').style.visibility = 'hidden';
-		aux++;
+            document.getElementById('pwd2').textContent = "Debe completar el campo";
+            document.getElementById('pwd2').style.visibility = 'visible';
+            aux++;
 	}else{
-		if(password2 < 4){
-			document.getElementById('pwd22').style.visibility = 'visible';
-			document.getElementById('pwd2').style.visibility = 'hidden';
-			aux++;
-		}else{
-			document.getElementById('pwd2').style.visibility = 'hidden';	
-			document.getElementById('pwd22').style.visibility = 'hidden';	
-		}
-		
+          if(password2 < 4){
+              document.getElementById('pwd2').textContent = "Minimo 4 caracteres"; 
+              document.getElementById('pwd2').style.visibility = 'visible';
+              aux++;
+          }else{
+              document.getElementById('pwd2').style.visibility = 'hidden';	
+          }
 	}
 	if(aux == 0 ){
 		if (this.form1.password2.value == this.form1.password1.value){
+                        alert("llego");
 			this.form1.submit(); 	
 		}else{
 			document.getElementById('pwds').style.visibility = 'visible';

@@ -16,14 +16,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="../estilo/estilo.css" type="text/css" />
 <title>Sistema de control de recibos</title>
-<script language="JavaScript" type="text/javascript">
-//--------------- LOCALIZEABLE GLOBALS ---------------
-var d=new Date();
-var monthname=new Array("January","February","March","April","May","June","July","August","September","October","November","December");
-//Ensure correct for language. English is "January 1, 2004"
-var TODAY = monthname[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
-//---------------   END LOCALIZEABLE   ---------------
-</script>
+<script language="javascript" type="text/javascript" src="../js/script.js"></script>
 </head>
 
 <body>
