@@ -30,26 +30,35 @@ public class VerBoletaServlet extends HttpServlet {
     public  void doGet(HttpServletRequest request, HttpServletResponse  response)
     throws IOException, ServletException {
         String usuario = request.getParameter("usuario");
+        System.out.println("1");
         List<Boleta> boletas = manager.obtenerBoletasAConfirmar(usuario);
+        System.out.println("2");
         if(boletas.isEmpty()){
+            System.out.println("3");
             response.setContentType("text/xml");
             response.setHeader("Cache-Control", "no-cache");
             response.getWriter().write("<estado>vacio</estado>");
         }else{
+            System.out.println("4");
             response.setContentType("text/xml");
             response.setHeader("Cache-Control", "no-cache");
             response.getWriter().write("<boletas>");
             response.getWriter().write("<cantidad>"+boletas.size()+"</cantidad>");
+            response.getWriter().write("<estado>lleno</estado>");
             for(int i=0 ; i < boletas.size() ; i++){
-                Boleta boleta = boletas.get(i);
-                response.getWriter().write("<boleta"+(i+1)+">");
-                response.getWriter().write("<beneficiario>"+boleta.getBeneficiario()+"</beneficiario>");
+                Boleta boleta = (Boleta) boletas.get(i);
+                response.getWriter().write("<boleta>");
+                if(boleta.getBeneficiario().isEmpty()){
+                    response.getWriter().write("<beneficiario> </beneficiario>");
+                }else{
+                    response.getWriter().write("<beneficiario>"+boleta.getBeneficiario()+"</beneficiario>");
+                }
                 response.getWriter().write("<estadoboleta>"+boleta.getEstadoboleta()+"</estadoboleta>");
                 response.getWriter().write("<fecharendicion>"+boleta.getFecharendicion()+"</fecharendicion>");
                 response.getWriter().write("<motivo>"+boleta.getMotivo()+"</motivo>");
                 response.getWriter().write("<monto>"+boleta.getMonto()+"</monto>");
                 response.getWriter().write("<numero>"+boleta.getNumero()+"</numero>");
-                response.getWriter().write("</boleta"+(i+1)+">");
+                response.getWriter().write("</boleta>");
             }
             response.getWriter().write("</boletas>");
         }   
