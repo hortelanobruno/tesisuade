@@ -11,6 +11,15 @@
 	}
 	DBManager manager = new DBManager();
 	String[] usuario = manager.operatorList();
+        String[] boletas = request.getParameterValues("boleta");
+        if(boletas != null){
+            List<Integer> confirmar = new ArrayList<Integer>();
+            for(int i=0 ; i < boletas.length ; i++){
+                confirmar.add(Integer.parseInt(boletas[i]));
+            }
+            manager.confirmarBoletas(confirmar);
+            response.sendRedirect("boletasconfirmadas.jsp");
+        }
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -51,7 +60,6 @@
           <td> Usuario </td>
           <td>
           <select name="usuarios" style="width:180px" id="usuario" onchange="verBoleta()">
-		   		<option value=""></option>
            <%
                     for(int i=0 ; i < usuario.length; i++){
                             out.print("<option value="+usuario[i]+">"+usuario[i]+"</option>");
@@ -63,7 +71,7 @@
           <tr height="20px"><td></td>
           </tr>
           </tr>
-          <tr><td>
+          <tr><td colspan="3">
           <div id="boletas"></div>
           </td>
           </tr>

@@ -47,42 +47,37 @@ function processRequestVerBoleta() {
           var estado = req.responseXML.getElementsByTagName("estado")[0].childNodes[0].nodeValue;
           if(estado == 'vacio'){
               var div = document.getElementById("boletas");
-              alert("Response2");
               div.innerHTML = "<table><tr><tdalign='center'>No hay boletas por confirmar</td></tr></table>";    
           }else{
               var cantidad = req.responseXML.getElementsByTagName("cantidad")[0].childNodes[0].nodeValue;
               var div = document.getElementById("boletas");
               var datos = "<table width='100%' border='1' cellpadding='1' cellspacing='0' bordercolor='#4D6FAC'>"
               datos += "<tr><td align='center'>Numero</td><td align='center'>Estado</td><td align='center'>Fecha rendicion</td><td align='center'>Beneficiario</td><td align='center'>Monto</td><td align='center'>Motivo</td><td align='center'>Confirmar</td></tr>";
-              alert("Cantidad: "+cantidad);
               var boleta = req.responseXML.getElementsByTagName("boleta");
               for(i=0 ; i < boleta.length ; i++){
-                  alert("Paso1");
                   var nodes = boleta[i].childNodes;
-                  for(j=0 ; j < nodes.length ; j++){
-                      var nodo = nodes[j].childNodes[0].nodeValue;
-                      alert("valor: "+nodo);
-                  }
-                  /*var beneficiario = boleta[0].nodeValue;
-                  alert("Paso2: "+beneficiario );
-                  var estadoboleta = boleta.childNodes[1].nodeValue;
-                  alert("Paso3");
-                  var fecharendicion = boleta.childNodes[2].nodeValue;
-                  alert("Paso4"); 
-                  var motivo = boleta.childNodes[3].nodeValue;
-                  alert("Paso5");
-                  var monto = boleta.childNodes[4].nodeValue;
-                  alert("Paso6");
-                  var numero = boleta.childNodes[5].nodeValue;
-                  alert("Paso7");
-                  if(motivo == ''){
-                      datos += "<tr><td align='center'>"+numero+"</td><td align='center'>"+estadoboleta+"</td><td align='center'>"+fecharendicion+"</td><td align='center'>"+beneficiario+"</td><td align='center'>"+monto+"</td><td></td><td align='center'><input id='"+numero+"' name='"+numero+"' type='checkbox' value='' /></td></tr>";
+                  var numero = nodes[0].childNodes[0].nodeValue;
+                  var estadoboleta = nodes[1].childNodes[0].nodeValue;
+                  var motivo;
+                  var fecharendicion;
+                  var beneficiario;
+                  var monto;
+                  if(estadoboleta != "completada"){
+                      motivo = nodes[2].childNodes[0].nodeValue;
                   }else{
-                      datos += "<tr><td align='center'>"+numero+"</td><td align='center'>"+estadoboleta+"</td><td></td><td></td><td></td><td align='center'>"+motivo+"</td><td align='center'><input name='"+numero+"' id='"+numero+"' type='checkbox' value='' /></td></tr>";
-                  }*/
+                      motivo = '';
+                      fecharendicion = nodes[2].childNodes[0].nodeValue;
+                      beneficiario = nodes[3].childNodes[0].nodeValue;
+                      monto = nodes[4].childNodes[0].nodeValue;
+                  }
+                  if(motivo == ''){
+                      datos += "<tr><td align='center'>"+numero+"</td><td align='center'>"+estadoboleta+"</td><td align='center'>"+fecharendicion+"</td><td align='center'>"+beneficiario+"</td><td align='center'>"+monto+"</td><td></td><td align='center'><input id='"+i+"' name='boleta' type='checkbox' value='"+numero+"' /></td></tr>";
+                  }else{
+                      datos += "<tr><td align='center'>"+numero+"</td><td align='center'>"+estadoboleta+"</td><td></td><td></td><td></td><td align='center'>"+motivo+"</td><td align='center'><input name='boleta' id='"+i+"' type='checkbox' value='"+numero+"' /></td></tr>";
+                  }
               }
               datos += "</table>";
-              alert(datos);
+              datos += "<input name='cargar' type='submit' value='Confirmar' style='width:100px'/>";
               div.innerHTML = datos;
           }
       }
