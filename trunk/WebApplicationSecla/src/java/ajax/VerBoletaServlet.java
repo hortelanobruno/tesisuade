@@ -48,16 +48,12 @@ public class VerBoletaServlet extends HttpServlet {
             for(int i=0 ; i < boletas.size() ; i++){
                 Boleta boleta = (Boleta) boletas.get(i);
                 response.getWriter().write("<boleta>");
-                if(boleta.getBeneficiario().isEmpty()){
-                    response.getWriter().write("<beneficiario> </beneficiario>");
-                }else{
-                    response.getWriter().write("<beneficiario>"+boleta.getBeneficiario()+"</beneficiario>");
-                }
+                response.getWriter().write("<numero>"+boleta.getNumero()+"</numero>");
                 response.getWriter().write("<estadoboleta>"+boleta.getEstadoboleta()+"</estadoboleta>");
                 response.getWriter().write("<fecharendicion>"+boleta.getFecharendicion()+"</fecharendicion>");
-                response.getWriter().write("<motivo>"+boleta.getMotivo()+"</motivo>");
+                response.getWriter().write("<beneficiario>"+boleta.getBeneficiario()+"</beneficiario>");
                 response.getWriter().write("<monto>"+boleta.getMonto()+"</monto>");
-                response.getWriter().write("<numero>"+boleta.getNumero()+"</numero>");
+                response.getWriter().write("<motivo>"+boleta.getMotivo()+"</motivo>");
                 response.getWriter().write("</boleta>");
             }
             response.getWriter().write("</boletas>");
