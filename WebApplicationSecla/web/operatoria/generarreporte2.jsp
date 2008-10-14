@@ -35,52 +35,36 @@
 	</tr>
         <tr>
           <td class="bodyText">
-            <% 
-            JasperReport jr;
-            JasperPrint jp;
-            Map params = new HashMap();
-            params.put("usuarioId", session.getAttribute("usuario"));
-            Conexion con = new Conexion();
-            Conexion.driverOdbc();
-            System.setProperty(
-
-                        "jasper.reports.compile.class.path",
-
-                        application.getRealPath("/lib/jasperreports-3.0.1.jar") +
-
-                        System.getProperty("path.separator") +
-
-                        application.getRealPath("/WEB-INF/classes/")
-
-                        );
-
-            
-
-            System.setProperty(
-
-                        "jasper.reports.compile.temp",
-
-                        /*application.getRealPath("/src/java/report/"*/
-                        "C:/Documents and Settings/Administrador/Mis documentos/NetBeansProjects/WebApplicationSecla/src/java/report/"
-
-                        );
-            if(con.abrirConexion()){
-                Connection conn = con.getCon();
-                try{
-                    jr = JasperCompileManager.compileReport(new FileInputStream("C:/Documents and Settings/Administrador/Mis documentos/NetBeansProjects/WebApplicationSecla/src/java/report/prueba.jrxml")); 
-                    jp = JasperFillManager.fillReport(jr, params, conn);
-                    //jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, con);
-                   // net.sf.jasperreports.engine.JasperExportManager.exportReportToPdfFile(jp, "c:/DMS_Report1.pdf");
-                    net.sf.jasperreports.engine.JasperExportManager.exportReportToHtmlFile(jp, "/reporte?image=");
-
-                }catch(Exception e){
-                out.println(e);
-                }
-                finally{
-
-                }
-            }
-            %>
+          <form action="scriptlet.jsp" name="form1" method="post">
+          <table>
+              <tr>
+                  <td colspan="2">
+                      Formato:
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      HTML:
+                  </td>
+                  <td>
+                      <input name="reporte" type="radio" value="html" />
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      PDF:
+                  </td>
+                  <td>
+                      <input name="reporte" type="radio" value="pdf" checked />
+                  </td>
+              </tr>
+              <tr>
+              		<td colspan="2">
+                    <input name="Generar" type="submit"/>
+                    </td>
+              </tr>
+          </table>
+          </form>
           </td>
         </tr>
     </table>    </td>

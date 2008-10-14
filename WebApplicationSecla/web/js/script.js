@@ -9,6 +9,7 @@ function retornarFecha()
 	return TODAY;
 }
 
+
 function iSubmitEnter(oEvento, oFormulario){ 
      var iAscii; 
      
@@ -23,6 +24,15 @@ function iSubmitEnter(oEvento, oFormulario){
 	 
      return true; 
 }
+
+function generarReporte(){
+    if(document.getElementsByName('html').checked){
+        
+    }else{
+        
+    }
+}
+
 
 function validarEntregarBoleta(){
 	var numMin = this.form1.numMin.value.length

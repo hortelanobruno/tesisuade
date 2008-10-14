@@ -12,6 +12,12 @@
         <servlet-name>verBoleta</servlet-name>
         <servlet-class>ajax.VerBoletaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Jasper Image Servlet</servlet-name>
+        <servlet-class>
+            net.sf.jasperreports.j2ee.servlets.ImageServlet
+        </servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>validateSrv</servlet-name>
         <url-pattern>/validate</url-pattern>
@@ -23,6 +29,10 @@
     <servlet-mapping>
         <servlet-name>verBoleta</servlet-name>
         <url-pattern>/verBoleta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Jasper Image Servlet</servlet-name>
+        <url-pattern>/jasperImages</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
