@@ -455,7 +455,6 @@ public class DBManager {
 				stmt.setString(2, usuario);
 				stmt.execute();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}			
 		}else{
