@@ -97,7 +97,7 @@
                         <input id="numMax" name="numMax" type="text" size="5" />
                         </p>
                         <br />
-                        <label class="error" id="rango" style="visibility:hidden">Debe completar el rango de las boletas</label>
+                        <label class="error" id="rango" style="visibility:hidden"></label>
                         <%
 					if(resultado == "false"){
 						out.print("<p class='error'>Error en el rango de las boletas</p>");

@@ -11,14 +11,13 @@
 	}
 	String usuario = request.getParameter("listaUsuarios");
 	String password1 = request.getParameter("password1");
-	String password2 = request.getParameter("password2");
 	String resultado = new String();
 	if(usuario != null){
 		DBManager manager = new DBManager();
 		resultado = manager.resetPassword(usuario,password1);
 		if(resultado != null){
 			if(resultado == "ok"){
-				response.sendRedirect("altaareaok.jsp");	
+				response.sendRedirect("resetpwdok.jsp");	
 			}
 		}
 	}
@@ -48,7 +47,7 @@
 
 		<tr>
           <td class="bodyText">
-          <form method="get" target="_parent" action="resetpwdok.jsp" name="form1">
+          <form method="get" target="_parent" action="resetpwd.jsp" name="form1">
           <table width="100%" cellpadding="1" cellspacing="5">
           	<tr>
                 <td colspan="3" width="20px">&nbsp;</td>
@@ -89,13 +88,11 @@
             </tr>
             <tr>
                 <td>Contrase&ntilde;a nueva</td>
-                <td>&nbsp;</td>
-                <td><input name="password1" type="password" size="30" />&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="pwd1" style="visibility:hidden"></label></td>
+                <td colspan="2"><input name="password1" type="password" size="30" />&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="pwd1" style="visibility:hidden"></label></td>
             </tr>
             <tr>
                 <td>Repetir contrase&ntilde;a</td>
-                <td>&nbsp;</td>
-                <td><input name="password2" type="password" size="30" />&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="pwd2" style="visibility:hidden"></label></td>
+                <td colspan="2"><input name="password2" type="password" size="30" />&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="pwd2" style="visibility:hidden"></label></td>
             </tr>
             <tr >
                 <td colspan="3"><label class="error" id="pwds" style="visibility:hidden">Los passwords son diferentes</label></td>
