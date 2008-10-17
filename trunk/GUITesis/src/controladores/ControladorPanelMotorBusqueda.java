@@ -22,7 +22,7 @@ public class ControladorPanelMotorBusqueda extends Controlador {
     }
     
     public void doBuscarVuelos(boolean b){
-         ((VistaMotorBusqueda)vista).busquedaVuelos(b);
+        ((VistaMotorBusqueda)vista).busquedaVuelos(b);
         vista.actualizar();
     }
 }

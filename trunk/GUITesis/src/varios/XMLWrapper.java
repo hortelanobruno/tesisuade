@@ -1,3 +1,8 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package Varios;
 
 import com.thoughtworks.xstream.XStream;
@@ -22,6 +27,7 @@ public class XMLWrapper {
         }
         return configuration;
     }
+    
 
     public void parseXMLSolFab(Configuration conf) {
         XStream xstream = new XStream();
