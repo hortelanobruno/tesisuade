@@ -13,13 +13,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import varios.Boleta;
+import varios.Recibo;
 
 /**
  *
  * @author Administrador
  */
-public class VerBoletaServlet extends HttpServlet {
+public class VerReciboServlet extends HttpServlet {
     
     private DBManager manager;
     
@@ -31,7 +31,7 @@ public class VerBoletaServlet extends HttpServlet {
     throws IOException, ServletException {
         String usuario = request.getParameter("usuario");
         System.out.println("1");
-        List<Boleta> boletas = manager.obtenerBoletasAConfirmar(usuario);
+        List<Recibo> boletas = manager.obtenerRecibosAConfirmar(usuario);
         System.out.println("2");
         if(boletas.isEmpty()){
             System.out.println("3");
@@ -46,10 +46,10 @@ public class VerBoletaServlet extends HttpServlet {
             response.getWriter().write("<cantidad>"+boletas.size()+"</cantidad>");
             response.getWriter().write("<estado>lleno</estado>");
             for(int i=0 ; i < boletas.size() ; i++){
-                Boleta boleta = (Boleta) boletas.get(i);
+                Recibo boleta = (Recibo) boletas.get(i);
                 response.getWriter().write("<boleta>");
                 response.getWriter().write("<numero>"+boleta.getNumero()+"</numero>");
-                response.getWriter().write("<estadoboleta>"+boleta.getEstadoboleta()+"</estadoboleta>");
+                response.getWriter().write("<estadoboleta>"+boleta.getEstadorecibo()+"</estadoboleta>");
                 response.getWriter().write("<fecharendicion>"+boleta.getFecharendicion()+"</fecharendicion>");
                 response.getWriter().write("<beneficiario>"+boleta.getBeneficiario()+"</beneficiario>");
                 response.getWriter().write("<monto>"+boleta.getMonto()+"</monto>");

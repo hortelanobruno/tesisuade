@@ -57,7 +57,7 @@
             <%		
 			String usuario = session.getAttribute("usuario").toString();
 			DBManager manager = new DBManager();
-			HashMap<Integer,List<String>> datos = manager.obtenerBoletasCompletadas(usuario);
+			HashMap<Integer,List<String>> datos = manager.obtenerRecibosCompletadas(usuario);
 				for(int i = 0 ; i < datos.size() ; i++){
 					List<String> data = datos.get(i);
 					out.print("<tr>");
@@ -91,7 +91,7 @@
             </tr>
              <%		
 			manager = new DBManager();
-			datos = manager.obtenerBoletasAnuladas(usuario);
+			datos = manager.obtenerRecibosAnuladas(usuario);
 				for(int i = 0 ; i < datos.size() ; i++){
 					List<String> data = datos.get(i);
 					out.print("<tr>");
@@ -125,7 +125,7 @@
             </tr>
              <%		
 			manager = new DBManager();
-			datos = manager.obtenerBoletasExtraviadas(usuario);
+			datos = manager.obtenerRecibosExtraviadas(usuario);
 				for(int i = 0 ; i < datos.size() ; i++){
 					List<String> data = datos.get(i);
 					out.print("<tr>");

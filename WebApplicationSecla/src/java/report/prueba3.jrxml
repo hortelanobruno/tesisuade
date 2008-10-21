@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
 
-<jasperReport name="null" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport name="Reporte" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<parameter name="usuario" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["1"]]></defaultValueExpression>
 	</parameter>
@@ -17,21 +17,18 @@
 	<queryString>
 		<![CDATA[SELECT
      boletas."numero" AS boletas_numero,
-     boletas."fecharendicion" AS boletas_fecharendicion,
      boletas."beneficiario" AS boletas_beneficiario,
      boletas."monto" AS boletas_monto,
      boletas."estadoboleta" AS boletas_estadoboleta,
      boletas."estadotransaccion" AS boletas_estadotransaccion,
-     boletas."motivo" AS boletas_motivo
+     boletas."motivo" AS boletas_motivo,
+     boletas."fecharendicion" AS boletas_fecharendicion
 FROM
      "dbo"."boletas" boletas
 WHERE
      boletas."usuario" = usuario]]>
 	</queryString>
 	<field name="boletas_numero" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="boletas_fecharendicion" class="java.sql.Timestamp">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="boletas_beneficiario" class="java.lang.String">
@@ -47,6 +44,9 @@ WHERE
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="boletas_motivo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="boletas_fecharendicion" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<background>

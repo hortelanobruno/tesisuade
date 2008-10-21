@@ -28,24 +28,11 @@
     <td width="595" colspan="4" valign="top">	<p>&nbsp;</p>
       <table border="0" cellspacing="0" cellpadding="0" width="595">
         <tr>
-          <td class="pageName"><h1>Cargar recibo</h1></td>
+          <td class="pageName"></td>
 		</tr>
 
 		<tr>
-          <td class="bodyText">
-          <br />
-          <br />
-          <table>
-          <tr>
-          <td><ul>
-          <li><h3>&nbsp;&nbsp;&nbsp;<a href="boletaacompletar.jsp" class="navText2">A completar</a></h3></li>
-          <li><h3>&nbsp;&nbsp;&nbsp;<a href="boletaaanular.jsp" class="navText2">Anular recibo</a></h3></li>
-          <li><h3>&nbsp;&nbsp;&nbsp;<a href="boletaextraviada.jsp" class="navText2">Extravio de recibo</a></h3></li>
-          </ul>
-          </td>
-          </tr>
-          </table>
-          </td>
+          <td class="bodyText"></td>
         </tr>
     </table>    </td>
     <td width="50">

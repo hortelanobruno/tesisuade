@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*,java.io.*, java.util.*" errorPage="" %>
-<%@ page import="db.DBManager,varios.Boleta" %> 
+<%@ page import="db.DBManager,varios.Recibo" %> 
 <%
 	Object connectado = session.getAttribute("conectado");
 	if(connectado != null){
@@ -23,7 +23,7 @@
 				}
 			}			
 		}
-		manager.confirmarBoletas(lista);
+		manager.confirmarRecibos(lista);
 		response.sendRedirect("boletasconfirmadas.jsp");
 	}	
 %>
@@ -65,7 +65,7 @@
 		  String user = request.getParameter("usuarios");
 		  List numeros = new ArrayList();
 			if(user != null){
-				List<Boleta> boletas = manager.obtenerBoletasAConfirmar(user);		
+				List<Recibo> boletas = manager.obtenerRecibosAConfirmar(user);		
 				if(boletas.isEmpty()){
 					out.print("<tr><td colspan='3' align='center'>No hay boletas por confirmar</td></tr>");
 				}else{
@@ -73,12 +73,12 @@
 					out.print("<table width='100%' border='1' cellpadding='1' cellspacing='0' bordercolor='#4D6FAC'>");
 					out.print("<tr><td align='center'>Numero</td><td align='center'>Estado</td><td align='center'>Fecha rendicion</td><td align='center'>Beneficiario</td><td align='center'>Monto</td><td align='center'>Motivo</td><td align='center'>Confirmar</td></tr>");
 					for(int i=0 ; i < boletas.size() ; i++){
-						Boleta boleta = boletas.get(i);
+						Recibo boleta = boletas.get(i);
 						numeros.add(boleta.getNumero());
 						if(boleta.getMotivo().isEmpty()){
-							out.print("<tr><td align='center'>"+boleta.getNumero()+"</td><td align='center'>"+boleta.getEstadoboleta()+"</td><td align='center'>"+boleta.getFecharendicion()+"</td><td align='center'>"+boleta.getBeneficiario()+"</td><td align='center'>"+boleta.getMonto()+"</td><td></td><td align='center'><input id='"+boleta.getNumero()+"' name='"+boleta.getNumero()+"' type='checkbox' value='' /></td></tr>");
+							out.print("<tr><td align='center'>"+boleta.getNumero()+"</td><td align='center'>"+boleta.getEstadorecibo()+"</td><td align='center'>"+boleta.getFecharendicion()+"</td><td align='center'>"+boleta.getBeneficiario()+"</td><td align='center'>"+boleta.getMonto()+"</td><td></td><td align='center'><input id='"+boleta.getNumero()+"' name='"+boleta.getNumero()+"' type='checkbox' value='' /></td></tr>");
 						}else{
-							out.print("<tr><td align='center'>"+boleta.getNumero()+"</td><td align='center'>"+boleta.getEstadoboleta()+"</td><td></td><td></td><td></td><td align='center'>"+boleta.getMotivo()+"</td><td align='center'><input name='"+boleta.getNumero()+"' id='"+boleta.getNumero()+"' type='checkbox' value='' /></td></tr>");
+							out.print("<tr><td align='center'>"+boleta.getNumero()+"</td><td align='center'>"+boleta.getEstadorecibo()+"</td><td></td><td></td><td></td><td align='center'>"+boleta.getMotivo()+"</td><td align='center'><input name='"+boleta.getNumero()+"' id='"+boleta.getNumero()+"' type='checkbox' value='' /></td></tr>");
 						}
 					}
 					out.print("</table>");
@@ -94,7 +94,7 @@
                     user = request.getParameter("usuarios");
                     if(user != null){
                             if(!numeros.isEmpty()){
-                                    out.print("<input name='confirmar' type='button' value='Confirmar' onclick='confirmarBoletas()' />");
+                                    out.print("<input name='confirmar' type='button' value='Confirmar' onclick='confirmarRecibos()' />");
                                     out.print("<input name='validar' type='hidden' id='validar' value='"+numeros.get(0)+"' />	");
                                     out.print("<input name='validar2' type='hidden' id='validar2' value='"+numeros.size()+"' />	");
                             }					

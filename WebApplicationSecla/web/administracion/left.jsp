@@ -16,10 +16,13 @@
 				  </a></div></td>
 			</tr>
 			<tr>
-				<td><div align="left"><a href="resetpwd.jsp" class="navText">&nbsp;&nbsp;Restear contrase&ntilde;a<br />
+				<td><div align="left"><a href="resetpwd.jsp" class="navText">Restear contrase&ntilde;a<br />
 				  </a></div></td>
 			</tr>
-			
+			<tr>
+				<td><div align="left"><a href="cambiarpassword.jsp" class="navText">Cambiar contrase&ntilde;a<br />
+				  </a></div></td>
+			</tr>
 			</table>
 			</td>
 		  </tr>
@@ -30,17 +33,13 @@
         <td>
 		<table width="100%" border="0" cellpadding="2" cellspacing="1" bgcolor="#4D6FAC">
           <tr>
-            <td><p align="left" class="blanco">&nbsp;Administrar Boletas</p></td>
+            <td><p align="left" class="blanco">&nbsp;Administrar Recibos</p></td>
           </tr>
           <tr>
             <td bgcolor="#FFFFFF">
 			<table width="100%">
 			<tr>
-				<td><div align="left"><a href="entregarboleta.jsp" class="navText">Entregar boletas<br />
-				  </a></div></td>
-			</tr>
-			<tr>
-				<td><div align="left"><a href="verboleta.jsp" class="navText">Ver estado boletas<br />
+				<td><div align="left"><a href="entregarboleta.jsp" class="navText">Entregar recibos<br />
 				  </a></div></td>
 			</tr>
 			</table>

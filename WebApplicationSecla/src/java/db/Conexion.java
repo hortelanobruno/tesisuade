@@ -7,8 +7,8 @@ import varios.ConfiguracionXMLWrapper;
 
 public class Conexion {
 	
-	private ConexionVO conexionVO;
-	private Connection con;
+    private ConexionVO conexionVO;
+    private Connection con;
     private static final String ODBC_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     
     public Conexion() { 

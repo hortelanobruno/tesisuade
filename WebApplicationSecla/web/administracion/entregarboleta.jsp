@@ -16,7 +16,7 @@
 	if(operador != null){
 		session.setAttribute("operador",operador);
 		DBManager manager = new DBManager();
-		resultado = manager.cargarBoletas(operador,numMin,numMax);
+		resultado = manager.cargarRecibos(operador,numMin,numMax);
 		if(resultado != null){
 			if(resultado == "true"){
 				response.sendRedirect("entregarboletaok.jsp");	
@@ -48,7 +48,7 @@
     <td width="595" colspan="4" valign="top">	<p>&nbsp;</p>
       <table border="0" cellspacing="0" cellpadding="0" width="595">
         <tr>
-          <td class="pageName"><h1>Entregar boletas</h1></td>
+          <td class="pageName"><h1>Entregar recibos</h1></td>
 		</tr>
 
 		<tr>
@@ -88,7 +88,7 @@
               <td colspan="2" valign="top">
                 <table width="100%" align="center" cellpadding="1" cellspacing="1">
                   <tr>
-                    <td width="229" height="41" align="center" valign="middle" bgcolor="#4D6FAC"><h3 style="color:#FFFFFF">Boletas:</h3></td>
+                    <td width="229" height="41" align="center" valign="middle" bgcolor="#4D6FAC"><h3 style="color:#FFFFFF">Recibos:</h3></td>
                   </tr>
                     <tr height="50px"><td height="161" valign="top"><p>&nbsp;</p>
                       <p>Numero &nbsp; 
@@ -100,14 +100,14 @@
                         <label class="error" id="rango" style="visibility:hidden"></label>
                         <%
 					if(resultado == "false"){
-						out.print("<p class='error'>Error en el rango de las boletas</p>");
+						out.print("<p class='error'>Error en el rango de los recibos</p>");
 					}
 					%>
                         </td>
                   </tr>
                     
                     <tr height="50px">
-                    	<td align="center"><input name="entregar" type="button" value="Entregar" onClick="validarEntregarBoleta()" /></td>
+                    	<td align="center"><input name="entregar" type="button" value="Entregar" onClick="validarEntregarRecibo()" /></td>
                   </tr>
                 </table>
               </td>

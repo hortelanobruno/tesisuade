@@ -33,9 +33,10 @@ public class DatosUsuarioServlet extends HttpServlet {
         response.setContentType("text/xml");
         response.setHeader("Cache-Control", "no-cache");
         response.getWriter().write("<usuario>");
-        response.getWriter().write("<secretaria>"+datos.get(2)+"</secretaria>");
-        response.getWriter().write("<funcion>"+datos.get(3)+"</funcion>");
+        response.getWriter().write("<sede>"+datos.get(2)+"</sede>");
+        response.getWriter().write("<sector>"+datos.get(3)+"</sector>");
         response.getWriter().write("<responsable>"+datos.get(1)+"</responsable>");
+        response.getWriter().write("<digitos>"+datos.get(4)+"</digitos>");
         response.getWriter().write("<password>"+datos.get(0)+"</password>");
         response.getWriter().write("</usuario>");
     }

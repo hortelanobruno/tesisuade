@@ -15,9 +15,11 @@
 				response.sendRedirect("administracion/index.jsp");					
 			}else if(cuenta.equals("operador")){
 				response.sendRedirect("operatoria/index.jsp");		
+			}else if(cuenta.equals("cajero")){
+				response.sendRedirect("cajero/index.jsp");		
 			}else{
-				out.print("Cuenta desconocida");
-			}
+                            out.print("Cuenta desconocida");
+                        }
 		}
 	}
 %>

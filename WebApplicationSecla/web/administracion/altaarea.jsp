@@ -10,15 +10,17 @@
                 response.sendRedirect("../index.jsp");
             }
             String responsable = request.getParameter("responsable");
-            String secretaria = request.getParameter("secretaria");
-            String funcion = request.getParameter("funcion");
+            String sede = request.getParameter("sede");
+            String sector = request.getParameter("sector");
+            String digarea = request.getParameter("digarea");
+            String digresp = request.getParameter("digresp");
             String usuario = request.getParameter("usuario");
             String password1 = request.getParameter("password1");
             String password2 = request.getParameter("password2");
             String resultado = new String();
             if (responsable != null) {
                 DBManager manager = new DBManager();
-                resultado = manager.addArea(responsable, secretaria, funcion, usuario, password1);
+                resultado = manager.addArea(responsable, sede, sector, digarea, digresp, usuario, password1);
                 if (resultado != null) {
                     if (resultado == "ok") {
                         response.sendRedirect("altaareaok.jsp");
@@ -77,16 +79,33 @@
                     </td>
                 </tr>
                 <tr>
-                <td>Secretaria</td>
+                <td>Sede</td>
                 <td>&nbsp;</td>
-                <td><input name="secretaria" type="text" size="30" onkeypress="if(event.keyCode == 13) validarAltaArea()"/>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="sec" style="visibility:hidden"></label>
-                </td></td>
+                <td><input name="sede" type="text" size="30" onkeypress="if(event.keyCode == 13) validarAltaArea()"/>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="sede" style="visibility:hidden"></label>
+                </td>
                 </tr>
                 <tr>
-                <td>Funci&oacute;n del usuario</td>
+                <td>Sector</td>
                 <td>&nbsp;</td>
-                <td><input name="funcion" type="text" size="30" onkeypress="if(event.keyCode == 13) validarAltaArea()"/>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="fun" style="visibility:hidden"></label>
-                </td></td>
+                <td><input name="sector" type="text" size="30" onkeypress="if(event.keyCode == 13) validarAltaArea()"/>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="sec" style="visibility:hidden"></label>
+                </td>
+                </tr>
+                <tr>
+                <td>Digito area</td>
+                <td>&nbsp;</td>
+                <td><input name="digarea" type="text" size="30" onkeypress="if(event.keyCode == 13) validarAltaArea()"/>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="dig1" style="visibility:hidden"></label>
+                <%
+                    if (resultado == "digitos") {
+                        out.print("<tr align='center'><td colspan='3'><p class='error'>Los digitos EXISTE en el sistema</p></td></tr>");
+                    }
+                %>
+                </td>
+                </tr>
+                <tr>
+                <td>Digito responsable</td>
+                <td>&nbsp;</td>
+                <td><input name="digresp" type="text" size="30" onkeypress="if(event.keyCode == 13) validarAltaArea()"/>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="dig2" style="visibility:hidden"></label>
+                </td>
                 </tr>
                 <tr >
                     <td colspan="3" height="30px"></td>

@@ -35,7 +35,7 @@
           <td class="bodyText">
           <table>
           <tr>
-          <td>BOLETAS ENTREGADAS CORRECTAMENTE
+          <td>RECIBOS ENTREGADOS CORRECTAMENTE
           </td>
           </tr>
           </table>          

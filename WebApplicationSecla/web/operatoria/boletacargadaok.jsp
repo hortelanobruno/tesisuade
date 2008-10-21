@@ -35,7 +35,7 @@
           <td class="bodyText">
           <table>
           <tr>
-          <td>BOLETA COMPLETADA CORRECTAMENTE
+          <td>RECIBO COMPLETADO CORRECTAMENTE
           </td>
           </tr>
           </table>          

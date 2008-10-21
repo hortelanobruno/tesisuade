@@ -74,9 +74,11 @@
                     <table>
                         <tr><td>Responsable : </td><td><label id="res"></label></td>
                         </tr>
-                        <tr><td>Secretaria: </td><td><label id="sec"></label></td>
+                        <tr><td>Sede: </td><td><label id="sede"></label></td>
                         </tr>
-                        <tr><td>Funcion : </td><td><label id="fun"></label></td>
+                        <tr><td>Sector : </td><td><label id="sec"></label></td>
+                        </tr>
+                        <tr><td>Digitos : </td><td><label id="dig"></label></td>
                         </tr>
                         <tr><td>Contrase&ntilde;a Actual : </td><td><label id="pwd"></label></td>
                         </tr>

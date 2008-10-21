@@ -16,27 +16,29 @@ function processRequestCargarDatosUsuario() {
     if (req.readyState == 4) {
       if (req.status == 200) {
         var responsable = req.responseXML.getElementsByTagName("usuario")[0].getElementsByTagName("responsable")[0].childNodes[0].nodeValue;
-        var funcion = req.responseXML.getElementsByTagName("funcion")[0].childNodes[0].nodeValue;
-        var secretaria = req.responseXML.getElementsByTagName("secretaria")[0].childNodes[0].nodeValue;
+        var sector = req.responseXML.getElementsByTagName("sector")[0].childNodes[0].nodeValue;
+        var sede = req.responseXML.getElementsByTagName("sede")[0].childNodes[0].nodeValue;
+        var digitos = req.responseXML.getElementsByTagName("digitos")[0].childNodes[0].nodeValue;
         var password = req.responseXML.getElementsByTagName("password")[0].childNodes[0].nodeValue;
         document.getElementById("res").textContent = responsable;
-        document.getElementById("fun").textContent = funcion;
-        document.getElementById("sec").textContent = secretaria;
+        document.getElementById("sec").textContent = sector;
+        document.getElementById("sede").textContent = sede;
+        document.getElementById("dig").textContent = digitos;
         document.getElementById("pwd").textContent = password;
       }
     }
 }
 
-function verBoleta() {
+function verRecibo() {
     var usuario = this.form1.usuarios.value
-    var url = "../verBoleta?usuario="+ usuario;
+    var url = "../verRecibo?usuario="+ usuario;
     initRequest(url);
-    req.onreadystatechange = processRequestVerBoleta;
+    req.onreadystatechange = processRequestVerRecibo;
     req.open("GET", url, true); 
     req.send(null);
 }
 
-function processRequestVerBoleta() {
+function processRequestVerRecibo() {
     //"<table width='100%' border='1' cellpadding='1' cellspacing='0' bordercolor='#4D6FAC'>"
     //"<tr><td align='center'>Numero</td><td align='center'>Estado</td><td align='center'>Fecha rendicion</td><td align='center'>Beneficiario</td><td align='center'>Monto</td><td align='center'>Motivo</td><td align='center'>Confirmar</td></tr>"
     //"<tr><td align='center'>"+boleta.getNumero()+"</td><td align='center'>"+boleta.getEstadoboleta()+"</td><td align='center'>"+boleta.getFecharendicion()+"</td><td align='center'>"+boleta.getBeneficiario()+"</td><td align='center'>"+boleta.getMonto()+"</td><td></td><td align='center'><input id='"+boleta.getNumero()+"' name='"+boleta.getNumero()+"' type='checkbox' value='' /></td></tr>"
@@ -46,11 +48,11 @@ function processRequestVerBoleta() {
       if (req.status == 200) {
           var estado = req.responseXML.getElementsByTagName("estado")[0].childNodes[0].nodeValue;
           if(estado == 'vacio'){
-              var div = document.getElementById("boletas");
+              var div = document.getElementById("recibos");
               div.innerHTML = "<table><tr><tdalign='center'>No hay boletas por confirmar</td></tr></table>";    
           }else{
               var cantidad = req.responseXML.getElementsByTagName("cantidad")[0].childNodes[0].nodeValue;
-              var div = document.getElementById("boletas");
+              var div = document.getElementById("recibos");
               var datos = "<table width='100%' border='1' cellpadding='1' cellspacing='0' bordercolor='#4D6FAC'>"
               datos += "<tr><td align='center'>Numero</td><td align='center'>Estado</td><td align='center'>Fecha rendicion</td><td align='center'>Beneficiario</td><td align='center'>Monto</td><td align='center'>Motivo</td><td align='center'>Confirmar</td></tr>";
               var boleta = req.responseXML.getElementsByTagName("boleta");
@@ -71,9 +73,9 @@ function processRequestVerBoleta() {
                       monto = nodes[4].childNodes[0].nodeValue;
                   }
                   if(motivo == ''){
-                      datos += "<tr><td align='center'>"+numero+"</td><td align='center'>"+estadoboleta+"</td><td align='center'>"+fecharendicion+"</td><td align='center'>"+beneficiario+"</td><td align='center'>"+monto+"</td><td></td><td align='center'><input id='"+i+"' name='boleta' type='checkbox' value='"+numero+"' /></td></tr>";
+                      datos += "<tr><td align='center'>"+numero+"</td><td align='center'>"+estadoboleta+"</td><td align='center'>"+fecharendicion+"</td><td align='center'>"+beneficiario+"</td><td align='center'>"+monto+"</td><td></td><td align='center'><input id='"+i+"' name='recibo' type='checkbox' value='"+numero+"' /></td></tr>";
                   }else{
-                      datos += "<tr><td align='center'>"+numero+"</td><td align='center'>"+estadoboleta+"</td><td></td><td></td><td></td><td align='center'>"+motivo+"</td><td align='center'><input name='boleta' id='"+i+"' type='checkbox' value='"+numero+"' /></td></tr>";
+                      datos += "<tr><td align='center'>"+numero+"</td><td align='center'>"+estadoboleta+"</td><td></td><td></td><td></td><td align='center'>"+motivo+"</td><td align='center'><input name='recibo' id='"+i+"' type='checkbox' value='"+numero+"' /></td></tr>";
                   }
               }
               datos += "</table>";

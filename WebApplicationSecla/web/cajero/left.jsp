@@ -12,9 +12,10 @@
             <td bgcolor="#FFFFFF">
 			<table width="100%">
 			<tr>
-				<td><div align="left"><a href="cambiarpassword.jsp" class="navText">Cambiar contrase&ntilde;a<br />
+				<td><div align="left"><a href="cambiarpassword.jsp" class="navText">&nbsp;&nbsp;Cambiar contrase&ntilde;a<br />
 				  </a></div></td>
 			</tr>
+			
 			</table>
 			</td>
 		  </tr>
@@ -31,15 +32,11 @@
             <td bgcolor="#FFFFFF">
 			<table width="100%">
 			<tr>
-				<td><div align="left"><a href="cargarboleta.jsp" class="navText">Cargar recibos<br />
-				  </a></div></td>
-			</tr>
-			<tr>
-				<td><div align="left"><a href="verrecibos.jsp" class="navText">Ver recibos<br />
+				<td><div align="left"><a href="verboleta.jsp" class="navText">Ver estado de los recibos<br />
 				  </a></div></td>
 			</tr>
                         <tr>
-				<td><div align="left"><a href="generarreporte2.jsp" class="navText">Generar reporte<br />
+				<td><div align="left"><a href="generarreportes.jsp" class="navText">Generar reportes<br />
 				  </a></div></td>
 			</tr>
 			</table>

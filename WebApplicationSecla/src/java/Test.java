@@ -16,7 +16,7 @@ public class Test {
 		//String result = manager.completarBoleta("1000", "30 / 09 / 2008", "roberto", "1999");
 		List<Integer> boletas = new ArrayList<Integer>();
 		boletas.add(1000);
-		manager.confirmarBoletas(boletas);
+		manager.confirmarRecibos(boletas);
 		System.out.println("Termino");
 	}
 	

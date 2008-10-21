@@ -9,8 +9,8 @@
         <servlet-class>ajax.DatosUsuarioServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>verBoleta</servlet-name>
-        <servlet-class>ajax.VerBoletaServlet</servlet-class>
+        <servlet-name>verRecibo</servlet-name>
+        <servlet-class>ajax.VerReciboServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Jasper Image Servlet</servlet-name>
@@ -27,8 +27,8 @@
         <url-pattern>/datosUsuario</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>verBoleta</servlet-name>
-        <url-pattern>/verBoleta</url-pattern>
+        <servlet-name>verRecibo</servlet-name>
+        <url-pattern>/verRecibo</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Jasper Image Servlet</servlet-name>

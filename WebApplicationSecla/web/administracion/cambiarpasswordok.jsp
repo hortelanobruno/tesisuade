@@ -9,7 +9,6 @@
 		response.sendRedirect("../index.jsp");
 	}
 %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -20,6 +19,7 @@
 </head>
 
 <body>
+
 <%@ include file="top.jsp" %>
 
 <%@ include file="left.jsp" %>
@@ -28,24 +28,17 @@
     <td width="595" colspan="4" valign="top">	<p>&nbsp;</p>
       <table border="0" cellspacing="0" cellpadding="0" width="595">
         <tr>
-          <td class="pageName"><h1>Cargar recibo</h1></td>
+          <td class="pageName"></td>
 		</tr>
 
 		<tr>
           <td class="bodyText">
-          <br />
-          <br />
           <table>
           <tr>
-          <td><ul>
-          <li><h3>&nbsp;&nbsp;&nbsp;<a href="boletaacompletar.jsp" class="navText2">A completar</a></h3></li>
-          <li><h3>&nbsp;&nbsp;&nbsp;<a href="boletaaanular.jsp" class="navText2">Anular recibo</a></h3></li>
-          <li><h3>&nbsp;&nbsp;&nbsp;<a href="boletaextraviada.jsp" class="navText2">Extravio de recibo</a></h3></li>
-          </ul>
-          </td>
+          <td>PASSWORD CAMBIADO CORRECTAMENTE</td>
           </tr>
-          </table>
-          </td>
+          </table>          
+		</td>
         </tr>
     </table>    </td>
     <td width="50">
