@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*,java.io.*, java.util.*" errorPage="" %>
-<%@ page import="db.DBManager,varios.Boleta" %> 
+<%@ page import="db.DBManager,varios.Recibo" %> 
 <%
 	Object connectado = session.getAttribute("conectado");
 	if(connectado != null){
@@ -11,13 +11,13 @@
 	}
 	DBManager manager = new DBManager();
 	String[] usuario = manager.operatorList();
-        String[] boletas = request.getParameterValues("boleta");
-        if(boletas != null){
+        String[] recibos = request.getParameterValues("recibo");
+        if(recibos != null){
             List<Integer> confirmar = new ArrayList<Integer>();
-            for(int i=0 ; i < boletas.length ; i++){
-                confirmar.add(Integer.parseInt(boletas[i]));
+            for(int i=0 ; i < recibos.length ; i++){
+                confirmar.add(Integer.parseInt(recibos[i]));
             }
-            manager.confirmarBoletas(confirmar);
+            manager.confirmarRecibos(confirmar);
             response.sendRedirect("boletasconfirmadas.jsp");
         }
 %>
@@ -41,7 +41,7 @@
     <td width="595" colspan="4" valign="top">	<p>&nbsp;</p>
       <table border="0" cellspacing="0" cellpadding="0" width="789">
         <tr>
-          <td width="789" class="pageName"><h1>Ver boletas</h1>
+          <td width="789" class="pageName"><h1>Ver recibos</h1>
           <p>&nbsp;</p></td>
 		</tr>
 
@@ -59,7 +59,7 @@
           <tr>
           <td> Usuario </td>
           <td>
-          <select name="usuarios" style="width:180px" id="usuario" onchange="verBoleta()">
+          <select name="usuarios" style="width:180px" id="usuario" onchange="verRecibo()">
            <%
                     for(int i=0 ; i < usuario.length; i++){
                             out.print("<option value="+usuario[i]+">"+usuario[i]+"</option>");
@@ -72,7 +72,7 @@
           </tr>
           </tr>
           <tr><td colspan="3">
-          <div id="boletas"></div>
+          <div id="recibos"></div>
           </td>
           </tr>
           </table>

@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import varios.Boleta;
-
+import varios.Recibo;
+//boca
 public class DBManager {
 
 	public DBManager() {
@@ -46,16 +46,16 @@ public class DBManager {
 	}
 	
 	
-	public void confirmarBoletas(List<Integer> boletas){
+	public void confirmarRecibos(List<Integer> recibos){
 		Conexion con = new Conexion();
 		Conexion.driverOdbc();
 		if(con.abrirConexion()){
 			Connection conn = con.getCon();
 			PreparedStatement stmt;
 			try {
-				for(int i=0 ; i < boletas.size() ; i++){
-					stmt = conn.prepareStatement("update boletas set estadotransaccion = 'rendida' where numero = ?");
-					stmt.setInt(1, boletas.get(i));
+				for(int i=0 ; i < recibos.size() ; i++){
+					stmt = conn.prepareStatement("update recibos set estadotransaccion = 'rendida' where numero = ?");
+					stmt.setInt(1, recibos.get(i));
 					stmt.execute();
 				}
 			} catch (SQLException e) {
@@ -68,30 +68,30 @@ public class DBManager {
 	}
 	
 	
-	public List<Boleta> obtenerBoletasAConfirmar(String usuario){
-		List<Boleta> boletas = new ArrayList<Boleta>();	
+	public List<Recibo> obtenerRecibosAConfirmar(String usuario){
+		List<Recibo> recibos = new ArrayList<Recibo>();	
 		Conexion con = new Conexion();
 		Conexion.driverOdbc();
 		if(con.abrirConexion()){
 			Connection conn = con.getCon();
 			PreparedStatement stmt;
 			try {
-				stmt = conn.prepareStatement("SELECT * FROM boletas where usuario = ? and estadotransaccion = 'a confirmar'");
+				stmt = conn.prepareStatement("SELECT * FROM recibos where usuario = ? and estadotransaccion = 'a confirmar'");
 				stmt.setString(1, usuario);
 				ResultSet srs = stmt.executeQuery();
 				while(srs.next()){
-					Boleta boleta = new Boleta();
-					boleta.setNumero(srs.getInt("numero"));
-					boleta.setBeneficiario(srs.getString("beneficiario"));
-					boleta.setFecharendicion(srs.getString("fecharendicion"));
-					boleta.setMonto(srs.getInt("monto"));
-					boleta.setMotivo(srs.getString("motivo"));
-					boleta.setEstadoboleta(srs.getString("estadoboleta"));
-					boletas.add(boleta);
+					Recibo recibo = new Recibo();
+					recibo.setNumero(srs.getInt("numero"));
+					recibo.setBeneficiario(srs.getString("beneficiario"));
+					recibo.setFecharendicion(srs.getString("fecharendicion"));
+					recibo.setMonto(srs.getInt("monto"));
+					recibo.setMotivo(srs.getString("motivo"));
+					recibo.setEstadorecibo(srs.getString("estadorecibo"));
+					recibos.add(recibo);
 				}
 			}catch(Exception e){}
 		}
-		return boletas;
+		return recibos;
 	}
 	
 	public List<String> datosUsuario(Object usuario){
@@ -108,8 +108,9 @@ public class DBManager {
 				while(srs.next()){
 					datos.add(srs.getString("password"));
 					datos.add(srs.getString("responsable"));
-					datos.add(srs.getString("secretaria"));
-					datos.add(srs.getString("funcion"));
+					datos.add(srs.getString("sede"));
+					datos.add(srs.getString("sector"));
+                                        datos.add(srs.getString("digitos"));
 				}
 			}catch(Exception e){
 
@@ -118,32 +119,35 @@ public class DBManager {
 		return datos;
 	}
 	
-	public List<Integer> obtenerBoletasPendientes(String usuario){
-		ArrayList<Integer> boletas = new ArrayList<Integer>();
+	public List<Integer> obtenerRecibosPendientes(String usuario){
+		ArrayList<Integer> recibos = new ArrayList<Integer>();
 		Conexion con = new Conexion();
 		Conexion.driverOdbc();
 		if(con.abrirConexion()){
 			Connection conn = con.getCon();
 			PreparedStatement stmt;
 			try {
-				stmt = conn.prepareStatement("SELECT numero FROM boletas where usuario = ? and estadotransaccion = 'pendiente'");
+				stmt = conn.prepareStatement("SELECT numero FROM recibos where usuario = ? and estadotransaccion = 'pendiente'");
 				stmt.setString(1, usuario);
 				ResultSet srs = stmt.executeQuery();
 				while(srs.next()){
-					boletas.add(srs.getInt("numero"));
+					recibos.add(srs.getInt("numero"));
 				}
 			}catch(Exception e){}
 		}
-		return boletas;
+		return recibos;
 	}
 	
 	
-	public String addArea(String responsable,String secretaria,String funcion,String usuario,String password1){
+	public String addArea(String responsable,String sede,String sector, String digarea, String digresp, String usuario,String password1){
 		Conexion con = new Conexion();
 		Conexion.driverOdbc();
 		if(con.abrirConexion()){
 			Connection conn = con.getCon();
 			PreparedStatement stmt;
+                        String digitos = new String();
+                        digitos.concat(digarea);
+                        digitos.concat(digresp);
 			try {
 				stmt = conn.prepareStatement("SELECT usuario FROM usuarios where usuario = ?");
 				stmt.setString(1, usuario);
@@ -157,16 +161,22 @@ public class DBManager {
 				while(srs.next()){
 					return "responsable";
 				}
-				stmt = conn.prepareStatement("insert into usuarios values ( ? , ? , 'operador' , ? , ? , ?)");
+                                stmt = conn.prepareStatement("SELECT digitos FROM usuarios where digitos = ?");
+				stmt.setString(1, digitos);
+				srs = stmt.executeQuery();
+				while(srs.next()){
+					return "digitos";
+				}
+				stmt = conn.prepareStatement("insert into usuarios values ( ? , ? , 'operador' , ? , ? , ? , ?)");
 				stmt.setString(1, usuario);
 				stmt.setString(2, password1);
 				stmt.setString(3, responsable);
-				stmt.setString(4, secretaria);
-				stmt.setString(5, funcion);
+				stmt.setString(4, sede);
+				stmt.setString(5, sector);
+                                stmt.setString(6, digitos);
 				stmt.execute();
 				return "ok";
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}			
 		}else{
@@ -206,14 +216,14 @@ public class DBManager {
 	}
 	
 	
-	public String anularBoleta(String numero, String motivo){
+	public String anularRecibo(String numero, String motivo){
 		Conexion con = new Conexion();
 		Conexion.driverOdbc();
 		if(con.abrirConexion()){
 			Connection conn = con.getCon();
 			PreparedStatement stmt;
 			try {
-				stmt = conn.prepareStatement("update boletas set motivo = ? , estadoboleta = 'anulada', estadotransaccion = 'a confirmar' where numero = ?");
+				stmt = conn.prepareStatement("update recibos set motivo = ? , estadorecibo = 'anulada', estadotransaccion = 'a confirmar' where numero = ?");
 				stmt.setString(1, motivo);
 				stmt.setInt(2, Integer.parseInt(numero));
 				stmt.execute();	
@@ -228,7 +238,7 @@ public class DBManager {
 		return "false";
 	}
 	
-	public HashMap<Integer,List<String>> obtenerBoletasCompletadas(String usuario){
+	public HashMap<Integer,List<String>> obtenerRecibosCompletadas(String usuario){
 		HashMap<Integer,List<String>> mapa = new HashMap<Integer,List<String>>();
 		Conexion con = new Conexion();
 		Conexion.driverOdbc();
@@ -236,7 +246,7 @@ public class DBManager {
 			Connection conn = con.getCon();
 			PreparedStatement stmt;
 			try {
-				stmt = conn.prepareStatement("select * from boletas where usuario = ? and estadoboleta = 'completada'");
+				stmt = conn.prepareStatement("select * from recibos where usuario = ? and estadorecibo = 'completada'");
 				stmt.setString(1, usuario);	
 				ResultSet srs = stmt.executeQuery();
 				int aux = 0;
@@ -261,7 +271,7 @@ public class DBManager {
 		return null;
 	}
 	
-	public HashMap<Integer,List<String>> obtenerBoletasAnuladas(String usuario){
+	public HashMap<Integer,List<String>> obtenerRecibosAnuladas(String usuario){
 		HashMap<Integer,List<String>> mapa = new HashMap<Integer,List<String>>();
 		Conexion con = new Conexion();
 		Conexion.driverOdbc();
@@ -269,7 +279,7 @@ public class DBManager {
 			Connection conn = con.getCon();
 			PreparedStatement stmt;
 			try {
-				stmt = conn.prepareStatement("select * from boletas where usuario = ? and estadoboleta = 'anulada'");
+				stmt = conn.prepareStatement("select * from recibos where usuario = ? and estadorecibo = 'anulada'");
 				stmt.setString(1, usuario);	
 				ResultSet srs = stmt.executeQuery();
 				int aux = 0;
@@ -291,7 +301,7 @@ public class DBManager {
 		return null;
 	}
 	
-	public HashMap<Integer,List<String>> obtenerBoletasExtraviadas(String usuario){
+	public HashMap<Integer,List<String>> obtenerRecibosExtraviadas(String usuario){
 		HashMap<Integer,List<String>> mapa = new HashMap<Integer,List<String>>();
 		Conexion con = new Conexion();
 		Conexion.driverOdbc();
@@ -299,7 +309,7 @@ public class DBManager {
 			Connection conn = con.getCon();
 			PreparedStatement stmt;
 			try {
-				stmt = conn.prepareStatement("select * from boletas where usuario = ? and estadoboleta = 'extraviada'");
+				stmt = conn.prepareStatement("select * from recibos where usuario = ? and estadorecibo = 'extraviada'");
 				stmt.setString(1, usuario);	
 				ResultSet srs = stmt.executeQuery();
 				int aux = 0;
@@ -320,14 +330,14 @@ public class DBManager {
 		}
 		return null;
 	}
-	public String boletaExtraviada(String numero, String motivo){
+	public String reciboExtraviada(String numero, String motivo){
 		Conexion con = new Conexion();
 		Conexion.driverOdbc();
 		if(con.abrirConexion()){
 			Connection conn = con.getCon();
 			PreparedStatement stmt;
 			try {
-				stmt = conn.prepareStatement("update boletas set motivo = ? , estadoboleta = 'extraviada', estadotransaccion = 'a confirmar' where numero = ?");
+				stmt = conn.prepareStatement("update recibos set motivo = ? , estadorecibo = 'extraviada', estadotransaccion = 'a confirmar' where numero = ?");
 				stmt.setString(1, motivo);
 				stmt.setInt(2, Integer.parseInt(numero));
 				stmt.execute();	
@@ -342,7 +352,7 @@ public class DBManager {
 		return "false";
 	}
 	
-	public String completarBoleta(String numero, String fecha, String beneficiario, String monto){
+	public String completarRecibo(String numero, String fecha, String beneficiario, String monto){
 		//08/21/2008
 		String[] aux = fecha.split("/");
 		aux[0] = aux[0].trim();
@@ -356,7 +366,7 @@ public class DBManager {
 			PreparedStatement stmt;
 			try {
                                 monto = monto.replace(',', '.');
-				stmt = conn.prepareStatement("update boletas set fecharendicion = ? , beneficiario = ?, monto = ?, estadoboleta = 'completada', estadotransaccion = 'a confirmar' where numero = ?");
+				stmt = conn.prepareStatement("update recibos set fecharendicion = ? , beneficiario = ?, monto = ?, estadorecibo = 'completada', estadotransaccion = 'a confirmar' where numero = ?");
 				stmt.setString(1, fecha);
 				stmt.setString(2, beneficiario);
 				stmt.setString(3, monto);
@@ -373,7 +383,7 @@ public class DBManager {
 		return "false";
 	}
 	
-	public String cargarBoletas(String op, String min, String max){
+	public String cargarRecibos(String op, String min, String max){
 		Conexion con = new Conexion();
 		Conexion.driverOdbc();
 		if(con.abrirConexion()){
@@ -387,7 +397,7 @@ public class DBManager {
                                 ResultSet srs = stmt.executeQuery();
 				srs.next();
 				String usuario = srs.getString("usuario");
-				stmt = conn.prepareStatement("SELECT count(*) as count FROM boletas where numero BETWEEN  ? and ?");
+				stmt = conn.prepareStatement("SELECT count(*) as count FROM recibos where numero BETWEEN  ? and ?");
 				stmt.setInt(1, numMin);
 				stmt.setInt(2, numMax);
 				srs = stmt.executeQuery();
@@ -395,7 +405,7 @@ public class DBManager {
 				int cant = srs.getInt("count");
 				if(cant == 0 ){
 					for(int i=numMin ; i < numMax +1 ; i++){
-						stmt = conn.prepareStatement("insert into boletas values (?,?,'','','','','pendiente','')");
+						stmt = conn.prepareStatement("insert into recibos values (?,?,'','','','','pendiente','')");
 						stmt.setString(1, usuario);
 						stmt.setInt(2, i);
 						stmt.execute();	

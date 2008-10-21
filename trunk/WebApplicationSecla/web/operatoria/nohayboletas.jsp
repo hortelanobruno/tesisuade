@@ -35,7 +35,7 @@
           <td class="bodyText">
           <table>
           <tr>
-          <td>NO HAY BOLETAS PENDIENTES
+          <td>NO HAY RECIBOS PENDIENTES
           </td>
           </tr>
           </table>          

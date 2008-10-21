@@ -1,15 +1,15 @@
 package varios;
 
-public class Boleta {
+public class Recibo {
 
 	private int numero;
 	private String fecharendicion;
 	private String beneficiario;
 	private int monto;
-	private String estadoboleta;
+	private String estadorecibo;
 	private String motivo;
 	
-	public Boleta() {
+	public Recibo() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -45,12 +45,12 @@ public class Boleta {
 		this.monto = monto;
 	}
 
-	public String getEstadoboleta() {
-		return estadoboleta;
+	public String getEstadorecibo() {
+		return estadorecibo;
 	}
 
-	public void setEstadoboleta(String estadoboleta) {
-		this.estadoboleta = estadoboleta;
+	public void setEstadorecibo(String estadoboleta) {
+		this.estadorecibo = estadoboleta;
 	}
 
 	public String getMotivo() {

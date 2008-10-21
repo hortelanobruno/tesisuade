@@ -11,16 +11,16 @@
 	}
 	String usuario = session.getAttribute("usuario").toString();
 	DBManager manager = new DBManager();
-	List<Integer> boletas = manager.obtenerBoletasPendientes(usuario);
-	if(boletas.size() == 0){
+	List<Integer> recibos = manager.obtenerRecibosPendientes(usuario);
+	if(recibos.size() == 0){
 		response.sendRedirect("nohayboletas.jsp");
 	}
 	String beneficiario = request.getParameter("beneficiario");
-	String boleta = request.getParameter("boletas");
+	String recibo = request.getParameter("recibos");
 	String monto = request.getParameter("monto");
 	String fecha = request.getParameter("date");
 	if(monto != null){
-		String resultado = manager.completarBoleta(boleta,fecha,beneficiario,monto);
+		String resultado = manager.completarRecibo(recibo,fecha,beneficiario,monto);
 		if(resultado != null){
 			if(resultado == "true"){
 				response.sendRedirect("boletacargadaok.jsp");	
@@ -59,7 +59,7 @@ window.onload = function() {
     <td width="595" colspan="4" valign="top">	<p>&nbsp;</p>
       <table border="0" cellspacing="0" cellpadding="0" width="595">
         <tr>
-          <td class="pageName"><h1>Boleta a completar</h1>
+          <td class="pageName"><h1>Recibo a completar</h1>
             <p>&nbsp;</p></td>
 		</tr>
 
@@ -78,13 +78,13 @@ window.onload = function() {
           <table width="100%" cellpadding="1" cellspacing="5">
           <tr>
           <td>Numero de recibo</td>
-          <td><select name="boletas" style="width:180px" id="boletas">
+          <td><select name="recibos" style="width:180px" id="recibos">
           <%
-            for(int i=0 ; i < boletas.size(); i++){
-                    out.print("<option value="+boletas.get(i)+">"+boletas.get(i)+"</option>");
+            for(int i=0 ; i < recibos.size(); i++){
+                    out.print("<option value="+recibos.get(i)+">"+recibos.get(i)+"</option>");
             }
 	  %>
-          </select>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="boleta" style="visibility:hidden"></label></td>
+          </select>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="recibo" style="visibility:hidden"></label></td>
           </tr>
           <tr>
           <td>Fecha de rendici&oacute;n</td>
@@ -105,7 +105,7 @@ window.onload = function() {
           </tr>
           <tr >
             <td height="30px" colspan="2" align="center">
-            <input name="cargar" type="button" value="Cargar boleta" style="width:100px" onClick="validarCompletarBoleta()"/>	
+            <input name="cargar" type="button" value="Cargar recibo" style="width:100px" onClick="validarCompletarRecibo()"/>	
             </td>
           </tr>
           </table></td>

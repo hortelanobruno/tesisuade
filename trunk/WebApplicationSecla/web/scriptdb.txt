@@ -11,11 +11,11 @@ create database sistemarecibos
 //Crear tablas
 
 create table usuarios (usuario varchar(100), password varchar(100), 
-tipocuenta varchar(100), responsable varchar(100), secretaria varchar(100), funcion varchar(100))
+tipocuenta varchar(100), responsable varchar(100), sede varchar(100), sector varchar(100), digitos varchar(4))
 
 
-create table boletas (usuario varchar(100), numero integer, fecharendicion varchar(100), beneficiario varchar(100),
-monto float , estadoboleta varchar(100), estadotransaccion varchar(100), motivo varchar(500) )
+create table recibos (usuario varchar(100), numero integer, fecharendicion varchar(100), beneficiario varchar(100),
+monto float , estadorecibo varchar(100), estadotransaccion varchar(100), motivo varchar(500) )
 
 
 //
@@ -27,6 +27,8 @@ monto float , estadoboleta varchar(100), estadotransaccion varchar(100), motivo 
 
 SELECT usuario,password,tipocuenta FROM usuarios
 
-insert into usuarios values('admin','admin','administrador','juan carlos techea','secla','administrador de recibos')
+insert into usuarios values('admin','admin','administrador','juan carlos techea','secla','administrador de recibos','0101')
 
-insert into usuarios values('usuario','123456','operador','edit gonzales','cultura y educacion','secreataria de cultura')
+insert into usuarios values('usuario','123456','operador','edit gonzales','cultura y educacion','secreataria de cultura','0201')
+
+insert into usuarios values('cajero','cajero','cajero','lorenzo g','secla','operadores','0301')
