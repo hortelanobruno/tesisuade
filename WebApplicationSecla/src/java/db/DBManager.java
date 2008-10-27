@@ -146,8 +146,7 @@ public class DBManager {
 			Connection conn = con.getCon();
 			PreparedStatement stmt;
                         String digitos = new String();
-                        digitos.concat(digarea);
-                        digitos.concat(digresp);
+                        digitos = digarea + digresp;
 			try {
 				stmt = conn.prepareStatement("SELECT usuario FROM usuarios where usuario = ?");
 				stmt.setString(1, usuario);
