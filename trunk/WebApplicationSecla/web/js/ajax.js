@@ -3,7 +3,6 @@ var target;
 var isIE;
 
 function cargaraDatosUsuario() {
-    
     var usuario   = this.form1.listaUsuarios.value
     var url = "../datosUsuario?usuario="+ usuario;
     initRequest(url);
@@ -15,16 +14,16 @@ function cargaraDatosUsuario() {
 function processRequestCargarDatosUsuario() {
     if (req.readyState == 4) {
       if (req.status == 200) {
-        var responsable = req.responseXML.getElementsByTagName("usuario")[0].getElementsByTagName("responsable")[0].childNodes[0].nodeValue;
-        var sector = req.responseXML.getElementsByTagName("sector")[0].childNodes[0].nodeValue;
-        var sede = req.responseXML.getElementsByTagName("sede")[0].childNodes[0].nodeValue;
-        var digitos = req.responseXML.getElementsByTagName("digitos")[0].childNodes[0].nodeValue;
-        var password = req.responseXML.getElementsByTagName("password")[0].childNodes[0].nodeValue;
-        document.getElementById("res").textContent = responsable;
-        document.getElementById("sec").textContent = sector;
-        document.getElementById("sede").textContent = sede;
-        document.getElementById("dig").textContent = digitos;
-        document.getElementById("pwd").textContent = password;
+        var _responsable = req.responseXML.getElementsByTagName("responsable")[0].childNodes[0].nodeValue;
+        var _sector = req.responseXML.getElementsByTagName("sector")[0].childNodes[0].nodeValue;
+        var _sede = req.responseXML.getElementsByTagName("sede")[0].childNodes[0].nodeValue;
+        var _digitos = req.responseXML.getElementsByTagName("digitos")[0].childNodes[0].nodeValue;
+        var _password = req.responseXML.getElementsByTagName("password")[0].childNodes[0].nodeValue;
+        document.getElementById("res").innerHTML = _responsable;
+        document.getElementById("sec").innerHTML = _sector;
+        document.getElementById("sede").innerHTML = _sede;
+        document.getElementById("dig").innerHTML = _digitos;
+        document.getElementById("pwd").innerHTML = _password;
       }
     }
 }
@@ -89,12 +88,37 @@ function processRequestVerRecibo() {
 
 
 function initRequest(url) {
-    if (window.XMLHttpRequest) {
-        req = new XMLHttpRequest();
-    } else if (window.ActiveXObject) {
+    //if (window.XMLHttpRequest) {
+     //   req = new XMLHttpRequest();
+   // } else if (window.ActiveXObject) {
+   //     isIE = true;
+   //     req = new ActiveXObject("Microsoft.XMLHTTP");
+   // }
+    if(window.ActiveXObject) 
+    { 
+      try 
+      { 
         isIE = true;
-        req = new ActiveXObject("Microsoft.XMLHTTP");
-    }
+        req = new ActiveXObject("Microsoft.XMLHTTP"); 
+      } 
+      catch (e) 
+      { 
+        req = false; 
+      } 
+    }else{ 
+      try 
+      { 
+        req = new XMLHttpRequest(); 
+      } 
+      catch (e) 
+      { 
+        req = false; 
+      } 
+  } 
+  if (!req) 
+  { 
+    alert("Error creating the XMLHttpRequest object."); 
+  }
 }
             
 //Este metodo obtiene el valor de un text field y lo manda al servidor para validar

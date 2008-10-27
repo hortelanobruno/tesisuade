@@ -6,7 +6,7 @@
         <td>
 		<table width="100%" border="0" align="center" cellpadding="2" cellspacing="1" bgcolor="#4D6FAC">
           <tr>
-            <td><p align="left" class="blanco">&nbsp;&nbsp;Administracion Cuentas</p></td>
+            <td><p align="left" class="blanco">&nbsp;&nbsp;Administraci&oacute;n Cuentas</p></td>
           </tr>
           <tr>
             <td bgcolor="#FFFFFF">
@@ -16,11 +16,11 @@
 				  </a></div></td>
 			</tr>
 			<tr>
-				<td><div align="left"><a href="resetpwd.jsp" class="navText">Restear contrase&ntilde;a<br />
+				<td><div align="left"><a href="resetpwd.jsp" class="navText">Restear contrase&ntilde;a de usuarios<br />
 				  </a></div></td>
 			</tr>
 			<tr>
-				<td><div align="left"><a href="cambiarpassword.jsp" class="navText">Cambiar contrase&ntilde;a<br />
+				<td><div align="left"><a href="cambiarpassword.jsp" class="navText">Cambiar contrase&ntilde;a de la cuenta<br />
 				  </a></div></td>
 			</tr>
 			</table>

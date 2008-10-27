@@ -78,7 +78,7 @@
              	  <td></td>
                   <td align="left" valign="middle"><label>Usuario:</label>&nbsp;</td>
                   <td></td>
-                  <td align="center"><input type="text" name="usu" size='15' onkeypress="iSubmitEnter(event, document.form1)"></td>
+                  <td align="center"><input type="text" name="usu" size='15' onkeypress="iSubmitEnter(window.event, document.form1)"></td>
                   <td></td>
              </tr>
              <% 
@@ -95,7 +95,7 @@
                   <td width="20px"></td>
                   <td align="left" valign="middle"><p><label>Contraseña: </label>&nbsp;</p></td>
                   <td></td>
-                  <td align="center"><input type="password" name="pwd" size='15' onkeypress="iSubmitEnter(event, document.form1)"></td>
+                  <td align="center"><input type="password" name="pwd" size='15' onkeypress="iSubmitEnter(window.event, document.form1)"></td>
                   <td></td>
              </tr>
               <%  

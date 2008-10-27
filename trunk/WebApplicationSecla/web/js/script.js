@@ -11,18 +11,10 @@ function retornarFecha()
 
 
 function iSubmitEnter(oEvento, oFormulario){ 
-    var iAscii; 
-     
-    if (oEvento.keyCode) 
-        iAscii = oEvento.keyCode; 
-    else if (oEvento.which) 
-        iAscii = oEvento.which; 
-    else 
-        return false; 
-
-    if (iAscii == 13) oFormulario.submit(); 
-	 
-    return true; 
+  if (oEvento && oEvento.which == 13)
+    oFormulario.submit();
+  else
+    return true;
 }
 
 function generarReporte(){
@@ -46,14 +38,14 @@ function validarEntregarRecibo(){
         document.getElementById('menu').style.visibility = 'hidden';
     }
     if(numMin == 0){
-        document.getElementById('rango').textContent = "Debe completar el rango de las recibos";
+        document.getElementById('rango').innerHTML = "Debe completar el rango de las recibos";
         document.getElementById('rango').style.visibility = 'visible';
         aux++;
     }else{
         document.getElementById('rango').style.visibility = 'hidden';
     }
     if(numMax == 0){
-        document.getElementById('rango').textContent = "Debe completar el rango de las recibos";
+        document.getElementById('rango').innerHTML = "Debe completar el rango de las recibos";
         document.getElementById('rango').style.visibility = 'visible';
         aux++;
     }else{
@@ -64,7 +56,7 @@ function validarEntregarRecibo(){
             if(numMax >= numMin){
               this.form1.submit(); 
             }else{
-                document.getElementById('rango').textContent = "Error en el rango";
+                document.getElementById('rango').innerHTML = "Error en el rango";
                 document.getElementById('rango').style.visibility = 'visible';
             }
         }else{
@@ -90,25 +82,25 @@ function validarResetPwd(){
     var aux = 0;
     
     if(usuario == -1 ){
-        document.getElementById('menu').textContent = "Debe seleccionar un campo";
+        document.getElementById('menu').innerHTML = "Debe seleccionar un campo";
         document.getElementById('menu').style.visibility = 'visible';
         aux++;
     }else{
         document.getElementById('menu').style.visibility = 'hidden';
     }
     if(password1 == 0){
-        document.getElementById('pwd1').textContent = "Debe completar el campo";
+        document.getElementById('pwd1').innerHTML = "Debe completar el campo";
         document.getElementById('pwd1').style.visibility = 'visible';
         aux++;
     }else{
         if(password1 < 4){
-            document.getElementById('pwd1').textContent = "Minimo 4 caracteres";
+            document.getElementById('pwd1').innerHTML = "Minimo 4 caracteres";
             document.getElementById('pwd1').style.visibility = 'visible';
             aux++;
         }else{
             password1 = this.form1.password1.value;
             if(vacio(password1)){
-                document.getElementById('pwd1').textContent = "No puede contener espacios en blanco";
+                document.getElementById('pwd1').innerHTML = "No puede contener espacios en blanco";
                 document.getElementById('pwd1').style.visibility = 'visible';
                 this.form1.password1.value = ''
                 this.form1.password2.value = ''
@@ -119,18 +111,18 @@ function validarResetPwd(){
         }
     }
     if(password2 == 0){
-        document.getElementById('pwd2').textContent = "Debe completar el campo";
+        document.getElementById('pwd2').innerHTML = "Debe completar el campo";
         document.getElementById('pwd2').style.visibility = 'visible';
         aux++;
     }else{
         if(password2 < 4){
-            document.getElementById('pwd2').textContent = "Minimo 4 caracteres";
+            document.getElementById('pwd2').innerHTML = "Minimo 4 caracteres";
             document.getElementById('pwd2').style.visibility = 'visible';
             aux++;   
         }else{
             password2 = this.form1.password2.value;
             if(vacio(password2)){
-                document.getElementById('pwd2').textContent = "No puede contener espacios en blanco";
+                document.getElementById('pwd2').innerHTML = "No puede contener espacios en blanco";
                 document.getElementById('pwd2').style.visibility = 'visible';
                 this.form1.password1.value = ''
                 this.form1.password2.value = ''
@@ -177,28 +169,28 @@ function validarCompletarRecibo()
     var fecha = this.form1.date.value.length;
     var aux=0;
     if(recibo == -1 ){
-        document.getElementById('recibo').textContent = "Debe seleccionar un campo";
+        document.getElementById('recibo').innerHTML = "Debe seleccionar un campo";
         document.getElementById('recibo').style.visibility = 'visible';
         aux++;
     }else{
         document.getElementById('recibo').style.visibility = 'hidden';
     }
     if(monto==0){
-        document.getElementById('monto').textContent = "Debe completar el campo";
+        document.getElementById('monto').innerHTML = "Debe completar el campo";
         document.getElementById('monto').style.visibility = 'visible';
         aux++;
     }else{
         document.getElementById('monto').style.visibility = 'hidden';
     }
     if(fecha==0){
-        document.getElementById('fecha2').textContent = "Debe seleccionar una fecha";
+        document.getElementById('fecha2').innerHTML = "Debe seleccionar una fecha";
         document.getElementById('fecha2').style.visibility = 'visible';
         aux++;
     }else{
         document.getElementById('fecha2').style.visibility = 'hidden';
     }
     if(beneficiario==0){
-        document.getElementById('beneficiario').textContent = "Debe completar el campo";
+        document.getElementById('beneficiario').innerHTML = "Debe completar el campo";
         document.getElementById('beneficiario').style.visibility = 'visible';
         aux++;
     }else{
@@ -209,7 +201,7 @@ function validarCompletarRecibo()
         if(/^[0-9]+(,[0-9]+)*$/.test(valor)){
             this.form1.submit();  
         }else{ 
-            document.getElementById('monto').textContent = "Debe ser un mumero";
+            document.getElementById('monto').innerHTML = "Debe ser un mumero";
             document.getElementById('monto').style.visibility = 'visible';
             this.form1.monto.value = ''  
                     	
@@ -249,18 +241,18 @@ function validarCambioContrasenia()
     var aux=0;
     
     if(pwd1==0){
-        document.getElementById('pwd1').textContent = "Debe completar el campo";
+        document.getElementById('pwd1').innerHTML = "Debe completar el campo";
         document.getElementById('pwd1').style.visibility = 'visible';
         aux++;
     }else{
         if(pwd1 < 4){
-            document.getElementById('pwd1').textContent = "Minimo 4 caracteres"; 
+            document.getElementById('pwd1').innerHTML = "Minimo 4 caracteres"; 
             document.getElementById('pwd1').style.visibility = 'visible';
             aux++;	
         }else{
             pwd1 = this.form1.password1.value;
             if(vacio(pwd1)){
-                document.getElementById('pwd1').textContent = "No puede contener espacios en blanco"; 
+                document.getElementById('pwd1').innerHTML = "No puede contener espacios en blanco"; 
                 document.getElementById('pwd1').style.visibility = 'visible';
                 this.form1.password1.value = ''
                 this.form1.password2.value = '' 
@@ -272,18 +264,18 @@ function validarCambioContrasenia()
         }
     }
     if(pwd2==0){
-        document.getElementById('pwd2').textContent = "Debe completar el campo";
+        document.getElementById('pwd2').innerHTML = "Debe completar el campo";
         document.getElementById('pwd2').style.visibility = 'visible';
         aux++;
     }else{
         if(pwd2 < 4){
-            document.getElementById('pwd2').textContent = "Minimo 4 caracteres"; 
+            document.getElementById('pwd2').innerHTML = "Minimo 4 caracteres"; 
             document.getElementById('pwd2').style.visibility = 'visible';
             aux++;	
         }else{
             pwd2 = this.form1.password2.value;
             if(vacio(pwd2)){
-                document.getElementById('pwd2').textContent = "No puede contener espacios en blanco"; 
+                document.getElementById('pwd2').innerHTML = "No puede contener espacios en blanco"; 
                 document.getElementById('pwd2').style.visibility = 'visible';
                 this.form1.password1.value = ''
                 this.form1.password2.value = '' 
@@ -295,18 +287,18 @@ function validarCambioContrasenia()
         }
     }
     if(pwd3==0){
-        document.getElementById('pwd3').textContent = "Debe completar el campo";
+        document.getElementById('pwd3').innerHTML = "Debe completar el campo";
         document.getElementById('pwd3').style.visibility = 'visible';
         aux++;
     }else{
         if(pwd3 < 4){
-            document.getElementById('pwd3').textContent = "Minimo 4 caracteres"; 
+            document.getElementById('pwd3').innerHTML = "Minimo 4 caracteres"; 
             document.getElementById('pwd3').style.visibility = 'visible';
             aux++;	
         }else{
             pwd3 = this.form1.password3.value;
             if(vacio(pwd3)){
-                document.getElementById('pwd3').textContent = "No puede contener espacios en blanco"; 
+                document.getElementById('pwd3').innerHTML = "No puede contener espacios en blanco"; 
                 document.getElementById('pwd3').style.visibility = 'visible';
                 this.form1.password1.value = ''
                 this.form1.password2.value = '' 
@@ -328,7 +320,7 @@ function validarCambioContrasenia()
                 this.form1.password3.value = ''
             }	
         }else{
-            document.getElementById('pwd1').textContent = "Password actual incorrecto";
+            document.getElementById('pwd1').innerHTML = "Password actual incorrecto";
             document.getElementById('pwd1').style.visibility = 'visible';
             this.form1.password2.value = ''
             this.form1.password3.value = ''
@@ -348,7 +340,6 @@ function vacio(q) {
 }
 
 function validarAltaArea(){
-
     var responsable = this.form1.responsable.value.length
     var sede = this.form1.sede.value.length
     var sector = this.form1.sector.value.length
@@ -358,15 +349,13 @@ function validarAltaArea(){
     var password1 = this.form1.password1.value.length
     var password2 = this.form1.password2.value.length
     var aux = 0;
-
-
     if(responsable==0){  
-        document.getElementById('resp').textContent = "Debe completar el campo";
+        document.getElementById('resp').innerHTML = "Debe completar el campo";
         document.getElementById('resp').style.visibility = 'visible';
         aux++;
     }else{
         if(responsable < 3){
-            document.getElementById('resp').textContent = "Minimo 3 caracteres";
+            document.getElementById('resp').innerHTML = "Minimo 3 caracteres";
             document.getElementById('resp').style.visibility = 'visible';
             aux++;
         }else{
@@ -374,70 +363,72 @@ function validarAltaArea(){
         }
     }
     if(sede == 0){
-        document.getElementById('sede').textContent = "Debe completar el campo";
-        document.getElementById('sede').style.visibility = 'visible';
+        document.getElementById('sed').innerHTML = "Debe completar el campo";
+        document.getElementById('sed').style.visibility = 'visible';
         aux++;
     }else{
         if(sede < 3){
-            document.getElementById('sede').textContent = "Minimo 3 caracteres"; 
-            document.getElementById('sede').style.visibility = 'visible';	
-            aux++
+            document.getElementById('sed').innerHTML = "Minimo 3 caracteres"; 
+            document.getElementById('sed').style.visibility = 'visible';	
+            aux++;
         }else{
-            document.getElementById('sede').style.visibility = 'hidden';	
+            document.getElementById('sed').style.visibility = 'hidden';	
         }
     }
     if(sector == 0){
-        document.getElementById('sec').textContent = "Debe completar el campo";
+        document.getElementById('sec').innerHTML = "Debe completar el campo";
         document.getElementById('sec').style.visibility = 'visible';
         aux++;
     }else{
         if(sector < 3){
-            document.getElementById('sec').textContent = "Minimo 3 caracteres";  
+            document.getElementById('sec').innerHTML = "Minimo 3 caracteres";  
             document.getElementById('sec').style.visibility = 'visible';
-            aux++
+            aux++;
         }else{
             document.getElementById('sec').style.visibility = 'hidden';
         }
     }
     if(digarea == 0){
-        document.getElementById('dig1').textContent = "Debe completar el campo";
+        document.getElementById('dig1').innerHTML = "Debe completar el campo";
         document.getElementById('dig1').style.visibility = 'visible';
         aux++;
     }else{
         if(digarea != 2){
-            document.getElementById('dig1').textContent = "Debe contener 2 caracteres";  
+            document.getElementById('dig1').innerHTML = "Debe contener 2 caracteres";  
             document.getElementById('dig1').style.visibility = 'visible';
-            aux++
+            this.form1.digarea.value = ''
+            aux++;
         }else{
             document.getElementById('dig1').style.visibility = 'hidden';
         }
     }
     if(digresp == 0){
-        document.getElementById('dig2').textContent = "Debe completar el campo";
+        document.getElementById('dig2').innerHTML = "Debe completar el campo";
         document.getElementById('dig2').style.visibility = 'visible';
         aux++;
     }else{
         if(digresp != 2){
-            document.getElementById('dig2').textContent = "Debe contener 2 caracteres";  
+            document.getElementById('dig2').innerHTML = "Debe contener 2 caracteres";  
             document.getElementById('dig2').style.visibility = 'visible';
-            aux++
+            this.form1.digresp.value = ''
+            aux++;
         }else{
             document.getElementById('dig2').style.visibility = 'hidden';
         }
     }
     if(usuario == 0){
-        document.getElementById('usu').textContent = "Debe completar el campo";
+        document.getElementById('usu').innerHTML = "Debe completar el campo";
         document.getElementById('usu').style.visibility = 'visible';
         aux++;
     }else{
         if(usuario < 4){
-            document.getElementById('usu').textContent = "Minimo 4 caracteres"; 
+            document.getElementById('usu').innerHTML = "Minimo 4 caracteres"; 
             document.getElementById('usu').style.visibility = 'visible';	
             aux++;
         }else{
             usuario = this.form1.usuario.value
             if(vacio(usuario)){
-                document.getElementById('usu').textContent = "No puede contener espacios en blanco"; 
+                document.getElementById('usu').innerHTML = "No puede contener espacios en blanco"; 
                 document.getElementById('usu').style.visibility = 'visible';	
                 aux++;
             }else{
@@ -446,18 +437,18 @@ function validarAltaArea(){
         }
     }
     if(password1 == 0){
-        document.getElementById('pwd1').textContent = "Debe completar el campo";
+        document.getElementById('pwd1').innerHTML = "Debe completar el campo";
         document.getElementById('pwd1').style.visibility = 'visible';
         aux++;
     }else{
         if(password1 < 4){
-            document.getElementById('pwd1').textContent = "Minimo 4 caracteres"; 
+            document.getElementById('pwd1').innerHTML = "Minimo 4 caracteres"; 
             document.getElementById('pwd1').style.visibility = 'visible';
             aux++;	
         }else{
             password1 = this.form1.password1.value;
             if(vacio(password1)){
-               document.getElementById('pwd1').textContent = "No puede contener espacios en blanco"; 
+               document.getElementById('pwd1').innerHTML = "No puede contener espacios en blanco"; 
                 document.getElementById('pwd1').style.visibility = 'visible';
                 this.form1.password1.value = ''
                 this.form1.password2.value = '' 
@@ -468,18 +459,18 @@ function validarAltaArea(){
         }
     }
     if(password2 == 0){
-        document.getElementById('pwd2').textContent = "Debe completar el campo";
+        document.getElementById('pwd2').innerHTML = "Debe completar el campo";
         document.getElementById('pwd2').style.visibility = 'visible';
         aux++;
     }else{
         if(password2 < 4){
-            document.getElementById('pwd2').textContent = "Minimo 4 caracteres"; 
+            document.getElementById('pwd2').innerHTML = "Minimo 4 caracteres"; 
             document.getElementById('pwd2').style.visibility = 'visible';
             aux++;
         }else{
             password2 = this.form1.password2.value;
             if(vacio(password2)){
-                document.getElementById('pwd2').textContent = "No puede contener espacios en blanco"; 
+                document.getElementById('pwd2').innerHTML = "No puede contener espacios en blanco"; 
                 document.getElementById('pwd2').style.visibility = 'visible';
                 this.form1.password1.value = ''
                 this.form1.password2.value = '' 

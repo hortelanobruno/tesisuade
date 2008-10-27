@@ -81,7 +81,7 @@
                 <tr>
                 <td>Sede</td>
                 <td>&nbsp;</td>
-                <td><input name="sede" type="text" size="30" onkeypress="if(event.keyCode == 13) validarAltaArea()"/>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="sede" style="visibility:hidden"></label>
+                <td><input name="sede" type="text" size="30" onkeypress="if(event.keyCode == 13) validarAltaArea()"/>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="sed" style="visibility:hidden"></label>
                 </td>
                 </tr>
                 <tr>
@@ -119,19 +119,19 @@
                 <tr>
                     <td>Nombre de usuario</td>
                     <td>&nbsp;</td>
-                    <td><input name="usuario" type="text" size="30" onkeypress="if(event.keyCode == 13) validarAltaArea()"/>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="usu" style="visibility:hidden" class="error"></label>
+                    <td><input name="usuario" type="text" size="30" onkeypress="if(event.keyCode == 13) validarAltaArea()"/>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="usu" style="visibility:hidden"></label>
                         <%
                             if (resultado == "usuario") {
                                 out.print("<tr align='center'><td colspan='3'><p class='error'>El usuario EXISTE en el sistema</p></td></tr>");
                             }
                         %>
-                    </td></td>
+                    </td>
                 </tr>
                 <tr>
                     <td>Contrase&ntilde;a</td>
                     <td>&nbsp;</td>
                     <td><input name="password1" type="password" size="30" onkeypress="if(event.keyCode == 13) validarAltaArea()"/>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="pwd1" style="visibility:hidden"></label>
-                    </td></td>
+                    </td>
                 </tr>
                 <tr>
                     <td>Repetir contrase&ntilde;a</td>
