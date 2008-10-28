@@ -94,11 +94,11 @@ window.onload = function() {
           </tr>
           <tr>
           <td>Beneficiario</td>
-          <td><input name="beneficiario" type="text" size="30" />&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="beneficiario" style="visibility:hidden"></label></td>
+          <td><input name="beneficiario" type="text" size="30" />&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="beneficiario2" style="visibility:hidden"></label></td>
           </tr>
           <tr>
           <td>Monto</td>
-          <td><input name="monto" type="text" size="30" />&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="monto" style="visibility:hidden"></label></td>
+          <td><input name="monto" type="text" size="30" />&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="monto2" style="visibility:hidden"></label></td>
           </tr>
           <tr >
           <td colspan="2" height="30px"></td>

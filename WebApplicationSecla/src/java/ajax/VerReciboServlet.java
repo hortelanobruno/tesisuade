@@ -30,16 +30,12 @@ public class VerReciboServlet extends HttpServlet {
     public  void doGet(HttpServletRequest request, HttpServletResponse  response)
     throws IOException, ServletException {
         String usuario = request.getParameter("usuario");
-        System.out.println("1");
         List<Recibo> boletas = manager.obtenerRecibosAConfirmar(usuario);
-        System.out.println("2");
         if(boletas.isEmpty()){
-            System.out.println("3");
             response.setContentType("text/xml");
             response.setHeader("Cache-Control", "no-cache");
             response.getWriter().write("<estado>vacio</estado>");
         }else{
-            System.out.println("4");
             response.setContentType("text/xml");
             response.setHeader("Cache-Control", "no-cache");
             response.getWriter().write("<boletas>");

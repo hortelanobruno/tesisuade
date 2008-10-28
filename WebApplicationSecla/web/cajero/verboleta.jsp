@@ -60,6 +60,7 @@
           <td> Usuario </td>
           <td>
           <select name="usuarios" style="width:180px" id="usuario" onchange="verRecibo()">
+              <option value="">&nbsp;</option>
            <%
                     for(int i=0 ; i < usuario.length; i++){
                             out.print("<option value="+usuario[i]+">"+usuario[i]+"</option>");
