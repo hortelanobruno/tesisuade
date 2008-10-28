@@ -52,6 +52,8 @@ function validarEntregarRecibo(){
         document.getElementById('rango').style.visibility = 'hidden';
     }
     if(aux == 0 ){
+        numMin = this.form1.numMin.value
+        numMax = this.form1.numMax.value
         if((IsReal(numMin) == 0) && (IsReal(numMax) == 0)){
             if(numMax >= numMin){
               this.form1.submit(); 
@@ -176,11 +178,11 @@ function validarCompletarRecibo()
         document.getElementById('recibo').style.visibility = 'hidden';
     }
     if(monto==0){
-        document.getElementById('monto').innerHTML = "Debe completar el campo";
-        document.getElementById('monto').style.visibility = 'visible';
+        document.getElementById('monto2').innerHTML = "Debe completar el campo";
+        document.getElementById('monto2').style.visibility = 'visible';
         aux++;
     }else{
-        document.getElementById('monto').style.visibility = 'hidden';
+        document.getElementById('monto2').style.visibility = 'hidden';
     }
     if(fecha==0){
         document.getElementById('fecha2').innerHTML = "Debe seleccionar una fecha";
@@ -190,19 +192,20 @@ function validarCompletarRecibo()
         document.getElementById('fecha2').style.visibility = 'hidden';
     }
     if(beneficiario==0){
-        document.getElementById('beneficiario').innerHTML = "Debe completar el campo";
-        document.getElementById('beneficiario').style.visibility = 'visible';
+        document.getElementById('beneficiario2').innerHTML = "Debe completar el campo";
+        document.getElementById('beneficiario2').style.visibility = 'visible';
         aux++;
     }else{
-        document.getElementById('beneficiario').style.visibility = 'hidden';
+        document.getElementById('beneficiario2').style.visibility = 'hidden';
     }
     if(aux == 0 ){
         var valor = this.form1.monto.value;
+        valor = valor.split(".").join(",");
         if(/^[0-9]+(,[0-9]+)*$/.test(valor)){
             this.form1.submit();  
         }else{ 
-            document.getElementById('monto').innerHTML = "Debe ser un mumero";
-            document.getElementById('monto').style.visibility = 'visible';
+            document.getElementById('monto2').innerHTML = "Debe ser un mumero";
+            document.getElementById('monto2').style.visibility = 'visible';
             this.form1.monto.value = ''  
                     	
         } 

@@ -48,7 +48,7 @@ function processRequestVerRecibo() {
           var estado = req.responseXML.getElementsByTagName("estado")[0].childNodes[0].nodeValue;
           if(estado == 'vacio'){
               var div = document.getElementById("recibos");
-              div.innerHTML = "<table><tr><tdalign='center'>No hay boletas por confirmar</td></tr></table>";    
+              div.innerHTML = "<table width='100%'><tr><tdalign='center'>No hay boletas por confirmar</td></tr></table>";    
           }else{
               var cantidad = req.responseXML.getElementsByTagName("cantidad")[0].childNodes[0].nodeValue;
               var div = document.getElementById("recibos");
@@ -64,7 +64,7 @@ function processRequestVerRecibo() {
                   var beneficiario;
                   var monto;
                   if(estadoboleta != "completada"){
-                      motivo = nodes[2].childNodes[0].nodeValue;
+                      motivo = nodes[5].childNodes[0].nodeValue;
                   }else{
                       motivo = '';
                       fecharendicion = nodes[2].childNodes[0].nodeValue;
@@ -72,9 +72,9 @@ function processRequestVerRecibo() {
                       monto = nodes[4].childNodes[0].nodeValue;
                   }
                   if(motivo == ''){
-                      datos += "<tr><td align='center'>"+numero+"</td><td align='center'>"+estadoboleta+"</td><td align='center'>"+fecharendicion+"</td><td align='center'>"+beneficiario+"</td><td align='center'>"+monto+"</td><td></td><td align='center'><input id='"+i+"' name='recibo' type='checkbox' value='"+numero+"' /></td></tr>";
+                      datos += "<tr><td align='center'>"+numero+"</td><td align='center'>"+estadoboleta+"</td><td align='center'>"+fecharendicion+"</td><td align='center'>"+beneficiario+"</td><td align='center'>"+monto+"</td><td>&nbsp;</td><td align='center'><input id='"+i+"' name='recibo' type='checkbox' value='"+numero+"' /></td></tr>";
                   }else{
-                      datos += "<tr><td align='center'>"+numero+"</td><td align='center'>"+estadoboleta+"</td><td></td><td></td><td></td><td align='center'>"+motivo+"</td><td align='center'><input name='recibo' id='"+i+"' type='checkbox' value='"+numero+"' /></td></tr>";
+                      datos += "<tr><td align='center'>"+numero+"</td><td align='center'>"+estadoboleta+"</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td align='center'>"+motivo+"</td><td align='center'><input name='recibo' id='"+i+"' type='checkbox' value='"+numero+"' /></td></tr>";
                   }
               }
               datos += "</table>";

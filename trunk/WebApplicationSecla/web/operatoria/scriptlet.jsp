@@ -98,13 +98,13 @@
 
                     System.setProperty(
                             "jasper.reports.compile.temp",
-                            //application.getRealPath("/reports/")
-                            "C:/Documents and Settings/Administrador/Mis documentos/NetBeansProjects/WebApplicationSecla/src/java/report/");
+                            application.getRealPath("/report/"));
+                           // application.getContextPath()+"/report/");
 
 
 
-                    //JasperCompileManager.compileReportToFile(application.getRealPath("/reports/mipagina.jrxml"));
-                    JasperCompileManager.compileReportToFile("C:/Documents and Settings/Administrador/Mis documentos/NetBeansProjects/WebApplicationSecla/src/java/report/prueba3.jrxml");
+                    JasperCompileManager.compileReportToFile(application.getRealPath("/report/prueba3.jrxml"));
+                    //JasperCompileManager.compileReportToFile(application.getContextPath()+"/report/prueba3.jrxml");
 
 
                     System.out.println("******Fin de la Compilamos el archivos***********");
@@ -113,8 +113,8 @@
 
 
 
-                    //File reportFile = new File(application.getRealPath("/reports/mipagina.jasper"));
-                    File reportFile = new File("C:/Documents and Settings/Administrador/Mis documentos/NetBeansProjects/WebApplicationSecla/src/java/report/prueba3.jasper");
+                    File reportFile = new File(application.getRealPath("/report/prueba3.jasper"));
+                    //File reportFile = new File(application.getContextPath()+"/report/prueba3.jasper");
 
                     if (con.abrirConexion()) {
                         Connection conn = con.getCon();
@@ -142,8 +142,6 @@
                             exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, ouputStream);
                             exporter.setParameter(JRHtmlExporterParameter.IMAGES_URI,request.getContextPath()+"/jasperImages?image=");  
                             exporter.exportReport();
-
-                            
                         }
                     }
 
