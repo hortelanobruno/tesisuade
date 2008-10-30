@@ -17,11 +17,33 @@ function iSubmitEnter(oEvento, oFormulario){
     return true;
 }
 
-function generarReporte(){
-    if(document.getElementsByName('html').checked){
-        
+function valirdarGenerarReportes(){
+    var aux = 0;
+    if (document.form1.recibo[0].checked || document.form1.recibo[1].checked || document.form1.recibo[2].checked){
+        document.getElementById('recibo1').style.visibility = 'hidden';
     }else{
-        
+        document.getElementById('recibo1').innerHTML = "Debe seleccionar un tipo";
+        document.getElementById('recibo1').style.visibility = 'visible';
+        aux++;
+    }
+    var sector = document.form1.sectores.selectedIndex; 
+    var responsable = document.form1.responsables.selectedIndex; 
+    if(sector == -1){
+        document.getElementById('sec1').innerHTML = "Debe seleccionar un sector";
+        document.getElementById('sec1').style.visibility = 'visible';
+        aux++;
+    }else{
+        document.getElementById('sec1').style.visibility = 'hidden';
+    }
+    if(responsable == -1){
+        document.getElementById('res1').innerHTML = "Debe seleccionar un responsable";
+        document.getElementById('res1').style.visibility = 'visible';
+        aux++;
+    }else{
+        document.getElementById('res1').style.visibility = 'hidden';
+    }
+    if(aux == 0){
+        this.form1.submit();
     }
 }
 

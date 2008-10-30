@@ -451,7 +451,35 @@ public class DBManager {
 		}
 		return list;
 	}
-	
+	public String[] sectorList(){
+		String list[] = null;
+		Conexion con = new Conexion();
+		Conexion.driverOdbc();
+		if(con.abrirConexion()){
+			Connection conn = con.getCon();
+			PreparedStatement stmt;
+			try {
+				stmt = conn.prepareStatement("SELECT count(distinct(sector)) as count FROM usuarios");
+				ResultSet srs = stmt.executeQuery();
+				srs.next();
+				int cant = srs.getInt("count");
+				list = new String[cant];
+				stmt = conn.prepareStatement("SELECT distinct(sector) as sector FROM usuarios");
+				srs = stmt.executeQuery();
+				int aux = 0;
+				while(srs.next()){
+					list[aux] = srs.getString("sector");
+					aux++;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		}else{
+			System.out.println("La base esta caida");
+		}
+		return list;
+	}
 	public String resetPassword(String usuario, String password){
 		Conexion con = new Conexion();
 		Conexion.driverOdbc();
