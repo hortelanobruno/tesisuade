@@ -38,23 +38,33 @@
 	<queryString><![CDATA[SELECT
      recibos."numero" AS recibos_numero,
      recibos."beneficiario" AS recibos_beneficiario,
-     recibos."fecharendicion" AS recibos_fecharendicion,
+     datepart(dd,recibos."fecharendicion")AS dia,
+     datepart(mm,recibos."fecharendicion")AS mes,
+     datepart(yy,recibos."fecharendicion")AS anio,
      recibos."monto" AS recibos_monto,
      recibos."estadotransaccion" AS recibos_estadotransaccion,
      recibos."estadorecibo" AS recibos_estadorecibo,
-     recibos."motivo" AS recibos_motivo
+     recibos."motivo" AS recibos_motivo,
+     usuarios."digitos" AS digitos
 FROM
-     "dbo"."recibos" recibos
+     "dbo"."recibos" recibos,
+     "dbo"."usuarios" usuarios
 WHERE
-     recibos."usuario" = $P{usuario}]]></queryString>
+     recibos."usuario" = $P{usuario}
+ AND recibos."estadotransaccion" <> 'pendiente'
+ AND recibos."estadotransaccion" <> 'rendida'
+ AND recibos."usuario" = usuarios."usuario"]]></queryString>
 
 	<field name="recibos_numero" class="java.lang.Integer"/>
 	<field name="recibos_beneficiario" class="java.lang.String"/>
-	<field name="recibos_fecharendicion" class="java.lang.String"/>
+	<field name="dia" class="java.lang.Integer"/>
+	<field name="mes" class="java.lang.Integer"/>
+	<field name="anio" class="java.lang.Integer"/>
 	<field name="recibos_monto" class="java.lang.Double"/>
 	<field name="recibos_estadotransaccion" class="java.lang.String"/>
 	<field name="recibos_estadorecibo" class="java.lang.String"/>
 	<field name="recibos_motivo" class="java.lang.String"/>
+	<field name="digitos" class="java.lang.String"/>
 
 		<background>
 			<band height="0"  isSplitAllowed="true" >
@@ -172,6 +182,32 @@ WHERE
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$P{funcion}]]></textFieldExpression>
 				</textField>
+				<staticText>
+					<reportElement
+						x="189"
+						y="97"
+						width="48"
+						height="20"
+						key="staticText-1"/>
+					<box></box>
+					<textElement>
+						<font/>
+					</textElement>
+				<text><![CDATA[Digitos]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="242"
+						y="97"
+						width="100"
+						height="20"
+						key="textField-1"/>
+					<box></box>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{digitos}]]></textFieldExpression>
+				</textField>
 			</band>
 		</title>
 		<pageHeader>
@@ -192,7 +228,7 @@ WHERE
 						key="staticText"/>
 					<box></box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
 				<text><![CDATA[Numero]]></text>
 				</staticText>
@@ -208,7 +244,7 @@ WHERE
 						key="staticText"/>
 					<box></box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
 				<text><![CDATA[Fecharendicion]]></text>
 				</staticText>
@@ -224,7 +260,7 @@ WHERE
 						key="staticText"/>
 					<box></box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
 				<text><![CDATA[Beneficiario]]></text>
 				</staticText>
@@ -240,7 +276,7 @@ WHERE
 						key="staticText"/>
 					<box></box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
 				<text><![CDATA[Monto]]></text>
 				</staticText>
@@ -256,9 +292,9 @@ WHERE
 						key="staticText"/>
 					<box></box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
-				<text><![CDATA[Estadoboleta]]></text>
+				<text><![CDATA[EstadoRecibo]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -272,9 +308,9 @@ WHERE
 						key="staticText"/>
 					<box></box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
-				<text><![CDATA[Estadotransaccion]]></text>
+				<text><![CDATA[Transaccion]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -288,7 +324,7 @@ WHERE
 						key="staticText"/>
 					<box></box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
 				<text><![CDATA[Motivo]]></text>
 				</staticText>
@@ -309,7 +345,7 @@ WHERE
 					</textElement>
 				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{recibos_numero}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="79"
 						y="0"
@@ -320,7 +356,7 @@ WHERE
 					<textElement>
 						<font size="8"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{recibos_fecharendicion}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{dia}+"/"+$F{mes}+"/"+$F{anio}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement

@@ -29,7 +29,7 @@
     <td width="595" colspan="4" valign="top">	<p>&nbsp;</p>
       <table border="0" cellspacing="0" cellpadding="0" width="595">
         <tr>
-            <td class="pageName"><h1>Ver recibos</h1><br />
+            <td class="pageName"><h1>Ver recibos a confirmar</h1><br />
           <br /></td>
 		</tr>
 

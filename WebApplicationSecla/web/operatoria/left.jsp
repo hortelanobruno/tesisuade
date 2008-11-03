@@ -35,7 +35,11 @@
 				  </a></div></td>
 			</tr>
 			<tr>
-				<td><div align="left"><a href="verrecibos.jsp" class="navText">Ver recibos<br />
+				<td><div align="left"><a href="verrecibos.jsp" class="navText">Ver recibos a confirmar<br />
+				  </a></div></td>
+			</tr>
+                        <tr>
+				<td><div align="left"><a href="verrecibosrendidos.jsp" class="navText">Ver recibos rendidos<br />
 				  </a></div></td>
 			</tr>
                         <tr>

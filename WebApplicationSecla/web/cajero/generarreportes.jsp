@@ -19,12 +19,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="../estilo/estilo.css" type="text/css" />
+<link rel="stylesheet" href="../estilo/calendar-blue.css" type="text/css" />
 <title>Sistema de control de recibos</title>
 <script language="javascript" type="text/javascript" src="../js/script.js"></script>
+<script language="javascript" type="text/javascript" src="../js/calendar.js" ></script>
+<script language="javascript" type="text/javascript" src="../js/calendar-es.js" ></script>
+<script language="javascript" type="text/javascript" src="../js/calendar-setup.js"></script>
 </head>
 
 <body>
-
+<script type="text/javascript">
+window.onload = function() {
+  Calendar.setup({
+    inputField: "fecha1",
+    ifFormat:   "%d / %m / %Y",
+    button:     "selector1"
+  });
+  Calendar.setup({
+    inputField: "fecha2",
+    ifFormat:   "%d / %m / %Y",
+    button:     "selector2"
+  });
+}
+</script>
 <%@ include file="top.jsp" %>
 
 <%@ include file="left.jsp" %>
@@ -64,7 +81,7 @@
                       Responsables
                   </td>
                   <td>
-                      <input type="checkbox" name="recibo" checked>Completados
+                      <input type="checkbox" name="recibo" value="Completados" checked>Completados
                   </td>
               </tr>
               <tr>
@@ -72,7 +89,7 @@
                       PDF:<input name="reporte" type="radio" value="pdf" checked />
                   </td>
                   <td>
-                      <select multiple size="5"  name="responsables" style="width:180px" id="usuario" onchange="document.form1.sectores.selectedIndex = 0">
+                      <select size="5"  name="responsables" style="width:180px" id="usuario" onchange="document.form1.sectores.selectedIndex = 0">
                           <option value="Ninguno">Ninguno</option>
                           <option value="Todos">Todos</option>
                            <%
@@ -80,11 +97,11 @@
                                             out.print("<option value="+responsable[i]+">"+responsable[i]+"</option>");
                                     }
                             %>
-                      </select>
+                      </select><br>
                       <label class="error" id="res1" style="visibility:hidden"></label>
                   </td>
                   <td>
-                      <input type="checkbox" name="recibo">Anulados
+                      <input type="checkbox" name="recibo" value="Anulados">Anulados
                   </td>
               </tr>
               <tr>
@@ -95,7 +112,7 @@
                       Sectores:
                   </td>
                   <td>
-                      <input type="checkbox" name="recibo">Extraviados
+                      <label class="error" id="recibo1" style="visibility:hidden"></label>
                   </td>
               </tr>
               <tr>
@@ -103,7 +120,7 @@
                       
                   </td>
                   <td>
-                      <select multiple size="5" name="sectores" style="width:180px" id="usuario" onchange="document.form1.responsables.selectedIndex = 0">
+                      <select size="5" name="sectores" style="width:180px" id="usuario" onchange="document.form1.responsables.selectedIndex = 0">
                       <option value="Ninguno">Ninguno</option>
                       <option value="Todos">Todos</option>
                        <%
@@ -111,11 +128,37 @@
                                         out.print("<option value="+sector[i]+">"+sector[i]+"</option>");
                                 }
                         %>
-                    </select>
+                    </select><br>
                     <label class="error" id="sec1" style="visibility:hidden"></label>
+                    <label class="error" id="res2" style="visibility:hidden"></label>
                   </td>
                   <td>
-                      <label class="error" id="recibo1" style="visibility:hidden"></label>
+                      
+                  </td>
+              </tr>
+              <tr height="30">
+                  <td colspan="3">
+                      
+                  </td>
+              </tr>
+              <tr>
+                  <td>Rango de fecha de rendicion:
+                  </td>
+                  <td><input name="fecha1" type="text" size="15" id="fecha1" readonly="readonly"/>
+			<img src="../img/calendario.png"  width="20" height="20" id="selector1" />
+          &nbsp;&nbsp;&nbsp;&nbsp;
+                  </td>
+                  <td><input name="fecha2" type="text" size="15" id="fecha2" readonly="readonly"/>
+			<img src="../img/calendario.png"  width="20" height="20" id="selector2" />
+          &nbsp;&nbsp;&nbsp;&nbsp;
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                  </td>
+                  <td><label class="error" id="fe1" style="visibility:hidden"></label>
+                  </td>
+                  <td><label class="error" id="fe2" style="visibility:hidden"></label>
                   </td>
               </tr>
               <tr height="30">

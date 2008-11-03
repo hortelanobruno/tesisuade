@@ -17,6 +17,16 @@ function iSubmitEnter(oEvento, oFormulario){
     return true;
 }
 
+String.prototype.trim = function() {
+return this.replace(/^\s+|\s+$/g,"");
+}
+String.prototype.ltrim = function() {
+return this.replace(/^\s+/g,"");
+}
+String.prototype.rtrim = function() {
+return this.replace(/\s+$/g,"");
+}
+
 function valirdarGenerarReportes(){
     var aux = 0;
     if (document.form1.recibo[0].checked || document.form1.recibo[1].checked || document.form1.recibo[2].checked){
@@ -41,6 +51,53 @@ function valirdarGenerarReportes(){
         aux++;
     }else{
         document.getElementById('res1').style.visibility = 'hidden';
+    }
+    if((sector == 0)&&(responsable == 0)){
+        document.getElementById('res2').innerHTML = "Debe seleccionar un responsable o un sector";
+        document.getElementById('res2').style.visibility = 'visible';
+        aux++;
+    }else{
+        document.getElementById('res2').style.visibility = 'hidden';
+    }
+    var fecha1 = document.form1.fecha1.value.length;
+    var fecha2 = document.form1.fecha2.value.length;
+    if(fecha1==0){
+        document.getElementById('fe1').innerHTML = "Debe seleccionar una fecha";
+        document.getElementById('fe1').style.visibility = 'visible';
+        aux++;
+    }else{
+        document.getElementById('fe1').style.visibility = 'hidden';
+    }
+    if(fecha2==0){
+        document.getElementById('fe2').innerHTML = "Debe seleccionar una fecha";
+        document.getElementById('fe2').style.visibility = 'visible';
+        aux++;
+    }else{
+        document.getElementById('fe2').style.visibility = 'hidden';
+    }
+    if((fecha1!=0)&&(fecha2!=0)){
+        fecha1 = document.form1.fecha1.value;
+        fecha2 = document.form1.fecha2.value;
+        fecha1 = fecha1.split("/");
+        fecha2 = fecha2.split("/");
+        if(fecha1[2].trim()>fecha2[2].trim()){
+            document.getElementById('fe2').innerHTML = "Error en el rango de las fechas";
+            document.getElementById('fe2').style.visibility = 'visible';
+            aux++;
+        }else
+        if(fecha1[1].trim()>fecha2[1].trim()){
+            document.getElementById('fe2').innerHTML = "Error en el rango de las fechas";
+            document.getElementById('fe2').style.visibility = 'visible';
+            aux++;
+        }else
+        if(fecha1[0].trim()>fecha2[0].trim()){
+            document.getElementById('fe2').innerHTML = "Error en el rango de las fechas";
+            document.getElementById('fe2').style.visibility = 'visible';
+            aux++;
+        }
+        else{
+            document.getElementById('fe2').style.visibility = 'hidden';
+        }
     }
     if(aux == 0){
         this.form1.submit();
@@ -239,6 +296,7 @@ function validarCompletarRecibo()
 function validarAnularRecibo(){
     var motivo = this.form1.motivo.value.length;
     var recibo = this.form1.recibos.selectedIndex;
+    var fecha = this.form1.fecha.value.length;
     var aux=0;
 	
     if(recibo == -1 ){
@@ -252,6 +310,12 @@ function validarAnularRecibo(){
         aux++;
     }else{
         document.getElementById('motivo').style.visibility = 'hidden';
+    }
+    if(fecha==0){
+        document.getElementById('fecha2').style.visibility = 'visible';
+        aux++;
+    }else{
+        document.getElementById('fecha2').style.visibility = 'hidden';
     }
     if(aux == 0 ){
         this.form1.submit(); 	
