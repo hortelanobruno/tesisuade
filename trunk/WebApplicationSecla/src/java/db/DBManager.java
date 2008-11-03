@@ -83,7 +83,7 @@ public class DBManager {
 					Recibo recibo = new Recibo();
 					recibo.setNumero(srs.getInt("numero"));
 					recibo.setBeneficiario(srs.getString("beneficiario"));
-					recibo.setFecharendicion(srs.getString("fecharendicion"));
+					recibo.setFecharendicion(srs.getDate("fecharendicion"));
 					recibo.setMonto(srs.getInt("monto"));
 					recibo.setMotivo(srs.getString("motivo"));
 					recibo.setEstadorecibo(srs.getString("estadorecibo"));
@@ -215,16 +215,22 @@ public class DBManager {
 	}
 	
 	
-	public String anularRecibo(String numero, String motivo){
+	public String anularRecibo(String numero, String motivo,String fecha){
+                String[] aux = fecha.split("/");
+		aux[0] = aux[0].trim();
+		aux[1] = aux[1].trim();
+		aux[2] = aux[2].trim();
+		fecha = aux[1]+"/"+aux[0]+"/"+aux[2];
 		Conexion con = new Conexion();
 		Conexion.driverOdbc();
 		if(con.abrirConexion()){
 			Connection conn = con.getCon();
 			PreparedStatement stmt;
 			try {
-				stmt = conn.prepareStatement("update recibos set motivo = ? , estadorecibo = 'anulada', estadotransaccion = 'a confirmar' where numero = ?");
+				stmt = conn.prepareStatement("update recibos set motivo = ? , estadorecibo = 'anulada', estadotransaccion = 'a confirmar', fecharendicion = ? where numero = ?");
 				stmt.setString(1, motivo);
-				stmt.setInt(2, Integer.parseInt(numero));
+                                stmt.setString(2, fecha);
+                                stmt.setInt(3, Integer.parseInt(numero));
 				stmt.execute();	
 				return "true";
 			} catch (SQLException e) {
@@ -245,14 +251,14 @@ public class DBManager {
 			Connection conn = con.getCon();
 			PreparedStatement stmt;
 			try {
-				stmt = conn.prepareStatement("select * from recibos where usuario = ? and estadorecibo = 'completada'");
+				stmt = conn.prepareStatement("select * from recibos where usuario = ? and estadorecibo = 'completada' and estadotransaccion <> 'rendida'");
 				stmt.setString(1, usuario);	
 				ResultSet srs = stmt.executeQuery();
 				int aux = 0;
 				while(srs.next()){
 					ArrayList<String> datos = new ArrayList<String>();
 					datos.add(srs.getString("numero"));
-					datos.add(srs.getString("fecharendicion"));
+					datos.add(srs.getDate("fecharendicion").toString());
 					datos.add(srs.getString("beneficiario"));
 					datos.add(srs.getString("monto"));
 					datos.add(srs.getString("estadotransaccion"));
@@ -269,6 +275,40 @@ public class DBManager {
 		}
 		return null;
 	}
+        
+        public HashMap<Integer,List<String>> obtenerRecibosCompletadasRendidos(String usuario){
+		HashMap<Integer,List<String>> mapa = new HashMap<Integer,List<String>>();
+		Conexion con = new Conexion();
+		Conexion.driverOdbc();
+		if(con.abrirConexion()){
+			Connection conn = con.getCon();
+			PreparedStatement stmt;
+			try {
+				stmt = conn.prepareStatement("select * from recibos where usuario = ? and estadorecibo = 'completada' and estadotransaccion = 'rendida'");
+				stmt.setString(1, usuario);	
+				ResultSet srs = stmt.executeQuery();
+				int aux = 0;
+				while(srs.next()){
+					ArrayList<String> datos = new ArrayList<String>();
+					datos.add(srs.getString("numero"));
+					datos.add(srs.getDate("fecharendicion").toString());
+					datos.add(srs.getString("beneficiario"));
+					datos.add(srs.getString("monto"));
+					datos.add(srs.getString("estadotransaccion"));
+					mapa.put(aux, datos);
+					aux++;
+				}
+				return mapa;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		}else{
+			System.out.println("La base esta caida");
+		}
+		return null;
+	}
+        
 	
 	public HashMap<Integer,List<String>> obtenerRecibosAnuladas(String usuario){
 		HashMap<Integer,List<String>> mapa = new HashMap<Integer,List<String>>();
@@ -278,7 +318,37 @@ public class DBManager {
 			Connection conn = con.getCon();
 			PreparedStatement stmt;
 			try {
-				stmt = conn.prepareStatement("select * from recibos where usuario = ? and estadorecibo = 'anulada'");
+				stmt = conn.prepareStatement("select * from recibos where usuario = ? and estadorecibo = 'anulada' and estadotransaccion <> 'rendida'");
+				stmt.setString(1, usuario);	
+				ResultSet srs = stmt.executeQuery();
+				int aux = 0;
+				while(srs.next()){
+					ArrayList<String> datos = new ArrayList<String>();
+					datos.add(srs.getString("numero"));
+					datos.add(srs.getString("motivo"));
+					mapa.put(aux, datos);
+					aux++;
+				}
+				return mapa;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		}else{
+			System.out.println("La base esta caida");
+		}
+		return null;
+	}
+        
+        public HashMap<Integer,List<String>> obtenerRecibosAnuladasRendidos(String usuario){
+		HashMap<Integer,List<String>> mapa = new HashMap<Integer,List<String>>();
+		Conexion con = new Conexion();
+		Conexion.driverOdbc();
+		if(con.abrirConexion()){
+			Connection conn = con.getCon();
+			PreparedStatement stmt;
+			try {
+				stmt = conn.prepareStatement("select * from recibos where usuario = ? and estadorecibo = 'anulada' and estadotransaccion = 'rendida'");
 				stmt.setString(1, usuario);	
 				ResultSet srs = stmt.executeQuery();
 				int aux = 0;
@@ -308,7 +378,7 @@ public class DBManager {
 			Connection conn = con.getCon();
 			PreparedStatement stmt;
 			try {
-				stmt = conn.prepareStatement("select * from recibos where usuario = ? and estadorecibo = 'extraviada'");
+				stmt = conn.prepareStatement("select * from recibos where usuario = ? and estadorecibo = 'extraviada' and estadotransaccion <> 'rendida'");
 				stmt.setString(1, usuario);	
 				ResultSet srs = stmt.executeQuery();
 				int aux = 0;
@@ -329,6 +399,37 @@ public class DBManager {
 		}
 		return null;
 	}
+        
+        public HashMap<Integer,List<String>> obtenerRecibosExtraviadasRendidos(String usuario){
+		HashMap<Integer,List<String>> mapa = new HashMap<Integer,List<String>>();
+		Conexion con = new Conexion();
+		Conexion.driverOdbc();
+		if(con.abrirConexion()){
+			Connection conn = con.getCon();
+			PreparedStatement stmt;
+			try {
+				stmt = conn.prepareStatement("select * from recibos where usuario = ? and estadorecibo = 'extraviada' and estadotransaccion = 'rendida'");
+				stmt.setString(1, usuario);	
+				ResultSet srs = stmt.executeQuery();
+				int aux = 0;
+				while(srs.next()){
+					ArrayList<String> datos = new ArrayList<String>();
+					datos.add(srs.getString("numero"));
+					datos.add(srs.getString("motivo"));
+					mapa.put(aux, datos);
+					aux++;
+				}
+				return mapa;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		}else{
+			System.out.println("La base esta caida");
+		}
+		return null;
+	}
+        
 	public String reciboExtraviada(String numero, String motivo){
 		Conexion con = new Conexion();
 		Conexion.driverOdbc();

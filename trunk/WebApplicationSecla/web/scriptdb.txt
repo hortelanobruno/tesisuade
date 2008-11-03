@@ -14,7 +14,7 @@ create table usuarios (usuario varchar(100), password varchar(100),
 tipocuenta varchar(100), responsable varchar(100), sede varchar(100), sector varchar(100), digitos varchar(4))
 
 
-create table recibos (usuario varchar(100), numero integer, fecharendicion varchar(100), beneficiario varchar(100),
+create table recibos (usuario varchar(100), numero integer, fecharendicion datetime, beneficiario varchar(100),
 monto float , estadorecibo varchar(100), estadotransaccion varchar(100), motivo varchar(500) )
 
 

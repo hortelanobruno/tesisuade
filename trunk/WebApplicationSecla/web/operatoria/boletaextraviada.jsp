@@ -17,8 +17,9 @@
 	}
 	String motivo = request.getParameter("motivo");
 	String recibo = request.getParameter("recibos");
+        String fecha = request.getParameter("date");
 	if(motivo != null){
-		String resultado = manager.anularRecibo(recibo,motivo);
+		String resultado = manager.anularRecibo(recibo,motivo,fecha);
 		if(resultado != null){
 			if(resultado == "true"){
 				response.sendRedirect("boletacargadaok.jsp");	
@@ -32,11 +33,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="../estilo/estilo.css" type="text/css" />
+<link rel="stylesheet" href="../estilo/calendar-blue.css" type="text/css" />
 <title>Sistema de control de recibos</title>
 <script language="javascript" type="text/javascript" src="../js/script.js"></script>
+<script language="javascript" type="text/javascript" src="../js/calendar.js" ></script>
+<script language="javascript" type="text/javascript" src="../js/calendar-es.js" ></script>
+<script language="javascript" type="text/javascript" src="../js/calendar-setup.js"></script>
 </head>
 
 <body>
+<script type="text/javascript">
+window.onload = function() {
+  Calendar.setup({
+    inputField: "fecha",
+    ifFormat:   "%d / %m / %Y",
+    button:     "selector"
+  });
+}
+</script>
 <%@ include file="top.jsp" %>
 
 <%@ include file="left.jsp" %>
@@ -71,6 +85,12 @@
 				}
 			%>
           </select>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="recibo" style="visibility:hidden">Debe seleccionar un campo</label></td>
+          </tr>
+          <tr>
+          <td>Fecha</td>
+          <td><input name="date" type="text" size="30" id="fecha" readonly="readonly"/>
+			<img src="../img/calendario.png"  width="20" height="20" id="selector" />
+          &nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="fecha2" style="visibility:hidden">Debe seleccionar una fecha</label></td>
           </tr>
           <tr>
           <td valign="top">Motivo</td>

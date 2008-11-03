@@ -1,9 +1,11 @@
 package varios;
 
+import java.util.Date;
+
 public class Recibo {
 
 	private int numero;
-	private String fecharendicion;
+	private Date fecharendicion;
 	private String beneficiario;
 	private int monto;
 	private String estadorecibo;
@@ -22,10 +24,10 @@ public class Recibo {
 	}
 
 	public String getFecharendicion() {
-		return fecharendicion;
+		return fecharendicion.toString();
 	}
 
-	public void setFecharendicion(String fecharendicion) {
+	public void setFecharendicion(Date fecharendicion) {
 		this.fecharendicion = fecharendicion;
 	}
 
