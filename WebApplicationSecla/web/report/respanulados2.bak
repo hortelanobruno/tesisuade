@@ -41,8 +41,8 @@ FROM
      "dbo"."usuarios" usuarios
 WHERE
  (recibos."fecharendicion" between $P{fecha1} AND $P{fecha2})
- AND recibos."estadorecibo" = 'anulada'
- AND recibos."estadorecibo" = 'extraviada'
+ AND (recibos."estadorecibo" = 'anulada'
+ OR recibos."estadorecibo" = 'extraviada')
  AND usuarios."usuario" = recibos."usuario"
  AND usuarios."responsable" = $P{responsable}]]></queryString>
 
