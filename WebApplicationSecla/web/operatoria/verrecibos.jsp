@@ -86,7 +86,8 @@
           <td colspan="3" align="center">
           <table width="100%" border="1" cellpadding="1" cellspacing="0" bordercolor="#4D6FAC">
             <tr>
-              <td width="21%" align="center">Numero</td>
+              <td width="11%" align="center">Numero</td>
+              <td width="10%" align="center">Fecha</td>
               <td width="79%" align="center">Motivo</td>
             </tr>
              <%		
@@ -120,7 +121,8 @@
           <td colspan="3" align="center">
           <table width="100%" border="1" cellpadding="1" cellspacing="0" bordercolor="#4D6FAC">
             <tr>
-              <td width="21%" align="center">Numero</td>
+              <td width="11%" align="center">Numero</td>
+              <td width="10%" align="center">Fecha</td>
               <td width="79%" align="center">Motivo</td>
             </tr>
              <%		

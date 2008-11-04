@@ -29,7 +29,7 @@
     <td width="595" colspan="4" valign="top">	<p>&nbsp;</p>
       <table border="0" cellspacing="0" cellpadding="0" width="595">
         <tr>
-            <td class="pageName"><h1>Ver recibos rendidos</h1><br />
+            <td class="pageName"><h1>Ver recibos rendidos (ultimos 100)</h1><br />
           <br /></td>
 		</tr>
 
@@ -86,7 +86,8 @@
           <td colspan="3" align="center">
           <table width="100%" border="1" cellpadding="1" cellspacing="0" bordercolor="#4D6FAC">
             <tr>
-              <td width="21%" align="center">Numero</td>
+              <td width="11%" align="center">Numero</td>
+              <td width="10%" align="center">Fecha</td>
               <td width="79%" align="center">Motivo</td>
             </tr>
              <%		
@@ -120,7 +121,8 @@
           <td colspan="3" align="center">
           <table width="100%" border="1" cellpadding="1" cellspacing="0" bordercolor="#4D6FAC">
             <tr>
-              <td width="21%" align="center">Numero</td>
+              <td width="11%" align="center">Numero</td>
+              <td width="10%" align="center">Fecha</td>
               <td width="79%" align="center">Motivo</td>
             </tr>
              <%		

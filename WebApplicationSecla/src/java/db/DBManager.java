@@ -284,7 +284,7 @@ public class DBManager {
 			Connection conn = con.getCon();
 			PreparedStatement stmt;
 			try {
-				stmt = conn.prepareStatement("select * from recibos where usuario = ? and estadorecibo = 'completada' and estadotransaccion = 'rendida'");
+				stmt = conn.prepareStatement("select top 50 * from recibos where usuario = ? and estadorecibo = 'completada' and estadotransaccion = 'rendida' order by numero desc");
 				stmt.setString(1, usuario);	
 				ResultSet srs = stmt.executeQuery();
 				int aux = 0;
@@ -325,6 +325,7 @@ public class DBManager {
 				while(srs.next()){
 					ArrayList<String> datos = new ArrayList<String>();
 					datos.add(srs.getString("numero"));
+                                        datos.add(srs.getDate("fecharendicion").toString());
 					datos.add(srs.getString("motivo"));
 					mapa.put(aux, datos);
 					aux++;
@@ -348,13 +349,14 @@ public class DBManager {
 			Connection conn = con.getCon();
 			PreparedStatement stmt;
 			try {
-				stmt = conn.prepareStatement("select * from recibos where usuario = ? and estadorecibo = 'anulada' and estadotransaccion = 'rendida'");
+				stmt = conn.prepareStatement("select top 50 * from recibos where usuario = ? and estadorecibo = 'anulada' and estadotransaccion = 'rendida'  order by numero desc");
 				stmt.setString(1, usuario);	
 				ResultSet srs = stmt.executeQuery();
 				int aux = 0;
 				while(srs.next()){
 					ArrayList<String> datos = new ArrayList<String>();
 					datos.add(srs.getString("numero"));
+                                        datos.add(srs.getDate("fecharendicion").toString());
 					datos.add(srs.getString("motivo"));
 					mapa.put(aux, datos);
 					aux++;
@@ -385,6 +387,7 @@ public class DBManager {
 				while(srs.next()){
 					ArrayList<String> datos = new ArrayList<String>();
 					datos.add(srs.getString("numero"));
+                                        datos.add(srs.getDate("fecharendicion").toString());
 					datos.add(srs.getString("motivo"));
 					mapa.put(aux, datos);
 					aux++;
@@ -408,13 +411,14 @@ public class DBManager {
 			Connection conn = con.getCon();
 			PreparedStatement stmt;
 			try {
-				stmt = conn.prepareStatement("select * from recibos where usuario = ? and estadorecibo = 'extraviada' and estadotransaccion = 'rendida'");
+				stmt = conn.prepareStatement("select top 50 * from recibos where usuario = ? and estadorecibo = 'extraviada' and estadotransaccion = 'rendida' order by numero desc");
 				stmt.setString(1, usuario);	
 				ResultSet srs = stmt.executeQuery();
 				int aux = 0;
 				while(srs.next()){
 					ArrayList<String> datos = new ArrayList<String>();
 					datos.add(srs.getString("numero"));
+                                        datos.add(srs.getDate("fecharendicion").toString());
 					datos.add(srs.getString("motivo"));
 					mapa.put(aux, datos);
 					aux++;
