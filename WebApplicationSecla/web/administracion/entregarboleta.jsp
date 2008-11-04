@@ -9,13 +9,16 @@
 	}else{
 		response.sendRedirect("../index.jsp");
 	}
+        DBManager manager = new DBManager();
+        if(!manager.isConnected()){
+            response.sendRedirect("../index.jsp");
+        }
 	String operador = request.getParameter("listaOperadores");
 	String numMin = request.getParameter("numMin");
 	String numMax = request.getParameter("numMax");
 	String resultado = new String();
 	if(operador != null){
 		session.setAttribute("operador",operador);
-		DBManager manager = new DBManager();
 		resultado = manager.cargarRecibos(operador,numMin,numMax);
 		if(resultado != null){
 			if(resultado == "true"){

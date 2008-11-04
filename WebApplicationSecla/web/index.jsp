@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*,java.io.*, java.util.*" errorPage="" %>
 <%@ page import="db.DBManager" %> 
 
 <%  String usuario = request.getParameter("usu");
@@ -110,6 +110,12 @@
 						out.print("</tr>");
 					}
 				}
+                                DBManager manager = new DBManager();
+                                if(!manager.isConnected()){
+                                    out.print("<tr height='20px' align='center'>");
+                                    out.print("<td colspan='5'><label style='color:#FF0000'>Error al conectarse a la base</label></td>");
+                                    out.print("</tr>");
+                                }
 				%>
              <tr height="10px">
                   <td colspan="5"></td> 

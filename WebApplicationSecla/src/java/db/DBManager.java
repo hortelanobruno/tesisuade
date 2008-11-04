@@ -16,6 +16,14 @@ public class DBManager {
 		// TODO Auto-generated constructor stub
 	}
 	
+        public boolean isConnected(){
+            Conexion con = new Conexion();
+            Conexion.driverOdbc();
+            if(con.abrirConexion()){
+                return true;
+            }
+            return false;
+        }
 	//stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
 	//ResultSet srs = stmt.executeQuery("SELECT usuario,password,tipocuenta FROM usuarios");
 	

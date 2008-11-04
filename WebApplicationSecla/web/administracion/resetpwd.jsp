@@ -12,8 +12,11 @@
 	String usuario = request.getParameter("listaUsuarios");
 	String password1 = request.getParameter("password1");
 	String resultado = new String();
+        DBManager manager = new DBManager();
+        if(!manager.isConnected()){
+            response.sendRedirect("../index.jsp");
+        }
 	if(usuario != null){
-		DBManager manager = new DBManager();
 		resultado = manager.resetPassword(usuario,password1);
 		if(resultado != null){
 			if(resultado == "ok"){

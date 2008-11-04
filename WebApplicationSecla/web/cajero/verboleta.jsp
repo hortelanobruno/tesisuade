@@ -10,6 +10,9 @@
 		response.sendRedirect("../index.jsp");
 	}
 	DBManager manager = new DBManager();
+        if(!manager.isConnected()){
+            response.sendRedirect("../index.jsp");
+        }
 	String[] usuario = manager.operatorList();
         String[] recibos = request.getParameterValues("recibo");
         if(recibos != null){

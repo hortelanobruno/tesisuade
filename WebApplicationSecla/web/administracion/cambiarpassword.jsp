@@ -11,6 +11,9 @@
 	}
 	Object usuario = session.getAttribute("usuario");
 	DBManager manager = new DBManager();
+        if(!manager.isConnected()){
+            response.sendRedirect("../index.jsp");
+        }
 	List<String> datos = manager.datosUsuario(usuario);
 	String password2 = request.getParameter("password3");
 	String passwordViejo = request.getParameter("password1");
