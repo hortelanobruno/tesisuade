@@ -34,6 +34,10 @@
             } else {
                 response.sendRedirect("../index.jsp");
             }
+            DBManager manager = new DBManager();
+            if(!manager.isConnected()){
+                response.sendRedirect("../index.jsp");
+            }
 %>
 <html>
     

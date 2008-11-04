@@ -11,6 +11,9 @@
 		response.sendRedirect("../index.jsp");
 	}
         DBManager manager = new DBManager();
+        if(!manager.isConnected()){
+            response.sendRedirect("../index.jsp");
+        }
 	String[] responsable = manager.responsableList();
         String[] sector = manager.sectorList();
 %>

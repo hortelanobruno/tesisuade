@@ -11,6 +11,9 @@
 	}
 	String usuario = session.getAttribute("usuario").toString();
 	DBManager manager = new DBManager();
+        if(!manager.isConnected()){
+            response.sendRedirect("../index.jsp");
+        }
 	List<Integer> recibos = manager.obtenerRecibosPendientes(usuario);
 	if(recibos.size() == 0){
 		response.sendRedirect("nohayboletas.jsp");

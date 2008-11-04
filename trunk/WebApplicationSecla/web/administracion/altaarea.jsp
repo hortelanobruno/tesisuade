@@ -9,6 +9,10 @@
             } else {
                 response.sendRedirect("../index.jsp");
             }
+            DBManager manager = new DBManager();
+            if(!manager.isConnected()){
+                response.sendRedirect("../index.jsp");
+            }
             String responsable = request.getParameter("responsable");
             String sede = request.getParameter("sede");
             String sector = request.getParameter("sector");
@@ -19,7 +23,6 @@
             String password2 = request.getParameter("password2");
             String resultado = new String();
             if (responsable != null) {
-                DBManager manager = new DBManager();
                 resultado = manager.addArea(responsable, sede, sector, digarea, digresp, usuario, password1);
                 if (resultado != null) {
                     if (resultado == "ok") {
