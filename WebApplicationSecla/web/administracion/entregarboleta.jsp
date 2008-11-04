@@ -72,7 +72,7 @@
                   <tr>
                     <td><select name="listaOperadores" size="10" style="width:300px" id="listaUsuarios">
                       <%
-					DBManager manager = new DBManager();
+					
 					String usu[] = manager.responsableList();
 					for(int i=0 ; i < usu.length; i++){
 						out.print("<option>"+usu[i]+"</option>");

@@ -442,16 +442,22 @@ public class DBManager {
 		return null;
 	}
         
-	public String reciboExtraviada(String numero, String motivo){
+	public String reciboExtraviada(String numero, String motivo,String fecha){
+                String[] aux = fecha.split("/");
+		aux[0] = aux[0].trim();
+		aux[1] = aux[1].trim();
+		aux[2] = aux[2].trim();
+		fecha = aux[1]+"/"+aux[0]+"/"+aux[2];
 		Conexion con = new Conexion();
 		Conexion.driverOdbc();
 		if(con.abrirConexion()){
 			Connection conn = con.getCon();
 			PreparedStatement stmt;
 			try {
-				stmt = conn.prepareStatement("update recibos set motivo = ? , estadorecibo = 'extraviada', estadotransaccion = 'a confirmar' where numero = ?");
+				stmt = conn.prepareStatement("update recibos set motivo = ? , fecharendicion = ? , estadorecibo = 'extraviada', estadotransaccion = 'a confirmar' where numero = ?");
 				stmt.setString(1, motivo);
-				stmt.setInt(2, Integer.parseInt(numero));
+                                stmt.setString(2,fecha);
+				stmt.setInt(3, Integer.parseInt(numero));
 				stmt.execute();	
 				return "true";
 			} catch (SQLException e) {

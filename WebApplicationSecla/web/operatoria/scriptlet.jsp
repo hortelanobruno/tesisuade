@@ -79,7 +79,6 @@
 
                 String reporte = request.getParameter("reporte");
                 Map params = new HashMap();
-                    DBManager manager = new DBManager();
                     String usuario = session.getAttribute("usuario").toString();
                     List<String> datos = manager.datosUsuario(usuario);
                     params.put("usuario", usuario);
