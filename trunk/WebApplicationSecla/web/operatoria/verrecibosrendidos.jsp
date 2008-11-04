@@ -60,7 +60,6 @@
             </tr>
             <%		
 			String usuario = session.getAttribute("usuario").toString();
-			DBManager manager = new DBManager();
 			HashMap<Integer,List<String>> datos = manager.obtenerRecibosCompletadasRendidos(usuario);
 				for(int i = 0 ; i < datos.size() ; i++){
 					List<String> data = datos.get(i);

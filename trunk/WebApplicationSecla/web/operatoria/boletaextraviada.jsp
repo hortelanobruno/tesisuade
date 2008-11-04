@@ -22,7 +22,7 @@
 	String recibo = request.getParameter("recibos");
         String fecha = request.getParameter("date");
 	if(motivo != null){
-		String resultado = manager.anularRecibo(recibo,motivo,fecha);
+		String resultado = manager.reciboExtraviada(recibo,motivo,fecha);
 		if(resultado != null){
 			if(resultado == "true"){
 				response.sendRedirect("boletacargadaok.jsp");	
