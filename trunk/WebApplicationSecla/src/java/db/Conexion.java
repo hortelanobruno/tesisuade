@@ -14,7 +14,7 @@ public class Conexion {
     public Conexion() { 
     	conexionVO = new ConexionVO();
     	ConfiguracionXMLWrapper conf = new ConfiguracionXMLWrapper();
-    	conexionVO = conf.parseConfiguracion("c:/conf.xml");
+    	conexionVO = conf.parseConfiguracion("c:/windows/sistemarecibosconf.xml");
     }
     
     public java.sql.Connection getCon() { return con; }
