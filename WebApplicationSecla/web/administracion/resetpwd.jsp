@@ -65,7 +65,6 @@
                 <td valign="top">Usuarios</td>
                 <td><select name="listaUsuarios" size="10" style="width:200px" id="listaUsuarios" onchange="cargaraDatosUsuario()">
                 <%
-					DBManager manager = new DBManager();
 					String usu[] = manager.operatorList();
 					for(int i=0 ; i < usu.length; i++){
 						out.print("<option value="+usu[i]+">"+usu[i]+"</option>");
