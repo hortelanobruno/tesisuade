@@ -58,7 +58,7 @@ window.onload = function() {
 	</tr>
         <tr>
           <td class="bodyText">
-          <form action="scriptlet.jsp" name="form1" method="post">
+          <form action="scriptlet.jsp" name="form1" method="post" target="blank">
           <table>
               <tr height="20">
                   <td align="center" bgcolor="#4D6FAC" width="200">

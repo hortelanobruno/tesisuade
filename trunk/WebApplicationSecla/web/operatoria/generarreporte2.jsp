@@ -40,7 +40,7 @@
 	</tr>
         <tr>
           <td class="bodyText">
-          <form action="scriptlet.jsp" name="form1" method="post">
+          <form action="scriptlet.jsp" name="form1" method="post" target="blank">
           <table>
               <tr>
                   <td colspan="2">

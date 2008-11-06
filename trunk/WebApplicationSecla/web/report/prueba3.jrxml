@@ -2,7 +2,7 @@
 <!-- Created with iReport - A designer for JasperReports -->
 <!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
 <jasperReport
-		 name="Reporte"
+		 name="prueba3"
 		 columnCount="1"
 		 printOrder="Vertical"
 		 orientation="Portrait"
@@ -141,7 +141,7 @@ WHERE
 					<textElement>
 						<font/>
 					</textElement>
-				<text><![CDATA[Secretaria]]></text>
+				<text><![CDATA[Sede]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -167,7 +167,7 @@ WHERE
 					<textElement>
 						<font/>
 					</textElement>
-				<text><![CDATA[Funcion]]></text>
+				<text><![CDATA[Sector]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
