@@ -80,23 +80,12 @@ function valirdarGenerarReportes(){
         fecha2 = document.form1.fecha2.value;
         fecha1 = fecha1.split("/");
         fecha2 = fecha2.split("/");
-        if(fecha1[2].trim()>fecha2[2].trim()){
+        fecha1 = new Date(fecha1[2], fecha1[1]-1, fecha1[0]);
+        fecha2 = new Date(fecha2[2], fecha2[1]-1, fecha2[0]);
+        if(fecha1 > fecha2){
             document.getElementById('fe2').innerHTML = "Error en el rango de las fechas";
             document.getElementById('fe2').style.visibility = 'visible';
             aux++;
-        }else
-        if(fecha1[1].trim()>fecha2[1].trim()){
-            document.getElementById('fe2').innerHTML = "Error en el rango de las fechas";
-            document.getElementById('fe2').style.visibility = 'visible';
-            aux++;
-        }else
-        if(fecha1[0].trim()>fecha2[0].trim()){
-            document.getElementById('fe2').innerHTML = "Error en el rango de las fechas";
-            document.getElementById('fe2').style.visibility = 'visible';
-            aux++;
-        }
-        else{
-            document.getElementById('fe2').style.visibility = 'hidden';
         }
     }
     if(aux == 0){
@@ -268,7 +257,17 @@ function validarCompletarRecibo()
         document.getElementById('fecha2').style.visibility = 'visible';
         aux++;
     }else{
-        document.getElementById('fecha2').style.visibility = 'hidden';
+        var fecha1 = this.form1.date.value;
+        fecha1 = fecha1.split("/");
+        fecha1 = new Date(fecha1[2], fecha1[1]-1, fecha1[0]);
+        var fecha2 = new Date();
+        if(fecha1 > fecha2){
+            document.getElementById('fecha2').innerHTML = "No se puede asignar una fecha adelantada";
+            document.getElementById('fecha2').style.visibility = 'visible';
+            aux++;
+        }else{
+            document.getElementById('fecha2').style.visibility = 'hidden';
+        }
     }
     if(beneficiario==0){
         document.getElementById('beneficiario2').innerHTML = "Debe completar el campo";
@@ -296,9 +295,9 @@ function validarCompletarRecibo()
 function validarAnularRecibo(){
     var motivo = this.form1.motivo.value.length;
     var recibo = this.form1.recibos.selectedIndex;
-    var fecha = this.form1.fecha.value.length;
+    var fecha = this.form1.date.value.length;
     var aux=0;
-	
+    
     if(recibo == -1 ){
         document.getElementById('recibo').style.visibility = 'visible';
         aux++;
@@ -306,16 +305,27 @@ function validarAnularRecibo(){
         document.getElementById('recibo').style.visibility = 'hidden';
     }
     if(motivo==0){
-        document.getElementById('motivo').style.visibility = 'visible';
+        document.getElementById('motivo1').style.visibility = 'visible';
         aux++;
     }else{
-        document.getElementById('motivo').style.visibility = 'hidden';
+        document.getElementById('motivo1').style.visibility = 'hidden';
     }
     if(fecha==0){
+        document.getElementById('fecha2').innerHTML = "Debe seleccionar una fecha";
         document.getElementById('fecha2').style.visibility = 'visible';
         aux++;
     }else{
-        document.getElementById('fecha2').style.visibility = 'hidden';
+        var fecha1 = this.form1.date.value;
+        fecha1 = fecha1.split("/");
+        fecha1 = new Date(fecha1[2], fecha1[1]-1, fecha1[0]);
+        var fecha2 = new Date();
+        if(fecha1 > fecha2){
+            document.getElementById('fecha2').innerHTML = "No se puede asignar una fecha adelantada";
+            document.getElementById('fecha2').style.visibility = 'visible';
+            aux++;
+        }else{
+            document.getElementById('fecha2').style.visibility = 'hidden';
+        }
     }
     if(aux == 0 ){
         this.form1.submit(); 	

@@ -97,7 +97,7 @@ window.onload = function() {
                           <option value="Todos">Todos</option>
                            <%
                                     for(int i=0 ; i < responsable.length; i++){
-                                            out.print("<option value="+responsable[i]+">"+responsable[i]+"</option>");
+                                            out.print("<option value='"+responsable[i]+"'>"+responsable[i]+"</option>");
                                     }
                             %>
                       </select><br>
