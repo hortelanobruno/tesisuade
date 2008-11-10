@@ -92,11 +92,11 @@ window.onload = function() {
           <td>Fecha</td>
           <td><input name="date" type="text" size="30" id="fecha" readonly="readonly"/>
 			<img src="../img/calendario.png"  width="20" height="20" id="selector" />
-          &nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="fecha2" style="visibility:hidden">Debe seleccionar una fecha</label></td>
+          &nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="fecha2" style="visibility:hidden"></label></td>
           </tr>
           <tr>
           <td valign="top">Motivo</td>
-          <td><textarea name="motivo" cols="24" rows="10"></textarea>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="motivo" style="visibility:hidden">Debe completar el campo</label></td>
+          <td><textarea name="motivo" cols="24" rows="10"></textarea>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="motivo1" style="visibility:hidden">Debe completar el campo</label></td>
           </tr>
           <tr >
           <td colspan="2" height="30px"></td>

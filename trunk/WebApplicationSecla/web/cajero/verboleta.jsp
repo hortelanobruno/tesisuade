@@ -66,7 +66,7 @@
               <option value="">&nbsp;</option>
            <%
                     for(int i=0 ; i < usuario.length; i++){
-                            out.print("<option value="+usuario[i]+">"+usuario[i]+"</option>");
+                            out.print("<option value='"+usuario[i]+"'>"+usuario[i]+"</option>");
                     }
             %>
           </select>&nbsp;&nbsp;&nbsp;&nbsp;

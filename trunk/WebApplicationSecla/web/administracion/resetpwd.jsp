@@ -67,7 +67,7 @@
                 <%
 					String usu[] = manager.operatorList();
 					for(int i=0 ; i < usu.length; i++){
-						out.print("<option value="+usu[i]+">"+usu[i]+"</option>");
+						out.print("<option value='"+usu[i]+"'>"+usu[i]+"</option>");
 					}
 				%>
                   </select> 

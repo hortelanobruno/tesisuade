@@ -15,7 +15,7 @@
   <tr bgcolor="#7EADCF">
   	<td height="25" colspan="7" id="dateformat">&nbsp;&nbsp;
     <script language="JavaScript" type="text/javascript">
-      document.write(retornarFecha());	</script>	<a href="../index.jsp" style="color:#4D6FAC">Cerrar sesion</a></td>
+        document.write(retornarFecha());	</script>&nbsp;&nbsp;<% out.print("Usuario: "+session.getAttribute("usuario")); %>&nbsp;&nbsp;	<a href="../index.jsp" style="color:#4D6FAC">Cerrar sesion</a></td>
   </tr>
   <tr>
     <td colspan="7" bgcolor="#003366"><img src="mm_spacer.gif" alt="" width="1" height="1" border="0" /></td>
