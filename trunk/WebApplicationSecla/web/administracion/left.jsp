@@ -42,6 +42,10 @@
 				<td><div align="left"><a href="entregarboleta.jsp" class="navText">Entregar recibos<br />
 				  </a></div></td>
 			</tr>
+                        <tr>
+				<td><div align="left"><a href="verrecibosentregados.jsp" class="navText">Ver recibos entregados<br />
+				  </a></div></td>
+			</tr>
 			</table>
 			</td>
 		  </tr>

@@ -31,6 +31,10 @@
           <tr>
             <td bgcolor="#FFFFFF">
 			<table width="100%">
+                        <tr>
+				<td><div align="left"><a href="verrecibosconfirmados.jsp" class="navText">Ver recibos confirmados<br />
+				  </a></div></td>
+			</tr>
 			<tr>
 				<td><div align="left"><a href="verboleta.jsp" class="navText">Ver estado de los recibos<br />
 				  </a></div></td>

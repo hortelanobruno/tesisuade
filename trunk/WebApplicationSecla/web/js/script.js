@@ -297,7 +297,6 @@ function validarAnularRecibo(){
     var recibo = this.form1.recibos.selectedIndex;
     var fecha = this.form1.date.value.length;
     var aux=0;
-    
     if(recibo == -1 ){
         document.getElementById('recibo').style.visibility = 'visible';
         aux++;

@@ -30,11 +30,13 @@ function processRequestCargarDatosUsuario() {
 
 function verRecibo() {
     var usuario = this.form1.usuarios.value
-    var url = "../verRecibo?usuario="+ usuario;
-    initRequest(url);
-    req.onreadystatechange = processRequestVerRecibo;
-    req.open("GET", url, true); 
-    req.send(null);
+    if(usuario != ""){
+        var url = "../verRecibo?usuario="+ usuario;
+        initRequest(url);
+        req.onreadystatechange = processRequestVerRecibo;
+        req.open("GET", url, true); 
+        req.send(null);
+    }
 }
 
 function processRequestVerRecibo() {
@@ -77,7 +79,7 @@ function processRequestVerRecibo() {
                       datos += "<tr><td align='center'>"+numero+"</td><td align='center'>"+estadoboleta+"</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td align='center'>"+motivo+"</td><td align='center'><input name='recibo' id='"+i+"' type='checkbox' value='"+numero+"' /></td></tr>";
                   }
               }
-              datos += "</table>";
+              datos += "</table><br><br>";
               datos += "<input name='cargar' type='submit' value='Confirmar' style='width:100px'/>";
               div.innerHTML = datos;
           }
