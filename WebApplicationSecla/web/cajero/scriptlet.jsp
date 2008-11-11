@@ -22,7 +22,7 @@
 
 <%@ page import="db.*" %>
 
-<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*,java.io.*, java.util.*" errorPage="" %>
+<%@ page contentType="text/html; charset=ISO-8859-1" language="java" import="java.sql.*,java.io.*, java.util.*" errorPage="" %>
 <%@ page import="db.*,java.util.HashMap,java.util.Map" %> 
 <%@ page import="net.sf.jasperreports.engine.*"%> 
 <%

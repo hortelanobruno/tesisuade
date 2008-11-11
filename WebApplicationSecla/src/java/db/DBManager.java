@@ -127,6 +127,42 @@ public class DBManager {
 		return datos;
 	}
 	
+        public List<Integer> obtenerRecibosConfirmados(){
+            List<Integer> recibos = new ArrayList<Integer>();
+            Conexion con = new Conexion();
+            Conexion.driverOdbc();
+            if(con.abrirConexion()){
+                    Connection conn = con.getCon();
+                    PreparedStatement stmt;
+                    try {
+                            stmt = conn.prepareStatement("SELECT top 100 numero FROM recibos where estadotransaccion = 'rendida' order by numero desc");
+                            ResultSet srs = stmt.executeQuery();
+                            while(srs.next()){
+                               recibos.add(srs.getInt("numero"));
+                            }
+                    }catch(Exception e){}
+            }
+            return recibos;
+        }
+        
+        public List<Integer> obtenerRecibosEntregados(){
+            List<Integer> recibos = new ArrayList<Integer>();
+            Conexion con = new Conexion();
+            Conexion.driverOdbc();
+            if(con.abrirConexion()){
+                    Connection conn = con.getCon();
+                    PreparedStatement stmt;
+                    try {
+                            stmt = conn.prepareStatement("SELECT top 100 numero FROM recibos order by numero desc");
+                            ResultSet srs = stmt.executeQuery();
+                            while(srs.next()){
+                               recibos.add(srs.getInt("numero"));
+                            }
+                    }catch(Exception e){}
+            }
+            return recibos;
+        }
+        
 	public List<Integer> obtenerRecibosPendientes(String usuario){
 		ArrayList<Integer> recibos = new ArrayList<Integer>();
 		Conexion con = new Conexion();

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"  ?>
+<?xml version="1.0" encoding="ISO-8859-1"  ?>
 <!-- Created with iReport - A designer for JasperReports -->
 <!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
 <jasperReport
@@ -18,7 +18,7 @@
 		 isTitleNewPage="false"
 		 isSummaryNewPage="false">
 	<property name="ireport.scriptlethandling" value="0" />
-	<property name="ireport.encoding" value="UTF-8" />
+	<property name="ireport.encoding" value="ISO-8859-1" />
 	<import value="java.util.*" />
 	<import value="net.sf.jasperreports.engine.*" />
 	<import value="net.sf.jasperreports.engine.data.*" />
@@ -221,7 +221,7 @@ WHERE
 						mode="Opaque"
 						x="0"
 						y="0"
-						width="79"
+						width="47"
 						height="18"
 						forecolor="#FFFFFF"
 						backcolor="#999999"
@@ -235,9 +235,9 @@ WHERE
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="79"
+						x="47"
 						y="0"
-						width="79"
+						width="76"
 						height="18"
 						forecolor="#FFFFFF"
 						backcolor="#999999"
@@ -251,9 +251,9 @@ WHERE
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="158"
+						x="123"
 						y="0"
-						width="79"
+						width="114"
 						height="18"
 						forecolor="#FFFFFF"
 						backcolor="#999999"
@@ -336,7 +336,7 @@ WHERE
 					<reportElement
 						x="0"
 						y="0"
-						width="79"
+						width="47"
 						height="20"
 						key="textField"/>
 					<box></box>
@@ -347,9 +347,9 @@ WHERE
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="79"
+						x="47"
 						y="0"
-						width="79"
+						width="76"
 						height="20"
 						key="textField"/>
 					<box></box>
@@ -360,9 +360,9 @@ WHERE
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="158"
+						x="123"
 						y="0"
-						width="79"
+						width="114"
 						height="20"
 						key="textField"/>
 					<box></box>
@@ -382,7 +382,7 @@ WHERE
 					<textElement>
 						<font size="8"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Double"><![CDATA[$F{recibos_monto}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["$"+$F{recibos_monto}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -419,7 +419,7 @@ WHERE
 						key="textField"/>
 					<box></box>
 					<textElement>
-						<font size="8"/>
+						<font size="8" isPdfEmbedded ="false"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{recibos_motivo}]]></textFieldExpression>
 				</textField>
