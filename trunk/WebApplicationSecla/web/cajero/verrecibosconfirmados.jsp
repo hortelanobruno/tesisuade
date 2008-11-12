@@ -19,13 +19,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="../estilo/estilo.css" type="text/css" />
+<link rel="stylesheet" href="../estilo/calendar-blue.css" type="text/css" />
 <title>Sistema de control de recibos</title>
 <script language="javascript" type="text/javascript" src="../js/script.js"></script>
-<script language="javascript" type="text/javascript" src="../js/ajax.js"></script>
+<script language="javascript" type="text/javascript" src="../js/calendar.js" ></script>
+<script language="javascript" type="text/javascript" src="../js/calendar-es.js" ></script>
+<script language="javascript" type="text/javascript" src="../js/calendar-setup.js"></script>
 </head>
 
 <body>
-
+<script type="text/javascript">
+window.onload = function() {
+  Calendar.setup({
+    inputField: "fecha1",
+    ifFormat:   "%d / %m / %Y",
+    button:     "selector1"
+  });
+  Calendar.setup({
+    inputField: "fecha2",
+    ifFormat:   "%d / %m / %Y",
+    button:     "selector2"
+  });
+}
+</script>
 <%@ include file="top.jsp" %>
 
 <%@ include file="left.jsp" %>
@@ -40,38 +56,73 @@
 
 		<tr>
           <td class="bodyText">
-          <form method="post" action="verboleta.jsp" name="form1" target="_parent">
+          <form method="post" action="scriptlet2.jsp" name="form1" target="blank">
           <table width="100%" cellpadding="1" cellspacing="5">
           <tr>
           <td colspan="3" align="center" bgcolor="#4D6FAC">
-          <h3 style="color:#FFFFFF">Recibos confirmados (ultimos 100)</h3>
+          <h3 style="color:#FFFFFF">Recibos confirmados</h3>
           </td>
           </tr>
           <tr height="20px"><td></td>
           </tr>
           <tr>
           <td>
-              <table align="center" border="1" cellpadding="1" cellspacing="0" bordercolor="#4D6FAC"><tr><td><b>Numero</b></td></tr>
-                  <%
-                       List<Integer> recibos = manager.obtenerRecibosConfirmados();
-                       for(int i=0 ; i < recibos.size() ; i++){
-                           out.write("<tr><td align='center'>"+recibos.get(i)+"</td></tr>");
-                       }
-                %>
+                  <tr heigth="20px"></tr>
+                  <tr heigth="20px"></tr>
+                  <tr><td colspan="2" align="left">
+                      <table>
+                          <tr>
+                              <td colspan="2">
+                                  Formato:
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  HTML:
+                              </td>
+                              <td>
+                                  <input name="reporte" type="radio" value="html" />
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  PDF:
+                              </td>
+                              <td>
+                                  <input name="reporte" type="radio" value="pdf" checked />
+                              </td>
+                          </tr>
+                      </table>
+                  </td></tr>
+                  <tr heigth="20px"></tr>
+                  <tr heigth="20px"></tr>
+                  <tr><td>Rango de recibos</td><td>
+                      <input id="numMin" name="numMin"  type="text" size="5" />
+                                &nbsp;al &nbsp;
+                        <input id="numMax" name="numMax" type="text" size="5" />
+                  </td></tr>
+                  <tr><td colspan="2"><label class="error" id="rangob" style="visibility:hidden"></label></td></tr>
+                  <tr heigth="20px"></tr>
+                  <tr>
+                      <td>Rango de fecha de rendicion:
+                      </td>
+                      <td><input name="fecha1" type="text" size="15" id="fecha1" readonly="readonly"/>
+                            <img src="../img/calendario.png"  width="20" height="20" id="selector1" />
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input name="fecha2" type="text" size="15" id="fecha2" readonly="readonly"/>
+                            <img src="../img/calendario.png"  width="20" height="20" id="selector2" />
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                      </td>
+                 </tr>
+                 <tr><td><label class="error" id="rangof" style="visibility:hidden"></label></td></tr>
+                 <tr heigth="20px"></tr>
+                 <tr><td><input value="Generar Reporte" size="10" type="button" onclick="valirdarVerRecibosEntregados()"/></td></tr>
                 </table>
+            </form>
           </td>
-           
           </tr>
-          <tr height="20px"><td></td>
-          </tr>
-          </tr>
-          </table>
-          </form>
-          </td>
-        </tr>
-        </table>    
-        </td>
-        <td width="50">
+    </table>    </td>
+    <td width="50">
 	</td>
   </tr>
   <tr>
