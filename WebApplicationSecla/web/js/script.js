@@ -229,6 +229,72 @@ function confirmarRecibos(){
     this.form1.submit();
 }
 
+function valirdarVerRecibosEntregados()
+{
+    var numMin = this.form1.numMin.value.length
+    var numMax = this.form1.numMax.value.length
+    
+    var aux = 0
+    if(numMin == 0){
+        document.getElementById('rangob').innerHTML = "Debe completar el rango de las recibos";
+        document.getElementById('rangob').style.visibility = 'visible';
+        aux++;
+    }else{
+        document.getElementById('rangob').style.visibility = 'hidden';
+    }
+    if(numMax == 0){
+        document.getElementById('rangob').innerHTML = "Debe completar el rango de las recibos";
+        document.getElementById('rangob').style.visibility = 'visible';
+        aux++;
+    }else{
+        document.getElementById('rangob').style.visibility = 'hidden';
+    }
+    var fecha1 = document.form1.fecha1.value.length;
+    var fecha2 = document.form1.fecha2.value.length;
+    if(fecha1==0){
+        document.getElementById('rangof').innerHTML = "Debe seleccionar una fecha";
+        document.getElementById('rangof').style.visibility = 'visible';
+        aux++;
+    }else{
+        document.getElementById('rangof').style.visibility = 'hidden';
+    }
+    if(fecha2==0){
+        document.getElementById('rangof').innerHTML = "Debe seleccionar una fecha";
+        document.getElementById('rangof').style.visibility = 'visible';
+        aux++;
+    }else{
+        document.getElementById('rangof').style.visibility = 'hidden';
+    }
+    if((fecha1!=0)&&(fecha2!=0)){
+        fecha1 = document.form1.fecha1.value;
+        fecha2 = document.form1.fecha2.value;
+        fecha1 = fecha1.split("/");
+        fecha2 = fecha2.split("/");
+        fecha1 = new Date(fecha1[2], fecha1[1]-1, fecha1[0]);
+        fecha2 = new Date(fecha2[2], fecha2[1]-1, fecha2[0]);
+        if(fecha1 > fecha2){
+            document.getElementById('rangof').innerHTML = "Error en el rango de las fechas";
+            document.getElementById('rangof').style.visibility = 'visible';
+            aux++;
+        }
+    }
+    numMin = parseInt(this.form1.numMin.value);
+    numMax = parseInt(this.form1.numMax.value);
+    if((IsReal(numMin) == 0) && (IsReal(numMax) == 0)){
+        if(numMax < numMin){
+            document.getElementById('rangob').innerHTML = "Error en el rango";
+            document.getElementById('rangob').style.visibility = 'visible';
+        }
+    }else{
+        document.getElementById('rangob').style.visibility = 'visible';
+        this.form1.numMin.value = ''
+        this.form1.numMax.value = ''
+        aux++;
+    }
+    if(aux == 0 ){
+        this.form1.submit();
+    }
+}
 
 
 function validarCompletarRecibo()
