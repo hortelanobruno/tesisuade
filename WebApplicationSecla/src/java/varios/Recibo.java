@@ -5,7 +5,7 @@ import java.util.Date;
 public class Recibo {
 
 	private int numero;
-	private Date fecharendicion;
+	private String fecharendicion;
 	private String beneficiario;
 	private int monto;
 	private String estadorecibo;
@@ -27,7 +27,7 @@ public class Recibo {
 		return fecharendicion.toString();
 	}
 
-	public void setFecharendicion(Date fecharendicion) {
+	public void setFecharendicion(String fecharendicion) {
 		this.fecharendicion = fecharendicion;
 	}
 

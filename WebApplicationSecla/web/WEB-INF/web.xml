@@ -18,6 +18,10 @@
             net.sf.jasperreports.j2ee.servlets.ImageServlet
         </servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>modificarRecibo</servlet-name>
+        <servlet-class>ajax.ModificarReciboServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>validateSrv</servlet-name>
         <url-pattern>/validate</url-pattern>
@@ -33,6 +37,10 @@
     <servlet-mapping>
         <servlet-name>Jasper Image Servlet</servlet-name>
         <url-pattern>/jasperImages</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modificarRecibo</servlet-name>
+        <url-pattern>/modificarRecibo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
