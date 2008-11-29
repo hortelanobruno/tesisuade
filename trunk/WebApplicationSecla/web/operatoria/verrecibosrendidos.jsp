@@ -53,8 +53,8 @@
           <table width="100%" border="1" cellpadding="1" cellspacing="0" bordercolor="#4D6FAC">
             <tr>
               <td align="center">Numero</td>
-              <td align="center">Fecha</td>
-              <td align="center">Beneficiario</td>
+              <td align="center">Fecha confecci&oacute;n</td>
+              <td align="center">Razon social</td>
               <td align="center">Monto</td>
               <td align="center">Estado</td>
             </tr>

@@ -110,13 +110,13 @@ function processRequestVerReciboAModificar(){
             }
             if(motivo == ''){
                 datos += "<tr>";
-                datos += "<td>Fecha de rendici&oacute;n</td>";
+                datos += "<td>Fecha de confecci&oacute;n</td>";
                 datos += "<td><input name='date' type='text' size='30' id='fecha' readonly='readonly' value ='"+fecharendicion+"'/>";
                 datos += "<img src='../img/calendario.png'  width='20' height='20' id='selector' />";
                 datos += "&nbsp;&nbsp;&nbsp;&nbsp;<label class='error' id='fecha2' style='visibility:hidden'></label></td>";
                 datos += "</tr>";
                 datos += "<tr>";
-                datos += "<td>Beneficiario</td>";
+                datos += "<td>Razon social</td>";
                 datos += "<td><input name='beneficiario' type='text' size='30' value='"+beneficiario+"' />&nbsp;&nbsp;&nbsp;&nbsp;<label class='error' id='beneficiario2' style='visibility:hidden'></label></td>";
                 datos += "</tr>";
                 datos += "<tr>";
@@ -188,7 +188,7 @@ function processRequestVerRecibo() {
                 var cantidad = req.responseXML.getElementsByTagName('cantidad')[0].childNodes[0].nodeValue;
                 var div = document.getElementById('recibos');
                 var datos = "<table width='100%' border='1' cellpadding='1' cellspacing='0' bordercolor='#4D6FAC'>"
-                datos += "<tr><td align='center'>Numero</td><td align='center'>Estado</td><td align='center'>Fecha rendicion</td><td align='center'>Beneficiario</td><td align='center'>Monto</td><td align='center'>Motivo</td><td align='center'>Confirmar</td></tr>";
+                datos += "<tr><td align='center'>Numero</td><td align='center'>Estado</td><td align='center'>Fecha confeccion</td><td align='center'>Razon social</td><td align='center'>Monto</td><td align='center'>Motivo</td><td align='center'>Confirmar</td></tr>";
                 var boleta = req.responseXML.getElementsByTagName('boleta');
                 for(i=0 ; i < boleta.length ; i++){
                     var nodes = boleta[i].childNodes;
@@ -207,9 +207,9 @@ function processRequestVerRecibo() {
                         monto = nodes[4].childNodes[0].nodeValue;
                     }
                     if(motivo == ''){
-                        datos += "<tr><td align='center'>'+numero+'</td><td align='center'>'+estadoboleta+'</td><td align='center'>'+fecharendicion+'</td><td align='center'>'+beneficiario+'</td><td align='center'>'+monto+'</td><td>&nbsp;</td><td align='center'><input id=''+i+'' name='recibo' type='checkbox' value=''+numero+'' /></td></tr>";
+                        datos += "<tr><td align='center'>"+numero+"</td><td align='center'>"+estadoboleta+"</td><td align='center'>"+fecharendicion+"</td><td align='center'>"+beneficiario+"</td><td align='center'>"+monto+"</td><td>&nbsp;</td><td align='center'><input id='"+i+"' name='recibo' type='checkbox' value='"+numero+"' /></td></tr>";
                     }else{
-                        datos += "<tr><td align='center'>'+numero+'</td><td align='center'>'+estadoboleta+'</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td align='center'>'+motivo+'</td><td align='center'><input name='recibo' id=''+i+'' type='checkbox' value=''+numero+'' /></td></tr>";
+                        datos += "<tr><td align='center'>"+numero+"</td><td align='center'>"+estadoboleta+"</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td align='center'>"+motivo+"</td><td align='center'><input name='recibo' id='"+i+"' type='checkbox' value='"+numero+"' /></td></tr>";
                     }
                 }
                 datos += '</table><br><br>';
