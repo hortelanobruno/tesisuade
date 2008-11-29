@@ -150,7 +150,7 @@
                 </tr>
                 <tr >
                     <td height="30px" colspan="3" align="center">
-                        <input name="cargar" type="button" value="Alta Area" style="width:100px" onClick="validarAltaArea()"/>	
+                        <input name="cargar" type="button" value="Alta Area" style="width:100px" onClick="validarAltaArea()"/>
                     </td>
                 </tr>
             </table>

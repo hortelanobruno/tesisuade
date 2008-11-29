@@ -20,6 +20,28 @@ function cargarDatosUsuarioAMod(){
     req.send(null);
 }
 
+function borrarArea(){
+    var usuario   = this.form1.listaUsuarios.value
+    var url = "../borrarArea?usuario="+ usuario;
+    initRequest(url);
+    req.onreadystatechange = processRequestBorrarArea;
+    req.open("GET", url, true);
+    req.send(null);
+}
+
+function processRequestBorrarArea(){
+    if (req.readyState == 4) {
+        if (req.status == 200) {
+            var borrar = req.responseXML.getElementsByTagName("borrar")[0].childNodes[0].nodeValue;
+            if(borrar == "false"){
+                document.getElementById("mensaje").innerHTML = "El responsable posee recibos pendientes o a confirmar";
+            }else{
+                document.getElementById("mensaje").innerHTML = "El responsable se puede borrar. <input type='submit' value='Eliminar Area' style='width:100px'  /><input type='hidden' name='eliminar' value='si' />";
+            }
+        }
+    }
+}
+
 function processRequestCargarDatosUsuarioAMod(){
     if (req.readyState == 4) {
         if (req.status == 200) {

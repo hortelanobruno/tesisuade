@@ -20,7 +20,7 @@
 				  </a></div></td>
 			</tr>
             <tr>
-				<td><div align="left"><a href="bajaaarea.jsp" class="navText">Baja de Area<br />
+				<td><div align="left"><a href="bajaarea.jsp" class="navText">Baja de Area<br />
 				  </a></div></td>
 			</tr>
 			<tr>

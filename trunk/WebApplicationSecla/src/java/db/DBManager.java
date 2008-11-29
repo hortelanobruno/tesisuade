@@ -25,13 +25,32 @@ public class DBManager {
         return false;
     }
 
+    public String borrarArea(String usuario){
+        Conexion con = new Conexion();
+        Conexion.driverOdbc();
+        if (con.abrirConexion()) {
+            Connection conn = con.getCon();
+            PreparedStatement stmt;
+            try {
+                stmt = conn.prepareStatement("update usuarios set habilitado = 0 where usuario = ?");
+                stmt.setString(1, usuario);
+                stmt.execute();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("La base esta caida");
+        }
+        return "ok";
+    }
+
     public String actualizarArea(String usuario, String responsable, String sector, String sede, String digarea, String digresp) {
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
             Connection conn = con.getCon();
             PreparedStatement stmt;
-            String digitos = digarea+digresp;
+            String digitos = digarea + digresp;
             try {
                 stmt = conn.prepareStatement("SELECT responsable FROM usuarios where responsable = ?");
                 stmt.setString(1, responsable);
@@ -355,6 +374,33 @@ public class DBManager {
             System.out.println("La base esta caida");
         }
         return "false";
+    }
+
+    public boolean chequearBorrarUsuario(String usuario) {
+        Conexion con = new Conexion();
+        Conexion.driverOdbc();
+        if (con.abrirConexion()) {
+            Connection conn = con.getCon();
+            PreparedStatement stmt;
+            try {
+                stmt = conn.prepareStatement("select count(*) as count from recibos where usuario = ? and estadotransaccion <> 'rendida'");
+                stmt.setString(1, usuario);
+                ResultSet srs = stmt.executeQuery();
+                srs.next();
+                int cant = srs.getInt("count");
+                if(cant>0){
+                    return false;
+                }else{
+                    return true;
+                }
+                
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("La base esta caida");
+        }
+        return false;
     }
 
     public HashMap<Integer, List<String>> obtenerRecibosCompletadas(String usuario) {

@@ -22,6 +22,10 @@
         <servlet-name>modificarRecibo</servlet-name>
         <servlet-class>ajax.ModificarReciboServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>borrarArea</servlet-name>
+        <servlet-class>ajax.BorrarAreaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>validateSrv</servlet-name>
         <url-pattern>/validate</url-pattern>
@@ -41,6 +45,10 @@
     <servlet-mapping>
         <servlet-name>modificarRecibo</servlet-name>
         <url-pattern>/modificarRecibo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>borrarArea</servlet-name>
+        <url-pattern>/borrarArea</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
