@@ -729,6 +729,52 @@ public class DBManager {
         return "false";
     }
 
+    public String devolverRecibos(String op, String min, String max) {
+        Conexion con = new Conexion();
+        Conexion.driverOdbc();
+        if (con.abrirConexion()) {
+            Integer numMin = Integer.parseInt(min);
+            Integer numMax = Integer.parseInt(max);
+            Connection conn = con.getCon();
+            PreparedStatement stmt;
+            try {
+                stmt = conn.prepareStatement("SELECT usuario FROM usuarios where responsable like ?");
+                stmt.setString(1, op);
+                ResultSet srs = stmt.executeQuery();
+                srs.next();
+                String usuario = srs.getString("usuario");
+                stmt = conn.prepareStatement("SELECT estadotransaccion FROM recibos where (numero BETWEEN  ? and ?) and usuario = ?");
+                stmt.setInt(1, numMin);
+                stmt.setInt(2, numMax);
+                stmt.setString(3,usuario);
+                srs = stmt.executeQuery();
+                String estado = "";
+                int aux = 0;
+                while(srs.next()){
+                    estado = srs.getString("estadotransaccion");
+                    if(!estado.equalsIgnoreCase("pendiente")){
+                        aux++;
+                    }
+                }
+                if (aux==0) {
+                    stmt = conn.prepareStatement("delete from recibos where usuario = ? and (numero BETWEEN ? and ?)");
+                    stmt.setString(1, usuario);
+                    stmt.setInt(2, numMin);
+                    stmt.setInt(3, numMax);
+                    stmt.execute();
+                    return "true";
+                } else {
+                    return "false";
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("La base esta caida");
+        }
+        return "false";
+    }
+
     public String[] responsableList() {
         String list[] = null;
         Conexion con = new Conexion();

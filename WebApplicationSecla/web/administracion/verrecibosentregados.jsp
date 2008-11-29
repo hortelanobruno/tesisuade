@@ -104,7 +104,7 @@ window.onload = function() {
                   <tr><td colspan="2"><label class="error" id="rangob" style="visibility:hidden"></label></td></tr>
                   <tr heigth="20px"></tr>
                   <tr>
-                      <td>Rango de fecha de rendicion:
+                      <td>Rango de fecha de confecci&oacute;n:
                       </td>
                       <td><input name="fecha1" type="text" size="15" id="fecha1" readonly="readonly"/>
                             <img src="../img/calendario.png"  width="20" height="20" id="selector1" />

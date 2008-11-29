@@ -90,13 +90,13 @@ window.onload = function() {
           </select>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="recibo" style="visibility:hidden"></label></td>
           </tr>
           <tr>
-          <td>Fecha de rendici&oacute;n</td>
+          <td>Fecha de confecci&oacute;n</td>
           <td><input name="date" type="text" size="30" id="fecha" readonly="readonly"/>
 			<img src="../img/calendario.png"  width="20" height="20" id="selector" />
           &nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="fecha2" style="visibility:hidden"></label></td>
           </tr>
           <tr>
-          <td>Beneficiario</td>
+          <td>Razon social</td>
           <td><input name="beneficiario" type="text" size="30" />&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="beneficiario2" style="visibility:hidden"></label></td>
           </tr>
           <tr>
