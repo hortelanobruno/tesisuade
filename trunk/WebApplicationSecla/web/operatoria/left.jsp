@@ -34,6 +34,10 @@
 				<td><div align="left"><a href="cargarboleta.jsp" class="navText">Cargar recibos<br />
 				  </a></div></td>
 			</tr>
+            <tr>
+				<td><div align="left"><a href="modificarrecibo.jsp" class="navText">Modificar recibos<br />
+				  </a></div></td>
+			</tr>
 			<tr>
 				<td><div align="left"><a href="verrecibos.jsp" class="navText">Ver recibos a confirmar<br />
 				  </a></div></td>

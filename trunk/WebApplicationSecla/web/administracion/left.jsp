@@ -15,6 +15,14 @@
 				<td><div align="left"><a href="altaarea.jsp" class="navText">Alta de Area<br />
 				  </a></div></td>
 			</tr>
+            <tr>
+				<td><div align="left"><a href="modarea.jsp" class="navText">Modificacion de Area<br />
+				  </a></div></td>
+			</tr>
+            <tr>
+				<td><div align="left"><a href="bajaaarea.jsp" class="navText">Baja de Area<br />
+				  </a></div></td>
+			</tr>
 			<tr>
 				<td><div align="left"><a href="resetpwd.jsp" class="navText">Restear contrase&ntilde;a de usuarios<br />
 				  </a></div></td>
