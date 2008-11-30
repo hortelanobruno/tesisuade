@@ -9,7 +9,7 @@
 	}else{
 		response.sendRedirect("../index.jsp");
 	}
-        DBManager manager = new DBManager();
+        DBManager manager = DBManager.getInstance();
         if(!manager.isConnected()){
             response.sendRedirect("../index.jsp");
         }
@@ -94,7 +94,7 @@
               <td width="79%" align="center">Motivo</td>
             </tr>
              <%		
-			manager = new DBManager();
+			manager = DBManager.getInstance();
 			datos = manager.obtenerRecibosAnuladasRendidos(usuario);
 				for(int i = 0 ; i < datos.size() ; i++){
 					List<String> data = datos.get(i);
@@ -129,7 +129,7 @@
               <td width="79%" align="center">Motivo</td>
             </tr>
              <%		
-			manager = new DBManager();
+			manager = DBManager.getInstance();
 			datos = manager.obtenerRecibosExtraviadasRendidos(usuario);
 				for(int i = 0 ; i < datos.size() ; i++){
 					List<String> data = datos.get(i);

@@ -34,7 +34,7 @@
             } else {
                 response.sendRedirect("../index.jsp");
             }
-            DBManager manager = new DBManager();
+            DBManager manager = DBManager.getInstance();
             if(!manager.isConnected()){
                 response.sendRedirect("../index.jsp");
             }
@@ -76,16 +76,6 @@
     <%
 
             try {
-
-                
-                //Map params = new HashMap();
-                //DBManager manager = new DBManager();
-                //String usuario = session.getAttribute("usuario").toString();
-                //List<String> datos = manager.datosUsuario(usuario);
-                //params.put("usuario", usuario);
-                //params.put("funcion", datos.get(3));
-                //params.put("secretaria", datos.get(2));
-                //params.put("responsable", datos.get(1));
                 Conexion con = new Conexion();
                 Conexion.driverOdbc();
                 /////////////////////////////////////////////

@@ -237,7 +237,7 @@ WHERE
 						mode="Opaque"
 						x="47"
 						y="0"
-						width="76"
+						width="88"
 						height="18"
 						forecolor="#FFFFFF"
 						backcolor="#999999"
@@ -246,14 +246,14 @@ WHERE
 					<textElement>
 						<font size="10"/>
 					</textElement>
-				<text><![CDATA[Fecharendicion]]></text>
+				<text><![CDATA[Fecha confeccion]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="123"
+						x="135"
 						y="0"
-						width="114"
+						width="103"
 						height="18"
 						forecolor="#FFFFFF"
 						backcolor="#999999"
@@ -262,12 +262,12 @@ WHERE
 					<textElement>
 						<font size="10"/>
 					</textElement>
-				<text><![CDATA[Beneficiario]]></text>
+				<text><![CDATA[Razon social]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="237"
+						x="238"
 						y="0"
 						width="79"
 						height="18"
@@ -283,7 +283,7 @@ WHERE
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="316"
+						x="317"
 						y="0"
 						width="79"
 						height="18"
@@ -299,7 +299,7 @@ WHERE
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="395"
+						x="396"
 						y="0"
 						width="79"
 						height="18"
@@ -315,7 +315,7 @@ WHERE
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="474"
+						x="475"
 						y="0"
 						width="79"
 						height="18"
@@ -349,7 +349,7 @@ WHERE
 					<reportElement
 						x="47"
 						y="0"
-						width="76"
+						width="88"
 						height="20"
 						key="textField"/>
 					<box></box>
@@ -360,9 +360,9 @@ WHERE
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="123"
+						x="135"
 						y="0"
-						width="114"
+						width="103"
 						height="20"
 						key="textField"/>
 					<box></box>
@@ -373,7 +373,7 @@ WHERE
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="237"
+						x="238"
 						y="0"
 						width="79"
 						height="20"
@@ -386,7 +386,7 @@ WHERE
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="316"
+						x="317"
 						y="0"
 						width="79"
 						height="20"
@@ -399,7 +399,7 @@ WHERE
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="395"
+						x="396"
 						y="0"
 						width="79"
 						height="20"
@@ -412,7 +412,7 @@ WHERE
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="474"
+						x="475"
 						y="0"
 						width="79"
 						height="20"

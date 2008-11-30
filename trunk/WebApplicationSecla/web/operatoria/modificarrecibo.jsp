@@ -10,7 +10,7 @@
             response.sendRedirect("../index.jsp");
         }
         String usuario = session.getAttribute("usuario").toString();
-        DBManager manager = new DBManager();
+        DBManager manager = DBManager.getInstance();
         if (!manager.isConnected()) {
             response.sendRedirect("../index.jsp");
         }

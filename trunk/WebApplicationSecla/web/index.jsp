@@ -4,7 +4,7 @@
 <%  String usuario = request.getParameter("usu");
 	String password = request.getParameter("pwd");
 	if(usuario != null){
-		DBManager manager = new DBManager();
+		DBManager manager = DBManager.getInstance();
 		String cuenta = manager.loginUsuario(usuario,password);
 		if(cuenta != null){
 			session.setAttribute("usuario",usuario);
@@ -110,7 +110,7 @@
 						out.print("</tr>");
 					}
 				}
-                                DBManager manager = new DBManager();
+                                DBManager manager = DBManager.getInstance();
                                 if(!manager.isConnected()){
                                     out.print("<tr height='20px' align='center'>");
                                     out.print("<td colspan='5'><label style='color:#FF0000'>Error al conectarse a la base</label></td>");

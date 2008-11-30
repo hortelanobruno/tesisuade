@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <servlet>
-        <servlet-name>validateSrv</servlet-name>
-        <servlet-class>ajax.AjaxServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>datosUsuario</servlet-name>
         <servlet-class>ajax.DatosUsuarioServlet</servlet-class>
     </servlet>
@@ -26,10 +22,6 @@
         <servlet-name>borrarArea</servlet-name>
         <servlet-class>ajax.BorrarAreaServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>validateSrv</servlet-name>
-        <url-pattern>/validate</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>datosUsuario</servlet-name>
         <url-pattern>/datosUsuario</url-pattern>

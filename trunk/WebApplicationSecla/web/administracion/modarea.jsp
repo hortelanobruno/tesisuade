@@ -16,7 +16,7 @@
         String digresp = request.getParameter("digresp");
         String usuario = request.getParameter("listaUsuarios");
         String resultado = new String();
-        DBManager manager = new DBManager();
+        DBManager manager = DBManager.getInstance();
         if (!manager.isConnected()) {
             response.sendRedirect("../index.jsp");
         }
