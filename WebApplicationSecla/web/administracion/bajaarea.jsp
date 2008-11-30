@@ -12,7 +12,7 @@
         String area = request.getParameter("listaUsuarios");
         String eliminar = request.getParameter("eliminar");
         String resultado = new String();
-        DBManager manager = new DBManager();
+        DBManager manager = DBManager.getInstance();
         if (!manager.isConnected()) {
             response.sendRedirect("../index.jsp");
         }

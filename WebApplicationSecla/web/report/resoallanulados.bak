@@ -164,7 +164,7 @@ WHERE
 					<reportElement
 						x="0"
 						y="1"
-						width="76"
+						width="61"
 						height="16"
 						forecolor="#FFFFFF"
 						key="element-90"/>
@@ -180,9 +180,9 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="76"
+						x="61"
 						y="1"
-						width="76"
+						width="91"
 						height="16"
 						forecolor="#FFFFFF"
 						key="element-90"/>
@@ -194,7 +194,7 @@ WHERE
 					<textElement>
 						<font fontName="" size="10"/>
 					</textElement>
-				<text><![CDATA[FechaRendicion]]></text>
+				<text><![CDATA[Fecha confeccion]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -212,7 +212,7 @@ WHERE
 					<textElement>
 						<font fontName="" size="10"/>
 					</textElement>
-				<text><![CDATA[Beneficiario]]></text>
+				<text><![CDATA[Razon social]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -307,7 +307,7 @@ WHERE
 					<reportElement
 						x="0"
 						y="1"
-						width="76"
+						width="61"
 						height="15"
 						key="textField"/>
 					<box leftPadding="2" rightPadding="2">					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -322,9 +322,9 @@ WHERE
 				</textField>
 				<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="76"
+						x="61"
 						y="1"
-						width="76"
+						width="91"
 						height="15"
 						key="textField"/>
 					<box leftPadding="2" rightPadding="2">					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>

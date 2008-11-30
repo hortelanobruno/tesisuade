@@ -4,7 +4,7 @@
 <%  String usuario = request.getParameter("usu");
 	String password = request.getParameter("pwd");
 	if(usuario != null){
-		DBManager manager = new DBManager();
+		DBManager manager = DBManager.getInstance();
 		String cuenta = manager.loginUsuario(usuario,password);
 		if(cuenta != null){
 			session.setAttribute("usuario",usuario);

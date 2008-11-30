@@ -12,8 +12,16 @@ import varios.Recibo;
 //boca
 public class DBManager {
 
-    public DBManager() {
-        // TODO Auto-generated constructor stub
+    private static DBManager manager = null;
+
+    protected DBManager() {
+    }
+
+    public static DBManager getInstance() {
+        if (manager == null) {
+            manager = new DBManager();
+        }
+        return manager;
     }
 
     public boolean isConnected() {
@@ -25,7 +33,7 @@ public class DBManager {
         return false;
     }
 
-    public String borrarArea(String usuario){
+    public String borrarArea(String usuario) {
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
@@ -388,12 +396,12 @@ public class DBManager {
                 ResultSet srs = stmt.executeQuery();
                 srs.next();
                 int cant = srs.getInt("count");
-                if(cant>0){
+                if (cant > 0) {
                     return false;
-                }else{
+                } else {
                     return true;
                 }
-                
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -746,17 +754,17 @@ public class DBManager {
                 stmt = conn.prepareStatement("SELECT estadotransaccion FROM recibos where (numero BETWEEN  ? and ?) and usuario = ?");
                 stmt.setInt(1, numMin);
                 stmt.setInt(2, numMax);
-                stmt.setString(3,usuario);
+                stmt.setString(3, usuario);
                 srs = stmt.executeQuery();
                 String estado = "";
                 int aux = 0;
-                while(srs.next()){
+                while (srs.next()) {
                     estado = srs.getString("estadotransaccion");
-                    if(!estado.equalsIgnoreCase("pendiente")){
+                    if (!estado.equalsIgnoreCase("pendiente")) {
                         aux++;
                     }
                 }
-                if (aux==0) {
+                if (aux == 0) {
                     stmt = conn.prepareStatement("delete from recibos where usuario = ? and (numero BETWEEN ? and ?)");
                     stmt.setString(1, usuario);
                     stmt.setInt(2, numMin);

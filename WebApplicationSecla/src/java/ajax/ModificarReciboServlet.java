@@ -23,7 +23,7 @@ public class ModificarReciboServlet extends HttpServlet{
     private DBManager manager;
 
     public void init(ServletConfig config) throws ServletException {
-        manager = new DBManager();
+        manager = DBManager.getInstance();
     }
 
     public  void doGet(HttpServletRequest request, HttpServletResponse  response)

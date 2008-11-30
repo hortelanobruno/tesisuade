@@ -9,7 +9,7 @@
 	}else{
 		response.sendRedirect("../index.jsp");
 	}
-	DBManager manager = new DBManager();
+	DBManager manager = DBManager.getInstances();
 	String validar = request.getParameter("validar");
 	if(validar != null){
 		List<Integer> lista = new ArrayList<Integer>();	

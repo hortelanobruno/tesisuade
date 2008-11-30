@@ -9,7 +9,7 @@
 	}else{
 		response.sendRedirect("../index.jsp");
 	}
-        DBManager manager = new DBManager();
+        DBManager manager = DBManager.getInstance();
         if(!manager.isConnected()){
             response.sendRedirect("../index.jsp");
         }
