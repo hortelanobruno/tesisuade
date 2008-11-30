@@ -43,6 +43,8 @@ public class DBManager {
                 stmt = conn.prepareStatement("update usuarios set habilitado = 0 where usuario = ?");
                 stmt.setString(1, usuario);
                 stmt.execute();
+                stmt.close();
+                con.cerrarConexion();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -64,12 +66,18 @@ public class DBManager {
                 stmt.setString(1, responsable);
                 ResultSet srs = stmt.executeQuery();
                 while (srs.next()) {
+                    stmt.close();
+                    srs.close();
+                    con.cerrarConexion();
                     return "responsable";
                 }
                 stmt = conn.prepareStatement("SELECT digitos FROM usuarios where digitos = ?");
                 stmt.setString(1, digitos);
                 srs = stmt.executeQuery();
                 while (srs.next()) {
+                    stmt.close();
+                    srs.close();
+                    con.cerrarConexion();
                     return "digitos";
                 }
                 stmt = conn.prepareStatement("update usuarios set responsable = ?, sede = ?, sector = ?, digitos = ? where usuario = ?");
@@ -79,6 +87,9 @@ public class DBManager {
                 stmt.setString(4, digitos);
                 stmt.setString(5, usuario);
                 stmt.execute();
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -101,6 +112,9 @@ public class DBManager {
                 ResultSet srs = stmt.executeQuery();
                 while (srs.next()) {
                     String tipocuenta = srs.getString("tipocuenta");
+                    stmt.close();
+                    srs.close();
+                    con.cerrarConexion();
                     return tipocuenta;
                 }
             } catch (SQLException e) {
@@ -118,15 +132,16 @@ public class DBManager {
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
             Connection conn = con.getCon();
-            PreparedStatement stmt;
+            PreparedStatement stmt = null;
             try {
                 for (int i = 0; i < recibos.size(); i++) {
                     stmt = conn.prepareStatement("update recibos set estadotransaccion = 'rendida' where numero = ?");
                     stmt.setInt(1, recibos.get(i));
                     stmt.execute();
                 }
+                stmt.close();
+                con.cerrarConexion();
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else {
@@ -161,6 +176,9 @@ public class DBManager {
                     recibo.setEstadorecibo(srs.getString("estadorecibo"));
                     recibos.add(recibo);
                 }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
             } catch (Exception e) {
             }
         }
@@ -193,6 +211,9 @@ public class DBManager {
                     recibo.setMotivo(srs.getString("motivo"));
                     recibo.setEstadorecibo(srs.getString("estadorecibo"));
                 }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
             } catch (Exception e) {
             }
         }
@@ -217,6 +238,9 @@ public class DBManager {
                     datos.add(srs.getString("sector"));
                     datos.add(srs.getString("digitos"));
                 }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
             } catch (Exception e) {
             }
         }
@@ -236,6 +260,9 @@ public class DBManager {
                 while (srs.next()) {
                     recibos.add(srs.getInt("numero"));
                 }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
             } catch (Exception e) {
             }
         }
@@ -255,6 +282,9 @@ public class DBManager {
                 while (srs.next()) {
                     recibos.add(srs.getInt("numero"));
                 }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
             } catch (Exception e) {
             }
         }
@@ -275,6 +305,9 @@ public class DBManager {
                 while (srs.next()) {
                     recibos.add(srs.getInt("numero"));
                 }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
             } catch (Exception e) {
             }
         }
@@ -294,18 +327,27 @@ public class DBManager {
                 stmt.setString(1, usuario);
                 ResultSet srs = stmt.executeQuery();
                 while (srs.next()) {
+                    stmt.close();
+                    srs.close();
+                    con.cerrarConexion();
                     return "usuario";
                 }
                 stmt = conn.prepareStatement("SELECT responsable FROM usuarios where responsable = ?");
                 stmt.setString(1, responsable);
                 srs = stmt.executeQuery();
                 while (srs.next()) {
+                    stmt.close();
+                    srs.close();
+                    con.cerrarConexion();
                     return "responsable";
                 }
                 stmt = conn.prepareStatement("SELECT digitos FROM usuarios where digitos = ?");
                 stmt.setString(1, digitos);
                 srs = stmt.executeQuery();
                 while (srs.next()) {
+                    stmt.close();
+                    srs.close();
+                    con.cerrarConexion();
                     return "digitos";
                 }
                 stmt = conn.prepareStatement("insert into usuarios values ( ? , ? , 'operador' , ? , ? , ? , ? , 1)");
@@ -316,6 +358,9 @@ public class DBManager {
                 stmt.setString(5, sector);
                 stmt.setString(6, digitos);
                 stmt.execute();
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
                 return "ok";
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -346,8 +391,10 @@ public class DBManager {
                     list[aux] = srs.getString("usuario");
                     aux++;
                 }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else {
@@ -373,6 +420,8 @@ public class DBManager {
                 stmt.setString(2, fecha);
                 stmt.setInt(3, Integer.parseInt(numero));
                 stmt.execute();
+                stmt.close();
+                con.cerrarConexion();
                 return "true";
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
@@ -396,6 +445,9 @@ public class DBManager {
                 ResultSet srs = stmt.executeQuery();
                 srs.next();
                 int cant = srs.getInt("count");
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
                 if (cant > 0) {
                     return false;
                 } else {
@@ -433,9 +485,11 @@ public class DBManager {
                     mapa.put(aux, datos);
                     aux++;
                 }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
                 return mapa;
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else {
@@ -466,9 +520,11 @@ public class DBManager {
                     mapa.put(aux, datos);
                     aux++;
                 }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
                 return mapa;
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else {
@@ -497,9 +553,11 @@ public class DBManager {
                     mapa.put(aux, datos);
                     aux++;
                 }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
                 return mapa;
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else {
@@ -528,9 +586,11 @@ public class DBManager {
                     mapa.put(aux, datos);
                     aux++;
                 }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
                 return mapa;
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else {
@@ -559,9 +619,11 @@ public class DBManager {
                     mapa.put(aux, datos);
                     aux++;
                 }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
                 return mapa;
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else {
@@ -590,9 +652,11 @@ public class DBManager {
                     mapa.put(aux, datos);
                     aux++;
                 }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
                 return mapa;
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else {
@@ -618,9 +682,10 @@ public class DBManager {
                 stmt.setString(2, fecha);
                 stmt.setInt(3, Integer.parseInt(numero));
                 stmt.execute();
+                stmt.close();
+                con.cerrarConexion();
                 return "true";
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else {
@@ -649,9 +714,10 @@ public class DBManager {
                 stmt.setString(3, monto);
                 stmt.setInt(4, Integer.parseInt(numero));
                 stmt.execute();
+                stmt.close();
+                con.cerrarConexion();
                 return "true";
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else {
@@ -685,9 +751,10 @@ public class DBManager {
                 stmt.setString(4, motivo);
                 stmt.setInt(5, numero);
                 stmt.execute();
+                stmt.close();
+                con.cerrarConexion();
                 return "true";
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else {
@@ -723,12 +790,17 @@ public class DBManager {
                         stmt.setInt(2, i);
                         stmt.execute();
                     }
+                    stmt.close();
+                    srs.close();
+                    con.cerrarConexion();
                     return "true";
                 } else {
+                    stmt.close();
+                    srs.close();
+                    con.cerrarConexion();
                     return "false";
                 }
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else {
@@ -770,8 +842,14 @@ public class DBManager {
                     stmt.setInt(2, numMin);
                     stmt.setInt(3, numMax);
                     stmt.execute();
+                    stmt.close();
+                    srs.close();
+                    con.cerrarConexion();
                     return "true";
                 } else {
+                    stmt.close();
+                    srs.close();
+                    con.cerrarConexion();
                     return "false";
                 }
             } catch (SQLException e) {
@@ -803,8 +881,10 @@ public class DBManager {
                     list[aux] = srs.getString("responsable");
                     aux++;
                 }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else {
@@ -833,8 +913,10 @@ public class DBManager {
                     list[aux] = srs.getString("sector");
                     aux++;
                 }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else {
@@ -854,6 +936,8 @@ public class DBManager {
                 stmt.setString(1, password);
                 stmt.setString(2, usuario);
                 stmt.execute();
+                stmt.close();
+                con.cerrarConexion();
             } catch (SQLException e) {
                 e.printStackTrace();
             }

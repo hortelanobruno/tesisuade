@@ -36,7 +36,7 @@ function processRequestBorrarArea(){
             if(borrar == "false"){
                 document.getElementById("mensaje").innerHTML = "El responsable posee recibos pendientes o a confirmar";
             }else{
-                document.getElementById("mensaje").innerHTML = "El responsable se puede borrar. <input type='submit' value='Eliminar Area' style='width:100px'  /><input type='hidden' name='eliminar' value='si' />";
+                document.getElementById("mensaje").innerHTML = "El responsable se puede borrar. <input type='button' value='Eliminar Area' style='width:100px' onClick='confirmarBorrarArea()'  /><input type='hidden' name='eliminar' value='si' />";
             }
         }
     }

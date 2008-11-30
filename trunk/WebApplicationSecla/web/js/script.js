@@ -733,3 +733,14 @@ function validarAltaArea(){
         }	
     }
 }
+
+
+function confirmarBorrarArea()
+{
+    var usuario = document.form1.listaUsuarios.options [document.form1.listaUsuarios.selectedIndex].value;
+    var respuesta=confirm("Esta seguro que desea eliminar a "+usuario+" ?");
+    if (respuesta==true)
+        this.form1.submit();
+}
+
+
