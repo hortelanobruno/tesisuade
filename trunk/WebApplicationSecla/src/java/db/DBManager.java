@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import java.util.Map;
 import varios.Recibo;
 //boca
 public class DBManager {
@@ -110,8 +111,9 @@ public class DBManager {
                 stmt.setString(1, usuario);
                 stmt.setString(2, password);
                 ResultSet srs = stmt.executeQuery();
+                String tipocuenta = null;
                 while (srs.next()) {
-                    String tipocuenta = srs.getString("tipocuenta");
+                    tipocuenta = srs.getString("tipocuenta");
                     stmt.close();
                     srs.close();
                     con.cerrarConexion();
@@ -160,12 +162,15 @@ public class DBManager {
                 stmt = conn.prepareStatement("SELECT * FROM recibos where usuario = ? and estadotransaccion = 'a confirmar'");
                 stmt.setString(1, usuario);
                 ResultSet srs = stmt.executeQuery();
+                Recibo recibo;
+                String fecha;
+                String[] aux;
                 while (srs.next()) {
-                    Recibo recibo = new Recibo();
+                    recibo = new Recibo();
                     recibo.setNumero(srs.getInt("numero"));
                     recibo.setBeneficiario(srs.getString("beneficiario"));
-                    String fecha = srs.getDate("fecharendicion").toString();
-                    String[] aux = fecha.split("-");
+                    fecha = srs.getDate("fecharendicion").toString();
+                    aux = fecha.split("-");
                     aux[0] = aux[0].trim();
                     aux[1] = aux[1].trim();
                     aux[2] = aux[2].trim();
@@ -196,12 +201,14 @@ public class DBManager {
                 stmt = conn.prepareStatement("SELECT * FROM recibos where numero = ? and estadotransaccion = 'a confirmar'");
                 stmt.setInt(1, Integer.parseInt(numero));
                 ResultSet srs = stmt.executeQuery();
+                String fecha;
+                String[] aux;
                 while (srs.next()) {
                     recibo = new Recibo();
                     recibo.setNumero(srs.getInt("numero"));
                     recibo.setBeneficiario(srs.getString("beneficiario"));
-                    String fecha = srs.getDate("fecharendicion").toString();
-                    String[] aux = fecha.split("-");
+                    fecha = srs.getDate("fecharendicion").toString();
+                    aux = fecha.split("-");
                     aux[0] = aux[0].trim();
                     aux[1] = aux[1].trim();
                     aux[2] = aux[2].trim();
@@ -475,8 +482,9 @@ public class DBManager {
                 stmt.setString(1, usuario);
                 ResultSet srs = stmt.executeQuery();
                 int aux = 0;
+                List<String> datos;
                 while (srs.next()) {
-                    ArrayList<String> datos = new ArrayList<String>();
+                    datos = new ArrayList<String>();
                     datos.add(srs.getString("numero"));
                     datos.add(srs.getDate("fecharendicion").toString());
                     datos.add(srs.getString("beneficiario"));
@@ -510,8 +518,9 @@ public class DBManager {
                 stmt.setString(1, usuario);
                 ResultSet srs = stmt.executeQuery();
                 int aux = 0;
+                List<String> datos;
                 while (srs.next()) {
-                    ArrayList<String> datos = new ArrayList<String>();
+                    datos = new ArrayList<String>();
                     datos.add(srs.getString("numero"));
                     datos.add(srs.getDate("fecharendicion").toString());
                     datos.add(srs.getString("beneficiario"));
@@ -545,8 +554,9 @@ public class DBManager {
                 stmt.setString(1, usuario);
                 ResultSet srs = stmt.executeQuery();
                 int aux = 0;
+                List<String> datos;
                 while (srs.next()) {
-                    ArrayList<String> datos = new ArrayList<String>();
+                    datos = new ArrayList<String>();
                     datos.add(srs.getString("numero"));
                     datos.add(srs.getDate("fecharendicion").toString());
                     datos.add(srs.getString("motivo"));
@@ -578,8 +588,9 @@ public class DBManager {
                 stmt.setString(1, usuario);
                 ResultSet srs = stmt.executeQuery();
                 int aux = 0;
+                List<String> datos;
                 while (srs.next()) {
-                    ArrayList<String> datos = new ArrayList<String>();
+                    datos = new ArrayList<String>();
                     datos.add(srs.getString("numero"));
                     datos.add(srs.getDate("fecharendicion").toString());
                     datos.add(srs.getString("motivo"));
@@ -611,8 +622,9 @@ public class DBManager {
                 stmt.setString(1, usuario);
                 ResultSet srs = stmt.executeQuery();
                 int aux = 0;
+                List<String> datos;
                 while (srs.next()) {
-                    ArrayList<String> datos = new ArrayList<String>();
+                    datos = new ArrayList<String>();
                     datos.add(srs.getString("numero"));
                     datos.add(srs.getDate("fecharendicion").toString());
                     datos.add(srs.getString("motivo"));
@@ -644,8 +656,9 @@ public class DBManager {
                 stmt.setString(1, usuario);
                 ResultSet srs = stmt.executeQuery();
                 int aux = 0;
+                List<String> datos;
                 while (srs.next()) {
-                    ArrayList<String> datos = new ArrayList<String>();
+                    datos = new ArrayList<String>();
                     datos.add(srs.getString("numero"));
                     datos.add(srs.getDate("fecharendicion").toString());
                     datos.add(srs.getString("motivo"));
