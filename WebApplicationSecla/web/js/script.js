@@ -89,15 +89,15 @@ function valirdarGenerarReportes(){
         }
     }
     if(aux == 0){
-        this.form1.submit();
+        document.form1.submit();
     }
 }
 
 
 function validarEntregarRecibo(){
-    var numMin = this.form1.numMin.value.length
-    var numMax = this.form1.numMax.value.length
-    var operador = this.form1.listaOperadores.selectedIndex
+    var numMin = document.form1.numMin.value.length
+    var numMax = document.form1.numMax.value.length
+    var operador = document.form1.listaOperadores.selectedIndex
     var aux = 0
     if(operador == -1){
         document.getElementById('menu').style.visibility = 'visible';
@@ -120,19 +120,19 @@ function validarEntregarRecibo(){
         document.getElementById('rango').style.visibility = 'hidden';
     }
     if(aux == 0 ){
-        numMin = this.form1.numMin.value
-        numMax = this.form1.numMax.value
+        numMin = document.form1.numMin.value
+        numMax = document.form1.numMax.value
         if((IsReal(numMin) == 0) && (IsReal(numMax) == 0)){
             if(numMax >= numMin){
-                this.form1.submit();
+                document.form1.submit();
             }else{
                 document.getElementById('rango').innerHTML = "Error en el rango";
                 document.getElementById('rango').style.visibility = 'visible';
             }
         }else{
             document.getElementById('rango').style.visibility = 'visible';
-            this.form1.numMin.value = ''
-            this.form1.numMax.value = ''
+            document.form1.numMin.value = ''
+            document.form1.numMax.value = ''
         }	
     }
 }
@@ -146,9 +146,9 @@ function IsReal(YourNumber)
 
 function validarResetPwd(){
     
-    var password1 = this.form1.password1.value.length
-    var password2 = this.form1.password2.value.length
-    var usuario   = this.form1.listaUsuarios.selectedIndex
+    var password1 = document.form1.password1.value.length
+    var password2 = document.form1.password2.value.length
+    var usuario   = document.form1.listaUsuarios.selectedIndex
     var aux = 0;
     
     if(usuario == -1 ){
@@ -168,12 +168,12 @@ function validarResetPwd(){
             document.getElementById('pwd1').style.visibility = 'visible';
             aux++;
         }else{
-            password1 = this.form1.password1.value;
+            password1 = document.form1.password1.value;
             if(vacio(password1)){
                 document.getElementById('pwd1').innerHTML = "No puede contener espacios en blanco";
                 document.getElementById('pwd1').style.visibility = 'visible';
-                this.form1.password1.value = ''
-                this.form1.password2.value = ''
+                document.form1.password1.value = ''
+                document.form1.password2.value = ''
                 aux++;
             }else{
                 document.getElementById('pwd1').style.visibility = 'hidden';
@@ -190,12 +190,12 @@ function validarResetPwd(){
             document.getElementById('pwd2').style.visibility = 'visible';
             aux++;   
         }else{
-            password2 = this.form1.password2.value;
+            password2 = document.form1.password2.value;
             if(vacio(password2)){
                 document.getElementById('pwd2').innerHTML = "No puede contener espacios en blanco";
                 document.getElementById('pwd2').style.visibility = 'visible';
-                this.form1.password1.value = ''
-                this.form1.password2.value = ''
+                document.form1.password1.value = ''
+                document.form1.password2.value = ''
                 aux++;
             }else{
                 document.getElementById('pwd2').style.visibility = 'hidden';
@@ -203,12 +203,12 @@ function validarResetPwd(){
         }
     }
     if(aux == 0 ){
-        if (this.form1.password2.value == this.form1.password1.value){
-            this.form1.submit(); 	
+        if (document.form1.password2.value == document.form1.password1.value){
+            document.form1.submit();
         }else{
             document.getElementById('pwds').style.visibility = 'visible';
-            this.form1.password1.value = ''
-            this.form1.password2.value = ''
+            document.form1.password1.value = ''
+            document.form1.password2.value = ''
         }	
     }
 }
@@ -226,13 +226,13 @@ function confirmarRecibos(){
             }	
         }
     }
-    this.form1.submit();
+    document.form1.submit();
 }
 
 function valirdarVerRecibosEntregados()
 {
-    var numMin = this.form1.numMin.value.length
-    var numMax = this.form1.numMax.value.length
+    var numMin = document.form1.numMin.value.length
+    var numMax = document.form1.numMax.value.length
     
     var aux = 0
     if(numMin == 0){
@@ -278,8 +278,8 @@ function valirdarVerRecibosEntregados()
             aux++;
         }
     }
-    numMin = parseInt(this.form1.numMin.value);
-    numMax = parseInt(this.form1.numMax.value);
+    numMin = parseInt(document.form1.numMin.value);
+    numMax = parseInt(document.form1.numMax.value);
     if((IsReal(numMin) == 0) && (IsReal(numMax) == 0)){
         if(numMax < numMin){
             document.getElementById('rangob').innerHTML = "Error en el rango";
@@ -287,22 +287,22 @@ function valirdarVerRecibosEntregados()
         }
     }else{
         document.getElementById('rangob').style.visibility = 'visible';
-        this.form1.numMin.value = ''
-        this.form1.numMax.value = ''
+        document.form1.numMin.value = ''
+        document.form1.numMax.value = ''
         aux++;
     }
     if(aux == 0 ){
-        this.form1.submit();
+        document.form1.submit();
     }
 }
 
 
 function validarCompletarRecibo()
 {
-    var recibo = this.form1.recibos.selectedIndex;
-    var monto = this.form1.monto.value.length;
-    var beneficiario = this.form1.beneficiario.value.length;
-    var fecha = this.form1.date.value.length;
+    var recibo = document.form1.recibos.selectedIndex;
+    var monto = document.form1.monto.value.length;
+    var beneficiario = document.form1.beneficiario.value.length;
+    var fecha = document.form1.date.value.length;
     var aux=0;
     if(recibo == -1 ){
         document.getElementById('recibo').innerHTML = "Debe seleccionar un campo";
@@ -323,7 +323,7 @@ function validarCompletarRecibo()
         document.getElementById('fecha2').style.visibility = 'visible';
         aux++;
     }else{
-        var fecha1 = this.form1.date.value;
+        var fecha1 = document.form1.date.value;
         fecha1 = fecha1.split("/");
         fecha1 = new Date(fecha1[2], fecha1[1]-1, fecha1[0]);
         var fecha2 = new Date();
@@ -343,15 +343,14 @@ function validarCompletarRecibo()
         document.getElementById('beneficiario2').style.visibility = 'hidden';
     }
     if(aux == 0 ){
-        var valor = this.form1.monto.value;
+        var valor = document.form1.monto.value;
         valor = valor.split(".").join(",");
         if(/^[0-9]+(,[0-9]+)*$/.test(valor)){
-            this.form1.submit();  
+            document.form1.submit();
         }else{ 
             document.getElementById('monto2').innerHTML = "Debe ser un mumero";
             document.getElementById('monto2').style.visibility = 'visible';
-            this.form1.monto.value = ''  
-                    	
+            document.form1.monto.value = ''
         } 
     }
 }
@@ -359,9 +358,9 @@ function validarCompletarRecibo()
 
 
 function validarAnularRecibo(){
-    var motivo = this.form1.motivo.value.length;
-    var recibo = this.form1.recibos.selectedIndex;
-    var fecha = this.form1.date.value.length;
+    var motivo = document.form1.motivo.value.length;
+    var recibo = document.form1.recibos.selectedIndex;
+    var fecha = document.form1.date.value.length;
     var aux=0;
     if(recibo == -1 ){
         document.getElementById('recibo').style.visibility = 'visible';
@@ -380,7 +379,7 @@ function validarAnularRecibo(){
         document.getElementById('fecha2').style.visibility = 'visible';
         aux++;
     }else{
-        var fecha1 = this.form1.date.value;
+        var fecha1 = document.form1.date.value;
         fecha1 = fecha1.split("/");
         fecha1 = new Date(fecha1[2], fecha1[1]-1, fecha1[0]);
         var fecha2 = new Date();
@@ -393,15 +392,15 @@ function validarAnularRecibo(){
         }
     }
     if(aux == 0 ){
-        this.form1.submit(); 	
+        document.form1.submit();
     }
 }
 
 function validarCambioContrasenia()
 {
-    var pwd1 = this.form1.password1.value.length;
-    var pwd2 = this.form1.password2.value.length;
-    var pwd3 = this.form1.password3.value.length;
+    var pwd1 = document.form1.password1.value.length;
+    var pwd2 = document.form1.password2.value.length;
+    var pwd3 = document.form1.password3.value.length;
     var aux=0;
     
     if(pwd1==0){
@@ -414,13 +413,13 @@ function validarCambioContrasenia()
             document.getElementById('pwd1').style.visibility = 'visible';
             aux++;	
         }else{
-            pwd1 = this.form1.password1.value;
+            pwd1 = document.form1.password1.value;
             if(vacio(pwd1)){
                 document.getElementById('pwd1').innerHTML = "No puede contener espacios en blanco"; 
                 document.getElementById('pwd1').style.visibility = 'visible';
-                this.form1.password1.value = ''
-                this.form1.password2.value = '' 
-                this.form1.password3.value = '' 
+                document.form1.password1.value = ''
+                document.form1.password2.value = ''
+                document.form1.password3.value = ''
                 aux++; 
             }else{
                 document.getElementById('pwd1').style.visibility = 'hidden';
@@ -437,13 +436,13 @@ function validarCambioContrasenia()
             document.getElementById('pwd2').style.visibility = 'visible';
             aux++;	
         }else{
-            pwd2 = this.form1.password2.value;
+            pwd2 = document.form1.password2.value;
             if(vacio(pwd2)){
                 document.getElementById('pwd2').innerHTML = "No puede contener espacios en blanco"; 
                 document.getElementById('pwd2').style.visibility = 'visible';
-                this.form1.password1.value = ''
-                this.form1.password2.value = '' 
-                this.form1.password3.value = '' 
+                document.form1.password1.value = ''
+                document.form1.password2.value = ''
+                document.form1.password3.value = ''
                 aux++; 
             }else{
                 document.getElementById('pwd2').style.visibility = 'hidden';
@@ -460,13 +459,13 @@ function validarCambioContrasenia()
             document.getElementById('pwd3').style.visibility = 'visible';
             aux++;	
         }else{
-            pwd3 = this.form1.password3.value;
+            pwd3 = document.form1.password3.value;
             if(vacio(pwd3)){
                 document.getElementById('pwd3').innerHTML = "No puede contener espacios en blanco"; 
                 document.getElementById('pwd3').style.visibility = 'visible';
-                this.form1.password1.value = ''
-                this.form1.password2.value = '' 
-                this.form1.password3.value = '' 
+                document.form1.password1.value = ''
+                document.form1.password2.value = ''
+                document.form1.password3.value = ''
                 aux++; 
             }else{
                 document.getElementById('pwd3').style.visibility = 'hidden';
@@ -474,21 +473,21 @@ function validarCambioContrasenia()
         }
     }
     if(aux == 0 ){
-        if(this.form1.password1.value == this.form1.password4.value){
+        if(document.form1.password1.value == document.form1.password4.value){
             document.getElementById('pwd1').style.visibility = 'hidden';
-            if (this.form1.password2.value == this.form1.password3.value){
-                this.form1.submit(); 	
+            if (document.form1.password2.value == document.form1.password3.value){
+                document.form1.submit();
             }else{
                 document.getElementById('pwds').style.visibility = 'visible';
-                this.form1.password2.value = ''
-                this.form1.password3.value = ''
+                document.form1.password2.value = ''
+                document.form1.password3.value = ''
             }	
         }else{
             document.getElementById('pwd1').innerHTML = "Password actual incorrecto";
             document.getElementById('pwd1').style.visibility = 'visible';
-            this.form1.password2.value = ''
-            this.form1.password3.value = ''
-            this.form1.password1.value = ''
+            document.form1.password2.value = ''
+            document.form1.password3.value = ''
+            document.form1.password1.value = ''
         }
     }
 	
@@ -504,11 +503,11 @@ function vacio(q) {
 }
 
 function validarModArea(){
-    var responsable = this.form1.responsable.value.length
-    var sede = this.form1.sede.value.length
-    var sector = this.form1.sector.value.length
-    var digarea = this.form1.digarea.value.length
-    var digresp = this.form1.digresp.value.length
+    var responsable = document.form1.responsable.value.length
+    var sede = document.form1.sede.value.length
+    var sector = document.form1.sector.value.length
+    var digarea = document.form1.digarea.value.length
+    var digresp = document.form1.digresp.value.length
     var aux = 0;
     if(responsable==0){
         document.getElementById('resp').innerHTML = "Debe completar el campo";
@@ -557,7 +556,7 @@ function validarModArea(){
         if(digarea != 2){
             document.getElementById('dig1').innerHTML = "Debe contener 2 caracteres";
             document.getElementById('dig1').style.visibility = 'visible';
-            this.form1.digarea.value = ''
+            document.form1.digarea.value = ''
             aux++;
         }else{
             document.getElementById('dig1').style.visibility = 'hidden';
@@ -571,26 +570,26 @@ function validarModArea(){
         if(digresp != 2){
             document.getElementById('dig2').innerHTML = "Debe contener 2 caracteres";
             document.getElementById('dig2').style.visibility = 'visible';
-            this.form1.digresp.value = ''
+            document.form1.digresp.value = ''
             aux++;
         }else{
             document.getElementById('dig2').style.visibility = 'hidden';
         }
     }
     if(aux == 0 ){
-        this.form1.submit();
+        document.form1.submit();
     }
 }
 
 function validarAltaArea(){
-    var responsable = this.form1.responsable.value.length
-    var sede = this.form1.sede.value.length
-    var sector = this.form1.sector.value.length
-    var digarea = this.form1.digarea.value.length
-    var digresp = this.form1.digresp.value.length
-    var usuario = this.form1.usuario.value.length
-    var password1 = this.form1.password1.value.length
-    var password2 = this.form1.password2.value.length
+    var responsable = document.form1.responsable.value.length
+    var sede = document.form1.sede.value.length
+    var sector = document.form1.sector.value.length
+    var digarea = document.form1.digarea.value.length
+    var digresp = document.form1.digresp.value.length
+    var usuario = document.form1.usuario.value.length
+    var password1 = document.form1.password1.value.length
+    var password2 = document.form1.password2.value.length
     var aux = 0;
     if(responsable==0){  
         document.getElementById('resp').innerHTML = "Debe completar el campo";
@@ -639,7 +638,7 @@ function validarAltaArea(){
         if(digarea != 2){
             document.getElementById('dig1').innerHTML = "Debe contener 2 caracteres";  
             document.getElementById('dig1').style.visibility = 'visible';
-            this.form1.digarea.value = ''
+            document.form1.digarea.value = ''
             aux++;
         }else{
             document.getElementById('dig1').style.visibility = 'hidden';
@@ -653,7 +652,7 @@ function validarAltaArea(){
         if(digresp != 2){
             document.getElementById('dig2').innerHTML = "Debe contener 2 caracteres";  
             document.getElementById('dig2').style.visibility = 'visible';
-            this.form1.digresp.value = ''
+            document.form1.digresp.value = ''
             aux++;
         }else{
             document.getElementById('dig2').style.visibility = 'hidden';
@@ -669,7 +668,7 @@ function validarAltaArea(){
             document.getElementById('usu').style.visibility = 'visible';	
             aux++;
         }else{
-            usuario = this.form1.usuario.value
+            usuario = document.form1.usuario.value
             if(vacio(usuario)){
                 document.getElementById('usu').innerHTML = "No puede contener espacios en blanco"; 
                 document.getElementById('usu').style.visibility = 'visible';	
@@ -689,12 +688,12 @@ function validarAltaArea(){
             document.getElementById('pwd1').style.visibility = 'visible';
             aux++;	
         }else{
-            password1 = this.form1.password1.value;
+            password1 = document.form1.password1.value;
             if(vacio(password1)){
                 document.getElementById('pwd1').innerHTML = "No puede contener espacios en blanco";
                 document.getElementById('pwd1').style.visibility = 'visible';
-                this.form1.password1.value = ''
-                this.form1.password2.value = '' 
+                document.form1.password1.value = ''
+                document.form1.password2.value = ''
                 aux++; 
             }else{
                 document.getElementById('pwd1').style.visibility = 'hidden';
@@ -711,12 +710,12 @@ function validarAltaArea(){
             document.getElementById('pwd2').style.visibility = 'visible';
             aux++;
         }else{
-            password2 = this.form1.password2.value;
+            password2 = document.form1.password2.value;
             if(vacio(password2)){
                 document.getElementById('pwd2').innerHTML = "No puede contener espacios en blanco"; 
                 document.getElementById('pwd2').style.visibility = 'visible';
-                this.form1.password1.value = ''
-                this.form1.password2.value = '' 
+                document.form1.password1.value = ''
+                document.form1.password2.value = ''
                 aux++;
             }else{
                 document.getElementById('pwd2').style.visibility = 'hidden';	
@@ -724,12 +723,12 @@ function validarAltaArea(){
         }
     }
     if(aux == 0 ){
-        if (this.form1.password2.value == this.form1.password1.value){
-            this.form1.submit(); 	
+        if (document.form1.password2.value == document.form1.password1.value){
+            document.form1.submit();
         }else{
             document.getElementById('pwds').style.visibility = 'visible';
-            this.form1.password1.value = ''
-            this.form1.password2.value = ''
+            document.form1.password1.value = ''
+            document.form1.password2.value = ''
         }	
     }
 }
@@ -740,7 +739,7 @@ function confirmarBorrarArea()
     var usuario = document.form1.listaUsuarios.options [document.form1.listaUsuarios.selectedIndex].value;
     var respuesta=confirm("Esta seguro que desea eliminar a "+usuario+" ?");
     if (respuesta==true)
-        this.form1.submit();
+        document.form1.submit();
 }
 
 

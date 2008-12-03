@@ -62,8 +62,9 @@ public class DBManager {
             PreparedStatement stmt;
             String digitos = digarea + digresp;
             try {
-                stmt = conn.prepareStatement("SELECT responsable FROM usuarios where responsable = ?");
+                stmt = conn.prepareStatement("SELECT responsable FROM usuarios where responsable = ? and usuario <> ?");
                 stmt.setString(1, responsable);
+                stmt.setString(2, usuario);
                 ResultSet srs = stmt.executeQuery();
                 while (srs.next()) {
                     stmt.close();

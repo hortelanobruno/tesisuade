@@ -70,9 +70,7 @@
                                     <td colspan="3" height="30px"></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="radio" name="tipocuenta" value="operador" checked >Operador<br></td>
-                                    <td><input type="radio" name="tipocuenta" value="inspector" >Inspector<br></td>
-                                    <td><input type="radio" name="tipocuenta" value="cajero" >Cajero<br></td>
+                                    <td colspan="3"><input type="radio" name="tipocuenta" value="operador" checked >Operador&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="tipocuenta" value="inspector" >Inspector&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="tipocuenta" value="cajero" >Cajero</td>
                                 </tr>
                                 <tr >
                                     <td colspan="3" height="30px"></td>

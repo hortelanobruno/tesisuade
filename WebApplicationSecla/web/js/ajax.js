@@ -3,7 +3,7 @@ var target;
 var isIE;
 
 function cargaraDatosUsuario() {
-    var usuario   = this.form1.listaUsuarios.value
+    var usuario   = document.form1.listaUsuarios.value
     var url = "../datosUsuario?usuario="+ usuario;
     initRequest(url);
     req.onreadystatechange = processRequestCargarDatosUsuario;
@@ -12,7 +12,7 @@ function cargaraDatosUsuario() {
 }
 
 function cargarDatosUsuarioAMod(){
-    var usuario   = this.form1.listaUsuarios.value
+    var usuario   = document.form1.listaUsuarios.value
     var url = "../datosUsuario?usuario="+ usuario;
     initRequest(url);
     req.onreadystatechange = processRequestCargarDatosUsuarioAMod;
@@ -21,7 +21,7 @@ function cargarDatosUsuarioAMod(){
 }
 
 function borrarArea(){
-    var usuario   = this.form1.listaUsuarios.value
+    var usuario   = document.form1.listaUsuarios.value
     var url = "../borrarArea?usuario="+ usuario;
     initRequest(url);
     req.onreadystatechange = processRequestBorrarArea;
@@ -81,7 +81,7 @@ function processRequestCargarDatosUsuario() {
 }
 
 function verReciboAModificar(){
-    var numero = this.form1.recibos.value
+    var numero = document.form1.recibos.value
     if(numero != ""){
         var url = "../modificarRecibo?numero="+ numero;
         initRequest(url);
@@ -164,7 +164,7 @@ function processRequestVerReciboAModificar(){
     }
 }
 function verRecibo() {
-    var usuario = this.form1.usuarios.value
+    var usuario = document.form1.usuarios.value
     if(usuario != ''){
         var url = '../verRecibo?usuario='+ usuario;
         initRequest(url);
