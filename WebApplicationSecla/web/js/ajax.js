@@ -56,7 +56,7 @@ function processRequestCargarDatosUsuarioAMod(){
             document.getElementById("sede").innerHTML = "<input name='sede' type='text' size='30' value='"+_sede+"' onkeypress='if(event.keyCode == 13) validarAltaArea()'/>&nbsp;&nbsp;&nbsp;&nbsp;<label class='error' id='sed' style='visibility:hidden'></label>";
             document.getElementById("diga").innerHTML = "<input name='digarea' type='text' size='30' value='"+_diga+"' onkeypress='if(event.keyCode == 13) validarAltaArea()'/>&nbsp;&nbsp;&nbsp;&nbsp;<label class='error' id='dig1' style='visibility:hidden'></label>";
             document.getElementById("digr").innerHTML = "<input name='digresp' type='text' size='30' value='"+_digr+"' onkeypress='if(event.keyCode == 13) validarAltaArea()'/>&nbsp;&nbsp;&nbsp;&nbsp;<label class='error' id='dig2' style='visibility:hidden'></label>";
-            document.getElementById("but").innerHTML = "<input name='cargar' type='button' value='Alta Area' style='width:100px' onClick='validarModArea()'/>	";
+            document.getElementById("but").innerHTML = "<input name='cargar' type='button' value='Modificar Area' style='width:100px' onClick='validarModArea()'/>	";
         }
     }
 }
@@ -69,11 +69,13 @@ function processRequestCargarDatosUsuario() {
             var _sede = req.responseXML.getElementsByTagName("sede")[0].childNodes[0].nodeValue;
             var _digitos = req.responseXML.getElementsByTagName("digitos")[0].childNodes[0].nodeValue;
             var _password = req.responseXML.getElementsByTagName("password")[0].childNodes[0].nodeValue;
+            var _cuenta = req.responseXML.getElementsByTagName("cuenta")[0].childNodes[0].nodeValue;
             document.getElementById("res").innerHTML = _responsable;
             document.getElementById("sec").innerHTML = _sector;
             document.getElementById("sede").innerHTML = _sede;
             document.getElementById("dig").innerHTML = _digitos;
             document.getElementById("pwd").innerHTML = _password;
+            document.getElementById("cue").innerHTML = _cuenta;
         }
     }
 }
