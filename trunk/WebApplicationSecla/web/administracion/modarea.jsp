@@ -69,7 +69,7 @@
                                     <td valign="top">Usuarios</td>
                                     <td colspan="2" ><select name="listaUsuarios" size="10" style="width:200px" id="listaUsuarios" onchange="cargarDatosUsuarioAMod()">
                                             <%
-        String usu[] = manager.operatorList();
+        String usu[] = manager.operatorInspectorCajeroList();
         for (int i = 0; i < usu.length; i++) {
             out.print("<option value='" + usu[i] + "'>" + usu[i] + "</option>");
         }

@@ -65,7 +65,7 @@
                                     <td valign="top">Usuarios</td>
                                     <td><select name="listaUsuarios" size="10" style="width:200px" id="listaUsuarios" onchange="cargaraDatosUsuario()">
                                             <%
-        String usu[] = manager.operatorList();
+        String usu[] = manager.operatorInspectorCajeroList();
         for (int i = 0; i < usu.length; i++) {
             out.print("<option value='" + usu[i] + "'>" + usu[i] + "</option>");
         }
@@ -74,6 +74,8 @@
                                     <br><label class="error" id="menu" style="visibility:hidden"></label></td>
                                     <td valign="top">
                                         <table>
+                                            <tr><td>Tipo Cuenta : </td><td><label id="cue"></label></td>
+                                            </tr>
                                             <tr><td>Responsable : </td><td><label id="res"></label></td>
                                             </tr>
                                             <tr><td>Sede: </td><td><label id="sede"></label></td>

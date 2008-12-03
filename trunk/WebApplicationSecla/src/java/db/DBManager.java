@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import java.util.Map;
 import varios.Recibo;
 //boca
 public class DBManager {
@@ -72,8 +71,9 @@ public class DBManager {
                     con.cerrarConexion();
                     return "responsable";
                 }
-                stmt = conn.prepareStatement("SELECT digitos FROM usuarios where digitos = ?");
+                stmt = conn.prepareStatement("SELECT digitos FROM usuarios where digitos = ? and usuario <> ?");
                 stmt.setString(1, digitos);
+                stmt.setString(2, usuario);
                 srs = stmt.executeQuery();
                 while (srs.next()) {
                     stmt.close();
@@ -107,20 +107,23 @@ public class DBManager {
             Connection conn = con.getCon();
             PreparedStatement stmt;
             try {
-                stmt = conn.prepareStatement("SELECT tipocuenta FROM usuarios where usuario = ? and password = ? and habilitado = 1");
-                stmt.setString(1, usuario);
-                stmt.setString(2, password);
+                stmt = conn.prepareStatement("SELECT * FROM usuarios WHERE habilitado = 1");
                 ResultSet srs = stmt.executeQuery();
                 String tipocuenta = null;
+                String usu = null;
+                String pass = null;
                 while (srs.next()) {
-                    tipocuenta = srs.getString("tipocuenta");
-                    stmt.close();
-                    srs.close();
-                    con.cerrarConexion();
-                    return tipocuenta;
+                    usu = srs.getString("usuario");
+                    pass = srs.getString("password");
+                    if ((usu.equals(usuario))&&(pass.equals(password))) {
+                        tipocuenta = srs.getString("tipocuenta");
+                        stmt.close();
+                        srs.close();
+                        con.cerrarConexion();
+                        return tipocuenta;
+                    }
                 }
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else {
@@ -244,6 +247,7 @@ public class DBManager {
                     datos.add(srs.getString("sede"));
                     datos.add(srs.getString("sector"));
                     datos.add(srs.getString("digitos"));
+                    datos.add(srs.getString("tipocuenta"));
                 }
                 stmt.close();
                 srs.close();
@@ -321,7 +325,7 @@ public class DBManager {
         return recibos;
     }
 
-    public String addArea(String responsable, String sede, String sector, String digarea, String digresp, String usuario, String password1) {
+    public String addArea(String responsable, String sede, String sector, String digarea, String digresp, String usuario, String password1, String tipoCuenta) {
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
@@ -357,13 +361,14 @@ public class DBManager {
                     con.cerrarConexion();
                     return "digitos";
                 }
-                stmt = conn.prepareStatement("insert into usuarios values ( ? , ? , 'operador' , ? , ? , ? , ? , 1)");
+                stmt = conn.prepareStatement("insert into usuarios values ( ? , ? , ? , ? , ? , ? , ? , 1)");
                 stmt.setString(1, usuario);
                 stmt.setString(2, password1);
-                stmt.setString(3, responsable);
-                stmt.setString(4, sede);
-                stmt.setString(5, sector);
-                stmt.setString(6, digitos);
+                stmt.setString(3, tipoCuenta);
+                stmt.setString(4, responsable);
+                stmt.setString(5, sede);
+                stmt.setString(6, sector);
+                stmt.setString(7, digitos);
                 stmt.execute();
                 stmt.close();
                 srs.close();
@@ -376,6 +381,38 @@ public class DBManager {
             System.out.println("La base esta caida");
         }
         return null;
+    }
+
+    public String[] operatorInspectorCajeroList(){
+        String list[] = null;
+        Conexion con = new Conexion();
+        Conexion.driverOdbc();
+        if (con.abrirConexion()) {
+            Connection conn = con.getCon();
+            PreparedStatement stmt;
+            try {
+                stmt = conn.prepareStatement("SELECT count(*) as count FROM usuarios where tipocuenta <> 'administrador' and habilitado = 1");
+                ResultSet srs = stmt.executeQuery();
+                srs.next();
+                int cant = srs.getInt("count");
+                list = new String[cant];
+                stmt = conn.prepareStatement("SELECT usuario FROM usuarios where tipocuenta <> 'administrador' and habilitado = 1");
+                srs = stmt.executeQuery();
+                int aux = 0;
+                while (srs.next()) {
+                    list[aux] = srs.getString("usuario");
+                    aux++;
+                }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("La base esta caida");
+        }
+        return list;
     }
 
     public String[] operatorList() {
