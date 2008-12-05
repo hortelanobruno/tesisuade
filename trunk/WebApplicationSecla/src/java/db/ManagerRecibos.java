@@ -39,15 +39,15 @@ public class ManagerRecibos {
                 while (srs.next()) {
                     recibo = new Recibo();
                     recibo.setNumero(srs.getInt("numero"));
-                    recibo.setRazonSocial(srs.getString("beneficiario"));
-                    fecha = srs.getDate("fecharendicion").toString();
+                    recibo.setRazonSocial(srs.getString("razonsocial"));
+                    fecha = srs.getDate("fechaconfeccion").toString();
                     aux = fecha.split("-");
                     aux[0] = aux[0].trim();
                     aux[1] = aux[1].trim();
                     aux[2] = aux[2].trim();
                     fecha = aux[2] + "/" + aux[1] + "/" + aux[0];
                     recibo.setFechaConfeccion(fecha);
-                    recibo.setMonto(srs.getInt("monto"));
+                    recibo.setMonto(srs.getString("monto"));
                     recibo.setMotivo(srs.getString("motivo"));
                     recibo.setEstadorecibo(srs.getString("estadorecibo"));
                     fecha = srs.getDate("fechavencimiento").toString();
@@ -126,7 +126,7 @@ public class ManagerRecibos {
             Connection conn = con.getCon();
             PreparedStatement stmt;
             try {
-                stmt = conn.prepareStatement("update recibos set motivo = ? , estadorecibo = 'anulada', estadotransaccion = 'a confirmar', fecharendicion = ? where numero = ?");
+                stmt = conn.prepareStatement("update recibos set motivo = ? , estadorecibo = 'anulada', estadotransaccion = 'a confirmar', fechaconfeccion = ? where numero = ?");
                 stmt.setString(1, motivo);
                 stmt.setString(2, fecha);
                 stmt.setInt(3, Integer.parseInt(numero));
@@ -190,10 +190,29 @@ public class ManagerRecibos {
                 while (srs.next()) {
                     datos = new ArrayList<String>();
                     datos.add(srs.getString("numero"));
-                    datos.add(srs.getDate("fecharendicion").toString());
-                    datos.add(srs.getString("beneficiario"));
+                    String fecha = srs.getDate("fechaconfeccion").toString();
+                    String[] aux2 = fecha.split("-");
+                    aux2[0] = aux2[0].trim();
+                    aux2[1] = aux2[1].trim();
+                    aux2[2] = aux2[2].trim();
+                    fecha = aux2[2] + "/" + aux2[1] + "/" + aux2[0];
+                    datos.add(fecha);
+                    datos.add(srs.getString("razonsocial"));
                     datos.add(srs.getString("monto"));
                     datos.add(srs.getString("estadotransaccion"));
+                    datos.add(srs.getString("banco"));
+                    datos.add(srs.getString("numerocheque"));
+                    if(!srs.getString("fechavencimiento").toString().startsWith("1900")){
+                        fecha = srs.getDate("fechavencimiento").toString();
+                        aux2 = fecha.split("-");
+                        aux2[0] = aux2[0].trim();
+                        aux2[1] = aux2[1].trim();
+                        aux2[2] = aux2[2].trim();
+                        fecha = aux2[2] + "/" + aux2[1] + "/" + aux2[0];
+                        datos.add(fecha);
+                    }else{
+                        datos.add("&nbsp;");
+                    }
                     mapa.put(aux, datos);
                     aux++;
                 }
@@ -226,10 +245,29 @@ public class ManagerRecibos {
                 while (srs.next()) {
                     datos = new ArrayList<String>();
                     datos.add(srs.getString("numero"));
-                    datos.add(srs.getDate("fecharendicion").toString());
-                    datos.add(srs.getString("beneficiario"));
+                    String fecha = srs.getDate("fechaconfeccion").toString();
+                    String[] aux2 = fecha.split("-");
+                    aux2[0] = aux2[0].trim();
+                    aux2[1] = aux2[1].trim();
+                    aux2[2] = aux2[2].trim();
+                    fecha = aux2[2] + "/" + aux2[1] + "/" + aux2[0];
+                    datos.add(fecha);
+                    datos.add(srs.getString("razonsocial"));
                     datos.add(srs.getString("monto"));
                     datos.add(srs.getString("estadotransaccion"));
+                    datos.add(srs.getString("banco"));
+                    datos.add(srs.getString("numerocheque"));
+                    if(!srs.getString("fechavencimiento").toString().startsWith("1900")){
+                        fecha = srs.getDate("fechavencimiento").toString();
+                        aux2 = fecha.split("-");
+                        aux2[0] = aux2[0].trim();
+                        aux2[1] = aux2[1].trim();
+                        aux2[2] = aux2[2].trim();
+                        fecha = aux2[2] + "/" + aux2[1] + "/" + aux2[0];
+                        datos.add(fecha);
+                    }else{
+                        datos.add("&nbsp;");
+                    }
                     mapa.put(aux, datos);
                     aux++;
                 }
@@ -262,7 +300,7 @@ public class ManagerRecibos {
                 while (srs.next()) {
                     datos = new ArrayList<String>();
                     datos.add(srs.getString("numero"));
-                    datos.add(srs.getDate("fecharendicion").toString());
+                    datos.add(srs.getDate("fechaconfeccion").toString());
                     datos.add(srs.getString("motivo"));
                     mapa.put(aux, datos);
                     aux++;
@@ -296,7 +334,7 @@ public class ManagerRecibos {
                 while (srs.next()) {
                     datos = new ArrayList<String>();
                     datos.add(srs.getString("numero"));
-                    datos.add(srs.getDate("fecharendicion").toString());
+                    datos.add(srs.getDate("fechaconfeccion").toString());
                     datos.add(srs.getString("motivo"));
                     mapa.put(aux, datos);
                     aux++;
@@ -330,7 +368,7 @@ public class ManagerRecibos {
                 while (srs.next()) {
                     datos = new ArrayList<String>();
                     datos.add(srs.getString("numero"));
-                    datos.add(srs.getDate("fecharendicion").toString());
+                    datos.add(srs.getDate("fechaconfeccion").toString());
                     datos.add(srs.getString("motivo"));
                     mapa.put(aux, datos);
                     aux++;
@@ -364,7 +402,7 @@ public class ManagerRecibos {
                 while (srs.next()) {
                     datos = new ArrayList<String>();
                     datos.add(srs.getString("numero"));
-                    datos.add(srs.getDate("fecharendicion").toString());
+                    datos.add(srs.getDate("fechaconfeccion").toString());
                     datos.add(srs.getString("motivo"));
                     mapa.put(aux, datos);
                     aux++;
@@ -394,7 +432,7 @@ public class ManagerRecibos {
             Connection conn = con.getCon();
             PreparedStatement stmt;
             try {
-                stmt = conn.prepareStatement("update recibos set motivo = ? , fecharendicion = ? , estadorecibo = 'extraviada', estadotransaccion = 'a confirmar' where numero = ?");
+                stmt = conn.prepareStatement("update recibos set motivo = ? , fechaconfeccion = ? , estadorecibo = 'extraviada', estadotransaccion = 'a confirmar' where numero = ?");
                 stmt.setString(1, motivo);
                 stmt.setString(2, fecha);
                 stmt.setInt(3, Integer.parseInt(numero));
@@ -486,7 +524,7 @@ public class ManagerRecibos {
     }
 
     public String actualizarRecibo(Recibo rec) {
-        //08/21/2008 Ver como viene la fecha
+        //21/08/2008 Ver como viene la fecha
         String[] aux = rec.getFechaConfeccion().split("/");
         aux[0] = aux[0].trim();
         aux[1] = aux[1].trim();
@@ -503,12 +541,24 @@ public class ManagerRecibos {
                 String motivo = rec.getMotivo();
                 String monto = "" + rec.getMonto();
                 monto = monto.replace(',', '.');
-                stmt = conn.prepareStatement("update recibos set fechaconfeccion = ? , razonsocial = ?, monto = ?, motivo = ? where numero = ?");
+                String fecha2 = "";
+                if(!rec.getBanco().equals("")){
+                    aux = rec.getFechaDeVencimiento().split("/");
+                    aux[0] = aux[0].trim();
+                    aux[1] = aux[1].trim();
+                    aux[2] = aux[2].trim();
+                    fecha2 = aux[0] + "/" + aux[1] + "/" + aux[2];;
+                }
+                stmt = conn.prepareStatement("update recibos set fechaconfeccion = ? , razonsocial = ?, monto = ?, motivo = ?, banco = ?, numerocheque = ?, fechavencimiento = ?, numerocuota = ? where numero = ?");
                 stmt.setString(1, fecha);
                 stmt.setString(2, razonsocial);
                 stmt.setString(3, monto);
                 stmt.setString(4, motivo);
-                stmt.setInt(5, numero);
+                stmt.setString(5, rec.getBanco());
+                stmt.setString(6, rec.getNumeroCheque());
+                stmt.setString(7, fecha2);
+                stmt.setString(8, rec.getNumeroCuota());
+                stmt.setInt(9, numero);
                 stmt.execute();
                 stmt.close();
                 con.cerrarConexion();
@@ -544,7 +594,7 @@ public class ManagerRecibos {
                 int cant = srs.getInt("count");
                 if (cant == 0) {
                     for (int i = numMin; i < numMax + 1; i++) {
-                        stmt = conn.prepareStatement("insert into recibos values (?,?,'','','','','pendiente','')");
+                        stmt = conn.prepareStatement("insert into recibos values (?,?,'','','','','pendiente','','','','','','')");
                         stmt.setString(1, usuario);
                         stmt.setInt(2, i);
                         stmt.execute();
@@ -682,17 +732,27 @@ public class ManagerRecibos {
                 while (srs.next()) {
                     recibo = new Recibo();
                     recibo.setNumero(srs.getInt("numero"));
-                    recibo.setRazonSocial(srs.getString("beneficiario"));
-                    fecha = srs.getDate("fecharendicion").toString();
+                    recibo.setRazonSocial(srs.getString("razonsocial"));
+                    fecha = srs.getDate("fechaconfeccion").toString();
                     aux = fecha.split("-");
                     aux[0] = aux[0].trim();
                     aux[1] = aux[1].trim();
                     aux[2] = aux[2].trim();
                     fecha = aux[2] + "/" + aux[1] + "/" + aux[0];
                     recibo.setFechaConfeccion(fecha);
-                    recibo.setMonto(srs.getInt("monto"));
+                    recibo.setMonto(srs.getString("monto"));
                     recibo.setMotivo(srs.getString("motivo"));
                     recibo.setEstadorecibo(srs.getString("estadorecibo"));
+                    recibo.setBanco(srs.getString("banco"));
+                    recibo.setNumeroCuota(srs.getString("numerocuota"));
+                    recibo.setNumeroCheque(srs.getString("numerocheque"));
+                    fecha = srs.getDate("fechavencimiento").toString();
+                    aux = fecha.split("-");
+                    aux[0] = aux[0].trim();
+                    aux[1] = aux[1].trim();
+                    aux[2] = aux[2].trim();
+                    fecha = aux[2] + "/" + aux[1] + "/" + aux[0];
+                    recibo.setFechaDeVencimiento(fecha);
                     recibos.add(recibo);
                 }
                 stmt.close();

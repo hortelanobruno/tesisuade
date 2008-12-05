@@ -68,7 +68,7 @@ window.onload = function() {
 
 		<tr>
           <td class="bodyText">
-          <form method="post" action="boletaextraviada.jsp" id="form1" target="_parent">
+          <form method="post" action="boletaextraviada.jsp" name="form1" target="_parent">
           <table width="100%" cellpadding="1" cellspacing="5">
           <tr>
           <td colspan="3" align="center" bgcolor="#4D6FAC">
@@ -87,17 +87,17 @@ window.onload = function() {
 					out.print("<option value="+recibos.get(i)+">"+recibos.get(i)+"</option>");
 				}
 			%>
-          </select>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="recibo" style="visibility:hidden">Debe seleccionar un campo</label></td>
+          </select><br><label class="error" id="recibo" style="visibility:hidden">Debe seleccionar un campo</label></td>
           </tr>
           <tr>
           <td>Fecha</td>
           <td><input name="date" type="text" size="30" id="fecha" readonly="readonly"/>
 			<img src="../img/calendario.png"  width="20" height="20" id="selector" />
-          &nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="fecha2" style="visibility:hidden"></label></td>
+          <br><label class="error" id="fecha2" style="visibility:hidden"></label></td>
           </tr>
           <tr>
           <td valign="top">Motivo</td>
-          <td><textarea name="motivo" cols="24" rows="10"></textarea>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="motivo1" style="visibility:hidden">Debe completar el campo</label></td>
+          <td><textarea name="motivo" cols="24" rows="10"></textarea><br><label class="error" id="motivo1" style="visibility:hidden">Debe completar el campo</label></td>
           </tr>
           <tr >
           <td colspan="2" height="30px"></td>

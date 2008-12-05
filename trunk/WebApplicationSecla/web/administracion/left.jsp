@@ -12,15 +12,15 @@
             <td bgcolor="#FFFFFF">
 			<table width="100%">
 			<tr>
-				<td><div align="left"><a href="altaarea.jsp" class="navText">Alta de Area<br />
+				<td><div align="left"><a href="altaarea.jsp" class="navText">Alta de Responsable<br />
 				  </a></div></td>
 			</tr>
             <tr>
-				<td><div align="left"><a href="modarea.jsp" class="navText">Modificacion de Area<br />
+				<td><div align="left"><a href="modarea.jsp" class="navText">Modificacion de Responsable<br />
 				  </a></div></td>
 			</tr>
             <tr>
-				<td><div align="left"><a href="bajaarea.jsp" class="navText">Baja de Area<br />
+				<td><div align="left"><a href="bajaarea.jsp" class="navText">Baja de Responsable<br />
 				  </a></div></td>
 			</tr>
 			<tr>

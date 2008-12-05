@@ -162,7 +162,7 @@
                                 </tr>
                                 <tr>
                                     <td height="30px" colspan="3" align="center">
-                                        <input name="cargar" type="button" value="Alta Area" onClick="validarAltaArea()" />
+                                        <input name="cargar" type="button" value="Alta Responsable" onClick="validarAltaArea()" />
                                     </td>
                                 </tr>
                             </table>

@@ -84,6 +84,13 @@
                 <%= datos.get(3) %>
                 </td>
               </tr>
+              <tr>
+                <td>Digitos</td>
+                <td>&nbsp;</td>
+                <td>
+                <%= datos.get(4) %>
+                </td>
+              </tr>
               <tr >
                 <td colspan="3" height="30px"></td>
               </tr>

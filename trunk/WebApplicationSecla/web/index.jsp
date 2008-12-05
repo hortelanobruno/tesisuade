@@ -63,7 +63,7 @@
             </tr>
             <tr>
                 <td colspan="7" salign="center">
-                    <form method="post" target="_parent" action="index.jsp" id="form1">
+                    <form method="post" target="_parent" action="index.jsp" name="form1">
                         <table align="center" cellpadding="1" cellspacing="1" class="tr_roundBox tr_primaryColor" style="width: 350px;">
                             <tr  height="20px">
                                 <td class="tr_tl"></td>

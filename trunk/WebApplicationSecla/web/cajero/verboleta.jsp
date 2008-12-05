@@ -41,13 +41,12 @@
 <%@ include file="left.jsp" %>
 
     <td width="50"></td>
-    <td width="595" colspan="4" valign="top">	<p>&nbsp;</p>
-      <table border="0" cellspacing="0" cellpadding="0" width="789">
+    <td width="800" colspan="4" valign="top">	<p>&nbsp;</p>
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
         <tr>
           <td width="789" class="pageName"><h1>Ver recibos</h1>
           <p>&nbsp;</p></td>
 		</tr>
-
 		<tr>
           <td class="bodyText">
           <form method="post" action="verboleta.jsp" name="form1" target="_parent">

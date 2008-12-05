@@ -30,13 +30,13 @@
             Recibo recibo = null;
             String resultado = null;
             if(tipopago.equalsIgnoreCase("efectivo")){
-                recibo = new Recibo(Integer.parseInt(numero),fechaConfeccion,razonSocial,Long.parseLong(monto),cuota);
+                recibo = new Recibo(Integer.parseInt(numero),fechaConfeccion,razonSocial,monto,cuota);
                 resultado = manager.completarReciboEfectivoPorOperador(recibo);
             }else{
                 String banco = request.getParameter("banco");
                 String cheque = request.getParameter("numerocheque");
                 String fechaVencimiento = request.getParameter("date2");
-                recibo = new Recibo(Integer.parseInt(numero),fechaConfeccion,razonSocial,Long.parseLong(monto),cuota,banco,cheque,fechaVencimiento);
+                recibo = new Recibo(Integer.parseInt(numero),fechaConfeccion,razonSocial,monto,cuota,banco,cheque,fechaVencimiento);
                 resultado = manager.completarReciboChequePorOperador(recibo);
             }            
             if (resultado != null) {
