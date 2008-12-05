@@ -30,16 +30,20 @@ public class ModificarReciboServlet extends HttpServlet{
     throws IOException, ServletException {
         String numero = request.getParameter("numero");
         Recibo recibo = manager.obtenerReciboAConfirmar(numero);
-        String fecha = recibo.getFecharendicion();
+        String fecha = recibo.getFechaConfeccion();
         response.setContentType("text/xml");
         response.setHeader("Cache-Control", "no-cache");
         response.getWriter().write("<recibo>");
         response.getWriter().write("<numero>"+recibo.getNumero()+"</numero>");
         response.getWriter().write("<estadoboleta>"+recibo.getEstadorecibo()+"</estadoboleta>");
         response.getWriter().write("<fecharendicion>"+fecha+"</fecharendicion>");
-        response.getWriter().write("<beneficiario>"+recibo.getBeneficiario()+"</beneficiario>");
+        response.getWriter().write("<beneficiario>"+recibo.getRazonSocial()+"</beneficiario>");
         response.getWriter().write("<motivo>"+recibo.getMotivo()+"</motivo>");
         response.getWriter().write("<monto>"+recibo.getMonto()+"</monto>");
+        response.getWriter().write("<fechavencimiento>"+recibo.getFechaDeVencimiento()+"</fechavencimiento>");
+        response.getWriter().write("<banco>"+recibo.getBanco()+"</banco>");
+        response.getWriter().write("<numerocheque>"+recibo.getNumeroCheque()+"</numerocheque>");
+        response.getWriter().write("<numerocuota>"+recibo.getNumeroCuota()+"</numerocuota>");
         response.getWriter().write("</recibo>");
     }
 }

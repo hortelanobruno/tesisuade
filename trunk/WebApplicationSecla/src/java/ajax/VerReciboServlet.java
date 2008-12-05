@@ -46,8 +46,8 @@ public class VerReciboServlet extends HttpServlet {
                 response.getWriter().write("<boleta>");
                 response.getWriter().write("<numero>"+boleta.getNumero()+"</numero>");
                 response.getWriter().write("<estadoboleta>"+boleta.getEstadorecibo()+"</estadoboleta>");
-                response.getWriter().write("<fecharendicion>"+boleta.getFecharendicion()+"</fecharendicion>");
-                response.getWriter().write("<beneficiario>"+boleta.getBeneficiario()+"</beneficiario>");
+                response.getWriter().write("<fecharendicion>"+boleta.getFechaConfeccion()+"</fecharendicion>");
+                response.getWriter().write("<beneficiario>"+boleta.getRazonSocial()+"</beneficiario>");
                 response.getWriter().write("<monto>"+boleta.getMonto()+"</monto>");
                 response.getWriter().write("<motivo>"+boleta.getMotivo()+"</motivo>");
                 response.getWriter().write("</boleta>");

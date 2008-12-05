@@ -2,6 +2,47 @@ var req;
 var target;
 var isIE;
 
+function pagoEfectivo() {
+    var div = document.getElementById("pago2");
+    var datos = "<table width='100%' cellpadding='1' cellspacing='5'>";
+    datos += "<tr>";
+    datos += "<td width='150'>Monto</td>";
+    datos += "<td><input name='monto' type='text' size='30' /><br><label class='error' id='monto2' style='visibility:hidden'></label></td>";
+    datos += "</tr>";
+    datos += "</table>";
+    div.innerHTML = datos;
+}
+
+function pagoCheque() {
+    var div = document.getElementById("pago2");
+    var datos = "<table width='100%' cellpadding='1' cellspacing='5'>";
+    datos += "<tr>";
+    datos += "<td width='100px' >Numero Cheque</td>";
+    datos += "<td><input name='numerocheque' type='text' size='30' /><br><label class='error' id='ncheque' style='visibility:hidden'></label></td>";
+    datos += "</tr>";
+    datos += "<tr>";
+    datos += "<td>Banco</td>";
+    datos += "<td><input name='banco' type='text' size='30' /><br><label class='error' id='banco2' style='visibility:hidden'></label></td>";
+    datos += "</tr>";
+    datos += "<tr>";
+    datos += "<td>Fecha de vencimiento</td>";
+    datos += "<td><input name='date2' type='text' size='30' id='fecha3' readonly='readonly'/>";
+    datos += "<img src='../img/calendario.png'  width='20' height='20' id='selector2' />";
+    datos += "<br><label class='error' id='fecha4' style='visibility:hidden'></label></td>";
+    datos += "</tr>";
+    datos += "<tr>";
+    datos += "<td>Monto</td>";
+    datos += "<td><input name='monto' type='text' size='30' /><br><label class='error' id='monto2' style='visibility:hidden'></label></td>";
+    datos += "</tr>";
+    datos += "</table>";
+    div.innerHTML = datos;
+    Calendar.setup({
+        inputField: "fecha3",
+        ifFormat:   "%d / %m / %Y",
+        button:     "selector2"
+    });
+}
+
 function cargaraDatosUsuario() {
     var usuario   = document.form1.listaUsuarios.value
     var url = "../datosUsuario?usuario="+ usuario;
@@ -101,48 +142,22 @@ function processRequestVerReciboAModificar(){
             var fecharendicion;
             var beneficiario;
             var monto;
+            var fechavencimiento;
+            var banco;
+            var numerocheque;
+            var numerocuota;
             if(estadoboleta != "completada"){
                 motivo = req.responseXML.getElementsByTagName("motivo")[0].childNodes[0].nodeValue;
                 fecharendicion = req.responseXML.getElementsByTagName("fecharendicion")[0].childNodes[0].nodeValue;
-            }else{
-                motivo = '';
-                fecharendicion = req.responseXML.getElementsByTagName("fecharendicion")[0].childNodes[0].nodeValue;
-                beneficiario = req.responseXML.getElementsByTagName("beneficiario")[0].childNodes[0].nodeValue;
-                monto = req.responseXML.getElementsByTagName("monto")[0].childNodes[0].nodeValue;
-            }
-            if(motivo == ''){
-                datos += "<tr>";
-                datos += "<td>Fecha de confecci&oacute;n</td>";
-                datos += "<td><input name='date' type='text' size='30' id='fecha' readonly='readonly' value ='"+fecharendicion+"'/>";
-                datos += "<img src='../img/calendario.png'  width='20' height='20' id='selector' />";
-                datos += "&nbsp;&nbsp;&nbsp;&nbsp;<label class='error' id='fecha2' style='visibility:hidden'></label></td>";
-                datos += "</tr>";
-                datos += "<tr>";
-                datos += "<td>Razon social</td>";
-                datos += "<td><input name='beneficiario' type='text' size='30' value='"+beneficiario+"' />&nbsp;&nbsp;&nbsp;&nbsp;<label class='error' id='beneficiario2' style='visibility:hidden'></label></td>";
-                datos += "</tr>";
-                datos += "<tr>";
-                datos += "<td>Monto</td>";
-                datos += "<td><input name='monto' type='text' size='30' value='"+monto+"' />&nbsp;&nbsp;&nbsp;&nbsp;<label class='error' id='monto2' style='visibility:hidden'></label></td>";
-                datos += "</tr>";
-                datos += "<tr >";
-                datos += "<td colspan='2' height='30px'></td>";
-                datos += "</tr>";
-                datos += "<tr>";
-                datos += "<td height='30px' colspan='2' align='center'>";
-                datos += "<input name='cargar' type='button' value='Cargar recibo' style='width:100px' onClick='validarCompletarRecibo()'/>";
-                datos += "</td>";
-                datos += "</tr>";
-            }else{
                 datos += "<tr>"
                 datos += "<td>Fecha</td>"
                 datos += "<td><input name='date' type='text' size='30' id='fecha' readonly='readonly' value ='"+fecharendicion+"'/>"
                 datos += "<img src='../img/calendario.png'  width='20' height='20' id='selector' />"
-                datos += "&nbsp;&nbsp;&nbsp;&nbsp;<label class='error' id='fecha2' style='visibility:hidden'></label></td>"
+                datos += "<br><label class='error' id='fecha2' style='visibility:hidden'></label></td>"
                 datos += "</tr>"
                 datos += "<tr>"
                 datos += "<td valign='top'>Motivo</td>"
-                datos += "<td><textarea name='motivo' cols='24' rows='10'>"+motivo+"</textarea>&nbsp;&nbsp;&nbsp;&nbsp;<label class='error' id='motivo1' style='visibility:hidden'>Debe completar el campo</label></td>"
+                datos += "<td><textarea name='motivo' cols='24' rows='10'>"+motivo+"</textarea><br><label class='error' id='motivo1' style='visibility:hidden'>Debe completar el campo</label></td>"
                 datos += "</tr>"
                 datos += "<tr >"
                 datos += "<td colspan='2' height='30px'></td>"
@@ -152,6 +167,85 @@ function processRequestVerReciboAModificar(){
                 datos += "<input name='cargar' type='button' value='Cargar recibo' style='width:100px' onClick='validarAnularRecibo()'/>"
                 datos += "</td>"
                 datos += "</tr>"
+            }else{
+                motivo = '';
+                fecharendicion = req.responseXML.getElementsByTagName("fecharendicion")[0].childNodes[0].nodeValue;
+                beneficiario = req.responseXML.getElementsByTagName("beneficiario")[0].childNodes[0].nodeValue;
+                monto = req.responseXML.getElementsByTagName("monto")[0].childNodes[0].nodeValue;
+                banco = req.responseXML.getElementsByTagName("banco")[0].childNodes[0].nodeValue;
+                numerocuota = req.responseXML.getElementsByTagName("numerocuota")[0].childNodes[0].nodeValue;
+                numerocuota = numerocuota.split("/");
+                var ncuota1 = numerocuota[0];
+                var ncuota2 = numerocuota[1];
+                if(banco != ''){
+                    //Pago con cheque
+                    numerocheque = req.responseXML.getElementsByTagName("numerocheque")[0].childNodes[0].nodeValue;
+                    fechavencimiento = req.responseXML.getElementsByTagName("fechavencimiento")[0].childNodes[0].nodeValue;
+                    datos += "<tr>";
+                    datos += "<td>Fecha de confecci&oacute;n</td>";
+                    datos += "<td><input name='date' type='text' size='30' id='fecha' readonly='readonly' value ='"+fecharendicion+"'/>";
+                    datos += "<img src='../img/calendario.png'  width='20' height='20' id='selector' />";
+                    datos += "<br><label class='error' id='fecha2' style='visibility:hidden'></label></td>";
+                    datos += "</tr>";
+                    datos += "<tr>";
+                    datos += "<td>Razon social</td>";
+                    datos += "<td><input name='beneficiario' type='text' size='30' value='"+beneficiario+"' /><br><label class='error' id='beneficiario2' style='visibility:hidden'></label></td>";
+                    datos += "</tr>";
+                    datos += "<td>Numero cuota</td>";
+                    datos += "<td><input name='numerocuota1' type='text' size='1' value='"+ncuota1+"' />&nbsp;/&nbsp;<input name='numerocuota2' type='text' size='1' value='"+ncuota2+"' /><br><label class='error' id='ncuota' style='visibility:hidden'></label></td>";
+                    datos += "</tr>";
+                    datos += "<tr>";
+                    datos += "<td>Fecha de vencimiento</td>";
+                    datos += "<td><input name='date2' type='text' size='30' id='fecha3' readonly='readonly' value ='"+fechavencimiento+"'/>";
+                    datos += "<img src='../img/calendario.png'  width='20' height='20' id='selector2' />";
+                    datos += "<br><label class='error' id='fecha4' style='visibility:hidden'></label></td>";
+                    datos += "</tr>";
+                    datos += "<td>Banco</td>";
+                    datos += "<td><input name='banco' type='text' size='30' value='"+banco+"' /><br><label class='error' id='banco2' style='visibility:hidden'></label></td>";
+                    datos += "</tr>";
+                    datos += "<td>Numero cheque</td>";
+                    datos += "<td><input name='numerocheque' type='text' size='30' value='"+numerocheque+"' /><br><label class='error' id='ncheque' style='visibility:hidden'></label></td>";
+                    datos += "</tr>";
+                    datos += "<tr>";
+                    datos += "<td>Monto</td>";
+                    datos += "<td><input name='monto' type='text' size='30' value='"+monto+"' /><br><label class='error' id='monto2' style='visibility:hidden'></label></td>";
+                    datos += "</tr>";
+                    datos += "<tr >";
+                    datos += "<td colspan='2' height='30px'></td>";
+                    datos += "</tr>";
+                    datos += "<tr>";
+                    datos += "<td height='30px' colspan='2' align='center'>";
+                    datos += "<input name='cargar' type='button' value='Cargar recibo' style='width:100px' onClick='validarCompletarRecibo()'/>";
+                    datos += "</td>";
+                    datos += "</tr>";
+                }else{
+                    //Pago en efectivo
+                    datos += "<tr>";
+                    datos += "<td>Fecha de confecci&oacute;n</td>";
+                    datos += "<td><input name='date' type='text' size='30' id='fecha' readonly='readonly' value ='"+fecharendicion+"'/>";
+                    datos += "<img src='../img/calendario.png'  width='20' height='20' id='selector' />";
+                    datos += "<br><label class='error' id='fecha2' style='visibility:hidden'></label></td>";
+                    datos += "</tr>";
+                    datos += "<tr>";
+                    datos += "<td>Razon social</td>";
+                    datos += "<td><input name='beneficiario' type='text' size='30' value='"+beneficiario+"' /><br><label class='error' id='beneficiario2' style='visibility:hidden'></label></td>";
+                    datos += "</tr>";
+                    datos += "<tr>";
+                    datos += "<td>Numero cuota</td>";
+                    datos += "<td><input name='numerocuota1' type='text' size='1' value='"+ncuota1+"' />&nbsp;/&nbsp;<input name='numerocuota2' type='text' size='1' value='"+ncuota2+"' /><br><label class='error' id='ncuota' style='visibility:hidden'></label></td>";
+                    datos += "</tr>";
+                    datos += "<td>Monto</td>";
+                    datos += "<td><input name='monto' type='text' size='30' value='"+monto+"' /><br><label class='error' id='monto2' style='visibility:hidden'></label></td>";
+                    datos += "</tr>";
+                    datos += "<tr >";
+                    datos += "<td colspan='2' height='30px'></td>";
+                    datos += "</tr>";
+                    datos += "<tr>";
+                    datos += "<td height='30px' colspan='2' align='center'>";
+                    datos += "<input name='cargar' type='button' value='Cargar recibo' style='width:100px' onClick='validarCompletarRecibo()'/>";
+                    datos += "</td>";
+                    datos += "</tr>";
+                }
             }
             datos += "</table>";
             div.innerHTML = datos;
@@ -159,6 +253,11 @@ function processRequestVerReciboAModificar(){
                 inputField: "fecha",
                 ifFormat:   "%d / %m / %Y",
                 button:     "selector"
+            });
+            Calendar.setup({
+                inputField: "fecha3",
+                ifFormat:   "%d / %m / %Y",
+                button:     "selector2"
             });
         }
     }

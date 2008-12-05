@@ -1,19 +1,42 @@
 package varios;
 
-import java.util.Date;
-
 public class Recibo {
 
 	private int numero;
-	private String fecharendicion;
-	private String beneficiario;
-	private int monto;
-	private String estadorecibo;
+	private String fechaConfeccion;
+	private String razonSocial;
+	private long monto;
+	private String estadoRecibo;
 	private String motivo;
+    private String numeroCuota;
+    private String banco;
+    private String numeroCheque;
+    private String fechaDeVencimiento;
+
 	
 	public Recibo() {
-		// TODO Auto-generated constructor stub
 	}
+
+    public Recibo(int numero, String fechaConfeccion, String razonSocial, long monto, String numeroCuota, String banco, String numeroCheque, String fechaDeVencimiento) {
+        this.numero = numero;
+        this.fechaConfeccion = fechaConfeccion;
+        this.razonSocial = razonSocial;
+        this.monto = monto;
+        this.numeroCuota = numeroCuota;
+        this.banco = banco;
+        this.numeroCheque = numeroCheque;
+        this.fechaDeVencimiento = fechaDeVencimiento;
+    }
+
+    public Recibo(int numero, String fechaConfeccion, String razonSocial, long monto, String numeroCuota) {
+        this.numero = numero;
+        this.fechaConfeccion = fechaConfeccion;
+        this.razonSocial = razonSocial;
+        this.monto = monto;
+        this.numeroCuota = numeroCuota;
+    }
+
+    
 
 	public int getNumero() {
 		return numero;
@@ -23,36 +46,36 @@ public class Recibo {
 		this.numero = numero;
 	}
 
-	public String getFecharendicion() {
-		return fecharendicion.toString();
+	public String getFechaConfeccion() {
+		return fechaConfeccion.toString();
 	}
 
-	public void setFecharendicion(String fecharendicion) {
-		this.fecharendicion = fecharendicion;
+	public void setFechaConfeccion(String fechaconfeccion) {
+		this.fechaConfeccion = fechaconfeccion;
 	}
 
-	public String getBeneficiario() {
-		return beneficiario;
+	public String getRazonSocial() {
+		return razonSocial;
 	}
 
-	public void setBeneficiario(String beneficiario) {
-		this.beneficiario = beneficiario;
+	public void setRazonSocial(String razonSocial) {
+		this.razonSocial = razonSocial;
 	}
 
-	public int getMonto() {
+	public long getMonto() {
 		return monto;
 	}
 
-	public void setMonto(int monto) {
+	public void setMonto(long monto) {
 		this.monto = monto;
 	}
 
 	public String getEstadorecibo() {
-		return estadorecibo;
+		return estadoRecibo;
 	}
 
 	public void setEstadorecibo(String estadoboleta) {
-		this.estadorecibo = estadoboleta;
+		this.estadoRecibo = estadoboleta;
 	}
 
 	public String getMotivo() {
@@ -62,5 +85,61 @@ public class Recibo {
 	public void setMotivo(String motivo) {
 		this.motivo = motivo;
 	}
+
+    /**
+     * @return the numeroCuota
+     */
+    public String getNumeroCuota() {
+        return numeroCuota;
+    }
+
+    /**
+     * @param numeroCuota the numeroCuota to set
+     */
+    public void setNumeroCuota(String numeroCuota) {
+        this.numeroCuota = numeroCuota;
+    }
+
+    /**
+     * @return the banco
+     */
+    public String getBanco() {
+        return banco;
+    }
+
+    /**
+     * @param banco the banco to set
+     */
+    public void setBanco(String banco) {
+        this.banco = banco;
+    }
+
+    /**
+     * @return the numeroCheque
+     */
+    public String getNumeroCheque() {
+        return numeroCheque;
+    }
+
+    /**
+     * @param numeroCheque the numeroCheque to set
+     */
+    public void setNumeroCheque(String numeroCheque) {
+        this.numeroCheque = numeroCheque;
+    }
+
+    /**
+     * @return the fechaDeVencimiento
+     */
+    public String getFechaDeVencimiento() {
+        return fechaDeVencimiento;
+    }
+
+    /**
+     * @param fechaDeVencimiento the fechaDeVencimiento to set
+     */
+    public void setFechaDeVencimiento(String fechaDeVencimiento) {
+        this.fechaDeVencimiento = fechaDeVencimiento;
+    }
 	
 }
