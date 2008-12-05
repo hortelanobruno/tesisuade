@@ -5,7 +5,7 @@ public class Recibo {
 	private int numero;
 	private String fechaConfeccion;
 	private String razonSocial;
-	private long monto;
+	private String monto;
 	private String estadoRecibo;
 	private String motivo;
     private String numeroCuota;
@@ -17,7 +17,7 @@ public class Recibo {
 	public Recibo() {
 	}
 
-    public Recibo(int numero, String fechaConfeccion, String razonSocial, long monto, String numeroCuota, String banco, String numeroCheque, String fechaDeVencimiento) {
+    public Recibo(int numero, String fechaConfeccion, String razonSocial, String monto, String numeroCuota, String banco, String numeroCheque, String fechaDeVencimiento) {
         this.numero = numero;
         this.fechaConfeccion = fechaConfeccion;
         this.razonSocial = razonSocial;
@@ -28,7 +28,7 @@ public class Recibo {
         this.fechaDeVencimiento = fechaDeVencimiento;
     }
 
-    public Recibo(int numero, String fechaConfeccion, String razonSocial, long monto, String numeroCuota) {
+    public Recibo(int numero, String fechaConfeccion, String razonSocial, String monto, String numeroCuota) {
         this.numero = numero;
         this.fechaConfeccion = fechaConfeccion;
         this.razonSocial = razonSocial;
@@ -62,11 +62,11 @@ public class Recibo {
 		this.razonSocial = razonSocial;
 	}
 
-	public long getMonto() {
+	public String getMonto() {
 		return monto;
 	}
 
-	public void setMonto(long monto) {
+	public void setMonto(String monto) {
 		this.monto = monto;
 	}
 

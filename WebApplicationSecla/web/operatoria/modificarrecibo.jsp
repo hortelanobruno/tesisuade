@@ -26,12 +26,26 @@
                 //Recibo Completado
                 String beneficiario = request.getParameter("beneficiario");
                 String recibo = request.getParameter("recibos");
+                String banco = request.getParameter("banco");
+                String numerocheque = request.getParameter("numerocheque");
+                String fechavencimiento = request.getParameter("date2");
+                String numerocuota = request.getParameter("numerocuota1") + "/" + request.getParameter("numerocuota2");
                 Recibo r1 = new Recibo();
                 r1.setRazonSocial(beneficiario);
                 r1.setNumero(Integer.parseInt(recibo));
                 r1.setFechaConfeccion(fecha);
-                r1.setMonto(Integer.parseInt(monto));
+                r1.setMonto(monto);
                 r1.setMotivo("");
+                if (banco == null) {
+                    r1.setBanco("");
+                    r1.setFechaDeVencimiento("");
+                    r1.setNumeroCheque("");
+                } else {
+                    r1.setBanco(banco);
+                    r1.setFechaDeVencimiento(fechavencimiento);
+                    r1.setNumeroCheque(numerocheque);
+                }
+                r1.setNumeroCuota(numerocuota);
                 String resultado = manager.actualizarRecibo(r1);
                 if (resultado != null) {
                     if (resultado == "true") {
@@ -47,7 +61,11 @@
                 r1.setFechaConfeccion(fecha);
                 r1.setNumero(Integer.parseInt(recibo));
                 r1.setRazonSocial("");
-                r1.setMonto(0);
+                r1.setMonto("");
+                r1.setBanco("");
+                r1.setFechaDeVencimiento("");
+                r1.setNumeroCheque("");
+                r1.setNumeroCuota("");
                 String resultado = manager.actualizarRecibo(r1);
                 if (resultado != null) {
                     if (resultado == "true") {

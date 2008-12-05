@@ -40,10 +40,15 @@ public class ModificarReciboServlet extends HttpServlet{
         response.getWriter().write("<beneficiario>"+recibo.getRazonSocial()+"</beneficiario>");
         response.getWriter().write("<motivo>"+recibo.getMotivo()+"</motivo>");
         response.getWriter().write("<monto>"+recibo.getMonto()+"</monto>");
-        response.getWriter().write("<fechavencimiento>"+recibo.getFechaDeVencimiento()+"</fechavencimiento>");
-        response.getWriter().write("<banco>"+recibo.getBanco()+"</banco>");
-        response.getWriter().write("<numerocheque>"+recibo.getNumeroCheque()+"</numerocheque>");
         response.getWriter().write("<numerocuota>"+recibo.getNumeroCuota()+"</numerocuota>");
+        if(recibo.getBanco().equals("")){
+            response.getWriter().write("<tipopago>efectivo</tipopago>");
+        }else{
+            response.getWriter().write("<tipopago>cheque</tipopago>");
+            response.getWriter().write("<banco>"+recibo.getBanco()+"</banco>");
+            response.getWriter().write("<numerocheque>"+recibo.getNumeroCheque()+"</numerocheque>");
+            response.getWriter().write("<fechavencimiento>"+recibo.getFechaDeVencimiento()+"</fechavencimiento>");
+        }
         response.getWriter().write("</recibo>");
     }
 }
