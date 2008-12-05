@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=ISO-8859-1" language="java" import="java.sql.*" errorPage="" %>
-<%@ page import="db.DBManager" %>
+<%@ page import="db.DBManager,varios.Usuario" %>
 <%
         Object connectado = session.getAttribute("conectado");
         if (connectado != null) {
@@ -21,7 +21,8 @@
             response.sendRedirect("../index.jsp");
         }
         if (responsable != null) {
-            resultado = manager.actualizarArea(usuario, responsable, sector, sede, digarea, digresp);
+            Usuario usu = new Usuario(usuario, responsable, sector, sede, digarea, digresp);
+            resultado = manager.actualizarArea(usu);
             if (resultado != null) {
                 if (resultado == "ok") {
                     response.sendRedirect("modareaok.jsp");

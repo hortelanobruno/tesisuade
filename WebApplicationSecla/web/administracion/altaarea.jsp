@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=ISO-8859-1" language="java" import="java.sql.*" errorPage="" %>
-<%@ page import="db.DBManager" %> 
+<%@ page import="db.DBManager,varios.Usuario" %>
 <%
         Object connectado = session.getAttribute("conectado");
         if (connectado != null) {
@@ -23,7 +23,8 @@
         String tipoCuenta = request.getParameter("tipocuenta");
         String resultado = new String();
         if (responsable != null) {
-            resultado = manager.addArea(responsable, sede, sector, digarea, digresp, usuario, password1, tipoCuenta);
+            Usuario usu = new Usuario(usuario,responsable,sector,sede,digarea,digresp,password1,tipoCuenta);
+            resultado = manager.addArea(usu);
             if (resultado != null) {
                 if (resultado == "ok") {
                     response.sendRedirect("altaareaok.jsp");
@@ -56,26 +57,26 @@
                 </tr>
                 <tr>
                     <td class="bodyText">
-                        <form method="post" target="_parent" id="form1" action="altaarea.jsp">
+                        <form method="post" target="_parent" name="form1" action="altaarea.jsp" >
                             <table width="100%" cellpadding="1" cellspacing="5">
                                 <tr>
                                     <td>&nbsp;</td>
                                     <td width="20px">&nbsp;</td>
                                     <td>&nbsp;</td>
                                 </tr>
-                                <tr >
+                                <tr>
                                     <td colspan="3" align="center" bgcolor="#4D6FAC"><h3 style="color:#FFFFFF">Tipo de cuenta</h3></td>
                                 </tr>
                                 <tr>
                                     <td colspan="3" height="30px"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3"><input type="radio" name="tipocuenta" value="operador" checked >Operador&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="tipocuenta" value="inspector" >Inspector&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="tipocuenta" value="cajero" >Cajero</td>
+                                    <td colspan="3"><input type="radio" name="tipocuenta" value="operador" checked />Operador&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="tipocuenta" value="inspector" />Inspector&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="tipocuenta" value="cajero" />Cajero</td>
                                 </tr>
-                                <tr >
+                                <tr>
                                     <td colspan="3" height="30px"></td>
                                 </tr>
-                                <tr >
+                                <tr>
                                     <td colspan="3" align="center" bgcolor="#4D6FAC"><h3 style="color:#FFFFFF">Datos Usuario</h3></td>
                                 </tr>
                                 <tr>
@@ -84,7 +85,7 @@
                                 <tr>
                                     <td>Responsable encargado</td>
                                     <td>&nbsp;</td>
-                                    <td><input name="responsable" type="text" size="30" onkeypress="if(event.keyCode == 13) validarAltaArea()"/>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="resp" style="visibility:hidden"></label>
+                                    <td><input name="responsable" type="text" size="30" /><br><label class="error" id="resp" style="visibility:hidden"></label>
                                         <%
         if (resultado == "responsable") {
             out.print("<tr align='center'><td colspan='3'><p class='error'>El responsable EXISTE en el sistema</p></td></tr>");
@@ -95,19 +96,19 @@
                                 <tr>
                                     <td>Sede</td>
                                     <td>&nbsp;</td>
-                                    <td><input name="sede" type="text" size="30" onkeypress="if(event.keyCode == 13) validarAltaArea()"/>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="sed" style="visibility:hidden"></label>
+                                    <td><input name="sede" type="text" size="30" /><br><label class="error" id="sed" style="visibility:hidden"></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Sector</td>
                                     <td>&nbsp;</td>
-                                    <td><input name="sector" type="text" size="30" onkeypress="if(event.keyCode == 13) validarAltaArea()"/>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="sec" style="visibility:hidden"></label>
+                                    <td><input name="sector" type="text" size="30" /><br><label class="error" id="sec" style="visibility:hidden"></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Digito area</td>
                                     <td>&nbsp;</td>
-                                    <td><input name="digarea" type="text" size="30" onkeypress="if(event.keyCode == 13) validarAltaArea()"/>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="dig1" style="visibility:hidden"></label>
+                                    <td><input name="digarea" type="text" size="30" /><br><label class="error" id="dig1" style="visibility:hidden"></label>
                                         <%
         if (resultado == "digitos") {
             out.print("<tr align='center'><td colspan='3'><p class='error'>Los digitos EXISTE en el sistema</p></td></tr>");
@@ -118,22 +119,22 @@
                                 <tr>
                                     <td>Digito responsable</td>
                                     <td>&nbsp;</td>
-                                    <td><input name="digresp" type="text" size="30" onkeypress="if(event.keyCode == 13) validarAltaArea()"/>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="dig2" style="visibility:hidden"></label>
+                                    <td><input name="digresp" type="text" size="30" /><br><label class="error" id="dig2" style="visibility:hidden"></label>
                                     </td>
                                 </tr>
-                                <tr >
+                                <tr>
                                     <td colspan="3" height="30px"></td>
                                 </tr>
-                                <tr >
+                                <tr>
                                     <td colspan="3" align="center" bgcolor="#4D6FAC"><h3 style="color:#FFFFFF">Datos Cuenta</h3></td>
                                 </tr>
-                                <tr >
+                                <tr>
                                     <td colspan="3" height="30px"></td>
                                 </tr>
                                 <tr>
                                     <td>Nombre de usuario</td>
                                     <td>&nbsp;</td>
-                                    <td><input name="usuario" type="text" size="30" onkeypress="if(event.keyCode == 13) validarAltaArea()"/>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="usu" style="visibility:hidden"></label>
+                                    <td><input name="usuario" type="text" size="30" /><br><label class="error" id="usu" style="visibility:hidden"></label>
                                         <%
         if (resultado == "usuario") {
             out.print("<tr align='center'><td colspan='3'><p class='error'>El usuario EXISTE en el sistema</p></td></tr>");
@@ -144,24 +145,24 @@
                                 <tr>
                                     <td>Contrase&ntilde;a</td>
                                     <td>&nbsp;</td>
-                                    <td><input name="password1" type="password" size="30" onkeypress="if(event.keyCode == 13) validarAltaArea()"/>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="pwd1" style="visibility:hidden"></label>
+                                    <td><input name="password1" type="password" size="30" /><br><label class="error" id="pwd1" style="visibility:hidden"></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Repetir contrase&ntilde;a</td>
                                     <td>&nbsp;</td>
-                                    <td><input name="password2" type="password" size="30" onkeypress="if(event.keyCode == 13) validarAltaArea()"/>&nbsp;&nbsp;&nbsp;&nbsp;<label class="error" id="pwd2" style="visibility:hidden"></label>
+                                    <td><input name="password2" type="password" size="30" /><br><label class="error" id="pwd2" style="visibility:hidden"></label>
                                     </td>
                                 </tr>
-                                <tr >
+                                <tr>
                                     <td colspan="3"><label class="error" id="pwds" style="visibility:hidden">Los passwords son diferentes</label></td>
                                 </tr>
-                                <tr >
+                                <tr>
                                     <td colspan="3" height="30px"></td>
                                 </tr>
-                                <tr >
+                                <tr>
                                     <td height="30px" colspan="3" align="center">
-                                        <input name="cargar" type="button" value="Alta Area" style="width:100px" onClick="validarAltaArea()"/>
+                                        <input name="cargar" type="button" value="Alta Area" onClick="validarAltaArea()" />
                                     </td>
                                 </tr>
                             </table>

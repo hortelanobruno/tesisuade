@@ -27,9 +27,9 @@
                 String beneficiario = request.getParameter("beneficiario");
                 String recibo = request.getParameter("recibos");
                 Recibo r1 = new Recibo();
-                r1.setBeneficiario(beneficiario);
+                r1.setRazonSocial(beneficiario);
                 r1.setNumero(Integer.parseInt(recibo));
-                r1.setFecharendicion(fecha);
+                r1.setFechaConfeccion(fecha);
                 r1.setMonto(Integer.parseInt(monto));
                 r1.setMotivo("");
                 String resultado = manager.actualizarRecibo(r1);
@@ -44,9 +44,9 @@
                 String motivo = request.getParameter("motivo");
                 String recibo = request.getParameter("recibos");
                 r1.setMotivo(motivo);
-                r1.setFecharendicion(fecha);
+                r1.setFechaConfeccion(fecha);
                 r1.setNumero(Integer.parseInt(recibo));
-                r1.setBeneficiario("");
+                r1.setRazonSocial("");
                 r1.setMonto(0);
                 String resultado = manager.actualizarRecibo(r1);
                 if (resultado != null) {
