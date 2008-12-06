@@ -86,6 +86,10 @@ public class DBManager {
         return managerUsuarios.operatorInspectorCajeroList();
     }
 
+    public String[] operatorInspectorList() {
+        return managerUsuarios.operatorInspectorList();
+    }
+
     public String[] operatorList() {
         return managerUsuarios.operatorList();
     }
@@ -98,27 +102,27 @@ public class DBManager {
         return managerRecibos.chequearBorrarUsuario(usuario);
     }
 
-    public HashMap<Integer, List<String>> obtenerRecibosCompletadas(String usuario) {
+    public List<Recibo> obtenerRecibosCompletadas(String usuario) {
         return managerRecibos.obtenerRecibosCompletadas(usuario);
     }
 
-    public HashMap<Integer, List<String>> obtenerRecibosCompletadasRendidos(String usuario) {
+    public List<Recibo> obtenerRecibosCompletadasRendidos(String usuario) {
         return managerRecibos.obtenerRecibosCompletadasRendidos(usuario);
     }
 
-    public HashMap<Integer, List<String>> obtenerRecibosAnuladas(String usuario) {
+    public List<Recibo> obtenerRecibosAnuladas(String usuario) {
         return managerRecibos.obtenerRecibosAnuladas(usuario);
     }
 
-    public HashMap<Integer, List<String>> obtenerRecibosAnuladasRendidos(String usuario) {
+    public List<Recibo> obtenerRecibosAnuladasRendidos(String usuario) {
         return managerRecibos.obtenerRecibosAnuladasRendidos(usuario);
     }
 
-    public HashMap<Integer, List<String>> obtenerRecibosExtraviadas(String usuario) {
+    public List<Recibo> obtenerRecibosExtraviadas(String usuario) {
         return managerRecibos.obtenerRecibosExtraviadas(usuario);
     }
 
-    public HashMap<Integer, List<String>> obtenerRecibosExtraviadasRendidos(String usuario) {
+    public List<Recibo> obtenerRecibosExtraviadasRendidos(String usuario) {
         return managerRecibos.obtenerRecibosExtraviadasRendidos(usuario);
     }
 
@@ -130,8 +134,16 @@ public class DBManager {
         return managerRecibos.completarReciboChequePorOperador(rec);
     }
 
+    public String completarReciboChequePorInspector(Recibo rec){
+        return managerRecibos.completarReciboChequePorInspector(rec);
+    }
+
     public String completarReciboEfectivoPorOperador(Recibo rec) {
         return managerRecibos.completarReciboEfectivoPorOperador(rec);
+    }
+
+    public String completarReciboEfectivoPorInspector(Recibo rec) {
+        return managerRecibos.completarReciboEfectivoPorInspector(rec);
     }
 
     public String actualizarRecibo(Recibo rec) {

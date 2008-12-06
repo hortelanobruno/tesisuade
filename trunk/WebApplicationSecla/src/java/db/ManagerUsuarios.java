@@ -365,4 +365,36 @@ public class ManagerUsuarios {
         }
         return null;
     }
+
+    public String[] operatorInspectorList() {
+        String list[] = null;
+        Conexion con = new Conexion();
+        Conexion.driverOdbc();
+        if (con.abrirConexion()) {
+            Connection conn = con.getCon();
+            PreparedStatement stmt;
+            try {
+                stmt = conn.prepareStatement("SELECT count(*) as count FROM usuarios where (tipocuenta = 'inspector' OR tipocuenta = 'operador' ) and habilitado = 1");
+                ResultSet srs = stmt.executeQuery();
+                srs.next();
+                int cant = srs.getInt("count");
+                list = new String[cant];
+                stmt = conn.prepareStatement("SELECT responsable FROM usuarios where (tipocuenta = 'inspector' OR tipocuenta = 'operador' ) and habilitado = 1");
+                srs = stmt.executeQuery();
+                int aux = 0;
+                while (srs.next()) {
+                    list[aux] = srs.getString("responsable");
+                    aux++;
+                }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("La base esta caida");
+        }
+        return list;
+    }
 }

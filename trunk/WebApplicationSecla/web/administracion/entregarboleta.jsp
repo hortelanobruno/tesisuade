@@ -18,7 +18,6 @@
 	String numMax = request.getParameter("numMax");
 	String resultado = new String();
 	if(operador != null){
-		session.setAttribute("operador",operador);
 		resultado = manager.cargarRecibos(operador,numMin,numMax);
 		if(resultado != null){
 			if(resultado == "true"){
@@ -72,8 +71,7 @@
                   <tr>
                     <td><select name="listaOperadores" size="10" style="width:300px" id="listaUsuarios">
                       <%
-					
-					String usu[] = manager.responsableList();
+					String usu[] = manager.operatorInspectorList();
 					for(int i=0 ; i < usu.length; i++){
 						out.print("<option>"+usu[i]+"</option>");
 					}

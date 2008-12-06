@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=ISO-8859-1" language="java" import="java.sql.*,java.io.*, java.util.*" errorPage="" %>
-<%@ page import="db.DBManager" %> 
+<%@ page import="db.DBManager,varios.Recibo" %>
 <%
         Object connectado = session.getAttribute("conectado");
         if (connectado != null) {
@@ -63,20 +63,19 @@
                                             </tr>
                                             <%
         String usuario = session.getAttribute("usuario").toString();
-        HashMap<Integer, List<String>> datos = manager.obtenerRecibosCompletadas(usuario);
+        List<Recibo> datos = manager.obtenerRecibosCompletadas(usuario);
+        Recibo recibo;
         for (int i = 0; i < datos.size(); i++) {
-            List<String> data = datos.get(i);
+            recibo = datos.get(i);
             out.print("<tr>");
-            for (int j = 0; j < data.size(); j++) {
-                System.out.println();
-                out.print("<td align='center'>");
-                if (data.get(j).equals("")) {
-                    out.print("&nbsp;");
-                } else {
-                    out.print(data.get(j));
-                }
-                out.print("</td>");
-            }
+            out.print("<td align='center'>"+recibo.getNumero()+"</td>");
+            out.print("<td align='center'>"+recibo.getFechaConfeccion()+"</td>");
+            out.print("<td align='center'>"+recibo.getRazonSocial()+"</td>");
+            out.print("<td align='center'>"+recibo.getMonto()+"</td>");
+            out.print("<td align='center'>"+recibo.getEstadoTransaccion()+"</td>");
+            out.print("<td align='center'>"+recibo.getBanco()+"</td>");
+            out.print("<td align='center'>"+recibo.getNumeroCheque()+"</td>");
+            out.print("<td align='center'>"+recibo.getFechaDeVencimiento()+"</td>");
             out.print("</tr>");
         }
                                             %>
@@ -104,14 +103,10 @@
         manager = DBManager.getInstance();
         datos = manager.obtenerRecibosAnuladas(usuario);
         for (int i = 0; i < datos.size(); i++) {
-            List<String> data = datos.get(i);
             out.print("<tr>");
-            for (int j = 0; j < data.size(); j++) {
-                System.out.println();
-                out.print("<td align='center'>");
-                out.print(data.get(j));
-                out.print("</td>");
-            }
+            out.print("<td align='center'>"+datos.get(i).getNumero()+"</td>");
+            out.print("<td align='center'>"+datos.get(i).getFechaConfeccion()+"</td>");
+            out.print("<td align='center'>"+datos.get(i).getMotivo()+"</td>");
             out.print("</tr>");
         }
                                             %>
@@ -139,14 +134,10 @@
         manager = DBManager.getInstance();
         datos = manager.obtenerRecibosExtraviadas(usuario);
         for (int i = 0; i < datos.size(); i++) {
-            List<String> data = datos.get(i);
             out.print("<tr>");
-            for (int j = 0; j < data.size(); j++) {
-                System.out.println();
-                out.print("<td align='center'>");
-                out.print(data.get(j));
-                out.print("</td>");
-            }
+            out.print("<td align='center'>"+datos.get(i).getNumero()+"</td>");
+            out.print("<td align='center'>"+datos.get(i).getFechaConfeccion()+"</td>");
+            out.print("<td align='center'>"+datos.get(i).getMotivo()+"</td>");
             out.print("</tr>");
         }
                                             %>
