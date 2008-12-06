@@ -33,7 +33,7 @@
         <td width="800" colspan="4" valign="top">	<p>&nbsp;</p>
             <table border="0" cellspacing="0" cellpadding="0" width="100%">
                 <tr>
-                    <td class="pageName"><h1>Ver recibos rendidos (ultimos 100)</h1><br />
+                    <td class="pageName"><h1>Ver recibos a confirmar</h1><br />
                     <br /></td>
                 </tr>
 
@@ -55,6 +55,7 @@
                                                 <td align="center">Numero</td>
                                                 <td align="center">Fecha confecci&oacute;n</td>
                                                 <td align="center">Razon social</td>
+                                                <td align="center">Numero acta</td>
                                                 <td align="center">Monto</td>
                                                 <td align="center">Estado</td>
                                                 <td align="center">Banco</td>
@@ -63,7 +64,7 @@
                                             </tr>
                                             <%
         String usuario = session.getAttribute("usuario").toString();
-        List<Recibo> datos = manager.obtenerRecibosCompletadasRendidos(usuario);
+        List<Recibo> datos = manager.obtenerRecibosCompletadas(usuario);
         Recibo recibo;
         for (int i = 0; i < datos.size(); i++) {
             recibo = datos.get(i);
@@ -71,6 +72,7 @@
             out.print("<td align='center'>"+recibo.getNumero()+"</td>");
             out.print("<td align='center'>"+recibo.getFechaConfeccion()+"</td>");
             out.print("<td align='center'>"+recibo.getRazonSocial()+"</td>");
+            out.print("<td align='center'>"+recibo.getNumeroacta()+"</td>");
             out.print("<td align='center'>"+recibo.getMonto()+"</td>");
             out.print("<td align='center'>"+recibo.getEstadoTransaccion()+"</td>");
             out.print("<td align='center'>"+recibo.getBanco()+"</td>");
@@ -101,7 +103,7 @@
                                             </tr>
                                             <%
         manager = DBManager.getInstance();
-        datos = manager.obtenerRecibosAnuladasRendidos(usuario);
+        datos = manager.obtenerRecibosAnuladas(usuario);
         for (int i = 0; i < datos.size(); i++) {
             out.print("<tr>");
             out.print("<td align='center'>"+datos.get(i).getNumero()+"</td>");
@@ -132,7 +134,7 @@
                                             </tr>
                                             <%
         manager = DBManager.getInstance();
-        datos = manager.obtenerRecibosExtraviadasRendidos(usuario);
+        datos = manager.obtenerRecibosExtraviadas(usuario);
         for (int i = 0; i < datos.size(); i++) {
             out.print("<tr>");
             out.print("<td align='center'>"+datos.get(i).getNumero()+"</td>");

@@ -10,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import varios.Recibo;
 
@@ -60,6 +59,7 @@ public class ManagerRecibos {
                     recibo.setNumeroCuota(srs.getString("numerocuota"));
                     recibo.setBanco(srs.getString("banco"));
                     recibo.setNumeroCheque(srs.getString("numerocheque"));
+                    recibo.setNumeroacta(srs.getString("numeroacta"));
                 }
                 stmt.close();
                 srs.close();
@@ -174,8 +174,8 @@ public class ManagerRecibos {
         return false;
     }
 
-    public HashMap<Integer, List<String>> obtenerRecibosCompletadas(String usuario) {
-        HashMap<Integer, List<String>> mapa = new HashMap<Integer, List<String>>();
+    public List<Recibo> obtenerRecibosCompletadas(String usuario) {
+        List<Recibo> mapa = new ArrayList<Recibo>();
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
@@ -185,23 +185,23 @@ public class ManagerRecibos {
                 stmt = conn.prepareStatement("select * from recibos where usuario = ? and estadorecibo = 'completada' and estadotransaccion <> 'rendida'");
                 stmt.setString(1, usuario);
                 ResultSet srs = stmt.executeQuery();
-                int aux = 0;
-                List<String> datos;
+                Recibo recibo;
                 while (srs.next()) {
-                    datos = new ArrayList<String>();
-                    datos.add(srs.getString("numero"));
+                    recibo = new Recibo();
+                    recibo.setNumero(Integer.parseInt(srs.getString("numero")));
                     String fecha = srs.getDate("fechaconfeccion").toString();
                     String[] aux2 = fecha.split("-");
                     aux2[0] = aux2[0].trim();
                     aux2[1] = aux2[1].trim();
                     aux2[2] = aux2[2].trim();
                     fecha = aux2[2] + "/" + aux2[1] + "/" + aux2[0];
-                    datos.add(fecha);
-                    datos.add(srs.getString("razonsocial"));
-                    datos.add(srs.getString("monto"));
-                    datos.add(srs.getString("estadotransaccion"));
-                    datos.add(srs.getString("banco"));
-                    datos.add(srs.getString("numerocheque"));
+                    recibo.setFechaConfeccion(fecha);
+                    recibo.setRazonSocial(srs.getString("razonsocial"));
+                    recibo.setMonto(srs.getString("monto"));
+                    recibo.setEstadoTransaccion(srs.getString("estadotransaccion"));
+                    recibo.setBanco(srs.getString("banco"));
+                    recibo.setNumeroCheque(srs.getString("numerocheque"));
+                    recibo.setNumeroacta(srs.getString("numeroacta"));
                     if(!srs.getString("fechavencimiento").toString().startsWith("1900")){
                         fecha = srs.getDate("fechavencimiento").toString();
                         aux2 = fecha.split("-");
@@ -209,12 +209,11 @@ public class ManagerRecibos {
                         aux2[1] = aux2[1].trim();
                         aux2[2] = aux2[2].trim();
                         fecha = aux2[2] + "/" + aux2[1] + "/" + aux2[0];
-                        datos.add(fecha);
+                        recibo.setFechaDeVencimiento(fecha);
                     }else{
-                        datos.add("&nbsp;");
+                        recibo.setFechaDeVencimiento("");
                     }
-                    mapa.put(aux, datos);
-                    aux++;
+                    mapa.add(recibo);
                 }
                 stmt.close();
                 srs.close();
@@ -229,8 +228,8 @@ public class ManagerRecibos {
         return null;
     }
 
-    public HashMap<Integer, List<String>> obtenerRecibosCompletadasRendidos(String usuario) {
-        HashMap<Integer, List<String>> mapa = new HashMap<Integer, List<String>>();
+    public List<Recibo> obtenerRecibosCompletadasRendidos(String usuario) {
+        List<Recibo> mapa = new ArrayList<Recibo>();
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
@@ -240,23 +239,23 @@ public class ManagerRecibos {
                 stmt = conn.prepareStatement("select top 50 * from recibos where usuario = ? and estadorecibo = 'completada' and estadotransaccion = 'rendida' order by numero desc");
                 stmt.setString(1, usuario);
                 ResultSet srs = stmt.executeQuery();
-                int aux = 0;
-                List<String> datos;
+                Recibo recibo;
                 while (srs.next()) {
-                    datos = new ArrayList<String>();
-                    datos.add(srs.getString("numero"));
+                    recibo = new Recibo();
+                    recibo.setNumero(Integer.parseInt(srs.getString("numero")));
                     String fecha = srs.getDate("fechaconfeccion").toString();
                     String[] aux2 = fecha.split("-");
                     aux2[0] = aux2[0].trim();
                     aux2[1] = aux2[1].trim();
                     aux2[2] = aux2[2].trim();
                     fecha = aux2[2] + "/" + aux2[1] + "/" + aux2[0];
-                    datos.add(fecha);
-                    datos.add(srs.getString("razonsocial"));
-                    datos.add(srs.getString("monto"));
-                    datos.add(srs.getString("estadotransaccion"));
-                    datos.add(srs.getString("banco"));
-                    datos.add(srs.getString("numerocheque"));
+                    recibo.setFechaConfeccion(fecha);
+                    recibo.setRazonSocial(srs.getString("razonsocial"));
+                    recibo.setMonto(srs.getString("monto"));
+                    recibo.setEstadoTransaccion(srs.getString("estadotransaccion"));
+                    recibo.setBanco(srs.getString("banco"));
+                    recibo.setNumeroacta(srs.getString("numeroacta"));
+                    recibo.setNumeroCheque(srs.getString("numerocheque"));
                     if(!srs.getString("fechavencimiento").toString().startsWith("1900")){
                         fecha = srs.getDate("fechavencimiento").toString();
                         aux2 = fecha.split("-");
@@ -264,12 +263,11 @@ public class ManagerRecibos {
                         aux2[1] = aux2[1].trim();
                         aux2[2] = aux2[2].trim();
                         fecha = aux2[2] + "/" + aux2[1] + "/" + aux2[0];
-                        datos.add(fecha);
+                        recibo.setFechaDeVencimiento(fecha);
                     }else{
-                        datos.add("&nbsp;");
+                        recibo.setFechaDeVencimiento("");
                     }
-                    mapa.put(aux, datos);
-                    aux++;
+                    mapa.add(recibo);
                 }
                 stmt.close();
                 srs.close();
@@ -284,8 +282,8 @@ public class ManagerRecibos {
         return null;
     }
 
-    public HashMap<Integer, List<String>> obtenerRecibosAnuladas(String usuario) {
-        HashMap<Integer, List<String>> mapa = new HashMap<Integer, List<String>>();
+    public List<Recibo> obtenerRecibosAnuladas(String usuario) {
+        List<Recibo> mapa = new ArrayList<Recibo>();
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
@@ -295,15 +293,13 @@ public class ManagerRecibos {
                 stmt = conn.prepareStatement("select * from recibos where usuario = ? and estadorecibo = 'anulada' and estadotransaccion <> 'rendida'");
                 stmt.setString(1, usuario);
                 ResultSet srs = stmt.executeQuery();
-                int aux = 0;
-                List<String> datos;
+                Recibo recibo;
                 while (srs.next()) {
-                    datos = new ArrayList<String>();
-                    datos.add(srs.getString("numero"));
-                    datos.add(srs.getDate("fechaconfeccion").toString());
-                    datos.add(srs.getString("motivo"));
-                    mapa.put(aux, datos);
-                    aux++;
+                    recibo = new Recibo();
+                    recibo.setNumero(Integer.parseInt(srs.getString("numero")));
+                    recibo.setFechaConfeccion(srs.getDate("fechaconfeccion").toString());
+                    recibo.setMotivo(srs.getString("motivo"));
+                    mapa.add(recibo);
                 }
                 stmt.close();
                 srs.close();
@@ -318,8 +314,8 @@ public class ManagerRecibos {
         return null;
     }
 
-    public HashMap<Integer, List<String>> obtenerRecibosAnuladasRendidos(String usuario) {
-        HashMap<Integer, List<String>> mapa = new HashMap<Integer, List<String>>();
+    public List<Recibo> obtenerRecibosAnuladasRendidos(String usuario) {
+        List<Recibo> mapa = new ArrayList<Recibo>();
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
@@ -329,15 +325,13 @@ public class ManagerRecibos {
                 stmt = conn.prepareStatement("select top 50 * from recibos where usuario = ? and estadorecibo = 'anulada' and estadotransaccion = 'rendida'  order by numero desc");
                 stmt.setString(1, usuario);
                 ResultSet srs = stmt.executeQuery();
-                int aux = 0;
-                List<String> datos;
+                Recibo recibo;
                 while (srs.next()) {
-                    datos = new ArrayList<String>();
-                    datos.add(srs.getString("numero"));
-                    datos.add(srs.getDate("fechaconfeccion").toString());
-                    datos.add(srs.getString("motivo"));
-                    mapa.put(aux, datos);
-                    aux++;
+                    recibo = new Recibo();
+                    recibo.setNumero(Integer.parseInt(srs.getString("numero")));
+                    recibo.setFechaConfeccion(srs.getDate("fechaconfeccion").toString());
+                    recibo.setMotivo(srs.getString("motivo"));
+                    mapa.add(recibo);
                 }
                 stmt.close();
                 srs.close();
@@ -352,8 +346,8 @@ public class ManagerRecibos {
         return null;
     }
 
-    public HashMap<Integer, List<String>> obtenerRecibosExtraviadas(String usuario) {
-        HashMap<Integer, List<String>> mapa = new HashMap<Integer, List<String>>();
+    public List<Recibo> obtenerRecibosExtraviadas(String usuario) {
+        List<Recibo> mapa = new ArrayList<Recibo>();
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
@@ -363,15 +357,13 @@ public class ManagerRecibos {
                 stmt = conn.prepareStatement("select * from recibos where usuario = ? and estadorecibo = 'extraviada' and estadotransaccion <> 'rendida'");
                 stmt.setString(1, usuario);
                 ResultSet srs = stmt.executeQuery();
-                int aux = 0;
-                List<String> datos;
+                Recibo recibo;
                 while (srs.next()) {
-                    datos = new ArrayList<String>();
-                    datos.add(srs.getString("numero"));
-                    datos.add(srs.getDate("fechaconfeccion").toString());
-                    datos.add(srs.getString("motivo"));
-                    mapa.put(aux, datos);
-                    aux++;
+                    recibo = new Recibo();
+                    recibo.setNumero(Integer.parseInt(srs.getString("numero")));
+                    recibo.setFechaConfeccion(srs.getDate("fechaconfeccion").toString());
+                    recibo.setMotivo(srs.getString("motivo"));
+                    mapa.add(recibo);
                 }
                 stmt.close();
                 srs.close();
@@ -386,8 +378,8 @@ public class ManagerRecibos {
         return null;
     }
 
-    public HashMap<Integer, List<String>> obtenerRecibosExtraviadasRendidos(String usuario) {
-        HashMap<Integer, List<String>> mapa = new HashMap<Integer, List<String>>();
+    public List<Recibo> obtenerRecibosExtraviadasRendidos(String usuario) {
+        List<Recibo> mapa = new ArrayList<Recibo>();
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
@@ -397,15 +389,13 @@ public class ManagerRecibos {
                 stmt = conn.prepareStatement("select top 50 * from recibos where usuario = ? and estadorecibo = 'extraviada' and estadotransaccion = 'rendida' order by numero desc");
                 stmt.setString(1, usuario);
                 ResultSet srs = stmt.executeQuery();
-                int aux = 0;
-                List<String> datos;
+                Recibo recibo;
                 while (srs.next()) {
-                    datos = new ArrayList<String>();
-                    datos.add(srs.getString("numero"));
-                    datos.add(srs.getDate("fechaconfeccion").toString());
-                    datos.add(srs.getString("motivo"));
-                    mapa.put(aux, datos);
-                    aux++;
+                    recibo = new Recibo();
+                    recibo.setNumero(Integer.parseInt(srs.getString("numero")));
+                    recibo.setFechaConfeccion(srs.getDate("fechaconfeccion").toString());
+                    recibo.setMotivo(srs.getString("motivo"));
+                    mapa.add(recibo);
                 }
                 stmt.close();
                 srs.close();
@@ -454,12 +444,12 @@ public class ManagerRecibos {
         aux[0] = aux[0].trim();
         aux[1] = aux[1].trim();
         aux[2] = aux[2].trim();
-        rec.setFechaConfeccion(aux[1] + "/" + aux[0] + "/" + aux[2]);
+        rec.setFechaConfeccion(aux[0] + "/" + aux[1] + "/" + aux[2]);
         aux = rec.getFechaDeVencimiento().split("/");
         aux[0] = aux[0].trim();
         aux[1] = aux[1].trim();
         aux[2] = aux[2].trim();
-        rec.setFechaDeVencimiento(aux[1] + "/" + aux[0] + "/" + aux[2]);
+        rec.setFechaDeVencimiento(aux[0] + "/" + aux[1] + "/" + aux[2]);
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
@@ -495,7 +485,7 @@ public class ManagerRecibos {
         aux[0] = aux[0].trim();
         aux[1] = aux[1].trim();
         aux[2] = aux[2].trim();
-        rec.setFechaConfeccion(aux[1] + "/" + aux[0] + "/" + aux[2]);
+        rec.setFechaConfeccion(aux[0] + "/" + aux[1] + "/" + aux[2]);
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
@@ -771,5 +761,81 @@ public class ManagerRecibos {
             return true;
         }
         return false;
+    }
+
+    public String completarReciboChequePorInspector(Recibo rec) {
+        String[] aux = rec.getFechaConfeccion().split("/");
+        aux[0] = aux[0].trim();
+        aux[1] = aux[1].trim();
+        aux[2] = aux[2].trim();
+        rec.setFechaConfeccion(aux[0] + "/" + aux[1] + "/" + aux[2]);
+        aux = rec.getFechaDeVencimiento().split("/");
+        aux[0] = aux[0].trim();
+        aux[1] = aux[1].trim();
+        aux[2] = aux[2].trim();
+        rec.setFechaDeVencimiento(aux[0] + "/" + aux[1] + "/" + aux[2]);
+        Conexion con = new Conexion();
+        Conexion.driverOdbc();
+        if (con.abrirConexion()) {
+            Connection conn = con.getCon();
+            PreparedStatement stmt;
+            try {
+                String monto = ""+rec.getMonto();
+                monto = monto.replace(',', '.');
+                stmt = conn.prepareStatement("update recibos set fechaconfeccion = ? , razonsocial = ?, monto = ?, banco = ?, numerocheque = ?, fechavencimiento = ?, numerocuota = ?, numeroacta = ?, estadorecibo = 'completada', estadotransaccion = 'a confirmar' where numero = ?");
+                stmt.setString(1, rec.getFechaConfeccion());
+                stmt.setString(2, rec.getRazonSocial());
+                stmt.setString(3, monto);
+                stmt.setString(4, rec.getBanco());
+                stmt.setString(5, rec.getNumeroCheque());
+                stmt.setString(6, rec.getFechaDeVencimiento());
+                stmt.setString(7, rec.getNumeroCuota());
+                stmt.setString(8,rec.getNumeroacta());
+                stmt.setInt(9, rec.getNumero());
+                stmt.execute();
+                stmt.close();
+                con.cerrarConexion();
+                return "true";
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("La base esta caida");
+        }
+        return "false";
+    }
+
+    public String completarReciboEfectivoPorInspector(Recibo rec) {
+        String[] aux = rec.getFechaConfeccion().split("/");
+        aux[0] = aux[0].trim();
+        aux[1] = aux[1].trim();
+        aux[2] = aux[2].trim();
+        rec.setFechaConfeccion(aux[0] + "/" + aux[1] + "/" + aux[2]);
+        Conexion con = new Conexion();
+        Conexion.driverOdbc();
+        if (con.abrirConexion()) {
+            Connection conn = con.getCon();
+            PreparedStatement stmt;
+            try {
+                String monto = ""+rec.getMonto();
+                monto = monto.replace(',', '.');
+                stmt = conn.prepareStatement("update recibos set fechaconfeccion = ? , razonsocial = ?, monto = ?, numerocuota = ?, numeroacta = ?, estadorecibo = 'completada', estadotransaccion = 'a confirmar' where numero = ?");
+                stmt.setString(1, rec.getFechaConfeccion());
+                stmt.setString(2, rec.getRazonSocial());
+                stmt.setString(3, monto);
+                stmt.setString(4, rec.getNumeroCuota());
+                stmt.setString(5, rec.getNumeroacta());
+                stmt.setInt(6, rec.getNumero());
+                stmt.execute();
+                stmt.close();
+                con.cerrarConexion();
+                return "true";
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("La base esta caida");
+        }
+        return "false";
     }
 }

@@ -432,6 +432,154 @@ function validarModificarReciboOperador(){
     }
 }
 
+function validarCompletarReciboInspector(){
+    var recibo = document.form1.recibos.selectedIndex;
+    var monto = document.form1.monto.value.length;
+    var beneficiario = document.form1.beneficiario.value.length;
+    var numerocuota1 = document.form1.numerocuota1.value.length;
+    var numerocuota2 = document.form1.numerocuota2.value.length;
+    var numeroacta = document.form1.numeroacta.value.length;
+    var fecha = document.form1.date.value.length;
+    var aux=0;
+    //Chequeo numero de recibo
+    if(recibo == -1 ){
+        document.getElementById('recibo').innerHTML = "Debe seleccionar un campo";
+        document.getElementById('recibo').style.visibility = 'visible';
+        aux++;
+    }else{
+        document.getElementById('recibo').style.visibility = 'hidden';
+    }
+    //Chequeo fecha de confeccion
+    if(fecha==0){
+        document.getElementById('fecha2').innerHTML = "Debe seleccionar una fecha";
+        document.getElementById('fecha2').style.visibility = 'visible';
+        aux++;
+    }else{
+        var fecha1 = document.form1.date.value;
+        fecha1 = fecha1.split("/");
+        fecha1 = new Date(fecha1[2], fecha1[1]-1, fecha1[0]);
+        var fecha2 = new Date();
+        if(fecha1 > fecha2){
+            document.getElementById('fecha2').innerHTML = "No se puede asignar una fecha adelantada";
+            document.getElementById('fecha2').style.visibility = 'visible';
+            aux++;
+        }else{
+            document.getElementById('fecha2').style.visibility = 'hidden';
+        }
+    }
+    //Chequeo razon social
+    if(beneficiario==0){
+        document.getElementById('beneficiario2').innerHTML = "Debe completar el campo";
+        document.getElementById('beneficiario2').style.visibility = 'visible';
+        aux++;
+    }else{
+        document.getElementById('beneficiario2').style.visibility = 'hidden';
+    }
+    //Chequeo numero de quota
+    if((numerocuota1==0)||(numerocuota2==0)){
+        document.getElementById('ncuota').innerHTML = "Debe completar el campo";
+        document.getElementById('ncuota').style.visibility = 'visible';
+        aux++;
+    }else{
+        numerocuota1 = parseInt(document.form1.numerocuota1.value);
+        numerocuota2 = parseInt(document.form1.numerocuota2.value);
+        if(numerocuota1 > numerocuota2){
+            document.getElementById('ncuota').innerHTML = "Error en el rango de la cuota";
+            document.getElementById('ncuota').style.visibility = 'visible';
+            aux++;
+        }else{
+            document.getElementById('ncuota').style.visibility = 'hidden';
+        }
+    }
+    if(numeroacta==0){
+        document.getElementById('nacta').innerHTML = "Debe completar el campo";
+        document.getElementById('nacta').style.visibility = 'visible';
+        aux++;
+    }else{
+        numeroacta = parseInt(document.form1.numeroacta.value);
+        if(numeroacta>0){
+            document.getElementById('ncuota').style.visibility = 'hidden';
+        }
+    }
+    //Chequeo por tipo de pago
+    if(document.form1.tipopago[0].checked){
+        //Chequeo si es efectivo
+        //Chequeo monto
+        if(monto==0){
+            document.getElementById('monto2').innerHTML = "Debe completar el campo";
+            document.getElementById('monto2').style.visibility = 'visible';
+            aux++;
+        }else{
+            document.getElementById('monto2').style.visibility = 'hidden';
+        }
+    }else{
+        //Chequeo si es cheque
+        //Chequeo fecha de vencimiento del cheque
+        var fecha3 = document.form1.date2.value.length;
+        if(fecha3==0){
+            document.getElementById('fecha4').innerHTML = "Debe seleccionar una fecha";
+            document.getElementById('fecha4').style.visibility = 'visible';
+            aux++;
+        }else{
+            var fecha4 = document.form1.date2.value;
+            fecha4 = fecha4.split("/");
+            fecha4 = new Date(fecha4[2], fecha4[1]-1, fecha4[0]);
+            var fecha5 = new Date();
+            if(fecha4 < fecha5){
+                document.getElementById('fecha4').innerHTML = "No se puede asignar una fecha pasada";
+                document.getElementById('fecha4').style.visibility = 'visible';
+                aux++;
+            }else{
+                document.getElementById('fecha4').style.visibility = 'hidden';
+            }
+        }
+        //Chequeo nombre del banco
+        var banco = document.form1.banco.value.length;
+        if(banco==0){
+            document.getElementById('banco2').innerHTML = "Debe completar el campo";
+            document.getElementById('banco2').style.visibility = 'visible';
+            aux++;
+        }else{
+            document.getElementById('banco2').style.visibility = 'hidden';
+        }
+        //Chequeo numero de cheque
+        var numerocheque = document.form1.numerocheque.value.length;
+        if(numerocheque==0){
+            document.getElementById('ncheque').innerHTML = "Debe completar el campo";
+            document.getElementById('ncheque').style.visibility = 'visible';
+            aux++;
+        }else{
+            numerocheque = document.form1.numerocheque.value;
+            if((/^[0-9]*$/.test(numerocheque))){
+                document.getElementById('ncheque').style.visibility = 'hidden';
+            }else{
+                document.getElementById('ncheque').innerHTML = "Debe ser un numero";
+                document.getElementById('ncheque').style.visibility = 'visible';
+                aux++;
+            }
+        }
+        //Chequeo monto
+        if(monto==0){
+            document.getElementById('monto2').innerHTML = "Debe completar el campo";
+            document.getElementById('monto2').style.visibility = 'visible';
+            aux++;
+        }else{
+            document.getElementById('monto2').style.visibility = 'hidden';
+        }
+    }
+    if(aux == 0 ){
+        var valor = document.form1.monto.value;
+        valor = valor.split(".").join(",");
+        if(/^[0-9]+(,[0-9]+)*$/.test(valor)){
+            document.form1.submit();
+        }else{
+            document.getElementById('monto2').innerHTML = "Debe ser un mumero";
+            document.getElementById('monto2').style.visibility = 'visible';
+            document.form1.monto.value = ''
+        }
+    }
+}
+
 
 function validarCompletarReciboOperador()
 {

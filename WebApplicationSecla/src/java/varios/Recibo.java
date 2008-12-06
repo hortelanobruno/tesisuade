@@ -7,11 +7,13 @@ public class Recibo {
 	private String razonSocial;
 	private String monto;
 	private String estadoRecibo;
+    private String estadoTransaccion;
 	private String motivo;
     private String numeroCuota;
     private String banco;
     private String numeroCheque;
     private String fechaDeVencimiento;
+    private String numeroacta;
 
 	
 	public Recibo() {
@@ -140,6 +142,34 @@ public class Recibo {
      */
     public void setFechaDeVencimiento(String fechaDeVencimiento) {
         this.fechaDeVencimiento = fechaDeVencimiento;
+    }
+
+    /**
+     * @return the numeroacta
+     */
+    public String getNumeroacta() {
+        return numeroacta;
+    }
+
+    /**
+     * @param numeroacta the numeroacta to set
+     */
+    public void setNumeroacta(String numeroacta) {
+        this.numeroacta = numeroacta;
+    }
+
+    /**
+     * @return the estadoTransaccion
+     */
+    public String getEstadoTransaccion() {
+        return estadoTransaccion;
+    }
+
+    /**
+     * @param estadoTransaccion the estadoTransaccion to set
+     */
+    public void setEstadoTransaccion(String estadoTransaccion) {
+        this.estadoTransaccion = estadoTransaccion;
     }
 	
 }

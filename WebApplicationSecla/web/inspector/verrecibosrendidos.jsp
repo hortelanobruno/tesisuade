@@ -55,6 +55,7 @@
                                                 <td align="center">Numero</td>
                                                 <td align="center">Fecha confecci&oacute;n</td>
                                                 <td align="center">Razon social</td>
+                                                <td align="center">Numero acta</td>
                                                 <td align="center">Monto</td>
                                                 <td align="center">Estado</td>
                                                 <td align="center">Banco</td>
@@ -71,6 +72,7 @@
             out.print("<td align='center'>"+recibo.getNumero()+"</td>");
             out.print("<td align='center'>"+recibo.getFechaConfeccion()+"</td>");
             out.print("<td align='center'>"+recibo.getRazonSocial()+"</td>");
+            out.print("<td align='center'>"+recibo.getNumeroacta()+"</td>");
             out.print("<td align='center'>"+recibo.getMonto()+"</td>");
             out.print("<td align='center'>"+recibo.getEstadoTransaccion()+"</td>");
             out.print("<td align='center'>"+recibo.getBanco()+"</td>");
