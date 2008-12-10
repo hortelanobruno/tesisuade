@@ -1,11 +1,5 @@
 package db;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import varios.Recibo;
@@ -80,6 +74,10 @@ public class DBManager {
 
     public String addArea(Usuario usu) {
         return managerUsuarios.addArea(usu);
+    }
+
+    public String obtenerTipoUsuario(String numero) {
+        return managerUsuarios.obtenerTipoUsuario(numero);
     }
 
     public String[] operatorInspectorCajeroList() {

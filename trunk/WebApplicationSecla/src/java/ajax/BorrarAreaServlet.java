@@ -31,6 +31,7 @@ public class BorrarAreaServlet extends HttpServlet {
         boolean borrar = manager.chequearBorrarUsuario(usuario);
         response.setContentType("text/xml");
         response.setHeader("Cache-Control", "no-cache");
+        response.getWriter().write("<?xml version='1.0' encoding='ISO-8859-1'?>");
         response.getWriter().write("<usuario>");
         response.getWriter().write("<borrar>" + borrar + "</borrar>");
         response.getWriter().write("</usuario>");

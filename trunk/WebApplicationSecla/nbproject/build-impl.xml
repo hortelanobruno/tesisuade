@@ -503,9 +503,10 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${file.reference.xstream-1.2.1.jar}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.file.reference.xstream-1.2.1.jar" todir="${dist.ear.dir}"/>
         <copyfiles files="${libs.jsf12-support.classpath}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.libs.jsf12-support.classpath" todir="${dist.ear.dir}"/>
         <copyfiles files="${libs.JasperReports.classpath}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.libs.JasperReports.classpath" todir="${dist.ear.dir}"/>
+        <copyfiles files="${file.reference.DynamicJasper-3.0.1.jar}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.file.reference.DynamicJasper-3.0.1.jar" todir="${dist.ear.dir}"/>
         <mkdir dir="${build.web.dir}/META-INF"/>
         <manifest file="${build.web.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Class-Path" value="${manifest.file.reference.sqljdbc.jar} ${manifest.file.reference.xpp3_min-1.1.3.4.O.jar} ${manifest.file.reference.xstream-1.2.1.jar} ${manifest.libs.jsf12-support.classpath} ${manifest.libs.JasperReports.classpath} "/>
+            <attribute name="Class-Path" value="${manifest.file.reference.sqljdbc.jar} ${manifest.file.reference.xpp3_min-1.1.3.4.O.jar} ${manifest.file.reference.xstream-1.2.1.jar} ${manifest.libs.jsf12-support.classpath} ${manifest.libs.JasperReports.classpath} ${manifest.file.reference.DynamicJasper-3.0.1.jar} "/>
         </manifest>
     </target>
     <target depends="init" name="library-inclusion-in-archive" unless="dist.ear.dir">
@@ -514,6 +515,7 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${file.reference.xstream-1.2.1.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${libs.jsf12-support.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${libs.JasperReports.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.DynamicJasper-3.0.1.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
     </target>
     <target depends="init,compile,compile-jsps,-pre-dist,library-inclusion-in-manifest" name="do-ear-dist">
         <dirname file="${dist.ear.war}" property="dist.jar.dir"/>

@@ -30,8 +30,10 @@ public class ModificarReciboServlet extends HttpServlet{
     throws IOException, ServletException {
         String numero = request.getParameter("numero");
         Recibo recibo = manager.obtenerReciboAConfirmar(numero);
+        String tipoUsuario = manager.obtenerTipoUsuario(numero);
         response.setContentType("text/xml");
         response.setHeader("Cache-Control", "no-cache");
+        response.getWriter().write("<?xml version='1.0' encoding='ISO-8859-1'?>");
         response.getWriter().write("<recibo>");
         response.getWriter().write("<numero>"+recibo.getNumero()+"</numero>");
         response.getWriter().write("<estadoboleta>"+recibo.getEstadorecibo()+"</estadoboleta>");
@@ -40,15 +42,14 @@ public class ModificarReciboServlet extends HttpServlet{
         response.getWriter().write("<motivo>"+recibo.getMotivo()+"</motivo>");
         response.getWriter().write("<monto>"+recibo.getMonto()+"</monto>");
         response.getWriter().write("<numerocuota>"+recibo.getNumeroCuota()+"</numerocuota>");
-        if(recibo.getBanco().equals("")){
-            response.getWriter().write("<tipopago>efectivo</tipopago>");
+        response.getWriter().write("<banco>"+recibo.getBanco()+"</banco>");
+        response.getWriter().write("<numerocheque>"+recibo.getNumeroCheque()+"</numerocheque>");
+        response.getWriter().write("<fechavencimiento>"+recibo.getFechaDeVencimiento()+"</fechavencimiento>");
+        if(tipoUsuario.equalsIgnoreCase("inspector")){
+            response.getWriter().write("<numeroacta>"+recibo.getNumeroacta()+"</numeroacta>");
         }else{
-            response.getWriter().write("<tipopago>cheque</tipopago>");
-            response.getWriter().write("<banco>"+recibo.getBanco()+"</banco>");
-            response.getWriter().write("<numerocheque>"+recibo.getNumeroCheque()+"</numerocheque>");
-            response.getWriter().write("<fechavencimiento>"+recibo.getFechaDeVencimiento()+"</fechavencimiento>");
+            response.getWriter().write("<numeroacta></numeroacta>");
         }
-        response.getWriter().write("<numeroacta>"+recibo.getNumeroacta()+"</numeroacta>");
         response.getWriter().write("</recibo>");
     }
 }

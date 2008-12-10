@@ -37,6 +37,7 @@ public class VerReciboServlet extends HttpServlet {
         } else {
             response.setContentType("text/xml");
             response.setHeader("Cache-Control", "no-cache");
+            response.getWriter().write("<?xml version='1.0' encoding='ISO-8859-1'?>");
             response.getWriter().write("<boletas>");
             response.getWriter().write("<cantidad>" + boletas.size() + "</cantidad>");
             response.getWriter().write("<estado>lleno</estado>");
