@@ -30,12 +30,14 @@
                 String numerocheque = request.getParameter("numerocheque");
                 String fechavencimiento = request.getParameter("date2");
                 String numerocuota = request.getParameter("numerocuota1") + "/" + request.getParameter("numerocuota2");
+                String numeroacta = request.getParameter("numeroacta");
                 Recibo r1 = new Recibo();
                 r1.setRazonSocial(beneficiario);
                 r1.setNumero(Integer.parseInt(recibo));
                 r1.setFechaConfeccion(fecha);
                 r1.setMonto(monto);
                 r1.setMotivo("");
+                r1.setNumeroacta(numeroacta);
                 if (banco == null) {
                     r1.setBanco("");
                     r1.setFechaDeVencimiento("");

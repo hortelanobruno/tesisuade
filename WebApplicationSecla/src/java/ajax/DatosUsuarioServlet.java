@@ -32,6 +32,7 @@ public class DatosUsuarioServlet extends HttpServlet {
         List<String> datos = manager.datosUsuario(usuario);
         response.setContentType("text/xml");
         response.setHeader("Cache-Control", "no-cache");
+        response.getWriter().write("<?xml version='1.0' encoding='ISO-8859-1'?>");
         response.getWriter().write("<usuario>");
         response.getWriter().write("<cuenta>"+datos.get(5)+"</cuenta>");
         response.getWriter().write("<sede>"+datos.get(2)+"</sede>");

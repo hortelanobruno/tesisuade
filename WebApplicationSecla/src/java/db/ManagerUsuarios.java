@@ -397,4 +397,31 @@ public class ManagerUsuarios {
         }
         return list;
     }
+
+    public String obtenerTipoUsuario(String numero) {
+        Conexion con = new Conexion();
+        Conexion.driverOdbc();
+        if (con.abrirConexion()) {
+            Connection conn = con.getCon();
+            PreparedStatement stmt;
+            String tipoCuenta;
+            try {
+                stmt = conn.prepareStatement("SELECT u.tipocuenta FROM (usuarios u INNER JOIN recibos r ON u.usuario = r.usuario) WHERE r.numero = ?");
+                stmt.setString(1, numero);
+                ResultSet srs = stmt.executeQuery();
+                while (srs.next()) {
+                    tipoCuenta = srs.getString("tipocuenta");
+                    stmt.close();
+                    srs.close();
+                    con.cerrarConexion();
+                    return tipoCuenta;
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("La base esta caida");
+        }
+        return null;
+    }
 }

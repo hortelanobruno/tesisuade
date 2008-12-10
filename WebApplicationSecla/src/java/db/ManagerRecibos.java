@@ -539,7 +539,7 @@ public class ManagerRecibos {
                     aux[2] = aux[2].trim();
                     fecha2 = aux[0] + "/" + aux[1] + "/" + aux[2];;
                 }
-                stmt = conn.prepareStatement("update recibos set fechaconfeccion = ? , razonsocial = ?, monto = ?, motivo = ?, banco = ?, numerocheque = ?, fechavencimiento = ?, numerocuota = ? where numero = ?");
+                stmt = conn.prepareStatement("update recibos set fechaconfeccion = ? , razonsocial = ?, monto = ?, motivo = ?, banco = ?, numerocheque = ?, fechavencimiento = ?, numerocuota = ?, numeroacta = ? where numero = ?");
                 stmt.setString(1, fecha);
                 stmt.setString(2, razonsocial);
                 stmt.setString(3, monto);
@@ -548,7 +548,8 @@ public class ManagerRecibos {
                 stmt.setString(6, rec.getNumeroCheque());
                 stmt.setString(7, fecha2);
                 stmt.setString(8, rec.getNumeroCuota());
-                stmt.setInt(9, numero);
+                stmt.setString(9, rec.getNumeroacta());
+                stmt.setInt(10, numero);
                 stmt.execute();
                 stmt.close();
                 con.cerrarConexion();
