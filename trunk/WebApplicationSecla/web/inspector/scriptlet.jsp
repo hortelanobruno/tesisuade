@@ -80,12 +80,25 @@
                 String reporte = request.getParameter("reporte");
                 Map params = new HashMap();
                     String usuario = session.getAttribute("usuario").toString();
+                    String totalEfectivo = manager.totalEfectivoOperador(usuario);
+                    String totalCheque = manager.totalChequeOperador(usuario);
+                    if(totalEfectivo == null){
+                        totalEfectivo = "0";
+                    }
+                    if(totalCheque == null){
+                        totalCheque = "0";
+                    }
+                    Double auxTotal = Double.parseDouble(totalEfectivo)+Double.parseDouble(totalCheque);
+                    String total = auxTotal.toString();
                     List<String> datos = manager.datosUsuario(usuario);
                     params.put("usuario", usuario);
                     params.put("sector", datos.get(3));
                     params.put("sede", datos.get(2));
                     params.put("responsable", datos.get(1));
                     params.put("digitos", datos.get(4));
+                    params.put("totalefectivo", totalEfectivo);
+                    params.put("totalcheque", totalCheque);
+                    params.put("total", total);
                     Conexion con = new Conexion();
                     Conexion.driverOdbc();
                     /////////////////////////////////////////////

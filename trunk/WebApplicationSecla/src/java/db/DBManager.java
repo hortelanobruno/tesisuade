@@ -48,6 +48,14 @@ public class DBManager {
         managerRecibos.confirmarRecibos(recibos);
     }
 
+    public String totalEfectivoOperador(String usuario){
+        return managerRecibos.totalEfectivoOperador(usuario);
+    }
+
+    public String totalChequeOperador(String usuario){
+        return managerRecibos.totalChequeOperador(usuario);
+    }
+
     public List<Recibo> obtenerRecibosAConfirmar(String usuario) {
         return managerRecibos.obtenerRecibosAConfirmar(usuario);
     }
@@ -161,7 +169,7 @@ public class DBManager {
     }
 
     public String[] sectorList() {
-        return managerUsuarios.responsableList();
+        return managerUsuarios.sectorList();
     }
 
     public String resetPassword(String usuario, String password) {

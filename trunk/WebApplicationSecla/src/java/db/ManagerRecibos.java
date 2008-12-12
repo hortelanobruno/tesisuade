@@ -839,4 +839,51 @@ public class ManagerRecibos {
         }
         return "false";
     }
+
+    public String totalEfectivoOperador(String usuario) {
+        Conexion con = new Conexion();
+        Conexion.driverOdbc();
+        String total = "0";
+        if (con.abrirConexion()) {
+            Connection conn = con.getCon();
+            PreparedStatement stmt;
+            try {
+                stmt = conn.prepareStatement("SELECT sum(monto) as total FROM recibos where usuario = ? and estadotransaccion <> 'pendiente' and estadotransaccion <> 'rendida' and banco = ''");
+                stmt.setString(1, usuario);
+                ResultSet srs = stmt.executeQuery();
+                while (srs.next()) {
+                    total = srs.getString("total");
+                }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
+            } catch (Exception e) {
+            }
+        }
+        return total;
+    }
+
+        public String totalChequeOperador(String usuario) {
+        Conexion con = new Conexion();
+        Conexion.driverOdbc();
+        String total = "0";
+        if (con.abrirConexion()) {
+            Connection conn = con.getCon();
+            PreparedStatement stmt;
+            try {
+                stmt = conn.prepareStatement("SELECT sum(monto) as total FROM recibos where usuario = ? and estadotransaccion <> 'pendiente' and estadotransaccion <> 'rendida' and banco <> ''");
+                stmt.setString(1, usuario);
+                ResultSet srs = stmt.executeQuery();
+                while (srs.next()) {
+                    total = srs.getString("total");
+                }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
+            } catch (Exception e) {
+            }
+        }
+        return total;
+    }
+
 }

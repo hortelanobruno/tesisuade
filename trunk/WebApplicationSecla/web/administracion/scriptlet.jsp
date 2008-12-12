@@ -76,19 +76,13 @@
     <%
 
             try {
-
+                String nombreReporte = "verrecibosentregados";
                 String reporte = request.getParameter("reporte");
                 Map params = new HashMap();
                     String num1 = request.getParameter("numMin");
                     String num2 = request.getParameter("numMax");
                     String fecha1 = request.getParameter("fecha1");
                     String fecha2 = request.getParameter("fecha2");
-                    String[] aux = fecha1.split("/");
-                    aux[0] = aux[0].trim();aux[1] = aux[1].trim();aux[2] = aux[2].trim();
-                    fecha1 = aux[1]+"/"+aux[0]+"/"+aux[2];
-                    aux = fecha2.split("/");
-                    aux[0] = aux[0].trim();aux[1] = aux[1].trim();aux[2] = aux[2].trim();
-                    fecha2 = aux[1]+"/"+aux[0]+"/"+aux[2];
                     params.put("fecha1", fecha1);
                     params.put("fecha2", fecha2);
                     params.put("num1", num1);
@@ -114,7 +108,7 @@
 
 
 
-                    JasperCompileManager.compileReportToFile(application.getRealPath("/report/verrecibosentregados.jrxml"));
+                    JasperCompileManager.compileReportToFile(application.getRealPath("/report/"+nombreReporte+".jrxml"));
                     //JasperCompileManager.compileReportToFile(application.getContextPath()+"/report/prueba3.jrxml");
 
 
@@ -124,7 +118,7 @@
 
 
 
-                    File reportFile = new File(application.getRealPath("/report/verrecibosentregados.jasper"));
+                    File reportFile = new File(application.getRealPath("/report/"+nombreReporte+".jasper"));
                     //File reportFile = new File(application.getContextPath()+"/report/prueba3.jasper");
 
                     if (con.abrirConexion()) {

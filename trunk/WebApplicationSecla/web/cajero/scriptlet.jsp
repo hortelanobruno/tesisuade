@@ -74,7 +74,7 @@
     <head>
     
     <%
-
+            
             try {
                 Conexion con = new Conexion();
                 Conexion.driverOdbc();
@@ -102,17 +102,11 @@
                 String fecha2 = request.getParameter("fecha2");
                 if((!sector.equalsIgnoreCase("Todos"))&&(recibo.length == 2)&&(!sector.equalsIgnoreCase("Ninguno"))){
                     Map params = new HashMap();
-                    String[] aux = fecha1.split("/");
-                    aux[0] = aux[0].trim();aux[1] = aux[1].trim();aux[2] = aux[2].trim();
-                    fecha1 = aux[1]+"/"+aux[0]+"/"+aux[2];
-                    aux = fecha2.split("/");
-                    aux[0] = aux[0].trim();aux[1] = aux[1].trim();aux[2] = aux[2].trim();
-                    fecha2 = aux[1]+"/"+aux[0]+"/"+aux[2];
                     params.put("fecha1", fecha1);
                     params.put("fecha2", fecha2);
                     params.put("sector",sector);
-                    JasperCompileManager.compileReportToFile(application.getRealPath("/report/resprecibosall.jrxml"));
-                    File reportFile = new File(application.getRealPath("/report/resprecibosall.jasper"));
+                    JasperCompileManager.compileReportToFile(application.getRealPath("/report/resprecibosallCajero.jrxml"));
+                    File reportFile = new File(application.getRealPath("/report/resprecibosallCajero.jasper"));
                     if (con.abrirConexion()) {
                         Connection conn = con.getCon();
                         if (reporte.equalsIgnoreCase("pdf")) {
@@ -144,16 +138,10 @@
                 }
                 if(sector.equalsIgnoreCase("Todos")&&(recibo.length == 2)){
                     Map params = new HashMap();
-                    String[] aux = fecha1.split("/");
-                    aux[0] = aux[0].trim();aux[1] = aux[1].trim();aux[2] = aux[2].trim();
-                    fecha1 = aux[1]+"/"+aux[0]+"/"+aux[2];
-                    aux = fecha2.split("/");
-                    aux[0] = aux[0].trim();aux[1] = aux[1].trim();aux[2] = aux[2].trim();
-                    fecha2 = aux[1]+"/"+aux[0]+"/"+aux[2];
                     params.put("fecha1", fecha1);
                     params.put("fecha2", fecha2);
-                    JasperCompileManager.compileReportToFile(application.getRealPath("/report/resoallrecibosall.jrxml"));
-                    File reportFile = new File(application.getRealPath("/report/resoallrecibosall.jasper"));
+                    JasperCompileManager.compileReportToFile(application.getRealPath("/report/resoallrecibosallCajero.jrxml"));
+                    File reportFile = new File(application.getRealPath("/report/resoallrecibosallCajero.jasper"));
                     if (con.abrirConexion()) {
                         Connection conn = con.getCon();
                         if (reporte.equalsIgnoreCase("pdf")) {
@@ -185,19 +173,13 @@
                 }
                 if((!sector.equalsIgnoreCase("Todos"))&&(recibo.length == 1)&&(!sector.equalsIgnoreCase("Ninguno"))){
                     Map params = new HashMap();
-                    String[] aux = fecha1.split("/");
-                    aux[0] = aux[0].trim();aux[1] = aux[1].trim();aux[2] = aux[2].trim();
-                    fecha1 = aux[1]+"/"+aux[0]+"/"+aux[2];
-                    aux = fecha2.split("/");
-                    aux[0] = aux[0].trim();aux[1] = aux[1].trim();aux[2] = aux[2].trim();
-                    fecha2 = aux[1]+"/"+aux[0]+"/"+aux[2];
                     params.put("recibo",recibo[0]);
                     params.put("fecha1", fecha1);
                     params.put("fecha2", fecha2);
                     params.put("sector", sector);
                     if(recibo[0].equalsIgnoreCase("Completados")){
-                        JasperCompileManager.compileReportToFile(application.getRealPath("/report/respcompletados.jrxml"));
-                        File reportFile = new File(application.getRealPath("/report/respcompletados.jasper"));
+                        JasperCompileManager.compileReportToFile(application.getRealPath("/report/respcompletadosCajero.jrxml"));
+                        File reportFile = new File(application.getRealPath("/report/respcompletadosCajero.jasper"));
                         if (con.abrirConexion()) {
                             Connection conn = con.getCon();
                             if (reporte.equalsIgnoreCase("pdf")) {
@@ -227,8 +209,8 @@
                             }
                         }
                     }else{
-                        JasperCompileManager.compileReportToFile(application.getRealPath("/report/respanulados.jrxml"));
-                        File reportFile = new File(application.getRealPath("/report/respanulados.jasper"));
+                        JasperCompileManager.compileReportToFile(application.getRealPath("/report/respanuladosCajero.jrxml"));
+                        File reportFile = new File(application.getRealPath("/report/respanuladosCajero.jasper"));
                         if (con.abrirConexion()) {
                             Connection conn = con.getCon();
                             if (reporte.equalsIgnoreCase("pdf")) {
@@ -261,18 +243,12 @@
                 }
                 if(sector.equalsIgnoreCase("Todos")&&(recibo.length == 1)){
                     Map params = new HashMap();
-                    String[] aux = fecha1.split("/");
-                    aux[0] = aux[0].trim();aux[1] = aux[1].trim();aux[2] = aux[2].trim();
-                    fecha1 = aux[1]+"/"+aux[0]+"/"+aux[2];
-                    aux = fecha2.split("/");
-                    aux[0] = aux[0].trim();aux[1] = aux[1].trim();aux[2] = aux[2].trim();
-                    fecha2 = aux[1]+"/"+aux[0]+"/"+aux[2];
                     params.put("recibo",recibo[0]);
                     params.put("fecha1", fecha1);
                     params.put("fecha2", fecha2);
                     if(recibo[0].equalsIgnoreCase("Completados")){
-                        JasperCompileManager.compileReportToFile(application.getRealPath("/report/resoallcompletados.jrxml"));
-                        File reportFile = new File(application.getRealPath("/report/resoallcompletados.jasper"));
+                        JasperCompileManager.compileReportToFile(application.getRealPath("/report/resoallcompletadosCajero.jrxml"));
+                        File reportFile = new File(application.getRealPath("/report/resoallcompletadosCajero.jasper"));
                         if (con.abrirConexion()) {
                             Connection conn = con.getCon();
                             if (reporte.equalsIgnoreCase("pdf")) {
@@ -302,8 +278,8 @@
                             }
                         }
                     }else{
-                        JasperCompileManager.compileReportToFile(application.getRealPath("/report/resoallanulados.jrxml"));
-                        File reportFile = new File(application.getRealPath("/report/resoallanulados.jasper"));
+                        JasperCompileManager.compileReportToFile(application.getRealPath("/report/resoallanuladosCajero.jrxml"));
+                        File reportFile = new File(application.getRealPath("/report/resoallanuladosCajero.jasper"));
                         if (con.abrirConexion()) {
                             Connection conn = con.getCon();
                             if (reporte.equalsIgnoreCase("pdf")) {
@@ -336,19 +312,13 @@
                 }
                 if((!responsable.equalsIgnoreCase("Todos"))&&(recibo.length == 1)&&(!responsable.equalsIgnoreCase("Ninguno"))){
                     Map params = new HashMap();
-                    String[] aux = fecha1.split("/");
-                    aux[0] = aux[0].trim();aux[1] = aux[1].trim();aux[2] = aux[2].trim();
-                    fecha1 = aux[1]+"/"+aux[0]+"/"+aux[2];
-                    aux = fecha2.split("/");
-                    aux[0] = aux[0].trim();aux[1] = aux[1].trim();aux[2] = aux[2].trim();
-                    fecha2 = aux[1]+"/"+aux[0]+"/"+aux[2];
                     params.put("recibo",recibo[0]);
                     params.put("fecha1", fecha1);
                     params.put("fecha2", fecha2);
                     params.put("responsable", responsable);
                     if(recibo[0].equalsIgnoreCase("Completados")){
-                        JasperCompileManager.compileReportToFile(application.getRealPath("/report/respcompletados2.jrxml"));
-                        File reportFile = new File(application.getRealPath("/report/respcompletados2.jasper"));
+                        JasperCompileManager.compileReportToFile(application.getRealPath("/report/respcompletados2Cajero.jrxml"));
+                        File reportFile = new File(application.getRealPath("/report/respcompletados2Cajero.jasper"));
                         if (con.abrirConexion()) {
                             Connection conn = con.getCon();
                             if (reporte.equalsIgnoreCase("pdf")) {
@@ -378,8 +348,8 @@
                             }
                         }
                     }else{
-                        JasperCompileManager.compileReportToFile(application.getRealPath("/report/respanulados2.jrxml"));
-                        File reportFile = new File(application.getRealPath("/report/respanulados2.jasper"));
+                        JasperCompileManager.compileReportToFile(application.getRealPath("/report/respanulados2Cajero.jrxml"));
+                        File reportFile = new File(application.getRealPath("/report/respanulados2Cajero.jasper"));
                         if (con.abrirConexion()) {
                             Connection conn = con.getCon();
                             if (reporte.equalsIgnoreCase("pdf")) {
@@ -412,18 +382,12 @@
                 }
                 if(responsable.equalsIgnoreCase("Todos")&&(recibo.length == 1)){
                     Map params = new HashMap();
-                    String[] aux = fecha1.split("/");
-                    aux[0] = aux[0].trim();aux[1] = aux[1].trim();aux[2] = aux[2].trim();
-                    fecha1 = aux[1]+"/"+aux[0]+"/"+aux[2];
-                    aux = fecha2.split("/");
-                    aux[0] = aux[0].trim();aux[1] = aux[1].trim();aux[2] = aux[2].trim();
-                    fecha2 = aux[1]+"/"+aux[0]+"/"+aux[2];
                     params.put("recibo",recibo[0]);
                     params.put("fecha1", fecha1);
                     params.put("fecha2", fecha2);
                     if(recibo[0].equalsIgnoreCase("Completados")){
-                        JasperCompileManager.compileReportToFile(application.getRealPath("/report/resoallcompletados.jrxml"));
-                        File reportFile = new File(application.getRealPath("/report/resoallcompletados.jasper"));
+                        JasperCompileManager.compileReportToFile(application.getRealPath("/report/resoallcompletadosCajero.jrxml"));
+                        File reportFile = new File(application.getRealPath("/report/resoallcompletadosCajero.jasper"));
                         if (con.abrirConexion()) {
                             Connection conn = con.getCon();
                             if (reporte.equalsIgnoreCase("pdf")) {
@@ -453,8 +417,8 @@
                             }
                         }
                     }else{
-                        JasperCompileManager.compileReportToFile(application.getRealPath("/report/resoallanulados.jrxml"));
-                        File reportFile = new File(application.getRealPath("/report/resoallanulados.jasper"));
+                        JasperCompileManager.compileReportToFile(application.getRealPath("/report/resoallanuladosCajero.jrxml"));
+                        File reportFile = new File(application.getRealPath("/report/resoallanuladosCajero.jasper"));
                         if (con.abrirConexion()) {
                             Connection conn = con.getCon();
                             if (reporte.equalsIgnoreCase("pdf")) {
@@ -487,16 +451,10 @@
                 }
                 if(responsable.equalsIgnoreCase("Todos")&&(recibo.length == 2)){
                     Map params = new HashMap();
-                    String[] aux = fecha1.split("/");
-                    aux[0] = aux[0].trim();aux[1] = aux[1].trim();aux[2] = aux[2].trim();
-                    fecha1 = aux[1]+"/"+aux[0]+"/"+aux[2];
-                    aux = fecha2.split("/");
-                    aux[0] = aux[0].trim();aux[1] = aux[1].trim();aux[2] = aux[2].trim();
-                    fecha2 = aux[1]+"/"+aux[0]+"/"+aux[2];
                     params.put("fecha1", fecha1);
                     params.put("fecha2", fecha2);
-                    JasperCompileManager.compileReportToFile(application.getRealPath("/report/resoallrecibosall.jrxml"));
-                    File reportFile = new File(application.getRealPath("/report/resoallrecibosall.jasper"));
+                    JasperCompileManager.compileReportToFile(application.getRealPath("/report/resoallrecibosallCajero.jrxml"));
+                    File reportFile = new File(application.getRealPath("/report/resoallrecibosallCajero.jasper"));
                     if (con.abrirConexion()) {
                         Connection conn = con.getCon();
                         if (reporte.equalsIgnoreCase("pdf")) {
@@ -528,17 +486,11 @@
                 }
                 if((!responsable.equalsIgnoreCase("Todos"))&&(recibo.length == 2)&&(!responsable.equalsIgnoreCase("Ninguno"))){
                     Map params = new HashMap();
-                    String[] aux = fecha1.split("/");
-                    aux[0] = aux[0].trim();aux[1] = aux[1].trim();aux[2] = aux[2].trim();
-                    fecha1 = aux[1]+"/"+aux[0]+"/"+aux[2];
-                    aux = fecha2.split("/");
-                    aux[0] = aux[0].trim();aux[1] = aux[1].trim();aux[2] = aux[2].trim();
-                    fecha2 = aux[1]+"/"+aux[0]+"/"+aux[2];
                     params.put("fecha1", fecha1);
                     params.put("fecha2", fecha2);
                     params.put("responsable", responsable);
-                    JasperCompileManager.compileReportToFile(application.getRealPath("/report/resprecibosall2.jrxml"));
-                    File reportFile = new File(application.getRealPath("/report/resprecibosall2.jasper"));
+                    JasperCompileManager.compileReportToFile(application.getRealPath("/report/resprecibosall2Cajero.jrxml"));
+                    File reportFile = new File(application.getRealPath("/report/resprecibosall2Cajero.jasper"));
                     if (con.abrirConexion()) {
                         Connection conn = con.getCon();
                         if (reporte.equalsIgnoreCase("pdf")) {
@@ -568,10 +520,6 @@
                         }
                     }
                 }
-                
-
-                
-
             } catch (JRException e) {
                 System.out.println("Error:" + e.getMessage());
             } catch (Exception e) {
@@ -579,10 +527,7 @@
                 e.printStackTrace();
 
                 System.out.println("Error2:" + e.getMessage());
-
             }
-
-
     %>
     
     <body >
