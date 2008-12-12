@@ -5,10 +5,10 @@
 		 name="prueba3"
 		 columnCount="1"
 		 printOrder="Vertical"
-		 orientation="Portrait"
-		 pageWidth="595"
-		 pageHeight="842"
-		 columnWidth="535"
+		 orientation="Landscape"
+		 pageWidth="842"
+		 pageHeight="595"
+		 columnWidth="802"
 		 columnSpacing="0"
 		 leftMargin="20"
 		 rightMargin="20"
@@ -36,16 +36,20 @@
 		<defaultValueExpression ><![CDATA["1"]]></defaultValueExpression>
 	</parameter>
 	<queryString><![CDATA[SELECT
+     usuarios."digitos" AS digitos,
      recibos."numero" AS recibos_numero,
-     recibos."beneficiario" AS recibos_beneficiario,
-     datepart(dd,recibos."fecharendicion")AS dia,
-     datepart(mm,recibos."fecharendicion")AS mes,
-     datepart(yy,recibos."fecharendicion")AS anio,
+     recibos."razonsocial" AS recibos_razonsocial,
+     datepart(dd,recibos."fechaconfeccion")AS dia,
+     datepart(mm,recibos."fechaconfeccion")AS mes,
+     datepart(yy,recibos."fechaconfeccion")AS anio,
      recibos."monto" AS recibos_monto,
      recibos."estadotransaccion" AS recibos_estadotransaccion,
      recibos."estadorecibo" AS recibos_estadorecibo,
      recibos."motivo" AS recibos_motivo,
-     usuarios."digitos" AS digitos
+     recibos."numerocuota" AS recibos_numerocuota,
+     recibos."banco" AS recibos_banco,
+     recibos."numerocheque" AS recibos_numerocheque,
+     recibos."fechavencimiento" AS recibos_fechavencimiento
 FROM
      "dbo"."recibos" recibos,
      "dbo"."usuarios" usuarios
@@ -55,8 +59,9 @@ WHERE
  AND recibos."estadotransaccion" <> 'rendida'
  AND recibos."usuario" = usuarios."usuario"]]></queryString>
 
+	<field name="digitos" class="java.lang.String"/>
 	<field name="recibos_numero" class="java.lang.Integer"/>
-	<field name="recibos_beneficiario" class="java.lang.String"/>
+	<field name="recibos_razonsocial" class="java.lang.String"/>
 	<field name="dia" class="java.lang.Integer"/>
 	<field name="mes" class="java.lang.Integer"/>
 	<field name="anio" class="java.lang.Integer"/>
@@ -64,7 +69,10 @@ WHERE
 	<field name="recibos_estadotransaccion" class="java.lang.String"/>
 	<field name="recibos_estadorecibo" class="java.lang.String"/>
 	<field name="recibos_motivo" class="java.lang.String"/>
-	<field name="digitos" class="java.lang.String"/>
+	<field name="recibos_numerocuota" class="java.lang.String"/>
+	<field name="recibos_banco" class="java.lang.String"/>
+	<field name="recibos_numerocheque" class="java.lang.String"/>
+	<field name="recibos_fechavencimiento" class="java.sql.Timestamp"/>
 
 		<background>
 			<band height="0"  isSplitAllowed="true" >
@@ -369,7 +377,7 @@ WHERE
 					<textElement>
 						<font size="8"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{recibos_beneficiario}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{recibos_razonsocial}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
