@@ -280,20 +280,45 @@ function processRequestVerReciboAModificar(){
     }
 }
 
+
+
 function verRecibo() {
     var responsable = document.form1.usuarios.value
     if(responsable != ''){
-         var url = '../verRecibo?responsable='+ responsable;
-         initRequest(url);     
-         req.onreadystatechange = processRequestVerRecibo;
-         req.open('GET', url, true);
-         req.send(null);
+        //         var url = '../verRecibo?responsable='+ responsable;
+        //         initRequest(url);
+        //         req.onreadystatechange = processRequestVerRecibo;
+        //         req.open('GET', url, true);
+        //         req.setRequestHeader("Content-Type","text/html; charset:UTF-8");
+        //         req.send(null);
+
+        initRequest('url');
+        //var req = newXMLHttpRequest();
+        var handlerFunction = getReadyStateHandler(req, processRequestVerRecibo);
+        req.onreadystatechange = handlerFunction;
+        req.open("POST", "../verRecibo", true);
+        req.setRequestHeader("Content-Type",
+            "application/x-www-form-urlencoded; charset=UTF-8");
+        req.send("responsable="+responsable);
+
+    }
+}
+function getReadyStateHandler(req, responseXmlHandler) {
+    return function () {
+        if (req.readyState == 4) {
+            if (req.status == 200) {
+                responseXmlHandler(req.responseXML);
+            } else {
+                alert("HTTP error: "+req.status);
+            }
+        }
     }
 }
 
+
 function processRequestVerRecibo() {
-    if (req.readyState == 4) {
-        if (req.status == 200) {
+//    if (req.readyState == 4) {
+//        if (req.status == 200) {
             var estado = req.responseXML.getElementsByTagName('estado')[0].childNodes[0].nodeValue;
             var div;
             if(estado == 'vacio'){
@@ -346,10 +371,47 @@ function processRequestVerRecibo() {
                 datos += "<input name='cargar' type='submit' value='Confirmar' style='width:100px'/>";
                 div.innerHTML = datos;
             }
-        }
-    }
+//        }
+//    }
 }
 
+function newXMLHttpRequest() {
+
+    var xmlreq = false;
+
+    if (window.XMLHttpRequest) {
+
+        // Create XMLHttpRequest object in non-Microsoft browsers
+        xmlreq = new XMLHttpRequest();
+
+    } else if (window.ActiveXObject) {
+
+        // Create XMLHttpRequest via MS ActiveX
+        try {
+            // Try to create XMLHttpRequest in later versions
+            // of Internet Explorer
+
+            xmlreq = new ActiveXObject("Msxml2.XMLHTTP");
+
+        } catch (e1) {
+
+            // Failed to create required ActiveXObject
+
+            try {
+                // Try version supported by older versions
+                // of Internet Explorer
+
+                xmlreq = new ActiveXObject("Microsoft.XMLHTTP");
+
+            } catch (e2) {
+
+            // Unable to create an XMLHttpRequest with ActiveX
+            }
+        }
+    }
+
+    return xmlreq;
+}
 
 
 function initRequest(url) {
