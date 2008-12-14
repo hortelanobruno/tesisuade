@@ -65,7 +65,7 @@
 		  String user = request.getParameter("usuarios");
 		  List numeros = new ArrayList();
 			if(user != null){
-				List<Recibo> boletas = manager.obtenerRecibosAConfirmar(user);		
+				List<Recibo> boletas = manager.obtenerRecibosAConfirmarPorUsuario(user);
 				if(boletas.isEmpty()){
 					out.print("<tr><td colspan='3' align='center'>No hay boletas por confirmar</td></tr>");
 				}else{

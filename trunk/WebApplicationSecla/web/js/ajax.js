@@ -77,7 +77,7 @@ function processRequestBorrarArea(){
             if(borrar == "false"){
                 document.getElementById("mensaje").innerHTML = "El responsable posee recibos pendientes o a confirmar";
             }else{
-                document.getElementById("mensaje").innerHTML = "El responsable se puede borrar. <input type='button' value='Eliminar Responsable' style='width:100px' onClick='confirmarBorrarArea()'  /><input type='hidden' name='eliminar' value='si' />";
+                document.getElementById("mensaje").innerHTML = "El responsable se puede borrar. <input type='button' value='Eliminar Responsable' onClick='confirmarBorrarArea()'  /><input type='hidden' name='eliminar' value='si' />";
             }
         }
     }
@@ -281,13 +281,13 @@ function processRequestVerReciboAModificar(){
 }
 
 function verRecibo() {
-    var usuario = document.form1.usuarios.value
-    if(usuario != ''){
-        var url = '../verRecibo?usuario='+ usuario;
-        initRequest(url);
-        req.onreadystatechange = processRequestVerRecibo;
-        req.open('GET', url, true);
-        req.send(null);
+    var responsable = document.form1.usuarios.value
+    if(responsable != ''){
+         var url = '../verRecibo?responsable='+ responsable;
+         initRequest(url);     
+         req.onreadystatechange = processRequestVerRecibo;
+         req.open('GET', url, true);
+         req.send(null);
     }
 }
 
@@ -295,12 +295,13 @@ function processRequestVerRecibo() {
     if (req.readyState == 4) {
         if (req.status == 200) {
             var estado = req.responseXML.getElementsByTagName('estado')[0].childNodes[0].nodeValue;
+            var div;
             if(estado == 'vacio'){
-                var div = document.getElementById('recibos');
+                div = document.getElementById('recibos');
                 div.innerHTML = "<table width='100%'><tr><tdalign='center'>No hay boletas por confirmar</td></tr></table>";
             }else{
                 var cantidad = req.responseXML.getElementsByTagName('cantidad')[0].childNodes[0].nodeValue;
-                var div = document.getElementById('recibos');
+                div = document.getElementById('recibos');
                 var datos = "<table width='100%' border='1' cellpadding='1' cellspacing='0' bordercolor='#4D6FAC'>"
                 datos += "<tr><td align='center'>Numero</td><td align='center'>Estado</td><td align='center'>Fecha confeccion</td><td align='center'>Razon social</td><td align='center'>Monto</td><td align='center'>Motivo</td><td align='center'>Numero Cuota</td><td align='center'>Banco</td><td align='center'>Numero Cheque</td><td align='center'>Fecha de Vencimiento</td><td align='center'>Confirmar</td></tr>";
                 var boleta = req.responseXML.getElementsByTagName('boleta');

@@ -122,17 +122,23 @@ function validarEntregarRecibo(){
     if(aux == 0 ){
         numMin = document.form1.numMin.value
         numMax = document.form1.numMax.value
-        if((IsReal(numMin) == 0) && (IsReal(numMax) == 0)){
-            if(numMax >= numMin){
-                document.form1.submit();
+        if((/^[0-9]*$/.test(numMin))){
+            if((/^[0-9]*$/.test(numMax))){
+                numMin = parseInt(numMin);
+                numMax = parseInt(numMax);
+                if(numMax >= numMin){
+                    document.form1.submit();
+                }else{
+                    document.getElementById('rango').innerHTML = "Error en el rango";
+                    document.getElementById('rango').style.visibility = 'visible';
+                }
             }else{
                 document.getElementById('rango').innerHTML = "Error en el rango";
                 document.getElementById('rango').style.visibility = 'visible';
             }
         }else{
+            document.getElementById('rango').innerHTML = "Error en el rango";
             document.getElementById('rango').style.visibility = 'visible';
-            document.form1.numMin.value = ''
-            document.form1.numMax.value = ''
         }	
     }
 }

@@ -41,23 +41,27 @@ public class DBManager {
     }
 
     public String loginUsuario(String usuario, String password) {
-        return managerUsuarios.loginUsuario(usuario,password);
+        return managerUsuarios.loginUsuario(usuario, password);
     }
 
     public void confirmarRecibos(List<Integer> recibos) {
         managerRecibos.confirmarRecibos(recibos);
     }
 
-    public String totalEfectivoOperador(String usuario){
+    public String totalEfectivoOperador(String usuario) {
         return managerRecibos.totalEfectivoOperador(usuario);
     }
 
-    public String totalChequeOperador(String usuario){
+    public String totalChequeOperador(String usuario) {
         return managerRecibos.totalChequeOperador(usuario);
     }
 
-    public List<Recibo> obtenerRecibosAConfirmar(String usuario) {
-        return managerRecibos.obtenerRecibosAConfirmar(usuario);
+    public List<Recibo> obtenerRecibosAConfirmar(String responsable) {
+        return managerRecibos.obtenerRecibosAConfirmar(responsable);
+    }
+
+    public List<Recibo> obtenerRecibosAConfirmarPorUsuario(String usuario) {
+        return managerRecibos.obtenerRecibosAConfirmarPorUsuario(usuario);
     }
 
     public Recibo obtenerReciboAConfirmar(String numero) {
@@ -92,6 +96,10 @@ public class DBManager {
         return managerUsuarios.operatorInspectorCajeroList();
     }
 
+    public String[] operatorInspectorListUsuario(){
+        return managerUsuarios.operatorInspectorListUsuario();
+    }
+
     public String[] operatorInspectorList() {
         return managerUsuarios.operatorInspectorList();
     }
@@ -101,7 +109,7 @@ public class DBManager {
     }
 
     public String anularRecibo(String numero, String motivo, String fecha) {
-        return managerRecibos.anularRecibo(numero,motivo,fecha);
+        return managerRecibos.anularRecibo(numero, motivo, fecha);
     }
 
     public boolean chequearBorrarUsuario(String usuario) {
@@ -133,14 +141,14 @@ public class DBManager {
     }
 
     public String reciboExtraviada(String numero, String motivo, String fecha) {
-        return managerRecibos.reciboExtraviada(numero,motivo,fecha);
+        return managerRecibos.reciboExtraviada(numero, motivo, fecha);
     }
 
-    public String completarReciboChequePorOperador(Recibo rec){
+    public String completarReciboChequePorOperador(Recibo rec) {
         return managerRecibos.completarReciboChequePorOperador(rec);
     }
 
-    public String completarReciboChequePorInspector(Recibo rec){
+    public String completarReciboChequePorInspector(Recibo rec) {
         return managerRecibos.completarReciboChequePorInspector(rec);
     }
 
@@ -157,11 +165,11 @@ public class DBManager {
     }
 
     public String cargarRecibos(String op, String min, String max) {
-        return managerRecibos.cargarRecibos(op,min,max);
+        return managerRecibos.cargarRecibos(op, min, max);
     }
 
     public String devolverRecibos(String op, String min, String max) {
-        return managerRecibos.devolverRecibos(op,min,max);
+        return managerRecibos.devolverRecibos(op, min, max);
     }
 
     public String[] responsableList() {
@@ -173,6 +181,6 @@ public class DBManager {
     }
 
     public String resetPassword(String usuario, String password) {
-        return managerUsuarios.resetPassword(usuario,password);
+        return managerUsuarios.resetPassword(usuario, password);
     }
 }
