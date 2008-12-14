@@ -73,7 +73,7 @@
                     <td><select name="listaOperadores" size="10" style="width:300px" id="listaUsuarios">
                       <%
 
-					String usu[] = manager.responsableList();
+					String usu[] = manager.operatorInspectorList();
 					for(int i=0 ; i < usu.length; i++){
 						out.print("<option>"+usu[i]+"</option>");
 					}

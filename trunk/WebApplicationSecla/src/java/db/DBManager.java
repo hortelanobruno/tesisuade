@@ -36,8 +36,8 @@ public class DBManager {
         return managerUsuarios.borrarArea(usuario);
     }
 
-    public String actualizarArea(Usuario usuario) {
-        return managerUsuarios.actualizarArea(usuario);
+    public String actualizarArea(String resposnable, Usuario usuario) {
+        return managerUsuarios.actualizarArea(resposnable, usuario);
     }
 
     public String loginUsuario(String usuario, String password) {
@@ -70,6 +70,10 @@ public class DBManager {
 
     public List<String> datosUsuario(Object usuario) {
         return managerUsuarios.datosUsuario(usuario);
+    }
+
+    public List<String> datosResponsable(Object responsable) {
+        return managerUsuarios.datosResponsable(responsable);
     }
 
     public List<Integer> obtenerRecibosConfirmados() {
@@ -112,8 +116,8 @@ public class DBManager {
         return managerRecibos.anularRecibo(numero, motivo, fecha);
     }
 
-    public boolean chequearBorrarUsuario(String usuario) {
-        return managerRecibos.chequearBorrarUsuario(usuario);
+    public boolean chequearBorrarResponsable(String responsable) {
+        return managerRecibos.chequearBorrarResponsable(responsable);
     }
 
     public List<Recibo> obtenerRecibosCompletadas(String usuario) {

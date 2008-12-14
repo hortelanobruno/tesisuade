@@ -6,7 +6,6 @@ package ajax;
 
 import db.DBManager;
 import java.io.IOException;
-import java.net.URLDecoder;
 import java.util.List;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -29,7 +28,7 @@ public class VerReciboServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-            request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String responsable = request.getParameter("responsable");
         List<Recibo> boletas = manager.obtenerRecibosAConfirmar(responsable);
         if (boletas.isEmpty()) {

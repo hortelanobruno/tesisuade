@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package db;
 
 import java.sql.Connection;
@@ -144,16 +143,21 @@ public class ManagerRecibos {
         return "false";
     }
 
-    public boolean chequearBorrarUsuario(String usuario) {
+    public boolean chequearBorrarResponsable(String responsable) {
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
             Connection conn = con.getCon();
             PreparedStatement stmt;
             try {
+                stmt = conn.prepareStatement("SELECT usuario FROM usuarios where responsable like ?");
+                stmt.setString(1, responsable);
+                ResultSet srs = stmt.executeQuery();
+                srs.next();
+                String usuario = srs.getString("usuario");
                 stmt = conn.prepareStatement("select count(*) as count from recibos where usuario = ? and estadotransaccion <> 'rendida'");
                 stmt.setString(1, usuario);
-                ResultSet srs = stmt.executeQuery();
+                srs = stmt.executeQuery();
                 srs.next();
                 int cant = srs.getInt("count");
                 stmt.close();
@@ -202,7 +206,7 @@ public class ManagerRecibos {
                     recibo.setBanco(srs.getString("banco"));
                     recibo.setNumeroCheque(srs.getString("numerocheque"));
                     recibo.setNumeroacta(srs.getString("numeroacta"));
-                    if(!srs.getString("fechavencimiento").toString().startsWith("1900")){
+                    if (!srs.getString("fechavencimiento").toString().startsWith("1900")) {
                         fecha = srs.getDate("fechavencimiento").toString();
                         aux2 = fecha.split("-");
                         aux2[0] = aux2[0].trim();
@@ -210,7 +214,7 @@ public class ManagerRecibos {
                         aux2[2] = aux2[2].trim();
                         fecha = aux2[2] + "/" + aux2[1] + "/" + aux2[0];
                         recibo.setFechaDeVencimiento(fecha);
-                    }else{
+                    } else {
                         recibo.setFechaDeVencimiento("");
                     }
                     mapa.add(recibo);
@@ -256,7 +260,7 @@ public class ManagerRecibos {
                     recibo.setBanco(srs.getString("banco"));
                     recibo.setNumeroacta(srs.getString("numeroacta"));
                     recibo.setNumeroCheque(srs.getString("numerocheque"));
-                    if(!srs.getString("fechavencimiento").toString().startsWith("1900")){
+                    if (!srs.getString("fechavencimiento").toString().startsWith("1900")) {
                         fecha = srs.getDate("fechavencimiento").toString();
                         aux2 = fecha.split("-");
                         aux2[0] = aux2[0].trim();
@@ -264,7 +268,7 @@ public class ManagerRecibos {
                         aux2[2] = aux2[2].trim();
                         fecha = aux2[2] + "/" + aux2[1] + "/" + aux2[0];
                         recibo.setFechaDeVencimiento(fecha);
-                    }else{
+                    } else {
                         recibo.setFechaDeVencimiento("");
                     }
                     mapa.add(recibo);
@@ -463,7 +467,7 @@ public class ManagerRecibos {
         return "false";
     }
 
-    public String completarReciboChequePorOperador(Recibo rec){
+    public String completarReciboChequePorOperador(Recibo rec) {
         String[] aux = rec.getFechaConfeccion().split("/");
         aux[0] = aux[0].trim();
         aux[1] = aux[1].trim();
@@ -480,7 +484,7 @@ public class ManagerRecibos {
             Connection conn = con.getCon();
             PreparedStatement stmt;
             try {
-                String monto = ""+rec.getMonto();
+                String monto = "" + rec.getMonto();
                 monto = monto.replace(',', '.');
                 stmt = conn.prepareStatement("update recibos set fechaconfeccion = ? , razonsocial = ?, monto = ?, banco = ?, numerocheque = ?, fechavencimiento = ?, numerocuota = ?, estadorecibo = 'completada', estadotransaccion = 'a confirmar' where numero = ?");
                 stmt.setString(1, rec.getFechaConfeccion());
@@ -516,7 +520,7 @@ public class ManagerRecibos {
             Connection conn = con.getCon();
             PreparedStatement stmt;
             try {
-                String monto = ""+rec.getMonto();
+                String monto = "" + rec.getMonto();
                 monto = monto.replace(',', '.');
                 stmt = conn.prepareStatement("update recibos set fechaconfeccion = ? , razonsocial = ?, monto = ?, numerocuota = ?, estadorecibo = 'completada', estadotransaccion = 'a confirmar' where numero = ?");
                 stmt.setString(1, rec.getFechaConfeccion());
@@ -556,12 +560,13 @@ public class ManagerRecibos {
                 String monto = "" + rec.getMonto();
                 monto = monto.replace(',', '.');
                 String fecha2 = "";
-                if(!rec.getBanco().equals("")){
+                if (!rec.getBanco().equals("")) {
                     aux = rec.getFechaDeVencimiento().split("/");
                     aux[0] = aux[0].trim();
                     aux[1] = aux[1].trim();
                     aux[2] = aux[2].trim();
-                    fecha2 = aux[0] + "/" + aux[1] + "/" + aux[2];;
+                    fecha2 = aux[0] + "/" + aux[1] + "/" + aux[2];
+                    ;
                 }
                 stmt = conn.prepareStatement("update recibos set fechaconfeccion = ? , razonsocial = ?, monto = ?, motivo = ?, banco = ?, numerocheque = ?, fechavencimiento = ?, numerocuota = ?, numeroacta = ? where numero = ?");
                 stmt.setString(1, fecha);
@@ -730,7 +735,7 @@ public class ManagerRecibos {
         }
     }
 
-    public List<Recibo> obtenerRecibosAConfirmar(String usuario) {
+    public List<Recibo> obtenerRecibosAConfirmar(String responsable) {
         List<Recibo> recibos = new ArrayList<Recibo>();
         Conexion con = new Conexion();
         Conexion.driverOdbc();
@@ -738,9 +743,14 @@ public class ManagerRecibos {
             Connection conn = con.getCon();
             PreparedStatement stmt;
             try {
+                stmt = conn.prepareStatement("SELECT usuario FROM usuarios where responsable like ?");
+                stmt.setString(1, responsable);
+                ResultSet srs = stmt.executeQuery();
+                srs.next();
+                String usuario = srs.getString("usuario");
                 stmt = conn.prepareStatement("SELECT * FROM recibos where usuario = ? and estadotransaccion = 'a confirmar'");
                 stmt.setString(1, usuario);
-                ResultSet srs = stmt.executeQuery();
+                srs = stmt.executeQuery();
                 Recibo recibo;
                 String fecha;
                 String[] aux;
@@ -806,7 +816,7 @@ public class ManagerRecibos {
             Connection conn = con.getCon();
             PreparedStatement stmt;
             try {
-                String monto = ""+rec.getMonto();
+                String monto = "" + rec.getMonto();
                 monto = monto.replace(',', '.');
                 stmt = conn.prepareStatement("update recibos set fechaconfeccion = ? , razonsocial = ?, monto = ?, banco = ?, numerocheque = ?, fechavencimiento = ?, numerocuota = ?, numeroacta = ?, estadorecibo = 'completada', estadotransaccion = 'a confirmar' where numero = ?");
                 stmt.setString(1, rec.getFechaConfeccion());
@@ -816,7 +826,7 @@ public class ManagerRecibos {
                 stmt.setString(5, rec.getNumeroCheque());
                 stmt.setString(6, rec.getFechaDeVencimiento());
                 stmt.setString(7, rec.getNumeroCuota());
-                stmt.setString(8,rec.getNumeroacta());
+                stmt.setString(8, rec.getNumeroacta());
                 stmt.setInt(9, rec.getNumero());
                 stmt.execute();
                 stmt.close();
@@ -843,7 +853,7 @@ public class ManagerRecibos {
             Connection conn = con.getCon();
             PreparedStatement stmt;
             try {
-                String monto = ""+rec.getMonto();
+                String monto = "" + rec.getMonto();
                 monto = monto.replace(',', '.');
                 stmt = conn.prepareStatement("update recibos set fechaconfeccion = ? , razonsocial = ?, monto = ?, numerocuota = ?, numeroacta = ?, estadorecibo = 'completada', estadotransaccion = 'a confirmar' where numero = ?");
                 stmt.setString(1, rec.getFechaConfeccion());
@@ -888,7 +898,7 @@ public class ManagerRecibos {
         return total;
     }
 
-        public String totalChequeOperador(String usuario) {
+    public String totalChequeOperador(String usuario) {
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         String total = "0";
@@ -959,5 +969,4 @@ public class ManagerRecibos {
         }
         return recibos;
     }
-
 }

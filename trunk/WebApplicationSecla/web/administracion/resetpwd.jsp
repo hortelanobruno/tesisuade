@@ -62,7 +62,7 @@
                                     <td colspan="3" height="30px"></td>
                                 </tr>
                                 <tr>
-                                    <td valign="top">Usuarios</td>
+                                    <td valign="top">Responsables</td>
                                     <td><select name="listaUsuarios" size="10" style="width:200px" id="listaUsuarios" onchange="cargaraDatosUsuario()">
                                             <%
         String usu[] = manager.operatorInspectorCajeroList();

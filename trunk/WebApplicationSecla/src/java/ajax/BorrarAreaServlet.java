@@ -6,7 +6,6 @@ package ajax;
 
 import db.DBManager;
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,10 +24,11 @@ public class BorrarAreaServlet extends HttpServlet {
         manager = DBManager.getInstance();
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        String usuario = request.getParameter("usuario");
-        boolean borrar = manager.chequearBorrarUsuario(usuario);
+        request.setCharacterEncoding("UTF-8");
+        String responsable = request.getParameter("responsable");
+        boolean borrar = manager.chequearBorrarResponsable(responsable);
         response.setContentType("text/xml");
         response.setHeader("Cache-Control", "no-cache");
         response.getWriter().write("<?xml version='1.0' encoding='ISO-8859-1'?>");
