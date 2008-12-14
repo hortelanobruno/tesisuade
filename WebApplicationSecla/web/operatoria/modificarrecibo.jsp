@@ -14,7 +14,7 @@
         if (!manager.isConnected()) {
             response.sendRedirect("../index.jsp");
         }
-        List<Recibo> recibos = manager.obtenerRecibosAConfirmar(usuario);
+        List<Recibo> recibos = manager.obtenerRecibosAConfirmarPorUsuario(usuario);
         if (recibos.size() == 0) {
             response.sendRedirect("nohayboletas.jsp");
         }

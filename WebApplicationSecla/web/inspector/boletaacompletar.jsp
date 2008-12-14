@@ -33,7 +33,7 @@
             if(tipopago.equalsIgnoreCase("efectivo")){
                 recibo = new Recibo(Integer.parseInt(numero),fechaConfeccion,razonSocial,monto,cuota);
                 recibo.setNumeroacta(numeroacta);
-                resultado = manager.completarReciboEfectivoPorOperador(recibo);
+                resultado = manager.completarReciboEfectivoPorInspector(recibo);
             }else{
                 String banco = request.getParameter("banco");
                 String cheque = request.getParameter("numerocheque");

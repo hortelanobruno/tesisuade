@@ -50,7 +50,7 @@
 
                 <tr>
                     <td class="bodyText">
-                        <form method="get" target="_parent" action="resetpwd.jsp" name="form1">
+                        <form method="post" target="_parent" action="resetpwd.jsp" name="form1">
                             <table width="100%" cellpadding="1" cellspacing="5">
                                 <tr>
                                     <td colspan="3" width="20px">&nbsp;</td>

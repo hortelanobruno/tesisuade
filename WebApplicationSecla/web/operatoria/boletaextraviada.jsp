@@ -20,7 +20,7 @@
 	}
 	String motivo = request.getParameter("motivo");
 	String recibo = request.getParameter("recibos");
-        String fecha = request.getParameter("date");
+    String fecha = request.getParameter("date");
 	if(motivo != null){
 		String resultado = manager.reciboExtraviada(recibo,motivo,fecha);
 		if(resultado != null){

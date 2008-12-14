@@ -28,8 +28,8 @@ public class VerReciboServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        String usuario = request.getParameter("usuario");
-        List<Recibo> boletas = manager.obtenerRecibosAConfirmar(usuario);
+        String responsable = request.getParameter("responsable");
+        List<Recibo> boletas = manager.obtenerRecibosAConfirmar(responsable);
         if (boletas.isEmpty()) {
             response.setContentType("text/xml");
             response.setHeader("Cache-Control", "no-cache");

@@ -119,7 +119,7 @@ public class ManagerRecibos {
         aux[0] = aux[0].trim();
         aux[1] = aux[1].trim();
         aux[2] = aux[2].trim();
-        fecha = aux[1] + "/" + aux[0] + "/" + aux[2];
+        fecha = aux[0] + "/" + aux[1] + "/" + aux[2];
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
@@ -297,7 +297,13 @@ public class ManagerRecibos {
                 while (srs.next()) {
                     recibo = new Recibo();
                     recibo.setNumero(Integer.parseInt(srs.getString("numero")));
-                    recibo.setFechaConfeccion(srs.getDate("fechaconfeccion").toString());
+                    String fecha = srs.getDate("fechaconfeccion").toString();
+                    String[] aux2 = fecha.split("-");
+                    aux2[0] = aux2[0].trim();
+                    aux2[1] = aux2[1].trim();
+                    aux2[2] = aux2[2].trim();
+                    fecha = aux2[2] + "/" + aux2[1] + "/" + aux2[0];
+                    recibo.setFechaConfeccion(fecha);
                     recibo.setMotivo(srs.getString("motivo"));
                     mapa.add(recibo);
                 }
@@ -329,7 +335,13 @@ public class ManagerRecibos {
                 while (srs.next()) {
                     recibo = new Recibo();
                     recibo.setNumero(Integer.parseInt(srs.getString("numero")));
-                    recibo.setFechaConfeccion(srs.getDate("fechaconfeccion").toString());
+                    String fecha = srs.getDate("fechaconfeccion").toString();
+                    String[] aux2 = fecha.split("-");
+                    aux2[0] = aux2[0].trim();
+                    aux2[1] = aux2[1].trim();
+                    aux2[2] = aux2[2].trim();
+                    fecha = aux2[2] + "/" + aux2[1] + "/" + aux2[0];
+                    recibo.setFechaConfeccion(fecha);
                     recibo.setMotivo(srs.getString("motivo"));
                     mapa.add(recibo);
                 }
@@ -361,7 +373,13 @@ public class ManagerRecibos {
                 while (srs.next()) {
                     recibo = new Recibo();
                     recibo.setNumero(Integer.parseInt(srs.getString("numero")));
-                    recibo.setFechaConfeccion(srs.getDate("fechaconfeccion").toString());
+                    String fecha = srs.getDate("fechaconfeccion").toString();
+                    String[] aux2 = fecha.split("-");
+                    aux2[0] = aux2[0].trim();
+                    aux2[1] = aux2[1].trim();
+                    aux2[2] = aux2[2].trim();
+                    fecha = aux2[2] + "/" + aux2[1] + "/" + aux2[0];
+                    recibo.setFechaConfeccion(fecha);
                     recibo.setMotivo(srs.getString("motivo"));
                     mapa.add(recibo);
                 }
@@ -393,7 +411,13 @@ public class ManagerRecibos {
                 while (srs.next()) {
                     recibo = new Recibo();
                     recibo.setNumero(Integer.parseInt(srs.getString("numero")));
-                    recibo.setFechaConfeccion(srs.getDate("fechaconfeccion").toString());
+                    String fecha = srs.getDate("fechaconfeccion").toString();
+                    String[] aux2 = fecha.split("-");
+                    aux2[0] = aux2[0].trim();
+                    aux2[1] = aux2[1].trim();
+                    aux2[2] = aux2[2].trim();
+                    fecha = aux2[2] + "/" + aux2[1] + "/" + aux2[0];
+                    recibo.setFechaConfeccion(fecha);
                     recibo.setMotivo(srs.getString("motivo"));
                     mapa.add(recibo);
                 }
@@ -415,7 +439,7 @@ public class ManagerRecibos {
         aux[0] = aux[0].trim();
         aux[1] = aux[1].trim();
         aux[2] = aux[2].trim();
-        fecha = aux[1] + "/" + aux[0] + "/" + aux[2];
+        fecha = aux[0] + "/" + aux[1] + "/" + aux[2];
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
@@ -750,6 +774,7 @@ public class ManagerRecibos {
                 srs.close();
                 con.cerrarConexion();
             } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
         }
         return recibos;
@@ -884,6 +909,55 @@ public class ManagerRecibos {
             }
         }
         return total;
+    }
+
+    public List<Recibo> obtenerRecibosAConfirmarPorUsuario(String usuario) {
+        List<Recibo> recibos = new ArrayList<Recibo>();
+        Conexion con = new Conexion();
+        Conexion.driverOdbc();
+        if (con.abrirConexion()) {
+            Connection conn = con.getCon();
+            PreparedStatement stmt;
+            try {
+                stmt = conn.prepareStatement("SELECT * FROM recibos where usuario = ? and estadotransaccion = 'a confirmar'");
+                stmt.setString(1, usuario);
+                ResultSet srs = stmt.executeQuery();
+                Recibo recibo;
+                String fecha;
+                String[] aux;
+                while (srs.next()) {
+                    recibo = new Recibo();
+                    recibo.setNumero(srs.getInt("numero"));
+                    recibo.setRazonSocial(srs.getString("razonsocial"));
+                    fecha = srs.getDate("fechaconfeccion").toString();
+                    aux = fecha.split("-");
+                    aux[0] = aux[0].trim();
+                    aux[1] = aux[1].trim();
+                    aux[2] = aux[2].trim();
+                    fecha = aux[2] + "/" + aux[1] + "/" + aux[0];
+                    recibo.setFechaConfeccion(fecha);
+                    recibo.setMonto(srs.getString("monto"));
+                    recibo.setMotivo(srs.getString("motivo"));
+                    recibo.setEstadorecibo(srs.getString("estadorecibo"));
+                    recibo.setBanco(srs.getString("banco"));
+                    recibo.setNumeroCuota(srs.getString("numerocuota"));
+                    recibo.setNumeroCheque(srs.getString("numerocheque"));
+                    fecha = srs.getDate("fechavencimiento").toString();
+                    aux = fecha.split("-");
+                    aux[0] = aux[0].trim();
+                    aux[1] = aux[1].trim();
+                    aux[2] = aux[2].trim();
+                    fecha = aux[2] + "/" + aux[1] + "/" + aux[0];
+                    recibo.setFechaDeVencimiento(fecha);
+                    recibos.add(recibo);
+                }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
+            } catch (Exception e) {
+            }
+        }
+        return recibos;
     }
 
 }
