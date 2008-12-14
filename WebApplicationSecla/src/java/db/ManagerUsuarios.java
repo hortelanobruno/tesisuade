@@ -129,11 +129,11 @@ public class ManagerUsuarios {
                 srs.next();
                 int cant = srs.getInt("count");
                 list = new String[cant];
-                stmt = conn.prepareStatement("SELECT usuario FROM usuarios where tipocuenta <> 'administrador' and habilitado = 1");
+                stmt = conn.prepareStatement("SELECT responsable FROM usuarios where tipocuenta <> 'administrador' and habilitado = 1");
                 srs = stmt.executeQuery();
                 int aux = 0;
                 while (srs.next()) {
-                    list[aux] = srs.getString("usuario");
+                    list[aux] = srs.getString("responsable");
                     aux++;
                 }
                 stmt.close();
@@ -287,7 +287,7 @@ public class ManagerUsuarios {
         return "ok";
     }
 
-    public String actualizarArea(Usuario usuario) {
+    public String actualizarArea(String responsable, Usuario usuario) {
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
@@ -295,9 +295,8 @@ public class ManagerUsuarios {
             PreparedStatement stmt;
             String digitos = usuario.getDigarea() + usuario.getDigresp();
             try {
-                stmt = conn.prepareStatement("SELECT responsable FROM usuarios where responsable = ? and usuario <> ?");
+                stmt = conn.prepareStatement("SELECT responsable FROM usuarios where responsable = ?");
                 stmt.setString(1, usuario.getResponsable());
-                stmt.setString(2, usuario.getUsuario());
                 ResultSet srs = stmt.executeQuery();
                 while (srs.next()) {
                     stmt.close();
@@ -305,9 +304,9 @@ public class ManagerUsuarios {
                     con.cerrarConexion();
                     return "responsable";
                 }
-                stmt = conn.prepareStatement("SELECT digitos FROM usuarios where digitos = ? and usuario <> ?");
+                stmt = conn.prepareStatement("SELECT digitos FROM usuarios where digitos = ? and responsable <> ?");
                 stmt.setString(1, digitos);
-                stmt.setString(2, usuario.getUsuario());
+                stmt.setString(2, responsable);
                 srs = stmt.executeQuery();
                 while (srs.next()) {
                     stmt.close();
@@ -315,12 +314,12 @@ public class ManagerUsuarios {
                     con.cerrarConexion();
                     return "digitos";
                 }
-                stmt = conn.prepareStatement("update usuarios set responsable = ?, sede = ?, sector = ?, digitos = ? where usuario = ?");
+                stmt = conn.prepareStatement("update usuarios set responsable = ?, sede = ?, sector = ?, digitos = ? where responsable = ?");
                 stmt.setString(1, usuario.getResponsable());
                 stmt.setString(2, usuario.getSede());
                 stmt.setString(3, usuario.getSector());
                 stmt.setString(4, digitos);
-                stmt.setString(5, usuario.getUsuario());
+                stmt.setString(5, responsable);
                 stmt.execute();
                 stmt.close();
                 srs.close();
@@ -455,5 +454,33 @@ public class ManagerUsuarios {
             System.out.println("La base esta caida");
         }
         return list;
+    }
+
+    public List<String> datosResponsable(Object responsable) {
+        ArrayList<String> datos = new ArrayList<String>();
+        Conexion con = new Conexion();
+        Conexion.driverOdbc();
+        if (con.abrirConexion()) {
+            Connection conn = con.getCon();
+            PreparedStatement stmt;
+            try {
+                stmt = conn.prepareStatement("SELECT * FROM usuarios where responsable = ?");
+                stmt.setString(1, responsable.toString());
+                ResultSet srs = stmt.executeQuery();
+                while (srs.next()) {
+                    datos.add(srs.getString("password"));
+                    datos.add(srs.getString("responsable"));
+                    datos.add(srs.getString("sede"));
+                    datos.add(srs.getString("sector"));
+                    datos.add(srs.getString("digitos"));
+                    datos.add(srs.getString("tipocuenta"));
+                }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
+            } catch (Exception e) {
+            }
+        }
+        return datos;
     }
 }

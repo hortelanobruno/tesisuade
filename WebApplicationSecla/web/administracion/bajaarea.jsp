@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=ISO-8859-1" language="java" import="java.sql.*" errorPage="" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" import="java.sql.*" errorPage="" %>
 <%@ page import="db.DBManager" %>
 <%
         Object connectado = session.getAttribute("conectado");
@@ -30,7 +30,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" href="../estilo/estilo.css" type="text/css" />
         <title>Sistema de control de recibos</title>
         <script language="javascript" type="text/javascript" src="../js/script.js"></script>
@@ -64,10 +64,10 @@
                                     <td colspan="3" height="30px"></td>
                                 </tr>
                                 <tr>
-                                    <td valign="top">Usuarios</td>
+                                    <td valign="top">Responsables</td>
                                     <td colspan="2" ><select name="listaUsuarios" size="10" style="width:200px" id="listaUsuarios" onchange="borrarArea()">
                                             <%
-        String usu[] = manager.operatorList();
+        String usu[] = manager.operatorInspectorList();
         for (int i = 0; i < usu.length; i++) {
             out.print("<option value='" + usu[i] + "'>" + usu[i] + "</option>");
         }

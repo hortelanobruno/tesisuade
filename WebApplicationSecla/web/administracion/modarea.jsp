@@ -9,20 +9,25 @@
         } else {
             response.sendRedirect("../index.jsp");
         }
-        String responsable = request.getParameter("responsable");
+        String nuevoResponsable = request.getParameter("responsable");
         String sector = request.getParameter("sector");
         String sede = request.getParameter("sede");
         String digarea = request.getParameter("digarea");
         String digresp = request.getParameter("digresp");
-        String usuario = request.getParameter("listaUsuarios");
+        String responsable = request.getParameter("listaUsuarios");
         String resultado = new String();
         DBManager manager = DBManager.getInstance();
         if (!manager.isConnected()) {
             response.sendRedirect("../index.jsp");
         }
         if (responsable != null) {
-            Usuario usu = new Usuario(usuario, responsable, sector, sede, digarea, digresp);
-            resultado = manager.actualizarArea(usu);
+            Usuario usu = new Usuario();
+            usu.setResponsable(nuevoResponsable);
+            usu.setSector(sector);
+            usu.setSede(sede);
+            usu.setDigarea(digarea);
+            usu.setDigresp(digresp);
+            resultado = manager.actualizarArea(responsable,usu);
             if (resultado != null) {
                 if (resultado == "ok") {
                     response.sendRedirect("modareaok.jsp");
@@ -67,7 +72,7 @@
                                     <td colspan="3" height="30px"></td>
                                 </tr>
                                 <tr>
-                                    <td valign="top">Usuarios</td>
+                                    <td valign="top">Responsables</td>
                                     <td colspan="2" ><select name="listaUsuarios" size="10" style="width:200px" id="listaUsuarios" onchange="cargarDatosUsuarioAMod()">
                                             <%
         String usu[] = manager.operatorInspectorCajeroList();

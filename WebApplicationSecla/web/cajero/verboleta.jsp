@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" import="java.sql.*,java.io.*, java.util.*" errorPage="" %>
+<%@ page contentType="text/html; charset=ISO-8859-1" language="java" import="java.sql.*,java.io.*, java.util.*" errorPage="" %>
 <%@ page import="db.DBManager,varios.Recibo" %> 
 <%
         Object connectado = session.getAttribute("conectado");
@@ -59,7 +59,7 @@
             <tr height="20px"><td></td>
             </tr>
             <tr>
-                <td> Usuario </td>
+                <td> Responsable </td>
                 <td>
                     <select name="usuarios" style="width:180px" id="usuario" onchange="verRecibo()">
                         <option value="">&nbsp;</option>

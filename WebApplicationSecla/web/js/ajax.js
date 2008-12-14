@@ -44,81 +44,75 @@ function pagoCheque() {
 }
 
 function cargaraDatosUsuario() {
-    var usuario   = document.form1.listaUsuarios.value
-    var url = "../datosUsuario?usuario="+ usuario;
-    initRequest(url);
-    req.onreadystatechange = processRequestCargarDatosUsuario;
-    req.open("GET", url, true); 
-    req.send(null);
+    var responsable = document.form1.listaUsuarios.value
+    initRequest('url');
+    var handlerFunction = getReadyStateHandler(req, processRequestCargarDatosUsuario);
+    req.onreadystatechange = handlerFunction;
+    req.open("POST", "../datosUsuario", true);
+    req.setRequestHeader("Content-Type",
+        "application/x-www-form-urlencoded; charset=UTF-8");
+    req.send("responsable="+responsable);
 }
 
 function cargarDatosUsuarioAMod(){
-    var usuario   = document.form1.listaUsuarios.value
-    var url = "../datosUsuario?usuario="+ usuario;
-    initRequest(url);
-    req.onreadystatechange = processRequestCargarDatosUsuarioAMod;
-    req.open("GET", url, true);
-    req.send(null);
+    var responsable = document.form1.listaUsuarios.value
+    initRequest('url');
+    var handlerFunction = getReadyStateHandler(req, processRequestCargarDatosUsuarioAMod);
+    req.onreadystatechange = handlerFunction;
+    req.open("POST", "../datosUsuario", true);
+    req.setRequestHeader("Content-Type",
+        "application/x-www-form-urlencoded; charset=UTF-8");
+    req.send("responsable="+responsable);
 }
 
 function borrarArea(){
-    var usuario   = document.form1.listaUsuarios.value
-    var url = "../borrarArea?usuario="+ usuario;
-    initRequest(url);
-    req.onreadystatechange = processRequestBorrarArea;
-    req.open("GET", url, true);
-    req.send(null);
+    var responsable = document.form1.listaUsuarios.value
+    initRequest('url');
+    var handlerFunction = getReadyStateHandler(req, processRequestBorrarArea);
+    req.onreadystatechange = handlerFunction;
+    req.open("POST", "../borrarArea", true);
+    req.setRequestHeader("Content-Type",
+        "application/x-www-form-urlencoded; charset=UTF-8");
+    req.send("responsable="+responsable);
 }
 
 function processRequestBorrarArea(){
-    if (req.readyState == 4) {
-        if (req.status == 200) {
-            var borrar = req.responseXML.getElementsByTagName("borrar")[0].childNodes[0].nodeValue;
-            if(borrar == "false"){
-                document.getElementById("mensaje").innerHTML = "El responsable posee recibos pendientes o a confirmar";
-            }else{
-                document.getElementById("mensaje").innerHTML = "El responsable se puede borrar. <input type='button' value='Eliminar Responsable' onClick='confirmarBorrarArea()'  /><input type='hidden' name='eliminar' value='si' />";
-            }
-        }
+    var borrar = req.responseXML.getElementsByTagName("borrar")[0].childNodes[0].nodeValue;
+    if(borrar == "false"){
+        document.getElementById("mensaje").innerHTML = "El responsable posee recibos pendientes o a confirmar";
+    }else{
+        document.getElementById("mensaje").innerHTML = "El responsable se puede borrar. <input type='button' value='Eliminar Responsable' onClick='confirmarBorrarArea()'  /><input type='hidden' name='eliminar' value='si' />";
     }
 }
 
 function processRequestCargarDatosUsuarioAMod(){
-    if (req.readyState == 4) {
-        if (req.status == 200) {
-            var _responsable = req.responseXML.getElementsByTagName("responsable")[0].childNodes[0].nodeValue;
-            var _sector = req.responseXML.getElementsByTagName("sector")[0].childNodes[0].nodeValue;
-            var _sede = req.responseXML.getElementsByTagName("sede")[0].childNodes[0].nodeValue;
-            var _digitos = req.responseXML.getElementsByTagName("digitos")[0].childNodes[0].nodeValue;
-            var _diga =_digitos.substring(0,2);
-            var _digr =_digitos.substring(2,4);
-            document.getElementById("res").innerHTML = "<input name='responsable' type='text' size='30' value='"+_responsable+"' onkeypress='if(event.keyCode == 13) validarAltaArea()'/><br><label class='error' id='resp' style='visibility:hidden'></label>";
-            document.getElementById("sect").innerHTML = "<input name='sector' type='text' size='30' value="+_sector+" onkeypress='if(event.keyCode == 13) validarAltaArea()'/><br><label class='error' id='sec' style='visibility:hidden'></label>";
-            document.getElementById("sede").innerHTML = "<input name='sede' type='text' size='30' value='"+_sede+"' onkeypress='if(event.keyCode == 13) validarAltaArea()'/><br><label class='error' id='sed' style='visibility:hidden'></label>";
-            document.getElementById("diga").innerHTML = "<input name='digarea' type='text' size='30' value='"+_diga+"' onkeypress='if(event.keyCode == 13) validarAltaArea()'/><br><label class='error' id='dig1' style='visibility:hidden'></label>";
-            document.getElementById("digr").innerHTML = "<input name='digresp' type='text' size='30' value='"+_digr+"' onkeypress='if(event.keyCode == 13) validarAltaArea()'/><br><label class='error' id='dig2' style='visibility:hidden'></label>";
-            document.getElementById("but").innerHTML = "<input name='cargar' type='button' value='Modificar Responsable' style='width:150px' onClick='validarModArea()'/>	";
-        }
-    }
+    var _responsable = req.responseXML.getElementsByTagName("responsable")[0].childNodes[0].nodeValue;
+    var _sector = req.responseXML.getElementsByTagName("sector")[0].childNodes[0].nodeValue;
+    var _sede = req.responseXML.getElementsByTagName("sede")[0].childNodes[0].nodeValue;
+    var _digitos = req.responseXML.getElementsByTagName("digitos")[0].childNodes[0].nodeValue;
+    var _diga =_digitos.substring(0,2);
+    var _digr =_digitos.substring(2,4);
+    document.getElementById("res").innerHTML = "<input name='responsable' type='text' size='30' value='"+_responsable+"' onkeypress='if(event.keyCode == 13) validarAltaArea()'/><br><label class='error' id='resp' style='visibility:hidden'></label>";
+    document.getElementById("sect").innerHTML = "<input name='sector' type='text' size='30' value="+_sector+" onkeypress='if(event.keyCode == 13) validarAltaArea()'/><br><label class='error' id='sec' style='visibility:hidden'></label>";
+    document.getElementById("sede").innerHTML = "<input name='sede' type='text' size='30' value='"+_sede+"' onkeypress='if(event.keyCode == 13) validarAltaArea()'/><br><label class='error' id='sed' style='visibility:hidden'></label>";
+    document.getElementById("diga").innerHTML = "<input name='digarea' type='text' size='30' value='"+_diga+"' onkeypress='if(event.keyCode == 13) validarAltaArea()'/><br><label class='error' id='dig1' style='visibility:hidden'></label>";
+    document.getElementById("digr").innerHTML = "<input name='digresp' type='text' size='30' value='"+_digr+"' onkeypress='if(event.keyCode == 13) validarAltaArea()'/><br><label class='error' id='dig2' style='visibility:hidden'></label>";
+    document.getElementById("but").innerHTML = "<input name='cargar' type='button' value='Modificar Responsable' style='width:150px' onClick='validarModArea()'/>	";
 }
 
 function processRequestCargarDatosUsuario() {
-    if (req.readyState == 4) {
-        if (req.status == 200) {
-            var _responsable = req.responseXML.getElementsByTagName("responsable")[0].childNodes[0].nodeValue;
-            var _sector = req.responseXML.getElementsByTagName("sector")[0].childNodes[0].nodeValue;
-            var _sede = req.responseXML.getElementsByTagName("sede")[0].childNodes[0].nodeValue;
-            var _digitos = req.responseXML.getElementsByTagName("digitos")[0].childNodes[0].nodeValue;
-            var _password = req.responseXML.getElementsByTagName("password")[0].childNodes[0].nodeValue;
-            var _cuenta = req.responseXML.getElementsByTagName("cuenta")[0].childNodes[0].nodeValue;
-            document.getElementById("res").innerHTML = _responsable;
-            document.getElementById("sec").innerHTML = _sector;
-            document.getElementById("sede").innerHTML = _sede;
-            document.getElementById("dig").innerHTML = _digitos;
-            document.getElementById("pwd").innerHTML = _password;
-            document.getElementById("cue").innerHTML = _cuenta;
-        }
-    }
+    var _responsable = req.responseXML.getElementsByTagName("responsable")[0].childNodes[0].nodeValue;
+    var _sector = req.responseXML.getElementsByTagName("sector")[0].childNodes[0].nodeValue;
+    var _sede = req.responseXML.getElementsByTagName("sede")[0].childNodes[0].nodeValue;
+    var _digitos = req.responseXML.getElementsByTagName("digitos")[0].childNodes[0].nodeValue;
+    var _password = req.responseXML.getElementsByTagName("password")[0].childNodes[0].nodeValue;
+    var _cuenta = req.responseXML.getElementsByTagName("cuenta")[0].childNodes[0].nodeValue;
+    document.getElementById("res").innerHTML = _responsable;
+    document.getElementById("sec").innerHTML = _sector;
+    document.getElementById("sede").innerHTML = _sede;
+    document.getElementById("dig").innerHTML = _digitos;
+    document.getElementById("pwd").innerHTML = _password;
+    document.getElementById("cue").innerHTML = _cuenta;
 }
 
 function verReciboAModificar(){
@@ -285,22 +279,13 @@ function processRequestVerReciboAModificar(){
 function verRecibo() {
     var responsable = document.form1.usuarios.value
     if(responsable != ''){
-        //         var url = '../verRecibo?responsable='+ responsable;
-        //         initRequest(url);
-        //         req.onreadystatechange = processRequestVerRecibo;
-        //         req.open('GET', url, true);
-        //         req.setRequestHeader("Content-Type","text/html; charset:UTF-8");
-        //         req.send(null);
-
         initRequest('url');
-        //var req = newXMLHttpRequest();
         var handlerFunction = getReadyStateHandler(req, processRequestVerRecibo);
         req.onreadystatechange = handlerFunction;
         req.open("POST", "../verRecibo", true);
         req.setRequestHeader("Content-Type",
             "application/x-www-form-urlencoded; charset=UTF-8");
         req.send("responsable="+responsable);
-
     }
 }
 function getReadyStateHandler(req, responseXmlHandler) {
@@ -317,60 +302,60 @@ function getReadyStateHandler(req, responseXmlHandler) {
 
 
 function processRequestVerRecibo() {
-//    if (req.readyState == 4) {
-//        if (req.status == 200) {
-            var estado = req.responseXML.getElementsByTagName('estado')[0].childNodes[0].nodeValue;
-            var div;
-            if(estado == 'vacio'){
-                div = document.getElementById('recibos');
-                div.innerHTML = "<table width='100%'><tr><tdalign='center'>No hay boletas por confirmar</td></tr></table>";
+    //    if (req.readyState == 4) {
+    //        if (req.status == 200) {
+    var estado = req.responseXML.getElementsByTagName('estado')[0].childNodes[0].nodeValue;
+    var div;
+    if(estado == 'vacio'){
+        div = document.getElementById('recibos');
+        div.innerHTML = "<table width='100%'><tr><tdalign='center'>No hay boletas por confirmar</td></tr></table>";
+    }else{
+        var cantidad = req.responseXML.getElementsByTagName('cantidad')[0].childNodes[0].nodeValue;
+        div = document.getElementById('recibos');
+        var datos = "<table width='100%' border='1' cellpadding='1' cellspacing='0' bordercolor='#4D6FAC'>"
+        datos += "<tr><td align='center'>Numero</td><td align='center'>Estado</td><td align='center'>Fecha confeccion</td><td align='center'>Razon social</td><td align='center'>Monto</td><td align='center'>Motivo</td><td align='center'>Numero Cuota</td><td align='center'>Banco</td><td align='center'>Numero Cheque</td><td align='center'>Fecha de Vencimiento</td><td align='center'>Confirmar</td></tr>";
+        var boleta = req.responseXML.getElementsByTagName('boleta');
+        for(i=0 ; i < boleta.length ; i++){
+            var nodes = boleta[i].childNodes;
+            var numero = nodes[0].childNodes[0].nodeValue;
+            var estadoboleta = nodes[1].childNodes[0].nodeValue;
+            var motivo;
+            var fecharendicion;
+            var beneficiario;
+            var monto;
+            var numerocuota;
+            var banco;
+            var numerocheque;
+            var fechavencimiento;
+            if(estadoboleta != 'completada'){
+                motivo = nodes[5].childNodes[0].nodeValue;
             }else{
-                var cantidad = req.responseXML.getElementsByTagName('cantidad')[0].childNodes[0].nodeValue;
-                div = document.getElementById('recibos');
-                var datos = "<table width='100%' border='1' cellpadding='1' cellspacing='0' bordercolor='#4D6FAC'>"
-                datos += "<tr><td align='center'>Numero</td><td align='center'>Estado</td><td align='center'>Fecha confeccion</td><td align='center'>Razon social</td><td align='center'>Monto</td><td align='center'>Motivo</td><td align='center'>Numero Cuota</td><td align='center'>Banco</td><td align='center'>Numero Cheque</td><td align='center'>Fecha de Vencimiento</td><td align='center'>Confirmar</td></tr>";
-                var boleta = req.responseXML.getElementsByTagName('boleta');
-                for(i=0 ; i < boleta.length ; i++){
-                    var nodes = boleta[i].childNodes;
-                    var numero = nodes[0].childNodes[0].nodeValue;
-                    var estadoboleta = nodes[1].childNodes[0].nodeValue;
-                    var motivo;
-                    var fecharendicion;
-                    var beneficiario;
-                    var monto;
-                    var numerocuota;
-                    var banco;
-                    var numerocheque;
-                    var fechavencimiento;
-                    if(estadoboleta != 'completada'){
-                        motivo = nodes[5].childNodes[0].nodeValue;
-                    }else{
-                        motivo = '';
-                        fecharendicion = nodes[2].childNodes[0].nodeValue;
-                        beneficiario = nodes[3].childNodes[0].nodeValue;
-                        monto = nodes[4].childNodes[0].nodeValue;
-                        numerocuota =nodes[6].childNodes[0].nodeValue;
-                        banco=nodes[7].childNodes[0];
-                        if(banco == null){
-                            banco="&nbsp;";
-                            numerocheque="&nbsp;";
-                            fechavencimiento="&nbsp;";
-                        }else{
-                            banco=nodes[7].childNodes[0].nodeValue;
-                            numerocheque=nodes[8].childNodes[0].nodeValue;
-                            fechavencimiento=nodes[9].childNodes[0].nodeValue;
-                        }
-                    }
-                    if(motivo == ''){
-                        datos += "<tr><td align='center'>"+numero+"</td><td align='center'>"+estadoboleta+"</td><td align='center'>"+fecharendicion+"</td><td align='center'>"+beneficiario+"</td><td align='center'>"+monto+"</td><td>&nbsp;</td><td align='center' >"+numerocuota+"</td><td align='center' >"+banco+"</td><td align='center' >"+numerocheque+"</td><td align='center' >"+fechavencimiento+"</td><td align='center'><input id='"+i+"' name='recibo' type='checkbox' value='"+numero+"' /></td></tr>";
-                    }else{
-                        datos += "<tr><td align='center'>"+numero+"</td><td align='center'>"+estadoboleta+"</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td align='center'>"+motivo+"</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td align='center'><input name='recibo' id='"+i+"' type='checkbox' value='"+numero+"' /></td></tr>";
-                    }
+                motivo = '';
+                fecharendicion = nodes[2].childNodes[0].nodeValue;
+                beneficiario = nodes[3].childNodes[0].nodeValue;
+                monto = nodes[4].childNodes[0].nodeValue;
+                numerocuota =nodes[6].childNodes[0].nodeValue;
+                banco=nodes[7].childNodes[0];
+                if(banco == null){
+                    banco="&nbsp;";
+                    numerocheque="&nbsp;";
+                    fechavencimiento="&nbsp;";
+                }else{
+                    banco=nodes[7].childNodes[0].nodeValue;
+                    numerocheque=nodes[8].childNodes[0].nodeValue;
+                    fechavencimiento=nodes[9].childNodes[0].nodeValue;
                 }
-                datos += '</table><br><br>';
-                datos += "<input name='cargar' type='submit' value='Confirmar' style='width:100px'/>";
-                div.innerHTML = datos;
             }
+            if(motivo == ''){
+                datos += "<tr><td align='center'>"+numero+"</td><td align='center'>"+estadoboleta+"</td><td align='center'>"+fecharendicion+"</td><td align='center'>"+beneficiario+"</td><td align='center'>"+monto+"</td><td>&nbsp;</td><td align='center' >"+numerocuota+"</td><td align='center' >"+banco+"</td><td align='center' >"+numerocheque+"</td><td align='center' >"+fechavencimiento+"</td><td align='center'><input id='"+i+"' name='recibo' type='checkbox' value='"+numero+"' /></td></tr>";
+            }else{
+                datos += "<tr><td align='center'>"+numero+"</td><td align='center'>"+estadoboleta+"</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td align='center'>"+motivo+"</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td align='center'><input name='recibo' id='"+i+"' type='checkbox' value='"+numero+"' /></td></tr>";
+            }
+        }
+        datos += '</table><br><br>';
+        datos += "<input name='cargar' type='submit' value='Confirmar' style='width:100px'/>";
+        div.innerHTML = datos;
+    }
 //        }
 //    }
 }

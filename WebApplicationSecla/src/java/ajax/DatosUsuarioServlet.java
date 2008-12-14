@@ -26,10 +26,11 @@ public class DatosUsuarioServlet extends HttpServlet {
         manager = DBManager.getInstance();
     }
 
-    public  void doGet(HttpServletRequest request, HttpServletResponse  response)
+    public  void doPost(HttpServletRequest request, HttpServletResponse  response)
     throws IOException, ServletException {
-        String usuario = request.getParameter("usuario");
-        List<String> datos = manager.datosUsuario(usuario);
+        request.setCharacterEncoding("UTF-8");
+        String responsable = request.getParameter("responsable");
+        List<String> datos = manager.datosResponsable(responsable);
         response.setContentType("text/xml");
         response.setHeader("Cache-Control", "no-cache");
         response.getWriter().write("<?xml version='1.0' encoding='ISO-8859-1'?>");
