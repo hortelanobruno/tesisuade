@@ -47,14 +47,6 @@
 				  </a></div></td>
 			</tr>
             <tr>
-				<td><div align="left"><a href="cargaracta.jsp" class="navText">Cargar Acta<br />
-				  </a></div></td>
-			</tr>
-            <tr>
-				<td><div align="left"><a href="modificaracta.jsp" class="navText">Modificar Acta<br />
-				  </a></div></td>
-			</tr>
-            <tr>
 				<td><div align="left"><a href="generarreporte2.jsp" class="navText">Generar reporte<br />
 				  </a></div></td>
 			</tr>
