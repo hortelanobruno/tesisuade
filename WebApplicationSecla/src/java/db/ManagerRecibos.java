@@ -118,7 +118,7 @@ public class ManagerRecibos {
         aux[0] = aux[0].trim();
         aux[1] = aux[1].trim();
         aux[2] = aux[2].trim();
-        fecha = aux[0] + "/" + aux[1] + "/" + aux[2];
+        fecha = aux[1] + "/" + aux[0] + "/" + aux[2];
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
@@ -443,7 +443,7 @@ public class ManagerRecibos {
         aux[0] = aux[0].trim();
         aux[1] = aux[1].trim();
         aux[2] = aux[2].trim();
-        fecha = aux[0] + "/" + aux[1] + "/" + aux[2];
+        fecha = aux[1] + "/" + aux[0] + "/" + aux[2];
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
@@ -472,12 +472,12 @@ public class ManagerRecibos {
         aux[0] = aux[0].trim();
         aux[1] = aux[1].trim();
         aux[2] = aux[2].trim();
-        rec.setFechaConfeccion(aux[0] + "/" + aux[1] + "/" + aux[2]);
+        rec.setFechaConfeccion(aux[1] + "/" + aux[0] + "/" + aux[2]);
         aux = rec.getFechaDeVencimiento().split("/");
         aux[0] = aux[0].trim();
         aux[1] = aux[1].trim();
         aux[2] = aux[2].trim();
-        rec.setFechaDeVencimiento(aux[0] + "/" + aux[1] + "/" + aux[2]);
+        rec.setFechaDeVencimiento(aux[1] + "/" + aux[0] + "/" + aux[2]);
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
@@ -513,7 +513,7 @@ public class ManagerRecibos {
         aux[0] = aux[0].trim();
         aux[1] = aux[1].trim();
         aux[2] = aux[2].trim();
-        rec.setFechaConfeccion(aux[0] + "/" + aux[1] + "/" + aux[2]);
+        rec.setFechaConfeccion(aux[1] + "/" + aux[0] + "/" + aux[2]);
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
@@ -547,7 +547,7 @@ public class ManagerRecibos {
         aux[0] = aux[0].trim();
         aux[1] = aux[1].trim();
         aux[2] = aux[2].trim();
-        String fecha = aux[0] + "/" + aux[1] + "/" + aux[2];
+        String fecha = aux[1] + "/" + aux[0] + "/" + aux[2];
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
@@ -565,7 +565,7 @@ public class ManagerRecibos {
                     aux[0] = aux[0].trim();
                     aux[1] = aux[1].trim();
                     aux[2] = aux[2].trim();
-                    fecha2 = aux[0] + "/" + aux[1] + "/" + aux[2];
+                    fecha2 = aux[1] + "/" + aux[0] + "/" + aux[2];
                 }
                 stmt = conn.prepareStatement("update recibos set fechaconfeccion = ? , razonsocial = ?, monto = ?, motivo = ?, banco = ?, numerocheque = ?, fechavencimiento = ?, numerocuota = ?, numeroacta = ? where numero = ?");
                 stmt.setString(1, fecha);
@@ -808,12 +808,12 @@ public class ManagerRecibos {
         aux[0] = aux[0].trim();
         aux[1] = aux[1].trim();
         aux[2] = aux[2].trim();
-        rec.setFechaConfeccion(aux[0] + "/" + aux[1] + "/" + aux[2]);
+        rec.setFechaConfeccion(aux[1] + "/" + aux[0] + "/" + aux[2]);
         aux = rec.getFechaDeVencimiento().split("/");
         aux[0] = aux[0].trim();
         aux[1] = aux[1].trim();
         aux[2] = aux[2].trim();
-        rec.setFechaDeVencimiento(aux[0] + "/" + aux[1] + "/" + aux[2]);
+        rec.setFechaDeVencimiento(aux[1] + "/" + aux[0] + "/" + aux[2]);
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
@@ -850,7 +850,7 @@ public class ManagerRecibos {
         aux[0] = aux[0].trim();
         aux[1] = aux[1].trim();
         aux[2] = aux[2].trim();
-        rec.setFechaConfeccion(aux[0] + "/" + aux[1] + "/" + aux[2]);
+        rec.setFechaConfeccion(aux[1] + "/" + aux[0] + "/" + aux[2]);
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {

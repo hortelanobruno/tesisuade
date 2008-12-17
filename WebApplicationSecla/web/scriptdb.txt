@@ -4,6 +4,8 @@
 
 create database sistemarecibos
 
+create database sistemarecibos COLLATE Modern_Spanish_CI_AS
+
 //
 //****************************************************************
 
