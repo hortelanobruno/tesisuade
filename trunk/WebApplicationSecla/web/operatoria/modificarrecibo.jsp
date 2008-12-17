@@ -29,7 +29,14 @@
                 String banco = request.getParameter("banco");
                 String numerocheque = request.getParameter("numerocheque");
                 String fechavencimiento = request.getParameter("date2");
-                String numerocuota = request.getParameter("numerocuota1") + "/" + request.getParameter("numerocuota2");
+                String ncuota1 = request.getParameter("numerocuota1");
+                String ncuota2 = request.getParameter("numerocuota2");
+                String cuota;
+                if ((ncuota1.isEmpty()) && (ncuota2.isEmpty())) {
+                    cuota = "1/1";
+                } else {
+                    cuota = ncuota1 + "/" + ncuota2;
+                }
                 Recibo r1 = new Recibo();
                 r1.setRazonSocial(beneficiario);
                 r1.setNumero(Integer.parseInt(recibo));
@@ -45,7 +52,7 @@
                     r1.setFechaDeVencimiento(fechavencimiento);
                     r1.setNumeroCheque(numerocheque);
                 }
-                r1.setNumeroCuota(numerocuota);
+                r1.setNumeroCuota(cuota);
                 String resultado = manager.actualizarRecibo(r1);
                 if (resultado != null) {
                     if (resultado == "true") {

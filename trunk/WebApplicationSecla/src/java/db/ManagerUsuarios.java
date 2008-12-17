@@ -220,12 +220,12 @@ public class ManagerUsuarios {
             Connection conn = con.getCon();
             PreparedStatement stmt;
             try {
-                stmt = conn.prepareStatement("SELECT count(distinct(sector)) as count FROM usuarios where habilitado = 1");
+                stmt = conn.prepareStatement("SELECT count(distinct(sector)) as count FROM usuarios where habilitado = 1 and (tipocuenta = 'inspector' OR tipocuenta = 'operador' )");
                 ResultSet srs = stmt.executeQuery();
                 srs.next();
                 int cant = srs.getInt("count");
                 list = new String[cant];
-                stmt = conn.prepareStatement("SELECT distinct(sector) as sector FROM usuarios where habilitado = 1");
+                stmt = conn.prepareStatement("SELECT distinct(sector) as sector FROM usuarios where habilitado = 1 and (tipocuenta = 'inspector' OR tipocuenta = 'operador' )");
                 srs = stmt.executeQuery();
                 int aux = 0;
                 while (srs.next()) {
@@ -244,13 +244,40 @@ public class ManagerUsuarios {
         return list;
     }
 
-    public String resetPassword(String usuario, String password) {
+    public String resetPasswordDeUsuario(String usuario, String password){
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
             Connection conn = con.getCon();
             PreparedStatement stmt;
             try {
+                stmt = conn.prepareStatement("update usuarios set password = ? where usuario = ?");
+                stmt.setString(1, password);
+                stmt.setString(2, usuario);
+                stmt.execute();
+                stmt.close();
+                con.cerrarConexion();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("La base esta caida");
+        }
+        return "ok";
+    }
+
+    public String resetPassword(String responsable, String password) {
+        Conexion con = new Conexion();
+        Conexion.driverOdbc();
+        if (con.abrirConexion()) {
+            Connection conn = con.getCon();
+            PreparedStatement stmt;
+            try {
+                stmt = conn.prepareStatement("SELECT usuario FROM usuarios where responsable like ?");
+                stmt.setString(1, responsable);
+                ResultSet srs = stmt.executeQuery();
+                srs.next();
+                String usuario = srs.getString("usuario");
                 stmt = conn.prepareStatement("update usuarios set password = ? where usuario = ?");
                 stmt.setString(1, password);
                 stmt.setString(2, usuario);
@@ -295,14 +322,17 @@ public class ManagerUsuarios {
             PreparedStatement stmt;
             String digitos = usuario.getDigarea() + usuario.getDigresp();
             try {
-                stmt = conn.prepareStatement("SELECT responsable FROM usuarios where responsable = ?");
-                stmt.setString(1, usuario.getResponsable());
-                ResultSet srs = stmt.executeQuery();
-                while (srs.next()) {
-                    stmt.close();
-                    srs.close();
-                    con.cerrarConexion();
-                    return "responsable";
+                ResultSet srs;
+                if(!responsable.equals(usuario.getResponsable())){
+                    stmt = conn.prepareStatement("SELECT responsable FROM usuarios where responsable = ?");
+                    stmt.setString(1, usuario.getResponsable());
+                    srs = stmt.executeQuery();
+                    while (srs.next()) {
+                        stmt.close();
+                        srs.close();
+                        con.cerrarConexion();
+                        return "responsable";
+                    }
                 }
                 stmt = conn.prepareStatement("SELECT digitos FROM usuarios where digitos = ? and responsable <> ?");
                 stmt.setString(1, digitos);

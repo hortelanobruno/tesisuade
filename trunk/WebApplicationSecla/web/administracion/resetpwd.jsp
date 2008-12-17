@@ -9,15 +9,15 @@
         } else {
             response.sendRedirect("../index.jsp");
         }
-        String usuario = request.getParameter("listaUsuarios");
+        String responsable = request.getParameter("listaUsuarios");
         String password1 = request.getParameter("password1");
         String resultado = new String();
         DBManager manager = DBManager.getInstance();
         if (!manager.isConnected()) {
             response.sendRedirect("../index.jsp");
         }
-        if (usuario != null) {
-            resultado = manager.resetPassword(usuario, password1);
+        if (responsable != null) {
+            resultado = manager.resetPassword(responsable, password1);
             if (resultado != null) {
                 if (resultado == "ok") {
                     response.sendRedirect("resetpwdok.jsp");

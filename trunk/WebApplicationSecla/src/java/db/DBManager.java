@@ -188,7 +188,11 @@ public class DBManager {
         return managerUsuarios.sectorList();
     }
 
-    public String resetPassword(String usuario, String password) {
-        return managerUsuarios.resetPassword(usuario, password);
+    public String resetPasswordDeUsuario(String usuario, String password){
+        return managerUsuarios.resetPasswordDeUsuario(usuario, password);
+    }
+
+    public String resetPassword(String responsable, String password) {
+        return managerUsuarios.resetPassword(responsable, password);
     }
 }
