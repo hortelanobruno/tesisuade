@@ -22,7 +22,7 @@
         <servlet-name>borrarArea</servlet-name>
         <servlet-class>ajax.BorrarAreaServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
+    <servlet><servlet-name>verRecibosPendientes</servlet-name><servlet-class>ajax.VerRecibosPendientes</servlet-class></servlet><servlet-mapping>
         <servlet-name>datosUsuario</servlet-name>
         <url-pattern>/datosUsuario</url-pattern>
     </servlet-mapping>
@@ -41,6 +41,10 @@
     <servlet-mapping>
         <servlet-name>borrarArea</servlet-name>
         <url-pattern>/borrarArea</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>verRecibosPendientes</servlet-name>
+        <url-pattern>/verRecibosPendientes</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

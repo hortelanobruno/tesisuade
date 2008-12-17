@@ -14,7 +14,7 @@
         if (!manager.isConnected()) {
             response.sendRedirect("../index.jsp");
         }
-        List<Integer> recibos = manager.obtenerRecibosPendientes(usuario);
+        List<Integer> recibos = manager.obtenerRecibosPendientesDeUsuario(usuario);
         if (recibos.size() == 0) {
             response.sendRedirect("nohayboletas.jsp");
         }
@@ -25,20 +25,25 @@
             String numero = request.getParameter("recibos");
             String ncuota1 = request.getParameter("numerocuota1");
             String ncuota2 = request.getParameter("numerocuota2");
-            String cuota = ncuota1+"/"+ncuota2;
+            String cuota;
+            if ((ncuota1.isEmpty()) && (ncuota2.isEmpty())) {
+                cuota = "1/1";
+            } else {
+                cuota = ncuota1 + "/" + ncuota2;
+            }
             String tipopago = request.getParameter("tipopago");
             Recibo recibo = null;
             String resultado = null;
-            if(tipopago.equalsIgnoreCase("efectivo")){
-                recibo = new Recibo(Integer.parseInt(numero),fechaConfeccion,razonSocial,monto,cuota);
+            if (tipopago.equalsIgnoreCase("efectivo")) {
+                recibo = new Recibo(Integer.parseInt(numero), fechaConfeccion, razonSocial, monto, cuota);
                 resultado = manager.completarReciboEfectivoPorOperador(recibo);
-            }else{
+            } else {
                 String banco = request.getParameter("banco");
                 String cheque = request.getParameter("numerocheque");
                 String fechaVencimiento = request.getParameter("date2");
-                recibo = new Recibo(Integer.parseInt(numero),fechaConfeccion,razonSocial,monto,cuota,banco,cheque,fechaVencimiento);
+                recibo = new Recibo(Integer.parseInt(numero), fechaConfeccion, razonSocial, monto, cuota, banco, cheque, fechaVencimiento);
                 resultado = manager.completarReciboChequePorOperador(recibo);
-            }            
+            }
             if (resultado != null) {
                 if (resultado == "true") {
                     response.sendRedirect("boletacargadaok.jsp");

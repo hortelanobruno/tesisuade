@@ -566,7 +566,6 @@ public class ManagerRecibos {
                     aux[1] = aux[1].trim();
                     aux[2] = aux[2].trim();
                     fecha2 = aux[0] + "/" + aux[1] + "/" + aux[2];
-                    ;
                 }
                 stmt = conn.prepareStatement("update recibos set fechaconfeccion = ? , razonsocial = ?, monto = ?, motivo = ?, banco = ?, numerocheque = ?, fechavencimiento = ?, numerocuota = ?, numeroacta = ? where numero = ?");
                 stmt.setString(1, fecha);
@@ -638,12 +637,10 @@ public class ManagerRecibos {
         return "false";
     }
 
-    public String devolverRecibos(String op, String min, String max) {
+    public void devolverRecibos(String op, String[] numeros) {
         Conexion con = new Conexion();
         Conexion.driverOdbc();
         if (con.abrirConexion()) {
-            Integer numMin = Integer.parseInt(min);
-            Integer numMax = Integer.parseInt(max);
             Connection conn = con.getCon();
             PreparedStatement stmt;
             try {
@@ -652,45 +649,52 @@ public class ManagerRecibos {
                 ResultSet srs = stmt.executeQuery();
                 srs.next();
                 String usuario = srs.getString("usuario");
-                stmt = conn.prepareStatement("SELECT estadotransaccion FROM recibos where (numero BETWEEN  ? and ?) and usuario = ?");
-                stmt.setInt(1, numMin);
-                stmt.setInt(2, numMax);
-                stmt.setString(3, usuario);
-                srs = stmt.executeQuery();
-                String estado = "";
-                int aux = 0;
-                while (srs.next()) {
-                    estado = srs.getString("estadotransaccion");
-                    if (!estado.equalsIgnoreCase("pendiente")) {
-                        aux++;
-                    }
-                }
-                if (aux == 0) {
-                    stmt = conn.prepareStatement("delete from recibos where usuario = ? and (numero BETWEEN ? and ?)");
+                for (String numero : numeros) {
+                    stmt = conn.prepareStatement("delete from recibos where usuario = ? and numero = ?");
                     stmt.setString(1, usuario);
-                    stmt.setInt(2, numMin);
-                    stmt.setInt(3, numMax);
+                    stmt.setString(2, numero);
                     stmt.execute();
-                    stmt.close();
-                    srs.close();
-                    con.cerrarConexion();
-                    return "true";
-                } else {
-                    stmt.close();
-                    srs.close();
-                    con.cerrarConexion();
-                    return "false";
                 }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         } else {
             System.out.println("La base esta caida");
         }
-        return "false";
     }
 
-    public List<Integer> obtenerRecibosPendientes(String usuario) {
+    public List<Integer> obtenerRecibosPendientes(String responsable) {
+        ArrayList<Integer> recibos = new ArrayList<Integer>();
+        Conexion con = new Conexion();
+        Conexion.driverOdbc();
+        if (con.abrirConexion()) {
+            Connection conn = con.getCon();
+            PreparedStatement stmt;
+            try {
+                stmt = conn.prepareStatement("SELECT usuario FROM usuarios where responsable like ?");
+                stmt.setString(1, responsable);
+                ResultSet srs = stmt.executeQuery();
+                srs.next();
+                String usuario = srs.getString("usuario");
+                stmt = conn.prepareStatement("SELECT numero FROM recibos where usuario = ? and estadotransaccion = 'pendiente'");
+                stmt.setString(1, usuario);
+                srs = stmt.executeQuery();
+                while (srs.next()) {
+                    recibos.add(srs.getInt("numero"));
+                }
+                stmt.close();
+                srs.close();
+                con.cerrarConexion();
+            } catch (Exception e) {
+            }
+        }
+        return recibos;
+    }
+
+    public List<Integer> obtenerRecibosPendientesDeUsuario(String usuario) {
         ArrayList<Integer> recibos = new ArrayList<Integer>();
         Conexion con = new Conexion();
         Conexion.driverOdbc();
