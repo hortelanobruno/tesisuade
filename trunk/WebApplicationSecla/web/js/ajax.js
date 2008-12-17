@@ -160,14 +160,14 @@ function processRequestVerReciboAModificar(){
                 fecharendicion = req.responseXML.getElementsByTagName("fecharendicion")[0].childNodes[0].nodeValue;
                 beneficiario = req.responseXML.getElementsByTagName("beneficiario")[0].childNodes[0].nodeValue;
                 monto = req.responseXML.getElementsByTagName("monto")[0].childNodes[0].nodeValue;
-                if((req.responseXML.getElementsByTagName("numeroacta")[0].hasChildNodes)){
+                if(req.responseXML.getElementsByTagName("numeroacta")[0].childNodes.length != 0){
                     numeroacta = req.responseXML.getElementsByTagName("numeroacta")[0].childNodes[0].nodeValue;
                 }
                 numerocuota = req.responseXML.getElementsByTagName("numerocuota")[0].childNodes[0].nodeValue;
                 numerocuota = numerocuota.split("/");
                 var ncuota1 = numerocuota[0];
                 var ncuota2 = numerocuota[1];
-                if((req.responseXML.getElementsByTagName("banco")[0].hasChildNodes)){
+                if((req.responseXML.getElementsByTagName("banco")[0].childNodes.length  != 0)){
                     //Pago con cheque
                     banco = req.responseXML.getElementsByTagName("banco")[0].childNodes[0].nodeValue;
                     numerocheque = req.responseXML.getElementsByTagName("numerocheque")[0].childNodes[0].nodeValue;
@@ -185,7 +185,7 @@ function processRequestVerReciboAModificar(){
                     datos += "<td>Numero cuota</td>";
                     datos += "<td><input name='numerocuota1' type='text' size='1' value='"+ncuota1+"' />&nbsp;/&nbsp;<input name='numerocuota2' type='text' size='1' value='"+ncuota2+"' /><br><label class='error' id='ncuota' style='visibility:hidden'></label></td>";
                     datos += "</tr>";
-                    if((req.responseXML.getElementsByTagName("numeroacta")[0].hasChildNodes)){
+                    if((req.responseXML.getElementsByTagName("numeroacta")[0].childNodes.length  != 0)){
                         datos += "<td>Numero acta</td>";
                         datos += "<td><input name='numeroacta' type='text' size='30' value='"+numeroacta+"' /><br><label class='error' id='nacta' style='visibility:hidden'></label></td>";
                         datos += "</tr>";
@@ -211,7 +211,7 @@ function processRequestVerReciboAModificar(){
                     datos += "</tr>";
                     datos += "<tr>";
                     datos += "<td height='30px' colspan='2' align='center'>";
-                    if((req.responseXML.getElementsByTagName("numeroacta")[0].hasChildNodes)){
+                    if((req.responseXML.getElementsByTagName("numeroacta")[0].childNodes.length  != 0)){
                         datos += "<input name='cargar' type='button' value='Cargar recibo' style='width:100px' onClick='validarModificarReciboInspector()'/>";
                     }else{
                         datos += "<input name='cargar' type='button' value='Cargar recibo' style='width:100px' onClick='validarModificarReciboOperador()'/>";
@@ -234,7 +234,7 @@ function processRequestVerReciboAModificar(){
                     datos += "<td>Numero cuota</td>";
                     datos += "<td><input name='numerocuota1' type='text' size='1' value='"+ncuota1+"' />&nbsp;/&nbsp;<input name='numerocuota2' type='text' size='1' value='"+ncuota2+"' /><br><label class='error' id='ncuota' style='visibility:hidden'></label></td>";
                     datos += "</tr>";
-                    if((req.responseXML.getElementsByTagName("numeroacta")[0].hasChildNodes)){
+                    if((req.responseXML.getElementsByTagName("numeroacta")[0].childNodes.length  != 0)){
                         datos += "<td>Numero acta</td>";
                         datos += "<td><input name='numeroacta' type='text' size='30' value='"+numeroacta+"' /><br><label class='error' id='nacta' style='visibility:hidden'></label></td>";
                         datos += "</tr>";
@@ -247,7 +247,7 @@ function processRequestVerReciboAModificar(){
                     datos += "</tr>";
                     datos += "<tr>";
                     datos += "<td height='30px' colspan='2' align='center'>";
-                    if((req.responseXML.getElementsByTagName("numeroacta")[0].hasChildNodes)){
+                    if((req.responseXML.getElementsByTagName("numeroacta")[0].childNodes.length  != 0)){
                         datos += "<input name='cargar' type='button' value='Cargar recibo' style='width:100px' onClick='validarModificarReciboInspector()'/>";
                     }else{
                         datos += "<input name='cargar' type='button' value='Cargar recibo' style='width:100px' onClick='validarModificarReciboOperador()'/>";
@@ -263,7 +263,7 @@ function processRequestVerReciboAModificar(){
                 ifFormat:   "%d / %m / %Y",
                 button:     "selector"
             });
-            if((req.responseXML.getElementsByTagName("banco")[0].hasChildNodes)){
+            if((req.responseXML.getElementsByTagName("banco")[0].childNodes.length  != 0)){
                 Calendar.setup({
                     inputField: "fecha3",
                     ifFormat:   "%d / %m / %Y",
