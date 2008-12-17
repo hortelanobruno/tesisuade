@@ -20,7 +20,7 @@
 	String password1 = request.getParameter("password2");
 	String resultado = new String();
 	if(password1 != null){
-		resultado = manager.resetPassword(usuario.toString(),password1);
+		resultado = manager.resetPasswordDeUsuario(usuario.toString(),password1);
 		if(resultado != null){
 			if(resultado == "ok"){
 				response.sendRedirect("cambiarpasswordok.jsp");	
