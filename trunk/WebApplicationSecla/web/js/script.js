@@ -634,19 +634,35 @@ function validarCompletarReciboInspector(){
         document.getElementById('beneficiario2').style.visibility = 'hidden';
     }
     //Chequeo numero de quota
-    if((numerocuota1==0)||(numerocuota2==0)){
-        document.getElementById('ncuota').innerHTML = "Debe completar el campo";
-        document.getElementById('ncuota').style.visibility = 'visible';
-        aux++;
-    }else{
-        numerocuota1 = parseInt(document.form1.numerocuota1.value);
-        numerocuota2 = parseInt(document.form1.numerocuota2.value);
-        if(numerocuota1 > numerocuota2){
-            document.getElementById('ncuota').innerHTML = "Error en el rango de la cuota";
+    if((numerocuota1!=0)||(numerocuota2!=0)){
+        if((numerocuota1==0)||(numerocuota2==0)){
+            document.getElementById('ncuota').innerHTML = "Debe completar el campo";
             document.getElementById('ncuota').style.visibility = 'visible';
             aux++;
         }else{
-            document.getElementById('ncuota').style.visibility = 'hidden';
+            numerocuota1 = document.form1.numerocuota1.value;
+            numerocuota2 = document.form1.numerocuota2.value;
+            if((/^[0-9]*$/.test(numerocuota1))){
+                if((/^[0-9]*$/.test(numerocuota2))){
+                    numerocuota1 = parseInt(document.form1.numerocuota1.value);
+                    numerocuota2 = parseInt(document.form1.numerocuota2.value);
+                    if(numerocuota1 > numerocuota2){
+                        document.getElementById('ncuota').innerHTML = "Error en el rango de la cuota";
+                        document.getElementById('ncuota').style.visibility = 'visible';
+                        aux++;
+                    }else{
+                        document.getElementById('ncuota').style.visibility = 'hidden';
+                    }
+                }else{
+                    document.getElementById('ncuota').innerHTML = "Error en el rango de la cuota";
+                    document.getElementById('ncuota').style.visibility = 'visible';
+                    aux++;
+                }
+            }else{
+                document.getElementById('ncuota').innerHTML = "Error en el rango de la cuota";
+                document.getElementById('ncuota').style.visibility = 'visible';
+                aux++;
+            }
         }
     }
     //Chequeo numero de acta
@@ -788,19 +804,35 @@ function validarCompletarReciboOperador()
         document.getElementById('beneficiario2').style.visibility = 'hidden';
     }
     //Chequeo numero de quota
-    if((numerocuota1==0)||(numerocuota2==0)){
-        document.getElementById('ncuota').innerHTML = "Debe completar el campo";
-        document.getElementById('ncuota').style.visibility = 'visible';
-        aux++;
-    }else{
-        numerocuota1 = parseInt(document.form1.numerocuota1.value);
-        numerocuota2 = parseInt(document.form1.numerocuota2.value);
-        if(numerocuota1 > numerocuota2){
-            document.getElementById('ncuota').innerHTML = "Error en el rango de la cuota";
+    if((numerocuota1!=0)||(numerocuota2!=0)){
+        if((numerocuota1==0)||(numerocuota2==0)){
+            document.getElementById('ncuota').innerHTML = "Debe completar el campo";
             document.getElementById('ncuota').style.visibility = 'visible';
             aux++;
         }else{
-            document.getElementById('ncuota').style.visibility = 'hidden';
+            numerocuota1 = document.form1.numerocuota1.value;
+            numerocuota2 = document.form1.numerocuota2.value;
+            if((/^[0-9]*$/.test(numerocuota1))){
+                if((/^[0-9]*$/.test(numerocuota2))){
+                    numerocuota1 = parseInt(document.form1.numerocuota1.value);
+                    numerocuota2 = parseInt(document.form1.numerocuota2.value);
+                    if(numerocuota1 > numerocuota2){
+                        document.getElementById('ncuota').innerHTML = "Error en el rango de la cuota";
+                        document.getElementById('ncuota').style.visibility = 'visible';
+                        aux++;
+                    }else{
+                        document.getElementById('ncuota').style.visibility = 'hidden';
+                    }
+                }else{
+                    document.getElementById('ncuota').innerHTML = "Error en el rango de la cuota";
+                    document.getElementById('ncuota').style.visibility = 'visible';
+                    aux++;
+                }
+            }else{
+                document.getElementById('ncuota').innerHTML = "Error en el rango de la cuota";
+                document.getElementById('ncuota').style.visibility = 'visible';
+                aux++;
+            }
         }
     }
     //Chequeo por tipo de pago

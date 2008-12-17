@@ -14,7 +14,7 @@
         if(!manager.isConnected()){
             response.sendRedirect("../index.jsp");
         }
-	List<Integer> recibos = manager.obtenerRecibosPendientes(usuario);
+	List<Integer> recibos = manager.obtenerRecibosPendientesDeUsuario(usuario);
 	if(recibos.size() == 0){
 		response.sendRedirect("nohayboletas.jsp");
 	}

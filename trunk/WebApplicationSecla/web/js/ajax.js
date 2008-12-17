@@ -274,7 +274,18 @@ function processRequestVerReciboAModificar(){
     }
 }
 
-
+function verReciboPendientes(){
+    var responsable = document.form1.listaOperadores.value
+    if(responsable != ''){
+        initRequest('url');
+        var handlerFunction = getReadyStateHandler(req, processRequestVerReciboPendientes);
+        req.onreadystatechange = handlerFunction;
+        req.open("POST", "../verRecibosPendientes", true);
+        req.setRequestHeader("Content-Type",
+            "application/x-www-form-urlencoded; charset=UTF-8");
+        req.send("responsable="+responsable);
+    }
+}
 
 function verRecibo() {
     var responsable = document.form1.usuarios.value
@@ -300,10 +311,28 @@ function getReadyStateHandler(req, responseXmlHandler) {
     }
 }
 
+function processRequestVerReciboPendientes(){
+    var estado = req.responseXML.getElementsByTagName('estado')[0].childNodes[0].nodeValue;
+    var div;
+    if(estado == 'vacio'){
+        div = document.getElementById('recibos');
+        div.innerHTML = "<table width='100%'><tr><tdalign='center'>No hay boletas para devolver</td></tr></table>";
+    }else{
+        div = document.getElementById('recibos');
+        var datos = "<table width='100%' border='1' cellpadding='1' cellspacing='0' bordercolor='#4D6FAC'>"
+        datos += "<tr><td align='center'>Numero</td><td align='center'>Devolver</td></tr>";
+        var boleta = req.responseXML.getElementsByTagName('numero');
+        for(i=0 ; i < boleta.length ; i++){
+            var numero = boleta[i].childNodes[0].nodeValue;
+            datos += "<tr><td align='center'>"+numero+"</td><td align='center'><input id='"+i+"' name='numero' type='checkbox' value='"+numero+"' /></td></tr>";
+        }
+        datos += '</table><br><br>';
+        datos += "<input name='devolver' type='submit' value='Devolver' style='width:100px' />";
+        div.innerHTML = datos;
+    }
+}
 
 function processRequestVerRecibo() {
-    //    if (req.readyState == 4) {
-    //        if (req.status == 200) {
     var estado = req.responseXML.getElementsByTagName('estado')[0].childNodes[0].nodeValue;
     var div;
     if(estado == 'vacio'){
@@ -356,8 +385,6 @@ function processRequestVerRecibo() {
         datos += "<input name='cargar' type='submit' value='Confirmar' style='width:100px'/>";
         div.innerHTML = datos;
     }
-//        }
-//    }
 }
 
 function newXMLHttpRequest() {

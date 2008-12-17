@@ -14,7 +14,7 @@
         if (!manager.isConnected()) {
             response.sendRedirect("../index.jsp");
         }
-        List<Integer> recibos = manager.obtenerRecibosPendientes(usuario);
+        List<Integer> recibos = manager.obtenerRecibosPendientesDeUsuario(usuario);
         if (recibos.size() == 0) {
             response.sendRedirect("nohayboletas.jsp");
         }
@@ -25,7 +25,12 @@
             String numero = request.getParameter("recibos");
             String ncuota1 = request.getParameter("numerocuota1");
             String ncuota2 = request.getParameter("numerocuota2");
-            String cuota = ncuota1+"/"+ncuota2;
+            String cuota;
+            if ((ncuota1.isEmpty()) && (ncuota2.isEmpty())) {
+                cuota = "1/1";
+            } else {
+                cuota = ncuota1 + "/" + ncuota2;
+            }
             String tipopago = request.getParameter("tipopago");
             String numeroacta = request.getParameter("numeroacta");
             Recibo recibo = null;

@@ -84,8 +84,12 @@ public class DBManager {
         return managerRecibos.obtenerRecibosEntregados();
     }
 
-    public List<Integer> obtenerRecibosPendientes(String usuario) {
-        return managerRecibos.obtenerRecibosPendientes(usuario);
+    public List<Integer> obtenerRecibosPendientes(String responsable) {
+        return managerRecibos.obtenerRecibosPendientes(responsable);
+    }
+
+    public List<Integer> obtenerRecibosPendientesDeUsuario(String usuario) {
+        return managerRecibos.obtenerRecibosPendientesDeUsuario(usuario);
     }
 
     public String addArea(Usuario usu) {
@@ -172,8 +176,8 @@ public class DBManager {
         return managerRecibos.cargarRecibos(op, min, max);
     }
 
-    public String devolverRecibos(String op, String min, String max) {
-        return managerRecibos.devolverRecibos(op, min, max);
+    public void devolverRecibos(String op, String[] numeros) {
+        managerRecibos.devolverRecibos(op, numeros);
     }
 
     public String[] responsableList() {

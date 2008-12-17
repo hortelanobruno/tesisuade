@@ -273,7 +273,7 @@ public class ManagerUsuarios {
             Connection conn = con.getCon();
             PreparedStatement stmt;
             try {
-                stmt = conn.prepareStatement("update usuarios set habilitado = 0 where usuario = ?");
+                stmt = conn.prepareStatement("update usuarios set habilitado = 0 where responsable = ?");
                 stmt.setString(1, usuario);
                 stmt.execute();
                 stmt.close();
