@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=ISO-8859-1" language="java" import="java.sql.*" errorPage="" %>
-<%@ page import="db.DBManager,varios.Usuario" %>
+<%@ page import="db.DBManager,varios.Usuario,java.util.List" %>
 <%
         Object connectado = session.getAttribute("conectado");
         if (connectado != null) {
@@ -75,9 +75,9 @@
                                     <td valign="top">Responsables</td>
                                     <td colspan="2" ><select name="listaUsuarios" size="10" style="width:200px" id="listaUsuarios" onchange="cargarDatosUsuarioAMod()">
                                             <%
-        String usu[] = manager.operatorInspectorCajeroList();
-        for (int i = 0; i < usu.length; i++) {
-            out.print("<option value='" + usu[i] + "'>" + usu[i] + "</option>");
+        List<String> usu = manager.operatorInspectorCajeroList();
+        for (int i = 0; i < usu.size(); i++) {
+            out.print("<option value='" + usu.get(i) + "'>" + usu.get(i) + "</option>");
         }
                                             %>
                                         </select>

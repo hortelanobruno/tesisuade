@@ -4,12 +4,16 @@
  */
 package db;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import jpa.controllers.RecibosJpaController;
+import jpa.controllers.UsuariosJpaController;
+import jpa.controllers.exceptions.NonexistentEntityException;
+import jpa.controllers.exceptions.PreexistingEntityException;
+import jpa.entities.Recibos;
+import jpa.entities.RecibosPK;
+import jpa.entities.Usuarios;
 import varios.Recibo;
 
 /**
@@ -18,780 +22,344 @@ import varios.Recibo;
  */
 public class ManagerRecibos {
 
+    private RecibosJpaController recibosController;
+    private UsuariosJpaController usuariosController;
+
     public ManagerRecibos() {
+        recibosController = new RecibosJpaController();
+        usuariosController = new UsuariosJpaController();
+    }
+
+    private String convertirDateAString(Date date) {
+        if(date == null){
+            return null;
+        }else{
+            int anio = 1900+date.getYear();
+            int mes = date.getMonth()+1;
+            String fecha = date.getDate() + "/" + mes + "/" + anio ;
+            return fecha;
+        }
+    }
+
+    
+    private Date convertirStringADate(String fecha) {
+        if(fecha == null){
+            return null;
+        }
+        String[] aux = fecha.split("/");
+        aux[0] = aux[0].trim();
+        aux[1] = aux[1].trim();
+        aux[2] = aux[2].trim();
+        Date date = new Date();
+        date.setDate(Integer.parseInt(aux[0]));
+        date.setMonth(Integer.parseInt(aux[1]) - 1);
+        date.setYear(Integer.parseInt(aux[2]) - 1900);
+        return date;
     }
 
     public Recibo obtenerReciboAConfirmar(String numero) {
-        Recibo recibo = null;
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                stmt = conn.prepareStatement("SELECT * FROM recibos where numero = ? and estadotransaccion = 'a confirmar'");
-                stmt.setInt(1, Integer.parseInt(numero));
-                ResultSet srs = stmt.executeQuery();
-                String fecha;
-                String[] aux;
-                while (srs.next()) {
-                    recibo = new Recibo();
-                    recibo.setNumero(srs.getInt("numero"));
-                    recibo.setRazonSocial(srs.getString("razonsocial"));
-                    fecha = srs.getDate("fechaconfeccion").toString();
-                    aux = fecha.split("-");
-                    aux[0] = aux[0].trim();
-                    aux[1] = aux[1].trim();
-                    aux[2] = aux[2].trim();
-                    fecha = aux[2] + "/" + aux[1] + "/" + aux[0];
-                    recibo.setFechaConfeccion(fecha);
-                    recibo.setMonto(srs.getString("monto"));
-                    recibo.setMotivo(srs.getString("motivo"));
-                    recibo.setEstadorecibo(srs.getString("estadorecibo"));
-                    fecha = srs.getDate("fechavencimiento").toString();
-                    aux = fecha.split("-");
-                    aux[0] = aux[0].trim();
-                    aux[1] = aux[1].trim();
-                    aux[2] = aux[2].trim();
-                    fecha = aux[2] + "/" + aux[1] + "/" + aux[0];
-                    recibo.setFechaDeVencimiento(fecha);
-                    recibo.setNumeroCuota(srs.getString("numerocuota"));
-                    recibo.setBanco(srs.getString("banco"));
-                    recibo.setNumeroCheque(srs.getString("numerocheque"));
-                    recibo.setNumeroacta(srs.getString("numeroacta"));
-                }
-                stmt.close();
-                srs.close();
-                con.cerrarConexion();
-            } catch (Exception e) {
-            }
-        }
+        Recibos rec = recibosController.findRecibosByNumero(numero);
+        Recibo recibo = new Recibo();
+        recibo.setNumero(rec.getRecibosPK().getNumero());
+        recibo.setRazonSocial(rec.getRazonsocial());
+        recibo.setFechaConfeccion(convertirDateAString(rec.getFechaconfeccion()));
+        recibo.setMonto("" + rec.getMonto());
+        recibo.setMotivo(rec.getMotivo());
+        recibo.setEstadorecibo(rec.getEstadorecibo());
+        recibo.setFechaDeVencimiento(convertirDateAString(rec.getFechavencimiento()));
+        recibo.setNumeroCuota(rec.getNumerocuota());
+        recibo.setBanco(rec.getBanco());
+        recibo.setNumeroCheque(rec.getNumerocheque());
+        recibo.setNumeroacta("" + rec.getNumeroacta());
         return recibo;
     }
 
     public List<Integer> obtenerRecibosConfirmados() {
-        List<Integer> recibos = new ArrayList<Integer>();
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                stmt = conn.prepareStatement("SELECT top 100 numero FROM recibos where estadotransaccion = 'rendida' order by numero desc");
-                ResultSet srs = stmt.executeQuery();
-                while (srs.next()) {
-                    recibos.add(srs.getInt("numero"));
-                }
-                stmt.close();
-                srs.close();
-                con.cerrarConexion();
-            } catch (Exception e) {
-            }
-        }
-        return recibos;
-    }
-
-    public List<Integer> obtenerRecibosEntregados() {
-        List<Integer> recibos = new ArrayList<Integer>();
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                stmt = conn.prepareStatement("SELECT top 100 numero FROM recibos order by numero desc");
-                ResultSet srs = stmt.executeQuery();
-                while (srs.next()) {
-                    recibos.add(srs.getInt("numero"));
-                }
-                stmt.close();
-                srs.close();
-                con.cerrarConexion();
-            } catch (Exception e) {
-            }
-        }
+        List<Integer> recibos = recibosController.obtenerRecibosConfirmados();
         return recibos;
     }
 
     public String anularRecibo(String numero, String motivo, String fecha) {
-        String[] aux = fecha.split("/");
-        aux[0] = aux[0].trim();
-        aux[1] = aux[1].trim();
-        aux[2] = aux[2].trim();
-        fecha = aux[1] + "/" + aux[0] + "/" + aux[2];
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                stmt = conn.prepareStatement("update recibos set motivo = ? , estadorecibo = 'anulada', estadotransaccion = 'a confirmar', fechaconfeccion = ? where numero = ?");
-                stmt.setString(1, motivo);
-                stmt.setString(2, fecha);
-                stmt.setInt(3, Integer.parseInt(numero));
-                stmt.execute();
-                stmt.close();
-                con.cerrarConexion();
-                return "true";
-            } catch (SQLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("La base esta caida");
+        try {
+            Recibos recibo = recibosController.findRecibosByNumero(numero);
+            recibo.setMotivo(motivo);
+            recibo.setFechaconfeccion(convertirStringADate(fecha));
+            recibo.setEstadorecibo("anulada");
+            recibo.setEstadotransaccion("a confirmar");
+            recibosController.edit(recibo);
+            return "true";
+        } catch (NonexistentEntityException ex) {
+            return "false";
+        } catch (Exception ex) {
+            return "false";
         }
-        return "false";
     }
 
     public boolean chequearBorrarResponsable(String responsable) {
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                stmt = conn.prepareStatement("SELECT usuario FROM usuarios where responsable like ?");
-                stmt.setString(1, responsable);
-                ResultSet srs = stmt.executeQuery();
-                srs.next();
-                String usuario = srs.getString("usuario");
-                stmt = conn.prepareStatement("select count(*) as count from recibos where usuario = ? and estadotransaccion <> 'rendida'");
-                stmt.setString(1, usuario);
-                srs = stmt.executeQuery();
-                srs.next();
-                int cant = srs.getInt("count");
-                stmt.close();
-                srs.close();
-                con.cerrarConexion();
-                if (cant > 0) {
-                    return false;
-                } else {
-                    return true;
-                }
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        Usuarios usuario = usuariosController.findUsuariosByResponsable(responsable);
+        int aux = recibosController.chequearBorrarResponsable(usuario.getUsuario());
+        if (aux > 0) {
+            return false;
         } else {
-            System.out.println("La base esta caida");
+            return true;
         }
-        return false;
     }
 
     public List<Recibo> obtenerRecibosCompletadas(String usuario) {
+        List<Recibos> recibos = recibosController.obtenerRecibosCompletadas(usuario);
         List<Recibo> mapa = new ArrayList<Recibo>();
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                stmt = conn.prepareStatement("select * from recibos where usuario = ? and estadorecibo = 'completada' and estadotransaccion <> 'rendida'");
-                stmt.setString(1, usuario);
-                ResultSet srs = stmt.executeQuery();
-                Recibo recibo;
-                while (srs.next()) {
-                    recibo = new Recibo();
-                    recibo.setNumero(Integer.parseInt(srs.getString("numero")));
-                    String fecha = srs.getDate("fechaconfeccion").toString();
-                    String[] aux2 = fecha.split("-");
-                    aux2[0] = aux2[0].trim();
-                    aux2[1] = aux2[1].trim();
-                    aux2[2] = aux2[2].trim();
-                    fecha = aux2[2] + "/" + aux2[1] + "/" + aux2[0];
-                    recibo.setFechaConfeccion(fecha);
-                    recibo.setRazonSocial(srs.getString("razonsocial"));
-                    recibo.setMonto(srs.getString("monto"));
-                    recibo.setEstadoTransaccion(srs.getString("estadotransaccion"));
-                    recibo.setBanco(srs.getString("banco"));
-                    recibo.setNumeroCheque(srs.getString("numerocheque"));
-                    recibo.setNumeroacta(srs.getString("numeroacta"));
-                    if (!srs.getString("fechavencimiento").toString().startsWith("1900")) {
-                        fecha = srs.getDate("fechavencimiento").toString();
-                        aux2 = fecha.split("-");
-                        aux2[0] = aux2[0].trim();
-                        aux2[1] = aux2[1].trim();
-                        aux2[2] = aux2[2].trim();
-                        fecha = aux2[2] + "/" + aux2[1] + "/" + aux2[0];
-                        recibo.setFechaDeVencimiento(fecha);
-                    } else {
-                        recibo.setFechaDeVencimiento("");
-                    }
-                    mapa.add(recibo);
-                }
-                stmt.close();
-                srs.close();
-                con.cerrarConexion();
-                return mapa;
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("La base esta caida");
+        Recibo recibo;
+        for(Recibos rec : recibos){
+            recibo = new Recibo();
+            recibo.setNumero(rec.getRecibosPK().getNumero());
+            recibo.setFechaConfeccion(convertirDateAString(rec.getFechaconfeccion()));
+            recibo.setRazonSocial(rec.getRazonsocial());
+            recibo.setMonto(""+rec.getMonto());
+            recibo.setEstadoTransaccion(rec.getEstadotransaccion());
+            recibo.setBanco(rec.getBanco());
+            recibo.setNumeroCheque(rec.getNumerocheque());
+            recibo.setNumeroacta(""+rec.getNumeroacta());
+            recibo.setFechaDeVencimiento(convertirDateAString(rec.getFechavencimiento()));
+            mapa.add(recibo);
         }
-        return null;
+        return mapa;
     }
 
     public List<Recibo> obtenerRecibosCompletadasRendidos(String usuario) {
         List<Recibo> mapa = new ArrayList<Recibo>();
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                stmt = conn.prepareStatement("select top 50 * from recibos where usuario = ? and estadorecibo = 'completada' and estadotransaccion = 'rendida' order by numero desc");
-                stmt.setString(1, usuario);
-                ResultSet srs = stmt.executeQuery();
-                Recibo recibo;
-                while (srs.next()) {
-                    recibo = new Recibo();
-                    recibo.setNumero(Integer.parseInt(srs.getString("numero")));
-                    String fecha = srs.getDate("fechaconfeccion").toString();
-                    String[] aux2 = fecha.split("-");
-                    aux2[0] = aux2[0].trim();
-                    aux2[1] = aux2[1].trim();
-                    aux2[2] = aux2[2].trim();
-                    fecha = aux2[2] + "/" + aux2[1] + "/" + aux2[0];
-                    recibo.setFechaConfeccion(fecha);
-                    recibo.setRazonSocial(srs.getString("razonsocial"));
-                    recibo.setMonto(srs.getString("monto"));
-                    recibo.setEstadoTransaccion(srs.getString("estadotransaccion"));
-                    recibo.setBanco(srs.getString("banco"));
-                    recibo.setNumeroacta(srs.getString("numeroacta"));
-                    recibo.setNumeroCheque(srs.getString("numerocheque"));
-                    if (!srs.getString("fechavencimiento").toString().startsWith("1900")) {
-                        fecha = srs.getDate("fechavencimiento").toString();
-                        aux2 = fecha.split("-");
-                        aux2[0] = aux2[0].trim();
-                        aux2[1] = aux2[1].trim();
-                        aux2[2] = aux2[2].trim();
-                        fecha = aux2[2] + "/" + aux2[1] + "/" + aux2[0];
-                        recibo.setFechaDeVencimiento(fecha);
-                    } else {
-                        recibo.setFechaDeVencimiento("");
-                    }
-                    mapa.add(recibo);
-                }
-                stmt.close();
-                srs.close();
-                con.cerrarConexion();
-                return mapa;
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("La base esta caida");
+        List<Recibos> recibos = recibosController.obtenerRecibosCompletadasRendidos(usuario);
+        Recibo recibo;
+        for(Recibos rec : recibos){
+            recibo = new Recibo();
+            recibo.setNumero(rec.getRecibosPK().getNumero());
+            recibo.setFechaConfeccion(convertirDateAString(rec.getFechaconfeccion()));
+            recibo.setRazonSocial(rec.getRazonsocial());
+            recibo.setMonto(""+rec.getMonto());
+            recibo.setEstadoTransaccion(rec.getEstadotransaccion());
+            recibo.setBanco(rec.getBanco());
+            recibo.setNumeroacta(""+rec.getNumeroacta());
+            recibo.setNumeroCheque(rec.getNumerocheque());
+            recibo.setFechaDeVencimiento(convertirDateAString(rec.getFechavencimiento()));
+            mapa.add(recibo);
         }
-        return null;
+        return mapa;
     }
 
     public List<Recibo> obtenerRecibosAnuladas(String usuario) {
+        List<Recibos> recibos = recibosController.obtenerRecibosAnuladas(usuario);
         List<Recibo> mapa = new ArrayList<Recibo>();
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                stmt = conn.prepareStatement("select * from recibos where usuario = ? and estadorecibo = 'anulada' and estadotransaccion <> 'rendida'");
-                stmt.setString(1, usuario);
-                ResultSet srs = stmt.executeQuery();
-                Recibo recibo;
-                while (srs.next()) {
-                    recibo = new Recibo();
-                    recibo.setNumero(Integer.parseInt(srs.getString("numero")));
-                    String fecha = srs.getDate("fechaconfeccion").toString();
-                    String[] aux2 = fecha.split("-");
-                    aux2[0] = aux2[0].trim();
-                    aux2[1] = aux2[1].trim();
-                    aux2[2] = aux2[2].trim();
-                    fecha = aux2[2] + "/" + aux2[1] + "/" + aux2[0];
-                    recibo.setFechaConfeccion(fecha);
-                    recibo.setMotivo(srs.getString("motivo"));
-                    mapa.add(recibo);
-                }
-                stmt.close();
-                srs.close();
-                con.cerrarConexion();
-                return mapa;
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("La base esta caida");
+        Recibo recibo;
+        for(Recibos rec : recibos){
+            recibo = new Recibo();
+            recibo.setNumero(rec.getRecibosPK().getNumero());
+            recibo.setFechaConfeccion(convertirDateAString(rec.getFechaconfeccion()));
+            recibo.setMotivo(rec.getMotivo());
+            mapa.add(recibo);
         }
-        return null;
+        return mapa;
     }
 
     public List<Recibo> obtenerRecibosAnuladasRendidos(String usuario) {
+        List<Recibos> recibos = recibosController.obtenerRecibosAnuladasRendidos(usuario);
         List<Recibo> mapa = new ArrayList<Recibo>();
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                stmt = conn.prepareStatement("select top 50 * from recibos where usuario = ? and estadorecibo = 'anulada' and estadotransaccion = 'rendida'  order by numero desc");
-                stmt.setString(1, usuario);
-                ResultSet srs = stmt.executeQuery();
-                Recibo recibo;
-                while (srs.next()) {
-                    recibo = new Recibo();
-                    recibo.setNumero(Integer.parseInt(srs.getString("numero")));
-                    String fecha = srs.getDate("fechaconfeccion").toString();
-                    String[] aux2 = fecha.split("-");
-                    aux2[0] = aux2[0].trim();
-                    aux2[1] = aux2[1].trim();
-                    aux2[2] = aux2[2].trim();
-                    fecha = aux2[2] + "/" + aux2[1] + "/" + aux2[0];
-                    recibo.setFechaConfeccion(fecha);
-                    recibo.setMotivo(srs.getString("motivo"));
-                    mapa.add(recibo);
-                }
-                stmt.close();
-                srs.close();
-                con.cerrarConexion();
-                return mapa;
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("La base esta caida");
+        Recibo recibo;
+        for(Recibos rec : recibos){
+            recibo = new Recibo();
+            recibo.setNumero(rec.getRecibosPK().getNumero());
+            recibo.setFechaConfeccion(convertirDateAString(rec.getFechaconfeccion()));
+            recibo.setMotivo(rec.getMotivo());
+            mapa.add(recibo);
         }
-        return null;
+        return mapa;
     }
 
     public List<Recibo> obtenerRecibosExtraviadas(String usuario) {
+        List<Recibos> recibos = recibosController.obtenerRecibosExtraviadas(usuario);
         List<Recibo> mapa = new ArrayList<Recibo>();
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                stmt = conn.prepareStatement("select * from recibos where usuario = ? and estadorecibo = 'extraviada' and estadotransaccion <> 'rendida'");
-                stmt.setString(1, usuario);
-                ResultSet srs = stmt.executeQuery();
-                Recibo recibo;
-                while (srs.next()) {
-                    recibo = new Recibo();
-                    recibo.setNumero(Integer.parseInt(srs.getString("numero")));
-                    String fecha = srs.getDate("fechaconfeccion").toString();
-                    String[] aux2 = fecha.split("-");
-                    aux2[0] = aux2[0].trim();
-                    aux2[1] = aux2[1].trim();
-                    aux2[2] = aux2[2].trim();
-                    fecha = aux2[2] + "/" + aux2[1] + "/" + aux2[0];
-                    recibo.setFechaConfeccion(fecha);
-                    recibo.setMotivo(srs.getString("motivo"));
-                    mapa.add(recibo);
-                }
-                stmt.close();
-                srs.close();
-                con.cerrarConexion();
-                return mapa;
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("La base esta caida");
+        Recibo recibo;
+        for(Recibos rec : recibos){
+            recibo = new Recibo();
+            recibo.setNumero(rec.getRecibosPK().getNumero());
+            recibo.setFechaConfeccion(convertirDateAString(rec.getFechaconfeccion()));
+            recibo.setMotivo(rec.getMotivo());
+            mapa.add(recibo);
         }
-        return null;
+        return mapa;
     }
 
     public List<Recibo> obtenerRecibosExtraviadasRendidos(String usuario) {
+        List<Recibos> recibos = recibosController.obtenerRecibosExtraviadasRendidos(usuario);
         List<Recibo> mapa = new ArrayList<Recibo>();
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                stmt = conn.prepareStatement("select top 50 * from recibos where usuario = ? and estadorecibo = 'extraviada' and estadotransaccion = 'rendida' order by numero desc");
-                stmt.setString(1, usuario);
-                ResultSet srs = stmt.executeQuery();
-                Recibo recibo;
-                while (srs.next()) {
-                    recibo = new Recibo();
-                    recibo.setNumero(Integer.parseInt(srs.getString("numero")));
-                    String fecha = srs.getDate("fechaconfeccion").toString();
-                    String[] aux2 = fecha.split("-");
-                    aux2[0] = aux2[0].trim();
-                    aux2[1] = aux2[1].trim();
-                    aux2[2] = aux2[2].trim();
-                    fecha = aux2[2] + "/" + aux2[1] + "/" + aux2[0];
-                    recibo.setFechaConfeccion(fecha);
-                    recibo.setMotivo(srs.getString("motivo"));
-                    mapa.add(recibo);
-                }
-                stmt.close();
-                srs.close();
-                con.cerrarConexion();
-                return mapa;
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("La base esta caida");
+        Recibo recibo;
+        for(Recibos rec : recibos){
+            recibo = new Recibo();
+            recibo.setNumero(rec.getRecibosPK().getNumero());
+            recibo.setFechaConfeccion(convertirDateAString(rec.getFechaconfeccion()));
+            recibo.setMotivo(rec.getMotivo());
+            mapa.add(recibo);
         }
-        return null;
+        return mapa;
     }
 
     public String reciboExtraviada(String numero, String motivo, String fecha) {
-        String[] aux = fecha.split("/");
-        aux[0] = aux[0].trim();
-        aux[1] = aux[1].trim();
-        aux[2] = aux[2].trim();
-        fecha = aux[1] + "/" + aux[0] + "/" + aux[2];
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                stmt = conn.prepareStatement("update recibos set motivo = ? , fechaconfeccion = ? , estadorecibo = 'extraviada', estadotransaccion = 'a confirmar' where numero = ?");
-                stmt.setString(1, motivo);
-                stmt.setString(2, fecha);
-                stmt.setInt(3, Integer.parseInt(numero));
-                stmt.execute();
-                stmt.close();
-                con.cerrarConexion();
-                return "true";
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("La base esta caida");
+        try {
+            Recibos recibo = recibosController.findRecibosByNumero(numero);
+            recibo.setMotivo(motivo);
+            recibo.setFechaconfeccion(convertirStringADate(fecha));
+            recibo.setEstadotransaccion("a confirmar");
+            recibo.setEstadorecibo("extraviada");
+            recibosController.edit(recibo);
+            return "true";
+        } catch (NonexistentEntityException ex) {
+            return "false";
+        } catch (Exception ex) {
+            return "false";
         }
-        return "false";
     }
 
     public String completarReciboChequePorOperador(Recibo rec) {
-        String[] aux = rec.getFechaConfeccion().split("/");
-        aux[0] = aux[0].trim();
-        aux[1] = aux[1].trim();
-        aux[2] = aux[2].trim();
-        rec.setFechaConfeccion(aux[1] + "/" + aux[0] + "/" + aux[2]);
-        aux = rec.getFechaDeVencimiento().split("/");
-        aux[0] = aux[0].trim();
-        aux[1] = aux[1].trim();
-        aux[2] = aux[2].trim();
-        rec.setFechaDeVencimiento(aux[1] + "/" + aux[0] + "/" + aux[2]);
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                String monto = "" + rec.getMonto();
-                monto = monto.replace(',', '.');
-                stmt = conn.prepareStatement("update recibos set fechaconfeccion = ? , razonsocial = ?, monto = ?, banco = ?, numerocheque = ?, fechavencimiento = ?, numerocuota = ?, estadorecibo = 'completada', estadotransaccion = 'a confirmar' where numero = ?");
-                stmt.setString(1, rec.getFechaConfeccion());
-                stmt.setString(2, rec.getRazonSocial());
-                stmt.setString(3, monto);
-                stmt.setString(4, rec.getBanco());
-                stmt.setString(5, rec.getNumeroCheque());
-                stmt.setString(6, rec.getFechaDeVencimiento());
-                stmt.setString(7, rec.getNumeroCuota());
-                stmt.setInt(8, rec.getNumero());
-                stmt.execute();
-                stmt.close();
-                con.cerrarConexion();
-                return "true";
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("La base esta caida");
+        try {
+            Recibos recibo = recibosController.findRecibosByNumero("" + rec.getNumero());
+            recibo.setFechaconfeccion(convertirStringADate(rec.getFechaConfeccion()));
+            recibo.setFechavencimiento(convertirStringADate(rec.getFechaDeVencimiento()));
+            recibo.setRazonsocial(rec.getRazonSocial());
+            recibo.setMonto(Double.parseDouble(rec.getMonto()));
+            recibo.setBanco(rec.getBanco());
+            recibo.setNumerocheque(rec.getNumeroCheque());
+            recibo.setNumerocuota(rec.getNumeroCuota());
+            recibo.setEstadotransaccion("a confirmar");
+            recibo.setEstadorecibo("completada");
+            recibosController.edit(recibo);
+            return "true";
+        } catch (NonexistentEntityException ex) {
+            return "false";
+        } catch (Exception ex) {
+            return "false";
         }
-        return "false";
     }
 
     public String completarReciboEfectivoPorOperador(Recibo rec) {
-        String[] aux = rec.getFechaConfeccion().split("/");
-        aux[0] = aux[0].trim();
-        aux[1] = aux[1].trim();
-        aux[2] = aux[2].trim();
-        rec.setFechaConfeccion(aux[1] + "/" + aux[0] + "/" + aux[2]);
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                String monto = "" + rec.getMonto();
-                monto = monto.replace(',', '.');
-                stmt = conn.prepareStatement("update recibos set fechaconfeccion = ? , razonsocial = ?, monto = ?, numerocuota = ?, estadorecibo = 'completada', estadotransaccion = 'a confirmar' where numero = ?");
-                stmt.setString(1, rec.getFechaConfeccion());
-                stmt.setString(2, rec.getRazonSocial());
-                stmt.setString(3, monto);
-                stmt.setString(4, rec.getNumeroCuota());
-                stmt.setInt(5, rec.getNumero());
-                stmt.execute();
-                stmt.close();
-                con.cerrarConexion();
-                return "true";
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("La base esta caida");
+        try {
+            Recibos recibo = recibosController.findRecibosByNumero("" + rec.getNumero());
+            recibo.setFechaconfeccion(convertirStringADate(rec.getFechaConfeccion()));
+            recibo.setRazonsocial(rec.getRazonSocial());
+            recibo.setMonto(Double.parseDouble(rec.getMonto()));
+            recibo.setNumerocuota(rec.getNumeroCuota());
+            recibo.setEstadotransaccion("a confirmar");
+            recibo.setEstadorecibo("completada");
+            recibosController.edit(recibo);
+            return "true";
+        } catch (NonexistentEntityException ex) {
+            return "false";
+        } catch (Exception ex) {
+            return "false";
         }
-        return "false";
     }
 
     public String actualizarRecibo(Recibo rec) {
-        //21/08/2008 Ver como viene la fecha
-        String[] aux = rec.getFechaConfeccion().split("/");
-        aux[0] = aux[0].trim();
-        aux[1] = aux[1].trim();
-        aux[2] = aux[2].trim();
-        String fecha = aux[1] + "/" + aux[0] + "/" + aux[2];
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                String razonsocial = rec.getRazonSocial();
-                int numero = rec.getNumero();
-                String motivo = rec.getMotivo();
-                String monto = "" + rec.getMonto();
-                monto = monto.replace(',', '.');
-                String fecha2 = "";
-                if (!rec.getBanco().equals("")) {
-                    aux = rec.getFechaDeVencimiento().split("/");
-                    aux[0] = aux[0].trim();
-                    aux[1] = aux[1].trim();
-                    aux[2] = aux[2].trim();
-                    fecha2 = aux[1] + "/" + aux[0] + "/" + aux[2];
-                }
-                stmt = conn.prepareStatement("update recibos set fechaconfeccion = ? , razonsocial = ?, monto = ?, motivo = ?, banco = ?, numerocheque = ?, fechavencimiento = ?, numerocuota = ?, numeroacta = ? where numero = ?");
-                stmt.setString(1, fecha);
-                stmt.setString(2, razonsocial);
-                stmt.setString(3, monto);
-                stmt.setString(4, motivo);
-                stmt.setString(5, rec.getBanco());
-                stmt.setString(6, rec.getNumeroCheque());
-                stmt.setString(7, fecha2);
-                stmt.setString(8, rec.getNumeroCuota());
-                stmt.setString(9, rec.getNumeroacta());
-                stmt.setInt(10, numero);
-                stmt.execute();
-                stmt.close();
-                con.cerrarConexion();
-                return "true";
-            } catch (SQLException e) {
-                e.printStackTrace();
+        try {
+            Recibos recibo = recibosController.findRecibosByNumero("" + rec.getNumero());
+            recibo.setFechaconfeccion(convertirStringADate(rec.getFechaConfeccion()));
+            recibo.setRazonsocial(rec.getRazonSocial());
+            if(rec.getMonto() != null){
+                recibo.setMonto(Double.parseDouble(rec.getMonto()));
             }
-        } else {
-            System.out.println("La base esta caida");
+            recibo.setMotivo(rec.getMotivo());
+            recibo.setBanco(rec.getBanco());
+            recibo.setNumerocheque(rec.getNumeroCheque());
+            recibo.setFechavencimiento(convertirStringADate(rec.getFechaDeVencimiento()));
+            recibo.setNumerocuota(rec.getNumeroCuota());
+            if(rec.getNumeroacta() != null){
+                recibo.setNumeroacta(Integer.parseInt(rec.getNumeroacta()));
+            }
+            recibosController.edit(recibo);
+            return "true";
+        } catch (NonexistentEntityException ex) {
+            return "false";
+        } catch (Exception ex) {
+            return "false";
         }
-        return "false";
     }
 
-    public String cargarRecibos(String op, String min, String max) {
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Integer numMin = Integer.parseInt(min);
-            Integer numMax = Integer.parseInt(max);
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                stmt = conn.prepareStatement("SELECT usuario FROM usuarios where responsable like ?");
-                stmt.setString(1, op);
-                ResultSet srs = stmt.executeQuery();
-                srs.next();
-                String usuario = srs.getString("usuario");
-                stmt = conn.prepareStatement("SELECT count(*) as count FROM recibos where numero BETWEEN  ? and ?");
-                stmt.setInt(1, numMin);
-                stmt.setInt(2, numMax);
-                srs = stmt.executeQuery();
-                srs.next();
-                int cant = srs.getInt("count");
-                if (cant == 0) {
-                    for (int i = numMin; i < numMax + 1; i++) {
-                        stmt = conn.prepareStatement("insert into recibos values (?,?,'','','','','pendiente','','','','','','')");
-                        stmt.setString(1, usuario);
-                        stmt.setInt(2, i);
-                        stmt.execute();
-                    }
-                    stmt.close();
-                    srs.close();
-                    con.cerrarConexion();
-                    return "true";
-                } else {
-                    stmt.close();
-                    srs.close();
-                    con.cerrarConexion();
+    public String cargarRecibos(String responsable, String min, String max) {
+        Usuarios usuario = usuariosController.findUsuariosByResponsable(responsable);
+        long cant = recibosController.existeRecibo(min, max);
+        if (cant == 0) {
+            Recibos recibo;
+            RecibosPK rPK;
+            for (int i = Integer.parseInt(min); i < Integer.parseInt(max) + 1; i++) {
+                recibo = new Recibos();
+                rPK = new RecibosPK(usuario.getUsuario(), i);
+                recibo.setRecibosPK(rPK);
+                recibo.setEstadotransaccion("pendiente");
+                try {
+                    recibosController.create(recibo);
+                } catch (PreexistingEntityException ex) {
+                    return "false";
+                } catch (Exception ex) {
                     return "false";
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
+            return "true";
         } else {
-            System.out.println("La base esta caida");
+            return "false";
         }
-        return "false";
     }
 
-    public void devolverRecibos(String op, String[] numeros) {
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
+    public void devolverRecibos(String responsable, String[] numeros) {
+        Usuarios usuario = usuariosController.findUsuariosByResponsable(responsable);
+        RecibosPK rPK;
+        for (String numero : numeros) {
             try {
-                stmt = conn.prepareStatement("SELECT usuario FROM usuarios where responsable like ?");
-                stmt.setString(1, op);
-                ResultSet srs = stmt.executeQuery();
-                srs.next();
-                String usuario = srs.getString("usuario");
-                for (String numero : numeros) {
-                    stmt = conn.prepareStatement("delete from recibos where usuario = ? and numero = ?");
-                    stmt.setString(1, usuario);
-                    stmt.setString(2, numero);
-                    stmt.execute();
-                }
-                stmt.close();
-                srs.close();
-                con.cerrarConexion();
-            } catch (SQLException e) {
-                e.printStackTrace();
+                rPK = new RecibosPK(usuario.getUsuario(), Integer.parseInt(numero));
+                recibosController.destroy(rPK);
+            } catch (NonexistentEntityException ex) {
             }
-        } else {
-            System.out.println("La base esta caida");
         }
     }
 
     public List<Integer> obtenerRecibosPendientes(String responsable) {
-        ArrayList<Integer> recibos = new ArrayList<Integer>();
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                stmt = conn.prepareStatement("SELECT usuario FROM usuarios where responsable like ?");
-                stmt.setString(1, responsable);
-                ResultSet srs = stmt.executeQuery();
-                srs.next();
-                String usuario = srs.getString("usuario");
-                stmt = conn.prepareStatement("SELECT numero FROM recibos where usuario = ? and estadotransaccion = 'pendiente'");
-                stmt.setString(1, usuario);
-                srs = stmt.executeQuery();
-                while (srs.next()) {
-                    recibos.add(srs.getInt("numero"));
-                }
-                stmt.close();
-                srs.close();
-                con.cerrarConexion();
-            } catch (Exception e) {
-            }
-        }
-        return recibos;
+        Usuarios usuario = usuariosController.findUsuariosByResponsable(responsable);
+        return recibosController.obtenerRecibosPendientes(usuario.getUsuario());
     }
 
     public List<Integer> obtenerRecibosPendientesDeUsuario(String usuario) {
-        ArrayList<Integer> recibos = new ArrayList<Integer>();
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                stmt = conn.prepareStatement("SELECT numero FROM recibos where usuario = ? and estadotransaccion = 'pendiente'");
-                stmt.setString(1, usuario);
-                ResultSet srs = stmt.executeQuery();
-                while (srs.next()) {
-                    recibos.add(srs.getInt("numero"));
-                }
-                stmt.close();
-                srs.close();
-                con.cerrarConexion();
-            } catch (Exception e) {
-            }
-        }
-        return recibos;
+        return recibosController.obtenerRecibosPendientes(usuario);
     }
 
     public void confirmarRecibos(List<Integer> recibos) {
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt = null;
+        Recibos rec;
+        for(Integer recibo : recibos){
+            rec = recibosController.findRecibosByNumero(""+recibo);
+            rec.setEstadotransaccion("rendida");
             try {
-                for (int i = 0; i < recibos.size(); i++) {
-                    stmt = conn.prepareStatement("update recibos set estadotransaccion = 'rendida' where numero = ?");
-                    stmt.setInt(1, recibos.get(i));
-                    stmt.execute();
-                }
-                stmt.close();
-                con.cerrarConexion();
-            } catch (SQLException e) {
-                e.printStackTrace();
+                recibosController.edit(rec);
+            } catch (NonexistentEntityException ex) {
+            } catch (Exception ex) {
             }
-        } else {
-            System.out.println("La base esta caida");
         }
     }
 
     public List<Recibo> obtenerRecibosAConfirmar(String responsable) {
-        List<Recibo> recibos = new ArrayList<Recibo>();
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                stmt = conn.prepareStatement("SELECT usuario FROM usuarios where responsable like ?");
-                stmt.setString(1, responsable);
-                ResultSet srs = stmt.executeQuery();
-                srs.next();
-                String usuario = srs.getString("usuario");
-                stmt = conn.prepareStatement("SELECT * FROM recibos where usuario = ? and estadotransaccion = 'a confirmar'");
-                stmt.setString(1, usuario);
-                srs = stmt.executeQuery();
-                Recibo recibo;
-                String fecha;
-                String[] aux;
-                while (srs.next()) {
-                    recibo = new Recibo();
-                    recibo.setNumero(srs.getInt("numero"));
-                    recibo.setRazonSocial(srs.getString("razonsocial"));
-                    fecha = srs.getDate("fechaconfeccion").toString();
-                    aux = fecha.split("-");
-                    aux[0] = aux[0].trim();
-                    aux[1] = aux[1].trim();
-                    aux[2] = aux[2].trim();
-                    fecha = aux[2] + "/" + aux[1] + "/" + aux[0];
-                    recibo.setFechaConfeccion(fecha);
-                    recibo.setMonto(srs.getString("monto"));
-                    recibo.setMotivo(srs.getString("motivo"));
-                    recibo.setEstadorecibo(srs.getString("estadorecibo"));
-                    recibo.setBanco(srs.getString("banco"));
-                    recibo.setNumeroCuota(srs.getString("numerocuota"));
-                    recibo.setNumeroCheque(srs.getString("numerocheque"));
-                    fecha = srs.getDate("fechavencimiento").toString();
-                    aux = fecha.split("-");
-                    aux[0] = aux[0].trim();
-                    aux[1] = aux[1].trim();
-                    aux[2] = aux[2].trim();
-                    fecha = aux[2] + "/" + aux[1] + "/" + aux[0];
-                    recibo.setFechaDeVencimiento(fecha);
-                    recibos.add(recibo);
-                }
-                stmt.close();
-                srs.close();
-                con.cerrarConexion();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+        Usuarios usuario = usuariosController.findUsuariosByResponsable(responsable);
+        List<Recibos> recibos = recibosController.obtenerRecibosAConfirmar(usuario.getUsuario());
+        List<Recibo> mapa = new ArrayList<Recibo>();
+        Recibo recibo;
+        for(Recibos rec : recibos){
+            recibo = new Recibo();
+            recibo.setNumero(rec.getRecibosPK().getNumero());
+            recibo.setRazonSocial(rec.getRazonsocial());
+            recibo.setFechaConfeccion(convertirDateAString(rec.getFechaconfeccion()));
+            recibo.setMonto(""+rec.getMonto());
+            recibo.setMotivo(rec.getMotivo());
+            recibo.setEstadorecibo(rec.getEstadorecibo());
+            recibo.setBanco(rec.getBanco());
+            recibo.setNumeroCuota(rec.getNumerocuota());
+            recibo.setNumeroCheque(rec.getNumerocheque());
+            recibo.setFechaDeVencimiento(convertirDateAString(rec.getFechavencimiento()));
+            mapa.add(recibo);
         }
-        return recibos;
+        return mapa;
     }
 
     public boolean isConnected() {
@@ -804,173 +372,82 @@ public class ManagerRecibos {
     }
 
     public String completarReciboChequePorInspector(Recibo rec) {
-        String[] aux = rec.getFechaConfeccion().split("/");
-        aux[0] = aux[0].trim();
-        aux[1] = aux[1].trim();
-        aux[2] = aux[2].trim();
-        rec.setFechaConfeccion(aux[1] + "/" + aux[0] + "/" + aux[2]);
-        aux = rec.getFechaDeVencimiento().split("/");
-        aux[0] = aux[0].trim();
-        aux[1] = aux[1].trim();
-        aux[2] = aux[2].trim();
-        rec.setFechaDeVencimiento(aux[1] + "/" + aux[0] + "/" + aux[2]);
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                String monto = "" + rec.getMonto();
-                monto = monto.replace(',', '.');
-                stmt = conn.prepareStatement("update recibos set fechaconfeccion = ? , razonsocial = ?, monto = ?, banco = ?, numerocheque = ?, fechavencimiento = ?, numerocuota = ?, numeroacta = ?, estadorecibo = 'completada', estadotransaccion = 'a confirmar' where numero = ?");
-                stmt.setString(1, rec.getFechaConfeccion());
-                stmt.setString(2, rec.getRazonSocial());
-                stmt.setString(3, monto);
-                stmt.setString(4, rec.getBanco());
-                stmt.setString(5, rec.getNumeroCheque());
-                stmt.setString(6, rec.getFechaDeVencimiento());
-                stmt.setString(7, rec.getNumeroCuota());
-                stmt.setString(8, rec.getNumeroacta());
-                stmt.setInt(9, rec.getNumero());
-                stmt.execute();
-                stmt.close();
-                con.cerrarConexion();
-                return "true";
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("La base esta caida");
+        try {
+            Recibos recibo = recibosController.findRecibosByNumero("" + rec.getNumero());
+            recibo.setFechaconfeccion(convertirStringADate(rec.getFechaConfeccion()));
+            recibo.setFechavencimiento(convertirStringADate(rec.getFechaDeVencimiento()));
+            recibo.setRazonsocial(rec.getRazonSocial());
+            recibo.setMonto(Double.parseDouble(rec.getMonto()));
+            recibo.setBanco(rec.getBanco());
+            recibo.setNumerocheque(rec.getNumeroCheque());
+            recibo.setNumerocuota(rec.getNumeroCuota());
+            recibo.setNumeroacta(Integer.parseInt(rec.getNumeroacta()));
+            recibo.setEstadotransaccion("a confirmar");
+            recibo.setEstadorecibo("completada");
+            recibosController.edit(recibo);
+            return "true";
+        } catch (NonexistentEntityException ex) {
+            return "false";
+        } catch (Exception ex) {
+            return "false";
         }
-        return "false";
     }
 
     public String completarReciboEfectivoPorInspector(Recibo rec) {
-        String[] aux = rec.getFechaConfeccion().split("/");
-        aux[0] = aux[0].trim();
-        aux[1] = aux[1].trim();
-        aux[2] = aux[2].trim();
-        rec.setFechaConfeccion(aux[1] + "/" + aux[0] + "/" + aux[2]);
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                String monto = "" + rec.getMonto();
-                monto = monto.replace(',', '.');
-                stmt = conn.prepareStatement("update recibos set fechaconfeccion = ? , razonsocial = ?, monto = ?, numerocuota = ?, numeroacta = ?, estadorecibo = 'completada', estadotransaccion = 'a confirmar' where numero = ?");
-                stmt.setString(1, rec.getFechaConfeccion());
-                stmt.setString(2, rec.getRazonSocial());
-                stmt.setString(3, monto);
-                stmt.setString(4, rec.getNumeroCuota());
-                stmt.setString(5, rec.getNumeroacta());
-                stmt.setInt(6, rec.getNumero());
-                stmt.execute();
-                stmt.close();
-                con.cerrarConexion();
-                return "true";
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("La base esta caida");
+        try {
+            Recibos recibo = recibosController.findRecibosByNumero("" + rec.getNumero());
+            recibo.setFechaconfeccion(convertirStringADate(rec.getFechaConfeccion()));
+            recibo.setRazonsocial(rec.getRazonSocial());
+            recibo.setMonto(Double.parseDouble(rec.getMonto()));
+            recibo.setNumerocuota(rec.getNumeroCuota());
+            recibo.setNumeroacta(Integer.parseInt(rec.getNumeroacta()));
+            recibo.setEstadotransaccion("a confirmar");
+            recibo.setEstadorecibo("completada");
+            recibosController.edit(recibo);
+            return "true";
+        } catch (NonexistentEntityException ex) {
+            return "false";
+        } catch (Exception ex) {
+            return "false";
         }
-        return "false";
     }
 
     public String totalEfectivoOperador(String usuario) {
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
         String total = "0";
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                stmt = conn.prepareStatement("SELECT sum(monto) as total FROM recibos where usuario = ? and estadotransaccion <> 'pendiente' and estadotransaccion <> 'rendida' and banco = ''");
-                stmt.setString(1, usuario);
-                ResultSet srs = stmt.executeQuery();
-                while (srs.next()) {
-                    total = srs.getString("total");
-                }
-                stmt.close();
-                srs.close();
-                con.cerrarConexion();
-            } catch (Exception e) {
-            }
+        Double totalAux = recibosController.totalEfectivoOperador(usuario);
+        if(totalAux != null){
+            total = totalAux.toString();
         }
         return total;
     }
 
     public String totalChequeOperador(String usuario) {
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
         String total = "0";
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                stmt = conn.prepareStatement("SELECT sum(monto) as total FROM recibos where usuario = ? and estadotransaccion <> 'pendiente' and estadotransaccion <> 'rendida' and banco <> ''");
-                stmt.setString(1, usuario);
-                ResultSet srs = stmt.executeQuery();
-                while (srs.next()) {
-                    total = srs.getString("total");
-                }
-                stmt.close();
-                srs.close();
-                con.cerrarConexion();
-            } catch (Exception e) {
-            }
+        Double totalAux = recibosController.totalChequeOperador(usuario);
+        if(totalAux != null){
+            total = totalAux.toString();
         }
         return total;
     }
 
     public List<Recibo> obtenerRecibosAConfirmarPorUsuario(String usuario) {
-        List<Recibo> recibos = new ArrayList<Recibo>();
-        Conexion con = new Conexion();
-        Conexion.driverOdbc();
-        if (con.abrirConexion()) {
-            Connection conn = con.getCon();
-            PreparedStatement stmt;
-            try {
-                stmt = conn.prepareStatement("SELECT * FROM recibos where usuario = ? and estadotransaccion = 'a confirmar'");
-                stmt.setString(1, usuario);
-                ResultSet srs = stmt.executeQuery();
-                Recibo recibo;
-                String fecha;
-                String[] aux;
-                while (srs.next()) {
-                    recibo = new Recibo();
-                    recibo.setNumero(srs.getInt("numero"));
-                    recibo.setRazonSocial(srs.getString("razonsocial"));
-                    fecha = srs.getDate("fechaconfeccion").toString();
-                    aux = fecha.split("-");
-                    aux[0] = aux[0].trim();
-                    aux[1] = aux[1].trim();
-                    aux[2] = aux[2].trim();
-                    fecha = aux[2] + "/" + aux[1] + "/" + aux[0];
-                    recibo.setFechaConfeccion(fecha);
-                    recibo.setMonto(srs.getString("monto"));
-                    recibo.setMotivo(srs.getString("motivo"));
-                    recibo.setEstadorecibo(srs.getString("estadorecibo"));
-                    recibo.setBanco(srs.getString("banco"));
-                    recibo.setNumeroCuota(srs.getString("numerocuota"));
-                    recibo.setNumeroCheque(srs.getString("numerocheque"));
-                    fecha = srs.getDate("fechavencimiento").toString();
-                    aux = fecha.split("-");
-                    aux[0] = aux[0].trim();
-                    aux[1] = aux[1].trim();
-                    aux[2] = aux[2].trim();
-                    fecha = aux[2] + "/" + aux[1] + "/" + aux[0];
-                    recibo.setFechaDeVencimiento(fecha);
-                    recibos.add(recibo);
-                }
-                stmt.close();
-                srs.close();
-                con.cerrarConexion();
-            } catch (Exception e) {
-            }
+        List<Recibos> recs = recibosController.obtenerRecibosAConfirmar(usuario);
+        List<Recibo> mapa = new ArrayList<Recibo>();
+        Recibo recibo;
+        for(Recibos rec : recs){
+            recibo = new Recibo();
+            recibo.setNumero(rec.getRecibosPK().getNumero());
+            recibo.setRazonSocial(rec.getRazonsocial());
+            recibo.setFechaConfeccion(convertirDateAString(rec.getFechaconfeccion()));
+            recibo.setMonto(""+rec.getMonto());
+            recibo.setMotivo(rec.getMotivo());
+            recibo.setEstadorecibo(rec.getEstadorecibo());
+            recibo.setBanco(rec.getBanco());
+            recibo.setNumeroCuota(rec.getNumerocuota());
+            recibo.setNumeroCheque(rec.getNumerocheque());
+            recibo.setFechaDeVencimiento(convertirDateAString(rec.getFechavencimiento()));
+            mapa.add(recibo);
         }
-        return recibos;
+        return mapa;
     }
 }

@@ -80,10 +80,6 @@ public class DBManager {
         return managerRecibos.obtenerRecibosConfirmados();
     }
 
-    public List<Integer> obtenerRecibosEntregados() {
-        return managerRecibos.obtenerRecibosEntregados();
-    }
-
     public List<Integer> obtenerRecibosPendientes(String responsable) {
         return managerRecibos.obtenerRecibosPendientes(responsable);
     }
@@ -100,20 +96,16 @@ public class DBManager {
         return managerUsuarios.obtenerTipoUsuario(numero);
     }
 
-    public String[] operatorInspectorCajeroList() {
+    public List<String> operatorInspectorCajeroList() {
         return managerUsuarios.operatorInspectorCajeroList();
     }
 
-    public String[] operatorInspectorListUsuario(){
+    public List<String> operatorInspectorListUsuario(){
         return managerUsuarios.operatorInspectorListUsuario();
     }
 
-    public String[] operatorInspectorList() {
+    public List<String> operatorInspectorList() {
         return managerUsuarios.operatorInspectorList();
-    }
-
-    public String[] operatorList() {
-        return managerUsuarios.operatorList();
     }
 
     public String anularRecibo(String numero, String motivo, String fecha) {
@@ -180,11 +172,7 @@ public class DBManager {
         managerRecibos.devolverRecibos(op, numeros);
     }
 
-    public String[] responsableList() {
-        return managerUsuarios.responsableList();
-    }
-
-    public String[] sectorList() {
+    public List<String> sectorList() {
         return managerUsuarios.sectorList();
     }
 

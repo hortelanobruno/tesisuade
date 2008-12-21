@@ -75,9 +75,21 @@
             out.print("<td align='center'>"+recibo.getNumeroacta()+"</td>");
             out.print("<td align='center'>"+recibo.getMonto()+"</td>");
             out.print("<td align='center'>"+recibo.getEstadoTransaccion()+"</td>");
-            out.print("<td align='center'>"+recibo.getBanco()+"</td>");
-            out.print("<td align='center'>"+recibo.getNumeroCheque()+"</td>");
-            out.print("<td align='center'>"+recibo.getFechaDeVencimiento()+"</td>");
+            if(recibo.getBanco() == null){
+                out.print("<td align='center'></td>");
+            }else{
+                out.print("<td align='center'>"+recibo.getBanco()+"</td>");
+            }
+            if(recibo.getNumeroCheque() == null){
+                out.print("<td align='center'></td>");
+            }else{
+                out.print("<td align='center'>"+recibo.getNumeroCheque()+"</td>");
+            }
+            if(recibo.getFechaDeVencimiento() == null){
+                out.print("<td align='center'></td>");
+            }else{
+                out.print("<td align='center'>"+recibo.getFechaDeVencimiento()+"</td>");
+            }
             out.print("</tr>");
         }
                                             %>

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=ISO-8859-1" language="java" import="java.sql.*" errorPage="" %>
-<%@ page import="db.DBManager" %>
+<%@ page import="db.DBManager,java.util.List" %>
 <%
         Object connectado = session.getAttribute("conectado");
         if (connectado != null) {
@@ -47,7 +47,7 @@
         <td width="595" colspan="4" valign="top">	<p>&nbsp;</p>
             <table border="0" cellspacing="0" cellpadding="0" width="595">
                 <tr>
-                    <td class="pageName"><h1>Eliminar area (solo Operadores)</h1></td>
+                    <td class="pageName"><h1>Eliminar area (solo Operadores e Inspectores)</h1></td>
                 </tr>
 
                 <tr>
@@ -67,9 +67,9 @@
                                     <td valign="top">Responsables</td>
                                     <td colspan="2" ><select name="listaUsuarios" size="10" style="width:200px" id="listaUsuarios" onchange="borrarArea()">
                                             <%
-        String usu[] = manager.operatorInspectorList();
-        for (int i = 0; i < usu.length; i++) {
-            out.print("<option value='" + usu[i] + "'>" + usu[i] + "</option>");
+        List<String> usu = manager.operatorInspectorList();
+        for (int i = 0; i < usu.size(); i++) {
+            out.print("<option value='" + usu.get(i) + "'>" + usu.get(i) + "</option>");
         }
                                             %>
                                         </select>

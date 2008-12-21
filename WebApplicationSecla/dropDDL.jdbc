@@ -1,0 +1,3 @@
+ALTER TABLE recibos DROP CONSTRAINT FK_recibos_usuario
+DROP TABLE recibos
+DROP TABLE usuarios
