@@ -53,9 +53,21 @@ public class VerReciboServlet extends HttpServlet {
                 response.getWriter().write("<monto>" + boleta.getMonto() + "</monto>");
                 response.getWriter().write("<motivo>" + boleta.getMotivo() + "</motivo>");
                 response.getWriter().write("<numerocuota>" + boleta.getNumeroCuota() + "</numerocuota>");
-                response.getWriter().write("<banco>" + boleta.getBanco() + "</banco>");
-                response.getWriter().write("<numerocheque>" + boleta.getNumeroCheque() + "</numerocheque>");
-                response.getWriter().write("<fechavencimiento>" + boleta.getFechaDeVencimiento() + "</fechavencimiento>");
+                if(boleta.getBanco() == null){
+                    response.getWriter().write("<banco></banco>");
+                }else{
+                    response.getWriter().write("<banco>" + boleta.getBanco() + "</banco>");
+                }
+                if(boleta.getNumeroCheque() == null){
+                    response.getWriter().write("<numerocheque></numerocheque>");
+                }else{
+                    response.getWriter().write("<numerocheque>" + boleta.getNumeroCheque() + "</numerocheque>");
+                }
+                if(boleta.getFechaDeVencimiento() == null){
+                    response.getWriter().write("<fechavencimiento></fechavencimiento>");
+                }else{
+                    response.getWriter().write("<fechavencimiento>" + boleta.getFechaDeVencimiento() + "</fechavencimiento>");
+                }
                 response.getWriter().write("</boleta>");
             }
             response.getWriter().write("</boletas>");

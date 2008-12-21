@@ -43,13 +43,8 @@
                 r1.setNumero(Integer.parseInt(recibo));
                 r1.setFechaConfeccion(fecha);
                 r1.setMonto(monto);
-                r1.setMotivo("");
                 r1.setNumeroacta(numeroacta);
-                if (banco == null) {
-                    r1.setBanco("");
-                    r1.setFechaDeVencimiento("");
-                    r1.setNumeroCheque("");
-                } else {
+                if (banco != null){
                     r1.setBanco(banco);
                     r1.setFechaDeVencimiento(fechavencimiento);
                     r1.setNumeroCheque(numerocheque);
@@ -69,12 +64,6 @@
                 r1.setMotivo(motivo);
                 r1.setFechaConfeccion(fecha);
                 r1.setNumero(Integer.parseInt(recibo));
-                r1.setRazonSocial("");
-                r1.setMonto("");
-                r1.setBanco("");
-                r1.setFechaDeVencimiento("");
-                r1.setNumeroCheque("");
-                r1.setNumeroCuota("");
                 String resultado = manager.actualizarRecibo(r1);
                 if (resultado != null) {
                     if (resultado == "true") {

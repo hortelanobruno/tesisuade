@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=ISO-8859-1" language="java" import="java.sql.*" errorPage="" %>
-<%@ page import="db.DBManager" %> 
+<%@ page import="db.DBManager,java.util.List" %>
 <%
 	Object connectado = session.getAttribute("conectado");
 	if(connectado != null){
@@ -71,9 +71,9 @@
                   <tr>
                     <td><select name="listaOperadores" size="10" style="width:300px" id="listaUsuarios">
                       <%
-					String usu[] = manager.operatorInspectorList();
-					for(int i=0 ; i < usu.length; i++){
-						out.print("<option>"+usu[i]+"</option>");
+					List<String> usu = manager.operatorInspectorList();
+					for(int i=0 ; i < usu.size(); i++){
+                        out.print("<option>"+usu.get(i)+"</option>");
 					}
 				%>
                     </select></td>

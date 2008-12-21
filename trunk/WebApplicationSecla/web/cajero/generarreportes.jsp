@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=ISO-8859-1" language="java" import="java.sql.*,java.io.*, java.util.*" errorPage="" %>
 <%@ page import="db.*,java.util.HashMap,java.util.Map" %> 
-<%@ page import="net.sf.jasperreports.engine.*"%> 
+<%@ page import="net.sf.jasperreports.engine.*,java.util.List"%>
 <%
 	Object connectado = session.getAttribute("conectado");
 	if(connectado != null){
@@ -14,8 +14,8 @@
         if(!manager.isConnected()){
             response.sendRedirect("../index.jsp");
         }
-	String[] responsable = manager.operatorInspectorList();
-    String[] sector = manager.sectorList();
+	List<String> responsable = manager.operatorInspectorList();
+    List<String> sector = manager.sectorList();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -96,8 +96,8 @@ window.onload = function() {
                           <option value="Ninguno">Ninguno</option>
                           <option value="Todos">Todos</option>
                            <%
-                                    for(int i=0 ; i < responsable.length; i++){
-                                            out.print("<option value='"+responsable[i]+"'>"+responsable[i]+"</option>");
+                                    for(int i=0 ; i < responsable.size(); i++){
+                                            out.print("<option value='"+responsable.get(i)+"'>"+responsable.get(i)+"</option>");
                                     }
                             %>
                       </select><br>
@@ -127,8 +127,8 @@ window.onload = function() {
                       <option value="Ninguno">Ninguno</option>
                       <option value="Todos">Todos</option>
                        <%
-                                for(int i=0 ; i < sector.length; i++){
-                                        out.print("<option value="+sector[i]+">"+sector[i]+"</option>");
+                                for(int i=0 ; i < sector.size(); i++){
+                                        out.print("<option value="+sector.get(i)+">"+sector.get(i)+"</option>");
                                 }
                         %>
                     </select><br>

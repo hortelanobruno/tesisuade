@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=ISO-8859-1" language="java" import="java.sql.*,java.io.*, java.util.*" errorPage="" %>
-<%@ page import="db.DBManager,varios.Recibo" %> 
+<%@ page import="db.DBManager,varios.Recibo,java.util.List" %>
 <%
         Object connectado = session.getAttribute("conectado");
         if (connectado != null) {
@@ -13,7 +13,7 @@
         if (!manager.isConnected()) {
             response.sendRedirect("../index.jsp");
         }
-        String[] usuario = manager.operatorInspectorList();
+        List<String> usuario = manager.operatorInspectorList();
         String[] recibos = request.getParameterValues("recibo");
         if (recibos != null) {
             List<Integer> confirmar = new ArrayList<Integer>();
@@ -64,8 +64,8 @@
                     <select name="usuarios" style="width:180px" id="usuario" onchange="verRecibo()">
                         <option value="">&nbsp;</option>
                         <%
-        for (int i = 0; i < usuario.length; i++) {
-            out.print("<option value='" + usuario[i] + "'>" + usuario[i] + "</option>");
+        for (int i = 0; i < usuario.size(); i++) {
+            out.print("<option value='" + usuario.get(i) + "'>" + usuario.get(i) + "</option>");
         }
                         %>
                     </select>&nbsp;&nbsp;&nbsp;&nbsp;
