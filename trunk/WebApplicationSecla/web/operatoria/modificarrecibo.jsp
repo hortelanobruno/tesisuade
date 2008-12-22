@@ -42,7 +42,7 @@
                 r1.setNumero(Integer.parseInt(recibo));
                 r1.setFechaConfeccion(fecha);
                 r1.setMonto(monto);
-                if (banco != null) {
+                if (request.getParameter("tipopago").equals("cheque")) {
                     r1.setBanco(banco);
                     r1.setFechaDeVencimiento(fechavencimiento);
                     r1.setNumeroCheque(numerocheque);

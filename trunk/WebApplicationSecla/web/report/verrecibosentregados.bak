@@ -635,7 +635,7 @@ recibos."usuario" = usuarios."usuario"]]></queryString>
 					<textElement>
 						<font fontName="Times-Roman" size="12"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{dia1}+"/"+$F{mes1}+"/"+$F{anio1}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[( $F{dia1} == null ? "" : $F{dia1}+"/"+$F{mes1}+"/"+$F{anio1} )]]></textFieldExpression>
 				</textField>
 			</band>
 		</detail>

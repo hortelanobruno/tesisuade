@@ -544,7 +544,7 @@ function validarModificarReciboOperador(){
         }
     }
     //Chequeo por tipo de pago
-    if(document.form1.banco == null){
+    if(document.form1.tipopago[0].checked){
         //Chequeo si es efectivo
         //Chequeo monto
         if(monto==0){

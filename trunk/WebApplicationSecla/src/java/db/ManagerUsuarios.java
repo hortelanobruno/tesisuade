@@ -14,6 +14,7 @@ import jpa.entities.Recibos;
 import jpa.entities.Usuarios;
 import varios.Usuario;
 
+
 /**
  *
  * @author Administrador
@@ -114,9 +115,9 @@ public class ManagerUsuarios {
         }
     }
 
-    public String borrarArea(String usuario) {
+    public String borrarArea(String responsable) {
         try {
-            Usuarios usu = usuariosController.findUsuarios(usuario);
+            Usuarios usu = usuariosController.findUsuariosByResponsable(responsable);
             usu.setHabilitado(0);
             usuariosController.edit(usu);
             return "ok";
@@ -157,9 +158,11 @@ public class ManagerUsuarios {
 
     public String loginUsuario(String usuario, String password) {
         Usuarios usu = usuariosController.findUsuarios(usuario);
-        if (usu.getHabilitado() > 0) {
-            if (usu.getPassword().equals(password)) {
-                return usu.getTipocuenta();
+        if(usu != null ){
+            if (usu.getHabilitado() > 0) {
+                if (usu.getPassword().equals(password)) {
+                    return usu.getTipocuenta();
+                }
             }
         }
         return null;

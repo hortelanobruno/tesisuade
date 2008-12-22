@@ -48,8 +48,9 @@ FROM
      "dbo"."usuarios" usuarios,
      "dbo"."recibos" recibos
 WHERE
+recibos."usuario" = usuarios."usuario" AND
 (recibos."fechaconfeccion" between $P{fecha1} AND $P{fecha2})
-AND recibos."estadorecibo" = 'anulada' AND recibos."estadorecibo" = 'extraviada']]></queryString>
+AND ( recibos."estadorecibo" = 'anulada' OR recibos."estadorecibo" = 'extraviada')]]></queryString>
 
 	<field name="usuarios_digitos" class="java.lang.String"/>
 	<field name="recibos_numero" class="java.lang.Integer"/>
@@ -522,7 +523,7 @@ AND recibos."estadorecibo" = 'anulada' AND recibos."estadorecibo" = 'extraviada'
 					<textElement>
 						<font fontName="Times-Roman" size="12"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["$"+$F{recibos_monto}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[( $F{recibos_monto} == null ? "" : "$"+$F{recibos_monto} )]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -658,7 +659,7 @@ AND recibos."estadorecibo" = 'anulada' AND recibos."estadorecibo" = 'extraviada'
 					<textElement>
 						<font fontName="Times-Roman" size="12"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{dia1}+"/"+$F{mes1}+"/"+$F{anio1}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[( $F{dia1} == null ? "" : $F{dia1}+"/"+$F{mes1}+"/"+$F{anio1} )]]></textFieldExpression>
 				</textField>
 			</band>
 		</detail>
