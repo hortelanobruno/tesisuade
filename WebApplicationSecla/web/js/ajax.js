@@ -2,6 +2,8 @@ var req;
 var target;
 var isIE;
 
+
+
 function pagoEfectivo() {
     var div = document.getElementById("pago2");
     var datos = "<table width='100%' cellpadding='1' cellspacing='5'>";
@@ -191,14 +193,20 @@ function processRequestVerReciboAModificar(){
                         datos += "</tr>";
                     }
                     datos += "<tr>";
+                    datos += "<td>Tipo de pago</td>";
+                    datos += "<td><input type='radio' name='tipopago' value='efectivo' >Efectivo&nbsp;&nbsp;&nbsp;&nbsp;<input type='radio' name='tipopago' value='cheque' checked >Cheque</td>";
+                    datos += "</tr>";
+                    datos += "<tr>";
                     datos += "<td>Fecha de vencimiento</td>";
                     datos += "<td><input name='date2' type='text' size='30' id='fecha3' readonly='readonly' value ='"+fechavencimiento+"'/>";
                     datos += "<img src='../img/calendario.png'  width='20' height='20' id='selector2' />";
                     datos += "<br><label class='error' id='fecha4' style='visibility:hidden'></label></td>";
                     datos += "</tr>";
+                    datos += "<tr>";
                     datos += "<td>Banco</td>";
                     datos += "<td><input name='banco' type='text' size='30' value='"+banco+"' /><br><label class='error' id='banco2' style='visibility:hidden'></label></td>";
                     datos += "</tr>";
+                    datos += "<tr>";
                     datos += "<td>Numero cheque</td>";
                     datos += "<td><input name='numerocheque' type='text' size='30' value='"+numerocheque+"' /><br><label class='error' id='ncheque' style='visibility:hidden'></label></td>";
                     datos += "</tr>";
@@ -239,10 +247,30 @@ function processRequestVerReciboAModificar(){
                         datos += "<td><input name='numeroacta' type='text' size='30' value='"+numeroacta+"' /><br><label class='error' id='nacta' style='visibility:hidden'></label></td>";
                         datos += "</tr>";
                     }
+                    datos += "<tr>";
+                    datos += "<td>Tipo de pago</td>";
+                    datos += "<td><input type='radio' name='tipopago' value='efectivo' checked >Efectivo&nbsp;&nbsp;&nbsp;&nbsp;<input type='radio' name='tipopago' value='cheque' >Cheque</td>";
+                    datos += "</tr>";
+                    datos += "<tr>";
+                    datos += "<td>Fecha de vencimiento</td>";
+                    datos += "<td><input name='date2' type='text' size='30' id='fecha3' readonly='readonly' />";
+                    datos += "<img src='../img/calendario.png'  width='20' height='20' id='selector2' />";
+                    datos += "<br><label class='error' id='fecha4' style='visibility:hidden'></label></td>";
+                    datos += "</tr>";
+                    datos += "<tr>";
+                    datos += "<td>Banco</td>";
+                    datos += "<td><input name='banco' type='text' size='30' /><br><label class='error' id='banco2' style='visibility:hidden'></label></td>";
+                    datos += "</tr>";
+                    datos += "<tr>";
+                    datos += "<td>Numero cheque</td>";
+                    datos += "<td><input name='numerocheque' type='text' size='30' /><br><label class='error' id='ncheque' style='visibility:hidden'></label></td>";
+                    datos += "</tr>";
+                    datos += "</tr>";
+                    datos += "<tr>";
                     datos += "<td>Monto</td>";
                     datos += "<td><input name='monto' type='text' size='30' value='"+monto+"' /><br><label class='error' id='monto2' style='visibility:hidden'></label></td>";
                     datos += "</tr>";
-                    datos += "<tr >";
+                    datos += "<tr>";
                     datos += "<td colspan='2' height='30px'></td>";
                     datos += "</tr>";
                     datos += "<tr>";
@@ -263,7 +291,7 @@ function processRequestVerReciboAModificar(){
                 ifFormat:   "%d / %m / %Y",
                 button:     "selector"
             });
-            if((req.responseXML.getElementsByTagName("banco")[0].childNodes.length  != 0)){
+            if(estadoboleta == "completada"){
                 Calendar.setup({
                     inputField: "fecha3",
                     ifFormat:   "%d / %m / %Y",

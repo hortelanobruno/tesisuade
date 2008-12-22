@@ -48,6 +48,7 @@ FROM
      "dbo"."usuarios" usuarios,
      "dbo"."recibos" recibos
 WHERE
+recibos."usuario" = usuarios."usuario" AND
 (recibos."fechaconfeccion" between $P{fecha1} AND $P{fecha2})
  AND recibos."estadorecibo" = 'completada']]></queryString>
 
@@ -206,7 +207,7 @@ WHERE
 					<reportElement
 						x="94"
 						y="0"
-						width="67"
+						width="60"
 						height="16"
 						forecolor="#FFFFFF"
 						key="element-90"/>
@@ -222,9 +223,9 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="161"
+						x="154"
 						y="0"
-						width="49"
+						width="56"
 						height="16"
 						forecolor="#FFFFFF"
 						key="element-90"/>
@@ -460,7 +461,7 @@ WHERE
 					<reportElement
 						x="94"
 						y="0"
-						width="67"
+						width="60"
 						height="15"
 						key="textField"/>
 					<box leftPadding="2" rightPadding="2">					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -475,9 +476,9 @@ WHERE
 				</textField>
 				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="161"
+						x="154"
 						y="0"
-						width="49"
+						width="56"
 						height="15"
 						key="textField"/>
 					<box leftPadding="2" rightPadding="2">					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -658,7 +659,7 @@ WHERE
 					<textElement>
 						<font fontName="Times-Roman" size="12"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{dia1}+"/"+$F{mes1}+"/"+$F{anio1}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[( $F{dia1} == null ? "" : $F{dia1}+"/"+$F{mes1}+"/"+$F{anio1} )]]></textFieldExpression>
 				</textField>
 			</band>
 		</detail>

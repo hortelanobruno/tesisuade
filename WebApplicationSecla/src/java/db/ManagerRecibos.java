@@ -272,6 +272,9 @@ public class ManagerRecibos {
             if(rec.getNumeroacta() != null){
                 recibo.setNumeroacta(Integer.parseInt(rec.getNumeroacta()));
             }
+            if(rec.getNumeroacta() != null){
+                recibo.setNumeroacta(Integer.parseInt(rec.getNumeroacta()));
+            }
             recibosController.edit(recibo);
             return "true";
         } catch (NonexistentEntityException ex) {

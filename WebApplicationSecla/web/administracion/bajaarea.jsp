@@ -47,7 +47,7 @@
         <td width="595" colspan="4" valign="top">	<p>&nbsp;</p>
             <table border="0" cellspacing="0" cellpadding="0" width="595">
                 <tr>
-                    <td class="pageName"><h1>Eliminar area (solo Operadores e Inspectores)</h1></td>
+                    <td class="pageName"><h1>Eliminar Operador o Inspector </h1></td>
                 </tr>
 
                 <tr>

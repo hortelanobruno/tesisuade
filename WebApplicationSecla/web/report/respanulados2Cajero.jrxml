@@ -539,7 +539,7 @@ WHERE
 					<textElement>
 						<font fontName="Times-Roman" size="12"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["$"+$F{recibos_monto}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[( $F{recibos_monto} == null ? "" : "$"+$F{recibos_monto} )]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -675,7 +675,7 @@ WHERE
 					<textElement>
 						<font fontName="Times-Roman" size="12"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{dia1}+"/"+$F{mes1}+"/"+$F{anio1}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[( $F{dia1} == null ? "" : $F{dia1}+"/"+$F{mes1}+"/"+$F{anio1} )]]></textFieldExpression>
 				</textField>
 			</band>
 		</detail>
