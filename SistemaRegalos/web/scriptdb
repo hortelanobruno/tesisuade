@@ -1,0 +1,22 @@
+//MySQL
+
+CREATE TABLE categorias (
+    id MEDIUMINT NOT NULL AUTO_INCREMENT,
+    tipo varchar(100) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE eventos (
+    id MEDIUMINT NOT NULL AUTO_INCREMENT,
+    evento varchar(100) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE mercaderias (
+     id MEDIUMINT NOT NULL AUTO_INCREMENT,
+     categoria MEDIUMINT NOT NULL REFERENCES categoria(id),
+     tipo varchar(100) NOT NULL,
+     detalle varchar(100) NOT NULL,
+     stock int NOT NULL,
+     PRIMARY KEY (id)
+ );
