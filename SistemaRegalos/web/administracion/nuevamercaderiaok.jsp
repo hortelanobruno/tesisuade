@@ -11,17 +11,6 @@
         <script type="text/javascript" src="../scripts/jquery-1.2.3.min.js"></script>
         <script type="text/javascript" src="../scripts/jquery.easing.min.js"></script>
         <script type="text/javascript" src="../scripts/jquery.lavalamp.min.js"></script>
-        <script type="text/javascript">
-            $(function() {
-                $("#1, #2, #3").lavaLamp({
-                    fx: "backout",
-                    speed: 700,
-                    click: function(event, menuItem) {
-                        return true;
-                    }
-                });
-            });
-        </script>
     </head>
     <body>
         <%@ include file="top.jsp" %>

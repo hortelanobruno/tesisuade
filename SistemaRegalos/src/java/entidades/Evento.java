@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import vo.EventoVO;
 
 /**
  *
@@ -22,7 +23,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "eventos")
-@NamedQueries({@NamedQuery(name = "Evento.findAll", query = "SELECT e FROM Evento e"), @NamedQuery(name = "Evento.findById", query = "SELECT e FROM Evento e WHERE e.id = :id"), @NamedQuery(name = "Evento.findByEvento", query = "SELECT e FROM Evento e WHERE e.evento = :evento")})
+@NamedQueries({@NamedQuery(name = "Evento.findAll", query = "SELECT e FROM Evento e"),
+@NamedQuery(name = "Evento.findById", query = "SELECT e FROM Evento e WHERE e.id = :id"),
+@NamedQuery(name = "Evento.findByEvento", query = "SELECT e FROM Evento e WHERE e.evento = :evento")})
 public class Evento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -87,4 +90,12 @@ public class Evento implements Serializable {
         return "entidades.Evento[id=" + id + "]";
     }
 
+    public EventoVO getVO(){
+        return new EventoVO(this.id,this.evento);
+    }
+
+    public void setVO(EventoVO vo){
+        setId(vo.getId());
+        setEvento(vo.getEvento());
+    }
 }

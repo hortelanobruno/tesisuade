@@ -7,6 +7,7 @@ package db;
 
 import java.util.List;
 import vo.CategoriaVO;
+import vo.EventoVO;
 import vo.MercaderiaVO;
 
 /**
@@ -45,6 +46,14 @@ public class DBManager {
 
     public List<CategoriaVO> getCategorias(){
         return managerCategorias.getCategorias();
+    }
+
+    public List<EventoVO> getEventos(){
+        return managerEventos.getEventos();
+    }
+
+    public void actualizarEvento(String viejo, String nuevo) {
+        managerEventos.actualizarEvento(viejo,nuevo);
     }
 
     public String createMercaderia(MercaderiaVO mercaderia){
