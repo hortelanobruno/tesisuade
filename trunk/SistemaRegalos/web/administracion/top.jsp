@@ -5,8 +5,8 @@
             </div>
             <!-- end #logo -->
             <div id="menu">
-              <ul class="lavaLampWithImage" id="1">
-                <li class="current"><a href="../index.jsp">Inicio</a></li>
+              <ul>
+                <li><a href="../index.jsp">Inicio</a></li>
                 <li><a href="../administracion" >Administracion</a></li>
                 <li><a href="../entrega">Entrega</a></li>
                 <li><a href="../confirmacion">Confirmacion</a></li>

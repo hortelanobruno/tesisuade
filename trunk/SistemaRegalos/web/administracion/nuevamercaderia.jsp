@@ -36,17 +36,6 @@ if (stock != null) {
         <script type="text/javascript" src="../scripts/jquery.lavalamp.min.js"></script>
         <script src="../SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
         <script src="../SpryAssets/SpryValidationSelect.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            $(function() {
-                $("#1, #2, #3").lavaLamp({
-                    fx: "backout",
-                    speed: 700,
-                    click: function(event, menuItem) {
-                        return true;
-                    }
-                });
-            });
-        </script>
         <link href="../SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
         <link href="../SpryAssets/SpryValidationSelect.css" rel="stylesheet" type="text/css">
 </head>

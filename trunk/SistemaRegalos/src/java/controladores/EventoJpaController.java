@@ -118,6 +118,15 @@ public class EventoJpaController {
         }
     }
 
+    public Evento findEventoByName(String name) {
+        EntityManager em = getEntityManager();
+        try {
+            return (Evento) em.createNamedQuery("Evento.findByEvento").setParameter("evento", name).getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
+
     public int getEventoCount() {
         EntityManager em = getEntityManager();
         try {
