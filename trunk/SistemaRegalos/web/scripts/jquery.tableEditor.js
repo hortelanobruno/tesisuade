@@ -117,9 +117,6 @@ jQuery.fn.tableEditor = function(o) {
 				return false;
 			});
 		});
-        $('.del').click(function() {
-            eliminar(this,id);
-        });
 	});
 };
 
