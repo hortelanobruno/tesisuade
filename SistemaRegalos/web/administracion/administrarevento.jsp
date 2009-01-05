@@ -50,13 +50,6 @@ out.println("<script type='text/javascript'>var keyAux ="+(eventos.size()+1)+"</
                 jQuery.tableEditor.lib.appendRow(options);
             });
         });
-        function eliminar(link,tid){
-            var o = jQuery.tableEditor.vault.get(tid);
-            var row = jQuery("../../td",link);
-            var key = parseInt(jQuery(o.ROW_KEY_SELECTOR,row).text());
-            //$('#editableTable').remove();
-            $("#editableTable tr:nth-child("+(key-1)+")").remove("td");
-        }
         var aux;
         // inject validation
         function postEdit(o) {
@@ -101,7 +94,7 @@ out.println("<script type='text/javascript'>var keyAux ="+(eventos.size()+1)+"</
                         for(int i=0 ; i < eventos.size() ; i++){
                             out.println("<tr>");
                             out.println("<td>"+eventos.get(i).getEvento()+"</td>");
-                            out.println("<td><p class='key'>"+(i+1)+"</p><button class='edit'><img src='../images/edit.png'></button><button class='del' ><img src='../images/delete2.png'></button></td>");
+                            out.println("<td><p class='key'>"+(i+1)+"</p><button class='edit'><img src='../images/edit.png'></td>");
                             out.println("</tr>");
                         }
                         %>
