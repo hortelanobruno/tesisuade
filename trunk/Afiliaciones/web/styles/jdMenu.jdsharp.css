@@ -1,0 +1,54 @@
+ul.jd_menu_jdsharp {
+	margin-left: 20px;
+	height: 21px;
+}
+ul.jd_menu_jdsharp li {
+	margin: 0px;
+	padding: 0px;
+}
+
+ul.jd_menu_jdsharp a {
+	display: block;
+	padding: 3px 6px 4px 6px;
+	cursor: pointer;
+
+	font-family: Tahoma, sans-serif;
+	font-size: 11px;
+	white-space: nowrap;
+	color: #FFF;
+	text-decoration: none;
+}
+
+ul.jd_menu_jdsharp a.jd_menu_active_menubar,
+ul.jd_menu_jdsharp a.jd_menu_hover_menubar {
+	padding-left: 5px;
+	border-left: 1px solid #88B5E7;
+	padding-right: 5px;
+	border-right: 1px solid #2F63C4;
+	background: url(../images/site-menu-hover.png) repeat-x;
+	color: #003399;
+	color: #EEEEFF;
+}
+
+ul.jd_menu_jdsharp ul {
+	background: #FFF;
+	border: 1px solid #B4C4FF;
+}
+ul.jd_menu_jdsharp ul li {
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	color: #3366CC;
+}
+ul.jd_menu_jdsharp ul li a {
+	display: block;
+	width: 150px;
+	margin: 0px;
+	padding: 5px 10px 5px 4px;
+	color: #3366CC;
+}
+ul.jd_menu_jdsharp ul li a.jd_menu_active,
+ul.jd_menu_jdsharp ul li a.jd_menu_hover {
+	background: url(../images/site-gradient.png) repeat-x;
+	text-decoration: underline;
+}
