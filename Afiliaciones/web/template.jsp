@@ -26,16 +26,14 @@
 		</div>
 		<ul class="jd_menu jd_menu_jdsharp">
 			<li><a href="/">Home</a></li>
-						<li><a href="#" class="accessible">My jQuery Plugins</a>
-
+            <li><a href="#" class="accessible">My jQuery Plugins</a>
 				<ul>
-										<li><a href="/jQuery/plugins/AutoScroll/">AutoScroll</a></li>
+                    <li><a href="/jQuery/plugins/AutoScroll/">AutoScroll</a></li>
 					<li><a href="/jQuery/plugins/jdMenu/">jdMenu</a></li>
 					<li><a href="/jQuery/plugins/jdNewsScroll/">jdNewsScroll</a></li>
 				</ul>
 			</li>
 			<li><a href="#" class="accessible">jQuery Minute&trade;</a>
-
 				<ul>
 					<li><a href="http://jqueryminute.com/blog/">jQuery Minute Blog</a></li>
 					<li><a href="/jQuery/minute/calculate-scrollbar-width.php">Calculate Scrollbar Width</a></li>
@@ -43,7 +41,6 @@
 			</li>
 			<li><a href="/contact.php">Contact</a></li>
 		</ul>
-
 	</div>
 	<div id="contentWrap">
 		<div id="sidebar">
@@ -54,8 +51,6 @@
 					He and <a href="http://sharpequestrian.com" class="ext" target="_blank">his wife</a> have
 					<span style="text-decoration: line-through;">three</span> four horses and two dogs.
 				</p>
-
-
 			</div>
 			<div class="content">
 				<h2>Recommended</h2>
@@ -84,7 +79,6 @@
 			</div>
 		</div>
 		<div id="content">
-
 	<h1>Welcome to jdsharp.us!</h1>
 
 	<div class="abstract">
