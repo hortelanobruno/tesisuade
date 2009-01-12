@@ -220,11 +220,7 @@ td.cnt {
 	border-bottom: 1px solid #B7BBD2;
 	border-top: 1px solid #B7D2D1;
 	border-bottom: 1px solid #B7D2D1;
-
-	border: 1px solid #B4C4FF;
-	border-left: 0px;
-	border-right: 0px;
-	border-bottom: 0px;
+    
 	background: url(../images/site-gradient.png) repeat-x;
 	padding: 10px;
 }
@@ -316,5 +312,26 @@ html, body { height: 100%; }
 }
 #footer a:hover {
 	text-decoration: underline;
+}
+
+.agregar {
+    width:200px;
+	background-color: #E2E2E2;
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin-bottom:1.5em;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #B4C4FF;
+	border-right-color: #B4C4FF;
+	border-bottom-color: #B4C4FF;
+	border-left-color: #B4C4FF;
+	margin-top: 1.5em;
 }
 
