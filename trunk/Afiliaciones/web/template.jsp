@@ -42,30 +42,52 @@
                     <li><a href="/contact.php">Contact</a></li>
                 </ul>
             </div>
-            <div id="contentWrap">
-                <div id="sidebar">
-                    <div class="content">
-
-                    </div>
-                </div>
+            <div id="contentWrap" align="center">
                 <div id="content">
                     <h1>Welcome to jdsharp.us!</h1>
                     <script type="text/javascript">
+                        $(document).ready(function(){
+                            $(".agregar").slideToggle("normal");
+                        });
                         function agregarRow(){
-                            $(".agregar").empty();
-                            $(".agregar").append("<input type='text' id='col1' /><br>\n\
-                                <input type='text' id='col2' /><br>\n\
-                            <input type='button' value='OK' onclick='aceptarRow()'>\n\
-                            <input type='button' value='Cancel' onclick='cancelRow()'>");
+                            if ($(".agregar").is(":hidden")) {
+                                $(".agregar").empty();
+                                $(".agregar").append("<h2>Agregar row</h2><input type='text' id='col1' title='Type something' /><br>\n\
+                                    <input type='text' id='col2' /><br>\n\
+                                <input type='button' value='OK' onclick='aceptarRow()'>\n\
+                                <input type='button' value='Cancel' onclick='cancelRow()'>");
+                                $(".agregar").slideToggle("normal");
+                            }else{
+                                $(".agregar").empty();
+                                $(".agregar").append("<h2>Agregar row</h2><input type='text' id='col1' /><br>\n\
+                                    <input type='text' id='col2' /><br>\n\
+                                <input type='button' value='OK' onclick='aceptarRow()'>\n\
+                                <input type='button' value='Cancel' onclick='cancelRow()'>");
+                            }
                         }
                         function modificarRow(){
-                            $(".agregar").empty();
-                            var col1 =$("input:checked").parent().parent().children("td").get(1).innerHTML;
-                            var col2 =$("input:checked").parent().parent().children("td").get(2).innerHTML;
-                            $(".agregar").append("<input type='text' id='col1'value='"+col1+"' /><br>\n\
+                            if ($(".agregar").is(":hidden")) {
+                                $(".agregar").empty();
+                                var col1 =$("input:checked").parent().parent().children("td").get(1).innerHTML;
+                                var col2 =$("input:checked").parent().parent().children("td").get(2).innerHTML;
+                                $(".agregar").append("<h2>Modificar row</h2><input type='text' id='col1'value='"+col1+"' /><br>\n\
                                 <input type='text' id='col2' value='"+col2+"' /><br>\n\
                             <input type='button' value='OK' onclick='aceptarModRow()'>\n\
                             <input type='button' value='Cancel' onclick='cancelRow()'>");
+                                $(".agregar").slideToggle("normal");
+                            }else{
+                                if($("input").is(":checked")){
+                                    $(".agregar").empty();
+                                    var col1 =$("input:checked").parent().parent().children("td").get(1).innerHTML;
+                                    var col2 =$("input:checked").parent().parent().children("td").get(2).innerHTML;
+                                    $(".agregar").append("<h2>Modificar row</h2><input type='text' id='col1'value='"+col1+"' /><br>\n\
+                                    <input type='text' id='col2' value='"+col2+"' /><br>\n\
+                                    <input type='button' value='OK' onclick='aceptarModRow()'>\n\
+                                    <input type='button' value='Cancel' onclick='cancelRow()'>");
+                                }else{
+                                    cancelRow();
+                                }
+                            }
                         }
                         function removerRow(){
                             $("input:checked").parent().parent().remove();
@@ -84,16 +106,19 @@
                             cancelRow();
                         }
                         function cancelRow(){
+                            $(".agregar").slideToggle("normal");
                             $(".agregar").empty();
                         }
                     </script>
                     <input type="button" value="Agregar" onclick="agregarRow()">
                     <input type="button" value="Modificar" onclick="modificarRow()">
                     <input type="button" value="Remover" onclick="removerRow()">
-                    <div class="agregar">
-
+                    <br>
+                    <br>
+                    <div class="agregar" id="about">
                     </div>
-                    <table border="0" cellspacing="0" cellpadding="0" class="jdsharp_filetable">
+                    <br>
+                    <table width="300px" border="0" cellspacing="0" cellpadding="0" class="jdsharp_filetable">
                         <thead>
                             <tr>
                                 <th></th>
@@ -120,6 +145,7 @@
                         </tbody>
                     </table>
                 </div>
+
             </div>
 
         </div>
