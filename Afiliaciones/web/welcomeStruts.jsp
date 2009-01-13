@@ -22,6 +22,21 @@
         
         <h3><bean:message key="welcome.heading"/></h3>
         <p><bean:message key="welcome.message"/></p>
+
+        <table>
+            <tr>
+                <td><a href="login.html">Example login</a></td>
+            </tr>
+            <tr>
+                <td><a href="tabs.jsp">Example tabs</a></td>
+            </tr>
+            <tr>
+                <td><a href="template(abmTablas).jsp">Example ABM Tablas</a></td>
+            </tr>
+            <tr>
+                <td><a href="autocomplete.jsp">Example autocomplete</a></td>
+            </tr>
+        </table>
         
     </body>
 </html:html>
