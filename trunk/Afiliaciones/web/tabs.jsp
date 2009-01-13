@@ -27,6 +27,7 @@
         <script type="text/javascript">
             $(function() {
                 $('#container-1 > ul').tabs();
+                $('#container-1 > ul').tabs("disable", 1);
             });
         </script>
         <style type="text/css" media="screen, projection">
@@ -48,9 +49,7 @@
                 max-width: 40em;
             }
         </style>
-
     </head>
-
     <body>
         <div id="antiFooter">
             <div id="header">
@@ -84,7 +83,6 @@
                         <ul>
                             <li><a href="#fragment-1"><span>One</span></a></li>
                             <li><a href="#fragment-2"><span>Two</span></a></li>
-
                             <li><a href="#fragment-3"><span>Three</span></a></li>
                         </ul>
                         <div id="fragment-1">
