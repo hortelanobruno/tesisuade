@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="styles/jdMenu.css" type="text/css" />
 		<link rel="stylesheet" href="styles/jdMenu.jdsharp.css" type="text/css" />
 
-		<script type="text/javascript" src="scripts/jquery-1.1.2.js"></script>
+		<script src="scripts/jquery-1.2.6.js" type="text/javascript"></script>
 		<script type="text/javascript" src="scripts/jquery.bgiframe.js"></script>
 		<script type="text/javascript" src="scripts/jquery.dimensions.js"></script>
 		<script type="text/javascript" src="scripts/jquery.jdMenu.js"></script>

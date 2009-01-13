@@ -21,7 +21,7 @@
 
 
         <link rel="stylesheet" href="styles/ui.tabs.css" type="text/css" media="print, projection, screen">
-        
+
         <script src="scripts/ui.core.js" type="text/javascript"></script>
         <script src="scripts/ui.tabs.js" type="text/javascript"></script>
         <script type="text/javascript">
