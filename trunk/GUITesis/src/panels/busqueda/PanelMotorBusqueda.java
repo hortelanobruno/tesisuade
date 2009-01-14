@@ -3,19 +3,14 @@
  *
  * Created on 29 de julio de 2008, 00:42
  */
-
 package panels.busqueda;
-
 
 import controladores.ControladorPanelMotorBusqueda;
 import panels.*;
-import panels.busqueda.PanelOpcionesAvanzadasVuelos;
 import gui.FramePrincipal;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 import modelo.BusinessDelegate;
@@ -35,7 +30,7 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
     private PanelOpcionesAvanzadasVuelos panelOpcionesAvanzadasVuelos;
     private VistaMotorBusqueda vistaMotorBusqueda;
     private boolean buscarVuelos;
-    
+
     /** Creates new form PanelMotorBusqueda */
     public PanelMotorBusqueda(FramePrincipal main, VistaMotorBusqueda vista) {
         this.main = main;
@@ -44,6 +39,7 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
         Locale[] locales = Calendar.getAvailableLocales();
         this.dateChooserFechaIda.setLocale(locales[136]);
         this.dateChooserFechaVuelta.setLocale(locales[136]);
+        generarOpcionesAvanzadas();
         this.panelOtraCiudad.setVisible(false);
     }
 
@@ -562,12 +558,12 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
 
 private void toggleButtonOpcionesAvanzadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleButtonOpcionesAvanzadasActionPerformed
 // Toggle button opciones avanzadas vuelos
-    if(((JToggleButton)evt.getSource()).isSelected()){
+    if (((JToggleButton) evt.getSource()).isSelected()) {
         panelOpcionesAvanzadasVuelos = new PanelOpcionesAvanzadasVuelos(this);
         panelOpcionesAvanzadasVuelos.setVisible(true);
         panelOpcionesAvanzadasVuelosDefault.add(panelOpcionesAvanzadasVuelos);
         this.repaint();
-    }else{
+    } else {
         panelOpcionesAvanzadasVuelosDefault.removeAll();
         this.repaint();
     }
@@ -582,11 +578,11 @@ private void comboBoxHabitacionesActionPerformed(java.awt.event.ActionEvent evt)
     int cant = Integer.parseInt(comboBoxHabitaciones.getSelectedItem().toString());
     panelHabitaciones.removeAll();
     PanelHabitacion pHabitacion[] = new PanelHabitacion[cant];
-    
-    for(int i = 0 ; i < cant ; i++){
+
+    for (int i = 0; i < cant; i++) {
         pHabitacion[i] = new PanelHabitacion();
         String numHab = pHabitacion[i].getLabelNumeroHabitaciones().getText();
-        numHab = numHab + (i+1);
+        numHab = numHab + (i + 1);
         pHabitacion[i].getLabelNumeroHabitaciones().setText(numHab);
         panelHabitaciones.add(pHabitacion[i]);
     }
@@ -603,90 +599,91 @@ private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     this.panelOtraCiudad.setVisible(false);
 }//GEN-LAST:event_jRadioButton4ActionPerformed
 
- 
-public void update(){
-    if(isBuscarVuelos()){
-        buscarVuelos();
+    public void update() {
+        if (isBuscarVuelos()) {
+            buscarVuelos();
+        }
     }
-}
-    
-public void buscarVuelos(){
-    if(validarCampos()){
-        ConsultaVueloVO vueloVO = obtenerDatosConsulta();
-        List<IndividualVueloVO> indVuelos = ((BusinessDelegate)vistaMotorBusqueda.getModelo()).buscarVuelos(vueloVO);
-        mostrarResultado(indVuelos);
-    }else{
-        //agregar con una crucesita el campo no completado
-        JOptionPane.showMessageDialog(this,"Completar todos los campos obligatorios",Constantes.APPLICATION_NAME,JOptionPane.ERROR_MESSAGE);
+
+    public void buscarVuelos() {
+        if (validarCampos()) {
+            ConsultaVueloVO vueloVO = obtenerDatosConsulta();
+            List<IndividualVueloVO> indVuelos = ((BusinessDelegate) vistaMotorBusqueda.getModelo()).buscarVuelos(vueloVO);
+            mostrarResultado(indVuelos);
+        } else {
+            //agregar con una crucesita el campo no completado
+            JOptionPane.showMessageDialog(this, "Completar todos los campos obligatorios", Constantes.APPLICATION_NAME, JOptionPane.ERROR_MESSAGE);
+        }
+
     }
-    
-}
 
-public void mostrarResultado(List<IndividualVueloVO> indVuelos){
-    panelDinamico.removeAll();
-    for(int i = 0 ; i < indVuelos.size() ; i++){
-        PanelResultadoVuelo panelVuelo = new PanelResultadoVuelo();
-        panelVuelo.setVisible(true);
-        cargarPanelBusquedaVuelo(panelVuelo,indVuelos.get(i));
-        panelDinamico.add(panelVuelo);
+    public void mostrarResultado(List<IndividualVueloVO> indVuelos) {
+        panelDinamico.removeAll();
+        for (int i = 0; i < indVuelos.size(); i++) {
+            PanelResultadoVuelo panelVuelo = new PanelResultadoVuelo();
+            panelVuelo.setVisible(true);
+            cargarPanelBusquedaVuelo(panelVuelo, indVuelos.get(i));
+            panelDinamico.add(panelVuelo);
+        }
+        this.repaint();
     }
-    this.repaint();
-}
 
-//faltaria cargarle las opciones avanzadas
-public void cargarPanelBusquedaVuelo(PanelResultadoVuelo panel,IndividualVueloVO ind){
-    //panel.getLabelCantAdultos().setText(""+ind.getAdultos());
-   // panel.getLabelCantBebes().setText(""+ind.getBebes());
-   // panel.getLabelCantNinios().setText(""+ind.getNinios());
-    panel.getLabelCiudadDestino().setText(ind.getCiudadDestino());
-    panel.getLabelCiudadOrigen().setText(ind.getCiudadOrigen());
-    panel.getLabelFechaIda().setText(ind.getFechaIda().toString());
-    panel.getLabelFechaVuelta().setText(ind.getFechaVuelta().toString());
-}
-
-public boolean validarCampos(){
-    boolean b = true;
-    if(textFieldCiudadOrigen.getText().isEmpty()){
-        b=false;
+    //faltaria cargarle las opciones avanzadas
+    public void cargarPanelBusquedaVuelo(PanelResultadoVuelo panel, IndividualVueloVO ind) {
+        //panel.getLabelCantAdultos().setText(""+ind.getAdultos());
+        // panel.getLabelCantBebes().setText(""+ind.getBebes());
+        // panel.getLabelCantNinios().setText(""+ind.getNinios());
+        panel.getLabelCiudadDestino().setText(ind.getCiudadDestino());
+        panel.getLabelCiudadOrigen().setText(ind.getCiudadOrigen());
+        panel.getLabelFechaIda().setText(ind.getFechaIda().toString());
+        panel.getLabelFechaVuelta().setText(ind.getFechaVuelta().toString());
     }
-    if(textFieldCiudadDestino.getText().isEmpty()){
-        b=false;
+
+    public boolean validarCampos() {
+        boolean b = true;
+        if (textFieldCiudadOrigen.getText().isEmpty()) {
+            b = false;
+        }
+        if (textFieldCiudadDestino.getText().isEmpty()) {
+            b = false;
+        }
+        if (dateChooserFechaIda.getDate().equals(null)) {
+            b = false;
+        }
+        if (dateChooserFechaVuelta.getDate().equals(null)) {
+            b = false;
+        }
+        return b;
     }
-    if(dateChooserFechaIda.getDate().equals(null)){
-        b=false;
+
+    //faltaria cargarle las opciones avanzadas
+    public ConsultaVueloVO obtenerDatosConsulta() {
+        ConsultaVueloVO vuelo = new ConsultaVueloVO();
+        if (radioButtonIdaYVuelta.isSelected()) {
+            vuelo.setFechaIda(dateChooserFechaIda.getDate());
+            vuelo.setFechaVuelta(dateChooserFechaVuelta.getDate());
+        } else {
+            vuelo.setFechaIda(dateChooserFechaIda.getDate());
+        }
+        vuelo.setCiudadOrigen(textFieldCiudadOrigen.getText());
+        vuelo.setCiudadDestino(textFieldCiudadDestino.getText());
+        vuelo.setAdultos(Integer.parseInt(comboBoxAdultos.getSelectedItem().toString()));
+        vuelo.setNinios(Integer.parseInt(comboBoxNinios.getSelectedItem().toString()));
+        vuelo.setBebes(Integer.parseInt(comboBoxBebes.getSelectedItem().toString()));
+        return vuelo;
     }
-    if(dateChooserFechaVuelta.getDate().equals(null)){
-        b=false;
+
+    private void generarOpcionesAvanzadas() {
+        
     }
-    return b;
-}
 
-//faltaria cargarle las opciones avanzadas
-public ConsultaVueloVO obtenerDatosConsulta(){
-    ConsultaVueloVO vuelo = new ConsultaVueloVO();
-    if(radioButtonIdaYVuelta.isSelected()){
-        vuelo.setFechaIda(dateChooserFechaIda.getDate());
-        vuelo.setFechaVuelta(dateChooserFechaVuelta.getDate());
-    }else{
-        vuelo.setFechaIda(dateChooserFechaIda.getDate());
+    public void setVistaMotorBusqueda(VistaMotorBusqueda vista) {
+        this.vistaMotorBusqueda = vista;
     }
-    vuelo.setCiudadOrigen(textFieldCiudadOrigen.getText());
-    vuelo.setCiudadDestino(textFieldCiudadDestino.getText());
-    vuelo.setAdultos(Integer.parseInt(comboBoxAdultos.getSelectedItem().toString()));
-    vuelo.setNinios(Integer.parseInt(comboBoxNinios.getSelectedItem().toString()));
-    vuelo.setBebes(Integer.parseInt(comboBoxBebes.getSelectedItem().toString()));
-    return vuelo;
-}
 
-public void setVistaMotorBusqueda(VistaMotorBusqueda vista){
-    this.vistaMotorBusqueda = vista;
-}
-
-public VistaMotorBusqueda getVistaMotorBusqueda(){
-    return this.vistaMotorBusqueda;
-}
-
-
+    public VistaMotorBusqueda getVistaMotorBusqueda() {
+        return this.vistaMotorBusqueda;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBuscarVuelos;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -753,8 +750,5 @@ public VistaMotorBusqueda getVistaMotorBusqueda(){
     public void setBuscarVuelos(boolean buscarVuelos) {
         this.buscarVuelos = buscarVuelos;
     }
-
-
-
 }
 

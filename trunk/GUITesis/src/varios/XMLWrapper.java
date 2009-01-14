@@ -3,12 +3,16 @@
  * and open the template in the editor.
  */
 
-package Varios;
+package varios;
+
 
 import com.thoughtworks.xstream.XStream;
 import configuration.Configuration;
-import varios.Constantes;
 
+/**
+ *
+ * @author Admin
+ */
 public class XMLWrapper {
 
     public XMLWrapper() {
@@ -27,7 +31,6 @@ public class XMLWrapper {
         }
         return configuration;
     }
-    
 
     public void parseXMLSolFab(Configuration conf) {
         XStream xstream = new XStream();
@@ -36,7 +39,7 @@ public class XMLWrapper {
         String config = xstream.toXML(conf);
 
         //Escribo la salida en un archivo
-        String file = Constantes.CONFIGURATION;
+        String file = Constantes.CONFIGURATION_URL;
         FileWriterWrapper fileWriter = new FileWriterWrapper(file);
         fileWriter.write(config);
     }
