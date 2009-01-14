@@ -1,8 +1,16 @@
-package Varios;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package varios;
 
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 
+/**
+ *
+ * @author Admin
+ */
 public class FileWriterWrapper {
 
     private String file;

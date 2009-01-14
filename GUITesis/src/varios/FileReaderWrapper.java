@@ -2,14 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Varios;
+package varios;
 
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 
 /**
- * Clase Wrapper para leer un archivo
  *
+ * @author Admin
  */
 public class FileReaderWrapper {
 
@@ -29,8 +29,8 @@ public class FileReaderWrapper {
             while (input.available() != 0) {
                 contenido.append(input.readLine());
             }
-
             input.close();
+
         } catch (Exception ex) {
             System.out.println("Error al leer el contenido del archivo");
         }

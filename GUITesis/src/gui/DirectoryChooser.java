@@ -14,7 +14,9 @@ import javax.swing.JFileChooser;
  */
 public class DirectoryChooser extends javax.swing.JDialog {
 
+    
     private static final long serialVersionUID = 1L;
+    private javax.swing.JFileChooser fileChooser;
     /** Creates new form DirectoryChooser */
     private String path;
 
@@ -75,7 +77,6 @@ public class DirectoryChooser extends javax.swing.JDialog {
 
     public void setPath(String path) {
         this.path = path;
-    }    // Variables declaration - do not modify
-    private javax.swing.JFileChooser fileChooser;
-    // End of variables declaration
+    }    
+    
 }

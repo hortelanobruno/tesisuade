@@ -1,9 +1,12 @@
 <configuration>
-  <ontologiasViajes/>
+  <ontologiasViajes>
+    <string>C:/Documents and Settings/Admin/My Documents/NetBeansProjects/GUITesis/src/owl//turismoOriginal.owl</string>
+    <string>C:/Documents and Settings/Admin/My Documents/NetBeansProjects/GUITesis/src/owl//turismoIngles.owl</string>
+  </ontologiasViajes>
   <ontologiasVocabulario>
-    <string>C:/Documents and Settings/Administrador/Mis documentos/workspace/NetBeans/GUITesis/src/owl/vocabulario2.owl</string>
+    <string>C:/Documents and Settings/Admin/My Documents/NetBeansProjects/GUITesis/src/owl//vocabulario2.owl</string>
   </ontologiasVocabulario>
   <defaultURLOWLSinonimos>C:/Documents and Settings/Administrador/Escritorio/Tesis/Ontologias/Ontologias/vocabulario2.owl</defaultURLOWLSinonimos>
   <defaultURLOWLViajes>C:/Documents and Settings/Administrador/Mis documentos/workspace/NetBeans/GUITesis/src/owl/vocabulario2.owl</defaultURLOWLViajes>
-  <owlDirectory>C:/Documents and Settings/Administrador/Mis documentos/workspace/NetBeans/GUITesis/src/owl/</owlDirectory>
+  <owlDirectory>C:/Documents and Settings/Admin/My Documents/NetBeansProjects/GUITesis/src/owl//</owlDirectory>
 </configuration>

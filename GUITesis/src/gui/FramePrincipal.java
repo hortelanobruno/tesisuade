@@ -5,7 +5,7 @@
  */
 package gui;
 
-import Varios.XMLWrapper;
+
 import configuration.Configuration;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
@@ -21,6 +21,7 @@ import panels.configuracion.PanelConfiguracion;
 import panels.nuevaontologia.PanelNuevaOntologia;
 import panels.sinonimos.PanelSinonimos;
 import varios.Constantes;
+import varios.XMLWrapper;
 import vistas.VistaConfiguracion;
 import vistas.VistaMotorBusqueda;
 import vistas.VistaNuevaOntologia;
@@ -359,7 +360,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     public void cargarConfiguracion() {
         XMLWrapper xml = new XMLWrapper();
-        Configuration conf = xml.parseConfiguracion(Constantes.CONFIGURATION);
+        Configuration conf = xml.parseConfiguracion(Constantes.CONFIGURATION_URL);
         if (conf != null) {
             this.setConfiguration(conf);
             recargarConfiguracion();
