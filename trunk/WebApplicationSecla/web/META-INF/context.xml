@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path="/WebApplicationSecla"/>
+<Context antiJARLocking="true" path="/WebApplicationSecla">
+  <Resource auth="Container" driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" maxActive="20" maxIdle="10" maxWait="-1" name="SistemaRecibos" password="123456" type="javax.sql.DataSource" url="jdbc:sqlserver://LAPTOP\dbo:1433;databaseName=sistemarecibos" username="sa"/>
+</Context>
