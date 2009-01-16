@@ -1,0 +1,18 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <package name="tutorial" extends="struts-default">
+        <action name="HelloWorld" class="tutorial.HelloWorld">
+            <result>/HelloWorld.jsp</result>
+        </action>
+        <action name="Logon_*" method="{1}" class="tutorial.Logon">
+            <result type="redirectAction">Menu</result>
+            <result name="input">/Logon.jsp</result>
+        </action>
+        <!-- Add your actions here -->
+        <action name="*" class="tutorial.TutorialSupport">
+            <result>/{1}.jsp</result>
+        </action>
+    </package>
+</struts>
