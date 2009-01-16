@@ -1,0 +1,35 @@
+<!DOCTYPE validators PUBLIC
+"-//OpenSymphony Group//XWork Validator 1.0.2//EN"
+"http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+<validators>
+    <validator type="requiredstring">
+        <param name="fieldName">username</param>
+        <param name="trim">true</param>
+        <message>Username is required</message>
+    </validator>
+    <validator type="requiredstring">
+        <param name="fieldName">password</param>
+        <param name="trim">true</param>
+        <message>Password is required</message>
+    </validator>
+    <field name="precio">
+        <field-validator type="required">
+            <message key="Precio is required"/>
+        </field-validator>
+        <field-validator type="double">
+            <param name="minExclusive">0.123</param>
+            <param name="maxExclusive">99.98</param>
+            <message>Precio needs to be between ${minExclusive} and  ${maxExclusive} (exclusive)</message>
+        </field-validator>
+    </field>
+    <field name="fecha1">
+        <field-validator type="required">
+            <message key="Fecha is required"/>
+        </field-validator>
+        <field-validator type="date">
+            <param name="min">01/01/2009</param>
+            <param name="max">01/02/2009</param>
+            <message>Fecha must be within ${min} and ${max}</message>
+        </field-validator>
+    </field>
+</validators>

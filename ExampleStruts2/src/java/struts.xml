@@ -14,9 +14,12 @@
         <action name="*" class="tutorial.TutorialSupport">
             <result>/{1}.jsp</result>
         </action>
-        <action name="Prueba_*" method="{1}" class="bruno.Prueba">
-            <result type="redirectAction">Menu</result>
-            <result name="input">/Logon.jsp</result>
+        <action name="Prueba" class="bruno.Prueba">
+            <result>/example/autocomplete.jsp</result>
+            <result name="input">/example/autocomplete.jsp</result>
+        </action>
+        <action name="Iterator" class="bruno.Iterator">
+            <result>/Iterator.jsp</result>
         </action>
     </package>
 </struts>
