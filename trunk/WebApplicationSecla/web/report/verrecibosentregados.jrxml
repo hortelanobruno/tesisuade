@@ -25,8 +25,8 @@
 
 	<parameter name="num1" isForPrompting="false" class="java.lang.String"/>
 	<parameter name="num2" isForPrompting="false" class="java.lang.String"/>
-	<parameter name="fecha1" isForPrompting="false" class="java.lang.String"/>
-	<parameter name="fecha2" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="fecha1" isForPrompting="false" class="java.util.Date"/>
+	<parameter name="fecha2" isForPrompting="false" class="java.util.Date"/>
 	<queryString><![CDATA[SELECT
      usuarios."digitos" AS usuarios_digitos,
      recibos."numero" AS recibos_numero,
