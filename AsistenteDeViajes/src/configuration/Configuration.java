@@ -2,27 +2,30 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package configuration;
-
 
 import java.util.Vector;
 
-
 public class Configuration {
 
+    private Vector<AdvancedProperty> propiedadesAvanzadasVuelo;
+    private Vector<AdvancedProperty> propiedadesAvanzadasHotel;
+    private Vector<AdvancedProperty> propiedadesAvanzadasAuto;
     private Vector<String> ontologiasViajes;
     private Vector<String> ontologiasVocabulario;
     private String defaultURLOWLSinonimos;
     private String defaultURLOWLViajes;
     private String owlDirectory;
-    
+
     public Configuration() {
         defaultURLOWLSinonimos = new String();
         defaultURLOWLViajes = new String();
         owlDirectory = new String();
         ontologiasViajes = new Vector<String>();
         ontologiasVocabulario = new Vector<String>();
+        propiedadesAvanzadasAuto = new Vector<AdvancedProperty>();
+        propiedadesAvanzadasHotel = new Vector<AdvancedProperty>();
+        propiedadesAvanzadasVuelo = new Vector<AdvancedProperty>();
     }
 
     public Vector<String> getOntologiasViajes() {
@@ -56,12 +59,12 @@ public class Configuration {
     public void setDefaultURLOWLViajes(String defaultURLOWLViajes) {
         this.defaultURLOWLViajes = parsearURL(defaultURLOWLViajes);
     }
-    
-    public String parsearURL(String urlCompleta){
+
+    public String parsearURL(String urlCompleta) {
         String a = new String();
         String[] aa = urlCompleta.split("\\\\");
         a = a + aa[0];
-        for(int i = 1 ; i < aa.length ; i++){
+        for (int i = 1; i < aa.length; i++) {
             a = a + "/" + aa[i];
         }
         return a;
@@ -72,7 +75,30 @@ public class Configuration {
     }
 
     public void setOwlDirectory(String owlDirectory) {
-        this.owlDirectory = parsearURL(owlDirectory)+"/";
+        this.owlDirectory = parsearURL(owlDirectory) + "/";
     }
 
+    public Vector<AdvancedProperty> getPropiedadesAvanzadasAuto() {
+        return propiedadesAvanzadasAuto;
+    }
+
+    public Vector<AdvancedProperty> getPropiedadesAvanzadasHotel() {
+        return propiedadesAvanzadasHotel;
+    }
+
+    public Vector<AdvancedProperty> getPropiedadesAvanzadasVuelo() {
+        return propiedadesAvanzadasVuelo;
+    }
+
+    public void setPropiedadesAvanzadasAuto(Vector<AdvancedProperty> propiedadesAvanzadasAuto) {
+        this.propiedadesAvanzadasAuto = propiedadesAvanzadasAuto;
+    }
+
+    public void setPropiedadesAvanzadasHotel(Vector<AdvancedProperty> propiedadesAvanzadasHotel) {
+        this.propiedadesAvanzadasHotel = propiedadesAvanzadasHotel;
+    }
+
+    public void setPropiedadesAvanzadasVuelo(Vector<AdvancedProperty> propiedadesAvanzadasVuelo) {
+        this.propiedadesAvanzadasVuelo = propiedadesAvanzadasVuelo;
+    }
 }
