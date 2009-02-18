@@ -5,7 +5,6 @@
  */
 package gui;
 
-
 import configuration.Configuration;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
@@ -355,12 +354,12 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     public void guardarConfiguracion() {
         XMLWrapper xml = new XMLWrapper();
-        xml.parseXMLSolFab(getConfiguration());
+        xml.guardarConfiguracion(getConfiguration());
     }
 
     public void cargarConfiguracion() {
         XMLWrapper xml = new XMLWrapper();
-        Configuration conf = xml.parseConfiguracion(Constantes.CONFIGURATION_URL);
+        Configuration conf = xml.leerConfiguracion(Constantes.CONFIGURATION_URL);
         if (conf != null) {
             this.setConfiguration(conf);
             recargarConfiguracion();
@@ -415,13 +414,12 @@ private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         }
     }
 
-public void guardarOntologia(){
-    if (isPanelNuevaOntologiaSelected) {
-        getPanelNuevaOntologia().guardarOntologia();
+    public void guardarOntologia() {
+        if (isPanelNuevaOntologiaSelected) {
+            getPanelNuevaOntologia().guardarOntologia();
+        }
     }
-}
-    
-    
+
 private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
     guardarOntologia();
 }//GEN-LAST:event_jMenuItem8ActionPerformed
@@ -436,7 +434,7 @@ private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
 // Cargar configuracion
     if (!isPanelConfiguracionSelected) {
-        setPanelConfiguracion(new PanelConfiguracion(this,vistaConfiguracion));
+        setPanelConfiguracion(new PanelConfiguracion(this, vistaConfiguracion));
         ponerPanel(getPanelConfiguracion());
     }
 }//GEN-LAST:event_jMenuItem3ActionPerformed
@@ -453,13 +451,13 @@ private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     guardarOntologia();
 }//GEN-LAST:event_jButton4ActionPerformed
 
-public void nuevaOntologia() {
-    if (!isPanelNuevaOntologiaSelected) {
-        setPanelNuevaOntologia(new PanelNuevaOntologia(this, vistaNuevaOntologia));
-        ponerPanel(getPanelNuevaOntologia());
-        getPanelNuevaOntologia().modoNuevo();
+    public void nuevaOntologia() {
+        if (!isPanelNuevaOntologiaSelected) {
+            setPanelNuevaOntologia(new PanelNuevaOntologia(this, vistaNuevaOntologia));
+            ponerPanel(getPanelNuevaOntologia());
+            getPanelNuevaOntologia().modoNuevo();
+        }
     }
-}
 
     private void setLookAndFeel() throws HeadlessException {
         try {

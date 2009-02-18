@@ -4,10 +4,12 @@
  */
 package configuration;
 
+import configuration.defaultontology.DefaultOntology;
 import java.util.Vector;
 
 public class Configuration {
-
+    
+    private DefaultOntology defaultOntology;
     private Vector<AdvancedProperty> propiedadesAvanzadasVuelo;
     private Vector<AdvancedProperty> propiedadesAvanzadasHotel;
     private Vector<AdvancedProperty> propiedadesAvanzadasAuto;
@@ -26,6 +28,7 @@ public class Configuration {
         propiedadesAvanzadasAuto = new Vector<AdvancedProperty>();
         propiedadesAvanzadasHotel = new Vector<AdvancedProperty>();
         propiedadesAvanzadasVuelo = new Vector<AdvancedProperty>();
+        defaultOntology = new DefaultOntology();
     }
 
     public Vector<String> getOntologiasViajes() {
@@ -100,5 +103,13 @@ public class Configuration {
 
     public void setPropiedadesAvanzadasVuelo(Vector<AdvancedProperty> propiedadesAvanzadasVuelo) {
         this.propiedadesAvanzadasVuelo = propiedadesAvanzadasVuelo;
+    }
+
+    public DefaultOntology getDefaultOntology() {
+        return defaultOntology;
+    }
+
+    public void setDefaultOntology(DefaultOntology defaultOntology) {
+        this.defaultOntology = defaultOntology;
     }
 }

@@ -7,7 +7,14 @@ package varios;
 
 
 import com.thoughtworks.xstream.XStream;
+import configuration.AdvancedProperty;
 import configuration.Configuration;
+import configuration.TipoDato;
+import configuration.defaultontology.DefaultOntology;
+import configuration.defaultontology.types.DefaultAlojamiento;
+import configuration.defaultontology.types.DefaultProperty;
+import configuration.defaultontology.types.DefaultTranslado;
+import configuration.defaultontology.types.DefaultViaje;
 
 /**
  *
@@ -18,7 +25,7 @@ public class XMLWrapper {
     public XMLWrapper() {
     }
 
-    public Configuration parseConfiguracion(String url) {
+    public Configuration leerConfiguracion(String url) {
         FileReaderWrapper fileReader = new FileReaderWrapper(url);
         String config = fileReader.obtenerContenido();
         XStream xstream = new XStream();
@@ -32,9 +39,16 @@ public class XMLWrapper {
         return configuration;
     }
 
-    public void parseXMLSolFab(Configuration conf) {
+    public void guardarConfiguracion(Configuration conf) {
         XStream xstream = new XStream();
         xstream.alias("configuration", Configuration.class);
+        xstream.alias("tipodato", TipoDato.class);
+        xstream.alias("advancedproperty", AdvancedProperty.class);
+        xstream.alias("defaultontology", DefaultOntology.class);
+        xstream.alias("defaultviaje", DefaultViaje.class);
+        xstream.alias("defaulttranslado", DefaultTranslado.class);
+        xstream.alias("defaultproperty", DefaultProperty.class);
+        xstream.alias("defaultalojamiento", DefaultAlojamiento.class);
 
         String config = xstream.toXML(conf);
 
