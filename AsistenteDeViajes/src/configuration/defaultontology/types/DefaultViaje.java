@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class DefaultViaje {
 
+    private String nombreClase;
     private List<DefaultProperty> defaultProperties;
 
     public DefaultViaje() {
@@ -25,5 +26,19 @@ public class DefaultViaje {
 
     public void setDefaultProperties(List<DefaultProperty> defaultProperties) {
         this.defaultProperties = defaultProperties;
+    }
+
+    /**
+     * @return the nombreClase
+     */
+    public String getNombreClase() {
+        return nombreClase;
+    }
+
+    /**
+     * @param nombreClase the nombreClase to set
+     */
+    public void setNombreClase(String nombreClase) {
+        this.nombreClase = nombreClase;
     }
 }
