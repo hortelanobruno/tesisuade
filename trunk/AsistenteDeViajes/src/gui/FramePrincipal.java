@@ -17,11 +17,13 @@ import javax.swing.UnsupportedLookAndFeelException;
 import modelo.BusinessDelegate;
 import panels.busqueda.PanelMotorBusqueda;
 import panels.configuracion.PanelConfiguracion;
+import panels.configuracion.PanelDefaultOntologia;
 import panels.nuevaontologia.PanelNuevaOntologia;
 import panels.sinonimos.PanelSinonimos;
 import varios.Constantes;
 import varios.XMLWrapper;
 import vistas.VistaConfiguracion;
+import vistas.VistaDefaultOntologia;
 import vistas.VistaMotorBusqueda;
 import vistas.VistaNuevaOntologia;
 import vistas.VistaSinonimos;
@@ -38,15 +40,18 @@ public class FramePrincipal extends javax.swing.JFrame {
     private boolean isPanelNuevaOntologiaSelected;
     private boolean isPanelSinonimosSelected;
     private boolean isPanelConfiguracionSelected;
+    private boolean isPanelOntologiaDefaultSelected;
     private PanelMotorBusqueda panelMotorBusqueda;
     private PanelSinonimos panelSinonimos;
     private PanelNuevaOntologia panelNuevaOntologia;
     private PanelConfiguracion panelConfiguracion;
+    private PanelDefaultOntologia panelDefaultOntologia;
     private JPanel activePanel;
     private VistaMotorBusqueda vistaMotorBusqueda;
     private VistaSinonimos vistaSinonimos;
     private VistaNuevaOntologia vistaNuevaOntologia;
     private VistaConfiguracion vistaConfiguracion;
+    private VistaDefaultOntologia vistaDefaultOntologia;
     private Configuration configuration;
 
     /** Creates new form FramePrincipal */
@@ -94,6 +99,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -240,6 +246,14 @@ public class FramePrincipal extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem3);
+
+        jMenuItem11.setText("OntologiaDefault");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem11);
 
         menuBar.add(jMenu2);
 
@@ -451,6 +465,14 @@ private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     guardarOntologia();
 }//GEN-LAST:event_jButton4ActionPerformed
 
+private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+    // Cargar panel default ontologia
+    if (!isPanelOntologiaDefaultSelected) {
+        setPanelDefaultOntologia(new PanelDefaultOntologia(this, vistaDefaultOntologia));
+        ponerPanel(getPanelDefaultOntologia());
+    }
+}//GEN-LAST:event_jMenuItem11ActionPerformed
+
     public void nuevaOntologia() {
         if (!isPanelNuevaOntologiaSelected) {
             setPanelNuevaOntologia(new PanelNuevaOntologia(this, vistaNuevaOntologia));
@@ -631,6 +653,20 @@ private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         this.panelConfiguracion = panelConfiguracion;
     }
 
+    /**
+     * @return the panelDefaultOntologia
+     */
+    public PanelDefaultOntologia getPanelDefaultOntologia() {
+        return panelDefaultOntologia;
+    }
+
+    /**
+     * @param panelDefaultOntologia the panelDefaultOntologia to set
+     */
+    public void setPanelDefaultOntologia(PanelDefaultOntologia panelDefaultOntologia) {
+        this.panelDefaultOntologia = panelDefaultOntologia;
+    }
+
     class ThreadCarga extends Thread {
 
         public void run() {
@@ -696,6 +732,7 @@ private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

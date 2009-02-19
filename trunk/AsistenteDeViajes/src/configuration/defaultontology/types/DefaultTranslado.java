@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class DefaultTranslado {
 
+    private String nombreClase;
     private List<DefaultProperty> defaultProperties;
 
     public DefaultTranslado() {
@@ -25,5 +26,19 @@ public class DefaultTranslado {
 
     public void setDefaultProperties(List<DefaultProperty> defaultProperties) {
         this.defaultProperties = defaultProperties;
+    }
+
+    /**
+     * @return the nombreClase
+     */
+    public String getNombreClase() {
+        return nombreClase;
+    }
+
+    /**
+     * @param nombreClase the nombreClase to set
+     */
+    public void setNombreClase(String nombreClase) {
+        this.nombreClase = nombreClase;
     }
 }
