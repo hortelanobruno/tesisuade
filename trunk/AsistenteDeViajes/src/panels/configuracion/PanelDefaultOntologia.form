@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="true"/>
@@ -17,23 +17,18 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="buttonGuardarDefaultOntology" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTabbedPane1" alignment="0" min="-2" pref="474" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="31" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <Component id="jTabbedPane1" min="-2" pref="413" max="-2" attributes="0"/>
+              <EmptySpace pref="37" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" min="-2" pref="354" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="buttonGuardarDefaultOntology" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="32" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Component id="jTabbedPane1" min="-2" pref="342" max="-2" attributes="0"/>
+              <EmptySpace pref="45" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -46,9 +41,9 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="panelDefaultVuelo">
+        <Container class="javax.swing.JPanel" name="jPanel1">
           <Properties>
-            <Property name="name" type="java.lang.String" value="panelDefaultVuelo" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="jPanel1" noResource="true"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
@@ -61,65 +56,64 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane1" alignment="0" min="-2" pref="356" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" min="-2" pref="401" max="-2" attributes="0"/>
+                              <Component id="lbPropieadesVuelo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+                              <Component id="buttonAddPropiedadVuelo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="buttonRemovePropiedadVuelo" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="labelPropiedadesVuelo" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                                      <Component id="buttonAddPropertyVuelo" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="buttonRemovePropertyVuelo" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="labelNombreClaseVuelo" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
-                                      <Component id="tfNombreClaseVuelo" min="-2" pref="149" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <Component id="lbNombreClaseVuelo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+                              <Component id="tfNombreClaseVuelo" min="-2" pref="86" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="48" max="32767" attributes="0"/>
+                      <EmptySpace pref="29" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelNombreClaseVuelo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbNombreClaseVuelo" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tfNombreClaseVuelo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelPropiedadesVuelo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonAddPropertyVuelo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonRemovePropertyVuelo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbPropieadesVuelo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonAddPropiedadVuelo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonRemovePropiedadVuelo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="200" max="-2" attributes="0"/>
-                      <EmptySpace pref="22" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="172" max="-2" attributes="0"/>
+                      <EmptySpace pref="40" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="labelNombreClaseVuelo">
+            <Component class="javax.swing.JLabel" name="lbNombreClaseVuelo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nombre Clase"/>
-                <Property name="name" type="java.lang.String" value="labelNombreClaseVuelo" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="lbNombreClaseVuelo" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="tfNombreClaseVuelo">
               <Properties>
                 <Property name="name" type="java.lang.String" value="tfNombreClaseVuelo" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbPropieadesVuelo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Propiedades"/>
+                <Property name="name" type="java.lang.String" value="lbPropieadesVuelo" noResource="true"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -132,16 +126,16 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="tableDefaultPropertiesVuelo">
+                <Component class="javax.swing.JTable" name="tablePropieadesVuelo">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="2" rowCount="0">
-                        <Column editable="true" title="Nombre" type="java.lang.String"/>
-                        <Column editable="true" title="Tipo de dato" type="java.lang.String"/>
+                        <Column editable="true" title="Nombre" type="java.lang.Object"/>
+                        <Column editable="true" title="Tipo de Dato" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="1">
+                      <TableColumnModel selectionModel="0">
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                           <Title/>
                           <Editor/>
@@ -154,8 +148,7 @@
                         </Column>
                       </TableColumnModel>
                     </Property>
-                    <Property name="columnSelectionAllowed" type="boolean" value="true"/>
-                    <Property name="name" type="java.lang.String" value="tableDefaultPropertiesVuelo" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="tablePropieadesVuelo" noResource="true"/>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
@@ -163,29 +156,23 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="labelPropiedadesVuelo">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Propiedades"/>
-                <Property name="name" type="java.lang.String" value="labelPropiedadesVuelo" noResource="true"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="buttonAddPropertyVuelo">
+            <Component class="javax.swing.JButton" name="buttonAddPropiedadVuelo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add"/>
-                <Property name="name" type="java.lang.String" value="buttonAddPropertyVuelo" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="buttonAddPropiedadVuelo" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="buttonRemovePropertyVuelo">
+            <Component class="javax.swing.JButton" name="buttonRemovePropiedadVuelo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Rem"/>
-                <Property name="name" type="java.lang.String" value="buttonRemovePropertyVuelo" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="buttonRemovePropiedadVuelo" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="panelDefaultHotel">
+        <Container class="javax.swing.JPanel" name="jPanel2">
           <Properties>
-            <Property name="name" type="java.lang.String" value="panelDefaultHotel" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="jPanel2" noResource="true"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
@@ -198,51 +185,46 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="408" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane2" alignment="0" min="-2" pref="356" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="jScrollPane2" min="-2" pref="401" max="-2" attributes="0"/>
+                              <Component id="lbPropieadesHotel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+                              <Component id="buttonAddPropiedadHotel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="buttonRemovePropiedadHotel" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="labelPropiedadesHotel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                                      <Component id="buttonAddPropertyHotel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="buttonRemovePropertyHotel" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="labelNombreClaseHotel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
-                                      <Component id="tfNombreClaseHotel" min="-2" pref="149" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <Component id="lbNombreClaseHotel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+                              <Component id="tfNombreClaseHotel" min="-2" pref="86" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="48" max="32767" attributes="0"/>
+                      <EmptySpace pref="29" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="314" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelNombreClaseHotel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbNombreClaseHotel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tfNombreClaseHotel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelPropiedadesHotel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonAddPropertyHotel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonRemovePropertyHotel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbPropieadesHotel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonAddPropiedadHotel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonRemovePropiedadHotel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" min="-2" pref="200" max="-2" attributes="0"/>
-                      <EmptySpace pref="22" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" min="-2" pref="172" max="-2" attributes="0"/>
+                      <EmptySpace pref="40" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -258,16 +240,16 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="tableDefaultPropertiesHotel">
+                <Component class="javax.swing.JTable" name="tablePropieadesHotel">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="2" rowCount="0">
-                        <Column editable="true" title="Nombre" type="java.lang.String"/>
-                        <Column editable="true" title="Tipo de dato" type="java.lang.String"/>
+                        <Column editable="true" title="Nombre" type="java.lang.Object"/>
+                        <Column editable="true" title="Tipo de Dato" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="1">
+                      <TableColumnModel selectionModel="0">
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                           <Title/>
                           <Editor/>
@@ -280,7 +262,7 @@
                         </Column>
                       </TableColumnModel>
                     </Property>
-                    <Property name="name" type="java.lang.String" value="tableDefaultPropertiesHotel" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="tablePropieadesHotel" noResource="true"/>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
@@ -288,28 +270,28 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="labelPropiedadesHotel">
+            <Component class="javax.swing.JLabel" name="lbPropieadesHotel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Propiedades"/>
-                <Property name="name" type="java.lang.String" value="labelPropiedadesHotel" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="lbPropieadesHotel" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="buttonAddPropertyHotel">
+            <Component class="javax.swing.JButton" name="buttonAddPropiedadHotel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add"/>
-                <Property name="name" type="java.lang.String" value="buttonAddPropertyHotel" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="buttonAddPropiedadHotel" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="buttonRemovePropertyHotel">
+            <Component class="javax.swing.JButton" name="buttonRemovePropiedadHotel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Rem"/>
-                <Property name="name" type="java.lang.String" value="buttonRemovePropertyHotel" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="buttonRemovePropiedadHotel" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelNombreClaseHotel">
+            <Component class="javax.swing.JLabel" name="lbNombreClaseHotel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nombre Clase"/>
-                <Property name="name" type="java.lang.String" value="labelNombreClaseHotel" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="lbNombreClaseHotel" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="tfNombreClaseHotel">
@@ -319,9 +301,9 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="panelDefaultTranslado">
+        <Container class="javax.swing.JPanel" name="jPanel3">
           <Properties>
-            <Property name="name" type="java.lang.String" value="panelDefaultTranslado" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="jPanel3" noResource="true"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
@@ -334,51 +316,48 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="408" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="408" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane3" alignment="0" min="-2" pref="356" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="jScrollPane3" min="-2" pref="401" max="-2" attributes="0"/>
+                              <Component id="lbPropieadesTranslado" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+                              <Component id="buttonAddPropiedadTranslado" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="buttonRemovePropiedadTranslado" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="labelPropiedadesTranslado" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                                      <Component id="buttonAddPropertyTranslado" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="buttonRemovePropertyTranslado" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="labelNombreClaseTranslado" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
-                                      <Component id="tfNombreClaseTranslado" min="-2" pref="149" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <Component id="lbNombreClaseTranslado" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+                              <Component id="tfNombreClaseTranslado" min="-2" pref="86" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="48" max="32767" attributes="0"/>
+                      <EmptySpace pref="29" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="314" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="314" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelNombreClaseTranslado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbNombreClaseTranslado" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tfNombreClaseTranslado" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelPropiedadesTranslado" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonAddPropertyTranslado" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonRemovePropertyTranslado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbPropieadesTranslado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonAddPropiedadTranslado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonRemovePropiedadTranslado" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                      <Component id="jScrollPane3" min="-2" pref="200" max="-2" attributes="0"/>
-                      <EmptySpace pref="22" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane3" min="-2" pref="172" max="-2" attributes="0"/>
+                      <EmptySpace pref="40" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -394,16 +373,16 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="tableDefaultPropertiesTranslado">
+                <Component class="javax.swing.JTable" name="tablePropieadesTranslado">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="2" rowCount="0">
-                        <Column editable="true" title="Nombre" type="java.lang.String"/>
-                        <Column editable="true" title="Tipo de dato" type="java.lang.String"/>
+                        <Column editable="true" title="Nombre" type="java.lang.Object"/>
+                        <Column editable="true" title="Tipo de Dato" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="1">
+                      <TableColumnModel selectionModel="0">
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                           <Title/>
                           <Editor/>
@@ -416,7 +395,7 @@
                         </Column>
                       </TableColumnModel>
                     </Property>
-                    <Property name="name" type="java.lang.String" value="tableDefaultPropertiesTranslado" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="tablePropieadesTranslado" noResource="true"/>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
@@ -424,28 +403,28 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="labelPropiedadesTranslado">
+            <Component class="javax.swing.JLabel" name="lbPropieadesTranslado">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Propiedades"/>
-                <Property name="name" type="java.lang.String" value="labelPropiedadesTranslado" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="lbPropieadesTranslado" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="buttonAddPropertyTranslado">
+            <Component class="javax.swing.JButton" name="buttonAddPropiedadTranslado">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add"/>
-                <Property name="name" type="java.lang.String" value="buttonAddPropertyTranslado" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="buttonAddPropiedadTranslado" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="buttonRemovePropertyTranslado">
+            <Component class="javax.swing.JButton" name="buttonRemovePropiedadTranslado">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Rem"/>
-                <Property name="name" type="java.lang.String" value="buttonRemovePropertyTranslado" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="buttonRemovePropiedadTranslado" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelNombreClaseTranslado">
+            <Component class="javax.swing.JLabel" name="lbNombreClaseTranslado">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nombre Clase"/>
-                <Property name="name" type="java.lang.String" value="labelNombreClaseTranslado" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="lbNombreClaseTranslado" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="tfNombreClaseTranslado">
@@ -457,11 +436,5 @@
         </Container>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="buttonGuardarDefaultOntology">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Guardar"/>
-        <Property name="name" type="java.lang.String" value="buttonGuardarDefaultOntology" noResource="true"/>
-      </Properties>
-    </Component>
   </SubComponents>
 </Form>

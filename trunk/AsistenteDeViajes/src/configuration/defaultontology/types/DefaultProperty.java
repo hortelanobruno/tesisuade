@@ -18,6 +18,11 @@ public class DefaultProperty {
     public DefaultProperty() {
     }
 
+    public DefaultProperty(String name, TipoDato tipoDato) {
+        this.tipoDato = tipoDato;
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
