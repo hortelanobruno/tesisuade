@@ -11,9 +11,11 @@ import com.hp.hpl.jena.reasoner.ReasonerRegistry;
 import com.hp.hpl.jena.reasoner.dig.DIGReasoner;
 import com.hp.hpl.jena.reasoner.dig.DIGReasonerFactory;
 import configuration.Configuration;
+import configuration.defaultontology.types.DefaultProperty;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
 import jenasouforce.ApiJena;
 
@@ -35,7 +37,7 @@ public class ModeloTransformadorOntologia {
         this.configuration = configuration;
     }
 
-    public List<String> generarOntologiaBusqueda(String ontURL, String newURL, String sin) {
+    public List<String> generarOntologiaBusqueda(String ontURL, String newURL, String sin) throws Exception {
         DIGReasoner r = (DIGReasoner) ReasonerRegistry.theRegistry().create(DIGReasonerFactory.URI, null);
         OntModelSpec spec = new OntModelSpec(OntModelSpec.OWL_MEM);
         spec.setReasoner(r);
@@ -48,15 +50,53 @@ public class ModeloTransformadorOntologia {
         if (errores != null) {
             return errores;
         } else {
-            chequearMinimoCumplimiento(nueva);
-            jena.grabarOntologia(nueva, newURL);
-            return null;
+            if(chequearMinimoCumplimiento(nueva)){
+                jena.grabarOntologia(nueva, newURL);
+                return null;
+            }else{
+                throw new Exception("No cumple el minimo requerimiento");
+            }
         }
     }
 
-    private void chequearMinimoCumplimiento(OntModel nueva) {
+    private boolean chequearMinimoCumplimiento(OntModel nueva) {
         //TODO - Verificar que la nueva ontologia cumpla con el minimo requerimiento
         //       Y tambien agregar a la configuracion si hay nuevas propiedades avanzadas
+        String clase = configuration.getDefaultOntology().getViaje().getNombreClase();
+        HashMap<String,String> mapa = jena.getProperty(nueva, clase);
+        if(mapa != null){
+            for(DefaultProperty pro : configuration.getDefaultOntology().getViaje().getDefaultProperties()){
+                if(!mapa.containsKey(pro.getName())){
+                    return false;
+                }
+            }
+        }else{
+            return false;
+        }
+        clase = configuration.getDefaultOntology().getAlojamiento().getNombreClase();
+        mapa = jena.getProperty(nueva, clase);
+        if(mapa != null){
+            for(DefaultProperty pro : configuration.getDefaultOntology().getAlojamiento().getDefaultProperties()){
+                if(!mapa.containsKey(pro.getName())){
+                    return false;
+                }
+            }
+        }else{
+            return false;
+        }
+        clase = configuration.getDefaultOntology().getTranslado().getNombreClase();
+        mapa = jena.getProperty(nueva, clase);
+        if(mapa != null){
+            for(DefaultProperty pro : configuration.getDefaultOntology().getTranslado().getDefaultProperties()){
+                if(!mapa.containsKey(pro.getName())){
+                    return false;
+                }
+            }
+        }else{
+            return false;
+        }
+
+        return true;
     }
 
     private OntModel loadOntModelFromOwlFile(String owlfile) {

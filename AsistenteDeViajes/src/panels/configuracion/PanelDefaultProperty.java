@@ -14,6 +14,7 @@ package panels.configuracion;
 import configuration.TipoDato;
 import configuration.defaultontology.types.DefaultProperty;
 import configuration.defaultontology.types.DefaultType;
+import java.awt.Toolkit;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,6 +32,8 @@ public class PanelDefaultProperty extends javax.swing.JDialog {
         this.model = model;
         this.type = type;
         initComponents();
+        Toolkit t = Toolkit.getDefaultToolkit();
+        this.setLocation((int) (t.getScreenSize().getWidth() - this.getWidth()) / 2, (int) (t.getScreenSize().getHeight() - this.getHeight()) / 2);
         initCombo();
     }
 

@@ -10,6 +10,8 @@ import gui.FileChooser;
 import gui.FramePrincipal;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import modelo.BusinessDelegate;
 import varios.FileCopy;
@@ -193,23 +195,27 @@ private void buttonAddOntViajesActionPerformed(java.awt.event.ActionEvent evt) {
     chooser = new FileChooser(this.main, true, this.main.getConfiguration().getOwlDirectory());
     if (chooser.getButton().equals("Cancel")) {
     } else {
-        String urlNew = chooser.path.split("/")[chooser.path.split("/").length - 1];
-        //Aca transformo, si va todo bien muestro un cartel con OK, sino un cartel con el error
-        List<String> errores = ((BusinessDelegate) this.vista.getModelo()).generarOntologiaBusqueda(chooser.path, this.main.getConfiguration().getOwlDirectory() + urlNew, this.main.getConfiguration().getOntologiasVocabulario().get(0));
-        if (errores == null) {
-            if (main.getConfiguration().getOntologiasViajes() == null) {
-                main.getConfiguration().setOntologiasViajes(new Vector<String>());
-                main.getConfiguration().getOntologiasViajes().add(this.main.getConfiguration().getOwlDirectory() + urlNew);
-            } else {
-                main.getConfiguration().getOntologiasViajes().add(this.main.getConfiguration().getOwlDirectory() + urlNew);
+            try {
+                String urlNew = chooser.path.split("/")[chooser.path.split("/").length - 1];
+                //Aca transformo, si va todo bien muestro un cartel con OK, sino un cartel con el error
+                List<String> errores = ((BusinessDelegate) this.vista.getModelo()).generarOntologiaBusqueda(chooser.path, this.main.getConfiguration().getOwlDirectory() + urlNew, this.main.getConfiguration().getOntologiasVocabulario().get(0));
+                if (errores == null) {
+                    if (main.getConfiguration().getOntologiasViajes() == null) {
+                        main.getConfiguration().setOntologiasViajes(new Vector<String>());
+                        main.getConfiguration().getOntologiasViajes().add(this.main.getConfiguration().getOwlDirectory() + urlNew);
+                    } else {
+                        main.getConfiguration().getOntologiasViajes().add(this.main.getConfiguration().getOwlDirectory() + urlNew);
+                    }
+                    ((DefaultListModel) listOntologiasViajes.getModel()).addElement(urlNew);
+                    main.recargarConfiguracion();
+                } else {
+                    //TODO Ver que hacer cuando ocurren errores al cargar una ontologia.
+                    DialogoErroresOntologia dialogoErrores = new DialogoErroresOntologia(main, true, errores);
+                    dialogoErrores.setVisible(true);
+                }
+            } catch (Exception ex) {
+                //Entro aca porque no cumple el minimo requerimiento
             }
-            ((DefaultListModel) listOntologiasViajes.getModel()).addElement(urlNew);
-            main.recargarConfiguracion();
-        } else {
-            //TODO Ver que hacer cuando ocurren errores al cargar una ontologia.
-            DialogoErroresOntologia dialogoErrores = new DialogoErroresOntologia(main, true, errores);
-            dialogoErrores.setVisible(true);
-        }
     }
 }//GEN-LAST:event_buttonAddOntViajesActionPerformed
 

@@ -88,7 +88,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JToolBar.Separator();
         buttonSetting = new javax.swing.JButton();
         statusToolBar = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
+        labelEstado = new javax.swing.JLabel();
         panelPrincipal = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jProgressBar1 = new javax.swing.JProgressBar();
@@ -122,6 +122,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         buttonBuscarVuelo.setFocusable(false);
         buttonBuscarVuelo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonBuscarVuelo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        buttonBuscarVuelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBuscarVueloActionPerformed(evt);
+            }
+        });
         itemsToolBar.add(buttonBuscarVuelo);
 
         buttonBuscarHotel.setText("BH");
@@ -178,12 +183,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         itemsToolBar.add(buttonSetting);
 
         statusToolBar.setFloatable(false);
-
-        jButton1.setText("jButton1");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        statusToolBar.add(jButton1);
+        statusToolBar.add(labelEstado);
 
         panelPrincipal.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -391,6 +391,7 @@ private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     if (!isPanelMotorBusquedaSelected) {
         setPanelMotorBusqueda(new PanelMotorBusqueda(this, vistaMotorBusqueda));
         ponerPanel(getPanelMotorBusqueda());
+        labelEstado.setText(Mensajes.NUEVA_BUSQUEDA);
     }
 }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -398,6 +399,7 @@ private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     if (!isPanelSinonimosSelected) {
         setPanelSinonimos(new PanelSinonimos(this, vistaSinonimos));
         ponerPanel(getPanelSinonimos());
+        labelEstado.setText(Mensajes.SINONIMOS);
     }
 }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -424,6 +426,7 @@ private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
                 getConfiguration().setDefaultURLOWLViajes(chooser.getPath());
                 getPanelNuevaOntologia().setUrlOWL(chooser.getPath());
                 getPanelNuevaOntologia().modoCargar();
+                labelEstado.setText(Mensajes.ABRIR_ONTOLOGIA);
             }
         }
     }
@@ -442,6 +445,7 @@ private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 // Cerrar ontologia
     if (!isPanelPrincipalSelected) {
         ponerPanel(getPanelPrincipal());
+        labelEstado.setText(Mensajes.PANEL_PRINCIPAL);
     }
 }//GEN-LAST:event_jMenuItem9ActionPerformed
 
@@ -450,6 +454,7 @@ private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     if (!isPanelConfiguracionSelected) {
         setPanelConfiguracion(new PanelConfiguracion(this, vistaConfiguracion));
         ponerPanel(getPanelConfiguracion());
+        labelEstado.setText(Mensajes.CONFIGURACION);
     }
 }//GEN-LAST:event_jMenuItem3ActionPerformed
 
@@ -470,14 +475,20 @@ private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     if (!isPanelOntologiaDefaultSelected) {
         setPanelDefaultOntologia(new PanelDefaultOntologia(this, vistaDefaultOntologia));
         ponerPanel(getPanelDefaultOntologia());
+        labelEstado.setText(Mensajes.ONTOLOGIA_DEFAULT);
     }
 }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+private void buttonBuscarVueloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarVueloActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_buttonBuscarVueloActionPerformed
 
     public void nuevaOntologia() {
         if (!isPanelNuevaOntologiaSelected) {
             setPanelNuevaOntologia(new PanelNuevaOntologia(this, vistaNuevaOntologia));
             ponerPanel(getPanelNuevaOntologia());
             getPanelNuevaOntologia().modoNuevo();
+            labelEstado.setText(Mensajes.NUEVA_ONTOLOGIA);
         }
     }
 
@@ -719,7 +730,6 @@ private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JButton buttonBuscarVuelo;
     private javax.swing.JButton buttonSetting;
     private javax.swing.JToolBar itemsToolBar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -746,6 +756,7 @@ private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
+    private javax.swing.JLabel labelEstado;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JToolBar statusToolBar;
