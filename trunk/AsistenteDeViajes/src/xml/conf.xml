@@ -1,7 +1,37 @@
 <configuration>
+  <defaultOntology>
+    <alojamiento>
+      <nombreClase></nombreClase>
+      <defaultProperties/>
+    </alojamiento>
+    <translado>
+      <nombreClase></nombreClase>
+      <defaultProperties/>
+    </translado>
+    <viaje>
+      <nombreClase>Ticket_Viaje</nombreClase>
+      <defaultProperties>
+        <defaultproperty>
+          <tipoDato>STRING</tipoDato>
+          <name>desde</name>
+        </defaultproperty>
+        <defaultproperty>
+          <tipoDato reference="../../defaultproperty/tipoDato"/>
+          <name>hacia</name>
+        </defaultproperty>
+        <defaultproperty>
+          <tipoDato>INTEGER</tipoDato>
+          <name>cantidad_pasajeros</name>
+        </defaultproperty>
+      </defaultProperties>
+    </viaje>
+  </defaultOntology>
+  <propiedadesAvanzadasVuelo/>
+  <propiedadesAvanzadasHotel/>
+  <propiedadesAvanzadasAuto/>
   <ontologiasViajes/>
   <ontologiasVocabulario/>
-  <defaultURLOWLSinonimos>C:/Documents and Settings/Administrador/Escritorio/Tesis/Ontologias/Ontologias/vocabulario2.owl</defaultURLOWLSinonimos>
-  <defaultURLOWLViajes>C:/Documents and Settings/Administrador/Mis documentos/workspace/NetBeans/GUITesis/src/owl/vocabulario2.owl</defaultURLOWLViajes>
-  <owlDirectory>//</owlDirectory>
+  <defaultURLOWLSinonimos></defaultURLOWLSinonimos>
+  <defaultURLOWLViajes></defaultURLOWLViajes>
+  <owlDirectory></owlDirectory>
 </configuration>

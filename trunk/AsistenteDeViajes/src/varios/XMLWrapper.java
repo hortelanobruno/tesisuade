@@ -30,6 +30,13 @@ public class XMLWrapper {
         String config = fileReader.obtenerContenido();
         XStream xstream = new XStream();
         xstream.alias("configuration", Configuration.class);
+        xstream.alias("tipodato", TipoDato.class);
+        xstream.alias("advancedproperty", AdvancedProperty.class);
+        xstream.alias("defaultontology", DefaultOntology.class);
+        xstream.alias("defaultviaje", DefaultViaje.class);
+        xstream.alias("defaulttranslado", DefaultTranslado.class);
+        xstream.alias("defaultproperty", DefaultProperty.class);
+        xstream.alias("defaultalojamiento", DefaultAlojamiento.class);
         Configuration configuration = null;
         try {
             configuration = (Configuration) xstream.fromXML(config);

@@ -28,6 +28,14 @@ public class DefaultType {
         this.defaultProperties = defaultProperties;
     }
 
+    public void removeProperty(String nombre) {
+        for(DefaultProperty pro : defaultProperties){
+            if(pro.getName().equalsIgnoreCase(nombre)){
+                defaultProperties.remove(pro);
+                return;
+            }
+        }
+    }
     /**
      * @return the nombreClase
      */
