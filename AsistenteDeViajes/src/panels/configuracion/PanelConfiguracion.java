@@ -8,6 +8,7 @@ package panels.configuracion;
 import gui.DirectoryChooser;
 import gui.FileChooser;
 import gui.FramePrincipal;
+import java.io.File;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -15,6 +16,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import modelo.BusinessDelegate;
 import varios.FileCopy;
+import varios.RelativePath;
 import vistas.VistaConfiguracion;
 
 /**
@@ -248,9 +250,9 @@ private void buttonChangeOntVocabularioActionPerformed(java.awt.event.ActionEven
         String urlNew = chooser.path.split("/")[chooser.path.split("/").length - 1];
         FileCopy copy = new FileCopy();
         copy.copiar(chooser.path, this.main.getConfiguration().getOwlDirectory() + urlNew);
-        textFieldOntVocabulario.setText(chooser.path);
+        textFieldOntVocabulario.setText(RelativePath.getRelativePath(new File(this.main.getConfiguration().getOwlDirectory() + urlNew)));
         main.getConfiguration().setOntologiasVocabulario(new Vector<String>());
-        main.getConfiguration().getOntologiasVocabulario().add(this.main.getConfiguration().getOwlDirectory() + urlNew);
+        main.getConfiguration().getOntologiasVocabulario().add(RelativePath.getRelativePath(new File(this.main.getConfiguration().getOwlDirectory() + urlNew)));
         main.recargarConfiguracion();
     }
 }//GEN-LAST:event_buttonChangeOntVocabularioActionPerformed
@@ -259,8 +261,8 @@ private void buttonChageDirectorioOntologiaActionPerformed(java.awt.event.Action
     dirChooser = new DirectoryChooser(this.main, true);
     String folder = dirChooser.getPath();
     folder = folder + "/";
-    textFieldDirOnt.setText(folder);
-    main.getConfiguration().setOwlDirectory(folder);
+    textFieldDirOnt.setText(RelativePath.getRelativePath(new File(folder)));
+    main.getConfiguration().setOwlDirectory(RelativePath.getRelativePath(new File(folder)));
     main.recargarConfiguracion();
 }//GEN-LAST:event_buttonChageDirectorioOntologiaActionPerformed
 

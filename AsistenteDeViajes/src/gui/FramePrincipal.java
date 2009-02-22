@@ -530,8 +530,21 @@ private void buttonBuscarVueloActionPerformed(java.awt.event.ActionEvent evt) {/
             this.remove(getPanelConfiguracion());
             this.repaint();
         }
+        if (isPanelOntologiaDefaultSelected) {
+            this.remove(getPanelDefaultOntologia());
+            this.repaint();
+        }
 
-        if (panel instanceof PanelConfiguracion) {
+        if (panel instanceof PanelDefaultOntologia) {
+            this.isPanelOntologiaDefaultSelected = true;
+            this.isPanelConfiguracionSelected = false;
+            this.isPanelPrincipalSelected = false;
+            this.isPanelSinonimosSelected = false;
+            this.isPanelNuevaOntologiaSelected = false;
+            this.setActivePanel(getPanelDefaultOntologia());
+            this.isPanelMotorBusquedaSelected = false;
+        } else if (panel instanceof PanelConfiguracion) {
+            this.isPanelOntologiaDefaultSelected = false;
             this.isPanelConfiguracionSelected = true;
             this.isPanelPrincipalSelected = false;
             this.isPanelSinonimosSelected = false;
@@ -539,6 +552,7 @@ private void buttonBuscarVueloActionPerformed(java.awt.event.ActionEvent evt) {/
             this.setActivePanel(getPanelConfiguracion());
             this.isPanelMotorBusquedaSelected = false;
         } else if (panel instanceof PanelMotorBusqueda) {
+            this.isPanelOntologiaDefaultSelected = false;
             this.isPanelConfiguracionSelected = false;
             this.isPanelPrincipalSelected = false;
             this.isPanelSinonimosSelected = false;
@@ -546,6 +560,7 @@ private void buttonBuscarVueloActionPerformed(java.awt.event.ActionEvent evt) {/
             this.setActivePanel(getPanelMotorBusqueda());
             this.isPanelMotorBusquedaSelected = true;
         } else if (panel instanceof PanelSinonimos) {
+            this.isPanelOntologiaDefaultSelected = false;
             this.isPanelConfiguracionSelected = false;
             this.isPanelPrincipalSelected = false;
             this.isPanelMotorBusquedaSelected = false;
@@ -553,6 +568,7 @@ private void buttonBuscarVueloActionPerformed(java.awt.event.ActionEvent evt) {/
             this.setActivePanel(getPanelSinonimos());
             this.isPanelSinonimosSelected = true;
         } else if (panel instanceof PanelNuevaOntologia) {
+            this.isPanelOntologiaDefaultSelected = false;
             this.isPanelConfiguracionSelected = false;
             this.isPanelPrincipalSelected = false;
             this.isPanelMotorBusquedaSelected = false;
@@ -560,6 +576,7 @@ private void buttonBuscarVueloActionPerformed(java.awt.event.ActionEvent evt) {/
             this.setActivePanel(getPanelSinonimos());
             this.isPanelNuevaOntologiaSelected = true;
         } else {
+            this.isPanelOntologiaDefaultSelected = false;
             this.isPanelConfiguracionSelected = false;
             this.isPanelPrincipalSelected = true;
             this.isPanelMotorBusquedaSelected = false;
