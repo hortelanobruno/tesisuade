@@ -31,8 +31,16 @@ public class ModeloOntologiaVocabulario {
         jena = new ApiJena();
     }
 
+    public void agregarPalabra(String ins) {
+        jena.agregarPalabra(m,ins);
+    }
+
     public IndividualSinonimoVO getIndividual(String ind) {
         return jena.showIndividualOfSinonimo(m,ind);
+    }
+
+    public void removerPalabra(String ins) {
+        jena.removerPalabra(m,ins);
     }
     
     public void removerTraduccion(String ins, String sin){

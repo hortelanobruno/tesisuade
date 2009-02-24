@@ -40,7 +40,7 @@ public class ModeloTransformadorOntologia {
     public List<String> generarOntologiaBusqueda(String ontURL, String newURL, String sin) throws Exception {
         DIGReasoner r = (DIGReasoner) ReasonerRegistry.theRegistry().create(DIGReasonerFactory.URI, null);
         OntModelSpec spec = new OntModelSpec(OntModelSpec.OWL_MEM);
-        spec.setReasoner(r);
+        //spec.setReasoner(r);
         OntModel ontologia = ModelFactory.createOntologyModel(spec, null);
         ontologia = loadOntModelFromOwlFile(ontURL);
         OntModel sinonimo = ModelFactory.createOntologyModel(spec, null);

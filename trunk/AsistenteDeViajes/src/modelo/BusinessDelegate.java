@@ -150,6 +150,14 @@ public class BusinessDelegate extends ProxyModelo {
         return modeloOntologiaViajes.showObjectProperties();
     }
 
+    public void removerPalabra(String ins){
+        modeloOntologiaVocabulario.removerPalabra(ins);
+    }
+
+    public void agregarPalabra(String ins){
+        modeloOntologiaVocabulario.agregarPalabra(ins);
+    }
+
     public void removerTraduccion(String ins, String sin) {
         modeloOntologiaVocabulario.removerTraduccion(ins, sin);
     }
