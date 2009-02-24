@@ -205,6 +205,12 @@ public class ApiJena {
         }
     }
 
+    public void agregarPalabra(OntModel m, String ins) {
+        String uri = getURIOntologiaConNumeral(m);
+        OntClass clase = m.getOntClass(uri + "palabra");
+        Individual individual = m.createIndividual(uri + ins, clase);
+    }
+
     public ArrayList<IndividualVueloVO> buscarVuelo(OntModel m, ConsultaVueloVO vuelo) {
         ArrayList<IndividualVueloVO> lista = new ArrayList<IndividualVueloVO>();
         HashMap<String, String> propiedades = new HashMap<String, String>();
@@ -897,6 +903,11 @@ public class ApiJena {
         ObjectProperty objpro = m.getObjectProperty(uri + pro);
         OntClass clase = m.getOntClass(uri + range);
         objpro.removeRange(clase);
+    }
+
+    public void removerPalabra(OntModel m, String ins) {
+        String uri = getURIOntologiaConNumeral(m);
+        m.getIndividual(uri + ins).remove();
     }
 
     public void removerTraduccion(OntModel m, String ind, String sin) {

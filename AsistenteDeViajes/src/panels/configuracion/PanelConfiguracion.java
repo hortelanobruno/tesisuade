@@ -217,6 +217,7 @@ private void buttonAddOntViajesActionPerformed(java.awt.event.ActionEvent evt) {
                 }
             } catch (Exception ex) {
                 //Entro aca porque no cumple el minimo requerimiento
+                System.out.println("No cumple con el minimo requerimiento");
             }
     }
 }//GEN-LAST:event_buttonAddOntViajesActionPerformed

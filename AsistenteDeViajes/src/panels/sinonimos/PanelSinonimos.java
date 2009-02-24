@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -91,6 +92,14 @@ public class PanelSinonimos extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         textFieldAgregarTra = new javax.swing.JTextField();
         buttonGuardar = new javax.swing.JButton();
+        panelAgregarPalabra = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        tfNombrePalabra = new javax.swing.JTextField();
+        buttonAceptarPalabra = new javax.swing.JButton();
+        buttonCancelarPalabra = new javax.swing.JButton();
+        buttonAgregarPalabra = new javax.swing.JButton();
+        buttonRemoverPalabra = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1023, 532));
 
@@ -161,6 +170,12 @@ public class PanelSinonimos extends javax.swing.JPanel {
             }
         });
 
+        textFieldAgregarSin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textFieldAgregarSinKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelAgregarSinLayout = new javax.swing.GroupLayout(panelAgregarSin);
         panelAgregarSin.setLayout(panelAgregarSinLayout);
         panelAgregarSinLayout.setHorizontalGroup(
@@ -201,6 +216,12 @@ public class PanelSinonimos extends javax.swing.JPanel {
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+
+        textFieldAgregarTra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textFieldAgregarTraKeyTyped(evt);
             }
         });
 
@@ -301,6 +322,68 @@ public class PanelSinonimos extends javax.swing.JPanel {
             }
         });
 
+        jLabel8.setText("Nombre");
+
+        tfNombrePalabra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfNombrePalabraKeyTyped(evt);
+            }
+        });
+
+        buttonAceptarPalabra.setText("A");
+        buttonAceptarPalabra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAceptarPalabraActionPerformed(evt);
+            }
+        });
+
+        buttonCancelarPalabra.setText("C");
+        buttonCancelarPalabra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelarPalabraActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelAgregarPalabraLayout = new javax.swing.GroupLayout(panelAgregarPalabra);
+        panelAgregarPalabra.setLayout(panelAgregarPalabraLayout);
+        panelAgregarPalabraLayout.setHorizontalGroup(
+            panelAgregarPalabraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAgregarPalabraLayout.createSequentialGroup()
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addComponent(tfNombrePalabra, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonAceptarPalabra)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonCancelarPalabra))
+        );
+        panelAgregarPalabraLayout.setVerticalGroup(
+            panelAgregarPalabraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAgregarPalabraLayout.createSequentialGroup()
+                .addGroup(panelAgregarPalabraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(tfNombrePalabra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonAceptarPalabra)
+                    .addComponent(buttonCancelarPalabra))
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
+
+        buttonAgregarPalabra.setText("Add");
+        buttonAgregarPalabra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAgregarPalabraActionPerformed(evt);
+            }
+        });
+
+        buttonRemoverPalabra.setText("Rem");
+        buttonRemoverPalabra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRemoverPalabraActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Palabra");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -316,10 +399,19 @@ public class PanelSinonimos extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(buttonExaminar))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(385, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                                .addComponent(buttonAgregarPalabra)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonRemoverPalabra))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panelAgregarPalabra, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)))
+                .addContainerGap(348, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,9 +422,17 @@ public class PanelSinonimos extends javax.swing.JPanel {
                     .addComponent(buttonExaminar)
                     .addComponent(textFieldURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(buttonAgregarPalabra)
+                            .addComponent(buttonRemoverPalabra))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panelAgregarPalabra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonGuardar)
                 .addGap(23, 23, 23))
@@ -341,13 +441,14 @@ public class PanelSinonimos extends javax.swing.JPanel {
 
 private void buttonExaminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExaminarActionPerformed
 //Filechooser para elegir el archivo owl
-    chooser = new FileChooser(main, true, main.getConfiguration().getDefaultURLOWLSinonimos());
+    chooser = new FileChooser(main, true, main.getConfiguration().getOwlDirectory());
     setUrlOWL(chooser.getPath());
     setChooserButton(chooser.getButton());
     if (chooserButton.equals("Cancel")) {
     } else {
         // Cargar los table
         main.getConfiguration().setDefaultURLOWLSinonimos(chooser.getPath());
+        textFieldURL.setText(chooser.getPath());
         ((ControladorPanelSinonimos) vista.getControlador()).doCargarOWL(true);
     }
 }//GEN-LAST:event_buttonExaminarActionPerformed
@@ -401,6 +502,72 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     this.textFieldAgregarTra.setText("");
     this.panelAgregarTraduccion.setVisible(false);
 }//GEN-LAST:event_jButton3ActionPerformed
+
+private void buttonCancelarPalabraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarPalabraActionPerformed
+    panelAgregarPalabra.setVisible(false);
+    tfNombrePalabra.setText("");
+}//GEN-LAST:event_buttonCancelarPalabraActionPerformed
+
+private void buttonAgregarPalabraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarPalabraActionPerformed
+    panelAgregarPalabra.setVisible(true);
+}//GEN-LAST:event_buttonAgregarPalabraActionPerformed
+
+private void buttonAceptarPalabraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAceptarPalabraActionPerformed
+    String nombre = tfNombrePalabra.getText();
+    nombre = nombre.trim();
+    if(!nombre.isEmpty()){
+        //Compruebo que ya no exista
+        ArrayList<String> individuals = (ArrayList<String>) ((BusinessDelegate) vista.getModelo()).obtenerInstanciasVocabuario(urlOWL);
+        if(!individuals.contains(nombre)){
+            //No lo contiene entonces lo agrego
+            ((BusinessDelegate) vista.getModelo()).agregarPalabra(nombre);
+            //Ahora lo agrego al arbol
+            cargarTree();
+            ((BusinessDelegate) vista.getModelo()).guardarOntologiaSinonimos();
+            this.invalidate();
+            panelAgregarPalabra.setVisible(false);
+            tfNombrePalabra.setText("");
+        }else{
+            JOptionPane.showMessageDialog(this,
+                "Ya existe es palabra",
+                "Asistente de Viajes",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+}//GEN-LAST:event_buttonAceptarPalabraActionPerformed
+
+private void tfNombrePalabraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNombrePalabraKeyTyped
+    Character a = new Character( ' ' );
+    if(a.equals(evt.getKeyChar())){
+        evt.setKeyChar('_');
+    }
+}//GEN-LAST:event_tfNombrePalabraKeyTyped
+
+private void textFieldAgregarSinKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldAgregarSinKeyTyped
+    Character a = new Character( ' ' );
+    if(a.equals(evt.getKeyChar())){
+        evt.setKeyChar('_');
+    }
+}//GEN-LAST:event_textFieldAgregarSinKeyTyped
+
+private void textFieldAgregarTraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldAgregarTraKeyTyped
+    Character a = new Character( ' ' );
+    if(a.equals(evt.getKeyChar())){
+        evt.setKeyChar('_');
+    }
+}//GEN-LAST:event_textFieldAgregarTraKeyTyped
+
+private void buttonRemoverPalabraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverPalabraActionPerformed
+    String instancia = eventoTree.getPath().getLastPathComponent().toString();
+    if (JOptionPane.showConfirmDialog(this,
+                "Esta seguro que desea eliminar la palabra ' "+instancia+" '?",
+                "Asistente de Viajes", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE) == 0) {
+                ((BusinessDelegate) vista.getModelo()).removerPalabra(instancia);
+                ((BusinessDelegate) vista.getModelo()).guardarOntologiaSinonimos();
+                cargarTree();
+    }
+    
+}//GEN-LAST:event_buttonRemoverPalabraActionPerformed
 
     public void update() {
         if (cargarArbol) {
@@ -535,6 +702,7 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             jScrollPane1.setViewportView(treeIndividual);
         }
 
+        panelAgregarPalabra.setVisible(false);
         //Crear lista mutable sinonimos
 
         listSinonimos.setVisibleRowCount(-1);
@@ -547,12 +715,16 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         panelAgregarTraduccion.setVisible(false);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonAceptarPalabra;
     private javax.swing.JButton buttonAddSinonimo;
     private javax.swing.JButton buttonAddTraduccion;
+    private javax.swing.JButton buttonAgregarPalabra;
+    private javax.swing.JButton buttonCancelarPalabra;
     private javax.swing.JButton buttonExaminar;
     private javax.swing.JButton buttonGuardar;
     private javax.swing.JButton buttonRemoveSinonimo;
     private javax.swing.JButton buttonRemoveTraduccion;
+    private javax.swing.JButton buttonRemoverPalabra;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -563,6 +735,8 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -570,11 +744,13 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JLabel labelPalabra;
     private javax.swing.JList listSinonimos;
     private javax.swing.JList listTraduccion;
+    private javax.swing.JPanel panelAgregarPalabra;
     private javax.swing.JPanel panelAgregarSin;
     private javax.swing.JPanel panelAgregarTraduccion;
     private javax.swing.JTextField textFieldAgregarSin;
     private javax.swing.JTextField textFieldAgregarTra;
     private javax.swing.JTextField textFieldURL;
+    private javax.swing.JTextField tfNombrePalabra;
     private javax.swing.JTree treeIndividual;
     // End of variables declaration//GEN-END:variables
 

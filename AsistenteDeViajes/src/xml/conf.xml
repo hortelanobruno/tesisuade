@@ -30,8 +30,10 @@
   <propiedadesAvanzadasHotel/>
   <propiedadesAvanzadasAuto/>
   <ontologiasViajes/>
-  <ontologiasVocabulario/>
-  <defaultURLOWLSinonimos></defaultURLOWLSinonimos>
+  <ontologiasVocabulario>
+    <string>src\owl\vocabulario2.owl</string>
+  </ontologiasVocabulario>
+  <defaultURLOWLSinonimos>C:/Users/Brunoli/Documents/NetBeansProjects/AsistenteDeViajes/src/owl/vocabulario2.owl</defaultURLOWLSinonimos>
   <defaultURLOWLViajes></defaultURLOWLViajes>
-  <owlDirectory></owlDirectory>
+  <owlDirectory>src/owl/</owlDirectory>
 </configuration>

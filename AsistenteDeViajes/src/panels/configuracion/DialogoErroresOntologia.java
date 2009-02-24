@@ -11,6 +11,7 @@
 package panels.configuracion;
 
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 
@@ -30,9 +31,13 @@ public class DialogoErroresOntologia extends javax.swing.JDialog {
     }
 
     private void cargarLista(List<String> errores) {
+        List<String> aux = new ArrayList<String>();
         DefaultListModel model = new DefaultListModel();
         for (String error : errores) {
-            model.addElement(error);
+            if(!aux.contains(error)){
+                model.addElement(error);
+                aux.add(error);
+            }
         }
         listErrores.setModel(model);
     }
