@@ -1,27 +1,57 @@
 <configuration>
   <defaultOntology>
     <alojamiento>
-      <nombreClase></nombreClase>
-      <defaultProperties/>
-    </alojamiento>
-    <translado>
-      <nombreClase></nombreClase>
-      <defaultProperties/>
-    </translado>
-    <viaje>
-      <nombreClase>Ticket_Viaje</nombreClase>
+      <nombreClase>Reserva_Habitacion</nombreClase>
       <defaultProperties>
         <defaultproperty>
           <tipoDato>STRING</tipoDato>
-          <name>desde</name>
+          <name>ciudad</name>
         </defaultproperty>
         <defaultproperty>
-          <tipoDato reference="../../defaultproperty/tipoDato"/>
-          <name>hacia</name>
+          <tipoDato>DATE</tipoDato>
+          <name>fecha_inicio</name>
+        </defaultproperty>
+        <defaultproperty>
+          <tipoDato reference="../../defaultproperty[2]/tipoDato"/>
+          <name>fecha_salida</name>
         </defaultproperty>
         <defaultproperty>
           <tipoDato>INTEGER</tipoDato>
-          <name>cantidad_pasajeros</name>
+          <name>cantidad_personas</name>
+        </defaultproperty>
+      </defaultProperties>
+    </alojamiento>
+    <translado>
+      <nombreClase>Reserva_Auto</nombreClase>
+      <defaultProperties>
+        <defaultproperty>
+          <tipoDato reference="../../../../alojamiento/defaultProperties/defaultproperty/tipoDato"/>
+          <name>ciudad</name>
+        </defaultproperty>
+        <defaultproperty>
+          <tipoDato reference="../../../../alojamiento/defaultProperties/defaultproperty[2]/tipoDato"/>
+          <name>fecha_inicio</name>
+        </defaultproperty>
+        <defaultproperty>
+          <tipoDato reference="../../../../alojamiento/defaultProperties/defaultproperty[2]/tipoDato"/>
+          <name>fecha_salida</name>
+        </defaultproperty>
+      </defaultProperties>
+    </translado>
+    <viaje>
+      <nombreClase>Reserva_Pasaje</nombreClase>
+      <defaultProperties>
+        <defaultproperty>
+          <tipoDato reference="../../../../alojamiento/defaultProperties/defaultproperty/tipoDato"/>
+          <name>ciudad_origen</name>
+        </defaultproperty>
+        <defaultproperty>
+          <tipoDato reference="../../../../alojamiento/defaultProperties/defaultproperty/tipoDato"/>
+          <name>ciudad_destino</name>
+        </defaultproperty>
+        <defaultproperty>
+          <tipoDato reference="../../../../alojamiento/defaultProperties/defaultproperty[2]/tipoDato"/>
+          <name>fecha_salida</name>
         </defaultproperty>
       </defaultProperties>
     </viaje>

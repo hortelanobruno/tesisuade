@@ -91,7 +91,6 @@ public class PanelSinonimos extends javax.swing.JPanel {
         jButton5 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         textFieldAgregarTra = new javax.swing.JTextField();
-        buttonGuardar = new javax.swing.JButton();
         panelAgregarPalabra = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         tfNombrePalabra = new javax.swing.JTextField();
@@ -315,13 +314,6 @@ public class PanelSinonimos extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        buttonGuardar.setText("Guardar");
-        buttonGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonGuardarActionPerformed(evt);
-            }
-        });
-
         jLabel8.setText("Nombre");
 
         tfNombrePalabra.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -391,7 +383,6 @@ public class PanelSinonimos extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonGuardar)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(26, 26, 26)
@@ -433,9 +424,7 @@ public class PanelSinonimos extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonGuardar)
-                .addGap(23, 23, 23))
+                .addGap(52, 52, 52))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -481,10 +470,6 @@ private void buttonRemoveTraduccionActionPerformed(java.awt.event.ActionEvent ev
     }
 }//GEN-LAST:event_buttonRemoveTraduccionActionPerformed
 
-private void buttonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGuardarActionPerformed
-    ((BusinessDelegate) vista.getModelo()).guardarOntologiaSinonimos();
-}//GEN-LAST:event_buttonGuardarActionPerformed
-
 private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     ((ControladorPanelSinonimos) vista.getControlador()).doAgregarSinonimo(true);
 }//GEN-LAST:event_jButton2ActionPerformed
@@ -521,9 +506,10 @@ private void buttonAceptarPalabraActionPerformed(java.awt.event.ActionEvent evt)
         if(!individuals.contains(nombre)){
             //No lo contiene entonces lo agrego
             ((BusinessDelegate) vista.getModelo()).agregarPalabra(nombre);
+            ((BusinessDelegate) vista.getModelo()).guardarOntologiaSinonimos();
             //Ahora lo agrego al arbol
             cargarTree();
-            ((BusinessDelegate) vista.getModelo()).guardarOntologiaSinonimos();
+            
             this.invalidate();
             panelAgregarPalabra.setVisible(false);
             tfNombrePalabra.setText("");
@@ -597,6 +583,7 @@ private void buttonRemoverPalabraActionPerformed(java.awt.event.ActionEvent evt)
         ((BusinessDelegate) vista.getModelo()).agregarSinonimo(instancia, textFieldAgregarSin.getText());
         textFieldAgregarSin.setText("");
         this.panelAgregarSin.setVisible(false);
+        ((BusinessDelegate) vista.getModelo()).guardarOntologiaSinonimos();
     }
 
     public void agregarTraduccion() {
@@ -606,6 +593,7 @@ private void buttonRemoverPalabraActionPerformed(java.awt.event.ActionEvent evt)
         ((BusinessDelegate) vista.getModelo()).agregarTraduccion(instancia, textFieldAgregarTra.getText());
         textFieldAgregarTra.setText("");
         this.panelAgregarTraduccion.setVisible(false);
+        ((BusinessDelegate) vista.getModelo()).guardarOntologiaSinonimos();
     }
 
     public void removerSinonimo() {
@@ -613,6 +601,7 @@ private void buttonRemoverPalabraActionPerformed(java.awt.event.ActionEvent evt)
         String instancia = labelPalabra.getText();
         ((BusinessDelegate) vista.getModelo()).removerSinonimo(instancia, model.getElementAt(listSinonimos.getSelectedIndex()).toString());
         model.remove(listSinonimos.getSelectedIndex());
+        ((BusinessDelegate) vista.getModelo()).guardarOntologiaSinonimos();
     }
 
     public void removerTraduccion() {
@@ -620,6 +609,7 @@ private void buttonRemoverPalabraActionPerformed(java.awt.event.ActionEvent evt)
         String instancia = labelPalabra.getText();
         ((BusinessDelegate) vista.getModelo()).removerTraduccion(instancia, model.getElementAt(listTraduccion.getSelectedIndex()).toString());
         model.remove(listTraduccion.getSelectedIndex());
+        ((BusinessDelegate) vista.getModelo()).guardarOntologiaSinonimos();
     }
 
     public void cargarIndividualInPanel() {
@@ -713,6 +703,15 @@ private void buttonRemoverPalabraActionPerformed(java.awt.event.ActionEvent evt)
 
         panelAgregarSin.setVisible(false);
         panelAgregarTraduccion.setVisible(false);
+
+
+        String url = main.getConfiguration().getDefaultURLOWLSinonimos();
+        if(url!=null){
+            this.urlOWL=url;
+            this.textFieldURL.setText(url);
+            cargarTree();
+            cargarArbol = true;
+        }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAceptarPalabra;
@@ -721,7 +720,6 @@ private void buttonRemoverPalabraActionPerformed(java.awt.event.ActionEvent evt)
     private javax.swing.JButton buttonAgregarPalabra;
     private javax.swing.JButton buttonCancelarPalabra;
     private javax.swing.JButton buttonExaminar;
-    private javax.swing.JButton buttonGuardar;
     private javax.swing.JButton buttonRemoveSinonimo;
     private javax.swing.JButton buttonRemoveTraduccion;
     private javax.swing.JButton buttonRemoverPalabra;
