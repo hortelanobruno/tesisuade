@@ -5,7 +5,6 @@
 
 package modelo.ontologia;
 
-import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
@@ -14,7 +13,6 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.List;
 import jenasouforce.ApiJena;
-import jenasouforce.ClassHierarchy;
 import vo.IndividualSinonimoVO;
 
 /**
