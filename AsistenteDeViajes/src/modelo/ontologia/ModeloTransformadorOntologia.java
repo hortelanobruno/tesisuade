@@ -37,8 +37,24 @@ public class ModeloTransformadorOntologia {
         this.configuration = configuration;
     }
 
+    public List<String> generarOntologiaBusqueda2(String ontURL, String newURL, String sin){
+        OntModelSpec spec = new OntModelSpec(OntModelSpec.OWL_MEM);
+        OntModel ontologia = ModelFactory.createOntologyModel(spec, null);
+        ontologia = loadOntModelFromOwlFile(ontURL);
+        OntModel sinonimo = ModelFactory.createOntologyModel(spec, null);
+        sinonimo = loadOntModelFromOwlFile(sin);
+        OntModel nueva = ModelFactory.createOntologyModel(spec, null);
+        List<String> errores = jena.generarOntologiaBusqueda2(ontologia, sinonimo, nueva,configuration.getDefaultOntology());
+
+
+        
+        return null;
+    }
+
+
+    @Deprecated
     public List<String> generarOntologiaBusqueda(String ontURL, String newURL, String sin) throws Exception {
-        DIGReasoner r = (DIGReasoner) ReasonerRegistry.theRegistry().create(DIGReasonerFactory.URI, null);
+        //DIGReasoner r = (DIGReasoner) ReasonerRegistry.theRegistry().create(DIGReasonerFactory.URI, null);
         OntModelSpec spec = new OntModelSpec(OntModelSpec.OWL_MEM);
         //spec.setReasoner(r);
         OntModel ontologia = ModelFactory.createOntologyModel(spec, null);
@@ -59,6 +75,7 @@ public class ModeloTransformadorOntologia {
         }
     }
 
+    @Deprecated
     private boolean chequearMinimoCumplimiento(OntModel nueva) {
         //TODO - Verificar que la nueva ontologia cumpla con el minimo requerimiento
         //       Y tambien agregar a la configuracion si hay nuevas propiedades avanzadas

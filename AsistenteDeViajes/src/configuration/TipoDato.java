@@ -10,5 +10,5 @@ package configuration;
  * @author Brunoli
  */
 public enum TipoDato {
-STRING,BOOLEAN,INTEGER,DOUBLE,ANY,DATE
+STRING,BOOLEAN,INTEGER,DOUBLE,ANY,DATE,FLOAT
 }
