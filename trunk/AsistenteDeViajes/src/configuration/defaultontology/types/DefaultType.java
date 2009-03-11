@@ -20,6 +20,17 @@ public class DefaultType {
         defaultProperties = new ArrayList<DefaultProperty>();
     }
 
+    public List<String> getDefaultPropertiesNames(){
+        List<String> props = null;
+        if(!defaultProperties.isEmpty()){
+            props=new ArrayList<String>();
+            for (DefaultProperty pro : defaultProperties) {
+                props.add(pro.getName());
+            }
+        }
+        return props;
+    }
+
     public List<DefaultProperty> getDefaultProperties() {
         return defaultProperties;
     }

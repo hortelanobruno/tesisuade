@@ -38,4 +38,10 @@ public class DefaultProperty {
     public void setTipoDato(TipoDato tipoDato) {
         this.tipoDato = tipoDato;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
 }
