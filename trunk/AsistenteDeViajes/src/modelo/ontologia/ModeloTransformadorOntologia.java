@@ -45,10 +45,12 @@ public class ModeloTransformadorOntologia {
         sinonimo = loadOntModelFromOwlFile(sin);
         OntModel nueva = ModelFactory.createOntologyModel(spec, null);
         List<String> errores = jena.generarOntologiaBusqueda2(ontologia, sinonimo, nueva,configuration.getDefaultOntology());
-
-
-        
-        return null;
+        if(errores==null){
+            //Se transformo correctamente
+            jena.grabarOntologia(nueva, newURL);
+            return null;
+        }
+        return errores;
     }
 
 
