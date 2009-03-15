@@ -49,6 +49,8 @@ public class ModeloTransformadorOntologia {
             //Se transformo correctamente
             jena.grabarOntologia(nueva, newURL);
             return null;
+        }else{
+            
         }
         return errores;
     }
