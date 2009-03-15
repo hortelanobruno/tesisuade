@@ -465,6 +465,7 @@ public class ApiJena {
         //Chequeo que en estas clases esten las 3 requeridas
         DefaultOntology newDefaultOntology = chequearCumplimiento3Clases(sinonimo, ontologia, defaultOntology);
         if (newDefaultOntology!=null) {
+            System.out.println("Cumple default ontology");
             //Como cumple tengo q pasar las clases con las propiedades
             //Creo todo
             createClassWithPropForProcesodeTransformacion(nueva,ontologia,defaultOntology,newDefaultOntology);
@@ -472,8 +473,8 @@ public class ApiJena {
             translateAllOntology(nueva,sinonimo);
         }else{
             //No cumple con la ontologia default
+            System.out.println("NO Cumple default ontology");
         }
-        System.out.println("FIN");
         return null;
     }
 
@@ -511,16 +512,18 @@ public class ApiJena {
 
     private void createClassWithPropForProcesodeTransformacion(OntModel nueva, OntModel ontologia, DefaultOntology defaultOntology, DefaultOntology newDefaultOntology) {
         //Alojamiento
-        addClass(nueva,defaultOntology.getAlojamiento().getNombreClase(),"");
+        addClass(nueva,defaultOntology.getAlojamiento().getNombreClase(),null);
         Set<String> propAlo = getProperty(ontologia, newDefaultOntology.getAlojamiento().getNombreClase()).keySet();
         for(String pro : propAlo){
             String tipo = getProperty(ontologia, defaultOntology.getAlojamiento().getNombreClase()).get(pro);
             if(tipo.startsWith("d")){
                 //datatype
+                addDatatypeProperty(nueva, pro);
                 addDatatypePropertyToClass(nueva, defaultOntology.getAlojamiento().getNombreClase(), pro);
                 changeRange(nueva, pro, getDatatypeProperty(ontologia, pro).getRange());
             }else{
                 //obj
+                addDatatypeProperty(nueva, pro);
                 addDatatypePropertyToClass(nueva, defaultOntology.getAlojamiento().getNombreClase(), pro);
                 changeRange(nueva, pro, "string");
             }
@@ -538,16 +541,18 @@ public class ApiJena {
         }
 
         //Viaje
-        addClass(nueva,defaultOntology.getViaje().getNombreClase(),"");
+        addClass(nueva,defaultOntology.getViaje().getNombreClase(),null);
         propAlo = getProperty(ontologia, newDefaultOntology.getViaje().getNombreClase()).keySet();
         for(String pro : propAlo){
             String tipo = getProperty(ontologia, defaultOntology.getViaje().getNombreClase()).get(pro);
             if(tipo.startsWith("d")){
                 //datatype
+                addDatatypeProperty(nueva, pro);
                 addDatatypePropertyToClass(nueva, defaultOntology.getViaje().getNombreClase(), pro);
                 changeRange(nueva, pro, getDatatypeProperty(ontologia, pro).getRange());
             }else{
                 //obj
+                addDatatypeProperty(nueva, pro);
                 addDatatypePropertyToClass(nueva, defaultOntology.getViaje().getNombreClase(), pro);
                 changeRange(nueva, pro, "string");
             }
@@ -566,16 +571,18 @@ public class ApiJena {
 
 
         //Auto
-        addClass(nueva,defaultOntology.getTranslado().getNombreClase(),"");
+        addClass(nueva,defaultOntology.getTranslado().getNombreClase(),null);
         propAlo = getProperty(ontologia, newDefaultOntology.getTranslado().getNombreClase()).keySet();
         for(String pro : propAlo){
             String tipo = getProperty(ontologia, defaultOntology.getTranslado().getNombreClase()).get(pro);
             if(tipo.startsWith("d")){
                 //datatype
+                addDatatypeProperty(nueva, pro);
                 addDatatypePropertyToClass(nueva, defaultOntology.getTranslado().getNombreClase(), pro);
                 changeRange(nueva, pro, getDatatypeProperty(ontologia, pro).getRange());
             }else{
                 //obj
+                addDatatypeProperty(nueva, pro);
                 addDatatypePropertyToClass(nueva, defaultOntology.getTranslado().getNombreClase(), pro);
                 changeRange(nueva, pro, "string");
             }
@@ -630,7 +637,7 @@ public class ApiJena {
         return null;
     }
 
-    private boolean chequearCumplientoTipo(DefaultOntology AA, String nombreClase,List<DefaultProperty> defaultsPropAlojamiento, OntModel sinonimo, OntModel ontologia){
+    private boolean chequearCumplientoTipoAlojamiento(DefaultOntology AA, String nombreClase,List<DefaultProperty> defaultsPropAlojamiento, OntModel sinonimo, OntModel ontologia){
         Set<String> clases = showClass(ontologia).keySet();
         List<String> posiblesNombresDeAlojamiento = getSinAndTraOfPalabra(sinonimo, nombreClase);
         String resultAlojamiento = chequearCumplimientoSinonimos(posiblesNombresDeAlojamiento, new ArrayList<String>(clases));
@@ -671,6 +678,88 @@ public class ApiJena {
         return true;
     }
 
+
+    private boolean chequearCumplientoTipoViaje(DefaultOntology AA, String nombreClase,List<DefaultProperty> defaultsPropAlojamiento, OntModel sinonimo, OntModel ontologia){
+        Set<String> clases = showClass(ontologia).keySet();
+        List<String> posiblesNombresDeAlojamiento = getSinAndTraOfPalabra(sinonimo, nombreClase);
+        String resultAlojamiento = chequearCumplimientoSinonimos(posiblesNombresDeAlojamiento, new ArrayList<String>(clases));
+        if (resultAlojamiento != null) {
+            AA.getViaje().setNombreClase(resultAlojamiento);
+        } else {
+            return false;
+        }
+        //Chequeo prop alojamiento
+        Set<String> muestraPropAlo = getProperty(ontologia, resultAlojamiento).keySet();
+        for (DefaultProperty defProp : defaultsPropAlojamiento) {
+            List<String> posPropDeAlojamiento = getSinAndTraOfPalabra(sinonimo, defProp.getName());
+            String resPropDeAlojamiento = chequearCumplimientoSinonimos(posPropDeAlojamiento, new ArrayList<String>(muestraPropAlo));
+            if (resPropDeAlojamiento != null) {
+                String tipo = getProperty(ontologia, resultAlojamiento).get(resPropDeAlojamiento);
+                if (tipo.startsWith("d")) {
+                    //es datatype
+                    tipo = getDatatypeProperty(ontologia, resPropDeAlojamiento).getRange();
+                    if (tipo.equalsIgnoreCase("Date")) {
+                        AA.getViaje().getDefaultProperties().add(new DefaultProperty(resPropDeAlojamiento, TipoDato.DATE));
+                    } else if (tipo.equalsIgnoreCase("String")) {
+                        AA.getViaje().getDefaultProperties().add(new DefaultProperty(resPropDeAlojamiento, TipoDato.STRING));
+                    } else if (tipo.equalsIgnoreCase("int")) {
+                        AA.getViaje().getDefaultProperties().add(new DefaultProperty(resPropDeAlojamiento, TipoDato.INTEGER));
+                    } else if (tipo.equalsIgnoreCase("Float")) {
+                        AA.getViaje().getDefaultProperties().add(new DefaultProperty(resPropDeAlojamiento, TipoDato.FLOAT));
+                    } else if (tipo.equalsIgnoreCase("Boolean")) {
+                        AA.getViaje().getDefaultProperties().add(new DefaultProperty(resPropDeAlojamiento, TipoDato.BOOLEAN));
+                    }
+                } else {
+                    //es object
+                    AA.getViaje().getDefaultProperties().add(new DefaultProperty(resPropDeAlojamiento, TipoDato.ANY));
+                }
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean chequearCumplientoTipoTranslado(DefaultOntology AA, String nombreClase,List<DefaultProperty> defaultsPropAlojamiento, OntModel sinonimo, OntModel ontologia){
+        Set<String> clases = showClass(ontologia).keySet();
+        List<String> posiblesNombresDeAlojamiento = getSinAndTraOfPalabra(sinonimo, nombreClase);
+        String resultAlojamiento = chequearCumplimientoSinonimos(posiblesNombresDeAlojamiento, new ArrayList<String>(clases));
+        if (resultAlojamiento != null) {
+            AA.getTranslado().setNombreClase(resultAlojamiento);
+        } else {
+            return false;
+        }
+        //Chequeo prop alojamiento
+        Set<String> muestraPropAlo = getProperty(ontologia, resultAlojamiento).keySet();
+        for (DefaultProperty defProp : defaultsPropAlojamiento) {
+            List<String> posPropDeAlojamiento = getSinAndTraOfPalabra(sinonimo, defProp.getName());
+            String resPropDeAlojamiento = chequearCumplimientoSinonimos(posPropDeAlojamiento, new ArrayList<String>(muestraPropAlo));
+            if (resPropDeAlojamiento != null) {
+                String tipo = getProperty(ontologia, resultAlojamiento).get(resPropDeAlojamiento);
+                if (tipo.startsWith("d")) {
+                    //es datatype
+                    tipo = getDatatypeProperty(ontologia, resPropDeAlojamiento).getRange();
+                    if (tipo.equalsIgnoreCase("Date")) {
+                        AA.getTranslado().getDefaultProperties().add(new DefaultProperty(resPropDeAlojamiento, TipoDato.DATE));
+                    } else if (tipo.equalsIgnoreCase("String")) {
+                        AA.getTranslado().getDefaultProperties().add(new DefaultProperty(resPropDeAlojamiento, TipoDato.STRING));
+                    } else if (tipo.equalsIgnoreCase("int")) {
+                        AA.getTranslado().getDefaultProperties().add(new DefaultProperty(resPropDeAlojamiento, TipoDato.INTEGER));
+                    } else if (tipo.equalsIgnoreCase("Float")) {
+                        AA.getTranslado().getDefaultProperties().add(new DefaultProperty(resPropDeAlojamiento, TipoDato.FLOAT));
+                    } else if (tipo.equalsIgnoreCase("Boolean")) {
+                        AA.getTranslado().getDefaultProperties().add(new DefaultProperty(resPropDeAlojamiento, TipoDato.BOOLEAN));
+                    }
+                } else {
+                    //es object
+                    AA.getTranslado().getDefaultProperties().add(new DefaultProperty(resPropDeAlojamiento, TipoDato.ANY));
+                }
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
     /**
      * Chequea que la ontologia cumple con la ontologia default
      * @param sinonimo
@@ -681,17 +770,17 @@ public class ApiJena {
     private DefaultOntology chequearCumplimiento3Clases(OntModel sinonimo, OntModel ontologia, DefaultOntology defaultOntology) {
         DefaultOntology newDefaultOntology = new DefaultOntology();
         //Chequeo alojamiento
-        boolean result = chequearCumplientoTipo(newDefaultOntology, defaultOntology.getAlojamiento().getNombreClase(), defaultOntology.getAlojamiento().getDefaultProperties(), sinonimo, ontologia);
+        boolean result = chequearCumplientoTipoAlojamiento(newDefaultOntology, defaultOntology.getAlojamiento().getNombreClase(), defaultOntology.getAlojamiento().getDefaultProperties(), sinonimo, ontologia);
         if(!result){
             return null;
         }
         //Chequeo viaje
-        result = chequearCumplientoTipo(newDefaultOntology, defaultOntology.getViaje().getNombreClase(), defaultOntology.getViaje().getDefaultProperties(), sinonimo, ontologia);
+        result = chequearCumplientoTipoViaje(newDefaultOntology, defaultOntology.getViaje().getNombreClase(), defaultOntology.getViaje().getDefaultProperties(), sinonimo, ontologia);
         if(!result){
             return null;
         }
         //Chequeo auto
-        result = chequearCumplientoTipo(newDefaultOntology, defaultOntology.getTranslado().getNombreClase(), defaultOntology.getTranslado().getDefaultProperties(), sinonimo, ontologia);
+        result = chequearCumplientoTipoTranslado(newDefaultOntology, defaultOntology.getTranslado().getNombreClase(), defaultOntology.getTranslado().getDefaultProperties(), sinonimo, ontologia);
         if(!result){
             return null;
         }
@@ -1271,7 +1360,7 @@ public class ApiJena {
     }
 
     public void addClass(OntModel m, String clase, String padre) {
-        String uri = m.getNsPrefixMap().get("").toString();
+        String uri = getURIOntologiaConNumeral(m);
         OntClass ontClass = m.createClass(uri + clase);
         if (padre != null) {
             m.getOntClass(uri + padre).addSubClass(ontClass);
