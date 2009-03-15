@@ -85,12 +85,36 @@ public class Configuration {
         return propiedadesAvanzadasAuto;
     }
 
+    public Vector<String> getNombrePropiedadesAvanzadasAuto(){
+        Vector<String> names = new Vector<String>();
+        for(AdvancedProperty proAd : getPropiedadesAvanzadasAuto()){
+            names.add(proAd.getNombre());
+        }
+        return names;
+    }
+
     public Vector<AdvancedProperty> getPropiedadesAvanzadasHotel() {
         return propiedadesAvanzadasHotel;
     }
 
+    public Vector<String> getNombrePropiedadesAvanzadasHotel(){
+        Vector<String> names = new Vector<String>();
+        for(AdvancedProperty proAd : getPropiedadesAvanzadasHotel()){
+            names.add(proAd.getNombre());
+        }
+        return names;
+    }
+
     public Vector<AdvancedProperty> getPropiedadesAvanzadasVuelo() {
         return propiedadesAvanzadasVuelo;
+    }
+
+    public Vector<String> getNombrePropiedadesAvanzadasVuelo(){
+        Vector<String> names = new Vector<String>();
+        for(AdvancedProperty proAd : getPropiedadesAvanzadasVuelo()){
+            names.add(proAd.getNombre());
+        }
+        return names;
     }
 
     public void setPropiedadesAvanzadasAuto(Vector<AdvancedProperty> propiedadesAvanzadasAuto) {

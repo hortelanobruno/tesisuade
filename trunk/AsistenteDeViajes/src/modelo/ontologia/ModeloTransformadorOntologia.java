@@ -37,14 +37,14 @@ public class ModeloTransformadorOntologia {
         this.configuration = configuration;
     }
 
-    public List<String> generarOntologiaBusqueda2(String ontURL, String newURL, String sin){
+    public List<String> generarOntologiaBusqueda2(Configuration conf, String ontURL, String newURL, String sin){
         OntModelSpec spec = new OntModelSpec(OntModelSpec.OWL_MEM);
         OntModel ontologia = ModelFactory.createOntologyModel(spec, null);
         ontologia = loadOntModelFromOwlFile(ontURL);
         OntModel sinonimo = ModelFactory.createOntologyModel(spec, null);
         sinonimo = loadOntModelFromOwlFile(sin);
         OntModel nueva = ModelFactory.createOntologyModel(spec, null);
-        List<String> errores = jena.generarOntologiaBusqueda2(ontologia, sinonimo, nueva,configuration.getDefaultOntology());
+        List<String> errores = jena.generarOntologiaBusqueda2(conf, ontologia, sinonimo, nueva,configuration.getDefaultOntology());
         if(errores==null){
             //Se transformo correctamente
             jena.grabarOntologia(nueva, newURL);

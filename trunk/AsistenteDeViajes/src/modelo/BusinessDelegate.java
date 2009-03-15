@@ -38,8 +38,8 @@ public class BusinessDelegate extends ProxyModelo {
         modeloMotorBusqueda.cargarModelos();
     }
 
-    public List<String> generarOntologiaBusqueda(String ontURL, String newURL, String sin) throws Exception {
-        return modeloTransformadorOntologia.generarOntologiaBusqueda2(ontURL, newURL, sin);
+    public List<String> generarOntologiaBusqueda(Configuration configuration, String ontURL, String newURL, String sin) throws Exception {
+        return modeloTransformadorOntologia.generarOntologiaBusqueda2(configuration, ontURL, newURL, sin);
     }
 
     public void cargarPropiedadIndividual(String ind, String pro, String valor) {
