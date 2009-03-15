@@ -14,6 +14,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import modelo.BusinessDelegate;
 import varios.FileCopy;
 import varios.RelativePath;
@@ -200,7 +201,7 @@ private void buttonAddOntViajesActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             String urlNew = chooser.path.split("/")[chooser.path.split("/").length - 1];
             //Aca transformo, si va todo bien muestro un cartel con OK, sino un cartel con el error
-            List<String> errores = ((BusinessDelegate) this.vista.getModelo()).generarOntologiaBusqueda(chooser.path, this.main.getConfiguration().getOwlDirectory() + urlNew, this.main.getConfiguration().getOntologiasVocabulario().get(0));
+            List<String> errores = ((BusinessDelegate) this.vista.getModelo()).generarOntologiaBusqueda(this.main.getConfiguration(),chooser.path, this.main.getConfiguration().getOwlDirectory() + urlNew, this.main.getConfiguration().getOntologiasVocabulario().get(0));
             if (errores == null) {
                 if (main.getConfiguration().getOntologiasViajes() == null) {
                     main.getConfiguration().setOntologiasViajes(new Vector<String>());
@@ -210,6 +211,7 @@ private void buttonAddOntViajesActionPerformed(java.awt.event.ActionEvent evt) {
                 }
                 ((DefaultListModel) listOntologiasViajes.getModel()).addElement(urlNew);
                 main.recargarConfiguracion();
+                JOptionPane.showMessageDialog(this, "La ontologia fue cargada correctamente","Asistente de Viajes",JOptionPane.INFORMATION_MESSAGE);
             } else {
                 //TODO Ver que hacer cuando ocurren errores al cargar una ontologia.
                 DialogoErroresOntologia dialogoErrores = new DialogoErroresOntologia(main, true, errores);
@@ -217,13 +219,12 @@ private void buttonAddOntViajesActionPerformed(java.awt.event.ActionEvent evt) {
             }
         } catch (Exception ex) {
             //Entro aca porque no cumple el minimo requerimiento
-            System.out.println("No cumple con el minimo requerimiento");
+            JOptionPane.showMessageDialog(this, "La ontologia NO cumple con los requerimientos minimos","Asistente de Viajes",JOptionPane.INFORMATION_MESSAGE);
         }
     }
 }//GEN-LAST:event_buttonAddOntViajesActionPerformed
 
 private void buttonRemoverOntViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverOntViajesActionPerformed
-
     String viaje = listOntologiasViajes.getSelectedValue().toString();
     DefaultListModel model = (DefaultListModel) listOntologiasViajes.getModel();
     model.removeElement(viaje);
@@ -242,6 +243,7 @@ private void buttonRemoverOntViajesActionPerformed(java.awt.event.ActionEvent ev
     FileCopy copy = new FileCopy();
     copy.eliminar(viaje);
     main.recargarConfiguracion();
+    JOptionPane.showMessageDialog(this, "La ontologia fue borrada correctamente","Asistente de Viajes",JOptionPane.INFORMATION_MESSAGE);
 }//GEN-LAST:event_buttonRemoverOntViajesActionPerformed
 
 private void buttonChangeOntVocabularioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeOntVocabularioActionPerformed

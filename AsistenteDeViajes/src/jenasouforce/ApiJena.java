@@ -21,6 +21,8 @@ import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.util.iterator.Filter;
 import com.hp.hpl.jena.vocabulary.XSD;
+import configuration.AdvancedProperty;
+import configuration.Configuration;
 import configuration.TipoDato;
 import configuration.defaultontology.DefaultOntology;
 import configuration.defaultontology.types.DefaultProperty;
@@ -461,7 +463,7 @@ public class ApiJena {
         return null;
     }
 
-    public List<String> generarOntologiaBusqueda2(OntModel ontologia, OntModel sinonimo, OntModel nueva, DefaultOntology defaultOntology) {
+    public List<String> generarOntologiaBusqueda2(Configuration conf, OntModel ontologia, OntModel sinonimo, OntModel nueva, DefaultOntology defaultOntology) {
         //Chequeo que en estas clases esten las 3 requeridas
         DefaultOntology newDefaultOntology = chequearCumplimiento3Clases(sinonimo, ontologia, defaultOntology);
         if (newDefaultOntology!=null) {
@@ -471,11 +473,93 @@ public class ApiJena {
             createClassWithPropForProcesodeTransformacion(nueva,ontologia,defaultOntology,newDefaultOntology);
             //Ahora hay que traducir todo
             translateAllOntology(nueva,sinonimo);
+            //Agrego propiedades nuevas a la configuracion
+            addNewPropertyForConfiguration(conf,nueva,defaultOntology);
         }else{
             //No cumple con la ontologia default
             System.out.println("NO Cumple default ontology");
         }
         return null;
+    }
+
+    private void addNewPropertyForConfiguration(Configuration conf, OntModel nueva, DefaultOntology defaultOntology) {
+        AdvancedProperty advPro;
+        String range;
+        //Primero para alojameinto
+        String clase = defaultOntology.getAlojamiento().getNombreClase();
+        Set<String> props = getProperty(nueva, clase).keySet();
+        for(String prop : props){
+            if(!defaultOntology.getAlojamiento().getDefaultPropertiesNames().contains(prop)){
+                if(!conf.getNombrePropiedadesAvanzadasHotel().contains(prop)){
+                    range = getDatatypeProperty(nueva, prop).getRange();
+                    if (range.equalsIgnoreCase("Date")) {
+                        advPro = new AdvancedProperty(prop, TipoDato.DATE);
+                    } else if (range.equalsIgnoreCase("String")) {
+                        advPro = new AdvancedProperty(prop, TipoDato.STRING);
+                    } else if (range.equalsIgnoreCase("int")) {
+                        advPro = new AdvancedProperty(prop, TipoDato.INTEGER);
+                    } else if (range.equalsIgnoreCase("Float")) {
+                        advPro = new AdvancedProperty(prop, TipoDato.FLOAT);
+                    } else if (range.equalsIgnoreCase("Boolean")) {
+                        advPro = new AdvancedProperty(prop, TipoDato.BOOLEAN);
+                    }else{
+                        System.out.println("ERROR EN TIPO DATO");
+                        return;
+                    }
+                    conf.getPropiedadesAvanzadasHotel().add(advPro);
+                }
+            }
+        }
+        //Para vuelo
+        clase = defaultOntology.getViaje().getNombreClase();
+        props = getProperty(nueva, clase).keySet();
+        for(String prop : props){
+            if(!defaultOntology.getViaje().getDefaultPropertiesNames().contains(prop)){
+                if(!conf.getNombrePropiedadesAvanzadasVuelo().contains(prop)){
+                    range = getDatatypeProperty(nueva, prop).getRange();
+                    if (range.equalsIgnoreCase("Date")) {
+                        advPro = new AdvancedProperty(prop, TipoDato.DATE);
+                    } else if (range.equalsIgnoreCase("String")) {
+                        advPro = new AdvancedProperty(prop, TipoDato.STRING);
+                    } else if (range.equalsIgnoreCase("int")) {
+                        advPro = new AdvancedProperty(prop, TipoDato.INTEGER);
+                    } else if (range.equalsIgnoreCase("Float")) {
+                        advPro = new AdvancedProperty(prop, TipoDato.FLOAT);
+                    } else if (range.equalsIgnoreCase("Boolean")) {
+                        advPro = new AdvancedProperty(prop, TipoDato.BOOLEAN);
+                    }else{
+                        System.out.println("ERROR EN TIPO DATO");
+                        return;
+                    }
+                    conf.getPropiedadesAvanzadasVuelo().add(advPro);
+                }
+            }
+        }
+        //Para auto
+        clase = defaultOntology.getTranslado().getNombreClase();
+        props = getProperty(nueva, clase).keySet();
+        for(String prop : props){
+            if(!defaultOntology.getTranslado().getDefaultPropertiesNames().contains(prop)){
+                if(!conf.getNombrePropiedadesAvanzadasAuto().contains(prop)){
+                    range = getDatatypeProperty(nueva, prop).getRange();
+                    if (range.equalsIgnoreCase("Date")) {
+                        advPro = new AdvancedProperty(prop, TipoDato.DATE);
+                    } else if (range.equalsIgnoreCase("String")) {
+                        advPro = new AdvancedProperty(prop, TipoDato.STRING);
+                    } else if (range.equalsIgnoreCase("int")) {
+                        advPro = new AdvancedProperty(prop, TipoDato.INTEGER);
+                    } else if (range.equalsIgnoreCase("Float")) {
+                        advPro = new AdvancedProperty(prop, TipoDato.FLOAT);
+                    } else if (range.equalsIgnoreCase("Boolean")) {
+                        advPro = new AdvancedProperty(prop, TipoDato.BOOLEAN);
+                    }else{
+                        System.out.println("ERROR EN TIPO DATO");
+                        return;
+                    }
+                    conf.getPropiedadesAvanzadasAuto().add(advPro);
+                }
+            }
+        }
     }
 
     private void translateAllOntology(OntModel nueva, OntModel sinonimo) {

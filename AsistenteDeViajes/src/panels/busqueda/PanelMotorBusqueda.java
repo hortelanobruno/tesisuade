@@ -5,16 +5,23 @@
  */
 package panels.busqueda;
 
+import configuration.AdvancedProperty;
 import controladores.ControladorPanelMotorBusqueda;
+import javax.swing.JPanel;
 import panels.*;
 import gui.FramePrincipal;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 import modelo.BusinessDelegate;
 import panels.busqueda.resultado.PanelResultadoVuelo;
+import panels.busqueda.tipodato.PanelAnyType;
+import panels.busqueda.tipodato.PanelBoolean;
+import panels.busqueda.tipodato.PanelDate;
+import panels.busqueda.tipodato.PanelTipoDato;
 import varios.Constantes;
 import vistas.VistaMotorBusqueda;
 import vo.busqueda.ConsultaVueloVO;
@@ -41,6 +48,34 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
         this.dateChooserFechaVuelta.setLocale(locales[136]);
         generarOpcionesAvanzadas();
         this.panelOtraCiudad.setVisible(false);
+    }
+
+    private void cargoPropiedadAvanzada(AdvancedProperty pro, JPanel panelOpcionesAvanzadasVuelosDefault) {
+        JPanel panel = null;
+        switch (pro.getTipoDato()) {
+            case ANY:
+                panel = new PanelAnyType(pro.getTipoDato());
+                break;
+            case BOOLEAN:
+                panel = new PanelBoolean();
+                break;
+            case DATE:
+                panel = new PanelDate();
+                break;
+            case DOUBLE:
+                panel = new PanelAnyType(pro.getTipoDato());
+                break;
+            case FLOAT:
+                panel = new PanelAnyType(pro.getTipoDato());
+                break;
+            case INTEGER:
+                panel = new PanelAnyType(pro.getTipoDato());
+                break;
+            case STRING:
+                panel = new PanelAnyType(pro.getTipoDato());
+                break;
+        }
+        panelOpcionesAvanzadasVuelosDefault.add(panel);
     }
 
     /** This method is called from within the constructor to
@@ -587,12 +622,10 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
 private void toggleButtonOpcionesAvanzadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleButtonOpcionesAvanzadasActionPerformed
 // Toggle button opciones avanzadas vuelos
     if (((JToggleButton) evt.getSource()).isSelected()) {
-        panelOpcionesAvanzadasVuelos = new PanelOpcionesAvanzadasVuelos(this);
-        panelOpcionesAvanzadasVuelos.setVisible(true);
-        panelOpcionesAvanzadasVuelosDefault.add(panelOpcionesAvanzadasVuelos);
+        panelOpcionesAvanzadasVuelosDefault.setVisible(true);
         this.repaint();
     } else {
-        panelOpcionesAvanzadasVuelosDefault.removeAll();
+        panelOpcionesAvanzadasVuelosDefault.setVisible(true);
         this.repaint();
     }
 }//GEN-LAST:event_toggleButtonOpcionesAvanzadasActionPerformed
@@ -626,11 +659,9 @@ private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 }//GEN-LAST:event_jRadioButton4ActionPerformed
 
 private void radioButtonIdaYVueltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonIdaYVueltaActionPerformed
-
 }//GEN-LAST:event_radioButtonIdaYVueltaActionPerformed
 
 private void radioButtonIdaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonIdaActionPerformed
-
 }//GEN-LAST:event_radioButtonIdaActionPerformed
 
     public void update() {
@@ -708,7 +739,19 @@ private void radioButtonIdaActionPerformed(java.awt.event.ActionEvent evt) {//GE
     }
 
     private void generarOpcionesAvanzadas() {
-        
+        Vector<AdvancedProperty> advPro = this.main.getConfiguration().getPropiedadesAvanzadasVuelo();
+        for (AdvancedProperty pro : advPro) {
+            cargoPropiedadAvanzada(pro, panelOpcionesAvanzadasVuelosDefault);
+        }
+        aaaaaaa
+        advPro = this.main.getConfiguration().getPropiedadesAvanzadasVuelo();
+        for (AdvancedProperty pro : advPro) {
+            cargoPropiedadAvanzada(pro, panelOpcionesAvanzadasVuelosDefault);
+        }
+        advPro = this.main.getConfiguration().getPropiedadesAvanzadasVuelo();
+        for (AdvancedProperty pro : advPro) {
+            cargoPropiedadAvanzada(pro, panelOpcionesAvanzadasVuelosDefault);
+        }
     }
 
     public void setVistaMotorBusqueda(VistaMotorBusqueda vista) {
