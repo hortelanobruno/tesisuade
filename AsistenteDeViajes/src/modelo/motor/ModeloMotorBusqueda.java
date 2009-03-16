@@ -9,6 +9,7 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import configuration.Configuration;
+import configuration.defaultontology.DefaultOntology;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -34,12 +35,12 @@ public class ModeloMotorBusqueda {
         ontologias = new ArrayList<OntModel>();
     }
 
-    public List<IndividualVueloVO> buscarVuelos(ConsultaVueloVO consulta){
+    public List<IndividualVueloVO> buscarVuelos(ConsultaVueloVO consulta,DefaultOntology defOnt){
         ArrayList<IndividualVueloVO> vuelos = new ArrayList<IndividualVueloVO>();
         ArrayList<IndividualVueloVO> aux = null;
         for(int i = 0 ; i < ontologias.size() ; i++){
             aux = new ArrayList<IndividualVueloVO>();
-            aux = jena.buscarVuelo(ontologias.get(i),consulta);
+            aux = jena.buscarVuelo(ontologias.get(i),consulta,defOnt);
             vuelos.addAll(aux);
         }
         return vuelos;

@@ -1,6 +1,7 @@
 package modelo;
 
 import configuration.Configuration;
+import configuration.defaultontology.DefaultOntology;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -122,8 +123,8 @@ public class BusinessDelegate extends ProxyModelo {
         modeloOntologiaViajes.removeDatatypeProperty(obj);
     }
 
-    public List<IndividualVueloVO> buscarVuelos(ConsultaVueloVO consulta) {
-        return modeloMotorBusqueda.buscarVuelos(consulta);
+    public List<IndividualVueloVO> buscarVuelos(ConsultaVueloVO consulta, DefaultOntology defOnt) {
+        return modeloMotorBusqueda.buscarVuelos(consulta,defOnt);
     }
 
     public DatatypePropertyVO getDatatypeProperty(String pro) {

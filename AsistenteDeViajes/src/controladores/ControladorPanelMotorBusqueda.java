@@ -24,4 +24,14 @@ public class ControladorPanelMotorBusqueda extends Controlador {
         ((VistaMotorBusqueda)vista).busquedaVuelos(b);
         vista.actualizar();
     }
+
+    public void doBuscarAuto(boolean b){
+        ((VistaMotorBusqueda)vista).busquedaAuto(b);
+        vista.actualizar();
+    }
+
+    public void doBuscarAlojamiento(boolean b){
+        ((VistaMotorBusqueda)vista).busquedaAlojamiento(b);
+        vista.actualizar();
+    }
 }
