@@ -17,32 +17,45 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="cbActived" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Component id="labelNombre" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-              <Component id="dateChooser" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+              <Component id="checkBoxValue" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="44" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="103" groupAlignment="2" attributes="0">
+              <Component id="cbActived" alignment="2" min="-2" max="-2" attributes="0"/>
               <Component id="labelNombre" alignment="2" min="-2" max="-2" attributes="0"/>
-              <Component id="dateChooser" alignment="2" min="-2" pref="20" max="-2" attributes="0"/>
+              <Component id="checkBoxValue" alignment="2" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="com.toedter.calendar.JDateChooser" name="dateChooser">
-      <Properties>
-        <Property name="name" type="java.lang.String" value="dateChooser" noResource="true"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="labelNombre">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nombre:"/>
         <Property name="name" type="java.lang.String" value="labelNombre" noResource="true"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="checkBoxValue">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="checkBoxValue" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="cbActived">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="cbActived" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbActivedActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

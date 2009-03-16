@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package panels.busqueda.tipodato;
+package panels.busqueda.tipodatoproavanzada;
 
 /**
  *
@@ -12,5 +12,8 @@ package panels.busqueda.tipodato;
 public interface PanelTipoDato {
 
     public Object getValue();
-    public void setNombre(String nombre);
+    public String getNombre();
+    public boolean isActived();
+    public boolean checkInput();
+    public void clearData();
 }
