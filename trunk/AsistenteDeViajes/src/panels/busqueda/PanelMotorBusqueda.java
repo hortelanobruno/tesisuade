@@ -6,10 +6,12 @@
 package panels.busqueda;
 
 import configuration.AdvancedProperty;
+import configuration.defaultontology.types.DefaultProperty;
 import controladores.ControladorPanelMotorBusqueda;
 import javax.swing.JPanel;
 import panels.*;
 import gui.FramePrincipal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -17,13 +19,19 @@ import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 import modelo.BusinessDelegate;
+import panels.busqueda.proprincipal.PropiedadPrincipal;
+import panels.busqueda.proprincipal.PropiedadPrincipalDate;
+import panels.busqueda.proprincipal.PropiedadPrincipalInteger;
+import panels.busqueda.proprincipal.PropiedadPrincipalString;
 import panels.busqueda.resultado.PanelResultadoVuelo;
-import panels.busqueda.tipodato.PanelAnyType;
-import panels.busqueda.tipodato.PanelBoolean;
-import panels.busqueda.tipodato.PanelDate;
-import panels.busqueda.tipodato.PanelTipoDato;
+import panels.busqueda.tipodatoproavanzada.PanelAnyType;
+import panels.busqueda.tipodatoproavanzada.PanelBoolean;
+import panels.busqueda.tipodatoproavanzada.PanelDate;
+import panels.busqueda.tipodatoproavanzada.PanelTipoDato;
 import varios.Constantes;
 import vistas.VistaMotorBusqueda;
+import vo.busqueda.ConsultaAutoVO;
+import vo.busqueda.ConsultaHotelVO;
 import vo.busqueda.ConsultaVueloVO;
 import vo.busqueda.IndividualVueloVO;
 
@@ -34,49 +42,82 @@ import vo.busqueda.IndividualVueloVO;
 public class PanelMotorBusqueda extends javax.swing.JPanel {
 
     private FramePrincipal main;
-    private PanelOpcionesAvanzadasVuelos panelOpcionesAvanzadasVuelos;
     private VistaMotorBusqueda vistaMotorBusqueda;
     private boolean buscarVuelos;
+    private boolean buscarAlojameinto;
+    private boolean buscarAuto;
+    private List<PanelTipoDato> proAdvVuelo;
+    private List<PanelTipoDato> proAdvAlojamiento;
+    private List<PanelTipoDato> proAdvAuto;
+    private List<PropiedadPrincipal> proVuelo;
+    private List<PropiedadPrincipal> proAlojamiento;
+    private List<PropiedadPrincipal> proAuto;
 
     /** Creates new form PanelMotorBusqueda */
     public PanelMotorBusqueda(FramePrincipal main, VistaMotorBusqueda vista) {
         this.main = main;
         this.vistaMotorBusqueda = vista;
         initComponents();
-        Locale[] locales = Calendar.getAvailableLocales();
-        this.dateChooserFechaIda.setLocale(locales[136]);
-        this.dateChooserFechaVuelta.setLocale(locales[136]);
+        proAdvAlojamiento = new ArrayList<PanelTipoDato>();
+        proAdvVuelo = new ArrayList<PanelTipoDato>();
+        proAdvAuto = new ArrayList<PanelTipoDato>();
+        proAlojamiento = new ArrayList<PropiedadPrincipal>();
+        proVuelo = new ArrayList<PropiedadPrincipal>();
+        proAuto = new ArrayList<PropiedadPrincipal>();
+        generarOpcionesPrincipales();
         generarOpcionesAvanzadas();
-        this.panelOtraCiudad.setVisible(false);
+        this.panelOpcionesAvanzadaAlojamiento.setVisible(false);
+        this.panelOpcionesAvanzadasAutos.setVisible(false);
+        this.panelOpcionesAvanzadasVuelos.setVisible(false);
     }
 
-    private void cargoPropiedadAvanzada(AdvancedProperty pro, JPanel panelOpcionesAvanzadasVuelosDefault) {
-        JPanel panel = null;
-        switch (pro.getTipoDato()) {
-            case ANY:
-                panel = new PanelAnyType(pro.getTipoDato());
-                break;
-            case BOOLEAN:
-                panel = new PanelBoolean();
-                break;
+    private void cargoPropiedadPrincipal(DefaultProperty prop, JPanel panelAlojamiento, List<PropiedadPrincipal> proAlojamiento) {
+        PropiedadPrincipal panel = null;
+        switch (prop.getTipoDato()) {
             case DATE:
-                panel = new PanelDate();
-                break;
-            case DOUBLE:
-                panel = new PanelAnyType(pro.getTipoDato());
-                break;
-            case FLOAT:
-                panel = new PanelAnyType(pro.getTipoDato());
+                panel = new PropiedadPrincipalDate(prop.getName());
                 break;
             case INTEGER:
-                panel = new PanelAnyType(pro.getTipoDato());
+                panel = new PropiedadPrincipalInteger(prop.getName());
                 break;
             case STRING:
-                panel = new PanelAnyType(pro.getTipoDato());
+                panel = new PropiedadPrincipalString(prop.getName());
                 break;
         }
-        panelOpcionesAvanzadasVuelosDefault.add(panel);
+        proAlojamiento.add(panel);
+        panelAlojamiento.add((JPanel) panel);
     }
+
+    private void cargoPropiedadAvanzada(AdvancedProperty pro, JPanel panelOpcionesAvanzadasVuelosDefault, List<PanelTipoDato> paneles) {
+        PanelTipoDato panel = null;
+        switch (pro.getTipoDato()) {
+            case ANY:
+                panel = new PanelAnyType(pro.getNombre(), pro.getTipoDato());
+                break;
+            case BOOLEAN:
+                panel = new PanelBoolean(pro.getNombre());
+                break;
+            case DATE:
+                panel = new PanelDate(pro.getNombre());
+                break;
+            case DOUBLE:
+                panel = new PanelAnyType(pro.getNombre(), pro.getTipoDato());
+                break;
+            case FLOAT:
+                panel = new PanelAnyType(pro.getNombre(), pro.getTipoDato());
+                break;
+            case INTEGER:
+                panel = new PanelAnyType(pro.getNombre(), pro.getTipoDato());
+                break;
+            case STRING:
+                panel = new PanelAnyType(pro.getNombre(), pro.getTipoDato());
+                break;
+        }
+        paneles.add(panel);
+        panelOpcionesAvanzadasVuelosDefault.add((JPanel) panel);
+    }
+
+
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -87,236 +128,36 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        radioButtonIdaYVuelta = new javax.swing.JRadioButton();
-        radioButtonIda = new javax.swing.JRadioButton();
-        comboBoxAdultos = new javax.swing.JComboBox();
-        jLabel4 = new javax.swing.JLabel();
-        textFieldCiudadOrigen = new javax.swing.JTextField();
-        textFieldCiudadDestino = new javax.swing.JTextField();
-        buttonBuscarVuelos = new javax.swing.JButton();
-        comboBoxNinios = new javax.swing.JComboBox();
-        jLabel5 = new javax.swing.JLabel();
-        comboBoxBebes = new javax.swing.JComboBox();
-        jLabel1 = new javax.swing.JLabel();
-        dateChooserFechaIda = new com.toedter.calendar.JDateChooser();
-        toggleButtonOpcionesAvanzadas = new javax.swing.JToggleButton();
-        jPanel9 = new javax.swing.JPanel();
-        dateChooserFechaVuelta = new com.toedter.calendar.JDateChooser();
-        jLabel2 = new javax.swing.JLabel();
+        panelMotorBusquedaVuelo = new javax.swing.JPanel();
+        panelVuelo = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        panelDinamico = new javax.swing.JPanel();
+        panelResultadoVuelo = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        panelOpcionesAvanzadasVuelosDefault = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        jDateChooser3 = new com.toedter.calendar.JDateChooser();
-        jSeparator1 = new javax.swing.JSeparator();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        panelHabitaciones = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        comboBoxHabitaciones = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        panelOtraCiudad = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser4 = new com.toedter.calendar.JDateChooser();
-        jButton2 = new javax.swing.JButton();
+        panelOpcionesAvanzadasVuelos = new javax.swing.JPanel();
+        toggleButtonOpcionesAvanzadasVuelo = new javax.swing.JToggleButton();
+        buttonBuscarVuelos = new javax.swing.JButton();
+        panelMotorBusquedaHotel = new javax.swing.JPanel();
+        panelAlojamiento = new javax.swing.JPanel();
+        panelOpcionesAvanzadaAlojamiento = new javax.swing.JPanel();
+        panelResultadoAlojamiento = new javax.swing.JPanel();
+        toggleButtonOpAvAlojamiento = new javax.swing.JToggleButton();
+        buttonBuscarAlojamiento = new javax.swing.JButton();
+        panelMotorBusquedaAuto = new javax.swing.JPanel();
+        panelAutos = new javax.swing.JPanel();
+        panelOpcionesAvanzadasAutos = new javax.swing.JPanel();
+        panelResultadoAutos = new javax.swing.JPanel();
+        toggleButtonOpAvAuto = new javax.swing.JToggleButton();
+        buttonBuscarAuto = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelVuelo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelVuelo.setLayout(new java.awt.GridLayout(0, 1));
 
-        jLabel3.setText("Adultos");
-
-        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        buttonGroup1.add(radioButtonIdaYVuelta);
-        radioButtonIdaYVuelta.setSelected(true);
-        radioButtonIdaYVuelta.setText("Ida y vuelta");
-        radioButtonIdaYVuelta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioButtonIdaYVueltaActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(radioButtonIda);
-        radioButtonIda.setText("Solo ida");
-        radioButtonIda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioButtonIdaActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(radioButtonIdaYVuelta)
-                .addGap(18, 18, 18)
-                .addComponent(radioButtonIda))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(radioButtonIdaYVuelta)
-                .addComponent(radioButtonIda))
-        );
-
-        comboBoxAdultos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
-
-        jLabel4.setText("Ninios");
-
-        textFieldCiudadOrigen.setText("Escriba ciudad origen");
-
-        textFieldCiudadDestino.setText("Escriba ciudad destino");
-
-        buttonBuscarVuelos.setText("Buscar vuelos");
-        buttonBuscarVuelos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonBuscarVuelosActionPerformed(evt);
-            }
-        });
-
-        comboBoxNinios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
-
-        jLabel5.setText("Bebes");
-
-        comboBoxBebes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
-
-        jLabel1.setText("Fecha de ida");
-
-        toggleButtonOpcionesAvanzadas.setText("Opciones avanzadas");
-        toggleButtonOpcionesAvanzadas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                toggleButtonOpcionesAvanzadasActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Fecha de vuelta");
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addComponent(dateChooserFechaVuelta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(dateChooserFechaVuelta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-        );
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(textFieldCiudadOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(75, 75, 75)))
-                .addGap(6, 6, 6)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textFieldCiudadDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                    .addComponent(dateChooserFechaIda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(96, 96, 96)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(142, Short.MAX_VALUE))
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(67, 67, 67)
-                                .addComponent(comboBoxAdultos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboBoxNinios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboBoxBebes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(toggleButtonOpcionesAvanzadas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
-                        .addComponent(buttonBuscarVuelos)))
-                .addGap(29, 29, 29))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldCiudadOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldCiudadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(dateChooserFechaIda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(comboBoxAdultos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(comboBoxNinios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBoxBebes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonBuscarVuelos)
-                    .addComponent(toggleButtonOpcionesAvanzadas))
-                .addContainerGap())
-        );
-
-        panelDinamico.setLayout(new java.awt.GridLayout(0, 1));
-        jScrollPane1.setViewportView(panelDinamico);
+        panelResultadoVuelo.setLayout(new java.awt.GridLayout(0, 1));
+        jScrollPane1.setViewportView(panelResultadoVuelo);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -331,275 +172,211 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
                 .addContainerGap(72, Short.MAX_VALUE))
         );
 
-        panelOpcionesAvanzadasVuelosDefault.setLayout(new java.awt.GridLayout(0, 1));
-        jScrollPane2.setViewportView(panelOpcionesAvanzadasVuelosDefault);
+        panelOpcionesAvanzadasVuelos.setLayout(new java.awt.GridLayout(0, 1));
+        jScrollPane2.setViewportView(panelOpcionesAvanzadasVuelos);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE))
+        toggleButtonOpcionesAvanzadasVuelo.setText("Opciones avanzadas");
+        toggleButtonOpcionesAvanzadasVuelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toggleButtonOpcionesAvanzadasVueloActionPerformed(evt);
+            }
+        });
+
+        buttonBuscarVuelos.setText("Buscar vuelos");
+        buttonBuscarVuelos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBuscarVuelosActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelMotorBusquedaVueloLayout = new javax.swing.GroupLayout(panelMotorBusquedaVuelo);
+        panelMotorBusquedaVuelo.setLayout(panelMotorBusquedaVueloLayout);
+        panelMotorBusquedaVueloLayout.setHorizontalGroup(
+            panelMotorBusquedaVueloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMotorBusquedaVueloLayout.createSequentialGroup()
+                .addGroup(panelMotorBusquedaVueloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelMotorBusquedaVueloLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panelMotorBusquedaVueloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelMotorBusquedaVueloLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(toggleButtonOpcionesAvanzadasVuelo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buttonBuscarVuelos)
+                                .addGap(19, 19, 19))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMotorBusquedaVueloLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(panelVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelMotorBusquedaVueloLayout.setVerticalGroup(
+            panelMotorBusquedaVueloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMotorBusquedaVueloLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelMotorBusquedaVueloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelMotorBusquedaVueloLayout.createSequentialGroup()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMotorBusquedaVueloLayout.createSequentialGroup()
+                        .addComponent(panelVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(panelMotorBusquedaVueloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(toggleButtonOpcionesAvanzadasVuelo)
+                            .addComponent(buttonBuscarVuelos))
+                        .addGap(29, 29, 29)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(83, 83, 83))))
         );
 
-        jTabbedPane1.addTab("Vuelos", jPanel1);
+        jTabbedPane1.addTab("Vuelos", panelMotorBusquedaVuelo);
 
-        jLabel6.setText("En que ciudad desea alojarse");
+        panelAlojamiento.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelAlojamiento.setLayout(new java.awt.GridLayout(0, 1));
 
-        jLabel7.setText("Fecha entrada (check in)");
+        panelOpcionesAvanzadaAlojamiento.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelOpcionesAvanzadaAlojamiento.setLayout(new java.awt.GridLayout(0, 1));
 
-        jLabel8.setText("Fecha salida (check out)");
+        panelResultadoAlojamiento.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        panelHabitaciones.setLayout(new java.awt.GridLayout(0, 1));
-        jScrollPane3.setViewportView(panelHabitaciones);
+        javax.swing.GroupLayout panelResultadoAlojamientoLayout = new javax.swing.GroupLayout(panelResultadoAlojamiento);
+        panelResultadoAlojamiento.setLayout(panelResultadoAlojamientoLayout);
+        panelResultadoAlojamientoLayout.setHorizontalGroup(
+            panelResultadoAlojamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 483, Short.MAX_VALUE)
+        );
+        panelResultadoAlojamientoLayout.setVerticalGroup(
+            panelResultadoAlojamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 454, Short.MAX_VALUE)
+        );
 
-        jLabel9.setText("Habitaciones");
-
-        comboBoxHabitaciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
-        comboBoxHabitaciones.addActionListener(new java.awt.event.ActionListener() {
+        toggleButtonOpAvAlojamiento.setText("Opciones avanzadas");
+        toggleButtonOpAvAlojamiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxHabitacionesActionPerformed(evt);
+                toggleButtonOpAvAlojamientoActionPerformed(evt);
             }
         });
 
-        jButton1.setText("buscar hoteles");
+        buttonBuscarAlojamiento.setText("Buscar alojamietno");
+        buttonBuscarAlojamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBuscarAlojamientoActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7))
-                        .addGap(84, 84, 84)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jDateChooser3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField3)))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelMotorBusquedaHotelLayout = new javax.swing.GroupLayout(panelMotorBusquedaHotel);
+        panelMotorBusquedaHotel.setLayout(panelMotorBusquedaHotelLayout);
+        panelMotorBusquedaHotelLayout.setHorizontalGroup(
+            panelMotorBusquedaHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMotorBusquedaHotelLayout.createSequentialGroup()
+                .addGroup(panelMotorBusquedaHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelMotorBusquedaHotelLayout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(toggleButtonOpAvAlojamiento)
+                        .addGap(74, 74, 74)
+                        .addComponent(buttonBuscarAlojamiento))
+                    .addGroup(panelMotorBusquedaHotelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel9)
-                        .addGap(37, 37, 37)
-                        .addComponent(comboBoxHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(96, 96, 96)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(panelMotorBusquedaHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panelAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                            .addComponent(panelOpcionesAvanzadaAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelResultadoAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(294, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(269, 269, 269))
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8)
-                    .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(comboBoxHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(31, 31, 31)
-                .addComponent(jButton1)
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        panelMotorBusquedaHotelLayout.setVerticalGroup(
+            panelMotorBusquedaHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMotorBusquedaHotelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(277, Short.MAX_VALUE))
+                .addGroup(panelMotorBusquedaHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelResultadoAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMotorBusquedaHotelLayout.createSequentialGroup()
+                        .addComponent(panelAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(panelMotorBusquedaHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(toggleButtonOpAvAlojamiento)
+                            .addComponent(buttonBuscarAlojamiento))
+                        .addGap(18, 18, 18)
+                        .addComponent(panelOpcionesAvanzadaAlojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(86, Short.MAX_VALUE))
+
+        jTabbedPane1.addTab("Hoteles", panelMotorBusquedaHotel);
+
+        panelAutos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelAutos.setLayout(new java.awt.GridLayout(0, 1));
+
+        panelOpcionesAvanzadasAutos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelOpcionesAvanzadasAutos.setLayout(new java.awt.GridLayout(0, 1));
+
+        panelResultadoAutos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout panelResultadoAutosLayout = new javax.swing.GroupLayout(panelResultadoAutos);
+        panelResultadoAutos.setLayout(panelResultadoAutosLayout);
+        panelResultadoAutosLayout.setHorizontalGroup(
+            panelResultadoAutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 430, Short.MAX_VALUE)
+        );
+        panelResultadoAutosLayout.setVerticalGroup(
+            panelResultadoAutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 454, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Hoteles", jPanel3);
-
-        jLabel10.setText("Ciudad en que retira el auto");
-
-        jTextField4.setText("Escriba ciudad...");
-
-        jLabel11.setText("Ciudad donde regresa:");
-
-        buttonGroup2.add(jRadioButton4);
-        jRadioButton4.setMnemonic('1');
-        jRadioButton4.setSelected(true);
-        jRadioButton4.setText("misma de retiro");
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+        toggleButtonOpAvAuto.setText("Opciones avanzadas");
+        toggleButtonOpAvAuto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
+                toggleButtonOpAvAutoActionPerformed(evt);
             }
         });
 
-        buttonGroup2.add(jRadioButton5);
-        jRadioButton5.setMnemonic('2');
-        jRadioButton5.setText("otra");
-        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+        buttonBuscarAuto.setText("Buscar auto");
+        buttonBuscarAuto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton5ActionPerformed(evt);
+                buttonBuscarAutoActionPerformed(evt);
             }
         });
 
-        jLabel12.setText("Ciudad en que regresa el auto");
-
-        jTextField5.setText("Escriba ciudad...");
-
-        javax.swing.GroupLayout panelOtraCiudadLayout = new javax.swing.GroupLayout(panelOtraCiudad);
-        panelOtraCiudad.setLayout(panelOtraCiudadLayout);
-        panelOtraCiudadLayout.setHorizontalGroup(
-            panelOtraCiudadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelOtraCiudadLayout.createSequentialGroup()
-                .addComponent(jLabel12)
-                .addGap(69, 69, 69)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(108, Short.MAX_VALUE))
+        javax.swing.GroupLayout panelMotorBusquedaAutoLayout = new javax.swing.GroupLayout(panelMotorBusquedaAuto);
+        panelMotorBusquedaAuto.setLayout(panelMotorBusquedaAutoLayout);
+        panelMotorBusquedaAutoLayout.setHorizontalGroup(
+            panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMotorBusquedaAutoLayout.createSequentialGroup()
+                .addGroup(panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelMotorBusquedaAutoLayout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(toggleButtonOpAvAuto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
+                        .addComponent(buttonBuscarAuto)
+                        .addGap(31, 31, 31))
+                    .addGroup(panelMotorBusquedaAutoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(panelAutos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
+                            .addComponent(panelOpcionesAvanzadasAutos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(panelResultadoAutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        panelOtraCiudadLayout.setVerticalGroup(
-            panelOtraCiudadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelOtraCiudadLayout.createSequentialGroup()
+        panelMotorBusquedaAutoLayout.setVerticalGroup(
+            panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMotorBusquedaAutoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelOtraCiudadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelResultadoAutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMotorBusquedaAutoLayout.createSequentialGroup()
+                        .addComponent(panelAutos, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(buttonBuscarAuto)
+                            .addComponent(toggleButtonOpAvAuto))
+                        .addGap(18, 18, 18)
+                        .addComponent(panelOpcionesAvanzadasAutos, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
-        jLabel13.setText("Fecha de retiro");
-
-        jLabel14.setText("Fecha de regreso");
-
-        jButton2.setText("buscar autos");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addGap(37, 37, 37)
-                                .addComponent(jRadioButton4)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButton5))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(82, 82, 82)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(panelOtraCiudad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(123, 123, 123))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addGap(143, 143, 143)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2)
-                                    .addComponent(jDateChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(240, 240, 240))))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jRadioButton4)
-                    .addComponent(jRadioButton5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelOtraCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel13)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel14)
-                    .addComponent(jDateChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(jButton2)
-                .addContainerGap(131, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(366, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(98, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Autos", jPanel4);
+        jTabbedPane1.addTab("Autos", panelMotorBusquedaAuto);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -619,138 +396,233 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-private void toggleButtonOpcionesAvanzadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleButtonOpcionesAvanzadasActionPerformed
-// Toggle button opciones avanzadas vuelos
-    if (((JToggleButton) evt.getSource()).isSelected()) {
-        panelOpcionesAvanzadasVuelosDefault.setVisible(true);
-        this.repaint();
-    } else {
-        panelOpcionesAvanzadasVuelosDefault.setVisible(true);
-        this.repaint();
-    }
-}//GEN-LAST:event_toggleButtonOpcionesAvanzadasActionPerformed
+    private void toggleButtonOpcionesAvanzadasVueloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleButtonOpcionesAvanzadasVueloActionPerformed
+        if (((JToggleButton) evt.getSource()).isSelected()) {
+            panelOpcionesAvanzadasVuelos.setVisible(true);
+            this.repaint();
+        } else {
+            panelOpcionesAvanzadasVuelos.setVisible(false);
+            for (PanelTipoDato panel : proAdvVuelo) {
+                panel.clearData();
+            }
+            this.repaint();
+        }
+}//GEN-LAST:event_toggleButtonOpcionesAvanzadasVueloActionPerformed
 
 private void buttonBuscarVuelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarVuelosActionPerformed
     ((ControladorPanelMotorBusqueda) vistaMotorBusqueda.getControlador()).doBuscarVuelos(true);
 }//GEN-LAST:event_buttonBuscarVuelosActionPerformed
 
-private void comboBoxHabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxHabitacionesActionPerformed
-//LLena el scroll de paneles de habitaciones
-    int cant = Integer.parseInt(comboBoxHabitaciones.getSelectedItem().toString());
-    panelHabitaciones.removeAll();
-    PanelHabitacion pHabitacion[] = new PanelHabitacion[cant];
-
-    for (int i = 0; i < cant; i++) {
-        pHabitacion[i] = new PanelHabitacion();
-        String numHab = pHabitacion[i].getLabelNumeroHabitaciones().getText();
-        numHab = numHab + (i + 1);
-        pHabitacion[i].getLabelNumeroHabitaciones().setText(numHab);
-        panelHabitaciones.add(pHabitacion[i]);
+private void toggleButtonOpAvAlojamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleButtonOpAvAlojamientoActionPerformed
+    if (((JToggleButton) evt.getSource()).isSelected()) {
+        panelOpcionesAvanzadaAlojamiento.setVisible(true);
+        this.repaint();
+    } else {
+        panelOpcionesAvanzadaAlojamiento.setVisible(false);
+        for (PanelTipoDato panel : proAdvAlojamiento) {
+            panel.clearData();
+        }
+        this.repaint();
     }
-    this.repaint();
-}//GEN-LAST:event_comboBoxHabitacionesActionPerformed
+}//GEN-LAST:event_toggleButtonOpAvAlojamientoActionPerformed
 
-private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
-    this.panelOtraCiudad.setVisible(true);
-}//GEN-LAST:event_jRadioButton5ActionPerformed
+private void toggleButtonOpAvAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleButtonOpAvAutoActionPerformed
+    if (((JToggleButton) evt.getSource()).isSelected()) {
+        panelOpcionesAvanzadasAutos.setVisible(true);
+        this.repaint();
+    } else {
+        panelOpcionesAvanzadasAutos.setVisible(false);
+        for (PanelTipoDato panel : proAdvAuto) {
+            panel.clearData();
+        }
+        this.repaint();
+    }
+}//GEN-LAST:event_toggleButtonOpAvAutoActionPerformed
 
-private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
-    this.panelOtraCiudad.setVisible(false);
-}//GEN-LAST:event_jRadioButton4ActionPerformed
+private void buttonBuscarAlojamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarAlojamientoActionPerformed
+    ((ControladorPanelMotorBusqueda) vistaMotorBusqueda.getControlador()).doBuscarAlojamiento(true);
+}//GEN-LAST:event_buttonBuscarAlojamientoActionPerformed
 
-private void radioButtonIdaYVueltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonIdaYVueltaActionPerformed
-}//GEN-LAST:event_radioButtonIdaYVueltaActionPerformed
-
-private void radioButtonIdaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonIdaActionPerformed
-}//GEN-LAST:event_radioButtonIdaActionPerformed
+private void buttonBuscarAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarAutoActionPerformed
+    ((ControladorPanelMotorBusqueda) vistaMotorBusqueda.getControlador()).doBuscarAuto(true);
+}//GEN-LAST:event_buttonBuscarAutoActionPerformed
 
     public void update() {
         if (isBuscarVuelos()) {
             buscarVuelos();
         }
+        if (isBuscarAuto()) {
+            buscarAuto();
+        }
+        if (isBuscarAlojameinto()) {
+            buscarAlojamiento();
+        }
     }
 
-    public void buscarVuelos() {
-        if (validarCampos()) {
-            ConsultaVueloVO vueloVO = obtenerDatosConsulta();
-            List<IndividualVueloVO> indVuelos = ((BusinessDelegate) vistaMotorBusqueda.getModelo()).buscarVuelos(vueloVO);
-            mostrarResultado(indVuelos);
+    private void buscarAlojamiento() {
+        if (validarInputAlojamiento()) {
+            ConsultaHotelVO hotelVO = obtenerDatosConsultaAlojamiento();
+        //TODO Hasta aca esta bien, falta la busqueda y mostrar el resultado
+
         } else {
-            //agregar con una crucesita el campo no completado
             JOptionPane.showMessageDialog(this, "Completar todos los campos obligatorios", Constantes.APPLICATION_NAME, JOptionPane.ERROR_MESSAGE);
         }
+    }
 
+    private void buscarAuto() {
+        if (validarInputAuto()) {
+            ConsultaAutoVO autoVO = obtenerDatosConsultaAuto();
+        //TODO Hasta aca esta bien, falta la busqueda y mostrar el resultado
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Completar todos los campos obligatorios", Constantes.APPLICATION_NAME, JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void buscarVuelos() {
+        if (validarInputVuelo()) {
+            ConsultaVueloVO vueloVO = obtenerDatosConsultaVuelo();
+            //TODO Hasta aca esta bien, falta la busqueda y mostrar el resultado
+            List<IndividualVueloVO> indVuelos = ((BusinessDelegate) vistaMotorBusqueda.getModelo()).buscarVuelos(vueloVO, this.main.getConfiguration().getDefaultOntology());
+        } else {
+            JOptionPane.showMessageDialog(this, "Completar todos los campos obligatorios", Constantes.APPLICATION_NAME, JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public void mostrarResultado(List<IndividualVueloVO> indVuelos) {
-        panelDinamico.removeAll();
+        panelResultadoVuelo.removeAll();
         for (int i = 0; i < indVuelos.size(); i++) {
             PanelResultadoVuelo panelVuelo = new PanelResultadoVuelo();
             panelVuelo.setVisible(true);
             cargarPanelBusquedaVuelo(panelVuelo, indVuelos.get(i));
-            panelDinamico.add(panelVuelo);
+            panelResultadoVuelo.add(panelVuelo);
         }
         this.repaint();
     }
 
-    //faltaria cargarle las opciones avanzadas
     public void cargarPanelBusquedaVuelo(PanelResultadoVuelo panel, IndividualVueloVO ind) {
-        //panel.getLabelCantAdultos().setText(""+ind.getAdultos());
-        // panel.getLabelCantBebes().setText(""+ind.getBebes());
-        // panel.getLabelCantNinios().setText(""+ind.getNinios());
-        panel.getLabelCiudadDestino().setText(ind.getCiudadDestino());
-        panel.getLabelCiudadOrigen().setText(ind.getCiudadOrigen());
-        panel.getLabelFechaIda().setText(ind.getFechaIda().toString());
-        panel.getLabelFechaVuelta().setText(ind.getFechaVuelta().toString());
     }
 
-    public boolean validarCampos() {
-        boolean b = true;
-        if (textFieldCiudadOrigen.getText().isEmpty()) {
-            b = false;
+    private boolean validarInputAuto() {
+        //Primero valido datos principales
+        for(PropiedadPrincipal panel : proAuto){
+            if(!panel.checkInput()){
+                return false;
+            }
         }
-        if (textFieldCiudadDestino.getText().isEmpty()) {
-            b = false;
+        //Ahora las avanzadas
+        for (PanelTipoDato panel : proAdvAuto) {
+            if (panel.isActived()) {
+                if (!panel.checkInput()) {
+                    return false;
+                }
+            }
         }
-        if (dateChooserFechaIda.getDate().equals(null)) {
-            b = false;
-        }
-        if (dateChooserFechaVuelta.getDate().equals(null)) {
-            b = false;
-        }
-        return b;
+        return true;
     }
 
-    //faltaria cargarle las opciones avanzadas
-    public ConsultaVueloVO obtenerDatosConsulta() {
+    private boolean validarInputAlojamiento() {
+        //Primero valido datos principales
+        for(PropiedadPrincipal panel : proAlojamiento){
+            if(!panel.checkInput()){
+                return false;
+            }
+        }
+        //Ahora las avanzadas
+        for (PanelTipoDato panel : proAdvAlojamiento) {
+            if (panel.isActived()) {
+                if (!panel.checkInput()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private boolean validarInputVuelo() {
+        //Primero valido datos principales
+        for(PropiedadPrincipal panel : proVuelo){
+            if(!panel.checkInput()){
+                return false;
+            }
+        }
+        //Ahora las avanzadas
+        for (PanelTipoDato panel : proAdvVuelo) {
+            if (panel.isActived()) {
+                if (!panel.checkInput()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private ConsultaAutoVO obtenerDatosConsultaAuto() {
+        ConsultaAutoVO auto = new ConsultaAutoVO();
+        for(PropiedadPrincipal pro : proAuto){
+            auto.getPropiedadesPrincipales().put(pro.getNombrePropiedad(), pro.getValor());
+        }
+        for (PanelTipoDato panel : proAdvAuto) {
+            if (panel.isActived()) {
+                auto.getPropiedadesAvanzadas().put(panel.getNombre(), panel.getValue());
+            }
+        }
+        return auto;
+    }
+
+    private ConsultaHotelVO obtenerDatosConsultaAlojamiento() {
+        ConsultaHotelVO hotel = new ConsultaHotelVO();
+        for(PropiedadPrincipal pro : proAlojamiento){
+            hotel.getPropiedadesPrincipales().put(pro.getNombrePropiedad(), pro.getValor());
+        }
+        for (PanelTipoDato panel : proAdvAlojamiento) {
+            if (panel.isActived()) {
+                hotel.getPropiedadesAvanzadas().put(panel.getNombre(), panel.getValue());
+            }
+        }
+        return hotel;
+    }
+
+    private ConsultaVueloVO obtenerDatosConsultaVuelo() {
         ConsultaVueloVO vuelo = new ConsultaVueloVO();
-        if (radioButtonIdaYVuelta.isSelected()) {
-            vuelo.setFechaIda(dateChooserFechaIda.getDate());
-            vuelo.setFechaVuelta(dateChooserFechaVuelta.getDate());
-        } else {
-            vuelo.setFechaIda(dateChooserFechaIda.getDate());
+        for(PropiedadPrincipal pro : proVuelo){
+            vuelo.getPropiedadesPrincipales().put(pro.getNombrePropiedad(), pro.getValor());
         }
-        vuelo.setCiudadOrigen(textFieldCiudadOrigen.getText());
-        vuelo.setCiudadDestino(textFieldCiudadDestino.getText());
-        vuelo.setAdultos(Integer.parseInt(comboBoxAdultos.getSelectedItem().toString()));
-        vuelo.setNinios(Integer.parseInt(comboBoxNinios.getSelectedItem().toString()));
-        vuelo.setBebes(Integer.parseInt(comboBoxBebes.getSelectedItem().toString()));
+        for (PanelTipoDato panel : proAdvVuelo) {
+            if (panel.isActived()) {
+                vuelo.getPropiedadesAvanzadas().put(panel.getNombre(), panel.getValue());
+            }
+        }
         return vuelo;
+    }
+
+    private void generarOpcionesPrincipales() {
+        List<DefaultProperty> props = this.main.getConfiguration().getDefaultOntology().getAlojamiento().getDefaultProperties();
+        for(DefaultProperty prop : props){
+            cargoPropiedadPrincipal(prop,panelAlojamiento,proAlojamiento);
+        }
+        props = this.main.getConfiguration().getDefaultOntology().getTranslado().getDefaultProperties();
+        for(DefaultProperty prop : props){
+            cargoPropiedadPrincipal(prop,panelAutos,proAuto);
+        }
+        props = this.main.getConfiguration().getDefaultOntology().getViaje().getDefaultProperties();
+        for(DefaultProperty prop : props){
+            cargoPropiedadPrincipal(prop,panelVuelo,proVuelo);
+        }
     }
 
     private void generarOpcionesAvanzadas() {
         Vector<AdvancedProperty> advPro = this.main.getConfiguration().getPropiedadesAvanzadasVuelo();
         for (AdvancedProperty pro : advPro) {
-            cargoPropiedadAvanzada(pro, panelOpcionesAvanzadasVuelosDefault);
+            cargoPropiedadAvanzada(pro, panelOpcionesAvanzadasVuelos, proAdvVuelo);
         }
-        aaaaaaa
-        advPro = this.main.getConfiguration().getPropiedadesAvanzadasVuelo();
+        advPro = this.main.getConfiguration().getPropiedadesAvanzadasHotel();
         for (AdvancedProperty pro : advPro) {
-            cargoPropiedadAvanzada(pro, panelOpcionesAvanzadasVuelosDefault);
+            cargoPropiedadAvanzada(pro, panelOpcionesAvanzadaAlojamiento, proAdvAlojamiento);
         }
-        advPro = this.main.getConfiguration().getPropiedadesAvanzadasVuelo();
+        advPro = this.main.getConfiguration().getPropiedadesAvanzadasAuto();
         for (AdvancedProperty pro : advPro) {
-            cargoPropiedadAvanzada(pro, panelOpcionesAvanzadasVuelosDefault);
+            cargoPropiedadAvanzada(pro, panelOpcionesAvanzadasAutos, proAdvAuto);
         }
     }
 
@@ -762,63 +634,28 @@ private void radioButtonIdaActionPerformed(java.awt.event.ActionEvent evt) {//GE
         return this.vistaMotorBusqueda;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonBuscarAlojamiento;
+    private javax.swing.JButton buttonBuscarAuto;
     private javax.swing.JButton buttonBuscarVuelos;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JComboBox comboBoxAdultos;
-    private javax.swing.JComboBox comboBoxBebes;
-    private javax.swing.JComboBox comboBoxHabitaciones;
-    private javax.swing.JComboBox comboBoxNinios;
-    private com.toedter.calendar.JDateChooser dateChooserFechaIda;
-    private com.toedter.calendar.JDateChooser dateChooserFechaVuelta;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
-    private com.toedter.calendar.JDateChooser jDateChooser3;
-    private com.toedter.calendar.JDateChooser jDateChooser4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JPanel panelDinamico;
-    private javax.swing.JPanel panelHabitaciones;
-    private javax.swing.JPanel panelOpcionesAvanzadasVuelosDefault;
-    private javax.swing.JPanel panelOtraCiudad;
-    private javax.swing.JRadioButton radioButtonIda;
-    private javax.swing.JRadioButton radioButtonIdaYVuelta;
-    private javax.swing.JTextField textFieldCiudadDestino;
-    private javax.swing.JTextField textFieldCiudadOrigen;
-    private javax.swing.JToggleButton toggleButtonOpcionesAvanzadas;
+    private javax.swing.JPanel panelAlojamiento;
+    private javax.swing.JPanel panelAutos;
+    private javax.swing.JPanel panelMotorBusquedaAuto;
+    private javax.swing.JPanel panelMotorBusquedaHotel;
+    private javax.swing.JPanel panelMotorBusquedaVuelo;
+    private javax.swing.JPanel panelOpcionesAvanzadaAlojamiento;
+    private javax.swing.JPanel panelOpcionesAvanzadasAutos;
+    private javax.swing.JPanel panelOpcionesAvanzadasVuelos;
+    private javax.swing.JPanel panelResultadoAlojamiento;
+    private javax.swing.JPanel panelResultadoAutos;
+    private javax.swing.JPanel panelResultadoVuelo;
+    private javax.swing.JPanel panelVuelo;
+    private javax.swing.JToggleButton toggleButtonOpAvAlojamiento;
+    private javax.swing.JToggleButton toggleButtonOpAvAuto;
+    private javax.swing.JToggleButton toggleButtonOpcionesAvanzadasVuelo;
     // End of variables declaration//GEN-END:variables
 
     public boolean isBuscarVuelos() {
@@ -827,6 +664,34 @@ private void radioButtonIdaActionPerformed(java.awt.event.ActionEvent evt) {//GE
 
     public void setBuscarVuelos(boolean buscarVuelos) {
         this.buscarVuelos = buscarVuelos;
+    }
+
+    /**
+     * @return the buscarAlojameinto
+     */
+    public boolean isBuscarAlojameinto() {
+        return buscarAlojameinto;
+    }
+
+    /**
+     * @param buscarAlojameinto the buscarAlojameinto to set
+     */
+    public void setBuscarAlojameinto(boolean buscarAlojameinto) {
+        this.buscarAlojameinto = buscarAlojameinto;
+    }
+
+    /**
+     * @return the buscarAuto
+     */
+    public boolean isBuscarAuto() {
+        return buscarAuto;
+    }
+
+    /**
+     * @param buscarAuto the buscarAuto to set
+     */
+    public void setBuscarAuto(boolean buscarAuto) {
+        this.buscarAuto = buscarAuto;
     }
 }
 

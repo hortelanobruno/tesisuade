@@ -16,6 +16,14 @@ public class VistaMotorBusqueda extends Vista {
     public void busquedaVuelos(boolean b){
         getRef().getPanelMotorBusqueda().setBuscarVuelos(b);
     }
+
+    public void busquedaAuto(boolean b){
+        getRef().getPanelMotorBusqueda().setBuscarAuto(b);
+    }
+
+    public void busquedaAlojamiento(boolean b){
+        getRef().getPanelMotorBusqueda().setBuscarAlojameinto(b);
+    }
     
     public void actualizar() {
         getRef().getPanelMotorBusqueda().update();
