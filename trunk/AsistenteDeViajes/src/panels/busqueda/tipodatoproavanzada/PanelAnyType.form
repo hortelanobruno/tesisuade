@@ -17,18 +17,21 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <Component id="cbEnabled" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="labelNombre" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               <Component id="tfValor" min="-2" pref="113" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="labelError" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="36" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="103" groupAlignment="2" attributes="0">
+              <Component id="cbEnabled" alignment="2" min="-2" max="-2" attributes="0"/>
               <Component id="labelNombre" alignment="2" min="-2" max="-2" attributes="0"/>
               <Component id="tfValor" alignment="2" min="-2" max="-2" attributes="0"/>
               <Component id="labelError" alignment="2" min="-2" max="-2" attributes="0"/>
@@ -53,12 +56,20 @@
     </Component>
     <Component class="javax.swing.JLabel" name="labelError">
       <Properties>
-        <Property name="foreground" type="java.awt.Color" noResource="true" editor="org.netbeans.beaninfo.editors.ColorEditor">
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="ff" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="ERROR"/>
         <Property name="name" type="java.lang.String" value="labelError" noResource="true"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="cbEnabled">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="cbEnabled" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbEnabledActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

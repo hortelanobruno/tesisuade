@@ -8,7 +8,7 @@
  *
  * Created on 15/03/2009, 15:20:09
  */
-package panels.busqueda.tipodato;
+package panels.busqueda.tipodatoproavanzada;
 
 import configuration.TipoDato;
 
@@ -20,13 +20,17 @@ public class PanelAnyType extends javax.swing.JPanel implements PanelTipoDato {
 
     private TipoDato tipoDato;
     private boolean valido;
+    private String nombrePropiedad;
 
     /** Creates new form PanelString */
-    public PanelAnyType(TipoDato tipoDato) {
-        this.tipoDato = tipoDato;
-        this.labelError.setVisible(false);
-        this.valido = true;
+    public PanelAnyType(String nombre, TipoDato tipoDato) {
         initComponents();
+        this.nombrePropiedad = nombre;
+        ponerNombre(nombre);
+        this.labelError.setVisible(false);
+        this.tfValor.setEnabled(false);
+        this.tipoDato = tipoDato;
+        this.valido = true;
     }
 
     private boolean comprobarTipo() {
@@ -64,6 +68,7 @@ public class PanelAnyType extends javax.swing.JPanel implements PanelTipoDato {
         labelNombre = new javax.swing.JLabel();
         tfValor = new javax.swing.JTextField();
         labelError = new javax.swing.JLabel();
+        cbEnabled = new javax.swing.JCheckBox();
 
         labelNombre.setText("Nombre:");
         labelNombre.setName("labelNombre"); // NOI18N
@@ -79,31 +84,56 @@ public class PanelAnyType extends javax.swing.JPanel implements PanelTipoDato {
         labelError.setText("ERROR");
         labelError.setName("labelError"); // NOI18N
 
+        cbEnabled.setName("cbEnabled"); // NOI18N
+        cbEnabled.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbEnabledActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(cbEnabled)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelNombre)
                 .addGap(46, 46, 46)
                 .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(labelError)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addComponent(cbEnabled)
                 .addComponent(labelNombre)
                 .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(labelError))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ponerNombre(String nombre) {
+        nombre = nombre.replace("_", " ");
+        nombre += ":";
+        labelNombre.setText(nombre);
+    }
+
     private void tfValorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfValorKeyReleased
         verificarInputTextField();
     }//GEN-LAST:event_tfValorKeyReleased
+
+    private void cbEnabledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEnabledActionPerformed
+        tfValor.setEnabled(cbEnabled.isSelected());
+        if (!cbEnabled.isSelected()) {
+            tfValor.setText("");
+        }
+    }//GEN-LAST:event_cbEnabledActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox cbEnabled;
     private javax.swing.JLabel labelError;
     private javax.swing.JLabel labelNombre;
     private javax.swing.JTextField tfValor;
@@ -117,20 +147,15 @@ public class PanelAnyType extends javax.swing.JPanel implements PanelTipoDato {
         return tfValor.getText();
     }
 
-    @Override
-    public void setNombre(String nombre) {
-        labelNombre.setText(nombre);
-    }
-
     private void verificarInputTextField() {
         String value = tfValor.getText();
         boolean result;
         if (!value.trim().isEmpty()) {
             result = comprobarTipo();
-            if(result){
+            if (result) {
                 valido = true;
                 labelError.setVisible(false);
-            }else{
+            } else {
                 valido = false;
                 labelError.setVisible(true);
             }
@@ -138,5 +163,27 @@ public class PanelAnyType extends javax.swing.JPanel implements PanelTipoDato {
             valido = true;
             labelError.setVisible(false);
         }
+    }
+
+    @Override
+    public boolean isActived() {
+        return cbEnabled.isSelected();
+    }
+
+    @Override
+    public boolean checkInput() {
+        return valido;
+    }
+
+    @Override
+    public void clearData() {
+        labelError.setVisible(false);
+        tfValor.setText("");
+        cbEnabled.setSelected(false);
+    }
+
+    @Override
+    public String getNombre() {
+        return nombrePropiedad;
     }
 }

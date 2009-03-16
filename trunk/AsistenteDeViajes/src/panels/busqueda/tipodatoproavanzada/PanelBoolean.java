@@ -8,8 +8,7 @@
  *
  * Created on 15/03/2009, 15:23:05
  */
-
-package panels.busqueda.tipodato;
+package panels.busqueda.tipodatoproavanzada;
 
 /**
  *
@@ -17,9 +16,14 @@ package panels.busqueda.tipodato;
  */
 public class PanelBoolean extends javax.swing.JPanel implements PanelTipoDato {
 
+    private String nombrePropiedad;
+
     /** Creates new form PanelBoolean */
-    public PanelBoolean() {
+    public PanelBoolean(String nombre) {
         initComponents();
+        nombrePropiedad = nombre;
+        ponerNombre(nombre);
+        this.checkBoxValue.setEnabled(false);
     }
 
     /** This method is called from within the constructor to
@@ -33,11 +37,19 @@ public class PanelBoolean extends javax.swing.JPanel implements PanelTipoDato {
 
         labelNombre = new javax.swing.JLabel();
         checkBoxValue = new javax.swing.JCheckBox();
+        cbActived = new javax.swing.JCheckBox();
 
         labelNombre.setText("Nombre:");
         labelNombre.setName("labelNombre"); // NOI18N
 
         checkBoxValue.setName("checkBoxValue"); // NOI18N
+
+        cbActived.setName("cbActived"); // NOI18N
+        cbActived.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbActivedActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -45,21 +57,30 @@ public class PanelBoolean extends javax.swing.JPanel implements PanelTipoDato {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(cbActived)
+                .addGap(35, 35, 35)
                 .addComponent(labelNombre)
                 .addGap(60, 60, 60)
                 .addComponent(checkBoxValue)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addComponent(cbActived)
                 .addComponent(labelNombre)
                 .addComponent(checkBoxValue))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
+    private void cbActivedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbActivedActionPerformed
+        checkBoxValue.setEnabled(cbActived.isSelected());
+        if (!cbActived.isSelected()) {
+            checkBoxValue.setSelected(false);
+        }
+    }//GEN-LAST:event_cbActivedActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox cbActived;
     private javax.swing.JCheckBox checkBoxValue;
     private javax.swing.JLabel labelNombre;
     // End of variables declaration//GEN-END:variables
@@ -69,9 +90,30 @@ public class PanelBoolean extends javax.swing.JPanel implements PanelTipoDato {
         return checkBoxValue.isSelected();
     }
 
-    @Override
-    public void setNombre(String nombre) {
+    private void ponerNombre(String nombre) {
+        nombre = nombre.replace("_", " ");
+        nombre += ":";
         labelNombre.setText(nombre);
     }
 
+    @Override
+    public boolean isActived() {
+        return cbActived.isSelected();
+    }
+
+    @Override
+    public boolean checkInput() {
+        return true;
+    }
+
+    @Override
+    public void clearData() {
+        cbActived.setEnabled(false);
+        checkBoxValue.setEnabled(false);
+    }
+
+    @Override
+    public String getNombre() {
+        return nombrePropiedad;
+    }
 }
