@@ -11,6 +11,8 @@
 
 package panels.busqueda.proprincipal;
 
+import java.util.Calendar;
+
 /**
  *
  * @author Brunoli
@@ -77,7 +79,11 @@ public class PropiedadPrincipalDate extends javax.swing.JPanel implements Propie
 
     @Override
     public Object getValor() {
-        return dateChooserValor.getCalendar().toString();
+        if(dateChooserValor.getCalendar() == null){
+            return null;
+        }else{
+            return formatearFecha(dateChooserValor.getCalendar());
+        }
     }
 
     @Override
@@ -97,6 +103,12 @@ public class PropiedadPrincipalDate extends javax.swing.JPanel implements Propie
         nombre = nombre.replace("_", " ");
         nombre += ":";
         labelNombre.setText(nombre);
+    }
+
+    private String formatearFecha(Calendar date){
+        int year = date.getTime().getYear()+1900;
+        int month = date.getTime().getMonth()+1;
+        return year+"-"+month+"-"+date.getTime().getDate();
     }
 
 }

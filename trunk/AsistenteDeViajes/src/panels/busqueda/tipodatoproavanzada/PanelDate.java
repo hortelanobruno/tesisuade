@@ -10,6 +10,8 @@
  */
 package panels.busqueda.tipodatoproavanzada;
 
+import java.util.Calendar;
+
 /**
  *
  * @author Brunoli
@@ -87,7 +89,10 @@ public class PanelDate extends javax.swing.JPanel implements PanelTipoDato {
 
     @Override
     public Object getValue() {
-        return dateChooser.getCalendar().toString();
+        if(dateChooser.getCalendar()!=null){
+            return formatearFecha(dateChooser.getCalendar());
+        }
+        return null;
     }
 
     private void ponerNombre(String nombre) {
@@ -98,7 +103,7 @@ public class PanelDate extends javax.swing.JPanel implements PanelTipoDato {
 
     @Override
     public boolean isActived() {
-        return cbActived.isEnabled();
+        return cbActived.isSelected();
     }
 
     @Override
@@ -118,5 +123,11 @@ public class PanelDate extends javax.swing.JPanel implements PanelTipoDato {
     @Override
     public String getNombre() {
         return nombrePropiedad;
+    }
+
+    private String formatearFecha(Calendar date){
+        int year = date.getTime().getYear()+1900;
+        int month = date.getTime().getMonth()+1;
+        return year+"-"+month+"-"+date.getTime().getDate();
     }
 }
