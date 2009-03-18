@@ -546,13 +546,13 @@ private void buttonBuscarAutoActionPerformed(java.awt.event.ActionEvent evt) {//
             }
         }
         //Ahora las avanzadas
-        for (PanelTipoDato panel : proAdvVuelo) {
-            if (panel.isActived()) {
-                if (!panel.checkInput()) {
-                    return false;
-                }
-            }
-        }
+//        for (PanelTipoDato panel : proAdvVuelo) {
+//            if (panel.isActived()) {
+//                if (!panel.checkInput()) {
+//                    return false;
+//                }
+//            }
+//        }
         return true;
     }
 
@@ -588,9 +588,8 @@ private void buttonBuscarAutoActionPerformed(java.awt.event.ActionEvent evt) {//
             vuelo.getPropiedadesPrincipales().put(pro.getNombrePropiedad(), pro.getValor());
         }
         for (PanelTipoDato panel : proAdvVuelo) {
-            if (panel.isActived()) {
+            if(panel.isActived())
                 vuelo.getPropiedadesAvanzadas().put(panel.getNombre(), panel.getValue());
-            }
         }
         return vuelo;
     }

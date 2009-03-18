@@ -38,12 +38,29 @@ public class ModeloMotorBusqueda {
     public List<IndividualVueloVO> buscarVuelos(ConsultaVueloVO consulta,DefaultOntology defOnt){
         ArrayList<IndividualVueloVO> vuelos = new ArrayList<IndividualVueloVO>();
         ArrayList<IndividualVueloVO> aux = null;
+        //Primero busco todas los ind que coinciden con lo principal
         for(int i = 0 ; i < ontologias.size() ; i++){
             aux = new ArrayList<IndividualVueloVO>();
-            aux = jena.buscarVuelo(ontologias.get(i),consulta,defOnt);
+            aux = jena.buscarIndividual(ontologias.get(i),consulta,defOnt);
             vuelos.addAll(aux);
         }
-        return vuelos;
+        //Luego lo ordeno por lo avanzado
+        if(!vuelos.isEmpty()){
+            aux = new ArrayList<IndividualVueloVO>();
+            IndividualVueloVO ind = null;
+            for(int i=0 ; i < vuelos.size() ; i++){
+                ind = vuelos.get(0);
+                for(int j=1 ; j < vuelos.size() ; j++){
+                    if(ind.coincidencia(consulta.getPropiedadesAvanzadas())<vuelos.get(j).coincidencia(consulta.getPropiedadesAvanzadas())){
+                        ind = vuelos.get(j);
+                    }
+                }
+                aux.add(ind);
+                vuelos.remove(ind);
+            }
+        }
+        //Aca termino con aux ordenado por coincidencia
+        return aux;
     }
     
     public void cargarModelos(){

@@ -4,7 +4,6 @@
  */
 package vo.busqueda;
 
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,83 +15,35 @@ public class IndividualVueloVO {
 
     private String uri;
     private String nameIndividual;
-    private Calendar fechaSalida;
-    private String ciudadOrigen;
-    private String ciudadDestino;
+    private Map<String, Object> propiedadesPrincipales;
     private Map<String, Object> propiedadesAvanzadas;
 
     public IndividualVueloVO() {
         propiedadesAvanzadas = new HashMap<String, Object>();
+        propiedadesPrincipales = new HashMap<String, Object>();
     }
 
-    /**
-     * @return the uri
-     */
+    public String getNameIndividual() {
+        return nameIndividual;
+    }
+
     public String getUri() {
         return uri;
     }
 
-    /**
-     * @param uri the uri to set
-     */
+    public void setNameIndividual(String nameIndividual) {
+        this.nameIndividual = nameIndividual;
+    }
+
     public void setUri(String uri) {
         this.uri = uri;
     }
 
     /**
-     * @return the nameIndividual
+     * @return the propiedadesPrincipales
      */
-    public String getNameIndividual() {
-        return nameIndividual;
-    }
-
-    /**
-     * @param nameIndividual the nameIndividual to set
-     */
-    public void setNameIndividual(String nameIndividual) {
-        this.nameIndividual = nameIndividual;
-    }
-
-    /**
-     * @return the fechaSalida
-     */
-    public Calendar getFechaSalida() {
-        return fechaSalida;
-    }
-
-    /**
-     * @param fechaSalida the fechaSalida to set
-     */
-    public void setFechaSalida(Calendar fechaSalida) {
-        this.fechaSalida = fechaSalida;
-    }
-
-    /**
-     * @return the ciudadOrigen
-     */
-    public String getCiudadOrigen() {
-        return ciudadOrigen;
-    }
-
-    /**
-     * @param ciudadOrigen the ciudadOrigen to set
-     */
-    public void setCiudadOrigen(String ciudadOrigen) {
-        this.ciudadOrigen = ciudadOrigen;
-    }
-
-    /**
-     * @return the ciudadDestino
-     */
-    public String getCiudadDestino() {
-        return ciudadDestino;
-    }
-
-    /**
-     * @param ciudadDestino the ciudadDestino to set
-     */
-    public void setCiudadDestino(String ciudadDestino) {
-        this.ciudadDestino = ciudadDestino;
+    public Map<String, Object> getPropiedadesPrincipales() {
+        return propiedadesPrincipales;
     }
 
     /**
@@ -100,5 +51,18 @@ public class IndividualVueloVO {
      */
     public Map<String, Object> getPropiedadesAvanzadas() {
         return propiedadesAvanzadas;
+    }
+
+    public Double coincidencia(Map<String, Object> consulta) {
+        double cant = consulta.size();
+        double aux = 0;
+        for (String prop : consulta.keySet()) {
+            if (propiedadesAvanzadas.containsKey(prop)) {
+                if (propiedadesAvanzadas.get(prop).equals(consulta.get(prop))) {
+                    aux++;
+                }
+            }
+        }
+        return aux / cant;
     }
 }
