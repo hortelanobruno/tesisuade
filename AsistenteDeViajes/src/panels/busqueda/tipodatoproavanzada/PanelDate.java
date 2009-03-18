@@ -87,7 +87,7 @@ public class PanelDate extends javax.swing.JPanel implements PanelTipoDato {
 
     @Override
     public Object getValue() {
-        return dateChooser.getCalendar();
+        return dateChooser.getCalendar().toString();
     }
 
     private void ponerNombre(String nombre) {

@@ -217,7 +217,7 @@ public class ApiJena {
         Individual individual = m.createIndividual(uri + ins, clase);
     }
 
-    public ArrayList<IndividualVueloVO> buscarVuelo(OntModel m, ConsultaVueloVO vuelo, DefaultOntology defOnt) {
+    public ArrayList<IndividualVueloVO> buscarIndividual(OntModel m, ConsultaVueloVO vuelo, DefaultOntology defOnt) {
         ArrayList<IndividualVueloVO> lista = new ArrayList<IndividualVueloVO>();
         HashMap<String, String> propiedades = new HashMap<String, String>();
         Iterator i = m.listIndividuals().filterDrop(new Filter() {
@@ -241,7 +241,7 @@ public class ApiJena {
             }
             if (propiedades.get("type").equalsIgnoreCase(defOnt.getViaje().getNombreClase())) {
                 if (coincideVuelo(vuelo, propiedades, defOnt)) {
-                    IndividualVueloVO invue = cargarIndividualVueloVO(propiedades);
+                    IndividualVueloVO invue = cargarIndividualVueloVO(propiedades,defOnt);
                     invue.setNameIndividual(ind.getLocalName());
                     invue.setUri(ind.getURI());
                     lista.add(invue);
@@ -253,13 +253,27 @@ public class ApiJena {
 
     private boolean coincideVuelo(ConsultaVueloVO vuelo, HashMap<String, String> propiedades, DefaultOntology defOnt) {
         List<String> propNames = defOnt.getViaje().getDefaultPropertiesNames();
-
+        String value;
+        for(String prop:propNames){
+            value = propiedades.get(prop);
+            if(!value.equalsIgnoreCase((String) vuelo.getPropiedadesPrincipales().get(prop))){
+                return false;
+            }
+        }
         return true;
     }
 
-    public IndividualVueloVO cargarIndividualVueloVO(HashMap<String, String> p) {
+    public IndividualVueloVO cargarIndividualVueloVO(HashMap<String, String> p,DefaultOntology defOnt) {
         IndividualVueloVO invue = new IndividualVueloVO();
-
+        for(String prop : defOnt.getViaje().getDefaultPropertiesNames()){
+            if(p.containsKey(prop)){
+                invue.getPropiedadesPrincipales().put(prop, p.get(prop));
+                p.remove(prop);
+            }
+        }
+        for(String prop : p.keySet()){
+            invue.getPropiedadesAvanzadas().put(prop, p.get(prop));
+        }
         return invue;
     }
 
