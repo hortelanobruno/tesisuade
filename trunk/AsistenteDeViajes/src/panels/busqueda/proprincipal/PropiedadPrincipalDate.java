@@ -37,10 +37,14 @@ public class PropiedadPrincipalDate extends javax.swing.JPanel implements Propie
         labelNombre = new javax.swing.JLabel();
         dateChooserValor = new com.toedter.calendar.JDateChooser();
 
+        setMaximumSize(new java.awt.Dimension(264, 20));
+        setMinimumSize(new java.awt.Dimension(264, 20));
+
         labelNombre.setText("Nomber:");
         labelNombre.setName("labelNombre"); // NOI18N
 
         dateChooserValor.setName("dateChooserValor"); // NOI18N
+        dateChooserValor.setPreferredSize(new java.awt.Dimension(100, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -48,16 +52,15 @@ public class PropiedadPrincipalDate extends javax.swing.JPanel implements Propie
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelNombre)
-                .addGap(69, 69, 69)
-                .addComponent(dateChooserValor, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(labelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dateChooserValor, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                .addComponent(labelNombre)
-                .addComponent(dateChooserValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(dateChooserValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(labelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -74,7 +77,7 @@ public class PropiedadPrincipalDate extends javax.swing.JPanel implements Propie
 
     @Override
     public Object getValor() {
-        return dateChooserValor.getCalendar();
+        return dateChooserValor.getCalendar().toString();
     }
 
     @Override
