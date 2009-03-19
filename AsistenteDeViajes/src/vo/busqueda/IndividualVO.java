@@ -11,14 +11,14 @@ import java.util.Map;
  *
  * @author Administrador
  */
-public class IndividualVueloVO {
+public class IndividualVO {
 
     private String uri;
     private String nameIndividual;
     private Map<String, Object> propiedadesPrincipales;
     private Map<String, Object> propiedadesAvanzadas;
 
-    public IndividualVueloVO() {
+    public IndividualVO() {
         propiedadesAvanzadas = new HashMap<String, Object>();
         propiedadesPrincipales = new HashMap<String, Object>();
     }

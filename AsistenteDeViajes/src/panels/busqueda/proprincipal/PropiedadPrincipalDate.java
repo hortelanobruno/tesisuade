@@ -108,7 +108,19 @@ public class PropiedadPrincipalDate extends javax.swing.JPanel implements Propie
     private String formatearFecha(Calendar date){
         int year = date.getTime().getYear()+1900;
         int month = date.getTime().getMonth()+1;
-        return year+"-"+month+"-"+date.getTime().getDate();
+        if(month<10){
+            if(date.getTime().getDate()<10){
+                return year+"-0"+month+"-0"+date.getTime().getDate();
+            }else{
+                return year+"-0"+month+"-"+date.getTime().getDate();
+            }
+        }else{
+            if(date.getTime().getDate()<10){
+                return year+"-"+month+"-0"+date.getTime().getDate();
+            }else{
+                return year+"-"+month+"-"+date.getTime().getDate();
+            }
+        }
     }
 
 }

@@ -23,6 +23,7 @@ import panels.busqueda.proprincipal.PropiedadPrincipal;
 import panels.busqueda.proprincipal.PropiedadPrincipalDate;
 import panels.busqueda.proprincipal.PropiedadPrincipalInteger;
 import panels.busqueda.proprincipal.PropiedadPrincipalString;
+import panels.busqueda.resultado.PanelResultado;
 import panels.busqueda.resultado.PanelResultadoVuelo;
 import panels.busqueda.tipodatoproavanzada.PanelAnyType;
 import panels.busqueda.tipodatoproavanzada.PanelBoolean;
@@ -30,10 +31,8 @@ import panels.busqueda.tipodatoproavanzada.PanelDate;
 import panels.busqueda.tipodatoproavanzada.PanelTipoDato;
 import varios.Constantes;
 import vistas.VistaMotorBusqueda;
-import vo.busqueda.ConsultaAutoVO;
-import vo.busqueda.ConsultaHotelVO;
-import vo.busqueda.ConsultaVueloVO;
-import vo.busqueda.IndividualVueloVO;
+import vo.busqueda.ConsultaVO;
+import vo.busqueda.IndividualVO;
 
 /**
  *
@@ -239,17 +238,7 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
         panelOpcionesAvanzadaAlojamiento.setLayout(new java.awt.GridLayout(0, 1));
 
         panelResultadoAlojamiento.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        javax.swing.GroupLayout panelResultadoAlojamientoLayout = new javax.swing.GroupLayout(panelResultadoAlojamiento);
-        panelResultadoAlojamiento.setLayout(panelResultadoAlojamientoLayout);
-        panelResultadoAlojamientoLayout.setHorizontalGroup(
-            panelResultadoAlojamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 483, Short.MAX_VALUE)
-        );
-        panelResultadoAlojamientoLayout.setVerticalGroup(
-            panelResultadoAlojamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 454, Short.MAX_VALUE)
-        );
+        panelResultadoAlojamiento.setLayout(new java.awt.GridLayout(0, 1));
 
         toggleButtonOpAvAlojamiento.setText("Opciones avanzadas");
         toggleButtonOpAvAlojamiento.addActionListener(new java.awt.event.ActionListener() {
@@ -278,20 +267,20 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
                         .addComponent(buttonBuscarAlojamiento))
                     .addGroup(panelMotorBusquedaHotelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(panelMotorBusquedaHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(panelAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
-                            .addComponent(panelOpcionesAvanzadaAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelResultadoAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelMotorBusquedaHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(panelOpcionesAvanzadaAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panelAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelResultadoAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelMotorBusquedaHotelLayout.setVerticalGroup(
             panelMotorBusquedaHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelMotorBusquedaHotelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMotorBusquedaHotelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelMotorBusquedaHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelResultadoAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMotorBusquedaHotelLayout.createSequentialGroup()
+                .addGroup(panelMotorBusquedaHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(panelResultadoAlojamiento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+                    .addGroup(panelMotorBusquedaHotelLayout.createSequentialGroup()
                         .addComponent(panelAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addGroup(panelMotorBusquedaHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -311,17 +300,7 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
         panelOpcionesAvanzadasAutos.setLayout(new java.awt.GridLayout(0, 1));
 
         panelResultadoAutos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        javax.swing.GroupLayout panelResultadoAutosLayout = new javax.swing.GroupLayout(panelResultadoAutos);
-        panelResultadoAutos.setLayout(panelResultadoAutosLayout);
-        panelResultadoAutosLayout.setHorizontalGroup(
-            panelResultadoAutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
-        );
-        panelResultadoAutosLayout.setVerticalGroup(
-            panelResultadoAutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 454, Short.MAX_VALUE)
-        );
+        panelResultadoAutos.setLayout(new java.awt.GridLayout(1, 1));
 
         toggleButtonOpAvAuto.setText("Opciones avanzadas");
         toggleButtonOpAvAuto.addActionListener(new java.awt.event.ActionListener() {
@@ -343,33 +322,32 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
             panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMotorBusquedaAutoLayout.createSequentialGroup()
                 .addGroup(panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelMotorBusquedaAutoLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelMotorBusquedaAutoLayout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addComponent(toggleButtonOpAvAuto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
-                        .addComponent(buttonBuscarAuto)
-                        .addGap(31, 31, 31))
-                    .addGroup(panelMotorBusquedaAutoLayout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addComponent(buttonBuscarAuto))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelMotorBusquedaAutoLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(panelAutos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
-                            .addComponent(panelOpcionesAvanzadasAutos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(panelResultadoAutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(panelOpcionesAvanzadasAutos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panelAutos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))))
+                .addGap(18, 18, 18)
+                .addComponent(panelResultadoAutos, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelMotorBusquedaAutoLayout.setVerticalGroup(
             panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelMotorBusquedaAutoLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMotorBusquedaAutoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelResultadoAutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMotorBusquedaAutoLayout.createSequentialGroup()
+                .addGroup(panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(panelResultadoAutos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+                    .addGroup(panelMotorBusquedaAutoLayout.createSequentialGroup()
                         .addComponent(panelAutos, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addGroup(panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(buttonBuscarAuto)
-                            .addComponent(toggleButtonOpAvAuto))
+                            .addComponent(toggleButtonOpAvAuto)
+                            .addComponent(buttonBuscarAuto))
                         .addGap(18, 18, 18)
                         .addComponent(panelOpcionesAvanzadasAutos, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -459,47 +437,82 @@ private void buttonBuscarAutoActionPerformed(java.awt.event.ActionEvent evt) {//
     }
 
     private void buscarAlojamiento() {
+        panelResultadoAlojamiento.removeAll();
+        this.repaint();
         if (validarInputAlojamiento()) {
-            ConsultaHotelVO hotelVO = obtenerDatosConsultaAlojamiento();
-        //TODO Hasta aca esta bien, falta la busqueda y mostrar el resultado
-
+            ConsultaVO hotelVO = obtenerDatosConsultaAlojamiento();
+            //TODO Hasta aca esta bien, falta la busqueda y mostrar el resultado
+            List<IndividualVO> indVuelos = ((BusinessDelegate) vistaMotorBusqueda.getModelo()).buscarHotel(hotelVO, this.main.getConfiguration().getDefaultOntology());
+            if (!indVuelos.isEmpty()) {
+                //Mostrar los resultados
+                PanelResultado resultado;
+                for (IndividualVO individualVO : indVuelos) {
+                    resultado = new PanelResultado(individualVO);
+                    resultado.setVisible(true);
+                    panelResultadoAlojamiento.add(resultado);
+                }
+                this.repaint();
+            } else {
+                //Mandar cartel diciendo que no se encontro nada
+                JOptionPane.showMessageDialog(this, "La consulta no arrojo ningun resultado", Constantes.APPLICATION_NAME, JOptionPane.INFORMATION_MESSAGE);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Completar todos los campos obligatorios", Constantes.APPLICATION_NAME, JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private void buscarAuto() {
+        panelResultadoAutos.removeAll();
+        this.repaint();
         if (validarInputAuto()) {
-            ConsultaAutoVO autoVO = obtenerDatosConsultaAuto();
-        //TODO Hasta aca esta bien, falta la busqueda y mostrar el resultado
-
+            ConsultaVO autoVO = obtenerDatosConsultaAuto();
+            //TODO Hasta aca esta bien, falta la busqueda y mostrar el resultado
+            List<IndividualVO> indVuelos = ((BusinessDelegate) vistaMotorBusqueda.getModelo()).buscarAutos(autoVO, this.main.getConfiguration().getDefaultOntology());
+            if (!indVuelos.isEmpty()) {
+                //Mostrar los resultados
+                PanelResultado resultado;
+                for (IndividualVO individualVO : indVuelos) {
+                    resultado = new PanelResultado(individualVO);
+                    resultado.setVisible(true);
+                    panelResultadoAutos.add(resultado);
+                }
+                this.repaint();
+            } else {
+                //Mandar cartel diciendo que no se encontro nada
+                JOptionPane.showMessageDialog(this, "La consulta no arrojo ningun resultado", Constantes.APPLICATION_NAME, JOptionPane.INFORMATION_MESSAGE);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Completar todos los campos obligatorios", Constantes.APPLICATION_NAME, JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private void buscarVuelos() {
+        panelResultadoVuelo.removeAll();
+        this.repaint();
         if (validarInputVuelo()) {
-            ConsultaVueloVO vueloVO = obtenerDatosConsultaVuelo();
+            ConsultaVO vueloVO = obtenerDatosConsultaVuelo();
             //TODO Hasta aca esta bien, falta la busqueda y mostrar el resultado
-            List<IndividualVueloVO> indVuelos = ((BusinessDelegate) vistaMotorBusqueda.getModelo()).buscarVuelos(vueloVO, this.main.getConfiguration().getDefaultOntology());
+            List<IndividualVO> indVuelos = ((BusinessDelegate) vistaMotorBusqueda.getModelo()).buscarVuelos(vueloVO, this.main.getConfiguration().getDefaultOntology());
+            if(!indVuelos.isEmpty()){
+                //Mostrar los resultados
+                PanelResultado resultado;
+                for (IndividualVO individualVO : indVuelos) {
+                    resultado = new PanelResultado(individualVO);
+                    resultado.setVisible(true);
+                    panelResultadoVuelo.add(resultado);
+                }
+                this.repaint();
+            }else{
+                //Mandar cartel diciendo que no se encontro nada
+                JOptionPane.showMessageDialog(this, "La consulta no arrojo ningun resultado", Constantes.APPLICATION_NAME, JOptionPane.INFORMATION_MESSAGE);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Completar todos los campos obligatorios", Constantes.APPLICATION_NAME, JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    public void mostrarResultado(List<IndividualVueloVO> indVuelos) {
-        panelResultadoVuelo.removeAll();
-        for (int i = 0; i < indVuelos.size(); i++) {
-            PanelResultadoVuelo panelVuelo = new PanelResultadoVuelo();
-            panelVuelo.setVisible(true);
-            cargarPanelBusquedaVuelo(panelVuelo, indVuelos.get(i));
-            panelResultadoVuelo.add(panelVuelo);
-        }
-        this.repaint();
-    }
 
-    public void cargarPanelBusquedaVuelo(PanelResultadoVuelo panel, IndividualVueloVO ind) {
+    public void cargarPanelBusquedaVuelo(PanelResultadoVuelo panel, IndividualVO ind) {
     }
 
     private boolean validarInputAuto() {
@@ -556,8 +569,8 @@ private void buttonBuscarAutoActionPerformed(java.awt.event.ActionEvent evt) {//
         return true;
     }
 
-    private ConsultaAutoVO obtenerDatosConsultaAuto() {
-        ConsultaAutoVO auto = new ConsultaAutoVO();
+    private ConsultaVO obtenerDatosConsultaAuto() {
+        ConsultaVO auto = new ConsultaVO();
         for(PropiedadPrincipal pro : proAuto){
             auto.getPropiedadesPrincipales().put(pro.getNombrePropiedad(), pro.getValor());
         }
@@ -569,8 +582,8 @@ private void buttonBuscarAutoActionPerformed(java.awt.event.ActionEvent evt) {//
         return auto;
     }
 
-    private ConsultaHotelVO obtenerDatosConsultaAlojamiento() {
-        ConsultaHotelVO hotel = new ConsultaHotelVO();
+    private ConsultaVO obtenerDatosConsultaAlojamiento() {
+        ConsultaVO hotel = new ConsultaVO();
         for(PropiedadPrincipal pro : proAlojamiento){
             hotel.getPropiedadesPrincipales().put(pro.getNombrePropiedad(), pro.getValor());
         }
@@ -582,8 +595,8 @@ private void buttonBuscarAutoActionPerformed(java.awt.event.ActionEvent evt) {//
         return hotel;
     }
 
-    private ConsultaVueloVO obtenerDatosConsultaVuelo() {
-        ConsultaVueloVO vuelo = new ConsultaVueloVO();
+    private ConsultaVO obtenerDatosConsultaVuelo() {
+        ConsultaVO vuelo = new ConsultaVO();
         for(PropiedadPrincipal pro : proVuelo){
             vuelo.getPropiedadesPrincipales().put(pro.getNombrePropiedad(), pro.getValor());
         }

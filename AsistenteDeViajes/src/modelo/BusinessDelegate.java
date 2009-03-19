@@ -14,8 +14,8 @@ import vo.DatatypePropertyVO;
 import vo.IndividualSinonimoVO;
 import vo.IndividualViajesVO;
 import vo.ObjectPropertyVO;
-import vo.busqueda.ConsultaVueloVO;
-import vo.busqueda.IndividualVueloVO;
+import vo.busqueda.ConsultaVO;
+import vo.busqueda.IndividualVO;
 
 public class BusinessDelegate extends ProxyModelo {
 
@@ -123,8 +123,16 @@ public class BusinessDelegate extends ProxyModelo {
         modeloOntologiaViajes.removeDatatypeProperty(obj);
     }
 
-    public List<IndividualVueloVO> buscarVuelos(ConsultaVueloVO consulta, DefaultOntology defOnt) {
+    public List<IndividualVO> buscarVuelos(ConsultaVO consulta, DefaultOntology defOnt) {
         return modeloMotorBusqueda.buscarVuelos(consulta,defOnt);
+    }
+
+    public List<IndividualVO> buscarAutos(ConsultaVO consulta, DefaultOntology defOnt) {
+        return modeloMotorBusqueda.buscarAutos(consulta,defOnt);
+    }
+
+    public List<IndividualVO> buscarHotel(ConsultaVO consulta, DefaultOntology defOnt) {
+        return modeloMotorBusqueda.buscarHotel(consulta,defOnt);
     }
 
     public DatatypePropertyVO getDatatypeProperty(String pro) {
