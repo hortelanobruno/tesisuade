@@ -11,12 +11,12 @@ import java.util.Map;
  *
  * @author Administrador
  */
-public class ConsultaAutoVO {
+public class ConsultaVO {
 
     private Map<String, Object> propiedadesPrincipales;
     private Map<String, Object> propiedadesAvanzadas;
 
-    public ConsultaAutoVO() {
+    public ConsultaVO() {
         propiedadesAvanzadas = new HashMap<String, Object>();
         propiedadesPrincipales = new HashMap<String, Object>();
     }

@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import jenasouforce.ApiJena;
-import vo.busqueda.ConsultaVueloVO;
-import vo.busqueda.IndividualVueloVO;
+import vo.busqueda.ConsultaVO;
+import vo.busqueda.IndividualVO;
 
 /**
  *
@@ -35,19 +35,75 @@ public class ModeloMotorBusqueda {
         ontologias = new ArrayList<OntModel>();
     }
 
-    public List<IndividualVueloVO> buscarVuelos(ConsultaVueloVO consulta,DefaultOntology defOnt){
-        ArrayList<IndividualVueloVO> vuelos = new ArrayList<IndividualVueloVO>();
-        ArrayList<IndividualVueloVO> aux = null;
+    public List<IndividualVO> buscarHotel(ConsultaVO consulta, DefaultOntology defOnt) {
+        ArrayList<IndividualVO> vuelos = new ArrayList<IndividualVO>();
+        ArrayList<IndividualVO> aux = null;
         //Primero busco todas los ind que coinciden con lo principal
         for(int i = 0 ; i < ontologias.size() ; i++){
-            aux = new ArrayList<IndividualVueloVO>();
-            aux = jena.buscarIndividual(ontologias.get(i),consulta,defOnt);
+            aux = new ArrayList<IndividualVO>();
+            aux = jena.buscarIndividualHotel(ontologias.get(i),consulta,defOnt);
             vuelos.addAll(aux);
         }
         //Luego lo ordeno por lo avanzado
+        aux = new ArrayList<IndividualVO>();
         if(!vuelos.isEmpty()){
-            aux = new ArrayList<IndividualVueloVO>();
-            IndividualVueloVO ind = null;
+            IndividualVO ind = null;
+            for(int i=0 ; i < vuelos.size() ; i++){
+                ind = vuelos.get(0);
+                for(int j=1 ; j < vuelos.size() ; j++){
+                    if(ind.coincidencia(consulta.getPropiedadesAvanzadas())<vuelos.get(j).coincidencia(consulta.getPropiedadesAvanzadas())){
+                        ind = vuelos.get(j);
+                    }
+                }
+                aux.add(ind);
+                vuelos.remove(ind);
+            }
+        }
+        //Aca termino con aux ordenado por coincidencia
+        return aux;
+    }
+
+    public List<IndividualVO> buscarAutos(ConsultaVO consulta, DefaultOntology defOnt) {
+        ArrayList<IndividualVO> vuelos = new ArrayList<IndividualVO>();
+        ArrayList<IndividualVO> aux = null;
+        //Primero busco todas los ind que coinciden con lo principal
+        for(int i = 0 ; i < ontologias.size() ; i++){
+            aux = new ArrayList<IndividualVO>();
+            aux = jena.buscarIndividualAuto(ontologias.get(i),consulta,defOnt);
+            vuelos.addAll(aux);
+        }
+        //Luego lo ordeno por lo avanzado
+        aux = new ArrayList<IndividualVO>();
+        if(!vuelos.isEmpty()){
+            IndividualVO ind = null;
+            for(int i=0 ; i < vuelos.size() ; i++){
+                ind = vuelos.get(0);
+                for(int j=1 ; j < vuelos.size() ; j++){
+                    if(ind.coincidencia(consulta.getPropiedadesAvanzadas())<vuelos.get(j).coincidencia(consulta.getPropiedadesAvanzadas())){
+                        ind = vuelos.get(j);
+                    }
+                }
+                aux.add(ind);
+                vuelos.remove(ind);
+            }
+        }
+        //Aca termino con aux ordenado por coincidencia
+        return aux;
+    }
+
+    public List<IndividualVO> buscarVuelos(ConsultaVO consulta,DefaultOntology defOnt){
+        ArrayList<IndividualVO> vuelos = new ArrayList<IndividualVO>();
+        ArrayList<IndividualVO> aux = null;
+        //Primero busco todas los ind que coinciden con lo principal
+        for(int i = 0 ; i < ontologias.size() ; i++){
+            aux = new ArrayList<IndividualVO>();
+            aux = jena.buscarIndividualVuelo(ontologias.get(i),consulta,defOnt);
+            vuelos.addAll(aux);
+        }
+        //Luego lo ordeno por lo avanzado
+        aux = new ArrayList<IndividualVO>();
+        if(!vuelos.isEmpty()){
+            IndividualVO ind = null;
             for(int i=0 ; i < vuelos.size() ; i++){
                 ind = vuelos.get(0);
                 for(int j=1 ; j < vuelos.size() ; j++){

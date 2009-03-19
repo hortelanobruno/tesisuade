@@ -39,8 +39,8 @@ import vo.DatatypePropertyVO;
 import vo.IndividualSinonimoVO;
 import vo.IndividualViajesVO;
 import vo.ObjectPropertyVO;
-import vo.busqueda.ConsultaVueloVO;
-import vo.busqueda.IndividualVueloVO;
+import vo.busqueda.ConsultaVO;
+import vo.busqueda.IndividualVO;
 
 /**
  *
@@ -217,8 +217,128 @@ public class ApiJena {
         Individual individual = m.createIndividual(uri + ins, clase);
     }
 
-    public ArrayList<IndividualVueloVO> buscarIndividual(OntModel m, ConsultaVueloVO vuelo, DefaultOntology defOnt) {
-        ArrayList<IndividualVueloVO> lista = new ArrayList<IndividualVueloVO>();
+    public ArrayList<IndividualVO> buscarIndividualHotel(OntModel m, ConsultaVO vuelo, DefaultOntology defOnt) {
+        ArrayList<IndividualVO> lista = new ArrayList<IndividualVO>();
+        HashMap<String, String> propiedades = new HashMap<String, String>();
+        Iterator i = m.listIndividuals().filterDrop(new Filter() {
+
+            public boolean accept(Object o) {
+                return ((Resource) o).isAnon();
+            }
+        });
+
+        while (i.hasNext()) {
+            Individual ind = (Individual) i.next();
+            propiedades = new HashMap<String, String>();
+            for (StmtIterator sIter = ind.listProperties(); sIter.hasNext();) {
+                Statement s = (Statement) sIter.next();
+                Triple tri = s.asTriple();
+                if (tri.getObject().isLiteral()) {
+                    propiedades.put(tri.getPredicate().getLocalName(), tri.getMatchObject().getLiteral().getValue().toString());
+                } else {
+                    propiedades.put(tri.getPredicate().getLocalName(), tri.getObject().getLocalName());
+                }
+            }
+            if (propiedades.get("type").equalsIgnoreCase(defOnt.getAlojamiento().getNombreClase())) {
+                if (coincideHotel(vuelo, propiedades, defOnt)) {
+                    IndividualVO invue = cargarIndividualHotelVO(propiedades, defOnt);
+                    invue.setNameIndividual(ind.getLocalName());
+                    invue.setUri(ind.getURI());
+                    lista.add(invue);
+                }
+            }
+        }
+        return lista;
+    }
+
+    private boolean coincideHotel(ConsultaVO hotel, HashMap<String, String> propiedades, DefaultOntology defOnt) {
+        List<String> propNames = defOnt.getAlojamiento().getDefaultPropertiesNames();
+        String value;
+        for (String prop : propNames) {
+            value = propiedades.get(prop);
+            if (!value.equalsIgnoreCase(hotel.getPropiedadesPrincipales().get(prop).toString())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public IndividualVO cargarIndividualHotelVO(HashMap<String, String> p, DefaultOntology defOnt) {
+        IndividualVO invue = new IndividualVO();
+        for (String prop : defOnt.getAlojamiento().getDefaultPropertiesNames()) {
+            if (p.containsKey(prop)) {
+                invue.getPropiedadesPrincipales().put(prop, p.get(prop));
+                p.remove(prop);
+            }
+        }
+        for (String prop : p.keySet()) {
+            invue.getPropiedadesAvanzadas().put(prop, p.get(prop));
+        }
+        return invue;
+    }
+
+    public ArrayList<IndividualVO> buscarIndividualAuto(OntModel m, ConsultaVO vuelo, DefaultOntology defOnt) {
+        ArrayList<IndividualVO> lista = new ArrayList<IndividualVO>();
+        HashMap<String, String> propiedades = new HashMap<String, String>();
+        Iterator i = m.listIndividuals().filterDrop(new Filter() {
+
+            public boolean accept(Object o) {
+                return ((Resource) o).isAnon();
+            }
+        });
+
+        while (i.hasNext()) {
+            Individual ind = (Individual) i.next();
+            propiedades = new HashMap<String, String>();
+            for (StmtIterator sIter = ind.listProperties(); sIter.hasNext();) {
+                Statement s = (Statement) sIter.next();
+                Triple tri = s.asTriple();
+                if (tri.getObject().isLiteral()) {
+                    propiedades.put(tri.getPredicate().getLocalName(), tri.getMatchObject().getLiteral().getValue().toString());
+                } else {
+                    propiedades.put(tri.getPredicate().getLocalName(), tri.getObject().getLocalName());
+                }
+            }
+            if (propiedades.get("type").equalsIgnoreCase(defOnt.getTranslado().getNombreClase())) {
+                if (coincideAuto(vuelo, propiedades, defOnt)) {
+                    IndividualVO invue = cargarIndividualAutoVO(propiedades, defOnt);
+                    invue.setNameIndividual(ind.getLocalName());
+                    invue.setUri(ind.getURI());
+                    lista.add(invue);
+                }
+            }
+        }
+        return lista;
+    }
+
+    private boolean coincideAuto(ConsultaVO auto, HashMap<String, String> propiedades, DefaultOntology defOnt) {
+        List<String> propNames = defOnt.getTranslado().getDefaultPropertiesNames();
+        String value;
+        for (String prop : propNames) {
+            value = propiedades.get(prop);
+            if (!value.equalsIgnoreCase(auto.getPropiedadesPrincipales().get(prop).toString())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public IndividualVO cargarIndividualAutoVO(HashMap<String, String> p, DefaultOntology defOnt) {
+        IndividualVO invue = new IndividualVO();
+        for (String prop : defOnt.getTranslado().getDefaultPropertiesNames()) {
+            if (p.containsKey(prop)) {
+                invue.getPropiedadesPrincipales().put(prop, p.get(prop));
+                p.remove(prop);
+            }
+        }
+        for (String prop : p.keySet()) {
+            invue.getPropiedadesAvanzadas().put(prop, p.get(prop));
+        }
+        return invue;
+    }
+
+    public ArrayList<IndividualVO> buscarIndividualVuelo(OntModel m, ConsultaVO vuelo, DefaultOntology defOnt) {
+        ArrayList<IndividualVO> lista = new ArrayList<IndividualVO>();
         HashMap<String, String> propiedades = new HashMap<String, String>();
         Iterator i = m.listIndividuals().filterDrop(new Filter() {
 
@@ -241,7 +361,7 @@ public class ApiJena {
             }
             if (propiedades.get("type").equalsIgnoreCase(defOnt.getViaje().getNombreClase())) {
                 if (coincideVuelo(vuelo, propiedades, defOnt)) {
-                    IndividualVueloVO invue = cargarIndividualVueloVO(propiedades,defOnt);
+                    IndividualVO invue = cargarIndividualVueloVO(propiedades, defOnt);
                     invue.setNameIndividual(ind.getLocalName());
                     invue.setUri(ind.getURI());
                     lista.add(invue);
@@ -251,27 +371,27 @@ public class ApiJena {
         return lista;
     }
 
-    private boolean coincideVuelo(ConsultaVueloVO vuelo, HashMap<String, String> propiedades, DefaultOntology defOnt) {
+    private boolean coincideVuelo(ConsultaVO vuelo, HashMap<String, String> propiedades, DefaultOntology defOnt) {
         List<String> propNames = defOnt.getViaje().getDefaultPropertiesNames();
         String value;
-        for(String prop:propNames){
+        for (String prop : propNames) {
             value = propiedades.get(prop);
-            if(!value.equalsIgnoreCase((String) vuelo.getPropiedadesPrincipales().get(prop))){
+            if (!value.equalsIgnoreCase(vuelo.getPropiedadesPrincipales().get(prop).toString())) {
                 return false;
             }
         }
         return true;
     }
 
-    public IndividualVueloVO cargarIndividualVueloVO(HashMap<String, String> p,DefaultOntology defOnt) {
-        IndividualVueloVO invue = new IndividualVueloVO();
-        for(String prop : defOnt.getViaje().getDefaultPropertiesNames()){
-            if(p.containsKey(prop)){
+    public IndividualVO cargarIndividualVueloVO(HashMap<String, String> p, DefaultOntology defOnt) {
+        IndividualVO invue = new IndividualVO();
+        for (String prop : defOnt.getViaje().getDefaultPropertiesNames()) {
+            if (p.containsKey(prop)) {
                 invue.getPropiedadesPrincipales().put(prop, p.get(prop));
                 p.remove(prop);
             }
         }
-        for(String prop : p.keySet()){
+        for (String prop : p.keySet()) {
             invue.getPropiedadesAvanzadas().put(prop, p.get(prop));
         }
         return invue;
@@ -425,8 +545,6 @@ public class ApiJena {
             proOld.setRange(XSD.xdouble);
         }
     }
-
-    
 
     public String convertirPropiedad(OntModel sinonimo, String propiedad) {
         String uri = getURIOntologiaConNumeral(sinonimo);
