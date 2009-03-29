@@ -116,7 +116,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         itemsToolBar.setFloatable(false);
 
-        buttonBuscarVuelo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/vuelo.gif"))); // NOI18N
+        buttonBuscarVuelo.setText("Buscar vuelo");
         buttonBuscarVuelo.setFocusable(false);
         buttonBuscarVuelo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonBuscarVuelo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -127,20 +127,20 @@ public class FramePrincipal extends javax.swing.JFrame {
         });
         itemsToolBar.add(buttonBuscarVuelo);
 
-        buttonBuscarHotel.setText("BH");
+        buttonBuscarHotel.setText("Buscar hotel");
         buttonBuscarHotel.setFocusable(false);
         buttonBuscarHotel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonBuscarHotel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         itemsToolBar.add(buttonBuscarHotel);
 
-        buttonBuscarAuto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/auto.gif"))); // NOI18N
+        buttonBuscarAuto.setText("Buscar auto");
         buttonBuscarAuto.setFocusable(false);
         buttonBuscarAuto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonBuscarAuto.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         itemsToolBar.add(buttonBuscarAuto);
         itemsToolBar.add(jSeparator2);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo.gif"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo/new_wiz.gif"))); // NOI18N
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -151,7 +151,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         });
         itemsToolBar.add(jButton2);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/abrir.gif"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo/open.gif"))); // NOI18N
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -162,7 +162,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         });
         itemsToolBar.add(jButton3);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/grabar.gif"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo/save.gif"))); // NOI18N
         jButton4.setFocusable(false);
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -216,6 +216,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Archivo");
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo/view.gif"))); // NOI18N
         jMenuItem1.setText("Nueva Busqueda");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,6 +226,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
         jMenu1.add(jSeparator1);
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo/exit.png"))); // NOI18N
         jMenuItem2.setText("Salir");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,6 +259,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         jMenu5.setText("Vocabulario");
 
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo/book.gif"))); // NOI18N
         jMenuItem4.setText("Sinonimos");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -269,6 +272,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         jMenu6.setText("Ontologia");
 
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo/new_wiz.gif"))); // NOI18N
         jMenuItem7.setText("Nueva Ontologia");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,6 +281,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem7);
 
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo/open.gif"))); // NOI18N
         jMenuItem6.setText("Abrir Ontologia");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -294,6 +299,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         jMenu6.add(jMenuItem9);
         jMenu6.add(jSeparator3);
 
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo/save.gif"))); // NOI18N
         jMenuItem8.setText("Grabar Ontologia");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
