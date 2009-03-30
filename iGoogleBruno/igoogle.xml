@@ -9,6 +9,6 @@
   </ConfigMap>  -->
   <ConfigMap type="Skin"> 
     <Attribute name="header.background_color">teal</Attribute>
-    <Attribute name="header.tile_image.url">http://tesisuade.googlecode.com/svn/trunk/iGoogleBruno/home.jpg</Attribute>
+    <Attribute name="header.left_image.url">http://tesisuade.googlecode.com/svn/trunk/iGoogleBruno/home.jpg</Attribute>
   </ConfigMap> 
 </ConfigMaps>
