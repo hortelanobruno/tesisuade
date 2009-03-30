@@ -88,6 +88,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JToolBar.Separator();
         buttonSetting = new javax.swing.JButton();
         statusToolBar = new javax.swing.JToolBar();
+        jLabel2 = new javax.swing.JLabel();
         labelEstado = new javax.swing.JLabel();
         panelPrincipal = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -115,6 +116,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         setTitle("Asistente de Viajes");
 
         itemsToolBar.setFloatable(false);
+        itemsToolBar.setMargin(new java.awt.Insets(0, 10, 0, 0));
 
         buttonBuscarVuelo.setText("Buscar vuelo");
         buttonBuscarVuelo.setFocusable(false);
@@ -131,12 +133,22 @@ public class FramePrincipal extends javax.swing.JFrame {
         buttonBuscarHotel.setFocusable(false);
         buttonBuscarHotel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonBuscarHotel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        buttonBuscarHotel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBuscarHotelActionPerformed(evt);
+            }
+        });
         itemsToolBar.add(buttonBuscarHotel);
 
         buttonBuscarAuto.setText("Buscar auto");
         buttonBuscarAuto.setFocusable(false);
         buttonBuscarAuto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonBuscarAuto.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        buttonBuscarAuto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBuscarAutoActionPerformed(evt);
+            }
+        });
         itemsToolBar.add(buttonBuscarAuto);
         itemsToolBar.add(jSeparator2);
 
@@ -181,6 +193,13 @@ public class FramePrincipal extends javax.swing.JFrame {
         itemsToolBar.add(buttonSetting);
 
         statusToolBar.setFloatable(false);
+        statusToolBar.setMargin(new java.awt.Insets(0, 10, 0, 0));
+
+        jLabel2.setText("     ");
+        statusToolBar.add(jLabel2);
+
+        labelEstado.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        labelEstado.setPreferredSize(new java.awt.Dimension(100, 0));
         statusToolBar.add(labelEstado);
 
         panelPrincipal.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -202,7 +221,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(393, Short.MAX_VALUE))
+                .addContainerGap(403, Short.MAX_VALUE))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,12 +342,15 @@ public class FramePrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(statusToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(itemsToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(itemsToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 990, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(statusToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,7 +359,8 @@ public class FramePrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(statusToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(statusToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11))
         );
 
         pack();
@@ -477,8 +500,31 @@ private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 }//GEN-LAST:event_jMenuItem11ActionPerformed
 
 private void buttonBuscarVueloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarVueloActionPerformed
-    // TODO add your handling code here:
+    if (!isPanelMotorBusquedaSelected) {
+        setPanelMotorBusqueda(new PanelMotorBusqueda(this, vistaMotorBusqueda));
+        getPanelMotorBusqueda().getJTabbedPane1().setSelectedIndex(0);
+        ponerPanel(getPanelMotorBusqueda());
+        labelEstado.setText(Mensajes.NUEVA_BUSQUEDA);
+    }
 }//GEN-LAST:event_buttonBuscarVueloActionPerformed
+
+private void buttonBuscarHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarHotelActionPerformed
+    if (!isPanelMotorBusquedaSelected) {
+        setPanelMotorBusqueda(new PanelMotorBusqueda(this, vistaMotorBusqueda));
+        getPanelMotorBusqueda().getJTabbedPane1().setSelectedIndex(1);
+        ponerPanel(getPanelMotorBusqueda());
+        labelEstado.setText(Mensajes.NUEVA_BUSQUEDA);
+    }
+}//GEN-LAST:event_buttonBuscarHotelActionPerformed
+
+private void buttonBuscarAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarAutoActionPerformed
+    if (!isPanelMotorBusquedaSelected) {
+        setPanelMotorBusqueda(new PanelMotorBusqueda(this, vistaMotorBusqueda));
+        getPanelMotorBusqueda().getJTabbedPane1().setSelectedIndex(2);
+        ponerPanel(getPanelMotorBusqueda());
+        labelEstado.setText(Mensajes.NUEVA_BUSQUEDA);
+    }
+}//GEN-LAST:event_buttonBuscarAutoActionPerformed
 
     public void nuevaOntologia() {
         if (!isPanelNuevaOntologiaSelected) {
@@ -748,6 +794,7 @@ private void buttonBuscarVueloActionPerformed(java.awt.event.ActionEvent evt) {/
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

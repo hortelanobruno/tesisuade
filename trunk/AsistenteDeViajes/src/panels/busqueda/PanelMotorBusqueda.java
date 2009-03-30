@@ -130,15 +130,12 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         panelMotorBusquedaVuelo = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        panelResultadoVuelo = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
         panelOpcionesAvanzadasVuelos = new javax.swing.JPanel();
+        panelVuelo = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        panelResultadoVuelo = new javax.swing.JPanel();
         toggleButtonOpcionesAvanzadasVuelo = new javax.swing.JToggleButton();
         buttonBuscarVuelos = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        panelVuelo = new javax.swing.JPanel();
         panelMotorBusquedaHotel = new javax.swing.JPanel();
         panelAlojamiento = new javax.swing.JPanel();
         panelOpcionesAvanzadaAlojamiento = new javax.swing.JPanel();
@@ -152,26 +149,36 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
         toggleButtonOpAvAuto = new javax.swing.JToggleButton();
         buttonBuscarAuto = new javax.swing.JButton();
 
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        panelOpcionesAvanzadasVuelos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelOpcionesAvanzadasVuelos.setPreferredSize(new java.awt.Dimension(414, 182));
+        panelOpcionesAvanzadasVuelos.setLayout(new java.awt.GridLayout(0, 1));
+
+        panelVuelo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelVuelo.setPreferredSize(new java.awt.Dimension(414, 216));
+        panelVuelo.setLayout(new java.awt.GridLayout(6, 1));
+
+        panelResultadoVuelo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelResultadoVuelo.setPreferredSize(new java.awt.Dimension(513, 453));
+        panelResultadoVuelo.setRequestFocusEnabled(false);
         panelResultadoVuelo.setLayout(new java.awt.GridLayout(0, 1));
-        jScrollPane1.setViewportView(panelResultadoVuelo);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelResultadoVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addComponent(panelResultadoVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(74, Short.MAX_VALUE))
         );
-
-        panelOpcionesAvanzadasVuelos.setLayout(new java.awt.GridLayout(0, 1));
-        jScrollPane2.setViewportView(panelOpcionesAvanzadasVuelos);
 
         toggleButtonOpcionesAvanzadasVuelo.setText("Opciones avanzadas");
         toggleButtonOpcionesAvanzadasVuelo.addActionListener(new java.awt.event.ActionListener() {
@@ -187,27 +194,26 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
             }
         });
 
-        panelVuelo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        panelVuelo.setLayout(new java.awt.GridLayout(6, 1));
-        jScrollPane3.setViewportView(panelVuelo);
-
         javax.swing.GroupLayout panelMotorBusquedaVueloLayout = new javax.swing.GroupLayout(panelMotorBusquedaVuelo);
         panelMotorBusquedaVuelo.setLayout(panelMotorBusquedaVueloLayout);
         panelMotorBusquedaVueloLayout.setHorizontalGroup(
             panelMotorBusquedaVueloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMotorBusquedaVueloLayout.createSequentialGroup()
                 .addGroup(panelMotorBusquedaVueloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMotorBusquedaVueloLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(toggleButtonOpcionesAvanzadasVuelo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonBuscarVuelos)
-                        .addGap(21, 21, 21))
+                    .addGroup(panelMotorBusquedaVueloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelMotorBusquedaVueloLayout.createSequentialGroup()
+                            .addGap(24, 24, 24)
+                            .addComponent(toggleButtonOpcionesAvanzadasVuelo)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonBuscarVuelos)
+                            .addGap(21, 21, 21))
+                        .addGroup(panelMotorBusquedaVueloLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(panelVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                     .addGroup(panelMotorBusquedaVueloLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(panelMotorBusquedaVueloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE))
+                        .addComponent(panelOpcionesAvanzadasVuelos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -219,25 +225,28 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
                 .addGroup(panelMotorBusquedaVueloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelMotorBusquedaVueloLayout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelMotorBusquedaVueloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(panelVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelMotorBusquedaVueloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(toggleButtonOpcionesAvanzadasVuelo)
                             .addComponent(buttonBuscarVuelos))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(panelOpcionesAvanzadasVuelos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Vuelos", panelMotorBusquedaVuelo);
 
         panelAlojamiento.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelAlojamiento.setPreferredSize(new java.awt.Dimension(414, 216));
         panelAlojamiento.setLayout(new java.awt.GridLayout(0, 1));
 
         panelOpcionesAvanzadaAlojamiento.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelOpcionesAvanzadaAlojamiento.setPreferredSize(new java.awt.Dimension(414, 182));
         panelOpcionesAvanzadaAlojamiento.setLayout(new java.awt.GridLayout(0, 1));
 
         panelResultadoAlojamiento.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelResultadoAlojamiento.setPreferredSize(new java.awt.Dimension(513, 453));
         panelResultadoAlojamiento.setLayout(new java.awt.GridLayout(0, 1));
 
         toggleButtonOpAvAlojamiento.setText("Opciones avanzadas");
@@ -259,47 +268,51 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
         panelMotorBusquedaHotelLayout.setHorizontalGroup(
             panelMotorBusquedaHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMotorBusquedaHotelLayout.createSequentialGroup()
-                .addGroup(panelMotorBusquedaHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelMotorBusquedaHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelMotorBusquedaHotelLayout.createSequentialGroup()
-                        .addGap(56, 56, 56)
+                        .addGroup(panelMotorBusquedaHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(panelOpcionesAvanzadaAlojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panelAlojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(panelMotorBusquedaHotelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addComponent(toggleButtonOpAvAlojamiento)
-                        .addGap(74, 74, 74)
-                        .addComponent(buttonBuscarAlojamiento))
-                    .addGroup(panelMotorBusquedaHotelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(panelMotorBusquedaHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(panelOpcionesAvanzadaAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panelAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelResultadoAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonBuscarAlojamiento)
+                        .addGap(20, 20, 20)))
+                .addComponent(panelResultadoAlojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         panelMotorBusquedaHotelLayout.setVerticalGroup(
             panelMotorBusquedaHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMotorBusquedaHotelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelMotorBusquedaHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(panelResultadoAlojamiento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+                .addGroup(panelMotorBusquedaHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(panelResultadoAlojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelMotorBusquedaHotelLayout.createSequentialGroup()
-                        .addComponent(panelAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
+                        .addComponent(panelAlojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelMotorBusquedaHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(toggleButtonOpAvAlojamiento)
                             .addComponent(buttonBuscarAlojamiento))
-                        .addGap(18, 18, 18)
-                        .addComponent(panelOpcionesAvanzadaAlojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelOpcionesAvanzadaAlojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(36, 36, 36))
         );
 
         jTabbedPane1.addTab("Hoteles", panelMotorBusquedaHotel);
 
         panelAutos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelAutos.setPreferredSize(new java.awt.Dimension(414, 216));
         panelAutos.setLayout(new java.awt.GridLayout(0, 1));
 
         panelOpcionesAvanzadasAutos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelOpcionesAvanzadasAutos.setPreferredSize(new java.awt.Dimension(414, 182));
         panelOpcionesAvanzadasAutos.setLayout(new java.awt.GridLayout(0, 1));
 
         panelResultadoAutos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelResultadoAutos.setPreferredSize(new java.awt.Dimension(513, 453));
         panelResultadoAutos.setLayout(new java.awt.GridLayout(1, 1));
 
         toggleButtonOpAvAuto.setText("Opciones avanzadas");
@@ -321,36 +334,37 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
         panelMotorBusquedaAutoLayout.setHorizontalGroup(
             panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMotorBusquedaAutoLayout.createSequentialGroup()
-                .addGroup(panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelMotorBusquedaAutoLayout.createSequentialGroup()
-                        .addGap(57, 57, 57)
+                .addContainerGap()
+                .addGroup(panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panelMotorBusquedaAutoLayout.createSequentialGroup()
+                        .addGroup(panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panelOpcionesAvanzadasAutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panelAutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(panelMotorBusquedaAutoLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addComponent(toggleButtonOpAvAuto)
-                        .addGap(96, 96, 96)
-                        .addComponent(buttonBuscarAuto))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelMotorBusquedaAutoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(panelOpcionesAvanzadasAutos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panelAutos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))))
-                .addGap(18, 18, 18)
-                .addComponent(panelResultadoAutos, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonBuscarAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)))
+                .addComponent(panelResultadoAutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         panelMotorBusquedaAutoLayout.setVerticalGroup(
             panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMotorBusquedaAutoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(panelResultadoAutos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
-                    .addGroup(panelMotorBusquedaAutoLayout.createSequentialGroup()
-                        .addComponent(panelAutos, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
+                .addGroup(panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(panelResultadoAutos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelMotorBusquedaAutoLayout.createSequentialGroup()
+                        .addComponent(panelAutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelMotorBusquedaAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(toggleButtonOpAvAuto)
                             .addComponent(buttonBuscarAuto))
-                        .addGap(18, 18, 18)
-                        .addComponent(panelOpcionesAvanzadasAutos, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelOpcionesAvanzadasAutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Autos", panelMotorBusquedaAuto);
@@ -362,7 +376,7 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 958, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -649,9 +663,6 @@ private void buttonBuscarAutoActionPerformed(java.awt.event.ActionEvent evt) {//
     private javax.swing.JButton buttonBuscarAuto;
     private javax.swing.JButton buttonBuscarVuelos;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel panelAlojamiento;
     private javax.swing.JPanel panelAutos;
@@ -704,6 +715,13 @@ private void buttonBuscarAutoActionPerformed(java.awt.event.ActionEvent evt) {//
      */
     public void setBuscarAuto(boolean buscarAuto) {
         this.buscarAuto = buscarAuto;
+    }
+
+    /**
+     * @return the jTabbedPane1
+     */
+    public javax.swing.JTabbedPane getJTabbedPane1() {
+        return jTabbedPane1;
     }
 }
 

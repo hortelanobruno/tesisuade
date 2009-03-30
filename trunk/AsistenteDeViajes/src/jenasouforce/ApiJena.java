@@ -18,6 +18,7 @@ import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.hp.hpl.jena.rdf.model.impl.LiteralImpl;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.util.iterator.Filter;
 import com.hp.hpl.jena.vocabulary.XSD;
@@ -396,18 +397,40 @@ public class ApiJena {
         }
         return invue;
     }
-
-    //Terminar
+    
     public void cargarPropiedadIndividual(OntModel m, String ind, String pro, String valor) {
         String uri = getURIOntologiaConNumeral(m);
         Individual individual = m.getIndividual(uri + ind);
         OntProperty propiedad = m.getOntProperty(uri + pro);
         if (propiedad.isDatatypeProperty()) {
             DatatypeProperty datatypeProperty = m.getDatatypeProperty(uri + pro);
-            individual.addProperty(datatypeProperty, valor);
+            individual.addLiteral(datatypeProperty, valor);
         } else {
             ObjectProperty objectProperty = m.getObjectProperty(uri + pro);
             individual.addProperty(objectProperty, valor);
+        }
+    }
+
+    public void changePropiedadIndividual(OntModel m, String ind, String pro, String valor) {
+        String uri = getURIOntologiaConNumeral(m);
+        Individual individual = m.getIndividual(uri + ind);
+        OntProperty propiedad = m.getOntProperty(uri + pro);
+        if (propiedad.isDatatypeProperty()) {
+            DatatypeProperty datatypeProperty = m.getDatatypeProperty(uri + pro);
+            if(individual.getProperty(datatypeProperty) != null){
+                if (individual.getProperty(datatypeProperty).getLiteral() != null) {
+                    Literal lit = individual.getProperty(datatypeProperty).getLiteral();
+                    individual.removeProperty(datatypeProperty, lit);
+                    individual.addLiteral(datatypeProperty, valor);
+                } else {
+                    individual.addLiteral(datatypeProperty, valor);
+                }
+            }else{
+                individual.addLiteral(datatypeProperty, valor);
+            }
+        } else {
+            ObjectProperty objectProperty = m.getObjectProperty(uri + pro);
+            individual.getProperty(objectProperty).changeObject(valor);
         }
     }
 
@@ -1320,13 +1343,22 @@ public class ApiJena {
             Triple tri = s.asTriple();
             if (tri.getObject().isLiteral()) {
                 DatatypePropertyVO datapro = new DatatypePropertyVO();
-                if (tri.getObject().getLiteralDatatype() != null) {
-                    String[] tipo = tri.getObject().getLiteralDatatype().getURI().split("#");
-                    datapro.setRange(tipo[tipo.length - 1]);
-                    datapro.setValor(tri.getMatchObject().getLiteral().getValue().toString());
-                    String nombre = tri.getPredicate().getLocalName();
-                    datapro.setName(nombre);
-                    datatypeProperties.add(datapro);
+                if(tri.getObject() != null){
+                    if (tri.getObject().getLiteralDatatype() != null) {
+                        String[] tipo = tri.getObject().getLiteralDatatype().getURI().split("#");
+                        datapro.setRange(tipo[tipo.length - 1]);
+                        datapro.setValor(tri.getMatchObject().getLiteral().getValue().toString());
+                        String nombre = tri.getPredicate().getLocalName();
+                        datapro.setName(nombre);
+                        datatypeProperties.add(datapro);
+                    }else{
+//                        String[] tipo = tri.getObject().getURI().split("#");
+//                        datapro.setRange(tipo[tipo.length - 1]);
+//                        datapro.setValor(tri.getObject().getLiteralValue().toString());
+//                        String nombre = tri.getPredicate().getLocalName();
+//                        datapro.setName(nombre);
+//                        datatypeProperties.add(datapro);
+                    }
                 }
             } else {
                 String valor = tri.getObject().getLocalName();

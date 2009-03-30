@@ -58,17 +58,17 @@ public class PanelBoolean extends javax.swing.JPanel implements PanelTipoDato {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cbActived)
-                .addGap(35, 35, 35)
-                .addComponent(labelNombre)
-                .addGap(60, 60, 60)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(checkBoxValue)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                 .addComponent(cbActived)
-                .addComponent(labelNombre)
+                .addComponent(labelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(checkBoxValue))
         );
     }// </editor-fold>//GEN-END:initComponents

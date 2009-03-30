@@ -80,6 +80,10 @@ public class ModeloOntologiaViajes {
         jena.cargarPropiedadIndividual(m, ind, pro, valor);
     }
 
+    public void changePropiedadIndividual(String ind, String pro, String valor) {
+        jena.changePropiedadIndividual(m, ind, pro, valor);
+    }
+
     public void changeIndividualClass(String old, String nuevo) {
         jena.changeIndividualClass(m, old, nuevo);
     }
