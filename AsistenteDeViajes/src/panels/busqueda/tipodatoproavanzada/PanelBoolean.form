@@ -19,11 +19,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="cbActived" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-              <Component id="labelNombre" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="labelNombre" min="-2" pref="175" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="checkBoxValue" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="44" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -31,7 +31,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="103" groupAlignment="2" attributes="0">
               <Component id="cbActived" alignment="2" min="-2" max="-2" attributes="0"/>
-              <Component id="labelNombre" alignment="2" min="-2" max="-2" attributes="0"/>
+              <Component id="labelNombre" alignment="2" min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="checkBoxValue" alignment="2" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>

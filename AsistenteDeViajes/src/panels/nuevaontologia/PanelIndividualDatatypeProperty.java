@@ -3,7 +3,6 @@
  *
  * Created on August 25, 2008, 1:58 PM
  */
-
 package panels.nuevaontologia;
 
 import java.awt.event.KeyEvent;
@@ -16,7 +15,7 @@ public class PanelIndividualDatatypeProperty extends javax.swing.JPanel {
 
     private int varEnter;
     private PanelNuevaOntologia ontologia;
-    
+
     /** Creates new form PanelIndividualDataProperties */
     public PanelIndividualDatatypeProperty(PanelNuevaOntologia nueva) {
         initComponents();
@@ -83,12 +82,13 @@ public class PanelIndividualDatatypeProperty extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 private void textFieldValorPropertyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldValorPropertyKeyTyped
-    if(evt.getKeyChar() == KeyEvent.VK_ENTER){
-        varEnter = 1;
-        ontologia.cargarPropiedadIndividual(labelNombrePropiedad.getText(),textFieldValorProperty.getText());
-    }else{
-        varEnter = 0;
-    }
+//    if(evt.getKeyChar() == KeyEvent.VK_ENTER){
+//        varEnter = 1;
+//        ontologia.changePropiedadIndividual(labelNombrePropiedad.getText(),textFieldValorProperty.getText());
+//    }else{
+//        varEnter = 0;
+//    }
+    ontologia.changePropiedadIndividual(labelNombrePropiedad.getText(), textFieldValorProperty.getText()+evt.getKeyChar());
 }//GEN-LAST:event_textFieldValorPropertyKeyTyped
 
 private void textFieldValorPropertyFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldValorPropertyFocusGained
@@ -96,12 +96,10 @@ private void textFieldValorPropertyFocusGained(java.awt.event.FocusEvent evt) {/
 }//GEN-LAST:event_textFieldValorPropertyFocusGained
 
 private void textFieldValorPropertyFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldValorPropertyFocusLost
-    if(varEnter == 0){
-        ontologia.cargarPropiedadIndividual(labelNombrePropiedad.getText(),textFieldValorProperty.getText());
-    }
+//    if(varEnter == 0){
+//        ontologia.changePropiedadIndividual(labelNombrePropiedad.getText(),textFieldValorProperty.getText());
+//    }
 }//GEN-LAST:event_textFieldValorPropertyFocusLost
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox comboBoxType;
     private javax.swing.JLabel labelNombrePropiedad;
@@ -131,5 +129,4 @@ private void textFieldValorPropertyFocusLost(java.awt.event.FocusEvent evt) {//G
     public void setTextFieldValorProperty(javax.swing.JTextField textFieldValorProperty) {
         this.textFieldValorProperty = textFieldValorProperty;
     }
-
 }

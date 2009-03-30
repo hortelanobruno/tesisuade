@@ -3,9 +3,7 @@
  *
  * Created on 18 de agosto de 2008, 10:02
  */
-
 package panels.nuevaontologia;
-
 
 import controladores.ControladorPanelNuevaOntologia;
 import gui.FramePrincipal;
@@ -59,10 +57,10 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
     private DefaultTreeModel modelo;
     private DefaultMutableTreeNode abuelo;
     private Toolkit toolkit = Toolkit.getDefaultToolkit();
-    private HashMap<String,DefaultMutableTreeNode> mapaNodos;
+    private HashMap<String, DefaultMutableTreeNode> mapaNodos;
     private String classNameAux;
     private String individualNameAux;
-    
+
     /** Creates new form PanelNuevaOntologia */
     public PanelNuevaOntologia(FramePrincipal ref, VistaNuevaOntologia vistaN) {
         this.main = ref;
@@ -70,8 +68,6 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
         initComponents();
         initComponents2();
     }
-
-
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -807,126 +803,122 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    
-private void initComponents2(){
-    panelAgregarNombre.setVisible(false);
-    panelAddDatatypeProperty.setVisible(false);
-    panelAddObjectProperty.setVisible(false);
-    panelAddIndividual.setVisible(false);
-    mapaNodos = new HashMap<String, DefaultMutableTreeNode>();
-    
-    ImageIcon leafIcon = new ImageIcon(Constantes.ICONTREE);
-    if (leafIcon != null) {
-        DefaultTreeCellRenderer renderer = 
-            new DefaultTreeCellRenderer();
-        renderer.setOpenIcon(leafIcon);
-        renderer.setClosedIcon(leafIcon);
-        renderer.setLeafIcon(leafIcon);
-        treeClasses.setCellRenderer(renderer);
-        jScrollPane1.setViewportView(treeClasses);
+    private void initComponents2() {
+        panelAgregarNombre.setVisible(false);
+        panelAddDatatypeProperty.setVisible(false);
+        panelAddObjectProperty.setVisible(false);
+        panelAddIndividual.setVisible(false);
+        mapaNodos = new HashMap<String, DefaultMutableTreeNode>();
+
+        ImageIcon leafIcon = new ImageIcon(Constantes.ICONTREE);
+        if (leafIcon != null) {
+            DefaultTreeCellRenderer renderer =
+                    new DefaultTreeCellRenderer();
+            renderer.setOpenIcon(leafIcon);
+            renderer.setClosedIcon(leafIcon);
+            renderer.setLeafIcon(leafIcon);
+            treeClasses.setCellRenderer(renderer);
+            jScrollPane1.setViewportView(treeClasses);
+        }
+
+        setCargarClase(false);
+        setCargarDatatypeProperty(false);
+        setCargarObjectProperty(false);
+        setCargarOntologia(false);
+        setNuevaOntologia(false);
+        setCargarIndividual(false);
     }
 
-    setCargarClase(false);
-    setCargarDatatypeProperty(false);
-    setCargarObjectProperty(false);
-    setCargarOntologia(false);
-    setNuevaOntologia(false);
-    setCargarIndividual(false);
-}
-
-public void modoCargar(){
-    ((ControladorPanelNuevaOntologia) getVistaNuevaOntologia().getControlador()).doCargarOWL(true);
-}
-
-public void modoNuevo(){
-    ((ControladorPanelNuevaOntologia) getVistaNuevaOntologia().getControlador()).doNuevaOWL(true);
-}
-
-public void nuevaOntologia(){
-    ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).nuevaOntologia();
-}
-
-public void cargarOntologia(){
-    ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).cargarOntologia(getUrlOWL());       
-}
-
-public void guardarOntologia(){
-    //Grabar ontologia
-    ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).grabarOntologia(urlOWL);
-}
-
-public void update() {
-    if(nuevaOntologia){
-        vaciarPaneles();
-        nuevaOntologia();
-        cargarOntologiaDefault();
+    public void modoCargar() {
+        ((ControladorPanelNuevaOntologia) getVistaNuevaOntologia().getControlador()).doCargarOWL(true);
     }
-    if(cargarOntologia){
-        vaciarPaneles();
-        cargarOntologia();
-        cargarPaneles();
-    }
-    if(isCargarClase()){
-        cargarClase();
-    }
-    if(isCargarDatatypeProperty()){
-        cargarDatatypeProperty();
-    }
-    if(isCargarObjectProperty()){
-        cargarObjectProperty();
-    }
-    
-    if(isCargarIndividual()){
-        cargarIndividual();
-    }
-}
 
-public void cargarPropiedadIndividual(String pro,String valor){
-    JListItem item = (JListItem) listIndividuals.getSelectedValue();
-    String ind = item.getTitle();
-    ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).cargarPropiedadIndividual(ind,pro,valor);
-}
+    public void modoNuevo() {
+        ((ControladorPanelNuevaOntologia) getVistaNuevaOntologia().getControlador()).doNuevaOWL(true);
+    }
 
+    public void nuevaOntologia() {
+        ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).nuevaOntologia();
+    }
 
-public void cargarIndividual(){
-    if(!listIndividuals.isSelectionEmpty()){
+    public void cargarOntologia() {
+        ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).cargarOntologia(getUrlOWL());
+    }
+
+    public void guardarOntologia() {
+        //Grabar ontologia
+        ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).grabarOntologia(urlOWL);
+        ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).cargarConfiguracion(main.getConfiguration());
+    }
+
+    public void update() {
+        if (nuevaOntologia) {
+            vaciarPaneles();
+            nuevaOntologia();
+            cargarOntologiaDefault();
+        }
+        if (cargarOntologia) {
+            vaciarPaneles();
+            cargarOntologia();
+            cargarPaneles();
+        }
+        if (isCargarClase()) {
+            cargarClase();
+        }
+        if (isCargarDatatypeProperty()) {
+            cargarDatatypeProperty();
+        }
+        if (isCargarObjectProperty()) {
+            cargarObjectProperty();
+        }
+        if (isCargarIndividual()) {
+            cargarIndividual();
+        }
+    }
+
+    public void changePropiedadIndividual(String pro, String valor) {
         JListItem item = (JListItem) listIndividuals.getSelectedValue();
         String ind = item.getTitle();
-        IndividualViajesVO indVO = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).obtenerIndividualViajes(ind);
-        textFieldNombreIndividual.setText(indVO.getNombre());
-        panelIndividualProperties.removeAll();
-        List<DatatypePropertyVO> datatypeProperties = indVO.getDatatypeProperties();
-        //nombrepropiedad,valor,tipo
-        for(int i=0; i< datatypeProperties.size() ; i++){
-            DatatypePropertyVO datapro = datatypeProperties.get(i);
-            PanelIndividualDatatypeProperty panelData = new PanelIndividualDatatypeProperty(this);
-            if(datapro.getValor() != null){
-                String valor = datapro.getValor();
-                panelData.getTextFieldValorProperty().setText(valor);
-            }
-            panelData.getLabelNombrePropiedad().setText(datapro.getName());
-            panelData.getComboBoxType().setSelectedItem(datapro.getRange());
-            panelIndividualProperties.add(panelData);
-        }
-        List<ObjectPropertyVO> objectProperties = indVO.getObjectProperties();
-        //nombrepropiedad,valor,range
-        for(int i=0 ; i < objectProperties.size() ; i++){
-            ObjectPropertyVO objpro = objectProperties.get(i);
-            PanelIndividualObjectProperty panelObj = new PanelIndividualObjectProperty(this,objpro.getRange().get(0));
-            panelObj.getLabelNombrePropiedad().setText(objpro.getName());
-            if(objpro.getValor() != null){
-                panelObj.getTextFieldValorPropiedad().setText(objpro.getValor());
-            }
-            panelIndividualProperties.add(panelObj);
-        }   
+        ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).changePropiedadIndividual(ind, pro, valor);
     }
-}
 
-
+    public void cargarIndividual() {
+        if (!listIndividuals.isSelectionEmpty()) {
+            JListItem item = (JListItem) listIndividuals.getSelectedValue();
+            String ind = item.getTitle();
+            IndividualViajesVO indVO = ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).obtenerIndividualViajes(ind);
+            textFieldNombreIndividual.setText(indVO.getNombre());
+            panelIndividualProperties.removeAll();
+            List<DatatypePropertyVO> datatypeProperties = indVO.getDatatypeProperties();
+            //nombrepropiedad,valor,tipo
+            for (int i = 0; i < datatypeProperties.size(); i++) {
+                DatatypePropertyVO datapro = datatypeProperties.get(i);
+                PanelIndividualDatatypeProperty panelData = new PanelIndividualDatatypeProperty(this);
+                if (datapro.getValor() != null) {
+                    String valor = datapro.getValor();
+                    panelData.getTextFieldValorProperty().setText(valor);
+                }
+                panelData.getLabelNombrePropiedad().setText(datapro.getName());
+                panelData.getComboBoxType().setSelectedItem(datapro.getRange());
+                panelIndividualProperties.add(panelData);
+            }
+            List<ObjectPropertyVO> objectProperties = indVO.getObjectProperties();
+            //nombrepropiedad,valor,range
+            for (int i = 0; i < objectProperties.size(); i++) {
+                ObjectPropertyVO objpro = objectProperties.get(i);
+                PanelIndividualObjectProperty panelObj = new PanelIndividualObjectProperty(this, objpro.getRange().get(0));
+                panelObj.getLabelNombrePropiedad().setText(objpro.getName());
+                if (objpro.getValor() != null) {
+                    panelObj.getTextFieldValorPropiedad().setText(objpro.getValor());
+                }
+                panelIndividualProperties.add(panelObj);
+            }
+        }
+    }
 
 private void buttonAgregarClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarClassActionPerformed
     panelAgregarNombre.setVisible(true);
-    
+
 }//GEN-LAST:event_buttonAgregarClassActionPerformed
 
 private void buttonRemoverClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverClassActionPerformed
@@ -935,29 +927,28 @@ private void buttonRemoverClassActionPerformed(java.awt.event.ActionEvent evt) {
 }//GEN-LAST:event_buttonRemoverClassActionPerformed
 
 private void buttonOkNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkNombreActionPerformed
-    if(!mapaNodos.containsKey(textFieldNombreClase.getText())){
+    if (!mapaNodos.containsKey(textFieldNombreClase.getText())) {
         addObject(textFieldNombreClase.getText());
         TreePath parentPath = treeClasses.getSelectionPath();
         DefaultMutableTreeNode parentNode = null;
         if (parentPath == null) {
             parentNode = abuelo;
         } else {
-            parentNode = (DefaultMutableTreeNode)
-                         (parentPath.getLastPathComponent());
+            parentNode = (DefaultMutableTreeNode) (parentPath.getLastPathComponent());
         }
         String hijo = textFieldNombreClase.getText();
         String padre = parentNode.getUserObject().toString();
-        if(padre.equalsIgnoreCase("Classes")){
+        if (padre.equalsIgnoreCase("Classes")) {
             padre = null;
         }
-        ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).addClass(hijo,padre);
+        ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).addClass(hijo, padre);
         textFieldNombreClase.setText("");
         panelAgregarNombre.setVisible(false);
-    }else{
+    } else {
         textFieldNombreClase.setText("");
-        JOptionPane.showMessageDialog(this,"Clase Existente",Constantes.APPLICATION_NAME,JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Clase Existente", Constantes.APPLICATION_NAME, JOptionPane.ERROR_MESSAGE);
     }
-    
+
 }//GEN-LAST:event_buttonOkNombreActionPerformed
 
 private void buttonCancelNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelNombreActionPerformed
@@ -967,7 +958,7 @@ private void buttonCancelNombreActionPerformed(java.awt.event.ActionEvent evt) {
 
 private void listPropertiesObjectValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listPropertiesObjectValueChanged
 // Se selecciono un object propiedad en el panel de propiedades
-    if(!listPropertiesObject.isSelectionEmpty()){
+    if (!listPropertiesObject.isSelectionEmpty()) {
         ((ControladorPanelNuevaOntologia) getVistaNuevaOntologia().getControlador()).doCargarObjectProperty(true);
     }
 }//GEN-LAST:event_listPropertiesObjectValueChanged
@@ -988,27 +979,27 @@ private void buttonAddDatatypePropertyActionPerformed(java.awt.event.ActionEvent
 private void buttonRemoveObjectPropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveObjectPropertyActionPerformed
     panelAddObjectProperty.setVisible(false);
     DefaultListModel model = (DefaultListModel) getListPropertiesObject().getModel();
-    if(!listPropertiesObject.isSelectionEmpty()){
+    if (!listPropertiesObject.isSelectionEmpty()) {
         int aux = getListPropertiesObject().getSelectedIndex();
         JListItem item = (JListItem) model.getElementAt(aux);
         String nombre = item.getTitle();
         model.removeElementAt(aux);
-        ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).removeObjectProperty(nombre);
+        ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).removeObjectProperty(nombre);
         panelPropertyDefault.removeAll();
     }
 }//GEN-LAST:event_buttonRemoveObjectPropertyActionPerformed
 
 private void buttonOkObjectPropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkObjectPropertyActionPerformed
 // Agrega Object Property
-   String pro = textFieldNameObjectProperty.getText();
-   if(!pro.isEmpty()){
-        ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).addObjectProperty(pro);
+    String pro = textFieldNameObjectProperty.getText();
+    if (!pro.isEmpty()) {
+        ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).addObjectProperty(pro);
         DefaultListModel model = (DefaultListModel) getListPropertiesObject().getModel();
-        model.addElement(new JListItem(pro,Constantes.ICONOBJECTPROPERTY));
+        model.addElement(new JListItem(pro, Constantes.ICONOBJECTPROPERTY));
         panelAddObjectProperty.setVisible(false);
         textFieldNameObjectProperty.setText("");
-   }
-    
+    }
+
 }//GEN-LAST:event_buttonOkObjectPropertyActionPerformed
 
 private void buttonCancelObjectPropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelObjectPropertyActionPerformed
@@ -1017,14 +1008,14 @@ private void buttonCancelObjectPropertyActionPerformed(java.awt.event.ActionEven
 }//GEN-LAST:event_buttonCancelObjectPropertyActionPerformed
 
 private void buttonOkDatatypePropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkDatatypePropertyActionPerformed
-   String pro = textFieldNameDatatypeProperty.getText();
-   if(!pro.isEmpty()){
-        ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).addDatatypeProperty(pro);
+    String pro = textFieldNameDatatypeProperty.getText();
+    if (!pro.isEmpty()) {
+        ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).addDatatypeProperty(pro);
         DefaultListModel model = (DefaultListModel) getListPropertiesDatatype().getModel();
-        model.addElement(new JListItem(pro,Constantes.ICONDATATYPEPROPERTY));
+        model.addElement(new JListItem(pro, Constantes.ICONDATATYPEPROPERTY));
         panelAddDatatypeProperty.setVisible(false);
         textFieldNameDatatypeProperty.setText("");
-   }
+    }
 }//GEN-LAST:event_buttonOkDatatypePropertyActionPerformed
 
 private void buttonCancelDatatypePropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelDatatypePropertyActionPerformed
@@ -1035,12 +1026,12 @@ private void buttonCancelDatatypePropertyActionPerformed(java.awt.event.ActionEv
 private void buttonRemoveDatatypePropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveDatatypePropertyActionPerformed
     panelAddDatatypeProperty.setVisible(false);
     DefaultListModel model = (DefaultListModel) getListPropertiesDatatype().getModel();
-    if(!listPropertiesDatatype.isSelectionEmpty()){
+    if (!listPropertiesDatatype.isSelectionEmpty()) {
         int aux = getListPropertiesDatatype().getSelectedIndex();
         JListItem item = (JListItem) model.getElementAt(aux);
         String nombre = item.getTitle();
         model.removeElementAt(aux);
-        ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).removeDatatypeProperty(nombre);
+        ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).removeDatatypeProperty(nombre);
         panelPropertyDefault.removeAll();
     }
 }//GEN-LAST:event_buttonRemoveDatatypePropertyActionPerformed
@@ -1050,15 +1041,15 @@ private void listIndividualsValueChanged(javax.swing.event.ListSelectionEvent ev
 }//GEN-LAST:event_listIndividualsValueChanged
 
 private void buttonOkIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkIndividualActionPerformed
-   String ind = textFieldAddIndividual.getText();
-   String clase = treeClasses2.getSelectionPath().getLastPathComponent().toString();
-   if(!ind.isEmpty()){
-        ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).addIndividual(ind,clase);
+    String ind = textFieldAddIndividual.getText();
+    String clase = treeClasses2.getSelectionPath().getLastPathComponent().toString();
+    if (!ind.isEmpty()) {
+        ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).addIndividual(ind, clase);
         DefaultListModel model = (DefaultListModel) listIndividuals.getModel();
-        model.addElement(new JListItem(ind,Constantes.ICONINDIVIDUAL));
+        model.addElement(new JListItem(ind, Constantes.ICONINDIVIDUAL));
         panelAddIndividual.setVisible(false);
         textFieldAddIndividual.setText("");
-   }
+    }
 }//GEN-LAST:event_buttonOkIndividualActionPerformed
 
 private void buttonAddIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddIndividualActionPerformed
@@ -1068,12 +1059,12 @@ private void buttonAddIndividualActionPerformed(java.awt.event.ActionEvent evt) 
 private void buttonRemoveIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveIndividualActionPerformed
     panelAddIndividual.setVisible(false);
     DefaultListModel model = (DefaultListModel) listIndividuals.getModel();
-    if(!listIndividuals.isSelectionEmpty()){
+    if (!listIndividuals.isSelectionEmpty()) {
         int aux = listIndividuals.getSelectedIndex();
         JListItem item = (JListItem) model.getElementAt(aux);
         String nombre = item.getTitle();
         model.removeElementAt(aux);
-        ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).removeIndividual(nombre);
+        ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).removeIndividual(nombre);
     }
 }//GEN-LAST:event_buttonRemoveIndividualActionPerformed
 
@@ -1091,41 +1082,41 @@ private void textFieldClassNameFocusGained(java.awt.event.FocusEvent evt) {//GEN
 //FALTA CARGAR EL ARBOL
 private void textFieldClassNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldClassNameFocusLost
 // Cuando pierde el foco del text field del nombre de la clase
-    if(varEnterNameClass == 0){
-        cambiarNombreClase();
-    }
+        if (varEnterNameClass == 0) {
+            cambiarNombreClase();
+        }
 }//GEN-LAST:event_textFieldClassNameFocusLost
 
-public void cambiarNombreClase(){
-    if(varEnterNameClass == 0){
-        if(!classNameAux.equalsIgnoreCase(textFieldClassName.getText())){
-            String name = textFieldClassName.getText();
-            if(!name.isEmpty()){
-                ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).changeNameClass(classNameAux,textFieldClassName.getText());
-                DefaultMutableTreeNode node = mapaNodos.get(classNameAux);
-                node.setUserObject(textFieldClassName.getText());
-                mapaNodos.remove(classNameAux);
-                mapaNodos.put(textFieldClassName.getText(), node);
-            }   
+    public void cambiarNombreClase() {
+        if (varEnterNameClass == 0) {
+            if (!classNameAux.equalsIgnoreCase(textFieldClassName.getText())) {
+                String name = textFieldClassName.getText();
+                if (!name.isEmpty()) {
+                    ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).changeNameClass(classNameAux, textFieldClassName.getText());
+                    DefaultMutableTreeNode node = mapaNodos.get(classNameAux);
+                    node.setUserObject(textFieldClassName.getText());
+                    mapaNodos.remove(classNameAux);
+                    mapaNodos.put(textFieldClassName.getText(), node);
+                }
+            }
         }
     }
-}
-    
+
 private void buttonAddPropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddPropertyActionPerformed
     List<String> pro = getPropiedadesCargadas();
     String name = textFieldClassName.getText();
-    PanelListProperties listProperties = new PanelListProperties(main, cargarClase,name,this,pro);
+    PanelListProperties listProperties = new PanelListProperties(main, cargarClase, name, this, pro);
     listProperties.setVisible(true);
 }//GEN-LAST:event_buttonAddPropertyActionPerformed
 
 private void buttonRemovePropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemovePropertyActionPerformed
-    if(!listProperties.isSelectionEmpty()){
+    if (!listProperties.isSelectionEmpty()) {
         DefaultListModel model = (DefaultListModel) listProperties.getModel();
         int aux = listProperties.getSelectedIndex();
         JListItem item = (JListItem) model.get(aux);
         String pro = (String) item.getTitle();
         String clase = treeClasses.getSelectionPath().getLastPathComponent().toString();
-        ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).removePropertyOfClass(clase,pro);
+        ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).removePropertyOfClass(clase, pro);
         model.remove(aux);
     }
 }//GEN-LAST:event_buttonRemovePropertyActionPerformed
@@ -1137,90 +1128,90 @@ private void textFieldNombreIndividualFocusGained(java.awt.event.FocusEvent evt)
 }//GEN-LAST:event_textFieldNombreIndividualFocusGained
 
 private void textFieldNombreIndividualFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldNombreIndividualFocusLost
-    if(varEnterNameIndividual == 0){
+    if (varEnterNameIndividual == 0) {
         cambiarNombreIndividual();
     }
 }//GEN-LAST:event_textFieldNombreIndividualFocusLost
 
-public void cambiarNombreIndividual(){
-    if(!individualNameAux.equalsIgnoreCase(textFieldNombreIndividual.getText())){
-        String name = textFieldNombreIndividual.getText();
-        if(!name.isEmpty()){
-            ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).changeIndividualClass(individualNameAux,name);
-            DefaultListModel model = (DefaultListModel) listIndividuals.getModel();
-            for(int i=0 ; i < model.getSize() ; i++){
-                JListItem item = (JListItem) model.getElementAt(i);
-                if(item.getTitle().equalsIgnoreCase(individualNameAux)){
-                    model.remove(i);
-                    item.setTitle(name);
-                    model.add(i, item);
-                    break;
+    public void cambiarNombreIndividual() {
+        if (!individualNameAux.equalsIgnoreCase(textFieldNombreIndividual.getText())) {
+            String name = textFieldNombreIndividual.getText();
+            if (!name.isEmpty()) {
+                ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).changeIndividualClass(individualNameAux, name);
+                DefaultListModel model = (DefaultListModel) listIndividuals.getModel();
+                for (int i = 0; i < model.getSize(); i++) {
+                    JListItem item = (JListItem) model.getElementAt(i);
+                    if (item.getTitle().equalsIgnoreCase(individualNameAux)) {
+                        model.remove(i);
+                        item.setTitle(name);
+                        model.add(i, item);
+                        break;
+                    }
                 }
             }
         }
     }
-}
 
 private void tabbedPropertyTypeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabbedPropertyTypeStateChanged
-    if(tabbedPropertyType.getSelectedIndex() == 0){
+    if (tabbedPropertyType.getSelectedIndex() == 0) {
         listPropertiesObject.setSelectedIndex(0);
         cargarObjectProperty();
-    }else if(tabbedPropertyType.getSelectedIndex() == 1){
+    } else if (tabbedPropertyType.getSelectedIndex() == 1) {
         listPropertiesDatatype.setSelectedIndex(0);
         cargarDatatypeProperty();
     }
 }//GEN-LAST:event_tabbedPropertyTypeStateChanged
 
 private void textFieldNombreClaseKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldNombreClaseKeyTyped
-    Character a = new Character( ' ' );
-    if(a.equals(evt.getKeyChar())){
+    Character a = new Character(' ');
+    if (a.equals(evt.getKeyChar())) {
         evt.setKeyChar('_');
     }
 }//GEN-LAST:event_textFieldNombreClaseKeyTyped
 
 private void textFieldClassNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldClassNameKeyTyped
-    Character a = new Character( ' ' );
-    if(a.equals(evt.getKeyChar())){
+    Character a = new Character(' ');
+    if (a.equals(evt.getKeyChar())) {
         evt.setKeyChar('_');
         varEnterNameClass = 0;
-    }else if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+    } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
         varEnterNameClass = 1;
         cambiarNombreClase();
-    }else{
+    } else {
         varEnterNameClass = 0;
     }
 }//GEN-LAST:event_textFieldClassNameKeyTyped
 
 private void textFieldNameObjectPropertyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldNameObjectPropertyKeyTyped
-    Character a = new Character( ' ' );
-    if(a.equals(evt.getKeyChar())){
+    Character a = new Character(' ');
+    if (a.equals(evt.getKeyChar())) {
         evt.setKeyChar('_');
     }
 }//GEN-LAST:event_textFieldNameObjectPropertyKeyTyped
 
 private void textFieldNameDatatypePropertyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldNameDatatypePropertyKeyTyped
-    Character a = new Character( ' ' );
-    if(a.equals(evt.getKeyChar())){
+    Character a = new Character(' ');
+    if (a.equals(evt.getKeyChar())) {
         evt.setKeyChar('_');
     }
 }//GEN-LAST:event_textFieldNameDatatypePropertyKeyTyped
 
 private void textFieldAddIndividualKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldAddIndividualKeyTyped
-    Character a = new Character( ' ' );
-    if(a.equals(evt.getKeyChar())){
+    Character a = new Character(' ');
+    if (a.equals(evt.getKeyChar())) {
         evt.setKeyChar('_');
     }
 }//GEN-LAST:event_textFieldAddIndividualKeyTyped
 
 private void textFieldNombreIndividualKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldNombreIndividualKeyTyped
-    Character a = new Character( ' ' );
-    if(a.equals(evt.getKeyChar())){
+    Character a = new Character(' ');
+    if (a.equals(evt.getKeyChar())) {
         evt.setKeyChar('_');
         varEnterNameIndividual = 0;
-    } else if(evt.getKeyChar() == KeyEvent.VK_ENTER){
+    } else if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
         varEnterNameIndividual = 1;
         cambiarNombreIndividual();
-    }else{
+    } else {
         varEnterNameIndividual = 0;
     }
 }//GEN-LAST:event_textFieldNombreIndividualKeyTyped
@@ -1230,340 +1221,330 @@ private void textFieldURIFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST
 }//GEN-LAST:event_textFieldURIFocusGained
 
 private void textFieldURIFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldURIFocusLost
-    if(varEnterURI == 0){
+    if (varEnterURI == 0) {
         cambiarURI();
     }
 }//GEN-LAST:event_textFieldURIFocusLost
 
 private void textFieldURIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldURIKeyTyped
-    if(evt.getKeyChar() == KeyEvent.VK_ENTER){
+    if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
         varEnterURI = 1;
         cambiarURI();
-    }else{
+    } else {
         varEnterURI = 0;
     }
 }//GEN-LAST:event_textFieldURIKeyTyped
 
 //Falta hacer
-public void cambiarURI(){
-    
-}
+    public void cambiarURI() {
+    }
 
-private void buttonCargarActionPerformed(javax.swing.event.TreeSelectionEvent evt) {
-    this.eventoTree = evt;
-    if(!eventoTree.getPath().getLastPathComponent().toString().equals("Classes")){
+    private void buttonCargarActionPerformed(javax.swing.event.TreeSelectionEvent evt) {
+        this.eventoTree = evt;
+        if (!eventoTree.getPath().getLastPathComponent().toString().equals("Classes")) {
             ((ControladorPanelNuevaOntologia) getVistaNuevaOntologia().getControlador()).doCargarClase(true);
-    }
-}
-
-private void buttonCargarInstanciasActionPerformed(javax.swing.event.TreeSelectionEvent evt) {
-    this.eventoTree = evt;
-    if(!eventoTree.getPath().getLastPathComponent().toString().equals("Classes")){
-        //Cargar ListIndividuals
-        String clase = eventoTree.getPath().getLastPathComponent().toString();
-        ArrayList<String> individuals = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).listIndividuals(clase);
-        listIndividuals.removeAll();
-        DefaultListModel model = new DefaultListModel();
-        for(int i=0 ; i < individuals.size() ; i++){
-             model.addElement(new JListItem(individuals.get(i),Constantes.ICONINDIVIDUAL));
-        }
-        listIndividuals.setModel(model);
-        listIndividuals.setCellRenderer(new JListCellRenderer());
-        jScrollPane6.setViewportView(listIndividuals);
-    }
-}
-
-
-public List<String> getIndividuals(String clase) {
-    return ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).listIndividuals(clase);
-}
-
-private void cargarPaneles(){
-   cargarPanelMetadata();
-   cargarPanelClases();
-   cargarPanelProperty();
-   cargarPanelInstancia();
-}
-
-private void cargarPanelMetadata(){
-    String uri = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).getURIOntologia();
-    this.getTextFieldURI().setText(uri);
-}
-
-private void cargarPanelClases(){
-    // Vaciar arbol
-    
-    
-    abuelo = new DefaultMutableTreeNode("Classes");
-    modelo = new DefaultTreeModel(abuelo);
-    treeClasses = new JTree(modelo);
-    
-    HashMap<String,String> mapaClases = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).showClasses();
-    
-    Set<Entry<String,String>> setClases = mapaClases.entrySet();
-    Iterator itClases = setClases.iterator();
-    DefaultMutableTreeNode node = null;
-    while(itClases.hasNext()){
-        Entry<String,String> clase = (Entry<String, String>) itClases.next();
-        node = new DefaultMutableTreeNode(clase.getKey());
-        mapaNodos.put(clase.getKey(), node);
-    }
-    itClases = setClases.iterator();
-    while(itClases.hasNext()){
-        Entry<String,String> clase = (Entry<String, String>) itClases.next();
-        if(clase.getValue().isEmpty()){
-            abuelo.add(mapaNodos.get(clase.getKey()));
-        }else{
-            mapaNodos.get(clase.getValue()).add(mapaNodos.get(clase.getKey()));
         }
     }
-    treeClasses.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
-    public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
-            buttonCargarActionPerformed(evt);    
-    }
-    });
-    jScrollPane1.setViewportView(treeClasses);
-    Object root = treeClasses.getModel().getRoot();
-    TreePath path = new TreePath(root);
-    treeClasses.expandPath(path);
-    ImageIcon leafIcon = createImageIcon("src/iconos/protege/TreeBold2.gif");
-    if (leafIcon != null) {
-        DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
-        renderer.setLeafIcon(leafIcon);
-        renderer.setClosedIcon(leafIcon);
-        renderer.setOpenIcon(leafIcon);
-        treeClasses.setCellRenderer(renderer);
-    }
-}
 
-
-
-
-
-private void cargarPanelProperty(){
-    List<String> datatypeProperties = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).showDatatypeProperties();
-    List<String> objectProperties = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).showObjectProperties();
-    
-    listPropertiesDatatype.removeAll();
-    listPropertiesObject.removeAll();
-    
-    DefaultListModel model = new DefaultListModel();
-    for(int i=0 ; i < datatypeProperties.size() ; i++){
-         model.addElement(new JListItem(datatypeProperties.get(i),Constantes.ICONDATATYPEPROPERTY));
-    }
-    listPropertiesDatatype.setModel(model);
-    listPropertiesDatatype.setCellRenderer(new JListCellRenderer());
-    jScrollPane4.setViewportView(listPropertiesDatatype);
-    
-    DefaultListModel model2 = new DefaultListModel();
-    for(int i=0 ; i < objectProperties.size() ; i++){
-         model2.addElement(new JListItem(objectProperties.get(i),Constantes.ICONOBJECTPROPERTY));
-    }
-    listPropertiesObject.setModel(model2);
-    listPropertiesObject.setCellRenderer(new JListCellRenderer());
-    jScrollPane3.setViewportView(listPropertiesObject);
-}
-
-private void cargarPanelInstancia(){
-    //Cargar Arbol
-    treeClasses2 = new JTree(modelo);
-    treeClasses2.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
-    public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
-            buttonCargarInstanciasActionPerformed(evt);    
-    }
-    });
-    jScrollPane5.setViewportView(treeClasses2);
-    Object root = treeClasses2.getModel().getRoot();
-    TreePath path = new TreePath(root);
-    treeClasses2.expandPath(path);
-    ImageIcon leafIcon = createImageIcon(Constantes.ICONTREE);
-    if (leafIcon != null) {
-        DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
-        renderer.setLeafIcon(leafIcon);
-        renderer.setClosedIcon(leafIcon);
-        renderer.setOpenIcon(leafIcon);
-        treeClasses2.setCellRenderer(renderer);
-    }
-}
-
-
-public void cargarDatatypeProperty(){
-    panelPropertyDefault.removeAll();
-    PanelPropertyDatatype panel = new PanelPropertyDatatype(this);
-    if(getListPropertiesDatatype().getSelectedValue() != null){
-        String propiedad = getListPropertiesDatatype().getSelectedValue().toString();
-        DatatypePropertyVO propiedades = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).getDatatypeProperty(propiedad);
-        panel.setPropiedad(propiedades);
-        panel.getTextFieldNombre().setText(propiedades.getName());
-        DefaultListModel model = (DefaultListModel) panel.getListDomain().getModel();
-        for(int i = 0 ; i < propiedades.getDomain().size() ; i++){
-            model.addElement(new JListItem(propiedades.getDomain().get(i),Constantes.ICONTREE));
+    private void buttonCargarInstanciasActionPerformed(javax.swing.event.TreeSelectionEvent evt) {
+        this.eventoTree = evt;
+        if (!eventoTree.getPath().getLastPathComponent().toString().equals("Classes")) {
+            //Cargar ListIndividuals
+            String clase = eventoTree.getPath().getLastPathComponent().toString();
+            ArrayList<String> individuals = ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).listIndividuals(clase);
+            listIndividuals.removeAll();
+            DefaultListModel model = new DefaultListModel();
+            for (int i = 0; i < individuals.size(); i++) {
+                model.addElement(new JListItem(individuals.get(i), Constantes.ICONINDIVIDUAL));
+            }
+            listIndividuals.setModel(model);
+            listIndividuals.setCellRenderer(new JListCellRenderer());
+            jScrollPane6.setViewportView(listIndividuals);
         }
-        panel.getListDomain().setModel(model);
-        String range = propiedades.getRange();
-        panel.getComboBoxRange().setSelectedItem(range);
-        panelPropertyDefault.add(panel);
     }
-}
 
-public void cargarObjectProperty(){
-    panelPropertyDefault.removeAll();
-    PanelPropertyObject panel = new PanelPropertyObject(this);
-    if(getListPropertiesObject().getSelectedValue() != null){
-        String propiedad = getListPropertiesObject().getSelectedValue().toString();
-        ObjectPropertyVO propiedades = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).getObjectProperty(propiedad);
-        panel.setPropiedad(propiedades);
-        panel.getTextFieldNombre().setText(propiedades.getName());
-        DefaultListModel model = (DefaultListModel) panel.getListDomain().getModel();
-        for(int i = 0 ; i < propiedades.getDomain().size() ; i++){
-            model.addElement( new JListItem(propiedades.getDomain().get(i),Constantes.ICONTREE));
-        }
-        panel.getListDomain().setModel(model);
-        DefaultListModel model2 = (DefaultListModel) panel.getListRange().getModel();
-        for(int i = 0 ; i < propiedades.getRange().size() ; i++){
-            model2.addElement(new JListItem(propiedades.getRange().get(i),Constantes.ICONTREE));
-        }
-        panel.getListRange().setModel(model2);
-        panelPropertyDefault.add(panel);
+    public List<String> getIndividuals(String clase) {
+        return ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).listIndividuals(clase);
     }
-}
 
-public void cargarClase(){  
-    if(treeClasses.getSelectionPath() != null){
-        String instancia = treeClasses.getSelectionPath().getLastPathComponent().toString();
-        textFieldClassName.setText(instancia);
-        HashMap<String,String> propiedades = ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).ClassProperty(instancia);
-        Iterator itkey = propiedades.keySet().iterator();
-        Iterator itvalue = propiedades.values().iterator();
-        DefaultListModel model = new DefaultListModel();
-        for(int i=0 ; i < propiedades.size() ; i++){
-            String propiedad = (String) itkey.next();
-            String value = (String) itvalue.next();
-            if(value.equalsIgnoreCase("down")){
-                model.addElement(new JListItem(propiedad,Constantes.ICONDATATYPEPROPERTY));
-            }else if(value.equalsIgnoreCase("oown")){
-                model.addElement(new JListItem(propiedad,Constantes.ICONOBJECTPROPERTY));
-            }else if(value.equalsIgnoreCase("dinherited")){
-                model.addElement(new JListItem(propiedad,Constantes.ICONINHERITEDDATATYPEPROPERTY));
-            }else if(value.equalsIgnoreCase("oinherited")){
-                model.addElement(new JListItem(propiedad,Constantes.ICONINHERITEDOBJECTPROPERTY));
+    private void cargarPaneles() {
+        cargarPanelMetadata();
+        cargarPanelClases();
+        cargarPanelProperty();
+        cargarPanelInstancia();
+    }
+
+    private void cargarPanelMetadata() {
+        String uri = ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).getURIOntologia();
+        this.getTextFieldURI().setText(uri);
+    }
+
+    private void cargarPanelClases() {
+        // Vaciar arbol
+
+
+        abuelo = new DefaultMutableTreeNode("Classes");
+        modelo = new DefaultTreeModel(abuelo);
+        treeClasses = new JTree(modelo);
+
+        HashMap<String, String> mapaClases = ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).showClasses();
+
+        Set<Entry<String, String>> setClases = mapaClases.entrySet();
+        Iterator itClases = setClases.iterator();
+        DefaultMutableTreeNode node = null;
+        while (itClases.hasNext()) {
+            Entry<String, String> clase = (Entry<String, String>) itClases.next();
+            node = new DefaultMutableTreeNode(clase.getKey());
+            mapaNodos.put(clase.getKey(), node);
+        }
+        itClases = setClases.iterator();
+        while (itClases.hasNext()) {
+            Entry<String, String> clase = (Entry<String, String>) itClases.next();
+            if (clase.getValue().isEmpty()) {
+                abuelo.add(mapaNodos.get(clase.getKey()));
+            } else {
+                mapaNodos.get(clase.getValue()).add(mapaNodos.get(clase.getKey()));
             }
         }
-        listProperties.setModel(model);
-        listProperties.setCellRenderer(new JListCellRenderer());
-        jScrollPane2.setViewportView(listProperties);
+        treeClasses.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+
+            public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+                buttonCargarActionPerformed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(treeClasses);
+        Object root = treeClasses.getModel().getRoot();
+        TreePath path = new TreePath(root);
+        treeClasses.expandPath(path);
+        ImageIcon leafIcon = createImageIcon("src/iconos/protege/TreeBold2.gif");
+        if (leafIcon != null) {
+            DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
+            renderer.setLeafIcon(leafIcon);
+            renderer.setClosedIcon(leafIcon);
+            renderer.setOpenIcon(leafIcon);
+            treeClasses.setCellRenderer(renderer);
+        }
     }
-}
 
+    private void cargarPanelProperty() {
+        List<String> datatypeProperties = ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).showDatatypeProperties();
+        List<String> objectProperties = ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).showObjectProperties();
 
-public void cargarOntologiaDefault(){
-    cargarPanelMetadata();
-    cargarPanelClases();
-    cargarPanelProperty();
-}
+        listPropertiesDatatype.removeAll();
+        listPropertiesObject.removeAll();
 
+        DefaultListModel model = new DefaultListModel();
+        for (int i = 0; i < datatypeProperties.size(); i++) {
+            model.addElement(new JListItem(datatypeProperties.get(i), Constantes.ICONDATATYPEPROPERTY));
+        }
+        listPropertiesDatatype.setModel(model);
+        listPropertiesDatatype.setCellRenderer(new JListCellRenderer());
+        jScrollPane4.setViewportView(listPropertiesDatatype);
 
-public void vaciarPaneles(){
-    textFieldURI.setText("");
-    textFieldNombreClase.setText("");
-    treeClasses.setModel(new DefaultTreeModel(abuelo));
-    treeClasses2.setModel(new DefaultTreeModel(abuelo));
-    textFieldClassName.setText("");
-    listProperties.setModel(new DefaultListModel());
-    getListPropertiesDatatype().setModel(new DefaultListModel());
-    getListPropertiesObject().setModel(new DefaultListModel());
-    panelPropertyDefault.removeAll();
-    listIndividuals.setModel(new DefaultListModel());
-    textFieldNombreIndividual.setText("");
-    panelIndividualProperties.removeAll();
-    this.repaint();
-}
-
-public List<String> getPropiedadesCargadas(){
-    ArrayList<String> pro = new ArrayList<String>();
-    DefaultListModel model = (DefaultListModel) listProperties.getModel();
-    for(int i=0 ; i< model.getSize() ; i++){
-        JListItem item = (JListItem) model.getElementAt(i);
-        pro.add(item.getTitle());
+        DefaultListModel model2 = new DefaultListModel();
+        for (int i = 0; i < objectProperties.size(); i++) {
+            model2.addElement(new JListItem(objectProperties.get(i), Constantes.ICONOBJECTPROPERTY));
+        }
+        listPropertiesObject.setModel(model2);
+        listPropertiesObject.setCellRenderer(new JListCellRenderer());
+        jScrollPane3.setViewportView(listPropertiesObject);
     }
-    return pro;
-}
 
-public void addClassProperty(String clase, String instancia, String tipo) {
-    DefaultListModel model = (DefaultListModel) listProperties.getModel();
-    if(tipo.equalsIgnoreCase("datatype")){
-        model.addElement(new JListItem(instancia, Constantes.ICONDATATYPEPROPERTY));
-        ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).addDatatypePropertyToClass(clase,instancia);
-    }else{
-        model.addElement(new JListItem(instancia, Constantes.ICONOBJECTPROPERTY));
-        ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).addObjectPropertyToClass(clase,instancia);
-    } 
-}
+    private void cargarPanelInstancia() {
+        //Cargar Arbol
+        treeClasses2 = new JTree(modelo);
+        treeClasses2.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+
+            public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+                buttonCargarInstanciasActionPerformed(evt);
+            }
+        });
+        jScrollPane5.setViewportView(treeClasses2);
+        Object root = treeClasses2.getModel().getRoot();
+        TreePath path = new TreePath(root);
+        treeClasses2.expandPath(path);
+        ImageIcon leafIcon = createImageIcon(Constantes.ICONTREE);
+        if (leafIcon != null) {
+            DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
+            renderer.setLeafIcon(leafIcon);
+            renderer.setClosedIcon(leafIcon);
+            renderer.setOpenIcon(leafIcon);
+            treeClasses2.setCellRenderer(renderer);
+        }
+    }
+
+    public void cargarDatatypeProperty() {
+        panelPropertyDefault.removeAll();
+        PanelPropertyDatatype panel = new PanelPropertyDatatype(this);
+        if (getListPropertiesDatatype().getSelectedValue() != null) {
+            String propiedad = getListPropertiesDatatype().getSelectedValue().toString();
+            DatatypePropertyVO propiedades = ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).getDatatypeProperty(propiedad);
+            panel.setPropiedad(propiedades);
+            panel.getTextFieldNombre().setText(propiedades.getName());
+            DefaultListModel model = (DefaultListModel) panel.getListDomain().getModel();
+            for (int i = 0; i < propiedades.getDomain().size(); i++) {
+                model.addElement(new JListItem(propiedades.getDomain().get(i), Constantes.ICONTREE));
+            }
+            panel.getListDomain().setModel(model);
+            String range = propiedades.getRange();
+            panel.getComboBoxRange().setSelectedItem(range);
+            panelPropertyDefault.add(panel);
+        }
+    }
+
+    public void cargarObjectProperty() {
+        panelPropertyDefault.removeAll();
+        PanelPropertyObject panel = new PanelPropertyObject(this);
+        if (getListPropertiesObject().getSelectedValue() != null) {
+            String propiedad = getListPropertiesObject().getSelectedValue().toString();
+            ObjectPropertyVO propiedades = ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).getObjectProperty(propiedad);
+            panel.setPropiedad(propiedades);
+            panel.getTextFieldNombre().setText(propiedades.getName());
+            DefaultListModel model = (DefaultListModel) panel.getListDomain().getModel();
+            for (int i = 0; i < propiedades.getDomain().size(); i++) {
+                model.addElement(new JListItem(propiedades.getDomain().get(i), Constantes.ICONTREE));
+            }
+            panel.getListDomain().setModel(model);
+            DefaultListModel model2 = (DefaultListModel) panel.getListRange().getModel();
+            for (int i = 0; i < propiedades.getRange().size(); i++) {
+                model2.addElement(new JListItem(propiedades.getRange().get(i), Constantes.ICONTREE));
+            }
+            panel.getListRange().setModel(model2);
+            panelPropertyDefault.add(panel);
+        }
+    }
+
+    public void cargarClase() {
+        if (treeClasses.getSelectionPath() != null) {
+            String instancia = treeClasses.getSelectionPath().getLastPathComponent().toString();
+            textFieldClassName.setText(instancia);
+            HashMap<String, String> propiedades = ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).ClassProperty(instancia);
+            Iterator itkey = propiedades.keySet().iterator();
+            Iterator itvalue = propiedades.values().iterator();
+            DefaultListModel model = new DefaultListModel();
+            for (int i = 0; i < propiedades.size(); i++) {
+                String propiedad = (String) itkey.next();
+                String value = (String) itvalue.next();
+                if (value.equalsIgnoreCase("down")) {
+                    model.addElement(new JListItem(propiedad, Constantes.ICONDATATYPEPROPERTY));
+                } else if (value.equalsIgnoreCase("oown")) {
+                    model.addElement(new JListItem(propiedad, Constantes.ICONOBJECTPROPERTY));
+                } else if (value.equalsIgnoreCase("dinherited")) {
+                    model.addElement(new JListItem(propiedad, Constantes.ICONINHERITEDDATATYPEPROPERTY));
+                } else if (value.equalsIgnoreCase("oinherited")) {
+                    model.addElement(new JListItem(propiedad, Constantes.ICONINHERITEDOBJECTPROPERTY));
+                }
+            }
+            listProperties.setModel(model);
+            listProperties.setCellRenderer(new JListCellRenderer());
+            jScrollPane2.setViewportView(listProperties);
+        }
+    }
+
+    public void cargarOntologiaDefault() {
+        cargarPanelMetadata();
+        cargarPanelClases();
+        cargarPanelProperty();
+    }
+
+    public void vaciarPaneles() {
+        textFieldURI.setText("");
+        textFieldNombreClase.setText("");
+        treeClasses.setModel(new DefaultTreeModel(abuelo));
+        treeClasses2.setModel(new DefaultTreeModel(abuelo));
+        textFieldClassName.setText("");
+        listProperties.setModel(new DefaultListModel());
+        getListPropertiesDatatype().setModel(new DefaultListModel());
+        getListPropertiesObject().setModel(new DefaultListModel());
+        panelPropertyDefault.removeAll();
+        listIndividuals.setModel(new DefaultListModel());
+        textFieldNombreIndividual.setText("");
+        panelIndividualProperties.removeAll();
+        this.repaint();
+    }
+
+    public List<String> getPropiedadesCargadas() {
+        ArrayList<String> pro = new ArrayList<String>();
+        DefaultListModel model = (DefaultListModel) listProperties.getModel();
+        for (int i = 0; i < model.getSize(); i++) {
+            JListItem item = (JListItem) model.getElementAt(i);
+            pro.add(item.getTitle());
+        }
+        return pro;
+    }
+
+    public void addClassProperty(String clase, String instancia, String tipo) {
+        DefaultListModel model = (DefaultListModel) listProperties.getModel();
+        if (tipo.equalsIgnoreCase("datatype")) {
+            model.addElement(new JListItem(instancia, Constantes.ICONDATATYPEPROPERTY));
+            ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).addDatatypePropertyToClass(clase, instancia);
+        } else {
+            model.addElement(new JListItem(instancia, Constantes.ICONOBJECTPROPERTY));
+            ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).addObjectPropertyToClass(clase, instancia);
+        }
+    }
 
 //Uso Interno
-
-private DefaultMutableTreeNode addObject(Object child) {
+    private DefaultMutableTreeNode addObject(Object child) {
         DefaultMutableTreeNode parentNode = null;
         TreePath parentPath = treeClasses.getSelectionPath();
-        
+
         if (parentPath == null) {
             parentNode = abuelo;
         } else {
-            parentNode = (DefaultMutableTreeNode)
-                         (parentPath.getLastPathComponent());
+            parentNode = (DefaultMutableTreeNode) (parentPath.getLastPathComponent());
         }
 
         return addObject(parentNode, child, true);
-}
+    }
 
-private DefaultMutableTreeNode addObject(DefaultMutableTreeNode parent,
-                                            Object child, 
-                                            boolean shouldBeVisible) {
-        DefaultMutableTreeNode childNode = 
+    private DefaultMutableTreeNode addObject(DefaultMutableTreeNode parent,
+            Object child,
+            boolean shouldBeVisible) {
+        DefaultMutableTreeNode childNode =
                 new DefaultMutableTreeNode(child);
 
         if (parent == null) {
             parent = abuelo;
         }
-	
-	//It is key to invoke this on the TreeModel, and NOT DefaultMutableTreeNode
-        modelo.insertNodeInto(childNode, parent, 
-                                 parent.getChildCount());
+
+        //It is key to invoke this on the TreeModel, and NOT DefaultMutableTreeNode
+        modelo.insertNodeInto(childNode, parent,
+                parent.getChildCount());
         mapaNodos.put(childNode.getUserObject().toString(), childNode);
         //Make sure the user can see the lovely new node.
         if (shouldBeVisible) {
             treeClasses.scrollPathToVisible(new TreePath(childNode.getPath()));
         }
         return childNode;
-}
+    }
 
     private void removeCurrentNode() {
         TreePath currentSelection = treeClasses.getSelectionPath();
         if (currentSelection != null) {
-            DefaultMutableTreeNode currentNode = (DefaultMutableTreeNode)
-                         (currentSelection.getLastPathComponent());
-            MutableTreeNode parent = (MutableTreeNode)(currentNode.getParent());
+            DefaultMutableTreeNode currentNode = (DefaultMutableTreeNode) (currentSelection.getLastPathComponent());
+            MutableTreeNode parent = (MutableTreeNode) (currentNode.getParent());
             if (parent != null) {
                 modelo.removeNodeFromParent(currentNode);
                 mapaNodos.remove(currentNode.getUserObject().toString());
-                ((BusinessDelegate)getVistaNuevaOntologia().getModelo()).removeClass(currentNode.getUserObject().toString());
+                ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).removeClass(currentNode.getUserObject().toString());
                 return;
             }
-        } 
-        
+        }
+
         // Either there was no selection, or the root was selected.
         toolkit.beep();
-}
-
-protected static ImageIcon createImageIcon(String path) {
-    java.net.URL imgURL = PanelNuevaOntologia.class.getResource(path);
-    if (path != null) {
-        return new ImageIcon(path);
-    } else {
-        System.err.println("Couldn't find file: " + path);
-        return null;
     }
-}
+
+    protected static ImageIcon createImageIcon(String path) {
+        java.net.URL imgURL = PanelNuevaOntologia.class.getResource(path);
+        if (path != null) {
+            return new ImageIcon(path);
+        } else {
+            System.err.println("Couldn't find file: " + path);
+            return null;
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAddDatatypeProperty;
@@ -1738,5 +1719,4 @@ protected static ImageIcon createImageIcon(String path) {
     public void setCargarIndividual(boolean cargarIndividual) {
         this.cargarIndividual = cargarIndividual;
     }
-
 }

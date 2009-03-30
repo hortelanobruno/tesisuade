@@ -47,6 +47,10 @@ public class BusinessDelegate extends ProxyModelo {
         modeloOntologiaViajes.cargarPropiedadIndividual(ind, pro, valor);
     }
 
+    public void changePropiedadIndividual(String ind, String pro, String valor) {
+        modeloOntologiaViajes.changePropiedadIndividual(ind, pro, valor);
+    }
+
     public void addDatatypePropertyToClass(String clase, String pro) {
         modeloOntologiaViajes.addDatatypePropertyToClass(clase, pro);
     }

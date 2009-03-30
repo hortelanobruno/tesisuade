@@ -117,7 +117,7 @@ private void buttonAddIndividualActionPerformed(java.awt.event.ActionEvent evt) 
     JListItem item = (JListItem) listIndividual.getSelectedValue();
     String nombre = item.getTitle();
     this.panel.getTextFieldValorPropiedad().setText(nombre);
-    this.panel.getOntologia().cargarPropiedadIndividual(propiedad, nombre);
+    this.panel.getOntologia().changePropiedadIndividual(propiedad, nombre);
     this.setVisible(false);
 }//GEN-LAST:event_buttonAddIndividualActionPerformed
 
