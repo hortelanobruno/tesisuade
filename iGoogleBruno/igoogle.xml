@@ -8,6 +8,8 @@
     <Meta name="thumbnail">http://gmodules.com/ig/images/skins/ig_thumb_beach.jpg</Meta>
   </ConfigMap>  -->
   <ConfigMap type="Skin"> 
+  <Attribute name="header.background_color">#00feff</Attribute>
+  <Attribute name="header.logo">beveled_purpleblue</Attribute>
     <Attribute name="header.center_image.url">http://tesisuade.googlecode.com/svn/trunk/iGoogleBruno/home1.jpg</Attribute>
   </ConfigMap> 
 </ConfigMaps>
