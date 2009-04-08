@@ -111,8 +111,9 @@ public class ModeloMotorBusqueda {
                         ind = vuelos.get(j);
                     }
                 }
-                aux.add(ind);
                 vuelos.remove(ind);
+                ind.setCoincidencia(ind.coincidencia(consulta.getPropiedadesAvanzadas()));
+                aux.add(ind);
             }
         }
         //Aca termino con aux ordenado por coincidencia

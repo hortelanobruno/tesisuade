@@ -117,6 +117,6 @@
     <string>src\owl\vocabulario2.owl</string>
   </ontologiasVocabulario>
   <defaultURLOWLSinonimos>C:/Users/Brunoli/Documents/NetBeansProjects/AsistenteDeViajes/src/owl/vocabulario2.owl</defaultURLOWLSinonimos>
-  <defaultURLOWLViajes></defaultURLOWLViajes>
+  <defaultURLOWLViajes>C:/Users/Brunoli/Documents/NetBeansProjects/AsistenteDeViajes/src/owl/turismoOriginal.owl</defaultURLOWLViajes>
   <owlDirectory>src/owl/</owlDirectory>
 </configuration>
