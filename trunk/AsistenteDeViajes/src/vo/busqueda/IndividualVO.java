@@ -17,6 +17,7 @@ public class IndividualVO {
     private String nameIndividual;
     private Map<String, Object> propiedadesPrincipales;
     private Map<String, Object> propiedadesAvanzadas;
+    private Double coincidencia;
 
     public IndividualVO() {
         propiedadesAvanzadas = new HashMap<String, Object>();
@@ -55,6 +56,9 @@ public class IndividualVO {
 
     public Double coincidencia(Map<String, Object> consulta) {
         double cant = consulta.size();
+        if(cant == 0D){
+            return 1D;
+        }
         double aux = 0;
         for (String prop : consulta.keySet()) {
             if (propiedadesAvanzadas.containsKey(prop)) {
@@ -63,6 +67,23 @@ public class IndividualVO {
                 }
             }
         }
+        if(aux == 0D){
+            return 0D;
+        }
         return aux / cant;
+    }
+
+    /**
+     * @return the coincidencia
+     */
+    public Double getCoincidencia() {
+        return coincidencia;
+    }
+
+    /**
+     * @param coincidencia the coincidencia to set
+     */
+    public void setCoincidencia(Double coincidencia) {
+        this.coincidencia = coincidencia;
     }
 }
