@@ -10,6 +10,7 @@ import modelo.ontologia.ModeloOntologiaViajes;
 import modelo.ontologia.ModeloOntologiaVocabulario;
 import modelo.ontologia.ModeloTransformadorOntologia;
 import mvcframework.ProxyModelo;
+import varios.ErrorTransoformacion;
 import vo.DatatypePropertyVO;
 import vo.IndividualSinonimoVO;
 import vo.IndividualViajesVO;
@@ -39,7 +40,7 @@ public class BusinessDelegate extends ProxyModelo {
         modeloMotorBusqueda.cargarModelos();
     }
 
-    public List<String> generarOntologiaBusqueda(Configuration configuration, String ontURL, String newURL, String sin) throws Exception {
+    public ErrorTransoformacion generarOntologiaBusqueda(Configuration configuration, String ontURL, String newURL, String sin) throws Exception {
         return modeloTransformadorOntologia.generarOntologiaBusqueda2(configuration, ontURL, newURL, sin);
     }
 

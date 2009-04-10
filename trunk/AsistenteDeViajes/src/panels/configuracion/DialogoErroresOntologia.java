@@ -14,6 +14,7 @@ import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import varios.ErrorTransoformacion;
 
 /**
  *
@@ -22,24 +23,30 @@ import javax.swing.DefaultListModel;
 public class DialogoErroresOntologia extends javax.swing.JDialog {
 
     /** Creates new form DialogoErroresOntologia */
-    public DialogoErroresOntologia(java.awt.Frame parent, boolean modal, List<String> errores) {
+    public DialogoErroresOntologia(java.awt.Frame parent, boolean modal, ErrorTransoformacion errores) {
         super(parent, modal);
         initComponents();
         Toolkit t = Toolkit.getDefaultToolkit();
         this.setLocation((int) (t.getScreenSize().getWidth() - this.getWidth()) / 2, (int) (t.getScreenSize().getHeight() - this.getHeight()) / 2);
+        labelError.setText(errores.getError());
         cargarLista(errores);
     }
 
-    private void cargarLista(List<String> errores) {
+    private void cargarLista(ErrorTransoformacion errores) {
         List<String> aux = new ArrayList<String>();
         DefaultListModel model = new DefaultListModel();
-        for (String error : errores) {
-            if(!aux.contains(error)){
-                model.addElement(error);
-                aux.add(error);
+        if(!errores.getSubErrores().isEmpty()){
+            for (String error : errores.getSubErrores()) {
+                if(!aux.contains(error)){
+                    model.addElement(error);
+                    aux.add(error);
+                }
             }
+            listErrores.setModel(model);
+        }else{
+            listErrores.setVisible(false);
+            jScrollPane1.setVisible(false);
         }
-        listErrores.setModel(model);
     }
 
     /** This method is called from within the constructor to
@@ -52,14 +59,14 @@ public class DialogoErroresOntologia extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        labelError = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listErrores = new javax.swing.JList();
         buttonAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Errores en la ontologia a cargar");
+        labelError.setText("Errores en la ontologia a cargar");
 
         listErrores.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(listErrores);
@@ -79,7 +86,7 @@ public class DialogoErroresOntologia extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(114, 114, 114)
-                        .addComponent(jLabel1))
+                        .addComponent(labelError))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -92,7 +99,7 @@ public class DialogoErroresOntologia extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(labelError)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
@@ -119,9 +126,9 @@ public class DialogoErroresOntologia extends javax.swing.JDialog {
 }//GEN-LAST:event_buttonAceptarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAceptar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelError;
     private javax.swing.JList listErrores;
     // End of variables declaration//GEN-END:variables
 }
