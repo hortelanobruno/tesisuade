@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import modelo.BusinessDelegate;
+import varios.ErrorTransoformacion;
 import varios.FileCopy;
 import varios.RelativePath;
 import vistas.VistaConfiguracion;
@@ -201,7 +202,7 @@ private void buttonAddOntViajesActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             String urlNew = chooser.path.split("/")[chooser.path.split("/").length - 1];
             //Aca transformo, si va todo bien muestro un cartel con OK, sino un cartel con el error
-            List<String> errores = ((BusinessDelegate) this.vista.getModelo()).generarOntologiaBusqueda(this.main.getConfiguration(),chooser.path, this.main.getConfiguration().getOwlDirectory() + urlNew, this.main.getConfiguration().getOntologiasVocabulario().get(0));
+            ErrorTransoformacion errores = ((BusinessDelegate) this.vista.getModelo()).generarOntologiaBusqueda(this.main.getConfiguration(),chooser.path, this.main.getConfiguration().getOwlDirectory() + urlNew, this.main.getConfiguration().getOntologiasVocabulario().get(0));
             if (errores == null) {
                 if (main.getConfiguration().getOntologiasViajes() == null) {
                     main.getConfiguration().setOntologiasViajes(new Vector<String>());
@@ -213,9 +214,13 @@ private void buttonAddOntViajesActionPerformed(java.awt.event.ActionEvent evt) {
                 main.recargarConfiguracion();
                 JOptionPane.showMessageDialog(this, "La ontologia fue cargada correctamente","Asistente de Viajes",JOptionPane.INFORMATION_MESSAGE);
             } else {
-                //TODO Ver que hacer cuando ocurren errores al cargar una ontologia.
-                DialogoErroresOntologia dialogoErrores = new DialogoErroresOntologia(main, true, errores);
-                dialogoErrores.setVisible(true);
+                if(!errores.getSubErrores().isEmpty()){
+                    DialogoErroresOntologia dialogoErrores = new DialogoErroresOntologia(main, true, errores);
+                    dialogoErrores.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(this, "La ontologia NO cumple con los requerimientos minimos","Asistente de Viajes",JOptionPane.INFORMATION_MESSAGE);
+                }
+                
             }
         } catch (Exception ex) {
             //Entro aca porque no cumple el minimo requerimiento

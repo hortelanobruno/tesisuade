@@ -36,6 +36,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import varios.ErrorTransoformacion;
 import vo.DatatypePropertyVO;
 import vo.IndividualSinonimoVO;
 import vo.IndividualViajesVO;
@@ -597,7 +600,7 @@ public class ApiJena {
         return null;
     }
 
-    public List<String> generarOntologiaBusqueda2(Configuration conf, OntModel ontologia, OntModel sinonimo, OntModel nueva, DefaultOntology defaultOntology) {
+    public ErrorTransoformacion generarOntologiaBusqueda2(Configuration conf, OntModel ontologia, OntModel sinonimo, OntModel nueva, DefaultOntology defaultOntology) {
         //Chequeo que en estas clases esten las 3 requeridas
         DefaultOntology newDefaultOntology = chequearCumplimiento3Clases(sinonimo, ontologia, defaultOntology);
         if (newDefaultOntology != null) {
@@ -606,14 +609,27 @@ public class ApiJena {
             //Creo todo
             createClassWithPropForProcesodeTransformacion(nueva, ontologia, defaultOntology, newDefaultOntology);
             //Ahora hay que traducir todo
-            translateAllOntology(nueva, sinonimo);
-            //Agrego propiedades nuevas a la configuracion
-            addNewPropertyForConfiguration(conf, nueva, defaultOntology);
+            List<String> errores = translateAllOntology(nueva, sinonimo);
+            if(errores.isEmpty()){
+                //Agrego propiedades nuevas a la configuracion
+                addNewPropertyForConfiguration(conf, nueva, defaultOntology);
+                return null;
+            }else{
+                //No tiene todos los sinonimos
+                ErrorTransoformacion error = new ErrorTransoformacion();
+                error.setError("Faltan sinonimos para traducir la ontologia");
+                error.setSubErrores(errores);
+                return error;
+            }
         } else {
             //No cumple con la ontologia default
+            ErrorTransoformacion error = new ErrorTransoformacion();
+            error.setError("NO Cumple con la Ontologia Base");
             System.out.println("NO Cumple default ontology");
+            return error;
         }
-        return null;
+
+
     }
 
     private void addNewPropertyForConfiguration(Configuration conf, OntModel nueva, DefaultOntology defaultOntology) {
@@ -696,7 +712,8 @@ public class ApiJena {
         }
     }
 
-    private void translateAllOntology(OntModel nueva, OntModel sinonimo) {
+    private List<String> translateAllOntology(OntModel nueva, OntModel sinonimo) {
+        List<String> errores = new ArrayList<String>();
         Set<String> classes = showClass(nueva).keySet();
         for (String clase : classes) {
             //Cambio propiedades
@@ -705,26 +722,41 @@ public class ApiJena {
                 String tipo = getProperty(nueva, clase).get(pro);
                 if (tipo.startsWith("d")) {
                     //datatype
-                    String newProp = getPalabraOfSinOrTra(sinonimo, tipo);
-                    if (newProp != null) {
-                        changeNameDatatypeProperty(nueva, tipo, newProp);
+                    String newProp;
+                    try {
+                        newProp = getPalabraOfSinOrTra(sinonimo, pro);
+                        if (newProp != null) {
+                            changeNameDatatypeProperty(nueva, tipo, newProp);
+                        }
+                    } catch (Exception ex) {
+                        errores.add("No hay sinonimo para: "+pro);
                     }
                 } else {
                     //obj
-                    String newProp = getPalabraOfSinOrTra(sinonimo, tipo);
-                    if (newProp != null) {
-                        changeNameObjectProperty(nueva, tipo, newProp);
+                    String newProp;
+                    try {
+                        newProp = getPalabraOfSinOrTra(sinonimo, pro);
+                        if (newProp != null) {
+                            changeNameObjectProperty(nueva, tipo, newProp);
+                        }
+                    } catch (Exception ex) {
+                        errores.add("No hay sinonimo para: "+pro);
                     }
                 }
             }
 
             //Cambio nombre de clase
-            String newClase = getPalabraOfSinOrTra(sinonimo, clase);
-            if (newClase != null) {
-                changeNameClass(nueva, clase, newClase);
+            String newClase;
+            try {
+                newClase = getPalabraOfSinOrTra(sinonimo, clase);
+                if (newClase != null) {
+                    changeNameClass(nueva, clase, newClase);
+                }
+            } catch (Exception ex) {
+                errores.add("No hay sinonimo para: "+clase);
             }
         }
-
+        return errores;
     }
 
     private void createClassWithPropForProcesodeTransformacion(OntModel nueva, OntModel ontologia, DefaultOntology defaultOntology, DefaultOntology newDefaultOntology) {
@@ -817,7 +849,7 @@ public class ApiJena {
         }
     }
 
-    private String getPalabraOfSinOrTra(OntModel sinonimo, String sinOrTra) {
+    private String getPalabraOfSinOrTra(OntModel sinonimo, String sinOrTra) throws Exception {
         ArrayList<String> inds = listIndividuals(sinonimo, "palabra");
         for (String ind : inds) {
             if (ind.equalsIgnoreCase(sinOrTra)) {
@@ -831,7 +863,7 @@ public class ApiJena {
                 }
             }
         }
-        return null;
+        throw new Exception("No hay sinonimo");
     }
 
     private List<String> getSinAndTraOfPalabra(OntModel sinonimo, String palabra) {

@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import jenasouforce.ApiJena;
+import varios.ErrorTransoformacion;
 
 /**
  *
@@ -37,20 +38,18 @@ public class ModeloTransformadorOntologia {
         this.configuration = configuration;
     }
 
-    public List<String> generarOntologiaBusqueda2(Configuration conf, String ontURL, String newURL, String sin){
+    public ErrorTransoformacion generarOntologiaBusqueda2(Configuration conf, String ontURL, String newURL, String sin){
         OntModelSpec spec = new OntModelSpec(OntModelSpec.OWL_MEM);
         OntModel ontologia = ModelFactory.createOntologyModel(spec, null);
         ontologia = loadOntModelFromOwlFile(ontURL);
         OntModel sinonimo = ModelFactory.createOntologyModel(spec, null);
         sinonimo = loadOntModelFromOwlFile(sin);
         OntModel nueva = ModelFactory.createOntologyModel(spec, null);
-        List<String> errores = jena.generarOntologiaBusqueda2(conf, ontologia, sinonimo, nueva,configuration.getDefaultOntology());
+        ErrorTransoformacion errores = jena.generarOntologiaBusqueda2(conf, ontologia, sinonimo, nueva,configuration.getDefaultOntology());
         if(errores==null){
             //Se transformo correctamente
             jena.grabarOntologia(nueva, newURL);
             return null;
-        }else{
-            
         }
         return errores;
     }
