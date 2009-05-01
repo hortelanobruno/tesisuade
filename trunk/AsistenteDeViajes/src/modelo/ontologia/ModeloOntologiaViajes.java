@@ -16,7 +16,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import jenasouforce.ApiJena;
+import jena.ApiJena;
 import vo.DatatypePropertyVO;
 import vo.IndividualViajesVO;
 import vo.ObjectPropertyVO;
