@@ -16,7 +16,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
-import jenasouforce.ApiJena;
+import jena.ApiJena;
 import vo.busqueda.ConsultaVO;
 import vo.busqueda.IndividualVO;
 

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package jenasouforce;
+package jena;
 
 import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.ontology.DatatypeProperty;
@@ -18,7 +18,6 @@ import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
-import com.hp.hpl.jena.rdf.model.impl.LiteralImpl;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.util.iterator.Filter;
 import com.hp.hpl.jena.vocabulary.XSD;
@@ -36,8 +35,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import varios.ErrorTransoformacion;
 import vo.DatatypePropertyVO;
 import vo.IndividualSinonimoVO;
@@ -53,15 +50,13 @@ import vo.busqueda.IndividualVO;
 public class ApiJena {
 
     protected OntModel m_model;
-    private Map m_anonIDs = new HashMap();
-    private int m_anonCount = 0;
 
     public ApiJena() {
     }
 
     public void addDatatypeProperty(OntModel m, String obj) {
         String uri = getURIOntologiaConNumeral(m);
-        DatatypeProperty pro = m.createDatatypeProperty(uri + obj);
+        m.createDatatypeProperty(uri + obj);
     }
 
     public void addDatatypePropertyToClass(OntModel m, String clase, String pro) {
@@ -137,7 +132,7 @@ public class ApiJena {
     public void addIndividual(OntModel m, String ind, String cla) {
         String uri = getURIOntologiaConNumeral(m);
         OntClass clase = m.getOntClass(uri + cla);
-        Individual individual = m.createIndividual(uri + ind, clase);
+        m.createIndividual(uri + ind, clase);
     }
 
     public void addObjectProperty(OntModel m, String obj) {
@@ -218,7 +213,7 @@ public class ApiJena {
     public void agregarPalabra(OntModel m, String ins) {
         String uri = getURIOntologiaConNumeral(m);
         OntClass clase = m.getOntClass(uri + "palabra");
-        Individual individual = m.createIndividual(uri + ins, clase);
+        m.createIndividual(uri + ins, clase);
     }
 
     public ArrayList<IndividualVO> buscarIndividualHotel(OntModel m, ConsultaVO vuelo, DefaultOntology defOnt) {
@@ -400,7 +395,7 @@ public class ApiJena {
         }
         return invue;
     }
-    
+
     public void cargarPropiedadIndividual(OntModel m, String ind, String pro, String valor) {
         String uri = getURIOntologiaConNumeral(m);
         Individual individual = m.getIndividual(uri + ind);
@@ -420,7 +415,7 @@ public class ApiJena {
         OntProperty propiedad = m.getOntProperty(uri + pro);
         if (propiedad.isDatatypeProperty()) {
             DatatypeProperty datatypeProperty = m.getDatatypeProperty(uri + pro);
-            if(individual.getProperty(datatypeProperty) != null){
+            if (individual.getProperty(datatypeProperty) != null) {
                 if (individual.getProperty(datatypeProperty).getLiteral() != null) {
                     Literal lit = individual.getProperty(datatypeProperty).getLiteral();
                     individual.removeProperty(datatypeProperty, lit);
@@ -428,7 +423,7 @@ public class ApiJena {
                 } else {
                     individual.addLiteral(datatypeProperty, valor);
                 }
-            }else{
+            } else {
                 individual.addLiteral(datatypeProperty, valor);
             }
         } else {
@@ -437,7 +432,6 @@ public class ApiJena {
         }
     }
 
-    //Testear
     public void changeIndividualClass(OntModel m, String old, String nuevo) {
         String uri = getURIOntologiaConNumeral(m);
         Individual oldInd = m.getIndividual(uri + old);
@@ -448,7 +442,6 @@ public class ApiJena {
         }
     }
 
-    //Testear
     public void changeNameClass(OntModel m, String old, String nuevo) {
         String uri = getURIOntologiaConNumeral(m);
         OntClass oldclass = m.getOntClass(uri + old);
@@ -519,7 +512,6 @@ public class ApiJena {
         oldclass.remove();
     }
 
-    //Testear
     public void changeNameDatatypeProperty(OntModel m, String old, String name) {
         String uri = getURIOntologiaConNumeral(m);
         DatatypeProperty proOld = m.getDatatypeProperty(uri + old);
@@ -533,7 +525,6 @@ public class ApiJena {
         proOld.remove();
     }
 
-    //Testear
     public void changeNameObjectProperty(OntModel m, String old, String name) {
         String uri = getURIOntologiaConNumeral(m);
         ObjectProperty proOld = m.getObjectProperty(uri + old);
@@ -547,7 +538,6 @@ public class ApiJena {
         proOld.remove();
     }
 
-    //Testear
     public void changeRange(OntModel m, String pro, String range) {
         //date, string, int, double, float, boolean
         String uri = getURIOntologiaConNumeral(m);
@@ -610,11 +600,11 @@ public class ApiJena {
             createClassWithPropForProcesodeTransformacion(nueva, ontologia, defaultOntology, newDefaultOntology);
             //Ahora hay que traducir todo
             List<String> errores = translateAllOntology(nueva, sinonimo);
-            if(errores.isEmpty()){
+            if (errores.isEmpty()) {
                 //Agrego propiedades nuevas a la configuracion
                 addNewPropertyForConfiguration(conf, nueva, defaultOntology);
                 return null;
-            }else{
+            } else {
                 //No tiene todos los sinonimos
                 ErrorTransoformacion error = new ErrorTransoformacion();
                 error.setError("Faltan sinonimos para traducir la ontologia");
@@ -729,7 +719,7 @@ public class ApiJena {
                             changeNameDatatypeProperty(nueva, tipo, newProp);
                         }
                     } catch (Exception ex) {
-                        errores.add("No hay sinonimo para: "+pro);
+                        errores.add("No hay sinonimo para: " + pro);
                     }
                 } else {
                     //obj
@@ -740,7 +730,7 @@ public class ApiJena {
                             changeNameObjectProperty(nueva, tipo, newProp);
                         }
                     } catch (Exception ex) {
-                        errores.add("No hay sinonimo para: "+pro);
+                        errores.add("No hay sinonimo para: " + pro);
                     }
                 }
             }
@@ -753,7 +743,7 @@ public class ApiJena {
                     changeNameClass(nueva, clase, newClase);
                 }
             } catch (Exception ex) {
-                errores.add("No hay sinonimo para: "+clase);
+                errores.add("No hay sinonimo para: " + clase);
             }
         }
         return errores;
@@ -1092,7 +1082,6 @@ public class ApiJena {
         return errores;
     }
 
-    //Testear
     public DatatypePropertyVO getDatatypeProperty(OntModel m, String pro) {
         DatatypePropertyVO vo = new DatatypePropertyVO();
         String uri = getURIOntologia(m);
@@ -1375,7 +1364,7 @@ public class ApiJena {
             Triple tri = s.asTriple();
             if (tri.getObject().isLiteral()) {
                 DatatypePropertyVO datapro = new DatatypePropertyVO();
-                if(tri.getObject() != null){
+                if (tri.getObject() != null) {
                     if (tri.getObject().getLiteralDatatype() != null) {
                         String[] tipo = tri.getObject().getLiteralDatatype().getURI().split("#");
                         datapro.setRange(tipo[tipo.length - 1]);
@@ -1383,7 +1372,7 @@ public class ApiJena {
                         String nombre = tri.getPredicate().getLocalName();
                         datapro.setName(nombre);
                         datatypeProperties.add(datapro);
-                    }else{
+                    } else {
 //                        String[] tipo = tri.getObject().getURI().split("#");
 //                        datapro.setRange(tipo[tipo.length - 1]);
 //                        datapro.setValor(tri.getObject().getLiteralValue().toString());
@@ -1461,7 +1450,6 @@ public class ApiJena {
         m.getDatatypeProperty(uri + obj).remove();
     }
 
-    //Testear
     public void removeDomain(OntModel m, String pro, String domain) {
         String uri = getURIOntologiaConNumeral(m);
         OntProperty property = m.getOntProperty(uri + pro);
@@ -1480,7 +1468,6 @@ public class ApiJena {
         m.getObjectProperty(uri + property).remove();
     }
 
-    //Testear
     public void removePropertyOfClass(OntModel m, String clase, String pro) {
         String uri = getURIOntologiaConNumeral(m);
         List<String> data = getDatatypeProperties(m);
@@ -1634,7 +1621,6 @@ public class ApiJena {
         m.write(fileout, "RDF/XML-ABBREV");
     }
 
-    //USO INTERNO 
     private void showClass(HashMap<String, String> clases, OntClass cls, OntClass sub, List occurs, int depth) {
         renderClassDescription(clases, cls, sub, depth);
 
