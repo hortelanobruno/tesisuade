@@ -11,7 +11,7 @@ package com.ontotravel.util;
  */
 public class Constantes 
 {
-    public static final String APPLICATION_NAME = "Asistente de Viajes";
+    public static final String APPLICATION_NAME = "Asistente de Viajes - OntoTravel";
     public static final String ICONDATATYPEPROPERTY = "./icons/OWLDatatypeProperty.GIF";
     public static final String ICONOBJECTPROPERTY = "./icons/OWLObjectProperty.GIF";
     public static final String ICONINHERITEDDATATYPEPROPERTY = "./icons/OWLDatatypePropertyInherited.GIF";

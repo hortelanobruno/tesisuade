@@ -63,7 +63,6 @@ public class FramePrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLookAndFeel();
         isPanelPrincipalSelected = true;
-        iniciaCuenta();//De la progress bar
         initComponents2();
 
     }
@@ -87,12 +86,12 @@ public class FramePrincipal extends javax.swing.JFrame {
         buttonSaveOntologia = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JToolBar.Separator();
         buttonSetting = new javax.swing.JButton();
+        jSeparator5 = new javax.swing.JToolBar.Separator();
         statusToolBar = new javax.swing.JToolBar();
         jLabel2 = new javax.swing.JLabel();
         labelEstado = new javax.swing.JLabel();
         panelPrincipal = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jProgressBar1 = new javax.swing.JProgressBar();
         menuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -116,7 +115,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         setTitle("Asistente de Viajes");
 
         itemsToolBar.setFloatable(false);
-        itemsToolBar.setMargin(new java.awt.Insets(0, 10, 0, 0));
+        itemsToolBar.setRollover(true);
 
         buttonBuscarVuelo.setText("Buscar vuelo");
         buttonBuscarVuelo.setFocusable(false);
@@ -191,6 +190,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         buttonSetting.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonSetting.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         itemsToolBar.add(buttonSetting);
+        itemsToolBar.add(jSeparator5);
 
         statusToolBar.setFloatable(false);
         statusToolBar.setMargin(new java.awt.Insets(0, 10, 0, 0));
@@ -204,33 +204,23 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         panelPrincipal.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel1.setText("Pantalla principal del asistente de viajes");
-
-        jProgressBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jProgressBar1.setIndeterminate(true);
-        jProgressBar1.setStringPainted(true);
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Brunoli\\Documents\\NetBeansProjects\\OntoTravel\\icons\\foto_turismo.jpg")); // NOI18N
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addGap(393, 393, 393)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(403, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap(177, Short.MAX_VALUE))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addGap(173, 173, 173)
+                .addContainerGap(40, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(31, 31, 31)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Archivo");
@@ -342,25 +332,22 @@ public class FramePrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(statusToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(itemsToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 990, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(statusToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
+            .addComponent(itemsToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(itemsToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(itemsToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(statusToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11))
+                .addContainerGap())
         );
 
         pack();
@@ -671,25 +658,6 @@ private void buttonBuscarAutoActionPerformed(java.awt.event.ActionEvent evt) {//
 
     public void setIsPanelNuevaOntologiaSelected(boolean isPanelNuevaOntologiaSelected) {
         this.isPanelNuevaOntologiaSelected = isPanelNuevaOntologiaSelected;
-    }//Thread para cargar el progressBar
-    Thread hilo;
-    Object objeto = new Object();
-    boolean pideParar = false;
-
-    public boolean esImpar(int iNumero) {
-        if (iNumero % 2 != 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public void iniciaCuenta() {
-        if (hilo == null) {
-            hilo = new ThreadCarga();
-            pideParar = false;
-            hilo.start();
-        }
     }
 
     public Configuration getConfiguration() {
@@ -737,53 +705,6 @@ private void buttonBuscarAutoActionPerformed(java.awt.event.ActionEvent evt) {//
     public void setPanelDefaultOntologia(PanelDefaultOntologia panelDefaultOntologia) {
         this.panelDefaultOntologia = panelDefaultOntologia;
     }
-
-    class ThreadCarga extends Thread {
-
-        public void run() {
-            int min = 0;
-            int max = 100;
-            int aux = 1;
-            jProgressBar1.setValue(min);
-            jProgressBar1.setMinimum(min);
-            jProgressBar1.setMaximum(max);
-            while (true) {
-                if (esImpar(aux)) {
-                    for (int i = min; i <= max; i++) {
-                        jProgressBar1.setValue(i);
-                        repaint();
-                        synchronized (objeto) {
-                            if (pideParar) {
-                                break;
-                            }
-                            try {
-                                objeto.wait(10);
-                            } catch (InterruptedException e) {
-                                // Se ignoran las excepciones
-                            }
-                        }
-                    }
-                } else {
-                    for (int i = max; i >= min; i--) {
-                        jProgressBar1.setValue(i);
-                        repaint();
-                        synchronized (objeto) {
-                            if (pideParar) {
-                                break;
-                            }
-                            try {
-                                objeto.wait(10);
-                            } catch (InterruptedException e) {
-                                // Se ignoran las excepciones
-                            }
-                        }
-                    }
-                }
-                aux++;
-            }
-        //hilo = null;
-        }
-    }// Termina el kilombo del progressbar
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAbrirOntologia;
     private javax.swing.JButton buttonBuscarAuto;
@@ -810,11 +731,11 @@ private void buttonBuscarAutoActionPerformed(java.awt.event.ActionEvent evt) {//
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
-    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
+    private javax.swing.JToolBar.Separator jSeparator5;
     private javax.swing.JLabel labelEstado;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JPanel panelPrincipal;
