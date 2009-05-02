@@ -770,10 +770,10 @@ public class ApiJena {
             addIndividual(nueva, ind, defaultOntology.getAlojamiento().getNombreClase());
             IndividualViajesVO indVO = obtenerIndividualViajes(ontologia, ind);
             for (DatatypePropertyVO datVO : indVO.getDatatypeProperties()) {
-                cargarPropiedadIndividual(nueva, ind, datVO.getName(), datVO.getValor());
+                cargarPropiedadIndividual(nueva, ind, datVO.getName(), datVO.getValor().replace('_', ' '));
             }
             for (ObjectPropertyVO objVO : indVO.getObjectProperties()) {
-                cargarPropiedadIndividual(nueva, ind, objVO.getName(), objVO.getValor());
+                cargarPropiedadIndividual(nueva, ind, objVO.getName(), objVO.getValor().replace('_', ' '));
             }
         }
 
@@ -799,10 +799,10 @@ public class ApiJena {
             addIndividual(nueva, ind, defaultOntology.getViaje().getNombreClase());
             IndividualViajesVO indVO = obtenerIndividualViajes(ontologia, ind);
             for (DatatypePropertyVO datVO : indVO.getDatatypeProperties()) {
-                cargarPropiedadIndividual(nueva, ind, datVO.getName(), datVO.getValor());
+                cargarPropiedadIndividual(nueva, ind, datVO.getName(), datVO.getValor().replace('_', ' '));
             }
             for (ObjectPropertyVO objVO : indVO.getObjectProperties()) {
-                cargarPropiedadIndividual(nueva, ind, objVO.getName(), objVO.getValor());
+                cargarPropiedadIndividual(nueva, ind, objVO.getName(), objVO.getValor().replace('_', ' '));
             }
         }
 
@@ -829,10 +829,10 @@ public class ApiJena {
             addIndividual(nueva, ind, defaultOntology.getTranslado().getNombreClase());
             IndividualViajesVO indVO = obtenerIndividualViajes(ontologia, ind);
             for (DatatypePropertyVO datVO : indVO.getDatatypeProperties()) {
-                cargarPropiedadIndividual(nueva, ind, datVO.getName(), datVO.getValor());
+                cargarPropiedadIndividual(nueva, ind, datVO.getName(), datVO.getValor().replace('_', ' '));
             }
             for (ObjectPropertyVO objVO : indVO.getObjectProperties()) {
-                cargarPropiedadIndividual(nueva, ind, objVO.getName(), objVO.getValor());
+                cargarPropiedadIndividual(nueva, ind, objVO.getName(), objVO.getValor().replace('_', ' '));
             }
         }
     }

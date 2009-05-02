@@ -17,477 +17,526 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jTabbedPane1" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
-                  <Component id="buttonSave" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="50" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" min="-2" pref="342" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="buttonSave" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+    <Container class="javax.swing.JPanel" name="jPanel4">
       <Properties>
-        <Property name="name" type="java.lang.String" value="jTabbedPane1" noResource="true"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Ontologia Default"/>
+          </Border>
+        </Property>
+        <Property name="name" type="java.lang.String" value="jPanel4" noResource="true"/>
       </Properties>
 
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jTabbedPane1" min="-2" pref="400" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="buttonSave" min="-2" pref="31" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="38" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jTabbedPane1" min="-2" pref="342" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="2" attributes="0">
+                      <Component id="buttonSave" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel1" alignment="2" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jPanel1">
+        <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
           <Properties>
-            <Property name="name" type="java.lang.String" value="jPanel1" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="jTabbedPane1" noResource="true"/>
           </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Vuelo">
-                <Property name="tabTitle" type="java.lang.String" value="Vuelo"/>
-              </JTabbedPaneConstraints>
-            </Constraint>
-          </Constraints>
 
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jScrollPane1" min="-2" pref="375" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="jPanel1">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="jPanel1" noResource="true"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                  <JTabbedPaneConstraints tabName="Vuelo">
+                    <Property name="tabTitle" type="java.lang.String" value="Vuelo"/>
+                  </JTabbedPaneConstraints>
+                </Constraint>
+              </Constraints>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lbNombreClaseVuelo" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="tfNombreClaseVuelo" pref="245" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lbPropieadesVuelo" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                  <Component id="buttonAddPropiedadVuelo" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane1" min="-2" pref="375" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="buttonRemovePropiedadVuelo" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <EmptySpace pref="238" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="lbNombreClaseVuelo" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="tfNombreClaseVuelo" pref="245" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="lbPropieadesVuelo" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                      <Component id="buttonAddPropiedadVuelo" min="-2" pref="23" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="buttonRemovePropiedadVuelo" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <EmptySpace pref="238" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbNombreClaseVuelo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfNombreClaseVuelo" alignment="3" min="-2" max="-2" attributes="0"/>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbNombreClaseVuelo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfNombreClaseVuelo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="2" attributes="0">
+                              <Component id="lbPropieadesVuelo" alignment="2" min="-2" max="-2" attributes="0"/>
+                              <Component id="buttonAddPropiedadVuelo" alignment="2" min="-2" max="-2" attributes="0"/>
+                              <Component id="buttonRemovePropiedadVuelo" alignment="2" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" pref="230" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="2" attributes="0">
-                          <Component id="lbPropieadesVuelo" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonAddPropiedadVuelo" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonRemovePropiedadVuelo" alignment="2" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="230" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JLabel" name="lbNombreClaseVuelo">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Nombre Clase"/>
-                <Property name="name" type="java.lang.String" value="lbNombreClaseVuelo" noResource="true"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="tfNombreClaseVuelo">
-              <Properties>
-                <Property name="name" type="java.lang.String" value="tfNombreClaseVuelo" noResource="true"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lbPropieadesVuelo">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Propiedades"/>
-                <Property name="name" type="java.lang.String" value="lbPropieadesVuelo" noResource="true"/>
-              </Properties>
-            </Component>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-              <Properties>
-                <Property name="name" type="java.lang.String" value="jScrollPane1" noResource="true"/>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-              </AuxValues>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                </DimensionLayout>
+              </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="tablePropieadesVuelo">
+                <Component class="javax.swing.JLabel" name="lbNombreClaseVuelo">
                   <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="2" rowCount="0">
-                        <Column editable="true" title="Nombre" type="java.lang.Object"/>
-                        <Column editable="true" title="Tipo de Dato" type="java.lang.Object"/>
-                      </Table>
+                    <Property name="text" type="java.lang.String" value="Nombre Clase"/>
+                    <Property name="name" type="java.lang.String" value="lbNombreClaseVuelo" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="tfNombreClaseVuelo">
+                  <Properties>
+                    <Property name="name" type="java.lang.String" value="tfNombreClaseVuelo" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lbPropieadesVuelo">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Propiedades"/>
+                    <Property name="name" type="java.lang.String" value="lbPropieadesVuelo" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+                  <Properties>
+                    <Property name="name" type="java.lang.String" value="jScrollPane1" noResource="true"/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTable" name="tablePropieadesVuelo">
+                      <Properties>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                          <Table columnCount="2" rowCount="0">
+                            <Column editable="true" title="Nombre" type="java.lang.Object"/>
+                            <Column editable="true" title="Tipo de Dato" type="java.lang.Object"/>
+                          </Table>
+                        </Property>
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                          <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                          </TableColumnModel>
+                        </Property>
+                        <Property name="name" type="java.lang.String" value="tablePropieadesVuelo" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JButton" name="buttonAddPropiedadVuelo">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="2" name="C:\Users\Brunoli\Documents\NetBeansProjects\OntoTravel\icons\add_obj.gif"/>
                     </Property>
-                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                      </TableColumnModel>
+                    <Property name="contentAreaFilled" type="boolean" value="false"/>
+                    <Property name="name" type="java.lang.String" value="buttonAddPropiedadVuelo" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddPropiedadVueloActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="buttonRemovePropiedadVuelo">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="2" name="C:\Users\Brunoli\Documents\NetBeansProjects\OntoTravel\icons\delete_obj.gif"/>
                     </Property>
-                    <Property name="name" type="java.lang.String" value="tablePropieadesVuelo" noResource="true"/>
-                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                    <Property name="contentAreaFilled" type="boolean" value="false"/>
+                    <Property name="name" type="java.lang.String" value="buttonRemovePropiedadVuelo" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRemovePropiedadVueloActionPerformed"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel2">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="jPanel2" noResource="true"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                  <JTabbedPaneConstraints tabName="Hotel">
+                    <Property name="tabTitle" type="java.lang.String" value="Hotel"/>
+                  </JTabbedPaneConstraints>
+                </Constraint>
+              </Constraints>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane2" alignment="0" pref="375" max="32767" attributes="1"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lbNombreClaseHotel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="tfNombreClaseHotel" min="-2" pref="245" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lbPropieadesHotel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="buttonAddPropiedadHotel" min="-2" pref="26" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="buttonRemovePropiedadHotel" min="-2" pref="28" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbNombreClaseHotel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfNombreClaseHotel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="2" attributes="0">
+                              <Component id="buttonAddPropiedadHotel" alignment="2" min="-2" max="-2" attributes="0"/>
+                              <Component id="buttonRemovePropiedadHotel" alignment="2" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbPropieadesHotel" alignment="2" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" pref="230" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+                  <Properties>
+                    <Property name="name" type="java.lang.String" value="jScrollPane2" noResource="true"/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTable" name="tablePropieadesHotel">
+                      <Properties>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                          <Table columnCount="2" rowCount="0">
+                            <Column editable="true" title="Nombre" type="java.lang.Object"/>
+                            <Column editable="true" title="Tipo de Dato" type="java.lang.Object"/>
+                          </Table>
+                        </Property>
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                          <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                          </TableColumnModel>
+                        </Property>
+                        <Property name="name" type="java.lang.String" value="tablePropieadesHotel" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JLabel" name="lbPropieadesHotel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Propiedades"/>
+                    <Property name="name" type="java.lang.String" value="lbPropieadesHotel" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="buttonAddPropiedadHotel">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="2" name="C:\Users\Brunoli\Documents\NetBeansProjects\OntoTravel\icons\add_obj.gif"/>
                     </Property>
+                    <Property name="contentAreaFilled" type="boolean" value="false"/>
+                    <Property name="name" type="java.lang.String" value="buttonAddPropiedadHotel" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddPropiedadHotelActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="buttonRemovePropiedadHotel">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="2" name="C:\Users\Brunoli\Documents\NetBeansProjects\OntoTravel\icons\delete_obj.gif"/>
+                    </Property>
+                    <Property name="contentAreaFilled" type="boolean" value="false"/>
+                    <Property name="name" type="java.lang.String" value="buttonRemovePropiedadHotel" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRemovePropiedadHotelActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lbNombreClaseHotel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Nombre Clase"/>
+                    <Property name="name" type="java.lang.String" value="lbNombreClaseHotel" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="tfNombreClaseHotel">
+                  <Properties>
+                    <Property name="name" type="java.lang.String" value="tfNombreClaseHotel" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="buttonAddPropiedadVuelo">
+            <Container class="javax.swing.JPanel" name="jPanel3">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Brunoli\Documents\NetBeansProjects\OntoTravel\icons\add_obj.gif"/>
-                </Property>
-                <Property name="contentAreaFilled" type="boolean" value="false"/>
-                <Property name="name" type="java.lang.String" value="buttonAddPropiedadVuelo" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="jPanel3" noResource="true"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddPropiedadVueloActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="buttonRemovePropiedadVuelo">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Brunoli\Documents\NetBeansProjects\OntoTravel\icons\delete_obj.gif"/>
-                </Property>
-                <Property name="contentAreaFilled" type="boolean" value="false"/>
-                <Property name="name" type="java.lang.String" value="buttonRemovePropiedadVuelo" noResource="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRemovePropiedadVueloActionPerformed"/>
-              </Events>
-            </Component>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                  <JTabbedPaneConstraints tabName="Translado">
+                    <Property name="tabTitle" type="java.lang.String" value="Translado"/>
+                  </JTabbedPaneConstraints>
+                </Constraint>
+              </Constraints>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane3" alignment="0" pref="375" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lbNombreClaseTranslado" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="tfNombreClaseTranslado" min="-2" pref="248" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                                  <Component id="buttonAddPropiedadTranslado" min="-2" pref="21" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="buttonRemovePropiedadTranslado" min="-2" pref="26" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="lbPropieadesTranslado" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbNombreClaseTranslado" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfNombreClaseTranslado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="2" attributes="0">
+                              <Component id="buttonRemovePropiedadTranslado" alignment="2" min="-2" max="-2" attributes="0"/>
+                              <Component id="buttonAddPropiedadTranslado" alignment="2" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbPropieadesTranslado" alignment="2" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane3" pref="230" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+                  <Properties>
+                    <Property name="name" type="java.lang.String" value="jScrollPane3" noResource="true"/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTable" name="tablePropieadesTranslado">
+                      <Properties>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                          <Table columnCount="2" rowCount="0">
+                            <Column editable="true" title="Nombre" type="java.lang.Object"/>
+                            <Column editable="true" title="Tipo de Dato" type="java.lang.Object"/>
+                          </Table>
+                        </Property>
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                          <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                          </TableColumnModel>
+                        </Property>
+                        <Property name="name" type="java.lang.String" value="tablePropieadesTranslado" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JLabel" name="lbPropieadesTranslado">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Propiedades"/>
+                    <Property name="name" type="java.lang.String" value="lbPropieadesTranslado" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="buttonAddPropiedadTranslado">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="2" name="C:\Users\Brunoli\Documents\NetBeansProjects\OntoTravel\icons\add_obj.gif"/>
+                    </Property>
+                    <Property name="contentAreaFilled" type="boolean" value="false"/>
+                    <Property name="name" type="java.lang.String" value="buttonAddPropiedadTranslado" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddPropiedadTransladoActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="buttonRemovePropiedadTranslado">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="2" name="C:\Users\Brunoli\Documents\NetBeansProjects\OntoTravel\icons\delete_obj.gif"/>
+                    </Property>
+                    <Property name="contentAreaFilled" type="boolean" value="false"/>
+                    <Property name="name" type="java.lang.String" value="buttonRemovePropiedadTranslado" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRemovePropiedadTransladoActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lbNombreClaseTranslado">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Nombre Clase"/>
+                    <Property name="name" type="java.lang.String" value="lbNombreClaseTranslado" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="tfNombreClaseTranslado">
+                  <Properties>
+                    <Property name="name" type="java.lang.String" value="tfNombreClaseTranslado" noResource="true"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel2">
+        <Component class="javax.swing.JButton" name="buttonSave">
           <Properties>
-            <Property name="name" type="java.lang.String" value="jPanel2" noResource="true"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\Brunoli\Documents\NetBeansProjects\OntoTravel\icons\save.gif"/>
+            </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
+            <Property name="name" type="java.lang.String" value="buttonSave" noResource="true"/>
           </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Hotel">
-                <Property name="tabTitle" type="java.lang.String" value="Hotel"/>
-              </JTabbedPaneConstraints>
-            </Constraint>
-          </Constraints>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" alignment="0" pref="375" max="32767" attributes="1"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lbNombreClaseHotel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="tfNombreClaseHotel" min="-2" pref="245" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lbPropieadesHotel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="buttonAddPropiedadHotel" min="-2" pref="26" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="buttonRemovePropiedadHotel" min="-2" pref="28" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbNombreClaseHotel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfNombreClaseHotel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="2" attributes="0">
-                          <Component id="buttonAddPropiedadHotel" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonRemovePropiedadHotel" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbPropieadesHotel" alignment="2" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="230" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane2">
-              <Properties>
-                <Property name="name" type="java.lang.String" value="jScrollPane2" noResource="true"/>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-              </AuxValues>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-              <SubComponents>
-                <Component class="javax.swing.JTable" name="tablePropieadesHotel">
-                  <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="2" rowCount="0">
-                        <Column editable="true" title="Nombre" type="java.lang.Object"/>
-                        <Column editable="true" title="Tipo de Dato" type="java.lang.Object"/>
-                      </Table>
-                    </Property>
-                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                      </TableColumnModel>
-                    </Property>
-                    <Property name="name" type="java.lang.String" value="tablePropieadesHotel" noResource="true"/>
-                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-                    </Property>
-                  </Properties>
-                </Component>
-              </SubComponents>
-            </Container>
-            <Component class="javax.swing.JLabel" name="lbPropieadesHotel">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Propiedades"/>
-                <Property name="name" type="java.lang.String" value="lbPropieadesHotel" noResource="true"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="buttonAddPropiedadHotel">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Brunoli\Documents\NetBeansProjects\OntoTravel\icons\add_obj.gif"/>
-                </Property>
-                <Property name="contentAreaFilled" type="boolean" value="false"/>
-                <Property name="name" type="java.lang.String" value="buttonAddPropiedadHotel" noResource="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddPropiedadHotelActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="buttonRemovePropiedadHotel">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Brunoli\Documents\NetBeansProjects\OntoTravel\icons\delete_obj.gif"/>
-                </Property>
-                <Property name="contentAreaFilled" type="boolean" value="false"/>
-                <Property name="name" type="java.lang.String" value="buttonRemovePropiedadHotel" noResource="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRemovePropiedadHotelActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lbNombreClaseHotel">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Nombre Clase"/>
-                <Property name="name" type="java.lang.String" value="lbNombreClaseHotel" noResource="true"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="tfNombreClaseHotel">
-              <Properties>
-                <Property name="name" type="java.lang.String" value="tfNombreClaseHotel" noResource="true"/>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
-        <Container class="javax.swing.JPanel" name="jPanel3">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSaveActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="name" type="java.lang.String" value="jPanel3" noResource="true"/>
+            <Property name="text" type="java.lang.String" value="Guardar"/>
+            <Property name="name" type="java.lang.String" value="jLabel1" noResource="true"/>
           </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Translado">
-                <Property name="tabTitle" type="java.lang.String" value="Translado"/>
-              </JTabbedPaneConstraints>
-            </Constraint>
-          </Constraints>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane3" alignment="0" pref="375" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lbNombreClaseTranslado" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="tfNombreClaseTranslado" min="-2" pref="248" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
-                              <Component id="buttonAddPropiedadTranslado" min="-2" pref="21" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="buttonRemovePropiedadTranslado" min="-2" pref="26" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="lbPropieadesTranslado" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbNombreClaseTranslado" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfNombreClaseTranslado" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="2" attributes="0">
-                          <Component id="buttonRemovePropiedadTranslado" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonAddPropiedadTranslado" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbPropieadesTranslado" alignment="2" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane3" pref="230" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane3">
-              <Properties>
-                <Property name="name" type="java.lang.String" value="jScrollPane3" noResource="true"/>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-              </AuxValues>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-              <SubComponents>
-                <Component class="javax.swing.JTable" name="tablePropieadesTranslado">
-                  <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="2" rowCount="0">
-                        <Column editable="true" title="Nombre" type="java.lang.Object"/>
-                        <Column editable="true" title="Tipo de Dato" type="java.lang.Object"/>
-                      </Table>
-                    </Property>
-                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                      </TableColumnModel>
-                    </Property>
-                    <Property name="name" type="java.lang.String" value="tablePropieadesTranslado" noResource="true"/>
-                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-                    </Property>
-                  </Properties>
-                </Component>
-              </SubComponents>
-            </Container>
-            <Component class="javax.swing.JLabel" name="lbPropieadesTranslado">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Propiedades"/>
-                <Property name="name" type="java.lang.String" value="lbPropieadesTranslado" noResource="true"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="buttonAddPropiedadTranslado">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Brunoli\Documents\NetBeansProjects\OntoTravel\icons\add_obj.gif"/>
-                </Property>
-                <Property name="contentAreaFilled" type="boolean" value="false"/>
-                <Property name="name" type="java.lang.String" value="buttonAddPropiedadTranslado" noResource="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddPropiedadTransladoActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="buttonRemovePropiedadTranslado">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Brunoli\Documents\NetBeansProjects\OntoTravel\icons\delete_obj.gif"/>
-                </Property>
-                <Property name="contentAreaFilled" type="boolean" value="false"/>
-                <Property name="name" type="java.lang.String" value="buttonRemovePropiedadTranslado" noResource="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRemovePropiedadTransladoActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lbNombreClaseTranslado">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Nombre Clase"/>
-                <Property name="name" type="java.lang.String" value="lbNombreClaseTranslado" noResource="true"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="tfNombreClaseTranslado">
-              <Properties>
-                <Property name="name" type="java.lang.String" value="tfNombreClaseTranslado" noResource="true"/>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
+        </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="buttonSave">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\Brunoli\Documents\NetBeansProjects\OntoTravel\icons\save.gif"/>
-        </Property>
-        <Property name="contentAreaFilled" type="boolean" value="false"/>
-        <Property name="name" type="java.lang.String" value="buttonSave" noResource="true"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSaveActionPerformed"/>
-      </Events>
-    </Component>
   </SubComponents>
 </Form>

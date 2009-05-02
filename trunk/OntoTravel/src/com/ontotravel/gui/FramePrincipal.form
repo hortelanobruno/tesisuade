@@ -164,28 +164,24 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="statusToolBar" alignment="0" pref="1010" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="panelPrincipal" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="itemsToolBar" min="-2" pref="990" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Component id="statusToolBar" alignment="0" pref="1010" max="32767" attributes="0"/>
+          <Component id="itemsToolBar" alignment="0" pref="1010" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="itemsToolBar" min="-2" pref="37" max="-2" attributes="0"/>
+              <Component id="itemsToolBar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="panelPrincipal" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="panelPrincipal" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="statusToolBar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -194,9 +190,7 @@
     <Container class="javax.swing.JToolBar" name="itemsToolBar">
       <Properties>
         <Property name="floatable" type="boolean" value="false"/>
-        <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-          <Insets value="[0, 10, 0, 0]"/>
-        </Property>
+        <Property name="rollover" type="boolean" value="true"/>
       </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
@@ -287,6 +281,8 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JToolBar$Separator" name="jSeparator5">
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JToolBar" name="statusToolBar">
@@ -327,26 +323,18 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="393" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                          <Component id="jProgressBar1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace pref="403" max="32767" attributes="0"/>
+                  <EmptySpace pref="150" max="32767" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="177" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
+                  <EmptySpace pref="40" max="32767" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                  <Component id="jProgressBar1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="286" max="32767" attributes="0"/>
+                  <EmptySpace pref="64" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -354,18 +342,9 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Pantalla principal del asistente de viajes"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JProgressBar" name="jProgressBar1">
-          <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
-                <EmptyBorder/>
-              </Border>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\Brunoli\Documents\NetBeansProjects\OntoTravel\icons\foto_turismo.jpg"/>
             </Property>
-            <Property name="indeterminate" type="boolean" value="true"/>
-            <Property name="stringPainted" type="boolean" value="true"/>
           </Properties>
         </Component>
       </SubComponents>

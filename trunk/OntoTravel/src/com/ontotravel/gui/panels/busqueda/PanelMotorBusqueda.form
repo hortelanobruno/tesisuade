@@ -57,7 +57,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" max="-2" attributes="0">
+                  <Group type="102" alignment="0" max="-2" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
@@ -67,9 +67,9 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                              <Component id="toggleButtonOpcionesAvanzadasVuelo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                               <Component id="buttonBuscarVuelos" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="toggleButtonOpcionesAvanzadasVuelo" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
@@ -90,9 +90,9 @@
                           <Component id="panelVuelo" alignment="0" min="-2" max="-2" attributes="1"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="toggleButtonOpcionesAvanzadasVuelo" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonBuscarVuelos" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="toggleButtonOpcionesAvanzadasVuelo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonBuscarVuelos" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="panelResultadoVuelo" pref="191" max="32767" attributes="0"/>
@@ -199,6 +199,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="buttonBuscarVuelos">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="2" name="C:\Users\Brunoli\Documents\NetBeansProjects\OntoTravel\icons\view.gif"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Buscar vuelos"/>
               </Properties>
               <Events>

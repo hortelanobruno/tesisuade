@@ -108,7 +108,7 @@ public class PanelBoolean extends javax.swing.JPanel implements PanelTipoDato {
 
     @Override
     public void clearData() {
-        cbActived.setEnabled(false);
+        cbActived.setSelected(false);
         checkBoxValue.setEnabled(false);
     }
 

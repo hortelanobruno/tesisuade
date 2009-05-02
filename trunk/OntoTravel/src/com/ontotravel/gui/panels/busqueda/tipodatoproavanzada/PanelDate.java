@@ -117,7 +117,7 @@ public class PanelDate extends javax.swing.JPanel implements PanelTipoDato {
     @Override
     public void clearData() {
         dateChooser.cleanup();
-        cbActived.setEnabled(false);
+        cbActived.setSelected(false);
     }
 
     @Override

@@ -28,7 +28,6 @@ import javax.swing.JPanel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
-import javax.print.DocFlavor.STRING;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 import javax.swing.table.DefaultTableModel;
@@ -230,6 +229,7 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
             }
         });
 
+        buttonBuscarVuelos.setIcon(new javax.swing.ImageIcon("C:\\Users\\Brunoli\\Documents\\NetBeansProjects\\OntoTravel\\icons\\view.gif")); // NOI18N
         buttonBuscarVuelos.setText("Buscar vuelos");
         buttonBuscarVuelos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,7 +241,7 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
         panelMotorBusquedaVuelo.setLayout(panelMotorBusquedaVueloLayout);
         panelMotorBusquedaVueloLayout.setHorizontalGroup(
             panelMotorBusquedaVueloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMotorBusquedaVueloLayout.createSequentialGroup()
+            .addGroup(panelMotorBusquedaVueloLayout.createSequentialGroup()
                 .addGroup(panelMotorBusquedaVueloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelMotorBusquedaVueloLayout.createSequentialGroup()
                         .addContainerGap()
@@ -250,9 +250,9 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
                         .addComponent(panelOpcionesAvanzadasVuelos, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelMotorBusquedaVueloLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(toggleButtonOpcionesAvanzadasVuelo)
-                        .addGap(81, 81, 81)
-                        .addComponent(buttonBuscarVuelos)))
+                        .addComponent(buttonBuscarVuelos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(toggleButtonOpcionesAvanzadasVuelo)))
                 .addGap(27, 27, 27))
             .addGroup(panelMotorBusquedaVueloLayout.createSequentialGroup()
                 .addContainerGap()
@@ -267,7 +267,7 @@ public class PanelMotorBusqueda extends javax.swing.JPanel {
                     .addComponent(panelOpcionesAvanzadasVuelos, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                     .addComponent(panelVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelMotorBusquedaVueloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelMotorBusquedaVueloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(toggleButtonOpcionesAvanzadasVuelo)
                     .addComponent(buttonBuscarVuelos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -541,11 +541,8 @@ private void buttonBuscarAutoActionPerformed(java.awt.event.ActionEvent evt) {//
     }
 
     private void buscarVuelos() {
-//        panelResultadoVuelo.removeAll();
-//        this.repaint();
         if (validarInputVuelo()) {
             ConsultaVO vueloVO = obtenerDatosConsultaVuelo();
-            //TODO Hasta aca esta bien, falta la busqueda y mostrar el resultado
             List<IndividualVO> indVuelos = ((BusinessDelegate) vistaMotorBusqueda.getModelo()).buscarVuelos(vueloVO, this.main.getConfiguration().getDefaultOntology());
             if (!indVuelos.isEmpty()) {
                 //Mostrar los resultados
