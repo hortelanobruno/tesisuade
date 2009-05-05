@@ -110,15 +110,19 @@ public class PropiedadPrincipalDate extends javax.swing.JPanel implements Propie
         int month = date.getTime().getMonth()+1;
         if(month<10){
             if(date.getTime().getDate()<10){
-                return year+"-0"+month+"-0"+date.getTime().getDate();
+                //return year+"-0"+month+"-0"+date.getTime().getDate();
+                return "0"+date.getTime().getDate()+"/0"+month+"/"+year;
             }else{
-                return year+"-0"+month+"-"+date.getTime().getDate();
+                //return year+"-0"+month+"-"+date.getTime().getDate();
+                return date.getTime().getDate()+"/0"+month+"/"+year;
             }
         }else{
             if(date.getTime().getDate()<10){
-                return year+"-"+month+"-0"+date.getTime().getDate();
+                //return year+"-"+month+"-0"+date.getTime().getDate();
+                return "0"+date.getTime().getDate()+"/"+month+"/"+year;
             }else{
-                return year+"-"+month+"-"+date.getTime().getDate();
+                //return year+"-"+month+"-"+date.getTime().getDate();
+                return date.getTime().getDate()+"/"+month+"/"+year;
             }
         }
     }

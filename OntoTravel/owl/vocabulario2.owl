@@ -25,6 +25,9 @@
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >pedido_de_hospedaje</sinonimo>
   </palabra>
+  <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#ciudad_destino">
+    <sinonimo>ciudad_destino</sinonimo>
+  </palabra>
   <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#pasajero">
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >turista</sinonimo>
@@ -32,6 +35,9 @@
     >viajante</sinonimo>
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >passenger</traduccion>
+  </palabra>
+  <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#Reserva_alojamiento">
+    <sinonimo>Reserva_alojamiento</sinonimo>
   </palabra>
   <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#rent-car">
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -52,6 +58,12 @@
     >hospedaje</sinonimo>
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >estadia</sinonimo>
+  </palabra>
+  <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#fecha_entrada">
+    <sinonimo>fecha_entrada</sinonimo>
+  </palabra>
+  <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#ciudad_origen">
+    <sinonimo>ciudad_origen</sinonimo>
   </palabra>
   <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#fecha">
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -135,6 +147,12 @@
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >almuerzo</sinonimo>
   </palabra>
+  <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#fecha_inicio">
+    <sinonimo>fecha_inicio</sinonimo>
+  </palabra>
+  <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#tipo_alojamiento">
+    <sinonimo>tipo_alojamiento</sinonimo>
+  </palabra>
   <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#marca">
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >empresa</sinonimo>
@@ -179,14 +197,6 @@
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >seat</traduccion>
   </palabra>
-  <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#habitacion">
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >bedroom</traduccion>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >room</traduccion>
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >cuarto</sinonimo>
-  </palabra>
   <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#grande">
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >large</traduccion>
@@ -194,6 +204,14 @@
     >espacioso</sinonimo>
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >amplio</sinonimo>
+  </palabra>
+  <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#habitacion">
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >bedroom</traduccion>
+    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >room</traduccion>
+    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cuarto</sinonimo>
   </palabra>
   <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#hostel">
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -248,6 +266,12 @@
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >plane</traduccion>
     <sinonimo>avionetaa</sinonimo>
+  </palabra>
+  <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#internet">
+    <sinonimo>internet</sinonimo>
+  </palabra>
+  <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#cantidad_escalas">
+    <sinonimo>cantidad_escalas</sinonimo>
   </palabra>
   <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#direccion_asistida">
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -309,6 +333,9 @@
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >train</traduccion>
   </palabra>
+  <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#Reserva_auto">
+    <sinonimo>Reserva_auto</sinonimo>
+  </palabra>
   <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#clase">
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >tipo</sinonimo>
@@ -351,6 +378,12 @@
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >promocion</sinonimo>
   </palabra>
+  <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#Reserva_pasaje">
+    <sinonimo>Reserva_pasaje</sinonimo>
+  </palabra>
+  <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#cantidad_habitaciones">
+    <sinonimo>cantidad_habitaciones</sinonimo>
+  </palabra>
   <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#compacto">
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >small</traduccion>
@@ -370,6 +403,9 @@
     >babies</traduccion>
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >menores_de_3_años</sinonimo>
+  </palabra>
+  <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#cantidad_personas">
+    <sinonimo>cantidad_personas</sinonimo>
   </palabra>
   <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#ticket_de_traslado">
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -402,6 +438,9 @@
     >destino</sinonimo>
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >country</traduccion>
+  </palabra>
+  <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#fecha_salida">
+    <sinonimo>fecha_salida</sinonimo>
   </palabra>
   <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#barrio">
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"

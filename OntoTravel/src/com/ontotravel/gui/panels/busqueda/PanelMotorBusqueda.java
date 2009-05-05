@@ -549,14 +549,23 @@ private void buttonBuscarAutoActionPerformed(java.awt.event.ActionEvent evt) {//
                 cargarResultadoVuelo(indVuelos);
             } else {
                 //Mandar cartel diciendo que no se encontro nada
+                vaciarTablaVuelos();
                 JOptionPane.showMessageDialog(this, "La consulta no arrojo ningun resultado", Constantes.APPLICATION_NAME, JOptionPane.INFORMATION_MESSAGE);
             }
         } else {
+            vaciarTablaVuelos();
             JOptionPane.showMessageDialog(this, "Completar todos los campos obligatorios", Constantes.APPLICATION_NAME, JOptionPane.ERROR_MESSAGE);
         }
     }
 
     public void cargarPanelBusquedaVuelo(PanelResultadoVuelo panel, IndividualVO ind) {
+    }
+
+    private void vaciarTablaVuelos() {
+        ((DefaultTableModel)tableResultadoVuelo.getModel()).getDataVector().clear();
+        tableResultadoVuelo.repaint();
+        tableResultadoVuelo.invalidate();
+        tableResultadoVuelo.getParent().validate();
     }
 
     private boolean validarInputAuto() {

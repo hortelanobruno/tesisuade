@@ -23,7 +23,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" pref="1007" max="32767" attributes="0"/>
+              <Component id="jTabbedPane1" pref="1003" max="32767" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -64,7 +64,7 @@
                           <Component id="textFieldURI" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="678" max="32767" attributes="0"/>
+                      <EmptySpace pref="674" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -149,7 +149,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="209" max="32767" attributes="0"/>
+                      <EmptySpace pref="205" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -371,7 +371,7 @@
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="tabbedPropertyType" min="-2" pref="274" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="panelPropertyDefault" pref="690" max="32767" attributes="0"/>
+                      <Component id="panelPropertyDefault" pref="686" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -884,7 +884,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPane7" pref="414" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane7" pref="410" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -941,22 +941,22 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="textFieldAddIndividual" min="-2" pref="64" max="-2" attributes="0"/>
+                          <Component id="textFieldAddIndividual" pref="147" max="32767" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="buttonOkIndividual" min="-2" pref="20" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="buttonOkIndividual" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="buttonCancelIndividual" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="50" max="32767" attributes="0"/>
+                          <Component id="buttonCancelIndividual" min="-2" pref="20" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="2" attributes="0">
-                          <Component id="jLabel13" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="textFieldAddIndividual" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonOkIndividual" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="buttonCancelIndividual" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonOkIndividual" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldAddIndividual" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel13" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
