@@ -45,20 +45,7 @@ public class ModeloMotorBusqueda {
             vuelos.addAll(aux);
         }
         //Luego lo ordeno por lo avanzado
-        aux = new ArrayList<IndividualVO>();
-        if(!vuelos.isEmpty()){
-            IndividualVO ind = null;
-            for(int i=0 ; i < vuelos.size() ; i++){
-                ind = vuelos.get(0);
-                for(int j=1 ; j < vuelos.size() ; j++){
-                    if(ind.coincidencia(consulta.getPropiedadesAvanzadas())<vuelos.get(j).coincidencia(consulta.getPropiedadesAvanzadas())){
-                        ind = vuelos.get(j);
-                    }
-                }
-                aux.add(ind);
-                vuelos.remove(ind);
-            }
-        }
+        aux = ordenarResultado(vuelos, consulta, aux);
         //Aca termino con aux ordenado por coincidencia
         return aux;
     }
@@ -73,20 +60,7 @@ public class ModeloMotorBusqueda {
             vuelos.addAll(aux);
         }
         //Luego lo ordeno por lo avanzado
-        aux = new ArrayList<IndividualVO>();
-        if(!vuelos.isEmpty()){
-            IndividualVO ind = null;
-            for(int i=0 ; i < vuelos.size() ; i++){
-                ind = vuelos.get(0);
-                for(int j=1 ; j < vuelos.size() ; j++){
-                    if(ind.coincidencia(consulta.getPropiedadesAvanzadas())<vuelos.get(j).coincidencia(consulta.getPropiedadesAvanzadas())){
-                        ind = vuelos.get(j);
-                    }
-                }
-                aux.add(ind);
-                vuelos.remove(ind);
-            }
-        }
+        aux = ordenarResultado(vuelos, consulta, aux);
         //Aca termino con aux ordenado por coincidencia
         return aux;
     }

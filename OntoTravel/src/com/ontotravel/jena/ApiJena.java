@@ -258,8 +258,22 @@ public class ApiJena {
         String value;
         for (String prop : propNames) {
             value = propiedades.get(prop);
-            if (!value.equalsIgnoreCase(hotel.getPropiedadesPrincipales().get(prop).toString())) {
-                return false;
+            if (value.contains("/")) {
+                String[] values = value.split("/");
+                String[] values1 = hotel.getPropiedadesPrincipales().get(prop).toString().split("/");
+                if (Integer.parseInt(values[2]) != Integer.parseInt(values1[2])) {
+                    return false;
+                }
+                if (Integer.parseInt(values[1]) != Integer.parseInt(values1[1])) {
+                    return false;
+                }
+                if (Integer.parseInt(values[0]) != Integer.parseInt(values1[0])) {
+                    return false;
+                }
+            } else {
+                if (!value.equalsIgnoreCase(hotel.getPropiedadesPrincipales().get(prop).toString())) {
+                    return false;
+                }
             }
         }
         return true;
@@ -318,8 +332,22 @@ public class ApiJena {
         String value;
         for (String prop : propNames) {
             value = propiedades.get(prop);
-            if (!value.equalsIgnoreCase(auto.getPropiedadesPrincipales().get(prop).toString())) {
-                return false;
+            if (value.contains("/")) {
+                String[] values = value.split("/");
+                String[] values1 = auto.getPropiedadesPrincipales().get(prop).toString().split("/");
+                if (Integer.parseInt(values[2]) != Integer.parseInt(values1[2])) {
+                    return false;
+                }
+                if (Integer.parseInt(values[1]) != Integer.parseInt(values1[1])) {
+                    return false;
+                }
+                if (Integer.parseInt(values[0]) != Integer.parseInt(values1[0])) {
+                    return false;
+                }
+            } else {
+                if (!value.equalsIgnoreCase(auto.getPropiedadesPrincipales().get(prop).toString())) {
+                    return false;
+                }
             }
         }
         return true;
