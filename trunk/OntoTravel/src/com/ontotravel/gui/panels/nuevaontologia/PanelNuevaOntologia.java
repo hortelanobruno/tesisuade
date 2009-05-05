@@ -1276,6 +1276,7 @@ private void textFieldURIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         this.eventoTree = evt;
         if (!eventoTree.getPath().getLastPathComponent().toString().equals("Classes")) {
             //Cargar ListIndividuals
+            vaciarPanelIndProperties();
             String clase = eventoTree.getPath().getLastPathComponent().toString();
             ArrayList<String> individuals = ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).listIndividuals(clase);
             listIndividuals.removeAll();
@@ -1751,5 +1752,10 @@ private void textFieldURIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
 
     public void setCargarIndividual(boolean cargarIndividual) {
         this.cargarIndividual = cargarIndividual;
+    }
+
+    private void vaciarPanelIndProperties() {
+        panelIndividualProperties.removeAll();
+        this.repaint();
     }
 }
