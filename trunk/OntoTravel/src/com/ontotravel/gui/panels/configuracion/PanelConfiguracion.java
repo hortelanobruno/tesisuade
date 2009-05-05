@@ -259,6 +259,7 @@ private void buttonAddOntViajesActionPerformed(java.awt.event.ActionEvent evt) {
                 }
                 ((DefaultListModel) listOntologiasViajes.getModel()).addElement(urlNew);
                 main.recargarConfiguracion();
+                main.guardarConfiguracion();
                 JOptionPane.showMessageDialog(this, "La ontologia fue cargada correctamente", "Asistente de Viajes", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 if (!errores.getSubErrores().isEmpty()) {

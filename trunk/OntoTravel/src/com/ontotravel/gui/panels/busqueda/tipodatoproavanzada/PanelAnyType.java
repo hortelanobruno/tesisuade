@@ -143,7 +143,7 @@ public class PanelAnyType extends javax.swing.JPanel implements PanelTipoDato {
 
     @Override
     public Object getValue() {
-        if (!tfValor.getText().trim().isEmpty()) {
+        if (tfValor.getText().trim().isEmpty()) {
             return null;
         }
         return tfValor.getText();

@@ -56,18 +56,24 @@ public class IndividualVO {
 
     public Double coincidencia(Map<String, Object> consulta) {
         double cant = consulta.size();
-        if(cant == 0D){
+        if (cant == 0D) {
             return 1D;
         }
         double aux = 0;
         for (String prop : consulta.keySet()) {
             if (propiedadesAvanzadas.containsKey(prop)) {
-                if (propiedadesAvanzadas.get(prop).equals(consulta.get(prop))) {
-                    aux++;
+                if ((propiedadesAvanzadas.get(prop).equals("true"))||(propiedadesAvanzadas.get(prop).equals("false"))) {
+                    if (propiedadesAvanzadas.get(prop).toString().equalsIgnoreCase(consulta.get(prop).toString())) {
+                        aux++;
+                    }
+                }else {
+                    if (propiedadesAvanzadas.get(prop).equals(consulta.get(prop))) {
+                        aux++;
+                    }
                 }
             }
         }
-        if(aux == 0D){
+        if (aux == 0D) {
             return 0D;
         }
         return aux / cant;

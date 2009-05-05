@@ -58,16 +58,12 @@
   </defaultOntology>
   <propiedadesAvanzadasVuelo>
     <advancedproperty>
-      <nombre>regresa_en_la_misma_ciudad</nombre>
+      <nombre>cantidad_escalas</nombre>
+      <tipoDato reference="../../../defaultOntology/alojamiento/defaultProperties/defaultproperty[4]/tipoDato"/>
+    </advancedproperty>
+    <advancedproperty>
+      <nombre>internet</nombre>
       <tipoDato>BOOLEAN</tipoDato>
-    </advancedproperty>
-    <advancedproperty>
-      <nombre>tipo_translado</nombre>
-      <tipoDato reference="../../../defaultOntology/alojamiento/defaultProperties/defaultproperty/tipoDato"/>
-    </advancedproperty>
-    <advancedproperty>
-      <nombre>fecha_inicio</nombre>
-      <tipoDato reference="../../../defaultOntology/alojamiento/defaultProperties/defaultproperty[2]/tipoDato"/>
     </advancedproperty>
   </propiedadesAvanzadasVuelo>
   <propiedadesAvanzadasHotel>
@@ -83,35 +79,14 @@
       <nombre>habitacion</nombre>
       <tipoDato reference="../../../defaultOntology/alojamiento/defaultProperties/defaultproperty/tipoDato"/>
     </advancedproperty>
+    <advancedproperty>
+      <nombre>fecha_entrada</nombre>
+      <tipoDato reference="../../../defaultOntology/alojamiento/defaultProperties/defaultproperty[2]/tipoDato"/>
+    </advancedproperty>
   </propiedadesAvanzadasHotel>
-  <propiedadesAvanzadasAuto>
-    <advancedproperty>
-      <nombre>tipo_viaje</nombre>
-      <tipoDato reference="../../../defaultOntology/alojamiento/defaultProperties/defaultproperty/tipoDato"/>
-    </advancedproperty>
-    <advancedproperty>
-      <nombre>escalas</nombre>
-      <tipoDato reference="../../../defaultOntology/alojamiento/defaultProperties/defaultproperty[4]/tipoDato"/>
-    </advancedproperty>
-    <advancedproperty>
-      <nombre>cantidad_pasajeros</nombre>
-      <tipoDato reference="../../../defaultOntology/alojamiento/defaultProperties/defaultproperty[4]/tipoDato"/>
-    </advancedproperty>
-    <advancedproperty>
-      <nombre>tipo_asiento</nombre>
-      <tipoDato reference="../../../defaultOntology/alojamiento/defaultProperties/defaultproperty/tipoDato"/>
-    </advancedproperty>
-    <advancedproperty>
-      <nombre>hacia</nombre>
-      <tipoDato reference="../../../defaultOntology/alojamiento/defaultProperties/defaultproperty/tipoDato"/>
-    </advancedproperty>
-    <advancedproperty>
-      <nombre>desde</nombre>
-      <tipoDato reference="../../../defaultOntology/alojamiento/defaultProperties/defaultproperty/tipoDato"/>
-    </advancedproperty>
-  </propiedadesAvanzadasAuto>
+  <propiedadesAvanzadasAuto/>
   <ontologiasViajes>
-    <string>./owl/turismoOriginal.owl</string>
+    <string>owl/turismoOriginal.owl</string>
   </ontologiasViajes>
   <ontologiasVocabulario>
     <string>owl\vocabulario2.owl</string>

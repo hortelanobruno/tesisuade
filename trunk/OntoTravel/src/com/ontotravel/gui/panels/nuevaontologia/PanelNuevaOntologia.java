@@ -26,6 +26,7 @@ import java.util.Set;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -173,7 +174,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                 .addGroup(panelMetadataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(textFieldURI, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addContainerGap(678, Short.MAX_VALUE))
+                .addContainerGap(674, Short.MAX_VALUE))
         );
         panelMetadataLayout.setVerticalGroup(
             panelMetadataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,7 +328,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                                 .addComponent(jLabel4)
                                 .addGap(34, 34, 34)
                                 .addComponent(textFieldClassName, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
         panelClassesLayout.setVerticalGroup(
             panelClassesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -599,7 +600,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(tabbedPropertyType, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelPropertyDefault, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
+                .addComponent(panelPropertyDefault, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
                 .addGap(22, 22, 22))
         );
         panelPropertiesLayout.setVerticalGroup(
@@ -664,7 +665,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                         .addComponent(textFieldNombreIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(panelIndividualDataLayout.createSequentialGroup()
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
                         .addGap(31, 31, 31))))
         );
         panelIndividualDataLayout.setVerticalGroup(
@@ -709,20 +710,20 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textFieldAddIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textFieldAddIndividual, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buttonOkIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonOkIndividual)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonCancelIndividual)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addComponent(buttonCancelIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
         panelAddIndividualLayout.setVerticalGroup(
             panelAddIndividualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAddIndividualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                .addComponent(jLabel13)
-                .addComponent(textFieldAddIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonCancelIndividual)
                 .addComponent(buttonOkIndividual)
-                .addComponent(buttonCancelIndividual))
+                .addComponent(textFieldAddIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel13))
         );
 
         buttonAddIndividual.setIcon(new javax.swing.ImageIcon("C:\\Users\\Brunoli\\Documents\\NetBeansProjects\\OntoTravel\\icons\\createIndividual.gif")); // NOI18N
@@ -816,7 +817,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1007, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1003, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -938,6 +939,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
                 }
                 panelIndividualProperties.add(panelObj);
             }
+            recargarPanel(panelIndividualProperties);
         }
     }
 
@@ -1104,12 +1106,11 @@ private void textFieldClassNameFocusGained(java.awt.event.FocusEvent evt) {//GEN
     classNameAux = textFieldClassName.getText();
 }//GEN-LAST:event_textFieldClassNameFocusGained
 
-//FALTA CARGAR EL ARBOL
 private void textFieldClassNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldClassNameFocusLost
 // Cuando pierde el foco del text field del nombre de la clase
-        if (varEnterNameClass == 0) {
-            cambiarNombreClase();
-        }
+    if (varEnterNameClass == 0) {
+        cambiarNombreClase();
+    }
 }//GEN-LAST:event_textFieldClassNameFocusLost
 
     public void cambiarNombreClase() {
@@ -1117,7 +1118,7 @@ private void textFieldClassNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-F
             if (!classNameAux.equalsIgnoreCase(textFieldClassName.getText())) {
                 String name = textFieldClassName.getText();
                 if (!name.isEmpty()) {
-                    ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).changeNameClass(classNameAux, textFieldClassName.getText());
+                    ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).changeNameClass(classNameAux, name);
                     DefaultMutableTreeNode node = mapaNodos.get(classNameAux);
                     node.setUserObject(textFieldClassName.getText());
                     mapaNodos.remove(classNameAux);
@@ -1414,7 +1415,14 @@ private void textFieldURIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
             String range = propiedades.getRange();
             panel.getComboBoxRange().setSelectedItem(range);
             panelPropertyDefault.add(panel);
+            recargarPanel(panelPropertyDefault);
         }
+    }
+
+    public void recargarPanel(JPanel panel) {
+        panel.repaint();
+        panel.invalidate();
+        panel.getParent().validate();
     }
 
     public void cargarObjectProperty() {

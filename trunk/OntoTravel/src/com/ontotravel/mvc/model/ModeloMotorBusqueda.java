@@ -100,22 +100,7 @@ public class ModeloMotorBusqueda {
             aux = jena.buscarIndividualVuelo(ontologias.get(i),consulta,defOnt);
             vuelos.addAll(aux);
         }
-        //Luego lo ordeno por lo avanzado
-        aux = new ArrayList<IndividualVO>();
-        if(!vuelos.isEmpty()){
-            IndividualVO ind = null;
-            for(int i=0 ; i < vuelos.size() ; i++){
-                ind = vuelos.get(0);
-                for(int j=1 ; j < vuelos.size() ; j++){
-                    if(ind.coincidencia(consulta.getPropiedadesAvanzadas())<vuelos.get(j).coincidencia(consulta.getPropiedadesAvanzadas())){
-                        ind = vuelos.get(j);
-                    }
-                }
-                vuelos.remove(ind);
-                ind.setCoincidencia(ind.coincidencia(consulta.getPropiedadesAvanzadas()));
-                aux.add(ind);
-            }
-        }
+        aux = ordenarResultado(vuelos, consulta, aux);
         //Aca termino con aux ordenado por coincidencia
         return aux;
     }
@@ -152,5 +137,25 @@ public class ModeloMotorBusqueda {
 
     public void setConfig(Configuration config) {
         this.config = config;
+    }
+
+    private ArrayList<IndividualVO> ordenarResultado(ArrayList<IndividualVO> vuelos, ConsultaVO consulta, ArrayList<IndividualVO> aux) {
+        //Luego lo ordeno por lo avanzado
+        aux = new ArrayList<IndividualVO>();
+        if (!vuelos.isEmpty()) {
+            IndividualVO ind = null;
+            while(!vuelos.isEmpty()){
+                ind = vuelos.get(0);
+                for (int j = 1; j < vuelos.size(); j++) {
+                    if (ind.coincidencia(consulta.getPropiedadesAvanzadas()) < vuelos.get(j).coincidencia(consulta.getPropiedadesAvanzadas())) {
+                        ind = vuelos.get(j);
+                    }
+                }
+                vuelos.remove(ind);
+                ind.setCoincidencia(ind.coincidencia(consulta.getPropiedadesAvanzadas()));
+                aux.add(ind);
+            }
+        }
+        return aux;
     }
 }
