@@ -13,6 +13,8 @@ package com.ontotravel.gui.panels.configuracion;
 import com.ontotravel.config.TipoDato;
 import com.ontotravel.config.defaultontology.types.DefaultProperty;
 import com.ontotravel.config.defaultontology.types.DefaultType;
+import com.ontotravel.config.defaultontology.types.DefaultViaje;
+import com.ontotravel.gui.FramePrincipal;
 import java.awt.Toolkit;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
@@ -25,12 +27,14 @@ public class PanelDefaultProperty extends javax.swing.JDialog {
 
     private DefaultTableModel model;
     private DefaultType type;
+    private PanelDefaultOntologia parent;
 
     /** Creates new form PanelDefaultProperty */
-    public PanelDefaultProperty(java.awt.Frame parent, boolean modal, DefaultTableModel model, DefaultType type) {
+    public PanelDefaultProperty(java.awt.Frame parent, PanelDefaultOntologia aThis, boolean modal, DefaultTableModel model, DefaultType type) {
         super(parent, modal);
         this.model = model;
         this.type = type;
+        this.parent = aThis;
         initComponents();
         Toolkit t = Toolkit.getDefaultToolkit();
         this.setLocation((int) (t.getScreenSize().getWidth() - this.getWidth()) / 2, (int) (t.getScreenSize().getHeight() - this.getHeight()) / 2);
@@ -140,6 +144,7 @@ public class PanelDefaultProperty extends javax.swing.JDialog {
     private void buttonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAceptarActionPerformed
         model.addRow(new Object[]{tfNombre.getText(), cbTipoDato.getSelectedItem()});
         this.type.getDefaultProperties().add(new DefaultProperty(tfNombre.getText(), (TipoDato) cbTipoDato.getSelectedItem()));
+        this.parent.guardarDefaultOntology();
         this.dispose();
     }//GEN-LAST:event_buttonAceptarActionPerformed
 

@@ -73,8 +73,6 @@ public class PanelDefaultOntologia extends javax.swing.JPanel {
         buttonRemovePropiedadTranslado = new javax.swing.JButton();
         lbNombreClaseTranslado = new javax.swing.JLabel();
         tfNombreClaseTranslado = new javax.swing.JTextField();
-        buttonSave = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Ontologia Default"));
         jPanel4.setName("jPanel4"); // NOI18N
@@ -87,6 +85,11 @@ public class PanelDefaultOntologia extends javax.swing.JPanel {
         lbNombreClaseVuelo.setName("lbNombreClaseVuelo"); // NOI18N
 
         tfNombreClaseVuelo.setName("tfNombreClaseVuelo"); // NOI18N
+        tfNombreClaseVuelo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tfNombreClaseVueloFocusLost(evt);
+            }
+        });
 
         lbPropieadesVuelo.setText("Propiedades");
         lbPropieadesVuelo.setName("lbPropieadesVuelo"); // NOI18N
@@ -209,6 +212,11 @@ public class PanelDefaultOntologia extends javax.swing.JPanel {
         lbNombreClaseHotel.setName("lbNombreClaseHotel"); // NOI18N
 
         tfNombreClaseHotel.setName("tfNombreClaseHotel"); // NOI18N
+        tfNombreClaseHotel.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tfNombreClaseHotelFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -291,6 +299,11 @@ public class PanelDefaultOntologia extends javax.swing.JPanel {
         lbNombreClaseTranslado.setName("lbNombreClaseTranslado"); // NOI18N
 
         tfNombreClaseTranslado.setName("tfNombreClaseTranslado"); // NOI18N
+        tfNombreClaseTranslado.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tfNombreClaseTransladoFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -331,32 +344,13 @@ public class PanelDefaultOntologia extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Translado", jPanel3);
 
-        buttonSave.setIcon(new javax.swing.ImageIcon("C:\\Users\\Brunoli\\Documents\\NetBeansProjects\\OntoTravel\\icons\\save.gif")); // NOI18N
-        buttonSave.setContentAreaFilled(false);
-        buttonSave.setName("buttonSave"); // NOI18N
-        buttonSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSaveActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Guardar");
-        jLabel1.setName("jLabel1"); // NOI18N
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -364,11 +358,7 @@ public class PanelDefaultOntologia extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(buttonSave)
-                    .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -389,21 +379,13 @@ public class PanelDefaultOntologia extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
-        //Las propiedades se cargan solas en el panel individual
-
-        defaultOntology.getAlojamiento().setNombreClase(tfNombreClaseHotel.getText());
-
-        defaultOntology.getTranslado().setNombreClase(tfNombreClaseTranslado.getText());
-
-        defaultOntology.getViaje().setNombreClase(tfNombreClaseVuelo.getText());
-
+    public void guardarDefaultOntology() {
         this.main.getConfiguration().setDefaultOntology(defaultOntology);
         this.main.guardarConfiguracion();
-    }//GEN-LAST:event_buttonSaveActionPerformed
+    }
 
     private void buttonAddPropiedadVueloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddPropiedadVueloActionPerformed
-        PanelDefaultProperty listProperties = new PanelDefaultProperty(main, true, (DefaultTableModel) tablePropieadesVuelo.getModel(), defaultOntology.getViaje());
+        PanelDefaultProperty listProperties = new PanelDefaultProperty(main, this, true, (DefaultTableModel) tablePropieadesVuelo.getModel(), defaultOntology.getViaje());
         listProperties.setVisible(true);
     }//GEN-LAST:event_buttonAddPropiedadVueloActionPerformed
 
@@ -417,7 +399,7 @@ public class PanelDefaultOntologia extends javax.swing.JPanel {
     }//GEN-LAST:event_buttonRemovePropiedadVueloActionPerformed
 
     private void buttonAddPropiedadHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddPropiedadHotelActionPerformed
-        PanelDefaultProperty listProperties = new PanelDefaultProperty(main, true, (DefaultTableModel) tablePropieadesHotel.getModel(), defaultOntology.getAlojamiento());
+        PanelDefaultProperty listProperties = new PanelDefaultProperty(main, this, true, (DefaultTableModel) tablePropieadesHotel.getModel(), defaultOntology.getAlojamiento());
         listProperties.setVisible(true);
     }//GEN-LAST:event_buttonAddPropiedadHotelActionPerformed
 
@@ -431,7 +413,7 @@ public class PanelDefaultOntologia extends javax.swing.JPanel {
     }//GEN-LAST:event_buttonRemovePropiedadHotelActionPerformed
 
     private void buttonAddPropiedadTransladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddPropiedadTransladoActionPerformed
-        PanelDefaultProperty listProperties = new PanelDefaultProperty(main, true, (DefaultTableModel) tablePropieadesTranslado.getModel(), defaultOntology.getTranslado());
+        PanelDefaultProperty listProperties = new PanelDefaultProperty(main, this, true, (DefaultTableModel) tablePropieadesTranslado.getModel(), defaultOntology.getTranslado());
         listProperties.setVisible(true);
     }//GEN-LAST:event_buttonAddPropiedadTransladoActionPerformed
 
@@ -443,6 +425,22 @@ public class PanelDefaultOntologia extends javax.swing.JPanel {
             ((DefaultTableModel) tablePropieadesTranslado.getModel()).removeRow(selectedRow);
         }
     }//GEN-LAST:event_buttonRemovePropiedadTransladoActionPerformed
+
+    private void tfNombreClaseVueloFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfNombreClaseVueloFocusLost
+        this.main.getConfiguration().getDefaultOntology().getViaje().setNombreClase(tfNombreClaseVuelo.getText());
+        guardarDefaultOntology();
+    }//GEN-LAST:event_tfNombreClaseVueloFocusLost
+
+    private void tfNombreClaseHotelFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfNombreClaseHotelFocusLost
+        this.main.getConfiguration().getDefaultOntology().getAlojamiento().setNombreClase(tfNombreClaseHotel.getText());
+        guardarDefaultOntology();
+    }//GEN-LAST:event_tfNombreClaseHotelFocusLost
+
+    private void tfNombreClaseTransladoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfNombreClaseTransladoFocusLost
+        this.main.getConfiguration().getDefaultOntology().getTranslado().setNombreClase(tfNombreClaseTranslado.getText());
+        guardarDefaultOntology();
+    }//GEN-LAST:event_tfNombreClaseTransladoFocusLost
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAddPropiedadHotel;
     private javax.swing.JButton buttonAddPropiedadTranslado;
@@ -450,8 +448,6 @@ public class PanelDefaultOntologia extends javax.swing.JPanel {
     private javax.swing.JButton buttonRemovePropiedadHotel;
     private javax.swing.JButton buttonRemovePropiedadTranslado;
     private javax.swing.JButton buttonRemovePropiedadVuelo;
-    private javax.swing.JButton buttonSave;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
