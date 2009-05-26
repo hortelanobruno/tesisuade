@@ -123,7 +123,6 @@ public abstract class NativeComponent extends Canvas {
      * @return the result of running the message, or null if the message is queued.
      */
     public Object runSync(CommandMessage commandMessage, Object... args) {
-        System.out.println("LLego runSync");
         if (NativeInterface.isAlive()) {
             NativeInterface.checkUIThread(false);
         }
@@ -151,7 +150,6 @@ public abstract class NativeComponent extends Canvas {
      * @param args the arguments to pass to the command message.
      */
     public void runAsync(CommandMessage commandMessage, Object... args) {
-        System.out.println("LLego runAsync");
         if (NativeInterface.isAlive()) {
             NativeInterface.checkUIThread(false);
         }
