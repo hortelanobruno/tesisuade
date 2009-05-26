@@ -5,6 +5,7 @@
 
 package test;
 
+import com.bruno.elbruto.manager.Bruto;
 import java.util.ArrayList;
 import java.util.List;
 

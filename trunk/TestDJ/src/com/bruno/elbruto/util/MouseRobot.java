@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package com.bruno.elbruto.util;
 
+import test.*;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
@@ -22,7 +23,7 @@ import java.util.Map;
  *
  * @author Brunoli
  */
-public class TestRobot {
+public class MouseRobot {
 
     /*
      * COMO CREAR USUARIO
@@ -110,18 +111,13 @@ public class TestRobot {
     private int delayClick = 100;
     private TextTransfer textTransfer;
 
-    public TestRobot() {
+    public MouseRobot() {
         cargarAbc();
         try {
             robot = new Robot();
             textTransfer = new TextTransfer();
             delay(1500);
-            mover(1265, 690);
-            clickIzquierdo();
-            mover(545, 635);
-            mousePress();
-            mover(665, 635);
-            mouseRelease();
+
 
 
         } catch (AWTException ex) {
@@ -129,7 +125,7 @@ public class TestRobot {
         }
     }
 
-    public TestRobot(int delayTyping, int delayMoving, int delayClick) {
+    public MouseRobot(int delayTyping, int delayMoving, int delayClick) {
         this.delayMoving = delayMoving;
         this.delayTyping = delayTyping;
         this.delayClick = delayClick;
@@ -238,10 +234,6 @@ public class TestRobot {
         }
     }
 
-    public static void main(String[] args) {
-        new TestRobot();
-    }
-
     public void borrar() {
         for (int i = 0; i < 100; i++) {
             robot.keyPress(KeyEvent.VK_BACK_SPACE);
@@ -290,5 +282,6 @@ public class TestRobot {
         abc.put(":", 0x0201);
         abc.put("/", 0x6F);
         abc.put(".", 0x2E);
+        abc.put("-", 0x2D);
     }
 }
