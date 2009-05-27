@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.bruno.elbruto.db.persistencia;
 
 import com.bruno.elbruto.db.persistencia.exceptions.NonexistentEntityException;
 import com.bruno.elbruto.db.persistencia.exceptions.PreexistingEntityException;
 import com.bruno.elbruto.manager.Bruto;
 import com.bruno.elbruto.manager.Pelea;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -125,6 +125,15 @@ public class PeleaJpaController {
         }
     }
 
+    public int findCantPeleas(Bruto bruto, Date fecha) {
+        EntityManager em = getEntityManager();
+        try {
+            return ((Long) em.createQuery("select count(o) from Pelea as o where o.fecha = :f and o.bruto = :b").setParameter("f", fecha, javax.persistence.TemporalType.DATE).setParameter("b", bruto).getSingleResult()).intValue();
+        } finally {
+            em.close();
+        }
+    }
+
     public int getPeleaCount() {
         EntityManager em = getEntityManager();
         try {
@@ -133,5 +142,4 @@ public class PeleaJpaController {
             em.close();
         }
     }
-
 }

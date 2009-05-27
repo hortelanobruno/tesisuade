@@ -7,7 +7,6 @@ package test;
 import com.bruno.elbruto.db.persistencia.*;
 import com.bruno.elbruto.db.persistencia.exceptions.PreexistingEntityException;
 import com.bruno.elbruto.manager.Bruto;
-import com.bruno.elbruto.manager.Pelea;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,19 +27,19 @@ public class TestDB {
             bruto2.setNombre("brunoli2");
             bruto2.setNivel(2);
             bruto2.setPassword("hortelano2");
-            BrutoJpaController con = new BrutoJpaController();
-            con.create(bruto);
-            con.create(bruto2);
-            Pelea pelea = new Pelea();
-            pelea.setBruto(bruto);
-            pelea.setRival(bruto2);
-            pelea.setVictoria(true);
-            pelea.setFecha(new Date());
+//            BrutoJpaController con = new BrutoJpaController();
+//            con.create(bruto);
+//            con.create(bruto2);
+//            Pelea pelea = new Pelea();
+//            pelea.setBruto(bruto);
+//            pelea.setRival(bruto2);
+//            pelea.setVictoria(true);
+//            pelea.setFecha(new Date());
             PeleaJpaController pel = new PeleaJpaController();
-            pel.create(pelea);
+            System.out.println(pel.findCantPeleas(bruto, new Date()));
             System.out.println("Listo");
-        } catch (PreexistingEntityException ex) {
-            Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (PreexistingEntityException ex) {
+//            Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
         }
