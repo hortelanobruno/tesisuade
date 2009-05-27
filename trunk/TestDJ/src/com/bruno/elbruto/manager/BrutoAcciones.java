@@ -12,10 +12,27 @@ import com.bruno.elbruto.util.MouseRobot;
  */
 public class BrutoAcciones {
 
+    private boolean done = false;
     private MouseRobot robot;
 
     public BrutoAcciones() {
         robot = new MouseRobot();
+    }
+
+    public synchronized void avisarDone() {
+        System.out.println("LLego DONE");
+        done = true;
+    }
+
+    public void waitForDone() {
+        System.out.println("Entro waitForDone");
+        done = false;
+        while (!done) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+            }
+        }
     }
 
     public void maxizarBrowser() {
@@ -26,6 +43,7 @@ public class BrutoAcciones {
     }
 
     public void pelear(Bruto bruto, String rival) {
+        System.out.println("Peleando contra '"+rival+"'");
         robot.delay(1500);
         robot.mover(800, 78);
         robot.clickIzquierdo();
@@ -33,7 +51,7 @@ public class BrutoAcciones {
         //http://nestornbloq.elbruto.es/vs/kascorro
         robot.escribir(bruto.getNombre() + ".elbruto.es/vs/" + rival);
         robot.enter();
-        robot.delay(10000);
+        waitForDone();//robot.delay(10000);
 //        robot.mover(1265, 100);
 //        robot.clickIzquierdo(3000);
 //        robot.mover(650, 670);
@@ -54,31 +72,32 @@ public class BrutoAcciones {
         robot.delay(3000);
         robot.clickIzquierdo();
         robot.backspace();
-        robot.delay(5000);
+        waitForDone();
     }
 
     public void ponerPassword(Bruto bruto) {
+        System.out.println("Poniendo password");
         robot.delay(1500);
         robot.mover(800, 78);
         robot.clickIzquierdo();
         robot.borrar();
-        robot.escribir(bruto.getNombre() + ".elbruto.es/cellule");
+        robot.escribir(bruto.getNombre() + ".elbruto.es/login");
         robot.enter();
-        robot.delay(15000);
-        robot.delay(1500);
-        robot.mover(1265, 100);
-        robot.clickIzquierdo(3000);
-        robot.mover(650, 534);
-        robot.clickIzquierdo();
-        robot.delay(5000);
+        waitForDone();//robot.delay(15000);
+//        robot.mover(1265, 100);
+//        robot.clickIzquierdo(3000);
+//        robot.mover(650, 534);
+//        robot.clickIzquierdo();
+//        waitForDone();//robot.delay(5000);
         robot.mover(300, 350);
         robot.clickIzquierdo();
         robot.escribir(bruto.getPassword());
         robot.enter();
-        robot.delay(5000);
+        waitForDone();//robot.delay(5000);
     }
 
     public void crearPassword(Bruto bruto) {
+        System.out.println("Creando password");
         robot.delay(1500);
         robot.mover(800, 78);
         robot.clickIzquierdo();
@@ -103,14 +122,25 @@ public class BrutoAcciones {
         robot.delay(5000);
     }
 
-    private boolean verificarPeleasCompletadas(Bruto bruto) {
+    public void irCellule(Bruto bruto) {
+        System.out.println("Yendo a cellule");
         robot.delay(1500);
         robot.mover(800, 78);
         robot.clickIzquierdo();
         robot.borrar();
         robot.escribir(bruto.getNombre() + ".elbruto.es/cellule");
         robot.enter();
-        robot.delay(15000);
+        waitForDone();//robot.delay(15000);
+    }
+
+    private boolean verificarPeleasCompletadas() {
+//        robot.delay(1500);
+//        robot.mover(800, 78);
+//        robot.clickIzquierdo();
+//        robot.borrar();
+//        robot.escribir(bruto.getNombre() + ".elbruto.es/cellule");
+//        robot.enter();
+//        robot.delay(15000);
         robot.delay(1500);
         robot.mover(550, 390);
         robot.mousePress();
@@ -126,7 +156,8 @@ public class BrutoAcciones {
     }
 
     public int obtenerCantidadPeleas(Bruto bruto) {
-        if (!verificarPeleasCompletadas(bruto)) {
+        System.out.println("Obteniendo cantidad de peleas");
+        if (!verificarPeleasCompletadas()) {
             robot.delay(1500);
             robot.mover(1265, 690);
             robot.clickIzquierdo();
@@ -140,5 +171,31 @@ public class BrutoAcciones {
         } else {
             return 0;
         }
+    }
+
+    public int obtenerNivel(){
+        //585 323
+        robot.delay(1500);
+        robot.mover(1265, 100);
+        robot.clickIzquierdo(2000);
+        robot.mover(585, 323);
+        robot.doubleClickIzquierdo();
+        String clip = robot.getClipboard();
+        System.out.println("Nivel: "+clip);
+        return Integer.parseInt(clip.trim());
+    }
+
+    public void inscribirEnTorneo(){
+        //637 455 y 638 548 y 638 411
+        robot.delay(1500);
+        robot.mover(1265, 690);
+        robot.clickIzquierdo(4000);
+        robot.mover(637, 455);
+        robot.clickIzquierdo();
+        robot.mover(637, 548);
+        robot.clickIzquierdo();
+        robot.mover(637, 411);
+        robot.clickIzquierdo();
+        waitForDone();
     }
 }

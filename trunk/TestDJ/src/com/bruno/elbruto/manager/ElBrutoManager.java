@@ -4,7 +4,6 @@
  */
 package com.bruno.elbruto.manager;
 
-import com.bruno.elbruto.manager.Bruto;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,38 +14,39 @@ import java.util.List;
  */
 public class ElBrutoManager {
 
-    private boolean done = false;
+    
     private BrutoAcciones brutoAcciones;
 
     public ElBrutoManager() {
     }
 
     public void init() {
+        brutoAcciones = new BrutoAcciones();
         try {
-            Thread.sleep(10000);
+            Thread.sleep(5000);
         } catch (InterruptedException ex) {
         }
         System.out.println("Iniciando");
-        brutoAcciones = new BrutoAcciones();
         List<Bruto> brutos = obtenerBrutosParaPelear();
         for (Bruto bruto : brutos) {
-            pelearModo1(bruto);
+            //pelearModo1(bruto);
+            inscribirEnTorneo(bruto);
         }
     }
 
-    public synchronized void avisarDone() {
-        done = true;
+    public void avisarDone() {
+        brutoAcciones.avisarDone();
     }
 
     private List<Bruto> obtenerBrutosParaPelear() {
         List<Bruto> brutos = new ArrayList<Bruto>();
-        //brutos.add(new Bruto("qwerfdsa", "hortelano", 8));
-        //brutos.add(new Bruto("asdfvcxz", "", 8));
-//        brutos.add(new Bruto("brunoli2", "hortelano", 9));
-//        brutos.add(new Bruto("brunoli", "hortelano", 9));
-//        brutos.add(new Bruto("nestornbloq", "hortelano", 9));
-//        brutos.add(new Bruto("fdsavcxz", "hortelano", 2));
-//        brutos.add(new Bruto("qaswzx", "hortelano", 2));
+        brutos.add(new Bruto("qwerfdsa", "hortelano", 8));
+        brutos.add(new Bruto("asdfvcxz", "", 8));
+        brutos.add(new Bruto("brunoli2", "hortelano", 9));
+        brutos.add(new Bruto("brunoli", "hortelano", 9));
+        brutos.add(new Bruto("nestornbloq", "hortelano", 9));
+        brutos.add(new Bruto("qaswzx", "hortelano", 3));
+        brutos.add(new Bruto("fdsavcxz", "hortelano", 3));
         return brutos;
     }
 
@@ -55,9 +55,9 @@ public class ElBrutoManager {
         //por nivel
         switch (bruto.getNivel()) {
             case 2:
+                rivales.add("sexologo");
                 rivales.add("camiloo");
                 rivales.add("neee");
-                rivales.add("sexologo");
                 break;
             case 8:
                 rivales.add("guilios");
@@ -77,6 +77,8 @@ public class ElBrutoManager {
         //Ingreso el password si lo tiene
         if (!bruto.getPassword().trim().isEmpty()) {
             brutoAcciones.ponerPassword(bruto);
+        }else{
+            brutoAcciones.irCellule(bruto);
         }
         //Obtengo la cantidad de peleas que tengo
         int cant = brutoAcciones.obtenerCantidadPeleas(bruto);
@@ -86,5 +88,19 @@ public class ElBrutoManager {
                 brutoAcciones.pelear(bruto, rivales.poll());
             }
         }
+        int nivel = brutoAcciones.obtenerNivel();
+        if(nivel != bruto.getNivel()){
+            //actualizar nivel
+            bruto.setNivel(nivel);
+        }
+    }
+
+    private void inscribirEnTorneo(Bruto bruto) {
+        if (!bruto.getPassword().trim().isEmpty()) {
+            brutoAcciones.ponerPassword(bruto);
+        }else{
+            brutoAcciones.irCellule(bruto);
+        }
+        brutoAcciones.inscribirEnTorneo();
     }
 }
