@@ -44,7 +44,8 @@ public class BrowserManager {
                 JFrame frame = new JFrame("DJ Native Swing Test");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.getContentPane().add(simpleWebBrowser, BorderLayout.CENTER);
-                frame.setSize(800, 600);
+                //frame.setSize(800, 600);
+                frame.setExtendedState(frame.getExtendedState()|JFrame.MAXIMIZED_BOTH);
                 frame.setLocationByPlatform(true);
                 frame.setVisible(true);
             }
