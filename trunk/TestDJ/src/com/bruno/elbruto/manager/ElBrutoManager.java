@@ -4,7 +4,12 @@
  */
 package com.bruno.elbruto.manager;
 
+import com.bruno.elbruto.db.persistencia.BrutoJpaController;
+import com.bruno.elbruto.db.persistencia.PeleaJpaController;
+import com.bruno.elbruto.db.persistencia.exceptions.NonexistentEntityException;
+import com.bruno.elbruto.db.persistencia.exceptions.PreexistingEntityException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,28 +19,40 @@ import java.util.List;
  */
 public class ElBrutoManager {
 
-    
     private BrutoAcciones brutoAcciones;
+    private PeleaJpaController peleaJPA;
+    private BrutoJpaController brutoJPA;
 
     public ElBrutoManager() {
     }
 
     public void init() {
         brutoAcciones = new BrutoAcciones();
+        peleaJPA = new PeleaJpaController();
+        brutoJPA = new BrutoJpaController();
         try {
             Thread.sleep(5000);
         } catch (InterruptedException ex) {
         }
         System.out.println("Iniciando");
-        List<Bruto> brutos = obtenerBrutosParaPelear();
-        for (Bruto bruto : brutos) {
-            //pelearModo1(bruto);
-            inscribirEnTorneo(bruto);
-        }
+        iniciarModo1();
+//        List<Bruto> brutos = obtenerBrutosParaPelear();
+//        for (Bruto bruto : brutos) {
+//            //pelearModo1(bruto);
+//            inscribirEnTorneo(bruto);
+//        }
     }
 
     public void avisarDone() {
         brutoAcciones.avisarDone();
+    }
+
+    private void iniciarModo1() {
+        List<Bruto> brutos = brutoJPA.findBrutosPropietarios();
+        int cantPeleas;
+        for (Bruto bruto : brutos) {
+            pelearModo1(bruto);
+        }
     }
 
     private List<Bruto> obtenerBrutosParaPelear() {
@@ -50,55 +67,97 @@ public class ElBrutoManager {
         return brutos;
     }
 
-    private LinkedList<String> obtenerRivalesPara(Bruto bruto, int cant) {
-        LinkedList<String> rivales = new LinkedList<String>();
-        //por nivel
-        switch (bruto.getNivel()) {
-            case 2:
-                rivales.add("sexologo");
-                rivales.add("camiloo");
-                rivales.add("neee");
-                break;
-            case 8:
-                rivales.add("guilios");
-                rivales.add("l-shakas");
-                rivales.add("azm");
-                break;
-            case 9:
-                rivales.add("kroes");
-                rivales.add("11clan11");
-                rivales.add("m0renaa");
-                break;
-        }
-        return rivales;
+    private LinkedList<Bruto> obtenerRivalesPara(Bruto bruto, int cant) {
+        return brutoJPA.findRivales(bruto, cant);
+//        LinkedList<String> rivales = new LinkedList<String>();
+//        //por nivel
+//        switch (bruto.getNivel()) {
+//            case 2:
+//                rivales.add("sexologo");
+//                rivales.add("camiloo");
+//                rivales.add("neee");
+//                break;
+//            case 8:
+//                rivales.add("guilios");
+//                rivales.add("l-shakas");
+//                rivales.add("azm");
+//                break;
+//            case 9:
+//                rivales.add("kroes");
+//                rivales.add("11clan11");
+//                rivales.add("m0renaa");
+//                break;
+//        }
+//        return rivales;
+    }
+
+    private int chequearPelea(Bruto bruto, String nombre) {
+        //1 = gano 0 = perdio -1 = no se jugo
+        return -1;
     }
 
     private void pelearModo1(Bruto bruto) {
         //Ingreso el password si lo tiene
-        if (!bruto.getPassword().trim().isEmpty()) {
-            brutoAcciones.ponerPassword(bruto);
-        }else{
+        if (bruto.getPassword() != null) {
+            if (!bruto.getPassword().trim().isEmpty()) {
+                brutoAcciones.ponerPassword(bruto);
+            } else {
+                brutoAcciones.irCellule(bruto);
+            }
+        } else {
             brutoAcciones.irCellule(bruto);
         }
-        //Obtengo la cantidad de peleas que tengo
-        int cant = brutoAcciones.obtenerCantidadPeleas(bruto);
-        if (cant > 0) {
-            LinkedList<String> rivales = obtenerRivalesPara(bruto, cant);
-            for (int i = 0; i < cant; i++) {
-                brutoAcciones.pelear(bruto, rivales.poll());
+        int cantPeleas = peleaJPA.findCantPeleas(bruto, new Date());
+        if (cantPeleas < 3) {
+            LinkedList<Bruto> rivales = obtenerRivalesPara(bruto, 3 - cantPeleas);
+            Pelea pelea;
+            Bruto rival;
+            for (int i = 0; i < 3 - cantPeleas; i++) {
+                try {
+                    rival = rivales.poll();
+                    int resultadoPelea;
+                    while (true) {
+                        brutoAcciones.pelear(bruto, rival.getNombre());
+                        resultadoPelea = chequearPelea(bruto, rival.getNombre());
+                        if (resultadoPelea != -1) {
+                            break;
+                        }
+                    }
+                    pelea = new Pelea();
+                    pelea.setBruto(bruto);
+                    pelea.setRival(rival);
+                    pelea.setFecha(new Date());
+                    if (resultadoPelea == 1) {
+                        pelea.setVictoria(true);
+                    } else {
+                        pelea.setVictoria(false);
+                    }
+                    peleaJPA.create(pelea);
+                } catch (PreexistingEntityException ex) {
+                    System.out.println("ERROR AL GRABAR LA PELEA");
+                } catch (Exception ex) {
+                    System.out.println("ERROR AL GRABAR LA PELEA");
+                }
             }
         }
         int nivel = brutoAcciones.obtenerNivel();
-        if(nivel != bruto.getNivel()){
-            //actualizar nivel
-            bruto.setNivel(nivel);
+        if (nivel != bruto.getNivel()) {
+            try {
+                //actualizar nivel
+                bruto.setNivel(nivel);
+                brutoJPA.edit(bruto);
+            } catch (NonexistentEntityException ex) {
+                System.out.println("ERROR ACTUALIZAR BRUTO");
+            } catch (Exception ex) {
+                System.out.println("ERROR ACTUALIZAR BRUTO");
+            }
         }
     }
 
     private void inscribirEnTorneo(Bruto bruto) {
         if (!bruto.getPassword().trim().isEmpty()) {
             brutoAcciones.ponerPassword(bruto);
-        }else{
+        } else {
             brutoAcciones.irCellule(bruto);
         }
         brutoAcciones.inscribirEnTorneo();

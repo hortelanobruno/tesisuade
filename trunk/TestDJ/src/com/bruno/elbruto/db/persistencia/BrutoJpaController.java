@@ -2,12 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.bruno.elbruto.db.persistencia;
 
 import com.bruno.elbruto.db.persistencia.exceptions.NonexistentEntityException;
 import com.bruno.elbruto.db.persistencia.exceptions.PreexistingEntityException;
 import com.bruno.elbruto.manager.Bruto;
+import com.bruno.elbruto.manager.Pelea;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -93,6 +95,44 @@ public class BrutoJpaController {
         }
     }
 
+    public LinkedList<Bruto> findRivales(Bruto bruto, int cant) {
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("select object(o) from Bruto as o where o.nivel BETWEEN  :num1 and :num2").setParameter("num1", bruto.getNivel() - 2).setParameter("num2", bruto.getNivel());
+            if (!true) {
+                q.setMaxResults(3);
+                q.setFirstResult(-1);
+            }
+            LinkedList<Bruto> rivales = new LinkedList<Bruto>(q.getResultList());
+            if (cant < 3) {
+                q = em.createQuery("select object(o) from Pelea as o where o.fecha = :f and o.bruto = :b").setParameter("f", new Date()).setParameter("b", bruto);
+                List<Pelea> peleas = q.getResultList();
+                for (Pelea pelea : peleas) {
+                    if (rivales.contains(pelea.getRival())) {
+                        rivales.remove(pelea.getRival());
+                    }
+                }
+            }
+            return rivales;
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Bruto> findBrutosPropietarios() {
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("select object(o) from Bruto as o where propietario = :p").setParameter("p", true);
+            if (!true) {
+                q.setMaxResults(-1);
+                q.setFirstResult(-1);
+            }
+            return q.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
     public List<Bruto> findBrutoEntities() {
         return findBrutoEntities(true, -1, -1);
     }
@@ -132,5 +172,4 @@ public class BrutoJpaController {
             em.close();
         }
     }
-
 }
