@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "dtds/org/apache/log4j/xml/log4j.dtd"> 
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} [%c] %-5p - %m%n" />
+        </layout>
+    </appender>
+    <appender name="file" class="org.apache.log4j.FileAppender">
+        <param name="File" value="tcm.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+	              value="%d %p %m%n" />
+        </layout>
+    </appender>
+    <appender name="fileError" class="org.apache.log4j.FileAppender">
+        <param name="File" value="tcmError.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+	              value="%d %p %m%n" />
+        </layout>
+    </appender>
+    <appender name="fileDebug" class="org.apache.log4j.FileAppender">
+        <param name="File" value="tcmDebug.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+	              value="%d %p %m%n" />
+        </layout>
+    </appender>
+    <appender name="smLog" class="org.apache.log4j.FileAppender">
+        <param name="File" value="sm.log"/>
+        <param name="threshold" value="error"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+	              value="%d %p %m%n" />
+        </layout>
+    </appender>
+    <logger name="error">
+        <appender-ref ref="fileError" />
+    </logger>
+    <logger name="info">
+        <appender-ref ref="file" />
+    </logger>
+    <logger name="debug">
+        <appender-ref ref="fileDebug" />
+    </logger>
+    <logger name="com.pcube.management.framework.rpc.Client">
+        <appender-ref ref="smLog" />
+    </logger>
+    <logger name="com.pcube.management.framework.rpc.OutputQueueWorker">
+        <appender-ref ref="smLog" />
+    </logger>
+    <logger name="com.pcube.management.framework.rpc.IncomingMessagesDispatcher">
+        <appender-ref ref="smLog" />
+    </logger>
+    <root>
+    </root>
+</log4j:configuration> 
