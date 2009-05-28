@@ -10,6 +10,7 @@ import com.bruno.elbruto.util.LoggerClass;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -81,8 +82,67 @@ public class ElBrutoManager {
         return -1;
     }
 
+    private String generarNombreParaBruto() {
+        int cantChars = (int) ((Math.random() * 5)) + 4;
+        String str = new String("QAa0bcLdUK2eHfJgTP8XhiFj61DOklNm9nBoI5pGqYVrs3CtSuMZvwWx4yE7zR");
+        StringBuffer sb = new StringBuffer();
+        Random r = new Random();
+        int te = 0;
+        for (int i = 1; i <= cantChars; i++) {
+            te = r.nextInt(62);
+            sb.append(str.charAt(te));
+        }
+        System.out.println();
+        return sb.toString().toLowerCase();
+    }
+
     private void iniciarModoCrearCuentas() {
-        //TODO HACER
+        String nombre;
+        Bruto bruto;
+        for (int i = 0; i < 10; i++) {
+            nombre = generarNombreParaBruto();
+            bruto = null;
+            while (true) {
+                bruto = brutoAcciones.crearBruto(nombre);
+                if (bruto != null) {
+                    break;
+                }
+            }
+            brutoAcciones.crearPassword(bruto);
+            brutoAcciones.ponerPassword(bruto);
+            //aca hay q ver cuantas peleas tengo, creo que siempre son 6
+            for (int j = 0; j < 6; j++) {
+                LinkedList<Bruto> rivales = obtenerRivalesPara(bruto, 6);
+                Pelea pelea;
+                Bruto rival;
+                rival = rivales.poll();
+                int resultadoPelea;
+                while (true) {
+                    brutoAcciones.pelear(bruto, rival.getNombre());
+                    resultadoPelea = chequearPelea(bruto, rival.getNombre());
+                    if (resultadoPelea != -1) {
+                        break;
+                    }
+                }
+                pelea = new Pelea();
+                pelea.setBruto(bruto);
+                pelea.setRival(rival);
+                pelea.setFecha(new Date());
+                if (resultadoPelea == 1) {
+                    pelea.setVictoria(true);
+                } else {
+                    pelea.setVictoria(false);
+                }
+                dbManager.create(pelea);
+            }
+            int nivel = brutoAcciones.obtenerNivel();
+            if (nivel != bruto.getNivel()) {
+                //actualizar nivel
+                bruto.setNivel(nivel);
+                dbManager.edit(bruto);
+            }
+        }
+
     }
 
     private void iniciarModoPeleas() {
@@ -95,7 +155,6 @@ public class ElBrutoManager {
             }
         }
     }
-
 
     private LinkedList<Bruto> obtenerRivalesPara(Bruto bruto, int cant) {
         return dbManager.findRivales(bruto, cant);
