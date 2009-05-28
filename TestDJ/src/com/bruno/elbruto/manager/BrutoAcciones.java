@@ -43,7 +43,7 @@ public class BrutoAcciones {
     }
 
     public void pelear(Bruto bruto, String rival) {
-        System.out.println("Peleando contra '"+rival+"'");
+        System.out.println("Peleando contra '" + rival + "'");
         robot.delay(1500);
         robot.mover(800, 78);
         robot.clickIzquierdo();
@@ -134,6 +134,11 @@ public class BrutoAcciones {
         waitForDone();//robot.delay(15000);
     }
 
+    public Bruto crearBruto(String nombre) {
+        //TODO
+        return null;
+    }
+
     private boolean verificarPeleasCompletadas() {
 //        robot.delay(1500);
 //        robot.mover(800, 78);
@@ -161,7 +166,7 @@ public class BrutoAcciones {
         //1026 276 858 262
         //1022 328 858 314
         //1029 382 860 366
-        
+
 
         return -1;
     }
@@ -184,7 +189,7 @@ public class BrutoAcciones {
         }
     }
 
-    public int obtenerNivel(){
+    public int obtenerNivel() {
         //585 323
         robot.delay(1500);
         robot.mover(1265, 100);
@@ -192,11 +197,11 @@ public class BrutoAcciones {
         robot.mover(585, 323);
         robot.doubleClickIzquierdo();
         String clip = robot.getClipboard();
-        System.out.println("Nivel: "+clip);
+        System.out.println("Nivel: " + clip);
         return Integer.parseInt(clip.trim());
     }
 
-    public void inscribirEnTorneo(){
+    public void inscribirEnTorneo() {
         //637 455 y 638 548 y 638 411
         robot.delay(1500);
         robot.mover(1265, 690);
