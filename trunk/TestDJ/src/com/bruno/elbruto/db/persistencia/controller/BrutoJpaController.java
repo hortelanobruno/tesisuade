@@ -2,12 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bruno.elbruto.db.persistencia;
 
-import com.bruno.elbruto.db.persistencia.exceptions.NonexistentEntityException;
-import com.bruno.elbruto.db.persistencia.exceptions.PreexistingEntityException;
-import com.bruno.elbruto.manager.Bruto;
-import com.bruno.elbruto.manager.Pelea;
+package com.bruno.elbruto.db.persistencia.controller;
+
+import com.bruno.elbruto.db.persistencia.controller.exceptions.NonexistentEntityException;
+import com.bruno.elbruto.db.persistencia.controller.exceptions.PreexistingEntityException;
+import com.bruno.elbruto.db.persistencia.entities.Bruto;
+import com.bruno.elbruto.db.persistencia.entities.Pelea;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -27,6 +28,45 @@ public class BrutoJpaController {
         emf = Persistence.createEntityManagerFactory("TestDJPU");
     }
     private EntityManagerFactory emf = null;
+
+    public List<Bruto> findBrutosPropietarios() {
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("select object(o) from Bruto as o where o.propietario = true");
+            if (!true) {
+                q.setMaxResults(-1);
+                q.setFirstResult(-1);
+            }
+            return q.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public LinkedList<Bruto> findRivales(com.bruno.elbruto.manager.Bruto bruto, int cant) {
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("select object(o) from Bruto as o where (o.nivel BETWEEN  :num1 and :num2) and o.nombre <> :nom").setParameter("num1", bruto.getNivel() - 2).setParameter("num2", bruto.getNivel()).setParameter("nom", bruto.getNombre());
+            if (!true) {
+                q.setMaxResults(3);
+                q.setFirstResult(-1);
+            }
+            LinkedList<Bruto> rivales = new LinkedList<Bruto>(q.getResultList());
+            if (cant < 3) {
+                q = em.createQuery("select object(o) from Pelea as o where o.peleaPK.fecha = :f and o.peleaPK.nombre = :b").setParameter("f", new Date()).setParameter("b", bruto);
+                List<Pelea> peleas = q.getResultList();
+                for (Pelea pelea : peleas) {
+                    Bruto br = findBruto(pelea.getPeleaPK().getRival());
+                    if (rivales.contains(br)) {
+                        rivales.remove(br);
+                    }
+                }
+            }
+            return rivales;
+        } finally {
+            em.close();
+        }
+    }
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
@@ -95,44 +135,6 @@ public class BrutoJpaController {
         }
     }
 
-    public LinkedList<Bruto> findRivales(Bruto bruto, int cant) {
-        EntityManager em = getEntityManager();
-        try {
-            Query q = em.createQuery("select object(o) from Bruto as o where (o.nivel BETWEEN  :num1 and :num2) and o.nombre <> :nom").setParameter("num1", bruto.getNivel() - 2).setParameter("num2", bruto.getNivel()).setParameter("nom", bruto.getNombre());
-            if (!true) {
-                q.setMaxResults(3);
-                q.setFirstResult(-1);
-            }
-            LinkedList<Bruto> rivales = new LinkedList<Bruto>(q.getResultList());
-            if (cant < 3) {
-                q = em.createQuery("select object(o) from Pelea as o where o.fecha = :f and o.bruto = :b").setParameter("f", new Date()).setParameter("b", bruto);
-                List<Pelea> peleas = q.getResultList();
-                for (Pelea pelea : peleas) {
-                    if (rivales.contains(pelea.getRival())) {
-                        rivales.remove(pelea.getRival());
-                    }
-                }
-            }
-            return rivales;
-        } finally {
-            em.close();
-        }
-    }
-
-    public List<Bruto> findBrutosPropietarios() {
-        EntityManager em = getEntityManager();
-        try {
-            Query q = em.createQuery("select object(o) from Bruto as o where o.propietario = :p").setParameter("p", true);
-            if (!true) {
-                q.setMaxResults(-1);
-                q.setFirstResult(-1);
-            }
-            return q.getResultList();
-        } finally {
-            em.close();
-        }
-    }
-
     public List<Bruto> findBrutoEntities() {
         return findBrutoEntities(true, -1, -1);
     }
@@ -172,4 +174,5 @@ public class BrutoJpaController {
             em.close();
         }
     }
+
 }

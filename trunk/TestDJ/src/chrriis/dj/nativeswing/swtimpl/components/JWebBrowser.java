@@ -554,8 +554,12 @@ public class JWebBrowser extends NSPanelComponent {
         }
 
         private boolean chequearErrorFatal() {
-            //TODO
-            return false;
+            String html = webBrowser.getHTMLContent();
+            if(html.contains("Ha ocurrido un error")){
+                return true;
+            }else{
+                return false;
+            }
         }
     }
     private ElBrutoManager brutoManager;

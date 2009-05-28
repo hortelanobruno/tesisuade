@@ -4,19 +4,14 @@
  */
 package com.bruno.elbruto.manager;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 /**
  *
  * @author Brunoli
  */
-@Entity
-public class Bruto implements Serializable {
+public class Bruto  {
 
     private static final long serialVersionUID = 1L;
-    @Id
     private String nombre;
     private String password;
     private int nivel;

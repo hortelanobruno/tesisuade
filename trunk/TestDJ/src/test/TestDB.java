@@ -4,11 +4,12 @@
  */
 package test;
 
-import com.bruno.elbruto.db.persistencia.*;
-import com.bruno.elbruto.manager.Bruto;
+import com.bruno.elbruto.db.persistencia.controller.BrutoJpaController;
+import com.bruno.elbruto.db.persistencia.controller.PeleaJpaController;
+import com.bruno.elbruto.db.persistencia.entities.Bruto;
+import com.bruno.elbruto.db.persistencia.entities.Pelea;
+import com.bruno.elbruto.db.persistencia.entities.PeleaPK;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -24,51 +25,57 @@ public class TestDB {
     cargarBruto("fdsavcxz", 1);
     cargarBruto("qaswzx", 1);
      * cargarRival("m0renaa",7);
-        cargarRival("11clan11",7);
-        cargarRival("kroes",7);
-        cargarRival("azm",6);
-        cargarRival("guilios",6);
-        cargarRival("l-shakas",6);
+    cargarRival("11clan11",7);
+    cargarRival("kroes",7);
+    cargarRival("azm",6);
+    cargarRival("guilios",6);
+    cargarRival("l-shakas",6);
      */
     public static void main(String[] args) {
         try {
             BrutoJpaController con = new BrutoJpaController();
             Bruto bruto = new Bruto();
             bruto.setNombre("m0renaa");
+            bruto.setPassword("hortelano");
+            bruto.setPropietario(false);
             bruto.setNivel(7);
             con.create(bruto);
-            bruto = new Bruto();
-            bruto.setNombre("11clan11");
-            bruto.setNivel(7);
-            con.create(bruto);
-            bruto = new Bruto();
-            bruto.setNombre("kroes");
-            bruto.setNivel(7);
-            con.create(bruto);
-            bruto = new Bruto();
-            bruto.setNombre("azm");
-            bruto.setNivel(6);
-            con.create(bruto);
-            bruto = new Bruto();
-            bruto.setNombre("guilios");
-            bruto.setNivel(6);
-            con.create(bruto);
-            bruto = new Bruto();
-            bruto.setNombre("l-shakas");
-            bruto.setNivel(6);
-            con.create(bruto);
-            bruto = new Bruto();
-            bruto.setNombre("neee");
-            bruto.setNivel(1);
-            con.create(bruto);
-            bruto = new Bruto();
-            bruto.setNombre("sexologo");
-            bruto.setNivel(1);
-            con.create(bruto);
-            bruto = new Bruto();
-            bruto.setNombre("camiloo");
-            bruto.setNivel(1);
-            con.create(bruto);
+            Bruto bruto2 = new Bruto();
+            bruto2.setNombre("11clan11");
+            bruto2.setPassword("hortelano");
+            bruto2.setPropietario(false);
+            bruto2.setNivel(7);
+            con.create(bruto2);
+            Bruto bruto3 = new Bruto();
+            bruto3.setNombre("kroes");
+            bruto3.setPassword("hortelano");
+            bruto3.setPropietario(false);
+            bruto3.setNivel(7);
+            con.create(bruto3);
+//            bruto = new Bruto();
+//            bruto.setNombre("azm");
+//            bruto.setNivel(6);
+//            con.create(bruto);
+//            bruto = new Bruto();
+//            bruto.setNombre("guilios");
+//            bruto.setNivel(6);
+//            con.create(bruto);
+//            bruto = new Bruto();
+//            bruto.setNombre("l-shakas");
+//            bruto.setNivel(6);
+//            con.create(bruto);
+//            bruto = new Bruto();
+//            bruto.setNombre("neee");
+//            bruto.setNivel(1);
+//            con.create(bruto);
+//            bruto = new Bruto();
+//            bruto.setNombre("sexologo");
+//            bruto.setNivel(1);
+//            con.create(bruto);
+//            bruto = new Bruto();
+//            bruto.setNombre("camiloo");
+//            bruto.setNivel(1);
+//            con.create(bruto);
 //            bruto.setNombre("brunoli");
 //            bruto.setNivel(9);
 //            bruto.setPassword("hortelano");
@@ -111,18 +118,23 @@ public class TestDB {
 //            con.create(bruto);
 //            con.create(bruto);
 //            con.create(bruto2);
-//            Pelea pelea = new Pelea();
-//            pelea.setBruto(bruto);
-//            pelea.setRival(bruto2);
-//            pelea.setVictoria(true);
-//            pelea.setFecha(new Date());
-//            PeleaJpaController pel = new PeleaJpaController();
+            Pelea pelea = new Pelea();
+            PeleaPK pK = new PeleaPK();
+            pK.setRival(bruto2.getNombre());
+            pK.setFecha(new Date());
+            pK.setNombre(bruto.getNombre());
+            pelea.setPeleaPK(pK);
+            pelea.setVictoria(true);
+            PeleaJpaController pel = new PeleaJpaController();
+            pel.create(pelea);
+            pK.setRival(bruto3.getNombre());
+            pelea.setPeleaPK(pK);
+            pel.create(pelea);
 //            System.out.println(pel.findCantPeleas(bruto, new Date()));
             System.out.println("Listo");
 //        } catch (PreexistingEntityException ex) {
 //            Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

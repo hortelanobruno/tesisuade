@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="fr">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+        <title>El Bruto</title>
+        <link rel="stylesheet" type="text/css" href="http://data.elbruto.es/css/style.css.gz?v=0"/>
+        <link rel="stylesheet" type="text/css" href="http://data.elbruto.es/css/es.css.gz?v=0"/>
+<!--[if lt IE 7]>
+<link rel="stylesheet" type="text/css" href="http://data.elbruto.es/css/ie6.css?v=0"/>
+<![endif]-->
+        <script type="text/javascript" src="http://data.elbruto.es/js/app.js.gz?v=0"></script>
+        <link href="/favicon.ico" type="image/x-icon" rel="shortcut icon"/>
+    </head>
+    <body onload="js.App.setLinks('elbruto_link');">
+        <div id="gradientBG">
+            <div id="global" class="lang-fr">
+                <div id="header">
+
+                    <div id="headArtworkLeft" class="ha-2"></div>
+                    <div id="headArtworkRight" class="ha-105"></div>
+                    <div id="headClick" onclick="document.location='/cellule'"></div>
+                </div>
+                <div class="container">
+                    <div class="classicFoot">
+                        <div class="classic">
+                            <div class="titleHead">
+                                <h1>Ha ocurrido un error... ¡brutal!</h1>
+                            </div>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <p>
+Se ha producido un error para acceder a la página solicitada.
+                                        </p>
+                                        <p>
+
+Si la web está indisponible, por favor regresa dentro de unos minutos.
+                                        </p>
+                                        <p>
+¿Por qué no echas un vistazo a otros juegos de Motion Twin?
+                                        </p>
+                                        <div class="homePub">
+                                            <div class="img_box" onmouseover="mt.js.Tip.show(this,'&lt;strong&gt;Dinorpg&lt;/strong&gt; Adopta un Dino, llévalo al combate y explora con él los misterios de la Isla de Dinoland','neutralTip')" onmouseout="mt.js.Tip.hide()">
+                                                <a href="http://trax.motion-twin.com/goto/elbruto_img/drpg_es" target="_blank">
+                                                    <img src="http://data.elbruto.es/img/sq/dinorpg.gif" alt="Dinorpg" border="0"/>
+                                                </a>
+                                            </div>
+                                            <div class="img_box" onmouseover="mt.js.Tip.show(this,'&lt;strong&gt;Naturalquimia&lt;/strong&gt; Mezcla toda clase de ingredientes en este gran juego de reflexión','neutralTip')" onmouseout="mt.js.Tip.hide()">
+                                                <a href="http://trax.motion-twin.com/goto/elbruto_img/nch_es" target="_blank">
+                                                    <img src="http://data.elbruto.es/img/sq/naturalchimie_es.gif" alt="Naturalquimia" border="0"/>
+                                                </a>
+                                            </div>
+                                            <div class="img_box" onmouseover="mt.js.Tip.show(this,'&lt;strong&gt;Kadokado&lt;/strong&gt; ¡Juega a más de 60 minijuegos y gana auténticos cheques regalo!','neutralTip')" onmouseout="mt.js.Tip.hide()">
+                                                <a href="http://trax.motion-twin.com/goto/elbruto_img/kk?i=kk_es3" target="_blank">
+                                                    <img src="http://data.elbruto.es/img/sq/kadokado_es3.jpg" alt="Kadokado" border="0"/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="clear"></div>
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="footer">
+                <div id="links">Más juegos:
+                    <a href="drpg_es" title="Adopta un Dino, llévalo al combate y explora con él los misterios de la Isla de Dinoland">Dinorpg</a>
+                    <a href="dparc_es" title="¡Guía a tus dinos y entrénalos! ¡Alcanza la victoria a lo largo de intensos combates contra los dinos de los otros jugadores!">Dinoparc</a>
+                    <a href="nch_es" title="Mezcla toda clase de ingredientes en este gran juego de reflexión">Naturalquimia</a>
+                    <a href="alpha" title="Hazte prisionero de este juego rpg tipo arkanoid de exploración espacial">Alphabounce</a>
+                    <a href="kk" title="¡Juega a más de 60 minijuegos y gana auténticos cheques regalo!">Kadokado</a>
+                </div>
+
+&copy; 2009
+                <a href="http://www.motion-twin.com/spanish" target="_blank">
+                    <img src="http://data.elbruto.es/img/motiontwin.gif" alt="Motion Twin"/>
+                </a>
+                <a href="http://haxe.org/" target="_blank">
+                    <img src="http://data.elbruto.es/img/haxe.png" alt="haXe powered" title="Esta web ha sido desarrollada en haXe"/>
+                </a>
+            </div>
+        </div>
+        <script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+        <script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-114594-29");
+pageTracker._setDomainName(".elbruto.es");
+pageTracker._initData();
+pageTracker._trackPageview();
+        </script>
+    </body>
+</html>
