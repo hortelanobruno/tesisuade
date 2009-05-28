@@ -4,6 +4,7 @@
  */
 package com.bruno.elbruto.browser;
 
+import com.bruno.elbruto.browser.thread.GetSourceCode;
 import com.bruno.elbruto.manager.ElBrutoManager;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -15,8 +16,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
 import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import com.bruno.elbruto.browser.thread.GetResourceLocation;
 import javax.swing.SwingUtilities;
 
 /**
@@ -58,5 +58,15 @@ public class SimpleWebBrowser extends JPanel {
         GetSourceCode get = new GetSourceCode(webBrowser, this);
         SwingUtilities.invokeLater(get);
         return get.getSourceCode();
+    }
+
+    public String getUrl(){
+        GetResourceLocation get = new GetResourceLocation(webBrowser, this);
+        SwingUtilities.invokeLater(get);
+        return get.getResourceLocation();
+    }
+
+    public void navigate(String url){
+        webBrowser.navigate(url);
     }
 }
