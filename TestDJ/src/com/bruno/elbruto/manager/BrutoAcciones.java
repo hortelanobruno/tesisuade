@@ -70,9 +70,10 @@ public class BrutoAcciones {
         robot.mover(650, 610);
         robot.clickIzquierdo();
         robot.delay(3000);
-        robot.clickIzquierdo();
-        robot.backspace();
-        waitForDone();
+        irCellule(bruto);
+//        robot.clickIzquierdo();
+//        robot.backspace();
+//        waitForDone();
     }
 
     public void ponerPassword(Bruto bruto) {
@@ -153,6 +154,16 @@ public class BrutoAcciones {
         } else {
             return false;
         }
+    }
+
+    public int chequearPelea(Bruto bruto, String nombre) {
+        //1 = gano 0 = perdio -1 = no se jugo
+        //1026 276 858 262
+        //1022 328 858 314
+        //1029 382 860 366
+        
+
+        return -1;
     }
 
     public int obtenerCantidadPeleas(Bruto bruto) {

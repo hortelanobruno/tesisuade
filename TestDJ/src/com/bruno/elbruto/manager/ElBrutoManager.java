@@ -4,6 +4,8 @@
  */
 package com.bruno.elbruto.manager;
 
+import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
+import com.bruno.elbruto.browser.SimpleWebBrowser;
 import com.bruno.elbruto.db.persistencia.BrutoJpaController;
 import com.bruno.elbruto.db.persistencia.PeleaJpaController;
 import com.bruno.elbruto.db.persistencia.exceptions.NonexistentEntityException;
@@ -19,6 +21,7 @@ import java.util.List;
  */
 public class ElBrutoManager {
 
+    private SimpleWebBrowser simpleWeb;
     private BrutoAcciones brutoAcciones;
     private PeleaJpaController peleaJPA;
     private BrutoJpaController brutoJPA;
@@ -47,7 +50,19 @@ public class ElBrutoManager {
         brutoAcciones.avisarDone();
     }
 
+    public void setWebBrowser(SimpleWebBrowser aThis) {
+        this.simpleWeb = aThis;
+    }
+
+    private int chequearPelea(Bruto bruto, String nombre) {
+        //1 = gano 0 = perdio -1 = no se jugo
+        //String html = simpleWeb.getSourceCode();
+        //html = html.split("<DIV class=logs>")[1];
+        return 1;
+    }
+
     private void iniciarModo1() {
+        chequearPelea(null, "");
         List<Bruto> brutos = brutoJPA.findBrutosPropietarios();
         int cantPeleas;
         for (Bruto bruto : brutos) {
@@ -89,11 +104,6 @@ public class ElBrutoManager {
 //                break;
 //        }
 //        return rivales;
-    }
-
-    private int chequearPelea(Bruto bruto, String nombre) {
-        //1 = gano 0 = perdio -1 = no se jugo
-        return -1;
     }
 
     private void pelearModo1(Bruto bruto) {
