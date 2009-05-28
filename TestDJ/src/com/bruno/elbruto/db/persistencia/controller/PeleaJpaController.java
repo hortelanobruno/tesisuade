@@ -2,12 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bruno.elbruto.db.persistencia;
 
-import com.bruno.elbruto.db.persistencia.exceptions.NonexistentEntityException;
-import com.bruno.elbruto.db.persistencia.exceptions.PreexistingEntityException;
+package com.bruno.elbruto.db.persistencia.controller;
+
+import com.bruno.elbruto.db.persistencia.controller.exceptions.NonexistentEntityException;
+import com.bruno.elbruto.db.persistencia.controller.exceptions.PreexistingEntityException;
+import com.bruno.elbruto.db.persistencia.entities.Pelea;
+import com.bruno.elbruto.db.persistencia.entities.PeleaPK;
 import com.bruno.elbruto.manager.Bruto;
-import com.bruno.elbruto.manager.Pelea;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -27,11 +29,28 @@ public class PeleaJpaController {
     }
     private EntityManagerFactory emf = null;
 
+    public int findCantPeleas(Bruto bruto, Date date) {
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("select object(o) from Pelea as o where o.peleaPK.fecha = :fe and o.peleaPK.nombre = :no").setParameter("fe", date).setParameter("no", bruto.getNombre());
+            if (!true) {
+                q.setMaxResults(-1);
+                q.setFirstResult(-1);
+            }
+            return q.getResultList().size();
+        } finally {
+            em.close();
+        }
+    }
+
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
     public void create(Pelea pelea) throws PreexistingEntityException, Exception {
+        if (pelea.getPeleaPK() == null) {
+            pelea.setPeleaPK(new PeleaPK());
+        }
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -39,7 +58,7 @@ public class PeleaJpaController {
             em.persist(pelea);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findPelea(pelea.getBruto()) != null) {
+            if (findPelea(pelea.getPeleaPK()) != null) {
                 throw new PreexistingEntityException("Pelea " + pelea + " already exists.", ex);
             }
             throw ex;
@@ -60,7 +79,7 @@ public class PeleaJpaController {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Bruto id = pelea.getBruto();
+                PeleaPK id = pelea.getPeleaPK();
                 if (findPelea(id) == null) {
                     throw new NonexistentEntityException("The pelea with id " + id + " no longer exists.");
                 }
@@ -73,7 +92,7 @@ public class PeleaJpaController {
         }
     }
 
-    public void destroy(Bruto id) throws NonexistentEntityException {
+    public void destroy(PeleaPK id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -81,7 +100,7 @@ public class PeleaJpaController {
             Pelea pelea;
             try {
                 pelea = em.getReference(Pelea.class, id);
-                pelea.getBruto();
+                pelea.getPeleaPK();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The pelea with id " + id + " no longer exists.", enfe);
             }
@@ -116,19 +135,10 @@ public class PeleaJpaController {
         }
     }
 
-    public Pelea findPelea(Bruto id) {
+    public Pelea findPelea(PeleaPK id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Pelea.class, id);
-        } finally {
-            em.close();
-        }
-    }
-
-    public int findCantPeleas(Bruto bruto, Date fecha) {
-        EntityManager em = getEntityManager();
-        try {
-            return ((Long) em.createQuery("select count(o) from Pelea as o where o.fecha = :f and o.bruto = :b").setParameter("f", fecha, javax.persistence.TemporalType.DATE).setParameter("b", bruto).getSingleResult()).intValue();
         } finally {
             em.close();
         }
@@ -142,4 +152,5 @@ public class PeleaJpaController {
             em.close();
         }
     }
+
 }

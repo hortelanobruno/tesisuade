@@ -4,12 +4,8 @@
  */
 package com.bruno.elbruto.manager;
 
-import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
 import com.bruno.elbruto.browser.SimpleWebBrowser;
-import com.bruno.elbruto.db.persistencia.BrutoJpaController;
-import com.bruno.elbruto.db.persistencia.PeleaJpaController;
-import com.bruno.elbruto.db.persistencia.exceptions.NonexistentEntityException;
-import com.bruno.elbruto.db.persistencia.exceptions.PreexistingEntityException;
+import com.bruno.elbruto.db.DBManager;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -23,16 +19,14 @@ public class ElBrutoManager {
 
     private SimpleWebBrowser simpleWeb;
     private BrutoAcciones brutoAcciones;
-    private PeleaJpaController peleaJPA;
-    private BrutoJpaController brutoJPA;
+    private DBManager dbManager;
 
     public ElBrutoManager() {
     }
 
     public void init() {
         brutoAcciones = new BrutoAcciones();
-        peleaJPA = new PeleaJpaController();
-        brutoJPA = new BrutoJpaController();
+        dbManager = new DBManager();
         try {
             Thread.sleep(5000);
         } catch (InterruptedException ex) {
@@ -54,16 +48,42 @@ public class ElBrutoManager {
         this.simpleWeb = aThis;
     }
 
-    private int chequearPelea(Bruto bruto, String nombre) {
+    private int chequearPelea(Bruto bruto, String rival) {
         //1 = gano 0 = perdio -1 = no se jugo
-        //String html = simpleWeb.getSourceCode();
-        //html = html.split("<DIV class=logs>")[1];
-        return 1;
+        String html = simpleWeb.getSourceCode();
+        String vencido  = "<divclass='logs'>"+html.split("<divclass='logs'>")[1];
+        vencido = vencido.split("</td></tr></table></div></div><div class='celluleFoot'></div>")[0];
+        System.out.println(vencido);
+        String[] asd = vencido.split("onmouseout");
+        String a;
+        for(int i=1;i<asd.length;i++){
+            a = asd[i].toLowerCase();
+            char[] chars = a.toCharArray();
+            int index1 = 0,index2 = 0;
+            for(int j=0; j<chars.length;j++){
+                if(chars[j]=='>'){
+                    index1=j;
+                }
+                if(chars[j]=='<'){
+                    index2=j;
+                    break;
+                }
+            }
+            String pelea = a.substring(index1+1, index2-1);
+            if(pelea.contains(rival.toLowerCase())){
+                if(pelea.startsWith("tubruto")){
+                    return 1;
+                }else{
+                    return 0;
+                }
+            }
+        }
+        return -1;
     }
 
     private void iniciarModo1() {
         chequearPelea(null, "");
-        List<Bruto> brutos = brutoJPA.findBrutosPropietarios();
+        List<Bruto> brutos = dbManager.findBrutosPropietarios();
         int cantPeleas;
         for (Bruto bruto : brutos) {
             pelearModo1(bruto);
@@ -83,7 +103,7 @@ public class ElBrutoManager {
     }
 
     private LinkedList<Bruto> obtenerRivalesPara(Bruto bruto, int cant) {
-        return brutoJPA.findRivales(bruto, cant);
+        return dbManager.findRivales(bruto, cant);
 //        LinkedList<String> rivales = new LinkedList<String>();
 //        //por nivel
 //        switch (bruto.getNivel()) {
@@ -117,7 +137,7 @@ public class ElBrutoManager {
         } else {
             brutoAcciones.irCellule(bruto);
         }
-        int cantPeleas = peleaJPA.findCantPeleas(bruto, new Date());
+        int cantPeleas = dbManager.findCantPeleas(bruto, new Date());
         if (cantPeleas < 3) {
             LinkedList<Bruto> rivales = obtenerRivalesPara(bruto, 3 - cantPeleas);
             Pelea pelea;
@@ -142,9 +162,7 @@ public class ElBrutoManager {
                     } else {
                         pelea.setVictoria(false);
                     }
-                    peleaJPA.create(pelea);
-                } catch (PreexistingEntityException ex) {
-                    System.out.println("ERROR AL GRABAR LA PELEA");
+                    dbManager.create(pelea);
                 } catch (Exception ex) {
                     System.out.println("ERROR AL GRABAR LA PELEA");
                 }
@@ -155,9 +173,7 @@ public class ElBrutoManager {
             try {
                 //actualizar nivel
                 bruto.setNivel(nivel);
-                brutoJPA.edit(bruto);
-            } catch (NonexistentEntityException ex) {
-                System.out.println("ERROR ACTUALIZAR BRUTO");
+                dbManager.edit(bruto);
             } catch (Exception ex) {
                 System.out.println("ERROR ACTUALIZAR BRUTO");
             }
