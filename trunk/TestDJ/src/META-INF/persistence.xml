@@ -5,10 +5,11 @@
     <class>com.bruno.elbruto.manager.Bruto</class>
     <class>com.bruno.elbruto.manager.Pelea</class>
     <properties>
-      <property name="toplink.jdbc.user" value="mysql"/>
-      <property name="toplink.jdbc.password" value=""/>
-      <property name="toplink.jdbc.url" value="jdbc:mysql://10.0.0.21:3306/bruto"/>
+      <property name="toplink.jdbc.user" value="root"/>
+      <property name="toplink.jdbc.password" value="root"/>
+      <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/elbruto"/>
       <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="toplink.ddl-generation" value="create-tables"/>
     </properties>
   </persistence-unit>
 </persistence>

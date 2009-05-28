@@ -15,6 +15,9 @@ import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
 import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -31,6 +34,7 @@ public class SimpleWebBrowser extends JPanel {
         JPanel webBrowserPanel = new JPanel(new BorderLayout());
         webBrowserPanel.setBorder(BorderFactory.createTitledBorder("Native Web Browser component"));
         webBrowser = new JWebBrowser(brutoManager);
+        brutoManager.setWebBrowser(this);
         webBrowserPanel.add(webBrowser, BorderLayout.CENTER);
         add(webBrowserPanel, BorderLayout.CENTER);
         // Create an additional bar allowing to show/hide the menu bar of the web browser.
@@ -48,5 +52,11 @@ public class SimpleWebBrowser extends JPanel {
 
     public JWebBrowser getWebBrowser() {
         return webBrowser;
+    }
+
+    public String getSourceCode() {
+        GetSourceCode get = new GetSourceCode(webBrowser, this);
+        SwingUtilities.invokeLater(get);
+        return get.getSourceCode();
     }
 }

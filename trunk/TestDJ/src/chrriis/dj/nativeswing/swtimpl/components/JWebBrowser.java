@@ -545,14 +545,22 @@ public class JWebBrowser extends NSPanelComponent {
             statusLabel.setText(status.length() == 0 ? " " : status);
             //ACA ES EL DONE
             if (status.equalsIgnoreCase("Done")) {
-                this.webBrowser.brutoManager.avisarDone();
+                if (!chequearErrorFatal()) {
+                    this.webBrowser.brutoManager.avisarDone();
+                } else {
+                    this.webBrowser.reloadPage();
+                }
             }
         }
-    }
 
+        private boolean chequearErrorFatal() {
+            //TODO
+            return false;
+        }
+    }
     private ElBrutoManager brutoManager;
 
-    public JWebBrowser(ElBrutoManager brutoManager,NSOption... options) {
+    public JWebBrowser(ElBrutoManager brutoManager, NSOption... options) {
         this.brutoManager = brutoManager;
         iniciarBrowserByBruno(options);
     }
