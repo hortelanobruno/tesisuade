@@ -20,7 +20,6 @@ public class ElBrutoManager {
     private SimpleWebBrowser simpleWeb;
     private BrutoAcciones brutoAcciones;
     private DBManager dbManager;
-    private boolean inscribirTorneo = true;//TODO FALTA VER CUANDO SETEAR ESTO
 
     public ElBrutoManager() {
     }
@@ -46,6 +45,29 @@ public class ElBrutoManager {
 
     public void setWebBrowser(SimpleWebBrowser aThis) {
         this.simpleWeb = aThis;
+    }
+
+    private int obtenerNivel() {
+        String html = simpleWeb.getSourceCode();
+        html = html.replace(" ", "");
+        html = html.replace("\"", "");
+        html = html.toLowerCase();
+        String vencido = html.split("<span>nivel")[1];
+        vencido = vencido.split("<")[0];
+        return Integer.parseInt(vencido);
+    }
+
+    private boolean hayQueInscribirTorneo() {
+        //TODO TERMINAR
+        String html = simpleWeb.getSourceCode();
+        html = html.replace(" ", "");
+        html = html.replace("\"", "");
+        html = html.toLowerCase();
+        if (html.contains("")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private int chequearPelea(Bruto bruto, String rival) {
@@ -111,13 +133,13 @@ public class ElBrutoManager {
             }
             dbManager.create(pelea);
         }
-        int nivel = brutoAcciones.obtenerNivel();
+        int nivel = obtenerNivel();
         if (nivel != bruto.getNivel()) {
             //actualizar nivel
             bruto.setNivel(nivel);
             dbManager.edit(bruto);
         }
-        if (inscribirTorneo) {
+        if (hayQueInscribirTorneo()) {
             brutoAcciones.inscribirEnTorneo();
         }
     }
@@ -163,11 +185,14 @@ public class ElBrutoManager {
                 }
                 dbManager.create(pelea);
             }
-            int nivel = brutoAcciones.obtenerNivel();
+            int nivel = obtenerNivel();
             if (nivel != bruto.getNivel()) {
                 //actualizar nivel
                 bruto.setNivel(nivel);
                 dbManager.edit(bruto);
+            }
+            if (hayQueInscribirTorneo()) {
+                brutoAcciones.inscribirEnTorneo();
             }
         }
 
@@ -179,9 +204,6 @@ public class ElBrutoManager {
         for (Bruto bruto : brutos) {
             LoggerClass.getInstance().info("Proceso pelea con " + bruto.getNombre());
             pelearModo1(bruto);
-            if (inscribirTorneo) {
-                brutoAcciones.inscribirEnTorneo();
-            }
         }
     }
 
@@ -228,11 +250,14 @@ public class ElBrutoManager {
                     dbManager.create(pelea);
                 }
             }
-            int nivel = brutoAcciones.obtenerNivel();
+            int nivel = obtenerNivel();
             if (nivel != bruto.getNivel()) {
                 //actualizar nivel
                 bruto.setNivel(nivel);
                 dbManager.edit(bruto);
+            }
+            if (hayQueInscribirTorneo()) {
+                brutoAcciones.inscribirEnTorneo();
             }
         }
     }
