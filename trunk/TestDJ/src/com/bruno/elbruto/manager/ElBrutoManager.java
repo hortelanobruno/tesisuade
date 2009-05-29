@@ -37,7 +37,7 @@ public class ElBrutoManager {
         iniciarModoPeleas();
         LoggerClass.getInstance().info("Termino proceso de peleas");
         LoggerClass.getInstance().info("Iniciando proceso de creacion de nuevas cuentas");
-        iniciarModoCrearCuentas();
+        //iniciarModoCrearCuentas();
         LoggerClass.getInstance().info("Termino proceso de creacion de nuevas cuentas");
     }
 

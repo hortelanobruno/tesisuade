@@ -21,7 +21,7 @@ public class LoggerClass {
     private static String config;
 
     private LoggerClass(String configLogger) {
-        DOMConfigurator.configure(configLogger);
+        DOMConfigurator.configure("./config/log4j.xml");
         logInfo = LogFactory.getLog("info");
         logError = LogFactory.getLog("error");
         logDebug = LogFactory.getLog("debug");

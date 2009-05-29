@@ -29,6 +29,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -57,6 +59,7 @@ import chrriis.common.Utils;
 import chrriis.dj.nativeswing.NSOption;
 import chrriis.dj.nativeswing.swtimpl.EventDispatchUtils;
 import chrriis.dj.nativeswing.swtimpl.NSPanelComponent;
+import com.bruno.elbruto.util.LoggerClass;
 
 /**
  * A native web browser, using Internet Explorer or Mozilla on Windows, and Mozilla on other platforms.<br/>
@@ -545,19 +548,39 @@ public class JWebBrowser extends NSPanelComponent {
             statusLabel.setText(status.length() == 0 ? " " : status);
             //ACA ES EL DONE
             if (status.equalsIgnoreCase("Done")) {
-                if (!chequearErrorFatal()) {
-                    this.webBrowser.brutoManager.avisarDone();
-                } else {
-                    this.webBrowser.reloadPage();
+                if (!chequearMantenimiento()) {
+                    if (!chequearErrorFatal()) {
+                        this.webBrowser.brutoManager.avisarDone();
+                    } else {
+                        this.webBrowser.reloadPage();
+                    }
+                }else{
+                    try {
+                        LoggerClass.getInstance().info("Durmiendo 5 min porque la pagina esta en mantenimiento");
+                        Thread.sleep(60000 * 5);
+                        this.webBrowser.reloadPage();
+                    } catch (InterruptedException ex) {
+                    }
                 }
             }
         }
 
         private boolean chequearErrorFatal() {
             String html = webBrowser.getHTMLContent();
-            if(html.contains("Ha ocurrido un error")){
+            if (html.contains("Ha ocurrido un error")) {
+                LoggerClass.getInstance().info("La pagina devolvio error falta.");
                 return true;
-            }else{
+            } else {
+                return false;
+            }
+        }
+
+        private boolean chequearMantenimiento() {
+            String html = webBrowser.getHTMLContent();
+            if (html.contains("Mantenimiento en curso")) {
+                LoggerClass.getInstance().info("La pagina esta en mantenimiento.");
+                return true;
+            } else {
                 return false;
             }
         }
