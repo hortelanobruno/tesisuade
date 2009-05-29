@@ -16,6 +16,7 @@ public class BrutoAcciones {
     private boolean done = false;
     private MouseRobot robot;
     private SimpleWebBrowser simpleWeb;
+    private boolean navigateAManopla = true;
 
     public BrutoAcciones() {
         robot = new MouseRobot();
@@ -34,7 +35,7 @@ public class BrutoAcciones {
         done = false;
         while (!done) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(2000);
             } catch (InterruptedException ex) {
             }
         }
@@ -47,29 +48,20 @@ public class BrutoAcciones {
         robot.delay(2000);
     }
 
+    //http://nestornbloq.elbruto.es/vs/kascorro
     public void pelear(Bruto bruto, String rival) {
         System.out.println("Peleando contra '" + rival + "'");
         robot.delay(1500);
-        robot.mover(800, 78);
-        robot.clickIzquierdo();
-        robot.borrar();
-        //http://nestornbloq.elbruto.es/vs/kascorro
-        robot.escribir(bruto.getNombre() + ".elbruto.es/vs/" + rival);
-        robot.enter();
-        // simpleWeb.navigate(bruto.getNombre() + ".elbruto.es/vs/" + rival);
-        waitForDone();//robot.delay(10000);
-//        robot.mover(1265, 100);
-//        robot.clickIzquierdo(3000);
-//        robot.mover(650, 670);
-//        robot.clickIzquierdo();
-//        robot.delay(6000);
-//        robot.mover(650, 640);
-//        robot.clickIzquierdo();
-//        robot.escribir(rival);
-//        robot.enter();
-//        robot.delay(7000);
-//        robot.mover(650, 675);
-//        robot.clickIzquierdo();
+        if(navigateAManopla){
+            robot.mover(800, 78);
+            robot.clickIzquierdo();
+            robot.borrar();
+            robot.escribir(bruto.getNombre() + ".elbruto.es/vs/" + rival);
+            robot.enter();
+        }else{
+           simpleWeb.navigate(bruto.getNombre() + ".elbruto.es/vs/" + rival);
+        }
+        waitForDone();
         robot.delay(3000);
         robot.mover(1265, 690);
         robot.clickIzquierdo(3000);
@@ -77,42 +69,40 @@ public class BrutoAcciones {
         robot.clickIzquierdo();
         robot.delay(3000);
         irCellule(bruto);
-//        robot.clickIzquierdo();
-//        robot.backspace();
-//        waitForDone();
     }
 
     public void ponerPassword(Bruto bruto) {
         System.out.println("Poniendo password");
         robot.delay(1500);
-        robot.mover(800, 78);
-        robot.clickIzquierdo();
-        robot.borrar();
-        robot.escribir(bruto.getNombre() + ".elbruto.es/login");
-        robot.enter();
-        //simpleWeb.navigate(bruto.getNombre() + ".elbruto.es/login");
-        waitForDone();//robot.delay(15000);
-//        robot.mover(1265, 100);
-//        robot.clickIzquierdo(3000);
-//        robot.mover(650, 534);
-//        robot.clickIzquierdo();
-//        waitForDone();//robot.delay(5000);
+        if(navigateAManopla){
+            robot.mover(800, 78);
+            robot.clickIzquierdo();
+            robot.borrar();
+            robot.escribir(bruto.getNombre() + ".elbruto.es/login");
+            robot.enter();
+        }else{
+            simpleWeb.navigate(bruto.getNombre() + ".elbruto.es/login");
+        }
+        waitForDone();
         robot.mover(300, 350);
         robot.clickIzquierdo();
         robot.escribir(bruto.getPassword());
         robot.enter();
-        waitForDone();//robot.delay(5000);
+        waitForDone();
     }
 
     public void crearPassword(Bruto bruto) {
         System.out.println("Creando password");
         robot.delay(1500);
-        robot.mover(800, 78);
-        robot.clickIzquierdo();
-        robot.borrar();
-        robot.escribir(bruto.getNombre() + ".elbruto.es/cellule");
-        robot.enter();
-        //simpleWeb.navigate(bruto.getNombre() + ".elbruto.es/cellule");
+        if(navigateAManopla){
+            robot.mover(800, 78);
+            robot.clickIzquierdo();
+            robot.borrar();
+            robot.escribir(bruto.getNombre() + ".elbruto.es/cellule");
+            robot.enter();
+        }else{
+            simpleWeb.navigate(bruto.getNombre() + ".elbruto.es/cellule");
+        }
         robot.delay(15000);
         robot.delay(1500);
         robot.mover(1265, 100);
@@ -134,13 +124,16 @@ public class BrutoAcciones {
     public void irCellule(Bruto bruto) {
         System.out.println("Yendo a cellule");
         robot.delay(1500);
-        robot.mover(800, 78);
-        robot.clickIzquierdo();
-        robot.borrar();
-        robot.escribir(bruto.getNombre() + ".elbruto.es/cellule");
-        robot.enter();
-//        simpleWeb.navigate(bruto.getNombre() + ".elbruto.es/cellule");
-        waitForDone();//robot.delay(15000);
+        if(navigateAManopla){
+            robot.mover(800, 78);
+            robot.clickIzquierdo();
+            robot.borrar();
+            robot.escribir(bruto.getNombre() + ".elbruto.es/cellule");
+            robot.enter();
+        }else{
+            simpleWeb.navigate(bruto.getNombre() + ".elbruto.es/cellule");
+        }
+        waitForDone();
     }
 
     public Bruto crearBruto(String nombre, Bruto ancestro) {
@@ -174,13 +167,6 @@ public class BrutoAcciones {
     }
 
     private boolean verificarPeleasCompletadas() {
-//        robot.delay(1500);
-//        robot.mover(800, 78);
-//        robot.clickIzquierdo();
-//        robot.borrar();
-//        robot.escribir(bruto.getNombre() + ".elbruto.es/cellule");
-//        robot.enter();
-//        robot.delay(15000);
         robot.delay(1500);
         robot.mover(550, 390);
         robot.mousePress();
@@ -195,15 +181,6 @@ public class BrutoAcciones {
         }
     }
 
-    public int chequearPelea(Bruto bruto, String nombre) {
-        //1 = gano 0 = perdio -1 = no se jugo
-        //1026 276 858 262
-        //1022 328 858 314
-        //1029 382 860 366
-
-
-        return -1;
-    }
 
     public int obtenerCantidadPeleas(Bruto bruto) {
         System.out.println("Obteniendo cantidad de peleas");
