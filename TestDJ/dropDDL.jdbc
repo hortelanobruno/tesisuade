@@ -1,2 +1,3 @@
 DROP TABLE brutos
+DROP TABLE nombres
 DROP TABLE peleas

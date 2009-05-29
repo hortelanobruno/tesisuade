@@ -2,33 +2,33 @@
 
 <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.SchemaElement" ID="org.netbeans.modules.dbschema.SchemaElement-1793303368">
   <impl>
-    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.SchemaElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.SchemaElementImpl17275557">
+    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.SchemaElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.SchemaElementImpl12544598">
       <element>
         <OBJECT REFERENCE="org.netbeans.modules.dbschema.SchemaElement-1793303368"/>
       </element>
       <_databaseProductVersion>5.0.77</_databaseProductVersion>
-      <_username>mysql@10.0.0.34</_username>
+      <_username>root@10.0.0.34</_username>
       <_name>
-        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier9529073">
+        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier14577134">
           <name>TestDJ</name>
         </OBJECT>
       </_name>
       <_driverVersion>mysql-connector-java-5.1.6 ( Revision: ${svn.Revision} )</_driverVersion>
       <_databaseProductName>MySQL</_databaseProductName>
       <tables>
-        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection603356">
+        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection17874800">
           <_elms>
-            <ARRAY SIZE="2" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.TableElement">
+            <ARRAY SIZE="3" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.TableElement">
               <ROW ROW="0">
                 <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.TableElement" ID="org.netbeans.modules.dbschema.TableElement966397506">
                   <impl>
-                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl26950174">
+                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl16988209">
                       <element>
                         <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement966397506"/>
                       </element>
                       <isTable>true</isTable>
                       <keys>
-                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection23129486">
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection24361913">
                           <_elms>
                             <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.KeyElement">
                               <ROW ROW="0">
@@ -37,13 +37,13 @@
                                     <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement966397506"/>
                                   </declaringTable>
                                   <impl>
-                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.UniqueKeyElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.UniqueKeyElementImpl32463322">
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.UniqueKeyElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.UniqueKeyElementImpl6177937">
                                       <element>
                                         <OBJECT REFERENCE="org.netbeans.modules.dbschema.UniqueKeyElement-1177594314"/>
                                       </element>
                                       <_primary>true</_primary>
                                       <columns>
-                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection28945239">
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection15119049">
                                           <_elms>
                                             <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
                                               <ROW ROW="0">
@@ -52,20 +52,20 @@
                                                     <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement966397506"/>
                                                   </declaringTable>
                                                   <impl>
-                                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.ColumnElementImpl23475202">
+                                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.ColumnElementImpl15183790">
                                                       <element>
                                                         <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement17479925"/>
                                                       </element>
                                                       <_type>12</_type>
                                                       <_isNullable>false</_isNullable>
                                                       <_length>
-                                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer30">
-                                                          <value>30</value>
+                                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer255">
+                                                          <value>255</value>
                                                         </OBJECT>
                                                       </_length>
                                                       <_isAutoIncrement>false</_isAutoIncrement>
                                                       <_name>
-                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier17906750">
+                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier13383714">
                                                           <name>nombre</name>
                                                         </OBJECT>
                                                       </_name>
@@ -73,8 +73,8 @@
                                                         <OBJECT/>
                                                       </_scale>
                                                       <_precision>
-                                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer30#1">
-                                                          <value>30</value>
+                                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer255#1">
+                                                          <value>255</value>
                                                         </OBJECT>
                                                       </_precision>
                                                     </OBJECT>
@@ -88,12 +88,12 @@
                                             </ARRAY>
                                           </_template>
                                           <owner>
-                                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.UniqueKeyElementImpl32463322"/>
+                                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.UniqueKeyElementImpl6177937"/>
                                           </owner>
                                         </OBJECT>
                                       </columns>
                                       <_name>
-                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier9058074">
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier24726232">
                                           <name>PRIMARY</name>
                                         </OBJECT>
                                       </_name>
@@ -105,15 +105,15 @@
                                         <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement966397506"/>
                                       </declaringTable>
                                       <impl>
-                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.IndexElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.IndexElementImpl3249651">
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.IndexElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.IndexElementImpl2155015">
                                           <element>
                                             <OBJECT REFERENCE="org.netbeans.modules.dbschema.IndexElement-1177594314"/>
                                           </element>
                                           <tei>
-                                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl26950174"/>
+                                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl16988209"/>
                                           </tei>
                                           <columns>
-                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection30392335">
+                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection10307498">
                                               <_elms>
                                                 <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
                                                   <ROW ROW="0">
@@ -126,12 +126,12 @@
                                                 </ARRAY>
                                               </_template>
                                               <owner>
-                                                <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl26950174"/>
+                                                <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl16988209"/>
                                               </owner>
                                             </OBJECT>
                                           </columns>
                                           <_name>
-                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier17949417">
+                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier14118649">
                                               <name>PRIMARY</name>
                                             </OBJECT>
                                           </_name>
@@ -149,12 +149,12 @@
                             </ARRAY>
                           </_template>
                           <owner>
-                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl26950174"/>
+                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl16988209"/>
                           </owner>
                         </OBJECT>
                       </keys>
                       <indexes>
-                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection31899802">
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection12393450">
                           <_elms>
                             <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.IndexElement">
                               <ROW ROW="0">
@@ -167,64 +167,29 @@
                             </ARRAY>
                           </_template>
                           <owner>
-                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl26950174"/>
+                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl16988209"/>
                           </owner>
                         </OBJECT>
                       </indexes>
                       <columns>
-                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection21263747">
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection27633681">
                           <_elms>
                             <ARRAY SIZE="5" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
                               <ROW ROW="0">
                                 <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement17479925"/>
                               </ROW>
                               <ROW ROW="1">
-                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="org.netbeans.modules.dbschema.ColumnElement-543520569">
-                                  <declaringTable>
-                                    <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement966397506"/>
-                                  </declaringTable>
-                                  <impl>
-                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.ColumnElementImpl21515069">
-                                      <element>
-                                        <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement-543520569"/>
-                                      </element>
-                                      <_type>12</_type>
-                                      <_isNullable>true</_isNullable>
-                                      <_length>
-                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer30#2">
-                                          <value>30</value>
-                                        </OBJECT>
-                                      </_length>
-                                      <_isAutoIncrement>false</_isAutoIncrement>
-                                      <_name>
-                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier21221113">
-                                          <name>password</name>
-                                        </OBJECT>
-                                      </_name>
-                                      <_scale>
-                                        <OBJECT/>
-                                      </_scale>
-                                      <_precision>
-                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer30#3">
-                                          <value>30</value>
-                                        </OBJECT>
-                                      </_precision>
-                                    </OBJECT>
-                                  </impl>
-                                </OBJECT>
-                              </ROW>
-                              <ROW ROW="2">
                                 <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="org.netbeans.modules.dbschema.ColumnElement-1385079466">
                                   <declaringTable>
                                     <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement966397506"/>
                                   </declaringTable>
                                   <impl>
-                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.ColumnElementImpl13194143">
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.ColumnElementImpl28754372">
                                       <element>
                                         <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement-1385079466"/>
                                       </element>
                                       <_type>4</_type>
-                                      <_isNullable>false</_isNullable>
+                                      <_isNullable>true</_isNullable>
                                       <_length>
                                         <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer10">
                                           <value>10</value>
@@ -232,7 +197,7 @@
                                       </_length>
                                       <_isAutoIncrement>false</_isAutoIncrement>
                                       <_name>
-                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier26289554">
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier23814420">
                                           <name>nivel</name>
                                         </OBJECT>
                                       </_name>
@@ -250,13 +215,13 @@
                                   </impl>
                                 </OBJECT>
                               </ROW>
-                              <ROW ROW="3">
+                              <ROW ROW="2">
                                 <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="org.netbeans.modules.dbschema.ColumnElement1548025192">
                                   <declaringTable>
                                     <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement966397506"/>
                                   </declaringTable>
                                   <impl>
-                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.ColumnElementImpl3780010">
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.ColumnElementImpl11704310">
                                       <element>
                                         <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement1548025192"/>
                                       </element>
@@ -269,7 +234,7 @@
                                       </_length>
                                       <_isAutoIncrement>false</_isAutoIncrement>
                                       <_name>
-                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier12094626">
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier18264705">
                                           <name>clasificacion</name>
                                         </OBJECT>
                                       </_name>
@@ -287,13 +252,48 @@
                                   </impl>
                                 </OBJECT>
                               </ROW>
+                              <ROW ROW="3">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="org.netbeans.modules.dbschema.ColumnElement-543520569">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement966397506"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.ColumnElementImpl18960495">
+                                      <element>
+                                        <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement-543520569"/>
+                                      </element>
+                                      <_type>12</_type>
+                                      <_isNullable>true</_isNullable>
+                                      <_length>
+                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer255#2">
+                                          <value>255</value>
+                                        </OBJECT>
+                                      </_length>
+                                      <_isAutoIncrement>false</_isAutoIncrement>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier2598909">
+                                          <name>password</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_scale>
+                                        <OBJECT/>
+                                      </_scale>
+                                      <_precision>
+                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer255#3">
+                                          <value>255</value>
+                                        </OBJECT>
+                                      </_precision>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
                               <ROW ROW="4">
                                 <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="org.netbeans.modules.dbschema.ColumnElement-1158478464">
                                   <declaringTable>
                                     <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement966397506"/>
                                   </declaringTable>
                                   <impl>
-                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.ColumnElementImpl1633634">
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.ColumnElementImpl25554116">
                                       <element>
                                         <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement-1158478464"/>
                                       </element>
@@ -306,7 +306,7 @@
                                       </_length>
                                       <_isAutoIncrement>false</_isAutoIncrement>
                                       <_name>
-                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier8970991">
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier24862097">
                                           <name>propietario</name>
                                         </OBJECT>
                                       </_name>
@@ -329,12 +329,12 @@
                             </ARRAY>
                           </_template>
                           <owner>
-                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl26950174"/>
+                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl16988209"/>
                           </owner>
                         </OBJECT>
                       </columns>
                       <_name>
-                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier15388346">
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier3938271">
                           <name>brutos</name>
                         </OBJECT>
                       </_name>
@@ -344,87 +344,52 @@
                 </OBJECT>
               </ROW>
               <ROW ROW="1">
-                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.TableElement" ID="org.netbeans.modules.dbschema.TableElement1354916879">
+                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.TableElement" ID="org.netbeans.modules.dbschema.TableElement1859851899">
                   <impl>
-                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl27923918">
+                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl21189752">
                       <element>
-                        <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement1354916879"/>
+                        <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement1859851899"/>
                       </element>
                       <isTable>true</isTable>
                       <keys>
-                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection199102">
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection5473194">
                           <_elms>
                             <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.KeyElement">
                               <ROW ROW="0">
-                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.UniqueKeyElement" ID="org.netbeans.modules.dbschema.UniqueKeyElement-1667264765">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.UniqueKeyElement" ID="org.netbeans.modules.dbschema.UniqueKeyElement1153766767">
                                   <declaringTable>
-                                    <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement1354916879"/>
+                                    <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement1859851899"/>
                                   </declaringTable>
                                   <impl>
-                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.UniqueKeyElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.UniqueKeyElementImpl25011182">
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.UniqueKeyElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.UniqueKeyElementImpl22984142">
                                       <element>
-                                        <OBJECT REFERENCE="org.netbeans.modules.dbschema.UniqueKeyElement-1667264765"/>
+                                        <OBJECT REFERENCE="org.netbeans.modules.dbschema.UniqueKeyElement1153766767"/>
                                       </element>
                                       <_primary>true</_primary>
                                       <columns>
-                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection15989010">
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection24498462">
                                           <_elms>
-                                            <ARRAY SIZE="3" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                            <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
                                               <ROW ROW="0">
-                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="org.netbeans.modules.dbschema.ColumnElement-1808756514">
+                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="org.netbeans.modules.dbschema.ColumnElement-1154240868">
                                                   <declaringTable>
-                                                    <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement1354916879"/>
+                                                    <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement1859851899"/>
                                                   </declaringTable>
                                                   <impl>
-                                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.ColumnElementImpl26582950">
+                                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.ColumnElementImpl15862781">
                                                       <element>
-                                                        <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement-1808756514"/>
-                                                      </element>
-                                                      <_type>91</_type>
-                                                      <_isNullable>false</_isNullable>
-                                                      <_length>
-                                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer10#4">
-                                                          <value>10</value>
-                                                        </OBJECT>
-                                                      </_length>
-                                                      <_isAutoIncrement>false</_isAutoIncrement>
-                                                      <_name>
-                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier2380878">
-                                                          <name>fecha</name>
-                                                        </OBJECT>
-                                                      </_name>
-                                                      <_scale>
-                                                        <OBJECT/>
-                                                      </_scale>
-                                                      <_precision>
-                                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer10#5">
-                                                          <value>10</value>
-                                                        </OBJECT>
-                                                      </_precision>
-                                                    </OBJECT>
-                                                  </impl>
-                                                </OBJECT>
-                                              </ROW>
-                                              <ROW ROW="1">
-                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="org.netbeans.modules.dbschema.ColumnElement1684104">
-                                                  <declaringTable>
-                                                    <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement1354916879"/>
-                                                  </declaringTable>
-                                                  <impl>
-                                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.ColumnElementImpl18549114">
-                                                      <element>
-                                                        <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement1684104"/>
+                                                        <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement-1154240868"/>
                                                       </element>
                                                       <_type>12</_type>
                                                       <_isNullable>false</_isNullable>
                                                       <_length>
-                                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer30#4">
+                                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer30">
                                                           <value>30</value>
                                                         </OBJECT>
                                                       </_length>
                                                       <_isAutoIncrement>false</_isAutoIncrement>
                                                       <_name>
-                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier741147">
+                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier15801565">
                                                           <name>nombre</name>
                                                         </OBJECT>
                                                       </_name>
@@ -432,42 +397,7 @@
                                                         <OBJECT/>
                                                       </_scale>
                                                       <_precision>
-                                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer30#5">
-                                                          <value>30</value>
-                                                        </OBJECT>
-                                                      </_precision>
-                                                    </OBJECT>
-                                                  </impl>
-                                                </OBJECT>
-                                              </ROW>
-                                              <ROW ROW="2">
-                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="org.netbeans.modules.dbschema.ColumnElement-1797537045">
-                                                  <declaringTable>
-                                                    <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement1354916879"/>
-                                                  </declaringTable>
-                                                  <impl>
-                                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.ColumnElementImpl7775442">
-                                                      <element>
-                                                        <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement-1797537045"/>
-                                                      </element>
-                                                      <_type>12</_type>
-                                                      <_isNullable>false</_isNullable>
-                                                      <_length>
-                                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer30#6">
-                                                          <value>30</value>
-                                                        </OBJECT>
-                                                      </_length>
-                                                      <_isAutoIncrement>false</_isAutoIncrement>
-                                                      <_name>
-                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier20909465">
-                                                          <name>rival</name>
-                                                        </OBJECT>
-                                                      </_name>
-                                                      <_scale>
-                                                        <OBJECT/>
-                                                      </_scale>
-                                                      <_precision>
-                                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer30#7">
+                                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer30#1">
                                                           <value>30</value>
                                                         </OBJECT>
                                                       </_precision>
@@ -482,42 +412,36 @@
                                             </ARRAY>
                                           </_template>
                                           <owner>
-                                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.UniqueKeyElementImpl25011182"/>
+                                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.UniqueKeyElementImpl22984142"/>
                                           </owner>
                                         </OBJECT>
                                       </columns>
                                       <_name>
-                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier9814446">
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier27129281">
                                           <name>PRIMARY</name>
                                         </OBJECT>
                                       </_name>
                                     </OBJECT>
                                   </impl>
                                   <_associatedIndex>
-                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.IndexElement" ID="org.netbeans.modules.dbschema.IndexElement-1667264765">
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.IndexElement" ID="org.netbeans.modules.dbschema.IndexElement1153766767">
                                       <declaringTable>
-                                        <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement1354916879"/>
+                                        <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement1859851899"/>
                                       </declaringTable>
                                       <impl>
-                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.IndexElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.IndexElementImpl31362819">
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.IndexElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.IndexElementImpl24205538">
                                           <element>
-                                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.IndexElement-1667264765"/>
+                                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.IndexElement1153766767"/>
                                           </element>
                                           <tei>
-                                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl27923918"/>
+                                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl21189752"/>
                                           </tei>
                                           <columns>
-                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection25594109">
+                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection26790531">
                                               <_elms>
-                                                <ARRAY SIZE="3" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                                <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
                                                   <ROW ROW="0">
-                                                    <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement-1808756514"/>
-                                                  </ROW>
-                                                  <ROW ROW="1">
-                                                    <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement1684104"/>
-                                                  </ROW>
-                                                  <ROW ROW="2">
-                                                    <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement-1797537045"/>
+                                                    <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement-1154240868"/>
                                                   </ROW>
                                                 </ARRAY>
                                               </_elms>
@@ -526,12 +450,12 @@
                                                 </ARRAY>
                                               </_template>
                                               <owner>
-                                                <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl27923918"/>
+                                                <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl21189752"/>
                                               </owner>
                                             </OBJECT>
                                           </columns>
                                           <_name>
-                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier8338182">
+                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier8560069">
                                               <name>PRIMARY</name>
                                             </OBJECT>
                                           </_name>
@@ -549,12 +473,268 @@
                             </ARRAY>
                           </_template>
                           <owner>
-                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl27923918"/>
+                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl21189752"/>
                           </owner>
                         </OBJECT>
                       </keys>
                       <indexes>
-                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection24240977">
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection19669407">
+                          <_elms>
+                            <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.IndexElement">
+                              <ROW ROW="0">
+                                <OBJECT REFERENCE="org.netbeans.modules.dbschema.IndexElement1153766767"/>
+                              </ROW>
+                            </ARRAY>
+                          </_elms>
+                          <_template>
+                            <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.IndexElement">
+                            </ARRAY>
+                          </_template>
+                          <owner>
+                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl21189752"/>
+                          </owner>
+                        </OBJECT>
+                      </indexes>
+                      <columns>
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection30149648">
+                          <_elms>
+                            <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                              <ROW ROW="0">
+                                <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement-1154240868"/>
+                              </ROW>
+                            </ARRAY>
+                          </_elms>
+                          <_template>
+                            <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                            </ARRAY>
+                          </_template>
+                          <owner>
+                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl21189752"/>
+                          </owner>
+                        </OBJECT>
+                      </columns>
+                      <_name>
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier21233442">
+                          <name>nombres</name>
+                        </OBJECT>
+                      </_name>
+                      <table>nombres</table>
+                    </OBJECT>
+                  </impl>
+                </OBJECT>
+              </ROW>
+              <ROW ROW="2">
+                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.TableElement" ID="org.netbeans.modules.dbschema.TableElement1354916879">
+                  <impl>
+                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl19084206">
+                      <element>
+                        <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement1354916879"/>
+                      </element>
+                      <isTable>true</isTable>
+                      <keys>
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection19518526">
+                          <_elms>
+                            <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.KeyElement">
+                              <ROW ROW="0">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.UniqueKeyElement" ID="org.netbeans.modules.dbschema.UniqueKeyElement-1667264765">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement1354916879"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.UniqueKeyElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.UniqueKeyElementImpl1439630">
+                                      <element>
+                                        <OBJECT REFERENCE="org.netbeans.modules.dbschema.UniqueKeyElement-1667264765"/>
+                                      </element>
+                                      <_primary>true</_primary>
+                                      <columns>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection23336793">
+                                          <_elms>
+                                            <ARRAY SIZE="3" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                              <ROW ROW="0">
+                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="org.netbeans.modules.dbschema.ColumnElement1684104">
+                                                  <declaringTable>
+                                                    <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement1354916879"/>
+                                                  </declaringTable>
+                                                  <impl>
+                                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.ColumnElementImpl3121464">
+                                                      <element>
+                                                        <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement1684104"/>
+                                                      </element>
+                                                      <_type>12</_type>
+                                                      <_isNullable>false</_isNullable>
+                                                      <_length>
+                                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer255#4">
+                                                          <value>255</value>
+                                                        </OBJECT>
+                                                      </_length>
+                                                      <_isAutoIncrement>false</_isAutoIncrement>
+                                                      <_name>
+                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier16869306">
+                                                          <name>nombre</name>
+                                                        </OBJECT>
+                                                      </_name>
+                                                      <_scale>
+                                                        <OBJECT/>
+                                                      </_scale>
+                                                      <_precision>
+                                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer255#5">
+                                                          <value>255</value>
+                                                        </OBJECT>
+                                                      </_precision>
+                                                    </OBJECT>
+                                                  </impl>
+                                                </OBJECT>
+                                              </ROW>
+                                              <ROW ROW="1">
+                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="org.netbeans.modules.dbschema.ColumnElement-1808756514">
+                                                  <declaringTable>
+                                                    <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement1354916879"/>
+                                                  </declaringTable>
+                                                  <impl>
+                                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.ColumnElementImpl21044549">
+                                                      <element>
+                                                        <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement-1808756514"/>
+                                                      </element>
+                                                      <_type>91</_type>
+                                                      <_isNullable>false</_isNullable>
+                                                      <_length>
+                                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer10#4">
+                                                          <value>10</value>
+                                                        </OBJECT>
+                                                      </_length>
+                                                      <_isAutoIncrement>false</_isAutoIncrement>
+                                                      <_name>
+                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier32030856">
+                                                          <name>fecha</name>
+                                                        </OBJECT>
+                                                      </_name>
+                                                      <_scale>
+                                                        <OBJECT/>
+                                                      </_scale>
+                                                      <_precision>
+                                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer10#5">
+                                                          <value>10</value>
+                                                        </OBJECT>
+                                                      </_precision>
+                                                    </OBJECT>
+                                                  </impl>
+                                                </OBJECT>
+                                              </ROW>
+                                              <ROW ROW="2">
+                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="org.netbeans.modules.dbschema.ColumnElement-1797537045">
+                                                  <declaringTable>
+                                                    <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement1354916879"/>
+                                                  </declaringTable>
+                                                  <impl>
+                                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.ColumnElementImpl28851294">
+                                                      <element>
+                                                        <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement-1797537045"/>
+                                                      </element>
+                                                      <_type>12</_type>
+                                                      <_isNullable>false</_isNullable>
+                                                      <_length>
+                                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer255#6">
+                                                          <value>255</value>
+                                                        </OBJECT>
+                                                      </_length>
+                                                      <_isAutoIncrement>false</_isAutoIncrement>
+                                                      <_name>
+                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier8610317">
+                                                          <name>rival</name>
+                                                        </OBJECT>
+                                                      </_name>
+                                                      <_scale>
+                                                        <OBJECT/>
+                                                      </_scale>
+                                                      <_precision>
+                                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer255#7">
+                                                          <value>255</value>
+                                                        </OBJECT>
+                                                      </_precision>
+                                                    </OBJECT>
+                                                  </impl>
+                                                </OBJECT>
+                                              </ROW>
+                                            </ARRAY>
+                                          </_elms>
+                                          <_template>
+                                            <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                            </ARRAY>
+                                          </_template>
+                                          <owner>
+                                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.UniqueKeyElementImpl1439630"/>
+                                          </owner>
+                                        </OBJECT>
+                                      </columns>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier26902333">
+                                          <name>PRIMARY</name>
+                                        </OBJECT>
+                                      </_name>
+                                    </OBJECT>
+                                  </impl>
+                                  <_associatedIndex>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.IndexElement" ID="org.netbeans.modules.dbschema.IndexElement-1667264765">
+                                      <declaringTable>
+                                        <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement1354916879"/>
+                                      </declaringTable>
+                                      <impl>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.IndexElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.IndexElementImpl1551821">
+                                          <element>
+                                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.IndexElement-1667264765"/>
+                                          </element>
+                                          <tei>
+                                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl19084206"/>
+                                          </tei>
+                                          <columns>
+                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection30072551">
+                                              <_elms>
+                                                <ARRAY SIZE="3" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                                  <ROW ROW="0">
+                                                    <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement1684104"/>
+                                                  </ROW>
+                                                  <ROW ROW="1">
+                                                    <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement-1808756514"/>
+                                                  </ROW>
+                                                  <ROW ROW="2">
+                                                    <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement-1797537045"/>
+                                                  </ROW>
+                                                </ARRAY>
+                                              </_elms>
+                                              <_template>
+                                                <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                                </ARRAY>
+                                              </_template>
+                                              <owner>
+                                                <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl19084206"/>
+                                              </owner>
+                                            </OBJECT>
+                                          </columns>
+                                          <_name>
+                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier9671611">
+                                              <name>PRIMARY</name>
+                                            </OBJECT>
+                                          </_name>
+                                          <_unique>true</_unique>
+                                        </OBJECT>
+                                      </impl>
+                                    </OBJECT>
+                                  </_associatedIndex>
+                                </OBJECT>
+                              </ROW>
+                            </ARRAY>
+                          </_elms>
+                          <_template>
+                            <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.KeyElement">
+                            </ARRAY>
+                          </_template>
+                          <owner>
+                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl19084206"/>
+                          </owner>
+                        </OBJECT>
+                      </keys>
+                      <indexes>
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection32924713">
                           <_elms>
                             <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.IndexElement">
                               <ROW ROW="0">
@@ -567,30 +747,21 @@
                             </ARRAY>
                           </_template>
                           <owner>
-                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl27923918"/>
+                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl19084206"/>
                           </owner>
                         </OBJECT>
                       </indexes>
                       <columns>
-                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection4862812">
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="org.netbeans.modules.dbschema.jdbcimpl.DBElementsCollection1537233">
                           <_elms>
                             <ARRAY SIZE="4" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
                               <ROW ROW="0">
-                                <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement-1808756514"/>
-                              </ROW>
-                              <ROW ROW="1">
-                                <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement1684104"/>
-                              </ROW>
-                              <ROW ROW="2">
-                                <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement-1797537045"/>
-                              </ROW>
-                              <ROW ROW="3">
                                 <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="org.netbeans.modules.dbschema.ColumnElement1376208286">
                                   <declaringTable>
                                     <OBJECT REFERENCE="org.netbeans.modules.dbschema.TableElement1354916879"/>
                                   </declaringTable>
                                   <impl>
-                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.ColumnElementImpl16527936">
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="org.netbeans.modules.dbschema.jdbcimpl.ColumnElementImpl13109099">
                                       <element>
                                         <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement1376208286"/>
                                       </element>
@@ -603,7 +774,7 @@
                                       </_length>
                                       <_isAutoIncrement>false</_isAutoIncrement>
                                       <_name>
-                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier21446566">
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier6234887">
                                           <name>victoria</name>
                                         </OBJECT>
                                       </_name>
@@ -619,6 +790,15 @@
                                   </impl>
                                 </OBJECT>
                               </ROW>
+                              <ROW ROW="1">
+                                <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement1684104"/>
+                              </ROW>
+                              <ROW ROW="2">
+                                <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement-1808756514"/>
+                              </ROW>
+                              <ROW ROW="3">
+                                <OBJECT REFERENCE="org.netbeans.modules.dbschema.ColumnElement-1797537045"/>
+                              </ROW>
                             </ARRAY>
                           </_elms>
                           <_template>
@@ -626,12 +806,12 @@
                             </ARRAY>
                           </_template>
                           <owner>
-                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl27923918"/>
+                            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.TableElementImpl19084206"/>
                           </owner>
                         </OBJECT>
                       </columns>
                       <_name>
-                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier10730587">
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier32810729">
                           <name>peleas</name>
                         </OBJECT>
                       </_name>
@@ -647,17 +827,17 @@
             </ARRAY>
           </_template>
           <owner>
-            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.SchemaElementImpl17275557"/>
+            <OBJECT REFERENCE="org.netbeans.modules.dbschema.jdbcimpl.SchemaElementImpl12544598"/>
           </owner>
         </OBJECT>
       </tables>
       <_schema>
-        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier27468204">
+        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier16394424">
           <name></name>
         </OBJECT>
       </_schema>
       <_catalog>
-        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier16231487">
+        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="org.netbeans.modules.dbschema.DBIdentifier25657325">
           <name>bruto</name>
         </OBJECT>
       </_catalog>

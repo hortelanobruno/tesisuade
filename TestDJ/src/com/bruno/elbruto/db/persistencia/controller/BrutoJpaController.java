@@ -57,18 +57,16 @@ public class BrutoJpaController {
         try {
             Query q = em.createQuery("select object(o) from Bruto as o where (o.nivel BETWEEN  :num1 and :num2) and o.nombre <> :nom").setParameter("num1", bruto.getNivel() - 2).setParameter("num2", bruto.getNivel()).setParameter("nom", bruto.getNombre());
             if (!true) {
-                q.setMaxResults(cant);
+                q.setMaxResults(cant+3);
                 q.setFirstResult(-1);
             }
             LinkedList<Bruto> rivales = new LinkedList<Bruto>(q.getResultList());
-            if (cant < 3) {
-                q = em.createQuery("select object(o) from Pelea as o where o.peleaPK.fecha = :f and o.peleaPK.nombre = :b").setParameter("f", new Date()).setParameter("b", bruto.getNombre());
-                List<Pelea> peleas = q.getResultList();
-                for (Pelea pelea : peleas) {
-                    Bruto br = findBruto(pelea.getPeleaPK().getRival());
-                    if (rivales.contains(br)) {
-                        rivales.remove(br);
-                    }
+            q = em.createQuery("select object(o) from Pelea as o where o.peleaPK.fecha = :f and o.peleaPK.nombre = :b").setParameter("f", new Date()).setParameter("b", bruto.getNombre());
+            List<Pelea> peleas = q.getResultList();
+            for (Pelea pelea : peleas) {
+                Bruto br = findBruto(pelea.getPeleaPK().getRival());
+                if (rivales.contains(br)) {
+                    rivales.remove(br);
                 }
             }
             return rivales;
