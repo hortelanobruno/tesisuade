@@ -29,6 +29,15 @@ public class BrutoJpaController {
     }
     private EntityManagerFactory emf = null;
 
+    public Bruto findAncestro() {
+        EntityManager em = getEntityManager();
+        try {
+            return em.find(Bruto.class, "brunoli");
+        } finally {
+            em.close();
+        }
+    }
+
     public List<Bruto> findBrutosPropietarios() {
         EntityManager em = getEntityManager();
         try {
@@ -48,12 +57,12 @@ public class BrutoJpaController {
         try {
             Query q = em.createQuery("select object(o) from Bruto as o where (o.nivel BETWEEN  :num1 and :num2) and o.nombre <> :nom").setParameter("num1", bruto.getNivel() - 2).setParameter("num2", bruto.getNivel()).setParameter("nom", bruto.getNombre());
             if (!true) {
-                q.setMaxResults(3);
+                q.setMaxResults(cant);
                 q.setFirstResult(-1);
             }
             LinkedList<Bruto> rivales = new LinkedList<Bruto>(q.getResultList());
             if (cant < 3) {
-                q = em.createQuery("select object(o) from Pelea as o where o.peleaPK.fecha = :f and o.peleaPK.nombre = :b").setParameter("f", new Date()).setParameter("b", bruto);
+                q = em.createQuery("select object(o) from Pelea as o where o.peleaPK.fecha = :f and o.peleaPK.nombre = :b").setParameter("f", new Date()).setParameter("b", bruto.getNombre());
                 List<Pelea> peleas = q.getResultList();
                 for (Pelea pelea : peleas) {
                     Bruto br = findBruto(pelea.getPeleaPK().getRival());
