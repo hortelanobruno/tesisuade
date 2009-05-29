@@ -33,7 +33,7 @@ public class SimpleWebBrowser extends JPanel {
         super(new BorderLayout());
         this.brutoManager = brutoManager;
         JPanel webBrowserPanel = new JPanel(new BorderLayout());
-        webBrowserPanel.setBorder(BorderFactory.createTitledBorder("Native Web Browser component"));
+        webBrowserPanel.setBorder(BorderFactory.createTitledBorder("elbruto.es Web Browser"));
         webBrowser = new JWebBrowser(brutoManager);
         brutoManager.setWebBrowser(this);
         webBrowserPanel.add(webBrowser, BorderLayout.CENTER);
