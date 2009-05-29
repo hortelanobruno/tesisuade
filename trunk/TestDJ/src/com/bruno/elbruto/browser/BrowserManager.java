@@ -20,18 +20,7 @@ public class BrowserManager {
     private SimpleWebBrowser simpleWebBrowser;
 
     public BrowserManager(ElBrutoManager brutoManager) {
-//        try {
-            initBrowser(brutoManager);
-//            Thread.sleep(5000);
-//            SwingUtilities.invokeLater(new Runnable() {
-//
-//                public void run() {
-//                    System.out.println(simpleWebBrowser.getWebBrowser().getResourceLocation());
-//                }
-//            });
-//        } catch (InterruptedException ex) {
-//            Logger.getLogger(BrowserManager.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        initBrowser(brutoManager);
     }
 
     public void initBrowser(ElBrutoManager brutoManager) {
@@ -41,7 +30,7 @@ public class BrowserManager {
         SwingUtilities.invokeLater(new Runnable() {
 
             public void run() {
-                JFrame frame = new JFrame("DJ Native Swing Test");
+                JFrame frame = new JFrame("elbruto.es");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.getContentPane().add(simpleWebBrowser, BorderLayout.CENTER);
                 //frame.setSize(800, 600);
