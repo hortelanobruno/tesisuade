@@ -1,0 +1,208 @@
+2009-05-29 09:25:47,936 ERROR Error al crear una pelea en la base
+com.bruno.elbruto.db.persistencia.controller.exceptions.PreexistingEntityException: Pelea com.bruno.elbruto.db.persistencia.entities.Pelea[peleaPK=com.bruno.elbruto.db.persistencia.entities.PeleaPK[fecha=Fri May 29 09:25:47 ART 2009, nombre=vv5ea, rival=camiloo]] already exists.
+	at com.bruno.elbruto.db.persistencia.controller.PeleaJpaController.create(PeleaJpaController.java:62)
+	at com.bruno.elbruto.db.DBManager.create(DBManager.java:43)
+	at com.bruno.elbruto.manager.ElBrutoManager.iniciarModoCrearCuentas(ElBrutoManager.java:139)
+	at com.bruno.elbruto.manager.ElBrutoManager.init(ElBrutoManager.java:40)
+	at com.bruno.elbruto.RunClass.main(RunClass.java:19)
+Caused by: javax.persistence.EntityExistsException: 
+Exception Description: Cannot persist detached object [com.bruno.elbruto.db.persistencia.entities.Pelea[peleaPK=com.bruno.elbruto.db.persistencia.entities.PeleaPK[fecha=Fri May 29 09:25:47 ART 2009, nombre=vv5ea, rival=camiloo]]]. 
+Class> com.bruno.elbruto.db.persistencia.entities.Pelea Primary Key> [vv5ea, 2009-05-29, camiloo]
+	at oracle.toplink.essentials.internal.ejb.cmp3.base.EntityManagerImpl.persist(EntityManagerImpl.java:208)
+	at com.bruno.elbruto.db.persistencia.controller.PeleaJpaController.create(PeleaJpaController.java:58)
+	... 4 more
+Caused by: Exception [TOPLINK-7231] (Oracle TopLink Essentials - 2.0.1 (Build b09d-fcs (12/06/2007))): oracle.toplink.essentials.exceptions.ValidationException
+Exception Description: Cannot persist detached object [com.bruno.elbruto.db.persistencia.entities.Pelea[peleaPK=com.bruno.elbruto.db.persistencia.entities.PeleaPK[fecha=Fri May 29 09:25:47 ART 2009, nombre=vv5ea, rival=camiloo]]]. 
+Class> com.bruno.elbruto.db.persistencia.entities.Pelea Primary Key> [vv5ea, 2009-05-29, camiloo]
+	at oracle.toplink.essentials.exceptions.ValidationException.cannotPersistExistingObject(ValidationException.java:2171)
+	at oracle.toplink.essentials.internal.sessions.UnitOfWorkImpl.registerNotRegisteredNewObjectForPersist(UnitOfWorkImpl.java:3251)
+	at oracle.toplink.essentials.internal.ejb.cmp3.base.RepeatableWriteUnitOfWork.registerNotRegisteredNewObjectForPersist(RepeatableWriteUnitOfWork.java:339)
+	at oracle.toplink.essentials.internal.sessions.UnitOfWorkImpl.registerNewObjectForPersist(UnitOfWorkImpl.java:3220)
+	at oracle.toplink.essentials.internal.ejb.cmp3.base.EntityManagerImpl.persist(EntityManagerImpl.java:205)
+	... 5 more
+2009-05-29 09:26:20,903 ERROR Error al crear una pelea en la base
+com.bruno.elbruto.db.persistencia.controller.exceptions.PreexistingEntityException: Pelea com.bruno.elbruto.db.persistencia.entities.Pelea[peleaPK=com.bruno.elbruto.db.persistencia.entities.PeleaPK[fecha=Fri May 29 09:26:20 ART 2009, nombre=vv5ea, rival=camiloo]] already exists.
+	at com.bruno.elbruto.db.persistencia.controller.PeleaJpaController.create(PeleaJpaController.java:62)
+	at com.bruno.elbruto.db.DBManager.create(DBManager.java:43)
+	at com.bruno.elbruto.manager.ElBrutoManager.iniciarModoCrearCuentas(ElBrutoManager.java:139)
+	at com.bruno.elbruto.manager.ElBrutoManager.init(ElBrutoManager.java:40)
+	at com.bruno.elbruto.RunClass.main(RunClass.java:19)
+Caused by: javax.persistence.EntityExistsException: 
+Exception Description: Cannot persist detached object [com.bruno.elbruto.db.persistencia.entities.Pelea[peleaPK=com.bruno.elbruto.db.persistencia.entities.PeleaPK[fecha=Fri May 29 09:26:20 ART 2009, nombre=vv5ea, rival=camiloo]]]. 
+Class> com.bruno.elbruto.db.persistencia.entities.Pelea Primary Key> [vv5ea, 2009-05-29, camiloo]
+	at oracle.toplink.essentials.internal.ejb.cmp3.base.EntityManagerImpl.persist(EntityManagerImpl.java:208)
+	at com.bruno.elbruto.db.persistencia.controller.PeleaJpaController.create(PeleaJpaController.java:58)
+	... 4 more
+Caused by: Exception [TOPLINK-7231] (Oracle TopLink Essentials - 2.0.1 (Build b09d-fcs (12/06/2007))): oracle.toplink.essentials.exceptions.ValidationException
+Exception Description: Cannot persist detached object [com.bruno.elbruto.db.persistencia.entities.Pelea[peleaPK=com.bruno.elbruto.db.persistencia.entities.PeleaPK[fecha=Fri May 29 09:26:20 ART 2009, nombre=vv5ea, rival=camiloo]]]. 
+Class> com.bruno.elbruto.db.persistencia.entities.Pelea Primary Key> [vv5ea, 2009-05-29, camiloo]
+	at oracle.toplink.essentials.exceptions.ValidationException.cannotPersistExistingObject(ValidationException.java:2171)
+	at oracle.toplink.essentials.internal.sessions.UnitOfWorkImpl.registerNotRegisteredNewObjectForPersist(UnitOfWorkImpl.java:3251)
+	at oracle.toplink.essentials.internal.ejb.cmp3.base.RepeatableWriteUnitOfWork.registerNotRegisteredNewObjectForPersist(RepeatableWriteUnitOfWork.java:339)
+	at oracle.toplink.essentials.internal.sessions.UnitOfWorkImpl.registerNewObjectForPersist(UnitOfWorkImpl.java:3220)
+	at oracle.toplink.essentials.internal.ejb.cmp3.base.EntityManagerImpl.persist(EntityManagerImpl.java:205)
+	... 5 more
+2009-05-29 09:33:58,169 ERROR Error al crear una pelea en la base
+com.bruno.elbruto.db.persistencia.controller.exceptions.PreexistingEntityException: Pelea com.bruno.elbruto.db.persistencia.entities.Pelea[peleaPK=com.bruno.elbruto.db.persistencia.entities.PeleaPK[fecha=Fri May 29 09:33:58 ART 2009, nombre=jilzh, rival=aden]] already exists.
+	at com.bruno.elbruto.db.persistencia.controller.PeleaJpaController.create(PeleaJpaController.java:62)
+	at com.bruno.elbruto.db.DBManager.create(DBManager.java:43)
+	at com.bruno.elbruto.manager.ElBrutoManager.iniciarModoCrearCuentas(ElBrutoManager.java:139)
+	at com.bruno.elbruto.manager.ElBrutoManager.init(ElBrutoManager.java:40)
+	at com.bruno.elbruto.RunClass.main(RunClass.java:19)
+Caused by: javax.persistence.EntityExistsException: 
+Exception Description: Cannot persist detached object [com.bruno.elbruto.db.persistencia.entities.Pelea[peleaPK=com.bruno.elbruto.db.persistencia.entities.PeleaPK[fecha=Fri May 29 09:33:58 ART 2009, nombre=jilzh, rival=aden]]]. 
+Class> com.bruno.elbruto.db.persistencia.entities.Pelea Primary Key> [jilzh, 2009-05-29, aden]
+	at oracle.toplink.essentials.internal.ejb.cmp3.base.EntityManagerImpl.persist(EntityManagerImpl.java:208)
+	at com.bruno.elbruto.db.persistencia.controller.PeleaJpaController.create(PeleaJpaController.java:58)
+	... 4 more
+Caused by: Exception [TOPLINK-7231] (Oracle TopLink Essentials - 2.0.1 (Build b09d-fcs (12/06/2007))): oracle.toplink.essentials.exceptions.ValidationException
+Exception Description: Cannot persist detached object [com.bruno.elbruto.db.persistencia.entities.Pelea[peleaPK=com.bruno.elbruto.db.persistencia.entities.PeleaPK[fecha=Fri May 29 09:33:58 ART 2009, nombre=jilzh, rival=aden]]]. 
+Class> com.bruno.elbruto.db.persistencia.entities.Pelea Primary Key> [jilzh, 2009-05-29, aden]
+	at oracle.toplink.essentials.exceptions.ValidationException.cannotPersistExistingObject(ValidationException.java:2171)
+	at oracle.toplink.essentials.internal.sessions.UnitOfWorkImpl.registerNotRegisteredNewObjectForPersist(UnitOfWorkImpl.java:3251)
+	at oracle.toplink.essentials.internal.ejb.cmp3.base.RepeatableWriteUnitOfWork.registerNotRegisteredNewObjectForPersist(RepeatableWriteUnitOfWork.java:339)
+	at oracle.toplink.essentials.internal.sessions.UnitOfWorkImpl.registerNewObjectForPersist(UnitOfWorkImpl.java:3220)
+	at oracle.toplink.essentials.internal.ejb.cmp3.base.EntityManagerImpl.persist(EntityManagerImpl.java:205)
+	... 5 more
+2009-05-29 09:47:02,380 ERROR Error al crear una pelea en la base
+com.bruno.elbruto.db.persistencia.controller.exceptions.PreexistingEntityException: Pelea com.bruno.elbruto.db.persistencia.entities.Pelea[peleaPK=com.bruno.elbruto.db.persistencia.entities.PeleaPK[fecha=Fri May 29 09:47:02 ART 2009, nombre=vv5ea, rival=camiloo]] already exists.
+	at com.bruno.elbruto.db.persistencia.controller.PeleaJpaController.create(PeleaJpaController.java:62)
+	at com.bruno.elbruto.db.DBManager.create(DBManager.java:43)
+	at com.bruno.elbruto.manager.ElBrutoManager.prueba(ElBrutoManager.java:128)
+	at com.bruno.elbruto.manager.ElBrutoManager.init(ElBrutoManager.java:41)
+	at com.bruno.elbruto.RunClass.main(RunClass.java:19)
+Caused by: javax.persistence.RollbackException: Exception [TOPLINK-4002] (Oracle TopLink Essentials - 2.0.1 (Build b09d-fcs (12/06/2007))): oracle.toplink.essentials.exceptions.DatabaseException
+Internal Exception: com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException: Duplicate entry 'vv5ea-2009-05-29-camiloo' for key 1
+Error Code: 1062
+Call: INSERT INTO peleas (victoria, nombre, fecha, rival) VALUES (?, ?, ?, ?)
+	bind => [false, vv5ea, 2009-05-29, camiloo]
+Query: InsertObjectQuery(com.bruno.elbruto.db.persistencia.entities.Pelea[peleaPK=com.bruno.elbruto.db.persistencia.entities.PeleaPK[fecha=Fri May 29 09:47:02 ART 2009, nombre=vv5ea, rival=camiloo]])
+	at oracle.toplink.essentials.internal.ejb.cmp3.transaction.base.EntityTransactionImpl.commit(EntityTransactionImpl.java:120)
+	at oracle.toplink.essentials.internal.ejb.cmp3.transaction.EntityTransactionImpl.commit(EntityTransactionImpl.java:60)
+	at com.bruno.elbruto.db.persistencia.controller.PeleaJpaController.create(PeleaJpaController.java:59)
+	... 4 more
+Caused by: Exception [TOPLINK-4002] (Oracle TopLink Essentials - 2.0.1 (Build b09d-fcs (12/06/2007))): oracle.toplink.essentials.exceptions.DatabaseException
+Internal Exception: com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException: Duplicate entry 'vv5ea-2009-05-29-camiloo' for key 1
+Error Code: 1062
+Call: INSERT INTO peleas (victoria, nombre, fecha, rival) VALUES (?, ?, ?, ?)
+	bind => [false, vv5ea, 2009-05-29, camiloo]
+Query: InsertObjectQuery(com.bruno.elbruto.db.persistencia.entities.Pelea[peleaPK=com.bruno.elbruto.db.persistencia.entities.PeleaPK[fecha=Fri May 29 09:47:02 ART 2009, nombre=vv5ea, rival=camiloo]])
+	at oracle.toplink.essentials.exceptions.DatabaseException.sqlException(DatabaseException.java:311)
+	at oracle.toplink.essentials.internal.databaseaccess.DatabaseAccessor.executeDirectNoSelect(DatabaseAccessor.java:654)
+	at oracle.toplink.essentials.internal.databaseaccess.DatabaseAccessor.executeNoSelect(DatabaseAccessor.java:703)
+	at oracle.toplink.essentials.internal.databaseaccess.DatabaseAccessor.basicExecuteCall(DatabaseAccessor.java:492)
+	at oracle.toplink.essentials.internal.databaseaccess.DatabaseAccessor.executeCall(DatabaseAccessor.java:452)
+	at oracle.toplink.essentials.internal.sessions.AbstractSession.executeCall(AbstractSession.java:690)
+	at oracle.toplink.essentials.internal.queryframework.DatasourceCallQueryMechanism.executeCall(DatasourceCallQueryMechanism.java:228)
+	at oracle.toplink.essentials.internal.queryframework.DatasourceCallQueryMechanism.executeCall(DatasourceCallQueryMechanism.java:214)
+	at oracle.toplink.essentials.internal.queryframework.DatasourceCallQueryMechanism.insertObject(DatasourceCallQueryMechanism.java:346)
+	at oracle.toplink.essentials.internal.queryframework.StatementQueryMechanism.insertObject(StatementQueryMechanism.java:191)
+	at oracle.toplink.essentials.internal.queryframework.StatementQueryMechanism.insertObject(StatementQueryMechanism.java:205)
+	at oracle.toplink.essentials.internal.queryframework.DatabaseQueryMechanism.insertObjectForWrite(DatabaseQueryMechanism.java:564)
+	at oracle.toplink.essentials.queryframework.InsertObjectQuery.executeCommit(InsertObjectQuery.java:89)
+	at oracle.toplink.essentials.internal.queryframework.DatabaseQueryMechanism.performUserDefinedWrite(DatabaseQueryMechanism.java:750)
+	at oracle.toplink.essentials.internal.queryframework.DatabaseQueryMechanism.performUserDefinedInsert(DatabaseQueryMechanism.java:714)
+	at oracle.toplink.essentials.internal.queryframework.DatabaseQueryMechanism.insertObjectForWriteWithChangeSet(DatabaseQueryMechanism.java:602)
+	at oracle.toplink.essentials.queryframework.WriteObjectQuery.executeCommitWithChangeSet(WriteObjectQuery.java:162)
+	at oracle.toplink.essentials.internal.queryframework.DatabaseQueryMechanism.executeWriteWithChangeSet(DatabaseQueryMechanism.java:390)
+	at oracle.toplink.essentials.queryframework.WriteObjectQuery.executeDatabaseQuery(WriteObjectQuery.java:109)
+	at oracle.toplink.essentials.queryframework.DatabaseQuery.execute(DatabaseQuery.java:628)
+	at oracle.toplink.essentials.queryframework.DatabaseQuery.executeInUnitOfWork(DatabaseQuery.java:555)
+	at oracle.toplink.essentials.queryframework.ObjectLevelModifyQuery.executeInUnitOfWorkObjectLevelModifyQuery(ObjectLevelModifyQuery.java:138)
+	at oracle.toplink.essentials.queryframework.ObjectLevelModifyQuery.executeInUnitOfWork(ObjectLevelModifyQuery.java:110)
+	at oracle.toplink.essentials.internal.sessions.UnitOfWorkImpl.internalExecuteQuery(UnitOfWorkImpl.java:2233)
+	at oracle.toplink.essentials.internal.sessions.AbstractSession.executeQuery(AbstractSession.java:952)
+	at oracle.toplink.essentials.internal.sessions.AbstractSession.executeQuery(AbstractSession.java:909)
+	at oracle.toplink.essentials.internal.sessions.CommitManager.commitNewObjectsForClassWithChangeSet(CommitManager.java:269)
+	at oracle.toplink.essentials.internal.sessions.CommitManager.commitAllObjectsWithChangeSet(CommitManager.java:190)
+	at oracle.toplink.essentials.internal.sessions.AbstractSession.writeAllObjectsWithChangeSet(AbstractSession.java:2657)
+	at oracle.toplink.essentials.internal.sessions.UnitOfWorkImpl.commitToDatabase(UnitOfWorkImpl.java:1044)
+	at oracle.toplink.essentials.internal.ejb.cmp3.base.RepeatableWriteUnitOfWork.commitToDatabase(RepeatableWriteUnitOfWork.java:403)
+	at oracle.toplink.essentials.internal.sessions.UnitOfWorkImpl.commitToDatabaseWithChangeSet(UnitOfWorkImpl.java:1126)
+	at oracle.toplink.essentials.internal.ejb.cmp3.base.RepeatableWriteUnitOfWork.commitRootUnitOfWork(RepeatableWriteUnitOfWork.java:107)
+	at oracle.toplink.essentials.internal.sessions.UnitOfWorkImpl.commitAndResume(UnitOfWorkImpl.java:856)
+	at oracle.toplink.essentials.internal.ejb.cmp3.transaction.base.EntityTransactionImpl.commit(EntityTransactionImpl.java:102)
+	... 6 more
+Caused by: com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException: Duplicate entry 'vv5ea-2009-05-29-camiloo' for key 1
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:931)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2985)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1631)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1723)
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3283)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1332)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1604)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1519)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1504)
+	at oracle.toplink.essentials.internal.databaseaccess.DatabaseAccessor.executeDirectNoSelect(DatabaseAccessor.java:647)
+	... 39 more
+2009-05-29 09:53:01,266 ERROR Error al crear una pelea en la base
+com.bruno.elbruto.db.persistencia.controller.exceptions.PreexistingEntityException: Pelea com.bruno.elbruto.db.persistencia.entities.Pelea[peleaPK=com.bruno.elbruto.db.persistencia.entities.PeleaPK[fecha=Fri May 29 09:53:01 ART 2009, nombre=jilzh, rival=aden]] already exists.
+	at com.bruno.elbruto.db.persistencia.controller.PeleaJpaController.create(PeleaJpaController.java:62)
+	at com.bruno.elbruto.db.DBManager.create(DBManager.java:58)
+	at com.bruno.elbruto.manager.ElBrutoManager.prueba(ElBrutoManager.java:128)
+	at com.bruno.elbruto.manager.ElBrutoManager.init(ElBrutoManager.java:41)
+	at com.bruno.elbruto.RunClass.main(RunClass.java:19)
+Caused by: javax.persistence.RollbackException: Exception [TOPLINK-4002] (Oracle TopLink Essentials - 2.0.1 (Build b09d-fcs (12/06/2007))): oracle.toplink.essentials.exceptions.DatabaseException
+Internal Exception: com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException: Duplicate entry 'jilzh-2009-05-29-aden' for key 1
+Error Code: 1062
+Call: INSERT INTO peleas (victoria, nombre, fecha, rival) VALUES (?, ?, ?, ?)
+	bind => [true, jilzh, 2009-05-29, aden]
+Query: InsertObjectQuery(com.bruno.elbruto.db.persistencia.entities.Pelea[peleaPK=com.bruno.elbruto.db.persistencia.entities.PeleaPK[fecha=Fri May 29 09:53:01 ART 2009, nombre=jilzh, rival=aden]])
+	at oracle.toplink.essentials.internal.ejb.cmp3.transaction.base.EntityTransactionImpl.commit(EntityTransactionImpl.java:120)
+	at oracle.toplink.essentials.internal.ejb.cmp3.transaction.EntityTransactionImpl.commit(EntityTransactionImpl.java:60)
+	at com.bruno.elbruto.db.persistencia.controller.PeleaJpaController.create(PeleaJpaController.java:59)
+	... 4 more
+Caused by: Exception [TOPLINK-4002] (Oracle TopLink Essentials - 2.0.1 (Build b09d-fcs (12/06/2007))): oracle.toplink.essentials.exceptions.DatabaseException
+Internal Exception: com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException: Duplicate entry 'jilzh-2009-05-29-aden' for key 1
+Error Code: 1062
+Call: INSERT INTO peleas (victoria, nombre, fecha, rival) VALUES (?, ?, ?, ?)
+	bind => [true, jilzh, 2009-05-29, aden]
+Query: InsertObjectQuery(com.bruno.elbruto.db.persistencia.entities.Pelea[peleaPK=com.bruno.elbruto.db.persistencia.entities.PeleaPK[fecha=Fri May 29 09:53:01 ART 2009, nombre=jilzh, rival=aden]])
+	at oracle.toplink.essentials.exceptions.DatabaseException.sqlException(DatabaseException.java:311)
+	at oracle.toplink.essentials.internal.databaseaccess.DatabaseAccessor.executeDirectNoSelect(DatabaseAccessor.java:654)
+	at oracle.toplink.essentials.internal.databaseaccess.DatabaseAccessor.executeNoSelect(DatabaseAccessor.java:703)
+	at oracle.toplink.essentials.internal.databaseaccess.DatabaseAccessor.basicExecuteCall(DatabaseAccessor.java:492)
+	at oracle.toplink.essentials.internal.databaseaccess.DatabaseAccessor.executeCall(DatabaseAccessor.java:452)
+	at oracle.toplink.essentials.internal.sessions.AbstractSession.executeCall(AbstractSession.java:690)
+	at oracle.toplink.essentials.internal.queryframework.DatasourceCallQueryMechanism.executeCall(DatasourceCallQueryMechanism.java:228)
+	at oracle.toplink.essentials.internal.queryframework.DatasourceCallQueryMechanism.executeCall(DatasourceCallQueryMechanism.java:214)
+	at oracle.toplink.essentials.internal.queryframework.DatasourceCallQueryMechanism.insertObject(DatasourceCallQueryMechanism.java:346)
+	at oracle.toplink.essentials.internal.queryframework.StatementQueryMechanism.insertObject(StatementQueryMechanism.java:191)
+	at oracle.toplink.essentials.internal.queryframework.StatementQueryMechanism.insertObject(StatementQueryMechanism.java:205)
+	at oracle.toplink.essentials.internal.queryframework.DatabaseQueryMechanism.insertObjectForWrite(DatabaseQueryMechanism.java:564)
+	at oracle.toplink.essentials.queryframework.InsertObjectQuery.executeCommit(InsertObjectQuery.java:89)
+	at oracle.toplink.essentials.internal.queryframework.DatabaseQueryMechanism.performUserDefinedWrite(DatabaseQueryMechanism.java:750)
+	at oracle.toplink.essentials.internal.queryframework.DatabaseQueryMechanism.performUserDefinedInsert(DatabaseQueryMechanism.java:714)
+	at oracle.toplink.essentials.internal.queryframework.DatabaseQueryMechanism.insertObjectForWriteWithChangeSet(DatabaseQueryMechanism.java:602)
+	at oracle.toplink.essentials.queryframework.WriteObjectQuery.executeCommitWithChangeSet(WriteObjectQuery.java:162)
+	at oracle.toplink.essentials.internal.queryframework.DatabaseQueryMechanism.executeWriteWithChangeSet(DatabaseQueryMechanism.java:390)
+	at oracle.toplink.essentials.queryframework.WriteObjectQuery.executeDatabaseQuery(WriteObjectQuery.java:109)
+	at oracle.toplink.essentials.queryframework.DatabaseQuery.execute(DatabaseQuery.java:628)
+	at oracle.toplink.essentials.queryframework.DatabaseQuery.executeInUnitOfWork(DatabaseQuery.java:555)
+	at oracle.toplink.essentials.queryframework.ObjectLevelModifyQuery.executeInUnitOfWorkObjectLevelModifyQuery(ObjectLevelModifyQuery.java:138)
+	at oracle.toplink.essentials.queryframework.ObjectLevelModifyQuery.executeInUnitOfWork(ObjectLevelModifyQuery.java:110)
+	at oracle.toplink.essentials.internal.sessions.UnitOfWorkImpl.internalExecuteQuery(UnitOfWorkImpl.java:2233)
+	at oracle.toplink.essentials.internal.sessions.AbstractSession.executeQuery(AbstractSession.java:952)
+	at oracle.toplink.essentials.internal.sessions.AbstractSession.executeQuery(AbstractSession.java:909)
+	at oracle.toplink.essentials.internal.sessions.CommitManager.commitNewObjectsForClassWithChangeSet(CommitManager.java:269)
+	at oracle.toplink.essentials.internal.sessions.CommitManager.commitAllObjectsWithChangeSet(CommitManager.java:190)
+	at oracle.toplink.essentials.internal.sessions.AbstractSession.writeAllObjectsWithChangeSet(AbstractSession.java:2657)
+	at oracle.toplink.essentials.internal.sessions.UnitOfWorkImpl.commitToDatabase(UnitOfWorkImpl.java:1044)
+	at oracle.toplink.essentials.internal.ejb.cmp3.base.RepeatableWriteUnitOfWork.commitToDatabase(RepeatableWriteUnitOfWork.java:403)
+	at oracle.toplink.essentials.internal.sessions.UnitOfWorkImpl.commitToDatabaseWithChangeSet(UnitOfWorkImpl.java:1126)
+	at oracle.toplink.essentials.internal.ejb.cmp3.base.RepeatableWriteUnitOfWork.commitRootUnitOfWork(RepeatableWriteUnitOfWork.java:107)
+	at oracle.toplink.essentials.internal.sessions.UnitOfWorkImpl.commitAndResume(UnitOfWorkImpl.java:856)
+	at oracle.toplink.essentials.internal.ejb.cmp3.transaction.base.EntityTransactionImpl.commit(EntityTransactionImpl.java:102)
+	... 6 more
+Caused by: com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException: Duplicate entry 'jilzh-2009-05-29-aden' for key 1
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:931)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2985)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1631)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1723)
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3283)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1332)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1604)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1519)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1504)
+	at oracle.toplink.essentials.internal.databaseaccess.DatabaseAccessor.executeDirectNoSelect(DatabaseAccessor.java:647)
+	... 39 more

@@ -4,6 +4,7 @@
  */
 package com.bruno.elbruto.manager;
 
+import com.bruno.elbruto.browser.SimpleWebBrowser;
 import com.bruno.elbruto.util.MouseRobot;
 
 /**
@@ -14,18 +15,22 @@ public class BrutoAcciones {
 
     private boolean done = false;
     private MouseRobot robot;
+    private SimpleWebBrowser simpleWeb;
 
     public BrutoAcciones() {
         robot = new MouseRobot();
     }
 
+    public BrutoAcciones(SimpleWebBrowser simpleWeb) {
+        robot = new MouseRobot();
+        this.simpleWeb = simpleWeb;
+    }
+
     public synchronized void avisarDone() {
-        System.out.println("LLego DONE");
         done = true;
     }
 
     public void waitForDone() {
-        System.out.println("Entro waitForDone");
         done = false;
         while (!done) {
             try {
@@ -51,6 +56,7 @@ public class BrutoAcciones {
         //http://nestornbloq.elbruto.es/vs/kascorro
         robot.escribir(bruto.getNombre() + ".elbruto.es/vs/" + rival);
         robot.enter();
+        // simpleWeb.navigate(bruto.getNombre() + ".elbruto.es/vs/" + rival);
         waitForDone();//robot.delay(10000);
 //        robot.mover(1265, 100);
 //        robot.clickIzquierdo(3000);
@@ -64,7 +70,7 @@ public class BrutoAcciones {
 //        robot.delay(7000);
 //        robot.mover(650, 675);
 //        robot.clickIzquierdo();
-//        robot.delay(3000);
+        robot.delay(3000);
         robot.mover(1265, 690);
         robot.clickIzquierdo(3000);
         robot.mover(650, 610);
@@ -84,6 +90,7 @@ public class BrutoAcciones {
         robot.borrar();
         robot.escribir(bruto.getNombre() + ".elbruto.es/login");
         robot.enter();
+        //simpleWeb.navigate(bruto.getNombre() + ".elbruto.es/login");
         waitForDone();//robot.delay(15000);
 //        robot.mover(1265, 100);
 //        robot.clickIzquierdo(3000);
@@ -105,6 +112,7 @@ public class BrutoAcciones {
         robot.borrar();
         robot.escribir(bruto.getNombre() + ".elbruto.es/cellule");
         robot.enter();
+        //simpleWeb.navigate(bruto.getNombre() + ".elbruto.es/cellule");
         robot.delay(15000);
         robot.delay(1500);
         robot.mover(1265, 100);
@@ -131,12 +139,38 @@ public class BrutoAcciones {
         robot.borrar();
         robot.escribir(bruto.getNombre() + ".elbruto.es/cellule");
         robot.enter();
+//        simpleWeb.navigate(bruto.getNombre() + ".elbruto.es/cellule");
         waitForDone();//robot.delay(15000);
     }
 
-    public Bruto crearBruto(String nombre) {
+    public Bruto crearBruto(String nombre, Bruto ancestro) {
         //TODO
-        return null;
+        robot.delay(1500);
+        robot.mover(800, 78);
+        robot.clickIzquierdo();
+        robot.borrar();
+        robot.escribir(ancestro.getNombre() + ".elbruto.es");
+        robot.enter();
+        waitForDone();
+        robot.mover(1265, 100);
+        robot.clickIzquierdo(3000);
+        robot.mover(300, 370);
+        robot.clickIzquierdo();
+        robot.escribir(nombre);
+        robot.mover(300, 630);
+        robot.clickIzquierdo();
+        robot.delay(10000);
+        String url = simpleWeb.getUrl();
+        if (url.contains(nombre)) {
+            Bruto br = new Bruto();
+            br.setNombre(nombre);
+            br.setPassword("hortelano");
+            br.setNivel(1);
+            br.setPropietario(true);
+            return br;
+        } else {
+            return null;
+        }
     }
 
     private boolean verificarPeleasCompletadas() {
@@ -202,6 +236,7 @@ public class BrutoAcciones {
     }
 
     public void inscribirEnTorneo() {
+        //TODO CHE ACA HAY QUE VER XQ ME PARECE QUE CON /SUB TAMBIEN ANDA
         //637 455 y 638 548 y 638 411
         robot.delay(1500);
         robot.mover(1265, 690);

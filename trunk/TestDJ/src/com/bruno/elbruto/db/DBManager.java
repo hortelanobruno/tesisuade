@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -29,6 +31,19 @@ public class DBManager {
     public DBManager() {
         brutoJPA = new BrutoJpaController();
         peleaJPA = new PeleaJpaController();
+    }
+
+    public void create(Bruto bruto) {
+        try {
+            com.bruno.elbruto.db.persistencia.entities.Bruto br = new com.bruno.elbruto.db.persistencia.entities.Bruto();
+            br.setNivel(bruto.getNivel());
+            br.setNombre(bruto.getNombre());
+            br.setPassword(bruto.getPassword());
+            br.setPropietario(bruto.isPropietario());
+            brutoJPA.create(br);
+        } catch (PreexistingEntityException ex) {
+        } catch (Exception ex) {
+        }
     }
 
     public void create(Pelea pelea) {
@@ -61,6 +76,26 @@ public class DBManager {
         } catch (Exception ex) {
             LoggerClass.getInstance().error("Error al editar al bruto en la base", ex);
         }
+    }
+
+    public Bruto findAncestro() {
+        com.bruno.elbruto.db.persistencia.entities.Bruto br = brutoJPA.findAncestro();
+        Bruto bruto = new Bruto();
+        bruto.setNivel(br.getNivel());
+        bruto.setNombre(br.getNombre());
+        bruto.setPassword(br.getPassword());
+        bruto.setPropietario(br.getPropietario());
+        return bruto;
+    }
+
+    public Bruto findBruto(String string) {
+        com.bruno.elbruto.db.persistencia.entities.Bruto bruto = brutoJPA.findBruto(string);
+        Bruto br = new Bruto();
+        br.setNombre(bruto.getNombre());
+        br.setNivel(bruto.getNivel());
+        br.setPassword(bruto.getPassword());
+        br.setPropietario(bruto.getPropietario());
+        return br;
     }
 
     public List<Bruto> findBrutosPropietarios() {

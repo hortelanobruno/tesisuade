@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 
 import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
 import com.bruno.elbruto.browser.thread.GetResourceLocation;
+import com.bruno.elbruto.browser.thread.Navigate;
 import javax.swing.SwingUtilities;
 
 /**
@@ -60,13 +61,14 @@ public class SimpleWebBrowser extends JPanel {
         return get.getSourceCode();
     }
 
-    public String getUrl(){
+    public String getUrl() {
         GetResourceLocation get = new GetResourceLocation(webBrowser, this);
         SwingUtilities.invokeLater(get);
         return get.getResourceLocation();
     }
 
-    public void navigate(String url){
-        webBrowser.navigate(url);
+    public void navigate(String url) {
+        Navigate nav = new Navigate(webBrowser, this, url);
+        SwingUtilities.invokeLater(nav);
     }
 }
