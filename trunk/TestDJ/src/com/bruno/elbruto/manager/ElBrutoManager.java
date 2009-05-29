@@ -33,12 +33,11 @@ public class ElBrutoManager {
             Thread.sleep(5000);
         } catch (InterruptedException ex) {
         }
-//        LoggerClass.getInstance().info("Iniciando proceso de peleas");
-        // iniciarModoPeleas();
-//        LoggerClass.getInstance().info("Termino proceso de peleas");
+        LoggerClass.getInstance().info("Iniciando proceso de peleas");
+        iniciarModoPeleas();
+        LoggerClass.getInstance().info("Termino proceso de peleas");
         LoggerClass.getInstance().info("Iniciando proceso de creacion de nuevas cuentas");
-////        iniciarModoCrearCuentas();
-        prueba();
+        iniciarModoCrearCuentas();
         LoggerClass.getInstance().info("Termino proceso de creacion de nuevas cuentas");
     }
 
@@ -85,21 +84,7 @@ public class ElBrutoManager {
         return -1;
     }
 
-    private String generarNombreParaBruto() {
-        int cantChars = (int) ((Math.random() * 5)) + 4;
-        String str = new String("QAa0bcLdUK2eHfJgTP8XhiFj61DOklNm9nBoI5pGqYVrs3CtSuMZvwWx4yE7zR");
-        StringBuffer sb = new StringBuffer();
-        Random r = new Random();
-        int te = 0;
-        for (int i = 1; i <= cantChars; i++) {
-            te = r.nextInt(62);
-            sb.append(str.charAt(te));
-        }
-        System.out.println();
-        return sb.toString().toLowerCase();
-    }
-
-    public void prueba() {
+    public void soloPeleaCuandoSePicaYQuedoSinPelear() {
         Bruto bruto = dbManager.findBruto("jilzh");
         brutoAcciones.ponerPassword(bruto);
         //aca hay q ver cuantas peleas tengo, creo que siempre son 6
@@ -145,7 +130,7 @@ public class ElBrutoManager {
         for (int i = 0; i < 2; i++) {
             bruto = null;
             while (true) {
-                nombre = generarNombreParaBruto();
+                nombre = dbManager.randomBrutoName();
                 bruto = brutoAcciones.crearBruto(nombre, ancestro);
                 if (bruto != null) {
                     break;
@@ -155,10 +140,10 @@ public class ElBrutoManager {
             brutoAcciones.crearPassword(bruto);
             brutoAcciones.ponerPassword(bruto);
             //aca hay q ver cuantas peleas tengo, creo que siempre son 6
+            Pelea pelea;
+            Bruto rival;
             LinkedList<Bruto> rivales = obtenerRivalesPara(bruto, 6);
             for (int j = 0; j < 6; j++) {
-                Pelea pelea;
-                Bruto rival;
                 rival = rivales.poll();
                 int resultadoPelea;
                 while (true) {

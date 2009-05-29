@@ -5,6 +5,7 @@
 package com.bruno.elbruto.db;
 
 import com.bruno.elbruto.db.persistencia.controller.BrutoJpaController;
+import com.bruno.elbruto.db.persistencia.controller.NombreJpaController;
 import com.bruno.elbruto.db.persistencia.controller.PeleaJpaController;
 import com.bruno.elbruto.db.persistencia.controller.exceptions.NonexistentEntityException;
 import com.bruno.elbruto.db.persistencia.controller.exceptions.PreexistingEntityException;
@@ -16,8 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Random;
 
 /**
  *
@@ -27,10 +27,12 @@ public class DBManager {
 
     private BrutoJpaController brutoJPA;
     private PeleaJpaController peleaJPA;
+    private NombreJpaController nombreJPA;
 
     public DBManager() {
         brutoJPA = new BrutoJpaController();
         peleaJPA = new PeleaJpaController();
+        nombreJPA = new NombreJpaController();
     }
 
     public void create(Bruto bruto) {
@@ -123,5 +125,20 @@ public class DBManager {
             brs.add(br);
         }
         return brs;
+    }
+
+
+    public String randomBrutoName(){
+        String name = nombreJPA.random();
+        int cantChars = (int) ((Math.random() * 5));
+        String str = new String("1234567890");
+        StringBuffer sb = new StringBuffer();
+        Random r = new Random();
+        int te = 0;
+        for (int i = 1; i <= cantChars; i++) {
+            te = r.nextInt(10);
+            sb.append(str.charAt(te));
+        }
+        return (name+sb.toString()).toLowerCase();
     }
 }
