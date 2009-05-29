@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.bruno.elbruto.db.persistencia.controller;
 
 import com.bruno.elbruto.db.persistencia.controller.exceptions.NonexistentEntityException;
 import com.bruno.elbruto.db.persistencia.controller.exceptions.PreexistingEntityException;
 import com.bruno.elbruto.db.persistencia.entities.Bruto;
 import com.bruno.elbruto.db.persistencia.entities.Pelea;
+import com.bruno.elbruto.util.LoggerClass;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,6 +28,18 @@ public class BrutoJpaController {
         emf = Persistence.createEntityManagerFactory("TestDJPU");
     }
     private EntityManagerFactory emf = null;
+
+    public void aumentarVictoria(String nombre) {
+        try {
+            Bruto bruto = findBruto(nombre);
+            bruto.setVictorias(bruto.getVictorias() + 1);
+            edit(bruto);
+        } catch (NonexistentEntityException ex) {
+            LoggerClass.getInstance().error("Error al editar un bruto en la base");
+        } catch (Exception ex) {
+            LoggerClass.getInstance().error("Error al editar un bruto en la base");
+        }
+    }
 
     public Bruto findAncestro() {
         EntityManager em = getEntityManager();
@@ -55,9 +67,9 @@ public class BrutoJpaController {
     public LinkedList<Bruto> findRivales(com.bruno.elbruto.manager.Bruto bruto, int cant) {
         EntityManager em = getEntityManager();
         try {
-            Query q = em.createQuery("select object(o) from Bruto as o where (o.nivel BETWEEN  :num1 and :num2) and o.nombre <> :nom").setParameter("num1", bruto.getNivel() - 2).setParameter("num2", bruto.getNivel()).setParameter("nom", bruto.getNombre());
+            Query q = em.createQuery("select object(o) from Bruto as o where (o.nivel BETWEEN  :num1 and :num2) and o.nombre <> :nom ORDER BY o.victorias asc").setParameter("num1", bruto.getNivel() - 2).setParameter("num2", bruto.getNivel()).setParameter("nom", bruto.getNombre());
             if (!true) {
-                q.setMaxResults(cant+3);
+                q.setMaxResults(cant + 3);
                 q.setFirstResult(-1);
             }
             LinkedList<Bruto> rivales = new LinkedList<Bruto>(q.getResultList());
@@ -181,5 +193,4 @@ public class BrutoJpaController {
             em.close();
         }
     }
-
 }

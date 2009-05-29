@@ -10,7 +10,6 @@ import com.bruno.elbruto.util.LoggerClass;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
 /**
  *
@@ -127,7 +126,7 @@ public class ElBrutoManager {
         String nombre;
         Bruto bruto;
         Bruto ancestro = dbManager.findAncestro();
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 100; i++) {
             bruto = null;
             while (true) {
                 nombre = dbManager.randomBrutoName();
@@ -191,48 +190,50 @@ public class ElBrutoManager {
     }
 
     private void pelearModo1(Bruto bruto) {
-        //Ingreso el password si lo tiene
-        if (bruto.getPassword() != null) {
-            if (!bruto.getPassword().trim().isEmpty()) {
-                brutoAcciones.ponerPassword(bruto);
+        int cantPeleas = dbManager.findCantPeleas(bruto, new Date());
+        if (cantPeleas < 3) {
+            //Ingreso el password si lo tiene
+            if (bruto.getPassword() != null) {
+                if (!bruto.getPassword().trim().isEmpty()) {
+                    brutoAcciones.ponerPassword(bruto);
+                } else {
+                    brutoAcciones.irCellule(bruto);
+                }
             } else {
                 brutoAcciones.irCellule(bruto);
             }
-        } else {
-            brutoAcciones.irCellule(bruto);
-        }
-        int cantPeleas = dbManager.findCantPeleas(bruto, new Date());
-        if (cantPeleas < 3) {
             LinkedList<Bruto> rivales = obtenerRivalesPara(bruto, 3 - cantPeleas);
             Pelea pelea;
             Bruto rival;
             for (int i = 0; i < 3 - cantPeleas; i++) {
-                rival = rivales.poll();
-                int resultadoPelea;
-                while (true) {
-                    brutoAcciones.pelear(bruto, rival.getNombre());
-                    resultadoPelea = chequearPelea(bruto, rival.getNombre());
-                    if (resultadoPelea != -1) {
-                        break;
+                if (!rivales.isEmpty()) {
+                    rival = rivales.poll();
+                    int resultadoPelea;
+                    while (true) {
+                        brutoAcciones.pelear(bruto, rival.getNombre());
+                        resultadoPelea = chequearPelea(bruto, rival.getNombre());
+                        if (resultadoPelea != -1) {
+                            break;
+                        }
                     }
+                    pelea = new Pelea();
+                    pelea.setBruto(bruto);
+                    pelea.setRival(rival);
+                    pelea.setFecha(new Date());
+                    if (resultadoPelea == 1) {
+                        pelea.setVictoria(true);
+                    } else {
+                        pelea.setVictoria(false);
+                    }
+                    dbManager.create(pelea);
                 }
-                pelea = new Pelea();
-                pelea.setBruto(bruto);
-                pelea.setRival(rival);
-                pelea.setFecha(new Date());
-                if (resultadoPelea == 1) {
-                    pelea.setVictoria(true);
-                } else {
-                    pelea.setVictoria(false);
-                }
-                dbManager.create(pelea);
             }
-        }
-        int nivel = brutoAcciones.obtenerNivel();
-        if (nivel != bruto.getNivel()) {
-            //actualizar nivel
-            bruto.setNivel(nivel);
-            dbManager.edit(bruto);
+            int nivel = brutoAcciones.obtenerNivel();
+            if (nivel != bruto.getNivel()) {
+                //actualizar nivel
+                bruto.setNivel(nivel);
+                dbManager.edit(bruto);
+            }
         }
     }
 }

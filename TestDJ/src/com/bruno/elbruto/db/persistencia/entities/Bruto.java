@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.bruno.elbruto.db.persistencia.entities;
 
 import java.io.Serializable;
@@ -22,6 +21,7 @@ import javax.persistence.Table;
 @Table(name = "brutos")
 @NamedQueries({@NamedQuery(name = "Bruto.findAll", query = "SELECT b FROM Bruto b"), @NamedQuery(name = "Bruto.findByNombre", query = "SELECT b FROM Bruto b WHERE b.nombre = :nombre"), @NamedQuery(name = "Bruto.findByPassword", query = "SELECT b FROM Bruto b WHERE b.password = :password"), @NamedQuery(name = "Bruto.findByNivel", query = "SELECT b FROM Bruto b WHERE b.nivel = :nivel"), @NamedQuery(name = "Bruto.findByClasificacion", query = "SELECT b FROM Bruto b WHERE b.clasificacion = :clasificacion"), @NamedQuery(name = "Bruto.findByPropietario", query = "SELECT b FROM Bruto b WHERE b.propietario = :propietario")})
 public class Bruto implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -36,6 +36,8 @@ public class Bruto implements Serializable {
     private Integer clasificacion;
     @Column(name = "propietario")
     private Boolean propietario;
+    @Column(name = "victorias")
+    private Long victorias;
 
     public Bruto() {
     }
@@ -89,6 +91,14 @@ public class Bruto implements Serializable {
         this.propietario = propietario;
     }
 
+    public Long getVictorias() {
+        return victorias;
+    }
+
+    public void setVictorias(Long victorias) {
+        this.victorias = victorias;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -113,5 +123,4 @@ public class Bruto implements Serializable {
     public String toString() {
         return "com.bruno.elbruto.db.persistencia.entities.Bruto[nombre=" + nombre + "]";
     }
-
 }

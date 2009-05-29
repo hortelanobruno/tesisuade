@@ -42,6 +42,7 @@ public class DBManager {
             br.setNombre(bruto.getNombre());
             br.setPassword(bruto.getPassword());
             br.setPropietario(bruto.isPropietario());
+            br.setVictorias(0L);
             brutoJPA.create(br);
         } catch (PreexistingEntityException ex) {
         } catch (Exception ex) {
@@ -58,6 +59,13 @@ public class DBManager {
             pel.setPeleaPK(pk);
             pel.setVictoria(pelea.isVictoria());
             peleaJPA.create(pel);
+            if (pelea.isVictoria()) {
+                //Gano bruto
+                brutoJPA.aumentarVictoria(pelea.getBruto().getNombre());
+            } else {
+                //Gano rival
+                brutoJPA.aumentarVictoria(pelea.getRival().getNombre());
+            }
         } catch (PreexistingEntityException ex) {
             LoggerClass.getInstance().error("Error al crear una pelea en la base", ex);
         } catch (Exception ex) {
@@ -127,8 +135,7 @@ public class DBManager {
         return brs;
     }
 
-
-    public String randomBrutoName(){
+    public String randomBrutoName() {
         String name = nombreJPA.random();
         int cantChars = (int) ((Math.random() * 5));
         String str = new String("1234567890");
@@ -139,6 +146,6 @@ public class DBManager {
             te = r.nextInt(10);
             sb.append(str.charAt(te));
         }
-        return (name+sb.toString()).toLowerCase();
+        return (name + sb.toString()).toLowerCase();
     }
 }
