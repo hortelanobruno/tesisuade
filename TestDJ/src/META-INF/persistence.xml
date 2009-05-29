@@ -2,14 +2,12 @@
 <persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
   <persistence-unit name="TestDJPU" transaction-type="RESOURCE_LOCAL">
     <provider>oracle.toplink.essentials.PersistenceProvider</provider>
-    <class>com.bruno.elbruto.manager.Bruto</class>
-    <class>com.bruno.elbruto.manager.Pelea</class>
     <class>com.bruno.elbruto.db.persistencia.entities.Pelea</class>
     <class>com.bruno.elbruto.db.persistencia.entities.Bruto</class>
     <properties>
-      <property name="toplink.jdbc.user" value="mysql"/>
-      <property name="toplink.jdbc.password" value=""/>
-      <property name="toplink.jdbc.url" value="jdbc:mysql://10.0.0.21:3306/bruto"/>
+      <property name="toplink.jdbc.user" value="root"/>
+      <property name="toplink.jdbc.password" value="root"/>
+      <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/elbruto"/>
       <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="toplink.ddl-generation" value="create-tables"/>
     </properties>
