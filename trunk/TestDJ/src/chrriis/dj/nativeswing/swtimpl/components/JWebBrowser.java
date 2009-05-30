@@ -8,6 +8,7 @@
 package chrriis.dj.nativeswing.swtimpl.components;
 
 import com.bruno.elbruto.manager.ElBrutoManager;
+import java.awt.AWTException;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -60,6 +61,7 @@ import chrriis.dj.nativeswing.NSOption;
 import chrriis.dj.nativeswing.swtimpl.EventDispatchUtils;
 import chrriis.dj.nativeswing.swtimpl.NSPanelComponent;
 import com.bruno.elbruto.util.LoggerClass;
+import java.awt.Robot;
 import java.util.Calendar;
 
 /**
@@ -553,9 +555,17 @@ public class JWebBrowser extends NSPanelComponent {
                     if (!chequearErrorFatal()) {
                         this.webBrowser.brutoManager.avisarDone();
                     } else {
-                        this.webBrowser.reloadPage();
+                        try {
+                            this.webBrowser.reloadPage();
+                            Thread.sleep(1000);
+                            Robot robot = new Robot();
+                            robot.keyPress(KeyEvent.VK_SPACE);
+                            robot.keyRelease(KeyEvent.VK_SPACE);
+                        } catch (AWTException ex) {
+                        } catch (InterruptedException ex) {
+                        }
                     }
-                }else{
+                } else {
                     try {
                         LoggerClass.getInstance().info("Durmiendo 5 min porque la pagina esta en mantenimiento");
                         Thread.sleep(60000 * 5);

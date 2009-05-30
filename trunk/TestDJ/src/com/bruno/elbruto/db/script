@@ -16,6 +16,13 @@
                               primary key(nombre))
 
 
+        CREATE TABLE alumnoProductivo(fecha DATE NOT NULL,
+                                      nombre VARCHAR(30) NOT NULL references brutos(nombre),
+                                      ancestro VARCHAR(30) NOT NULL references brutos(nombre),
+                                      ip     VARCHAR(20) NOT NULL,
+                                      primary key(nombre))
+
+
 #random row
 
 SELECT nombre FROM nombres ORDER BY RAND() LIMIT 1

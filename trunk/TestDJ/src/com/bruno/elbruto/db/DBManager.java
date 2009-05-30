@@ -4,11 +4,13 @@
  */
 package com.bruno.elbruto.db;
 
+import com.bruno.elbruto.db.persistencia.controller.AlumnoJpaController;
 import com.bruno.elbruto.db.persistencia.controller.BrutoJpaController;
 import com.bruno.elbruto.db.persistencia.controller.NombreJpaController;
 import com.bruno.elbruto.db.persistencia.controller.PeleaJpaController;
 import com.bruno.elbruto.db.persistencia.controller.exceptions.NonexistentEntityException;
 import com.bruno.elbruto.db.persistencia.controller.exceptions.PreexistingEntityException;
+import com.bruno.elbruto.db.persistencia.entities.Alumno;
 import com.bruno.elbruto.db.persistencia.entities.PeleaPK;
 import com.bruno.elbruto.manager.Bruto;
 import com.bruno.elbruto.manager.Pelea;
@@ -18,6 +20,8 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,11 +32,27 @@ public class DBManager {
     private BrutoJpaController brutoJPA;
     private PeleaJpaController peleaJPA;
     private NombreJpaController nombreJPA;
+    private AlumnoJpaController alumnoJPA;
 
     public DBManager() {
         brutoJPA = new BrutoJpaController();
         peleaJPA = new PeleaJpaController();
         nombreJPA = new NombreJpaController();
+        alumnoJPA = new AlumnoJpaController();
+    }
+
+    public boolean chequearIPUsada(String ip, Bruto ancestro) {
+        return alumnoJPA.chequearIPUsada(ip, ancestro);
+    }
+
+    public void create(Alumno alumno) {
+        try {
+            alumnoJPA.create(alumno);
+        } catch (PreexistingEntityException ex) {
+            LoggerClass.getInstance().error("Error al crear el alumno en la base");
+        } catch (Exception ex) {
+            LoggerClass.getInstance().error("Error al crear el alumno en la base");
+        }
     }
 
     public void create(Bruto bruto) {
