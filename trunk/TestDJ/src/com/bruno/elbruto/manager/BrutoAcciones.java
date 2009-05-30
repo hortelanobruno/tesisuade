@@ -192,6 +192,10 @@ public class BrutoAcciones {
         robot.clickIzquierdo(3000);
         robot.mover(655, 484);
         robot.clickIzquierdo();
+        robot.mover(855, 691);
+        robot.clickIzquierdo(3000);
+        robot.mover(655, 484);
+        robot.clickIzquierdo();
         robot.delay(10000);
     }
 

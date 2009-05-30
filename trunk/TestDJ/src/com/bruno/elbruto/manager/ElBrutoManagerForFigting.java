@@ -6,7 +6,6 @@ package com.bruno.elbruto.manager;
 
 import com.bruno.elbruto.browser.SimpleWebBrowser;
 import com.bruno.elbruto.db.DBManager;
-import com.bruno.elbruto.db.persistencia.entities.Alumno;
 import com.bruno.elbruto.util.LoggerClass;
 import java.util.Date;
 import java.util.LinkedList;
@@ -16,14 +15,22 @@ import java.util.List;
  *
  * @author Brunoli
  */
-public class ElBrutoManagerForReclute extends ElBrutoManager {
+public class ElBrutoManagerForFigting extends ElBrutoManager {
 
     private SimpleWebBrowser simpleWeb;
     private BrutoAcciones brutoAcciones;
     private DBManager dbManager;
 
-    public ElBrutoManagerForReclute() {
+    public ElBrutoManagerForFigting() {
         super();
+    }
+
+    public void avisarDone() {
+        brutoAcciones.avisarDone();
+    }
+
+    public void setWebBrowser(SimpleWebBrowser aThis) {
+        this.simpleWeb = aThis;
     }
 
     public void init() {
@@ -33,67 +40,13 @@ public class ElBrutoManagerForReclute extends ElBrutoManager {
             Thread.sleep(5000);
         } catch (InterruptedException ex) {
         }
-        Bruto ancestro = dbManager.findAncestro();
-        int cantReclutantes = 5;
-        String ip = obtenerIPPublica();
-        for (int i = 0; i < cantReclutantes; i++) {
-            while (true) {
-                if (chequearIPUsada(ip, ancestro)) {
-                    ip = cambiarIP(ip);
-                }
-                if (crearAlumno(ip, ancestro)) {
-                    break;
-                } else {
-                    ip = cambiarIP(ip);
-                }
-            }
-        }
-    }
-
-    private String cambiarIP(String ip) {
-        String aux = ip.toString();
-        while (aux.equalsIgnoreCase(ip)) {
-            brutoAcciones.cambiarIPDelRouter();
-            aux = obtenerIPPublica();
-        }
-        return aux;
-    }
-
-    /*<div class="log log-child">
-    <div class="lmain">
-    Nuevo alumno: charlie398.
-    </div><divclass='ldetails'>1puntodeexperienciaganado.</div>
-    </div>
-     */
-    private boolean chequearAncestroProductivo(Bruto bruto, Bruto ancestro) {
-        brutoAcciones.irCellule(ancestro);
-        String html = simpleWeb.getSourceCode();
-        html = html.replace(" ", "");
-        html = html.replace("\"", "");
-        html = html.toLowerCase();
-        html = html.split("nuevoalumno:" + bruto.getNombre().toLowerCase() + ".")[1];
-        html = html.substring(0, 58);
-        if (html.contains("1puntodeexperienciaganado")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private boolean chequearIPUsada(String ip, Bruto ancestro) {
-        return dbManager.chequearIPUsada(ip, ancestro);
-    }
-
-    private String obtenerIPPublica() {
-        return simpleWeb.getIPInternet();
-    }
-
-    public void avisarDone() {
-        brutoAcciones.avisarDone();
-    }
-
-    public void setWebBrowser(SimpleWebBrowser aThis) {
-        this.simpleWeb = aThis;
+//        LoggerClass.getInstance().info("Iniciando proceso de peleas");
+//        iniciarModoPeleas();
+//        LoggerClass.getInstance().info("Termino proceso de peleas");
+        soloPeleaCuandoSePicaYQuedoSinPelear();
+//        LoggerClass.getInstance().info("Iniciando proceso de creacion de nuevas cuentas");
+//        iniciarModoCrearCuentas();
+//        LoggerClass.getInstance().info("Termino proceso de creacion de nuevas cuentas");
     }
 
     private int obtenerNivel() {
@@ -107,6 +60,7 @@ public class ElBrutoManagerForReclute extends ElBrutoManager {
     }
 
     private boolean hayQueInscribirTorneo() {
+        //TODO TERMINAR
         String html = simpleWeb.getSourceCode();
         html = html.replace(" ", "");
         html = html.replace("\"", "");
@@ -192,32 +146,6 @@ public class ElBrutoManagerForReclute extends ElBrutoManager {
         }
     }
 
-    private boolean crearAlumno(String ip, Bruto ancestro) {
-        //true si se creo bien y dio experiencia
-        String nombre;
-        Bruto bruto;
-        while (true) {
-            nombre = dbManager.randomBrutoName();
-            bruto = brutoAcciones.crearBruto(nombre, ancestro);
-            if (bruto != null) {
-                break;
-            }
-        }
-        brutoAcciones.crearPassword(bruto);
-        if (chequearAncestroProductivo(bruto, ancestro)) {
-            dbManager.create(bruto);
-            Alumno alumno = new Alumno();
-            alumno.setAncestro(ancestro.getNombre());
-            alumno.setFecha(new Date());
-            alumno.setIp(ip);
-            alumno.setNombre(nombre);
-            dbManager.create(alumno);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     private void iniciarModoCrearCuentas() {
         String nombre;
         Bruto bruto;
@@ -258,7 +186,7 @@ public class ElBrutoManagerForReclute extends ElBrutoManager {
                     pelea.setVictoria(false);
                 }
                 dbManager.create(pelea);
-                if (j == 2) {
+                if(j==2){
                     System.out.println("aaa");
                 }
             }
