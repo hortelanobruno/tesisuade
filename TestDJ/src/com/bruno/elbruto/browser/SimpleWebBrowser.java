@@ -11,6 +11,9 @@ import java.awt.FlowLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
@@ -18,7 +21,14 @@ import javax.swing.JPanel;
 import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
 import com.bruno.elbruto.browser.thread.GetResourceLocation;
 import com.bruno.elbruto.browser.thread.Navigate;
+import com.bruno.elbruto.util.LoggerClass;
 import javax.swing.SwingUtilities;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 /**
  *
@@ -71,4 +81,25 @@ public class SimpleWebBrowser extends JPanel {
         Navigate nav = new Navigate(webBrowser, this, url);
         SwingUtilities.invokeLater(nav);
     }
+
+    public String getIPInternet() {
+        try {
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpGet httpget = new HttpGet("http://www.comosabermiip.net/");
+            //HttpPost httpost = new HttpPost("http://www.whatismyip.com");
+            ResponseHandler<String> responseHandler = new BasicResponseHandler();
+            String html = httpclient.execute(httpget, responseHandler);
+            httpclient.getConnectionManager().shutdown();
+            html = html.replace(" ", "");
+            html = html.replace("\"", "");
+            html = html.toLowerCase();
+            html = html.split("<divid='ip'>")[1];
+            html = html.split("</div><divid='mensaje'></div><divid='adsense'>")[0];
+            return html;
+        } catch (IOException ex) {
+            LoggerClass.getInstance().error("Error al obtener la ip publica");
+        }
+        return null;
+    }
 }
+

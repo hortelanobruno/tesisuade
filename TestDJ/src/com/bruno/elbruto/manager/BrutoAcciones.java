@@ -166,6 +166,35 @@ public class BrutoAcciones {
         }
     }
 
+    public void cambiarIPDelRouter() {
+        //TODO
+        robot.delay(1500);
+        if (navigateAManopla) {
+            robot.mover(800, 78);
+            robot.clickIzquierdo();
+            robot.borrar();
+            robot.escribir("192.168.0.1");
+            robot.enter();
+        } else {
+            simpleWeb.navigate("192.168.0.1");
+        }
+        robot.delay(5000);
+        robot.mover(600, 404);
+        robot.clickIzquierdo();
+        robot.escribir("tplink");
+        robot.mover(602, 433);
+        robot.clickIzquierdo();
+        robot.escribir("hortelano");
+        robot.mover(718, 507);
+        robot.clickIzquierdo();
+        robot.delay(5000);
+        robot.mover(855, 691);
+        robot.clickIzquierdo(3000);
+        robot.mover(655, 484);
+        robot.clickIzquierdo();
+        robot.delay(10000);
+    }
+
     private boolean verificarPeleasCompletadas() {
         robot.delay(1500);
         robot.mover(550, 390);
