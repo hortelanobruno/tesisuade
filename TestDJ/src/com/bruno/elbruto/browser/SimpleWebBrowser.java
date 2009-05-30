@@ -6,6 +6,7 @@ package com.bruno.elbruto.browser;
 
 import com.bruno.elbruto.browser.thread.GetSourceCode;
 import com.bruno.elbruto.manager.ElBrutoManager;
+import com.bruno.elbruto.manager.ElBrutoManagerForFigting;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ItemEvent;
@@ -60,6 +61,7 @@ public class SimpleWebBrowser extends JPanel {
         buttonPanel.add(menuBarCheckBox);
         add(buttonPanel, BorderLayout.SOUTH);
     }
+
 
     public JWebBrowser getWebBrowser() {
         return webBrowser;

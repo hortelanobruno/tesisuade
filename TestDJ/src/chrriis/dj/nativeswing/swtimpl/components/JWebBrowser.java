@@ -8,6 +8,7 @@
 package chrriis.dj.nativeswing.swtimpl.components;
 
 import com.bruno.elbruto.manager.ElBrutoManager;
+import com.bruno.elbruto.manager.ElBrutoManagerForFigting;
 import java.awt.AWTException;
 import java.awt.BorderLayout;
 import java.awt.Color;
