@@ -73,13 +73,10 @@ public class DBManager {
         }
     }
 
-    public void edit(Bruto bruto) {
+    public void actualizarNivel(Bruto bruto) {
         try {
-            com.bruno.elbruto.db.persistencia.entities.Bruto br = new com.bruno.elbruto.db.persistencia.entities.Bruto();
+            com.bruno.elbruto.db.persistencia.entities.Bruto br = brutoJPA.findBruto(bruto.getNombre());
             br.setNivel(bruto.getNivel());
-            br.setNombre(bruto.getNombre());
-            br.setPassword(bruto.getPassword());
-            br.setPropietario(bruto.isPropietario());
             brutoJPA.edit(br);
         } catch (NonexistentEntityException ex) {
             LoggerClass.getInstance().error("Error al editar al bruto en la base", ex);
@@ -137,7 +134,7 @@ public class DBManager {
 
     public String randomBrutoName() {
         String name = nombreJPA.random();
-        int cantChars = (int) ((Math.random() * 5));
+        int cantChars = (int) ((Math.random() * 7));
         String str = new String("1234567890");
         StringBuffer sb = new StringBuffer();
         Random r = new Random();

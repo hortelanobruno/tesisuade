@@ -19,7 +19,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "brutos")
-@NamedQueries({@NamedQuery(name = "Bruto.findAll", query = "SELECT b FROM Bruto b"), @NamedQuery(name = "Bruto.findByNombre", query = "SELECT b FROM Bruto b WHERE b.nombre = :nombre"), @NamedQuery(name = "Bruto.findByPassword", query = "SELECT b FROM Bruto b WHERE b.password = :password"), @NamedQuery(name = "Bruto.findByNivel", query = "SELECT b FROM Bruto b WHERE b.nivel = :nivel"), @NamedQuery(name = "Bruto.findByClasificacion", query = "SELECT b FROM Bruto b WHERE b.clasificacion = :clasificacion"), @NamedQuery(name = "Bruto.findByPropietario", query = "SELECT b FROM Bruto b WHERE b.propietario = :propietario")})
+@NamedQueries({@NamedQuery(name = "Bruto.findAll", query = "SELECT b FROM Bruto b"),
+@NamedQuery(name = "Bruto.findByNombre", query = "SELECT b FROM Bruto b WHERE b.nombre = :nombre"),
+@NamedQuery(name = "Bruto.findByPassword", query = "SELECT b FROM Bruto b WHERE b.password = :password"),
+@NamedQuery(name = "Bruto.findByNivel", query = "SELECT b FROM Bruto b WHERE b.nivel = :nivel"),
+@NamedQuery(name = "Bruto.findByClasificacion", query = "SELECT b FROM Bruto b WHERE b.clasificacion = :clasificacion"), @NamedQuery(name = "Bruto.findByPropietario", query = "SELECT b FROM Bruto b WHERE b.propietario = :propietario")})
 public class Bruto implements Serializable {
 
     private static final long serialVersionUID = 1L;
