@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+<title>qwerfdsa El Bruto</title>
+<link rel="stylesheet" type="text/css" href="http://data.elbruto.es/css/style.css.gz?v=14"/>
+<link rel="stylesheet" type="text/css" href="http://data.elbruto.es/css/es.css.gz?v=14"/>
+<!--[if lt IE 7]>
+<link rel="stylesheet" type="text/css" href="http://data.elbruto.es/css/ie6.css?v=14"/>
+<![endif]-->	
+<script type="text/javascript" src="http://data.elbruto.es/js/app.js.gz?v=13"></script>
+<link href="/favicon.ico" type="image/x-icon" rel="shortcut icon"/>
+</head>
+<body onload="js.App.setLinks('elbruto_link');">
+<div id="gradientBG">
+<div id="global" class="lang-fr">
+<div id="header">
+<div id="headArtworkLeft" class="ha-8"></div>
+<div id="headArtworkRight" class="ha-107"></div>
+<div id="headClick" onclick="document.location='/cellule'"></div>
+</div>
+<div class="container">
+<div class="celluleContainer">
+<div class="cellule">
+<table><tr>
+<td class="celluleLeft">
+<div class="headStats headStats1">
+<div class="title" onmouseover="mt.js.Tip.show(this,'Número de victorias en la Arena.',null)" onmouseout="mt.js.Tip.hide()">Victorias</div>
+<div class="value" onmouseover="mt.js.Tip.show(this,'Número de victorias en la Arena.',null)" onmouseout="mt.js.Tip.hide()">43</div>
+<div class="title" onmouseover="mt.js.Tip.show(this,'Número de Brutos reclutados. Haz clic aquí para ver tus alumnos.',null)" onmouseout="mt.js.Tip.hide()"><a href="/dojo">Alumnos</a></div>
+<div class="value" onmouseover="mt.js.Tip.show(this,'Número de Brutos reclutados. Haz clic aquí para ver tus alumnos.',null)" onmouseout="mt.js.Tip.hide()"><a href="/dojo">0</a></div>
+</div>
+<div class="headStats">
+<div class="title titleShort" onmouseover="mt.js.Tip.show(this,'Tu Bruto ha sido iniciado en el combate por este maestro.',null)" onmouseout="mt.js.Tip.hide()">Maestro</div>
+<div class="value valueRef" onmouseover="mt.js.Tip.show(this,'Ta Bruto ha sido iniciado en el combate por este maestro.',null)" onmouseout="mt.js.Tip.hide()"><a href="http://brunoli.elbruto.es/cellule">&nbsp;Brunoli</a></div>
+<div class="title titleLong" onmouseover="mt.js.Tip.show(this,'¡Tu Bruto va a clasificarse muy pronto!',null)" onmouseout="mt.js.Tip.hide()"><a href="/ranking">Clasificación </a></div>
+<div class="value" onmouseover="mt.js.Tip.show(this,'¡Tu Bruto va a clasificarse muy pronto!',null)" onmouseout="mt.js.Tip.hide()"><a href="/ranking"> N.A</a></div>
+</div>
+<h1>Celda de qwerfdsa</h1>
+<div class="objects">
+<div>Armas y bonus disponibles en combate</div>
+<div id="swf_inventory" class="swf">
+Tu lector Flash no está actualizado. <a href="http://get.adobe.com/flashplayer/" target="_blank">Haz clic aquí para actualizarlo</a>.
+</div>
+<script type="text/javascript">
+//<![CDATA[
+var so = new js.SWFObject("http://data.elbruto.es/swf/uc.swf?v=15","inventory",310,600,9,"#FFFFFF");
+so.addParam("menu","false");
+so.addParam("AllowScriptAccess","always");
+so.addParam("FlashVars","__file=http://data.elbruto.es/swf/inventory.swf?v=17&__key=http://data_labrute_fr/swf_key&lang=es&infos=oy5%3A_langzy5%3A_namey8%3Aqwerfdsay5%3A_scplny3%3A_idi436498y4%3A_lvli8g&amp;k=ff22fea7");
+so.addParam("scale","noscale");
+so.write("swf_inventory");
+//]]>
+</script>
+</div>
+<div class="caracs">
+<div class="level">
+<div class="levelName">
+</div>
+<span>Nivel 8</span>
+<div class="levelBarContainer">
+<div style="width: 43.24324324%;" class="levelBar"></div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="brute">
+<div id="swf_brute_qwerfdsa" class="swf">
+Tu lector Flash no está actualizado. <a href="http://get.adobe.com/flashplayer/" target="_blank">Haz clic aquí para actualizarlo</a>.
+</div>
+<script type="text/javascript">
+var so = new js.SWFObject("http://data.elbruto.es/swf/uc.swf?v=15","brute_qwerfdsa",90,175,9,"#FAF8C3");
+so.addParam("menu","false");
+so.addParam("wmode","transparent");
+so.addParam("AllowScriptAccess","always");
+so.addParam("FlashVars","__file=http://data.elbruto.es/swf/loader.swf?v=16&__key=http://data_labrute_fr/swf_key&lang=es&path=http://data.elbruto.es/swf/&amp;gfx=1;0;97;58;42;57;72;15;31;42;68;45;97;68;6;1&amp;flip=true&amp;k=2f95d7467a");
+so.addParam("scale","noscale");
+so.write("swf_brute_qwerfdsa");
+</script>
+</div>
+<div class="lifeContainer">
+<div class="life"><div>74</div></div>
+<div class="lifeLegend">puntos de vida</div>
+<div class="clear"></div>
+</div>
+<div class="barContainer">
+<div class="caracBar" onmouseover="mt.js.Tip.show(this,'Fuerza: 13',null)" onmouseout="mt.js.Tip.hide()"><div class="legend">Fuerza:</div><div class="bar">
+<div class="sq_2"></div>
+<div class="sq_2"></div>
+<div class="sq_2"></div>
+<div class="sq_1"></div>
+<div class="sq_1"></div>
+<div class="sq_1"></div>
+<div class="sq_1"></div>
+<div class="sq_1"></div>
+<div class="sq_1"></div>
+<div class="sq_1"></div>
+</div><div class="clear"></div></div>
+<div class="caracBar" onmouseover="mt.js.Tip.show(this,'Agilidad: 5',null)" onmouseout="mt.js.Tip.hide()"><div class="legend">Agilidad:</div><div class="bar">
+<div class="sq_1"></div>
+<div class="sq_1"></div>
+<div class="sq_1"></div>
+<div class="sq_1"></div>
+<div class="sq_1"></div>
+<div class="sq_0"></div>
+<div class="sq_0"></div>
+<div class="sq_0"></div>
+<div class="sq_0"></div>
+<div class="sq_0"></div>
+</div><div class="clear"></div></div>
+<div class="caracBar" onmouseover="mt.js.Tip.show(this,'Velocidad: 5',null)" onmouseout="mt.js.Tip.hide()"><div class="legend">Velocidad:</div><div class="bar">
+<div class="sq_1"></div>
+<div class="sq_1"></div>
+<div class="sq_1"></div>
+<div class="sq_1"></div>
+<div class="sq_1"></div>
+<div class="sq_0"></div>
+<div class="sq_0"></div>
+<div class="sq_0"></div>
+<div class="sq_0"></div>
+<div class="sq_0"></div>
+</div><div class="clear"></div></div>
+</div>
+<div class="clear"></div>
+<div class="areneInfos">qwerfdsa está descansando.</div>
+<div class="areneDetails">¡3 nuevos combates estarán disponibles mañana!</div>
+<p>
+¡Combatir en la Arena cansa mucho! Sin embargo, qwerfdsa siempre está listo para recibir nuevos <a href="/dojo">alumnos</a> y así ganar más experiencia.
+</p>
+<p>
+Si reclutas alumnos, tu Bruto ganará experiencia. Para ello, es suficiente con pasarle la dirección de tu Bruto a
+tus amigos. 
+</p>
+<div class="url">
+<span>http://qwerfdsa.elbruto.es</span>
+</div>
+<div id="tournament">
+<h3>Torneo del 30 mayo 2009</h3>
+<table class="tc">
+<tr>
+<td class="h">4h</td>
+<td colspan="2">Calificado de oficio</td>
+</tr>
+<tr class="twin" onclick="document.location='/tf/25588759'" onmouseover="mt.js.Tip.show(this,'Haz clic aquí para ver de nuevo el combate.',null)" onmouseout="mt.js.Tip.hide()">
+<td class="h">4h30</td>
+<td><img src="http://data.elbruto.es/img/tournoi_win.gif" alt=""/></td>
+<td>Tu Bruto ha vencido a <em>Lady Kiddo</em></td>
+</tr>
+<tr class="tlose" onclick="document.location='/tf/25719831'" onmouseover="mt.js.Tip.show(this,'Haz clic aquí para ver de nuevo el combate.',null)" onmouseout="mt.js.Tip.hide()">
+<td class="h">5h</td>
+<td><img src="http://data.elbruto.es/img/tournoi_lose.gif" alt=""/></td>
+<td>¡<em>avm1987</em> ha aplastado a tu Bruto!</td>
+</tr>
+<tr>
+<td colspan="3">Tu Bruto ha sido eliminado por avm1987 (grrrrr...)</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+<td class="celluleRight">
+<div class="url" onmouseover="mt.js.Tip.show(this,'Pásale esta dirección a tus amigos o ponla en tu blog. ¡Esto te permitirá reclutar alumnos y ganar experiencia!','largeTip')" onmouseout="mt.js.Tip.hide()">
+<span>http://qwerfdsa.elbruto.es</span>
+</div>
+<button class="team" onclick="document.location='/team';"><div>¡Únete a un clan!</div></button>
+<div class="center">
+<a href="/setPass">Cambiar de contraseña</a>
+</div>
+<div class="cellulePub">
+<div class="img_box" onmouseover="mt.js.Tip.show(this,'&lt;strong&gt;Dinoparc&lt;/strong&gt; ¡Guía a tus dinos y entrénalos! ¡Alcanza la victoria a lo largo de intensos combates contra los dinos de los otros jugadores!','neutralTip')" onmouseout="mt.js.Tip.hide()">
+<a href="http://trax.motion-twin.com/goto/elbruto_img/dparc_es" target="_blank"><img src="http://data.elbruto.es/img/sq/dinoparc.gif" alt="Dinoparc" border="0"/></a>
+</div>
+</div>
+<button class="btn-iphone" onclick="document.location='/mobi';">
+<div>Muy pronto en iPhone</div>
+</button>
+<div class="logs">
+<div class="log log-lose">
+<div class="lmain">
+<a href="/fight/170277951" onmouseover="mt.js.Tip.show(this,'Haz clic aquí para ver de nuevo el combate.',null)" onmouseout="mt.js.Tip.hide()">Kroes ha aplastado a tu Bruto.</a>
+</div>
+<div class="ldetails">
+1 punto de experiencia ganado.
+</div>
+</div>
+<div class="log log-lose">
+<div class="lmain">
+<a href="/fight/170275955" onmouseover="mt.js.Tip.show(this,'Haz clic aquí para ver de nuevo el combate.',null)" onmouseout="mt.js.Tip.hide()">Guilios ha aplastado a tu Bruto.</a>
+</div>
+<div class="ldetails">
+1 punto de experiencia ganado.
+</div>
+</div>
+<div class="log log-lose">
+<div class="lmain">
+<a href="/fight/170273825" onmouseover="mt.js.Tip.show(this,'Haz clic aquí para ver de nuevo el combate.',null)" onmouseout="mt.js.Tip.hide()">AZM ha aplastado a tu Bruto.</a>
+</div>
+<div class="ldetails">
+1 punto de experiencia ganado.
+</div>
+</div>
+<div class="log log-win">
+<div class="lmain">
+<a href="/fight/170232004" onmouseover="mt.js.Tip.show(this,'Haz clic aquí para ver de nuevo el combate.',null)" onmouseout="mt.js.Tip.hide()">Tu Bruto ha sobrevivido a Brunoli.</a>
+</div>
+</div>
+<div class="log log-lose">
+<div class="lmain">
+<a href="/fight/165074818" onmouseover="mt.js.Tip.show(this,'Haz clic aquí para ver de nuevo el combate.',null)" onmouseout="mt.js.Tip.hide()">Guilios ha aplastado a tu Bruto.</a>
+</div>
+<div class="ldetails">
+1 punto de experiencia ganado.
+</div>
+</div>
+<div class="log log-win">
+<div class="lmain">
+<a href="/fight/165072786" onmouseover="mt.js.Tip.show(this,'Haz clic aquí para ver de nuevo el combate.',null)" onmouseout="mt.js.Tip.hide()">Tu Bruto ha aplastado a AZM.</a>
+</div>
+<div class="ldetails">
+2 puntos de experiencia ganados.
+</div>
+</div>
+<div class="log log-lose">
+<div class="lmain">
+<a href="/fight/165070946" onmouseover="mt.js.Tip.show(this,'Haz clic aquí para ver de nuevo el combate.',null)" onmouseout="mt.js.Tip.hide()">11clan11 ha aplastado a tu Bruto.</a>
+</div>
+<div class="ldetails">
+1 punto de experiencia ganado.
+</div>
+</div>
+</div>
+</td>
+</tr></table>
+</div>
+</div>
+<div class="celluleFoot"></div>
+</div>
+</div>
+<div id="footer">
+<div id="links">Más juegos: <a href="drpg_es" title="Adopta un Dino, llévalo al combate y explora con él los misterios de la Isla de Dinoland">Dinorpg</a> <a href="dparc_es" title="¡Guía a tus dinos y entrénalos! ¡Alcanza la victoria a lo largo de intensos combates contra los dinos de los otros jugadores!">Dinoparc</a> <a href="nch_es" title="Mezcla toda clase de ingredientes en este gran juego de reflexión">Naturalquimia</a> <a href="alpha" title="Hazte prisionero de este juego rpg tipo arkanoid de exploración espacial">Alphabounce</a> <a href="kk" title="¡Juega a más de 60 minijuegos y gana auténticos cheques regalo!">Kadokado</a> </div>
+&copy; 2009 <a href="http://www.motion-twin.com/spanish" target="_blank"><img src="http://data.elbruto.es/img/motiontwin.gif" alt="Motion Twin"/></a>
+<a href="http://haxe.org/" target="_blank"><img src="http://data.elbruto.es/img/haxe.png" alt="haXe powered" title="Esta web ha sido desarrollada en haXe"/></a>
+</div>
+</div>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-114594-29");
+pageTracker._setDomainName(".elbruto.es");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+</body>
+</html>
