@@ -31,12 +31,12 @@ public class ElBrutoManager {
             Thread.sleep(5000);
         } catch (InterruptedException ex) {
         }
-//        LoggerClass.getInstance().info("Iniciando proceso de peleas");
-//        iniciarModoPeleas();
-//        LoggerClass.getInstance().info("Termino proceso de peleas");
-        LoggerClass.getInstance().info("Iniciando proceso de creacion de nuevas cuentas");
-        iniciarModoCrearCuentas();
-        LoggerClass.getInstance().info("Termino proceso de creacion de nuevas cuentas");
+        LoggerClass.getInstance().info("Iniciando proceso de peleas");
+        iniciarModoPeleas();
+        LoggerClass.getInstance().info("Termino proceso de peleas");
+//        LoggerClass.getInstance().info("Iniciando proceso de creacion de nuevas cuentas");
+//        iniciarModoCrearCuentas();
+//        LoggerClass.getInstance().info("Termino proceso de creacion de nuevas cuentas");
     }
 
     public void avisarDone() {
