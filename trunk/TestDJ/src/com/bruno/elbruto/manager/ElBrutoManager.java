@@ -184,6 +184,9 @@ public class ElBrutoManager {
                     pelea.setVictoria(false);
                 }
                 dbManager.create(pelea);
+                if(j==2){
+                    System.out.println("aaa");
+                }
             }
             int nivel = obtenerNivel();
             if (nivel != bruto.getNivel()) {
