@@ -1,0 +1,84 @@
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('11clan11', 7, NULL, NULL, false, 0);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('aden', 1, 0, '', false, 0);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('asdfvcxz', 9, NULL, NULL, true, 0);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('azm', 6, NULL, NULL, false, 0);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('brunoli', 10, NULL, 'hortelano', true, 0);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('brunoli2', 9, NULL, 'hortelano', true, 0);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('cacona', 1, 0, '', false, 0);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('camiloo', 1, NULL, NULL, false, 0);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('chalou7', 1, 0, '', false, 0);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('cindy06', 2, NULL, 'hortelano', true, 5);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('descanso', 1, 0, '', false, 1);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('fdsavcxz', 4, NULL, 'hortelano', true, 0);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('guilios', 6, NULL, NULL, false, 0);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('jhonny141', 2, NULL, 'hortelano', true, 6);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('jilzh', 2, NULL, 'hortelano', true, 0);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('kroes', 7, NULL, NULL, false, 0);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('l-shakas', 6, NULL, NULL, false, 0);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('legui405094', 2, NULL, 'hortelano', true, 5);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('m0renaa', 7, NULL, NULL, false, 0);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('neee', 1, NULL, NULL, false, 1);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('nestornbloq', 9, NULL, 'hortelano', true, 0);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('qaswzx', 4, NULL, 'hortelano', true, 0);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('qwerfdsa', 8, NULL, 'hortelano', true, 0);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('sexologo', 1, NULL, NULL, false, 0);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('vv5ea', 2, NULL, 'hortelano', true, 0);
+INSERT INTO elbruto.brutos (nombre, nivel, clasificacion, password, propietario, victorias) VALUES ('zaboide', 1, 0, '', false, 0);
+
+
+
+
+
+
+
+
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'asdfvcxz', '2009-05-29', '11clan11');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'asdfvcxz', '2009-05-29', 'azm');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'asdfvcxz', '2009-05-29', 'guilios');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (false, 'brunoli', '2009-05-29', '11clan11');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (false, 'brunoli', '2009-05-29', 'asdfvcxz');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (false, 'brunoli', '2009-05-29', 'brunoli2');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'brunoli2', '2009-05-29', '11clan11');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (false, 'brunoli2', '2009-05-29', 'asdfvcxz');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'brunoli2', '2009-05-29', 'kroes');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'cindy06', '2009-05-29', 'aden');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'cindy06', '2009-05-29', 'cacona');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'cindy06', '2009-05-29', 'camiloo');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'cindy06', '2009-05-29', 'chalou7');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (false, 'cindy06', '2009-05-29', 'descanso');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'cindy06', '2009-05-29', 'neee');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'fdsavcxz', '2009-05-29', 'camiloo');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'fdsavcxz', '2009-05-29', 'neee');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (false, 'fdsavcxz', '2009-05-29', 'qaswzx');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'jhonny141', '2009-05-29', 'aden');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'jhonny141', '2009-05-29', 'cacona');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'jhonny141', '2009-05-29', 'camiloo');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'jhonny141', '2009-05-29', 'chalou7');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (false, 'jhonny141', '2009-05-29', 'neee');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'jhonny141', '2009-05-29', 'sexologo');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'jilzh', '2009-05-29', 'aden');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'jilzh', '2009-05-29', 'cacona');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'jilzh', '2009-05-29', 'camiloo');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'jilzh', '2009-05-29', 'chalou7');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (false, 'jilzh', '2009-05-29', 'descanso');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'legui405094', '2009-05-29', 'aden');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'legui405094', '2009-05-29', 'cacona');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'legui405094', '2009-05-29', 'camiloo');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'legui405094', '2009-05-29', 'chalou7');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'legui405094', '2009-05-29', 'neee');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (false, 'nestornbloq', '2009-05-29', '11clan11');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (false, 'nestornbloq', '2009-05-29', 'asdfvcxz');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (false, 'nestornbloq', '2009-05-29', 'brunoli2');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'qaswzx', '2009-05-29', 'camiloo');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'qaswzx', '2009-05-29', 'neee');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'qaswzx', '2009-05-29', 'sexologo');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (false, 'qwerfdsa', '2009-05-29', '11clan11');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'qwerfdsa', '2009-05-29', 'azm');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (false, 'qwerfdsa', '2009-05-29', 'guilios');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'vv5ea', '2009-05-29', 'aden');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (false, 'vv5ea', '2009-05-29', 'cacona');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (false, 'vv5ea', '2009-05-29', 'camiloo');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'vv5ea', '2009-05-29', 'chalou7');
+INSERT INTO elbruto.peleas (victoria, nombre, fecha, rival) VALUES (true, 'vv5ea', '2009-05-29', 'descanso');
+
+

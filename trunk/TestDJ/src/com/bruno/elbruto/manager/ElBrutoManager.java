@@ -31,9 +31,9 @@ public class ElBrutoManager {
             Thread.sleep(5000);
         } catch (InterruptedException ex) {
         }
-        LoggerClass.getInstance().info("Iniciando proceso de peleas");
-        iniciarModoPeleas();
-        LoggerClass.getInstance().info("Termino proceso de peleas");
+//        LoggerClass.getInstance().info("Iniciando proceso de peleas");
+//        iniciarModoPeleas();
+//        LoggerClass.getInstance().info("Termino proceso de peleas");
         LoggerClass.getInstance().info("Iniciando proceso de creacion de nuevas cuentas");
         iniciarModoCrearCuentas();
         LoggerClass.getInstance().info("Termino proceso de creacion de nuevas cuentas");
@@ -63,7 +63,7 @@ public class ElBrutoManager {
         html = html.replace(" ", "");
         html = html.replace("\"", "");
         html = html.toLowerCase();
-        if (html.contains("")) {
+        if (html.contains("inscribetubrutoparael")) {
             return true;
         } else {
             return false;
@@ -137,10 +137,10 @@ public class ElBrutoManager {
         if (nivel != bruto.getNivel()) {
             //actualizar nivel
             bruto.setNivel(nivel);
-            dbManager.edit(bruto);
+            dbManager.actualizarNivel(bruto);
         }
         if (hayQueInscribirTorneo()) {
-            brutoAcciones.inscribirEnTorneo();
+            brutoAcciones.inscribirEnTorneo(bruto);
         }
     }
 
@@ -189,10 +189,10 @@ public class ElBrutoManager {
             if (nivel != bruto.getNivel()) {
                 //actualizar nivel
                 bruto.setNivel(nivel);
-                dbManager.edit(bruto);
+                dbManager.actualizarNivel(bruto);
             }
             if (hayQueInscribirTorneo()) {
-                brutoAcciones.inscribirEnTorneo();
+                brutoAcciones.inscribirEnTorneo(bruto);
             }
         }
 
@@ -254,10 +254,10 @@ public class ElBrutoManager {
             if (nivel != bruto.getNivel()) {
                 //actualizar nivel
                 bruto.setNivel(nivel);
-                dbManager.edit(bruto);
+                dbManager.actualizarNivel(bruto);
             }
             if (hayQueInscribirTorneo()) {
-                brutoAcciones.inscribirEnTorneo();
+                brutoAcciones.inscribirEnTorneo(bruto);
             }
         }
     }
