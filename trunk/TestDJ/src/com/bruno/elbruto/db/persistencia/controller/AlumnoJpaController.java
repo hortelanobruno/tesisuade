@@ -29,8 +29,7 @@ public class AlumnoJpaController {
     public boolean chequearIPUsada(String ip, Bruto ancestro) {
         EntityManager em = getEntityManager();
         try {
-            Query q = em.createQuery("select object(o) from Alumno as o where o.ip = :ip and o.ancestro = :an").setParameter("ip", ip).setParameter("an", ancestro.getNombre());
-            q.setFirstResult(1);
+            Query q = em.createQuery("select object(o) from Alumno as o where o.ip = :ipp and o.ancestro = :an").setParameter("ipp", ip).setParameter("an", ancestro.getNombre());
             try {
                 if (q.getSingleResult() != null) {
                     return true;

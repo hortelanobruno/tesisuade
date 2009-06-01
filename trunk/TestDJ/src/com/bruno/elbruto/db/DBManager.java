@@ -82,9 +82,11 @@ public class DBManager {
             if (pelea.isVictoria()) {
                 //Gano bruto
                 brutoJPA.aumentarVictoria(pelea.getBruto().getNombre());
+                brutoJPA.disminuirDerrota(pelea.getRival().getNombre());
             } else {
                 //Gano rival
                 brutoJPA.aumentarVictoria(pelea.getRival().getNombre());
+                brutoJPA.disminuirDerrota(pelea.getBruto().getNombre());
             }
         } catch (PreexistingEntityException ex) {
             LoggerClass.getInstance().error("Error al crear una pelea en la base", ex);

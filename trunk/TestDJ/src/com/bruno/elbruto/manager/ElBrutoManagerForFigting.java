@@ -40,10 +40,10 @@ public class ElBrutoManagerForFigting extends ElBrutoManager {
             Thread.sleep(5000);
         } catch (InterruptedException ex) {
         }
-        LoggerClass.getInstance().info("Iniciando proceso de peleas");
-        iniciarModoPeleas();
-        LoggerClass.getInstance().info("Termino proceso de peleas");
-       // soloPeleaCuandoSePicaYQuedoSinPelear();
+//        LoggerClass.getInstance().info("Iniciando proceso de peleas");
+//        iniciarModoPeleas();
+//        LoggerClass.getInstance().info("Termino proceso de peleas");
+        soloPeleaCuandoSePicaYQuedoSinPelear();
 //        LoggerClass.getInstance().info("Iniciando proceso de creacion de nuevas cuentas");
 //        iniciarModoCrearCuentas();
 //        LoggerClass.getInstance().info("Termino proceso de creacion de nuevas cuentas");
@@ -108,7 +108,7 @@ public class ElBrutoManagerForFigting extends ElBrutoManager {
     }
 
     public void soloPeleaCuandoSePicaYQuedoSinPelear() {
-        Bruto bruto = dbManager.findBruto("jaime2323");
+        Bruto bruto = dbManager.findBruto("pable698");
         brutoAcciones.ponerPassword(bruto);
         //aca hay q ver cuantas peleas tengo, creo que siempre son 6
         LinkedList<Bruto> rivales = obtenerRivalesPara(bruto, 6);

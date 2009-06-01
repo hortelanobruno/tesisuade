@@ -36,17 +36,20 @@ public class ElBrutoManagerForReclute extends ElBrutoManager {
         Bruto ancestro = dbManager.findAncestro();
         int cantReclutantes = 5;
         String ip = obtenerIPPublica();
+        String nombre;
         for (int i = 0; i < cantReclutantes; i++) {
             while (true) {
                 if (chequearIPUsada(ip, ancestro)) {
                     ip = cambiarIP(ip);
                 }
-                if (crearAlumno(ip, ancestro)) {
+                nombre = crearAlumno(ip, ancestro);
+                if (nombre != null) {
                     break;
                 } else {
                     ip = cambiarIP(ip);
                 }
             }
+            soloPeleaCuandoSePicaYQuedoSinPelear(nombre);
         }
     }
 
@@ -153,8 +156,8 @@ public class ElBrutoManagerForReclute extends ElBrutoManager {
         return -1;
     }
 
-    public void soloPeleaCuandoSePicaYQuedoSinPelear() {
-        Bruto bruto = dbManager.findBruto("jaime2323");
+    public void soloPeleaCuandoSePicaYQuedoSinPelear(String name) {
+        Bruto bruto = dbManager.findBruto(name);
         brutoAcciones.ponerPassword(bruto);
         //aca hay q ver cuantas peleas tengo, creo que siempre son 6
         LinkedList<Bruto> rivales = obtenerRivalesPara(bruto, 6);
@@ -192,7 +195,7 @@ public class ElBrutoManagerForReclute extends ElBrutoManager {
         }
     }
 
-    private boolean crearAlumno(String ip, Bruto ancestro) {
+    private String crearAlumno(String ip, Bruto ancestro) {
         //true si se creo bien y dio experiencia
         String nombre;
         Bruto bruto;
@@ -212,9 +215,9 @@ public class ElBrutoManagerForReclute extends ElBrutoManager {
             alumno.setIp(ip);
             alumno.setNombre(nombre);
             dbManager.create(alumno);
-            return true;
+            return nombre;
         } else {
-            return false;
+            return null;
         }
     }
 
