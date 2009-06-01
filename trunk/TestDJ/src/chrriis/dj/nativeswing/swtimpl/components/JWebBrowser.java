@@ -571,6 +571,10 @@ public class JWebBrowser extends NSPanelComponent {
                         LoggerClass.getInstance().info("Durmiendo 5 min porque la pagina esta en mantenimiento");
                         Thread.sleep(60000 * 5);
                         this.webBrowser.reloadPage();
+                        Robot robot = new Robot();
+                        robot.keyPress(KeyEvent.VK_SPACE);
+                        robot.keyRelease(KeyEvent.VK_SPACE);
+                    } catch (AWTException ex) {
                     } catch (InterruptedException ex) {
                     }
                 }

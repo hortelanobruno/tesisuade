@@ -79,7 +79,7 @@ public class BrutoJpaController {
     public LinkedList<Bruto> findRivales(com.bruno.elbruto.manager.Bruto bruto, int cant) {
         EntityManager em = getEntityManager();
         try {
-            Query q = em.createQuery("select object(o) from Bruto as o where (o.nivel BETWEEN  :num1 and :num2) and o.nombre <> :nom ORDER BY o.victorias asc").setParameter("num1", bruto.getNivel() - 2).setParameter("num2", bruto.getNivel()).setParameter("nom", bruto.getNombre());
+            Query q = em.createQuery("select object(o) from Bruto as o where (o.nivel BETWEEN  :num1 and :num2) and o.nombre <> :nom ORDER BY o.nivel,o.victorias asc").setParameter("num1", bruto.getNivel() - 2).setParameter("num2", bruto.getNivel()).setParameter("nom", bruto.getNombre());
             if (!true) {
                 q.setMaxResults(cant + 3);
                 q.setFirstResult(-1);

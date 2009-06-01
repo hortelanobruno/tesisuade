@@ -5,6 +5,7 @@
 package com.bruno.elbruto.manager;
 
 import com.bruno.elbruto.browser.SimpleWebBrowser;
+import com.bruno.elbruto.util.LoggerClass;
 import com.bruno.elbruto.util.MouseRobot;
 
 /**
@@ -17,6 +18,7 @@ public class BrutoAcciones {
     private MouseRobot robot;
     private SimpleWebBrowser simpleWeb;
     private boolean navigateAManopla = true;
+    private int count;
 
     public BrutoAcciones() {
         robot = new MouseRobot();
@@ -33,10 +35,16 @@ public class BrutoAcciones {
 
     public void waitForDone() {
         done = false;
+        count = 0;
         while (!done) {
+            count++;
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException ex) {
+            }
+            if (count == 60) {
+                LoggerClass.getInstance().error("Se colgo la aplicacion en waitForDone");
+                System.exit(0);
             }
         }
     }
@@ -50,7 +58,6 @@ public class BrutoAcciones {
 
     //http://nestornbloq.elbruto.es/vs/kascorro
     public void pelear(Bruto bruto, String rival) {
-        System.out.println("Peleando contra '" + rival + "'");
         robot.delay(1500);
         if (navigateAManopla) {
             robot.mover(800, 78);
@@ -72,7 +79,6 @@ public class BrutoAcciones {
     }
 
     public void ponerPassword(Bruto bruto) {
-        System.out.println("Poniendo password");
         robot.delay(1500);
         if (navigateAManopla) {
             robot.mover(800, 78);
@@ -122,7 +128,6 @@ public class BrutoAcciones {
     }
 
     public void irCellule(Bruto bruto) {
-        System.out.println("Yendo a cellule");
         robot.delay(1500);
         if (navigateAManopla) {
             robot.mover(800, 78);
