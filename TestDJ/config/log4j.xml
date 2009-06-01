@@ -53,6 +53,8 @@
     <logger name="com.pcube.management.framework.rpc.IncomingMessagesDispatcher">
         <appender-ref ref="smLog" />
     </logger>
+    <logger name="org.apache.http.impl.conn.SingleClientConnManager">
+    </logger>
     <root>
     </root>
 </log4j:configuration> 

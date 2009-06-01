@@ -31,9 +31,13 @@ public class AlumnoJpaController {
         try {
             Query q = em.createQuery("select object(o) from Alumno as o where o.ip = :ip and o.ancestro = :an").setParameter("ip", ip).setParameter("an", ancestro.getNombre());
             q.setFirstResult(1);
-            if (q.getSingleResult() != null) {
-                return true;
-            } else {
+            try {
+                if (q.getSingleResult() != null) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (Exception e) {
                 return false;
             }
         } finally {
