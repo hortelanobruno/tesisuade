@@ -95,8 +95,8 @@ public class SimpleWebBrowser extends JPanel {
             html = html.replace(" ", "");
             html = html.replace("\"", "");
             html = html.toLowerCase();
-            html = html.split("<divid='ip'>")[1];
-            html = html.split("</div><divid='mensaje'></div><divid='adsense'>")[0];
+            html = html.split("<divid=ip>")[1];
+            html = html.split("</div><divid=mensaje></div><divid=adsense>")[0];
             return html;
         } catch (IOException ex) {
             LoggerClass.getInstance().error("Error al obtener la ip publica");

@@ -40,10 +40,10 @@ public class ElBrutoManagerForFigting extends ElBrutoManager {
             Thread.sleep(5000);
         } catch (InterruptedException ex) {
         }
-//        LoggerClass.getInstance().info("Iniciando proceso de peleas");
-//        iniciarModoPeleas();
-//        LoggerClass.getInstance().info("Termino proceso de peleas");
-        soloPeleaCuandoSePicaYQuedoSinPelear();
+        LoggerClass.getInstance().info("Iniciando proceso de peleas");
+        iniciarModoPeleas();
+        LoggerClass.getInstance().info("Termino proceso de peleas");
+       // soloPeleaCuandoSePicaYQuedoSinPelear();
 //        LoggerClass.getInstance().info("Iniciando proceso de creacion de nuevas cuentas");
 //        iniciarModoCrearCuentas();
 //        LoggerClass.getInstance().info("Termino proceso de creacion de nuevas cuentas");

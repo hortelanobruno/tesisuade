@@ -67,7 +67,7 @@ public class BrutoAcciones {
         robot.clickIzquierdo(3000);
         robot.mover(650, 610);
         robot.clickIzquierdo();
-        robot.delay(3000);
+        robot.delay(1000);
         irCellule(bruto);
     }
 
