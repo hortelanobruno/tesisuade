@@ -6,15 +6,12 @@ package com.bruno.elbruto.browser;
 
 import com.bruno.elbruto.browser.thread.GetSourceCode;
 import com.bruno.elbruto.manager.ElBrutoManager;
-import com.bruno.elbruto.manager.ElBrutoManagerForFigting;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
@@ -24,7 +21,6 @@ import com.bruno.elbruto.browser.thread.GetResourceLocation;
 import com.bruno.elbruto.browser.thread.Navigate;
 import com.bruno.elbruto.util.LoggerClass;
 import javax.swing.SwingUtilities;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
