@@ -41,6 +41,18 @@ public class BrutoJpaController {
         }
     }
 
+    public void disminuirDerrota(String nombre) {
+        try {
+            Bruto bruto = findBruto(nombre);
+            bruto.setVictorias(bruto.getVictorias() - 1);
+            edit(bruto);
+        } catch (NonexistentEntityException ex) {
+            LoggerClass.getInstance().error("Error al editar un bruto en la base");
+        } catch (Exception ex) {
+            LoggerClass.getInstance().error("Error al editar un bruto en la base");
+        }
+    }
+
     public Bruto findAncestro() {
         EntityManager em = getEntityManager();
         try {

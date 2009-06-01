@@ -12,7 +12,7 @@ import com.bruno.elbruto.manager.ElBrutoManagerForFigting;
  *
  * @author Brunoli
  */
-public class RunClass2 {
+public class RunClassForFighting {
 
     public static void main(String[] args) {
         ElBrutoManager manager = new ElBrutoManagerForFigting();

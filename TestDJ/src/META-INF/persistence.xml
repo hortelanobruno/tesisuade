@@ -9,7 +9,7 @@
     <properties>
       <property name="toplink.jdbc.user" value="root"/>
       <property name="toplink.jdbc.password" value="root"/>
-      <property name="toplink.jdbc.url" value="jdbc:mysql://192.168.0.10:3306/elbruto"/>
+      <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/elbruto"/>
       <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="toplink.ddl-generation" value="create-tables"/>
     </properties>
