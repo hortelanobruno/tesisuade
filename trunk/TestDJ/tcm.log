@@ -140,3 +140,65 @@
 2009-06-01 08:40:29,251 INFO Proceso pelea con qaswzx
 2009-06-01 08:42:15,788 INFO Proceso pelea con qwerfdsa
 2009-06-01 08:44:07,776 INFO Termino proceso de peleas
+2009-06-01 20:47:47,409 INFO Iniciando proceso de reclutamiento
+2009-06-01 20:47:55,155 INFO Buscando ancestro....
+2009-06-01 20:47:56,210 INFO El ancestro es brunoli
+2009-06-01 20:47:57,941 INFO Buscando reclutante numero 01
+2009-06-01 20:48:48,799 INFO IP usada, cambiando ip a: 66.60.28.195
+2009-06-01 20:48:48,799 INFO Creando alumno...
+2009-06-01 20:49:16,028 INFO El alumno es tim03255
+2009-06-01 20:50:16,381 INFO El alumno resulto productivo
+2009-06-01 20:51:03,942 INFO Peleando contra chalou7. Victoria
+2009-06-01 20:51:35,267 INFO Peleando contra camiloo. Victoria
+2009-06-01 20:52:04,487 INFO Peleando contra cacona. Victoria
+2009-06-01 20:52:35,764 INFO Peleando contra zaboide. Derrota
+2009-06-01 20:53:05,274 INFO Peleando contra sexologo. Victoria
+2009-06-01 20:53:36,035 INFO Peleando contra neee. Derrota
+2009-06-01 20:53:37,193 INFO Subio de nivel, a 2
+2009-06-01 20:53:49,217 INFO Inscribiendo al torneo
+2009-06-01 20:53:49,217 INFO Buscando reclutante numero 11
+2009-06-01 20:54:30,510 INFO IP usada, cambiando ip a: 66.60.28.66
+2009-06-01 20:54:30,510 INFO Creando alumno...
+2009-06-01 20:57:00,755 INFO El alumno es fafor101
+2009-06-01 20:58:01,026 INFO El alumno resulto productivo
+2009-06-01 20:58:46,618 INFO Peleando contra chalou7. Victoria
+2009-06-01 20:59:15,934 INFO Peleando contra camiloo. Victoria
+2009-06-01 20:59:45,041 INFO Peleando contra cacona. Victoria
+2009-06-01 21:00:14,471 INFO Peleando contra zaboide. Victoria
+2009-06-01 21:00:44,222 INFO Peleando contra sexologo. Victoria
+2009-06-01 21:01:15,026 INFO Peleando contra neee. Victoria
+2009-06-01 21:01:16,232 INFO Subio de nivel, a 3
+2009-06-01 21:01:28,252 INFO Inscribiendo al torneo
+2009-06-01 21:01:28,252 INFO Buscando reclutante numero 21
+2009-06-01 21:02:09,556 INFO IP usada, cambiando ip a: 66.60.28.195
+2009-06-01 21:02:09,556 INFO Creando alumno...
+2009-06-01 21:04:01,967 INFO El alumno es alicie040
+2009-06-01 21:05:02,481 INFO El alumno NO resulto productivo
+2009-06-01 21:05:02,482 INFO Cambiando ip 66.60.28.195 debido a que el alumno no fue productivo.
+2009-06-01 21:05:52,992 INFO La nueva ip es 66.60.27.81
+2009-06-01 21:05:52,998 INFO Creando alumno...
+2009-06-01 21:06:18,930 INFO El alumno es jhonny758095
+2009-06-01 21:07:20,002 INFO El alumno resulto productivo
+2009-06-01 21:08:05,862 INFO Peleando contra chalou7. Derrota
+2009-06-01 21:08:36,816 INFO Iniciando proceso de reclutamiento
+2009-06-01 21:08:43,322 INFO Buscando ancestro....
+2009-06-01 21:08:43,324 INFO El ancestro es brunoli
+2009-06-01 21:08:44,410 INFO Buscando reclutante numero 01
+2009-06-01 21:09:27,359 INFO IP usada, cambiando ip a: 66.60.28.130
+2009-06-01 21:09:27,359 INFO Creando alumno...
+2009-06-01 21:12:37,486 INFO El alumno es hiro4655
+2009-06-01 21:13:37,690 INFO El alumno resulto productivo
+2009-06-01 21:14:21,255 INFO Peleando contra chalou7. Victoria
+2009-06-01 21:14:50,618 INFO Peleando contra camiloo. Victoria
+2009-06-01 21:15:19,753 INFO Peleando contra cacona. Victoria
+2009-06-01 21:15:49,082 INFO Peleando contra zaboide. Victoria
+2009-06-01 21:16:19,084 INFO Peleando contra sexologo. Victoria
+2009-06-01 21:16:47,821 INFO Peleando contra neee. Derrota
+2009-06-01 21:16:49,030 INFO Subio de nivel, a 2
+2009-06-01 21:17:01,060 INFO Inscribiendo al torneo
+2009-06-01 21:17:01,060 INFO Buscando reclutante numero 11
+2009-06-01 21:17:39,993 INFO IP usada, cambiando ip a: 66.60.28.209
+2009-06-01 21:17:39,994 INFO Creando alumno...
+2009-06-01 21:18:05,529 INFO El alumno es jacob02743
+2009-06-01 21:19:06,257 INFO El alumno resulto productivo
+2009-06-01 21:19:52,909 INFO Peleando contra chalou7. Victoria

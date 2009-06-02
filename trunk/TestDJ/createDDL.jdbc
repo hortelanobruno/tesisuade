@@ -1,4 +1,4 @@
 CREATE TABLE brutos (nombre VARCHAR(255) NOT NULL, nivel INTEGER, clasificacion INTEGER, password VARCHAR(255), propietario TINYINT(1) default 0, victorias BIGINT, PRIMARY KEY (nombre))
-CREATE TABLE nombres (nombre VARCHAR(255) NOT NULL, PRIMARY KEY (nombre))
 CREATE TABLE alumnoproductivo (nombre VARCHAR(255) NOT NULL, ancestro VARCHAR(255), fecha DATE, ip VARCHAR(255), PRIMARY KEY (nombre))
+CREATE TABLE nombres (nombre VARCHAR(255) NOT NULL, PRIMARY KEY (nombre))
 CREATE TABLE peleas (victoria TINYINT(1) default 0, nombre VARCHAR(255) NOT NULL, fecha DATE NOT NULL, rival VARCHAR(255) NOT NULL, PRIMARY KEY (nombre, fecha, rival))

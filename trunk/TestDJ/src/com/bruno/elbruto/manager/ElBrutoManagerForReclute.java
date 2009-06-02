@@ -27,30 +27,44 @@ public class ElBrutoManagerForReclute extends ElBrutoManager {
     }
 
     public void init() {
+        LoggerClass.getInstance().info("Iniciando proceso de reclutamiento");
         brutoAcciones = new BrutoAcciones(simpleWeb);
         dbManager = new DBManager();
         try {
             Thread.sleep(5000);
         } catch (InterruptedException ex) {
         }
+        LoggerClass.getInstance().info("Buscando ancestro....");
         Bruto ancestro = dbManager.findAncestro();
+        LoggerClass.getInstance().info("El ancestro es " + ancestro.getNombre());
         int cantReclutantes = 5;
         String ip = obtenerIPPublica();
         String nombre;
         for (int i = 0; i < cantReclutantes; i++) {
+            LoggerClass.getInstance().info("Buscando reclutante numero " + i + 1);
             while (true) {
                 if (chequearIPUsada(ip, ancestro)) {
                     ip = cambiarIP(ip);
+                    LoggerClass.getInstance().info("IP usada, cambiando ip a: " + ip);
                 }
-                nombre = crearAlumno(ip, ancestro);
-                if (nombre != null) {
-                    break;
-                } else {
-                    ip = cambiarIP(ip);
+                try {
+                    LoggerClass.getInstance().info("Creando alumno...");
+                    nombre = crearAlumno(ip, ancestro);
+                    if (nombre != null) {
+                        break;
+                    } else {
+                        LoggerClass.getInstance().info("Cambiando ip " + ip + " debido a que el alumno no fue productivo.");
+                        ip = cambiarIP(ip);
+                        LoggerClass.getInstance().info("La nueva ip es " + ip);
+                    }
+                } catch (Exception ex) {
+                    LoggerClass.getInstance().error("Error al crear el alumno.");
+                    init();
                 }
             }
             soloPeleaCuandoSePicaYQuedoSinPelear(nombre);
         }
+        LoggerClass.getInstance().info("Terminando proceso de reclutamiento");
     }
 
     private String cambiarIP(String ip) {
@@ -168,9 +182,14 @@ public class ElBrutoManagerForReclute extends ElBrutoManager {
             int resultadoPelea;
             while (true) {
                 brutoAcciones.pelear(bruto, rival.getNombre());
-                resultadoPelea = chequearPelea(bruto, rival.getNombre());
-                if (resultadoPelea != -1) {
-                    break;
+                try {
+                    resultadoPelea = chequearPelea(bruto, rival.getNombre());
+                    if (resultadoPelea != -1) {
+                        break;
+                    }
+                } catch (Exception ex) {
+                    LoggerClass.getInstance().error("Error al chequear la pelea.");
+                    init();
                 }
             }
             pelea = new Pelea();
@@ -179,8 +198,10 @@ public class ElBrutoManagerForReclute extends ElBrutoManager {
             pelea.setFecha(new Date());
             if (resultadoPelea == 1) {
                 pelea.setVictoria(true);
+                LoggerClass.getInstance().info("Peleando contra " + rival.getNombre() + ". Victoria");
             } else {
                 pelea.setVictoria(false);
+                LoggerClass.getInstance().info("Peleando contra " + rival.getNombre() + ". Derrota");
             }
             dbManager.create(pelea);
         }
@@ -189,9 +210,11 @@ public class ElBrutoManagerForReclute extends ElBrutoManager {
             //actualizar nivel
             bruto.setNivel(nivel);
             dbManager.actualizarNivel(bruto);
+            LoggerClass.getInstance().info("Subio de nivel, a " + nivel);
         }
         if (hayQueInscribirTorneo()) {
             brutoAcciones.inscribirEnTorneo(bruto);
+            LoggerClass.getInstance().info("Inscribiendo al torneo");
         }
     }
 
@@ -201,13 +224,17 @@ public class ElBrutoManagerForReclute extends ElBrutoManager {
         Bruto bruto;
         while (true) {
             nombre = dbManager.randomBrutoName();
-            bruto = brutoAcciones.crearBruto(nombre, ancestro);
-            if (bruto != null) {
-                break;
+            if (!nombre.equalsIgnoreCase(ancestro.getNombre())) {
+                bruto = brutoAcciones.crearBruto(nombre, ancestro);
+                if (bruto != null) {
+                    break;
+                }
             }
         }
+        LoggerClass.getInstance().info("El alumno es " + nombre);
         brutoAcciones.crearPassword(bruto);
         if (chequearAncestroProductivo(bruto, ancestro)) {
+            LoggerClass.getInstance().info("El alumno resulto productivo");
             dbManager.create(bruto);
             Alumno alumno = new Alumno();
             alumno.setAncestro(ancestro.getNombre());
@@ -217,6 +244,7 @@ public class ElBrutoManagerForReclute extends ElBrutoManager {
             dbManager.create(alumno);
             return nombre;
         } else {
+            LoggerClass.getInstance().info("El alumno NO resulto productivo");
             return null;
         }
     }

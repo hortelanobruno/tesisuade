@@ -1,4 +1,4 @@
 DROP TABLE brutos
-DROP TABLE nombres
 DROP TABLE alumnoproductivo
+DROP TABLE nombres
 DROP TABLE peleas
