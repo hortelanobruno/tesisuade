@@ -22,6 +22,10 @@
                                       ip     VARCHAR(20) NOT NULL,
                                       primary key(nombre))
 
+        CREATE TABLE peleasCompletadas(fecha DATE NOT NULL,
+                                       nombre VARCHAR(30) NOT NULL references brutos(nombre),
+                                       primary key(nombre,fecha))
+
 
 #random row
 

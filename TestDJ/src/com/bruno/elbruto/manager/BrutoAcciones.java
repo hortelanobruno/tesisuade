@@ -18,7 +18,7 @@ public class BrutoAcciones {
     private MouseRobot robot;
     private SimpleWebBrowser simpleWeb;
     private boolean navigateAManopla = true;
-    private boolean inServidor = true;
+    private boolean inServidor = false;
     private int count;
 
     public BrutoAcciones() {
@@ -50,29 +50,43 @@ public class BrutoAcciones {
         }
     }
 
-    //http://nestornbloq.elbruto.es/vs/kascorro
-    public void pelear(Bruto bruto, String rival) {
-        robot.delay(1500);
-        if (navigateAManopla) {
+    public void ponerURL(String url) {
+        String aux = simpleWeb.getUrl();
+        while (!aux.equalsIgnoreCase("http://" + url)) {
             if (inServidor) {
                 robot.mover(711, 83);
             } else {
                 robot.mover(800, 78);
             }
             robot.clickIzquierdo();
+            robot.delay(500);
             robot.borrar();
-            robot.escribir(bruto.getNombre() + ".elbruto.es/vs/" + rival);
+            robot.delay(500);
+            robot.escribir(url);
+            robot.delay(500);
             robot.enter();
+            waitForDone();
+            aux = simpleWeb.getUrl();
+        }
+    }
+
+    public void pelear(Bruto bruto, String rival) {
+        robot.delay(1500);
+        if (navigateAManopla) {
+            ponerURL(bruto.getNombre() + ".elbruto.es/vs/" + rival);
         } else {
             simpleWeb.navigate(bruto.getNombre() + ".elbruto.es/vs/" + rival);
+            waitForDone();
         }
-        waitForDone();
         robot.delay(3000);
         if (inServidor) {
             robot.mover(1261, 698);
+            robot.delay(500);
             robot.clickIzquierdo(3000);
+            robot.delay(500);
             robot.mover(651, 611);
-        }else{
+            robot.delay(500);
+        } else {
             robot.mover(1265, 690);
             robot.clickIzquierdo(3000);
             robot.mover(650, 610);
@@ -85,26 +99,20 @@ public class BrutoAcciones {
     public void ponerPassword(Bruto bruto) {
         robot.delay(1500);
         if (navigateAManopla) {
-            if (inServidor) {
-                robot.mover(711, 83);
-            } else {
-                robot.mover(800, 78);
-            }
-            robot.clickIzquierdo();
-            robot.borrar();
-            robot.escribir(bruto.getNombre() + ".elbruto.es/login");
-            robot.enter();
+            ponerURL(bruto.getNombre() + ".elbruto.es/login");
         } else {
             simpleWeb.navigate(bruto.getNombre() + ".elbruto.es/login");
+            waitForDone();
         }
-        waitForDone();
         if (inServidor) {
             robot.mover(370, 360);
-        }else{
+        } else {
             robot.mover(300, 350);
         }
         robot.clickIzquierdo();
+        robot.delay(500);
         robot.escribir(bruto.getPassword());
+        robot.delay(500);
         robot.enter();
         waitForDone();
     }
@@ -112,20 +120,13 @@ public class BrutoAcciones {
     public void crearPassword(Bruto bruto) {
         robot.delay(1500);
         if (navigateAManopla) {
-            if (inServidor) {
-                robot.mover(711, 83);
-            } else {
-                robot.mover(800, 78);
-            }
-            robot.clickIzquierdo();
-            robot.borrar();
-            robot.escribir(bruto.getNombre() + ".elbruto.es/cellule");
-            robot.enter();
+            ponerURL(bruto.getNombre() + ".elbruto.es/cellule");
         } else {
             simpleWeb.navigate(bruto.getNombre() + ".elbruto.es/cellule");
+            waitForDone();
         }
-        robot.delay(15000);
-        if(inServidor){
+        robot.delay(5000);
+        if (inServidor) {
             robot.mover(1259, 107);
             robot.clickIzquierdo(3000);
             robot.mover(416, 355);
@@ -140,7 +141,7 @@ public class BrutoAcciones {
             robot.mover(348, 540);
             robot.clickIzquierdo();
             robot.delay(5000);
-        }else{
+        } else {
             robot.mover(1265, 100);
             robot.clickIzquierdo(3000);
             robot.mover(300, 358);
@@ -161,35 +162,17 @@ public class BrutoAcciones {
     public void irCellule(Bruto bruto) {
         robot.delay(1500);
         if (navigateAManopla) {
-            if (inServidor) {
-                robot.mover(711, 83);
-            } else {
-                robot.mover(800, 78);
-            }
-            robot.clickIzquierdo();
-            robot.borrar();
-            robot.escribir(bruto.getNombre() + ".elbruto.es/cellule");
-            robot.enter();
+            ponerURL(bruto.getNombre() + ".elbruto.es/cellule");
         } else {
             simpleWeb.navigate(bruto.getNombre() + ".elbruto.es/cellule");
+            waitForDone();
         }
-        waitForDone();
     }
 
     public Bruto crearBruto(String nombre, Bruto ancestro) {
-        //TODO
         robot.delay(1500);
+        ponerURL(ancestro.getNombre() + ".elbruto.es");
         if (inServidor) {
-            robot.mover(711, 83);
-        } else {
-            robot.mover(800, 78);
-        }
-        robot.clickIzquierdo();
-        robot.borrar();
-        robot.escribir(ancestro.getNombre() + ".elbruto.es");
-        robot.enter();
-        waitForDone();
-        if(inServidor){
             robot.mover(1259, 107);
             robot.clickIzquierdo(3000);
             robot.mover(301, 384);
@@ -198,7 +181,7 @@ public class BrutoAcciones {
             robot.mover(327, 644);
             robot.clickIzquierdo();
             robot.delay(10000);
-        }else{
+        } else {
             robot.mover(1265, 100);
             robot.clickIzquierdo(3000);
             robot.mover(300, 370);
@@ -225,15 +208,7 @@ public class BrutoAcciones {
         //TODO
         robot.delay(1500);
         if (navigateAManopla) {
-            if (inServidor) {
-                robot.mover(711, 83);
-            } else {
-                robot.mover(800, 78);
-            }
-            robot.clickIzquierdo();
-            robot.borrar();
-            robot.escribir("192.168.0.1");
-            robot.enter();
+            ponerURL("192.168.0.1");
         } else {
             simpleWeb.navigate("192.168.0.1");
         }
@@ -280,17 +255,7 @@ public class BrutoAcciones {
     }
 
     public void inscribirEnTorneo(Bruto bruto) {
-        //TODO CHE ACA HAY QUE VER XQ ME PARECE QUE CON /SUB TAMBIEN ANDA
-        //637 455 y 638 548 y 638 411
         robot.delay(1500);
-//        robot.mover(1265, 690);
-//        robot.clickIzquierdo(4000);
-//        robot.mover(637, 455);
-//        robot.clickIzquierdo();
-//        robot.mover(637, 548);
-//        robot.clickIzquierdo();
-//        robot.mover(637, 411);
-//        robot.clickIzquierdo();
         if (navigateAManopla) {
             if (inServidor) {
                 robot.mover(711, 83);
@@ -298,8 +263,11 @@ public class BrutoAcciones {
                 robot.mover(800, 78);
             }
             robot.clickIzquierdo();
+            robot.delay(500);
             robot.borrar();
+            robot.delay(500);
             robot.escribir(bruto.getNombre() + ".elbruto.es/sub");
+            robot.delay(500);
             robot.enter();
         } else {
             simpleWeb.navigate(bruto.getNombre() + ".elbruto.es/sub");

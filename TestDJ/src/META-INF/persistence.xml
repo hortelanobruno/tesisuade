@@ -6,6 +6,7 @@
     <class>com.bruno.elbruto.db.persistencia.entities.Bruto</class>
     <class>com.bruno.elbruto.db.persistencia.entities.Nombre</class>
     <class>com.bruno.elbruto.db.persistencia.entities.Alumno</class>
+    <class>com.bruno.elbruto.db.persistencia.entities.PeleasCompletadas</class>
     <properties>
       <property name="toplink.jdbc.user" value="root"/>
       <property name="toplink.jdbc.password" value="root"/>
