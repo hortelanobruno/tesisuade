@@ -8,10 +8,13 @@ import com.bruno.elbruto.db.persistencia.controller.AlumnoJpaController;
 import com.bruno.elbruto.db.persistencia.controller.BrutoJpaController;
 import com.bruno.elbruto.db.persistencia.controller.NombreJpaController;
 import com.bruno.elbruto.db.persistencia.controller.PeleaJpaController;
+import com.bruno.elbruto.db.persistencia.controller.PeleasCompletadasJpaController;
 import com.bruno.elbruto.db.persistencia.controller.exceptions.NonexistentEntityException;
 import com.bruno.elbruto.db.persistencia.controller.exceptions.PreexistingEntityException;
 import com.bruno.elbruto.db.persistencia.entities.Alumno;
 import com.bruno.elbruto.db.persistencia.entities.PeleaPK;
+import com.bruno.elbruto.db.persistencia.entities.PeleasCompletadas;
+import com.bruno.elbruto.db.persistencia.entities.PeleasCompletadasPK;
 import com.bruno.elbruto.manager.Bruto;
 import com.bruno.elbruto.manager.Pelea;
 import com.bruno.elbruto.util.LoggerClass;
@@ -31,16 +34,29 @@ public class DBManager {
     private PeleaJpaController peleaJPA;
     private NombreJpaController nombreJPA;
     private AlumnoJpaController alumnoJPA;
+    private PeleasCompletadasJpaController peleasComJPA;
 
     public DBManager() {
         brutoJPA = new BrutoJpaController();
         peleaJPA = new PeleaJpaController();
         nombreJPA = new NombreJpaController();
         alumnoJPA = new AlumnoJpaController();
+        peleasComJPA = new PeleasCompletadasJpaController();
     }
 
     public boolean chequearIPUsada(String ip, Bruto ancestro) {
         return alumnoJPA.chequearIPUsada(ip, ancestro);
+    }
+
+    public void crearPeleasCompletadas(String nombre) {
+        try {
+            PeleasCompletadas p = new PeleasCompletadas(new Date(), nombre);
+            peleasComJPA.create(p);
+        } catch (PreexistingEntityException ex) {
+            LoggerClass.getInstance().error("Error al cargar en la base la pelea completada");
+        } catch (Exception ex) {
+            LoggerClass.getInstance().error("Error al cargar en la base la pelea completada");
+        }
     }
 
     public void create(Alumno alumno) {
@@ -136,6 +152,14 @@ public class DBManager {
 
     public LinkedList<Bruto> findRivales(Bruto bruto, int cant) {
         return new LinkedList<Bruto>(convertirBrutos(brutoJPA.findRivales(bruto, cant)));
+    }
+
+    public boolean tieneQPelear(String nombre) {
+        if(peleasComJPA.findPeleasCompletadas(new PeleasCompletadasPK(new Date(),nombre))==null){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     private List<Bruto> convertirBrutos(List<com.bruno.elbruto.db.persistencia.entities.Bruto> brutos) {

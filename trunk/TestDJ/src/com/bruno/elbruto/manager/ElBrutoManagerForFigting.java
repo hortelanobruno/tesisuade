@@ -69,15 +69,21 @@ public class ElBrutoManagerForFigting extends ElBrutoManager {
         }
     }
 
-    private int obtenerCantPeleasADisputar() {
-        //TODO TERMINAR
+    private int obtenerCantPeleasADisputar(String nombre) {
         String html = simpleWeb.getSourceCode();
         html = html.replace(" ", "");
         html = html.replace("\"", "");
         html = html.toLowerCase();
-        if (html.contains("inscribetubrutoparael")) {
-            return -1;
+        if (html.contains("tequedan")) {
+            html = html.split("tequedan")[1];
+            if (html.contains("combatesparaeld")) {
+                html = html.split("combatesparaeld")[0];
+            } else {
+                html = html.split("combateparaeld")[0];
+            }
+            return Integer.parseInt(html);
         } else {
+            dbManager.crearPeleasCompletadas(nombre);
             return -1;
         }
     }
@@ -228,47 +234,57 @@ public class ElBrutoManagerForFigting extends ElBrutoManager {
 
     private void pelearModo1(Bruto bruto) {
         //Ingreso el password si lo tiene
-        if (bruto.getPassword() != null) {
-            if (!bruto.getPassword().trim().isEmpty()) {
-                LoggerClass.getInstance().info("Ingresando password para el bruto " + bruto.getNombre());
-                brutoAcciones.ponerPassword(bruto);
+        if (dbManager.tieneQPelear(bruto.getNombre())) {
+            if (bruto.getPassword() != null) {
+                if (!bruto.getPassword().trim().isEmpty()) {
+                    LoggerClass.getInstance().info("Ingresando password para el bruto " + bruto.getNombre());
+                    brutoAcciones.ponerPassword(bruto);
+                } else {
+                    LoggerClass.getInstance().info("Yendo a la cellula del bruto " + bruto.getNombre());
+                    brutoAcciones.irCellule(bruto);
+                }
             } else {
                 LoggerClass.getInstance().info("Yendo a la cellula del bruto " + bruto.getNombre());
                 brutoAcciones.irCellule(bruto);
             }
-        } else {
-            LoggerClass.getInstance().info("Yendo a la cellula del bruto " + bruto.getNombre());
-            brutoAcciones.irCellule(bruto);
-        }
-        int cantPeleas = obtenerCantPeleasADisputar();
-        LoggerClass.getInstance().info("El bruto " + bruto.getNombre() + " tiene " + cantPeleas + " por disputar");
-        LinkedList<Bruto> rivales;
-        Pelea pelea;
-        Bruto rival;
-        int nivel;
-        int resultadoPelea;
-        for (int i = 0; i < cantPeleas; i++) {
-            rivales = obtenerRivalesPara(bruto, 3);
-            rival = rivales.poll();
-            while (true) {
-                brutoAcciones.pelear(bruto, rival.getNombre());
-                resultadoPelea = chequearPelea(bruto, rival.getNombre());
-                if (resultadoPelea != -1) {
-                    break;
+            int cantPeleas = obtenerCantPeleasADisputar(bruto.getNombre());
+            LoggerClass.getInstance().info("El bruto " + bruto.getNombre() + " tiene " + cantPeleas + " por disputar");
+            LinkedList<Bruto> rivales;
+            Pelea pelea;
+            Bruto rival;
+            int nivel;
+            int resultadoPelea;
+            rivales = obtenerRivalesPara(bruto, 10);
+            while (cantPeleas != -1) {
+                while (true) {
+                    rival = rivales.poll();
+                    brutoAcciones.pelear(bruto, rival.getNombre());
+                    resultadoPelea = chequearPelea(bruto, rival.getNombre());
+                    if (resultadoPelea != -1) {
+                        break;
+                    }
                 }
+                pelea = new Pelea();
+                pelea.setBruto(bruto);
+                pelea.setRival(rival);
+                pelea.setFecha(new Date());
+                if (resultadoPelea == 1) {
+                    LoggerClass.getInstance().info("Peleando contra '" + rival + "'. Victoria");
+                    pelea.setVictoria(true);
+                } else {
+                    LoggerClass.getInstance().info("Peleando contra '" + rival + "'. Derrota");
+                    pelea.setVictoria(false);
+                }
+                dbManager.create(pelea);
+                nivel = obtenerNivel();
+                if (nivel != bruto.getNivel()) {
+                    //actualizar nivel
+                    bruto.setNivel(nivel);
+                    dbManager.actualizarNivel(bruto);
+                    LoggerClass.getInstance().info("El bruto " + bruto.getNombre() + " subio al nivel " + nivel);
+                }
+                cantPeleas = obtenerCantPeleasADisputar(bruto.getNombre());
             }
-            pelea = new Pelea();
-            pelea.setBruto(bruto);
-            pelea.setRival(rival);
-            pelea.setFecha(new Date());
-            if (resultadoPelea == 1) {
-                LoggerClass.getInstance().info("Peleando contra '" + rival + "'. Victoria");
-                pelea.setVictoria(true);
-            } else {
-                LoggerClass.getInstance().info("Peleando contra '" + rival + "'. Derrota");
-                pelea.setVictoria(false);
-            }
-            dbManager.create(pelea);
             nivel = obtenerNivel();
             if (nivel != bruto.getNivel()) {
                 //actualizar nivel
@@ -276,17 +292,10 @@ public class ElBrutoManagerForFigting extends ElBrutoManager {
                 dbManager.actualizarNivel(bruto);
                 LoggerClass.getInstance().info("El bruto " + bruto.getNombre() + " subio al nivel " + nivel);
             }
-        }
-        nivel = obtenerNivel();
-        if (nivel != bruto.getNivel()) {
-            //actualizar nivel
-            bruto.setNivel(nivel);
-            dbManager.actualizarNivel(bruto);
-            LoggerClass.getInstance().info("El bruto " + bruto.getNombre() + " subio al nivel " + nivel);
-        }
-        if (hayQueInscribirTorneo()) {
-            brutoAcciones.inscribirEnTorneo(bruto);
-            LoggerClass.getInstance().info("Inscribiendo al torneo al bruto "+bruto.getNombre());
+            if (hayQueInscribirTorneo()) {
+                brutoAcciones.inscribirEnTorneo(bruto);
+                LoggerClass.getInstance().info("Inscribiendo al torneo al bruto " + bruto.getNombre());
+            }
         }
     }
 }
