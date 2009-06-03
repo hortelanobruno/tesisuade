@@ -11,6 +11,8 @@ import com.bruno.elbruto.util.LoggerClass;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -41,7 +43,7 @@ public class ElBrutoManagerForReclute extends ElBrutoManager {
         String ip = obtenerIPPublica();
         String nombre;
         for (int i = 0; i < cantReclutantes; i++) {
-            LoggerClass.getInstance().info("Buscando reclutante numero " + i + 1);
+            LoggerClass.getInstance().info("Buscando reclutante numero " + new Integer(i + 1));
             while (true) {
                 if (chequearIPUsada(ip, ancestro)) {
                     ip = cambiarIP(ip);
@@ -102,7 +104,17 @@ public class ElBrutoManagerForReclute extends ElBrutoManager {
     }
 
     private String obtenerIPPublica() {
-        return simpleWeb.getIPInternet();
+        String ip;
+        while (true) {
+            try {
+                ip = simpleWeb.getIPInternet();
+                if (ip != null) {
+                    return ip;
+                }
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+            }
+        }
     }
 
     public void avisarDone() {
