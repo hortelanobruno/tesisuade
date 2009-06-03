@@ -11,8 +11,6 @@ import com.bruno.elbruto.util.LoggerClass;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -28,6 +26,7 @@ public class ElBrutoManagerForReclute extends ElBrutoManager {
         super();
     }
 
+    @Override
     public void init() {
         LoggerClass.getInstance().info("Iniciando proceso de reclutamiento");
         brutoAcciones = new BrutoAcciones(simpleWeb);
@@ -39,7 +38,7 @@ public class ElBrutoManagerForReclute extends ElBrutoManager {
         LoggerClass.getInstance().info("Buscando ancestro....");
         Bruto ancestro = dbManager.findAncestro();
         LoggerClass.getInstance().info("El ancestro es " + ancestro.getNombre());
-        int cantReclutantes = 5;
+        int cantReclutantes = 20;
         String ip = obtenerIPPublica();
         String nombre;
         for (int i = 0; i < cantReclutantes; i++) {
@@ -117,10 +116,12 @@ public class ElBrutoManagerForReclute extends ElBrutoManager {
         }
     }
 
+    @Override
     public void avisarDone() {
         brutoAcciones.avisarDone();
     }
 
+    @Override
     public void setWebBrowser(SimpleWebBrowser aThis) {
         this.simpleWeb = aThis;
     }
