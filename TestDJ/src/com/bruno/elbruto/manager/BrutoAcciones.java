@@ -18,7 +18,7 @@ public class BrutoAcciones {
     private MouseRobot robot;
     private SimpleWebBrowser simpleWeb;
     private boolean navigateAManopla = true;
-    private boolean inServidor = false;
+    private boolean inServidor = true;
     private int count;
 
     public BrutoAcciones() {
@@ -43,6 +43,9 @@ public class BrutoAcciones {
                 Thread.sleep(2000);
             } catch (InterruptedException ex) {
             }
+            if (count == 5) {
+                simpleWeb.reloadPage();
+            }
             if (count == 60) {
                 LoggerClass.getInstance().error("Se colgo la aplicacion en waitForDone");
                 System.exit(0);
@@ -51,7 +54,10 @@ public class BrutoAcciones {
     }
 
     public void ponerURL(String url) {
-        String aux = simpleWeb.getUrl();
+        String aux = "a22222sdfasdf";
+        if (aux.endsWith("/")) {
+            aux = aux.substring(0, aux.length() - 1);
+        }
         while (!aux.equalsIgnoreCase("http://" + url)) {
             if (inServidor) {
                 robot.mover(711, 83);
@@ -67,6 +73,9 @@ public class BrutoAcciones {
             robot.enter();
             waitForDone();
             aux = simpleWeb.getUrl();
+            if (aux.endsWith("/")) {
+                aux = aux.substring(0, aux.length() - 1);
+            }
         }
     }
 
@@ -125,21 +134,26 @@ public class BrutoAcciones {
             simpleWeb.navigate(bruto.getNombre() + ".elbruto.es/cellule");
             waitForDone();
         }
-        robot.delay(5000);
+        robot.delay(1500);
         if (inServidor) {
             robot.mover(1259, 107);
             robot.clickIzquierdo(3000);
-            robot.mover(416, 355);
+            robot.mover(465, 357);
+            robot.delay(500);
             robot.clickIzquierdo();
             robot.delay(5000);
             robot.mover(348, 454);
             robot.clickIzquierdo();
+            robot.delay(500);
             robot.escribir(bruto.getPassword());
+            robot.delay(500);
             robot.mover(348, 503);
+            robot.delay(500);
             robot.clickIzquierdo();
+            robot.delay(500);
             robot.escribir(bruto.getPassword());
-            robot.mover(348, 540);
-            robot.clickIzquierdo();
+            robot.delay(500);
+            robot.enter();
             robot.delay(5000);
         } else {
             robot.mover(1265, 100);
@@ -153,8 +167,8 @@ public class BrutoAcciones {
             robot.mover(330, 500);
             robot.clickIzquierdo();
             robot.escribir(bruto.getPassword());
-            robot.mover(330, 530);
-            robot.clickIzquierdo();
+            robot.delay(500);
+            robot.enter();
             robot.delay(5000);
         }
     }
@@ -208,7 +222,18 @@ public class BrutoAcciones {
         //TODO
         robot.delay(1500);
         if (navigateAManopla) {
-            ponerURL("192.168.0.1");
+            if (inServidor) {
+                robot.mover(711, 83);
+            } else {
+                robot.mover(800, 78);
+            }
+            robot.clickIzquierdo();
+            robot.delay(500);
+            robot.borrar();
+            robot.delay(500);
+            robot.escribir("192.168.0.1");
+            robot.delay(500);
+            robot.enter();
         } else {
             simpleWeb.navigate("192.168.0.1");
         }
@@ -217,18 +242,23 @@ public class BrutoAcciones {
             robot.mover(645, 386);
             robot.clickIzquierdo();
             robot.escribir("tplink");
+            robot.delay(500);
             robot.mover(637, 415);
             robot.clickIzquierdo();
             robot.escribir("hortelano");
+            robot.delay(500);
             robot.mover(663, 503);
             robot.clickIzquierdo();
             robot.delay(5000);
             robot.mover(855, 700);
             robot.clickIzquierdo(3000);
+            robot.delay(500);
             robot.mover(671, 490);
             robot.clickIzquierdo();
+            robot.delay(500);
             robot.mover(855, 700);
             robot.clickIzquierdo(3000);
+            robot.delay(500);
             robot.mover(671, 490);
             robot.clickIzquierdo();
             robot.delay(10000);

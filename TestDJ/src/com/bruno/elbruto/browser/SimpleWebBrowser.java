@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
 import com.bruno.elbruto.browser.thread.GetResourceLocation;
 import com.bruno.elbruto.browser.thread.Navigate;
+import com.bruno.elbruto.browser.thread.Reload;
 import com.bruno.elbruto.util.LoggerClass;
 import javax.swing.SwingUtilities;
 import org.apache.http.client.HttpClient;
@@ -58,7 +59,6 @@ public class SimpleWebBrowser extends JPanel {
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
-
     public JWebBrowser getWebBrowser() {
         return webBrowser;
     }
@@ -67,6 +67,10 @@ public class SimpleWebBrowser extends JPanel {
         GetSourceCode get = new GetSourceCode(webBrowser, this);
         SwingUtilities.invokeLater(get);
         return get.getSourceCode();
+    }
+
+    public void reloadPage() {
+        SwingUtilities.invokeLater(new Reload(webBrowser));
     }
 
     public String getUrl() {

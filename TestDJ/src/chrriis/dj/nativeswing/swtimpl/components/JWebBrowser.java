@@ -552,13 +552,26 @@ public class JWebBrowser extends NSPanelComponent {
             statusLabel.setText(status.length() == 0 ? " " : status);
             //ACA ES EL DONE
             if (status.equalsIgnoreCase("Done")) {
-                if (!chequearMantenimiento()) {
-                    if (!chequearErrorFatal()) {
-                        this.webBrowser.brutoManager.avisarDone();
+                if (!errorPage()) {
+                    if (!chequearMantenimiento()) {
+                        if (!chequearErrorFatal()) {
+                            this.webBrowser.brutoManager.avisarDone();
+                        } else {
+                            try {
+                                this.webBrowser.reloadPage();
+                                Thread.sleep(1000);
+                                Robot robot = new Robot();
+                                robot.keyPress(KeyEvent.VK_SPACE);
+                                robot.keyRelease(KeyEvent.VK_SPACE);
+                            } catch (AWTException ex) {
+                            } catch (InterruptedException ex) {
+                            }
+                        }
                     } else {
                         try {
+                            LoggerClass.getInstance().info("Durmiendo 5 min porque la pagina esta en mantenimiento");
+                            Thread.sleep(60000 * 5);
                             this.webBrowser.reloadPage();
-                            Thread.sleep(1000);
                             Robot robot = new Robot();
                             robot.keyPress(KeyEvent.VK_SPACE);
                             robot.keyRelease(KeyEvent.VK_SPACE);
@@ -568,14 +581,12 @@ public class JWebBrowser extends NSPanelComponent {
                     }
                 } else {
                     try {
-                        LoggerClass.getInstance().info("Durmiendo 5 min porque la pagina esta en mantenimiento");
-                        Thread.sleep(60000 * 5);
+                        LoggerClass.getInstance().info("La pagina entro en error y se va a hacer reload");
                         this.webBrowser.reloadPage();
                         Robot robot = new Robot();
                         robot.keyPress(KeyEvent.VK_SPACE);
                         robot.keyRelease(KeyEvent.VK_SPACE);
                     } catch (AWTException ex) {
-                    } catch (InterruptedException ex) {
                     }
                 }
             }
@@ -595,6 +606,16 @@ public class JWebBrowser extends NSPanelComponent {
             String html = webBrowser.getHTMLContent();
             if (html.contains("Mantenimiento en curso")) {
                 LoggerClass.getInstance().info("La pagina esta en mantenimiento.");
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        private boolean errorPage() {
+            String html = webBrowser.getHTMLContent();
+            if (html.contains("The page you are trying to reach")) {
+                LoggerClass.getInstance().info("Pagina de error.");
                 return true;
             } else {
                 return false;
