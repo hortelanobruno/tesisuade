@@ -121,8 +121,8 @@ public class DBManager {
         }
     }
 
-    public Bruto findAncestro() {
-        com.bruno.elbruto.db.persistencia.entities.Bruto br = brutoJPA.findAncestro();
+    public Bruto findAncestro(String anc) {
+        com.bruno.elbruto.db.persistencia.entities.Bruto br = brutoJPA.findAncestro(anc);
         Bruto bruto = new Bruto();
         bruto.setNivel(br.getNivel());
         bruto.setNombre(br.getNombre());

@@ -7,6 +7,7 @@ package com.bruno.elbruto.manager;
 import com.bruno.elbruto.browser.SimpleWebBrowser;
 import com.bruno.elbruto.util.LoggerClass;
 import com.bruno.elbruto.util.MouseRobot;
+import java.util.Properties;
 
 /**
  *
@@ -17,17 +18,21 @@ public class BrutoAcciones {
     private boolean done = false;
     private MouseRobot robot;
     private SimpleWebBrowser simpleWeb;
-    private boolean navigateAManopla = true;
-    private boolean inServidor = true;
+    private boolean navigateAManopla = false;
+    private boolean inServidor = false;
     private int count;
+    private Properties config;
 
-    public BrutoAcciones() {
-        robot = new MouseRobot();
-    }
-
-    public BrutoAcciones(SimpleWebBrowser simpleWeb) {
+    public BrutoAcciones(SimpleWebBrowser simpleWeb, Properties config) {
         robot = new MouseRobot();
         this.simpleWeb = simpleWeb;
+        this.config = config;
+        if ("true".equalsIgnoreCase(config.getProperty("coordenadasServidor"))) {
+            inServidor = true;
+        }
+        if ("true".equalsIgnoreCase(config.getProperty("navigateAManopla"))) {
+            navigateAManopla = true;
+        }
     }
 
     public synchronized void avisarDone() {
