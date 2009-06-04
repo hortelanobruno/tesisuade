@@ -53,10 +53,10 @@ public class BrutoJpaController {
         }
     }
 
-    public Bruto findAncestro() {
+    public Bruto findAncestro(String anc) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Bruto.class, "brunoli");
+            return em.find(Bruto.class, anc);
         } finally {
             em.close();
         }

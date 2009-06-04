@@ -8,9 +8,10 @@ import com.bruno.elbruto.browser.SimpleWebBrowser;
 import com.bruno.elbruto.db.DBManager;
 import com.bruno.elbruto.db.persistencia.entities.Alumno;
 import com.bruno.elbruto.util.LoggerClass;
+import java.io.IOException;
 import java.util.Date;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.Properties;
 
 /**
  *
@@ -21,51 +22,77 @@ public class ElBrutoManagerForReclute extends ElBrutoManager {
     private SimpleWebBrowser simpleWeb;
     private BrutoAcciones brutoAcciones;
     private DBManager dbManager;
+    private Properties config;
 
     public ElBrutoManagerForReclute() {
         super();
+        java.io.FileInputStream fis = null;
+        config = new Properties();
+        try {
+            fis = new java.io.FileInputStream(new java.io.File("./config/config.properties"));
+            config.load(fis);
+        } catch (IOException ex) {
+            LoggerClass.getInstance().error("Error al abrir el properties de configuracion");
+        } finally {
+            try {
+                fis.close();
+            } catch (IOException ex) {
+                LoggerClass.getInstance().error("Error al abrir el properties de configuracion");
+            }
+        }
     }
 
     @Override
     public void init() {
         LoggerClass.getInstance().info("Iniciando proceso de reclutamiento");
-        brutoAcciones = new BrutoAcciones(simpleWeb);
+        brutoAcciones = new BrutoAcciones(simpleWeb, config);
         dbManager = new DBManager();
         try {
             Thread.sleep(5000);
         } catch (InterruptedException ex) {
         }
         LoggerClass.getInstance().info("Buscando ancestro....");
-        Bruto ancestro = dbManager.findAncestro();
-        LoggerClass.getInstance().info("El ancestro es " + ancestro.getNombre());
-        int cantReclutantes = 20;
-        String ip = obtenerIPPublica();
-        String nombre;
-        for (int i = 0; i < cantReclutantes; i++) {
-            LoggerClass.getInstance().info("Buscando reclutante numero " + new Integer(i + 1));
-            while (true) {
-                if (chequearIPUsada(ip, ancestro)) {
-                    ip = cambiarIP(ip);
-                    LoggerClass.getInstance().info("IP usada, cambiando ip a: " + ip);
-                }
+        String anc = config.getProperty("ancestro");
+        Bruto ancestro = dbManager.findAncestro(anc);
+        if (ancestro != null) {
+            LoggerClass.getInstance().info("El ancestro es " + ancestro.getNombre());
+            int cantReclutantes = 5;
+            String ip = obtenerIPPublica();
+            String nombre;
+            int delayRecluting = Integer.parseInt(config.getProperty("delayRecluting"));
+            for (int i = 0; i < cantReclutantes; i++) {
                 try {
-                    LoggerClass.getInstance().info("Creando alumno...");
-                    nombre = crearAlumno(ip, ancestro);
-                    if (nombre != null) {
-                        break;
-                    } else {
-                        LoggerClass.getInstance().info("Cambiando ip " + ip + " debido a que el alumno no fue productivo.");
-                        ip = cambiarIP(ip);
-                        LoggerClass.getInstance().info("La nueva ip es " + ip);
+                    LoggerClass.getInstance().info("Buscando reclutante numero " + new Integer(i + 1));
+                    while (true) {
+                        if (chequearIPUsada(ip, ancestro)) {
+                            ip = cambiarIP(ip);
+                            LoggerClass.getInstance().info("IP usada, cambiando ip a: " + ip);
+                        }
+                        try {
+                            LoggerClass.getInstance().info("Creando alumno...");
+                            nombre = crearAlumno(ip, ancestro);
+                            if (nombre != null) {
+                                break;
+                            } else {
+                                LoggerClass.getInstance().info("Cambiando ip " + ip + " debido a que el alumno no fue productivo.");
+                                ip = cambiarIP(ip);
+                                LoggerClass.getInstance().info("La nueva ip es " + ip);
+                            }
+                        } catch (Exception ex) {
+                            LoggerClass.getInstance().error("Error al crear el alumno.");
+                            init();
+                        }
                     }
-                } catch (Exception ex) {
-                    LoggerClass.getInstance().error("Error al crear el alumno.");
-                    init();
+                    soloPeleaCuandoSePicaYQuedoSinPelear(nombre);
+                    LoggerClass.getInstance().info("Durmiendo " + delayRecluting + " minutos.");
+                    Thread.sleep(delayRecluting * 1000);
+                } catch (InterruptedException ex) {
                 }
             }
-            soloPeleaCuandoSePicaYQuedoSinPelear(nombre);
+            LoggerClass.getInstance().info("Terminando proceso de reclutamiento");
+        } else {
+            LoggerClass.getInstance().info("No se encontro al ancestro '" + anc + "'");
         }
-        LoggerClass.getInstance().info("Terminando proceso de reclutamiento");
     }
 
     private String cambiarIP(String ip) {
@@ -259,72 +286,6 @@ public class ElBrutoManagerForReclute extends ElBrutoManager {
         } else {
             LoggerClass.getInstance().info("El alumno NO resulto productivo");
             return null;
-        }
-    }
-
-    private void iniciarModoCrearCuentas() {
-        String nombre;
-        Bruto bruto;
-        Bruto ancestro = dbManager.findAncestro();
-        for (int i = 0; i < 100; i++) {
-            bruto = null;
-            while (true) {
-                nombre = dbManager.randomBrutoName();
-                bruto = brutoAcciones.crearBruto(nombre, ancestro);
-                if (bruto != null) {
-                    break;
-                }
-            }
-            dbManager.create(bruto);
-            brutoAcciones.crearPassword(bruto);
-            brutoAcciones.ponerPassword(bruto);
-            //aca hay q ver cuantas peleas tengo, creo que siempre son 6
-            Pelea pelea;
-            Bruto rival;
-            LinkedList<Bruto> rivales = obtenerRivalesPara(bruto, 6);
-            for (int j = 0; j < 6; j++) {
-                rival = rivales.poll();
-                int resultadoPelea;
-                while (true) {
-                    brutoAcciones.pelear(bruto, rival.getNombre());
-                    resultadoPelea = chequearPelea(bruto, rival.getNombre());
-                    if (resultadoPelea != -1) {
-                        break;
-                    }
-                }
-                pelea = new Pelea();
-                pelea.setBruto(bruto);
-                pelea.setRival(rival);
-                pelea.setFecha(new Date());
-                if (resultadoPelea == 1) {
-                    pelea.setVictoria(true);
-                } else {
-                    pelea.setVictoria(false);
-                }
-                dbManager.create(pelea);
-                if (j == 2) {
-                    System.out.println("aaa");
-                }
-            }
-            int nivel = obtenerNivel();
-            if (nivel != bruto.getNivel()) {
-                //actualizar nivel
-                bruto.setNivel(nivel);
-                dbManager.actualizarNivel(bruto);
-            }
-            if (hayQueInscribirTorneo()) {
-                brutoAcciones.inscribirEnTorneo(bruto);
-            }
-        }
-
-    }
-
-    private void iniciarModoPeleas() {
-        //NO TOCARLO, ASI FUNCIONA BIEN, PERO CHEQUEAR QUE AVECES NO BORRA BIEN LA URL
-        List<Bruto> brutos = dbManager.findBrutosPropietarios();
-        for (Bruto bruto : brutos) {
-            LoggerClass.getInstance().info("Proceso pelea con " + bruto.getNombre());
-            pelearModo1(bruto);
         }
     }
 

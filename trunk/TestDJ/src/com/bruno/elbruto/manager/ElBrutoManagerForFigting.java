@@ -7,9 +7,11 @@ package com.bruno.elbruto.manager;
 import com.bruno.elbruto.browser.SimpleWebBrowser;
 import com.bruno.elbruto.db.DBManager;
 import com.bruno.elbruto.util.LoggerClass;
+import java.io.IOException;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Properties;
 
 /**
  *
@@ -20,9 +22,24 @@ public class ElBrutoManagerForFigting extends ElBrutoManager {
     private SimpleWebBrowser simpleWeb;
     private BrutoAcciones brutoAcciones;
     private DBManager dbManager;
+    private Properties config;
 
     public ElBrutoManagerForFigting() {
         super();
+        java.io.FileInputStream fis = null;
+        config = new Properties();
+        try {
+            fis = new java.io.FileInputStream(new java.io.File("./config/config.properties"));
+            config.load(fis);
+        } catch (IOException ex) {
+            LoggerClass.getInstance().error("Error al abrir el properties de configuracion");
+        } finally {
+            try {
+                fis.close();
+            } catch (IOException ex) {
+                LoggerClass.getInstance().error("Error al abrir el properties de configuracion");
+            }
+        }
     }
 
     public void avisarDone() {
@@ -34,7 +51,7 @@ public class ElBrutoManagerForFigting extends ElBrutoManager {
     }
 
     public void init() {
-        brutoAcciones = new BrutoAcciones(simpleWeb);
+        brutoAcciones = new BrutoAcciones(simpleWeb, config);
         dbManager = new DBManager();
         try {
             Thread.sleep(5000);
@@ -160,63 +177,6 @@ public class ElBrutoManagerForFigting extends ElBrutoManager {
         if (hayQueInscribirTorneo()) {
             brutoAcciones.inscribirEnTorneo(bruto);
         }
-    }
-
-    private void iniciarModoCrearCuentas() {
-        String nombre;
-        Bruto bruto;
-        Bruto ancestro = dbManager.findAncestro();
-        for (int i = 0; i < 100; i++) {
-            bruto = null;
-            while (true) {
-                nombre = dbManager.randomBrutoName();
-                bruto = brutoAcciones.crearBruto(nombre, ancestro);
-                if (bruto != null) {
-                    break;
-                }
-            }
-            dbManager.create(bruto);
-            brutoAcciones.crearPassword(bruto);
-            brutoAcciones.ponerPassword(bruto);
-            //aca hay q ver cuantas peleas tengo, creo que siempre son 6
-            Pelea pelea;
-            Bruto rival;
-            LinkedList<Bruto> rivales = obtenerRivalesPara(bruto, 6);
-            for (int j = 0; j < 6; j++) {
-                rival = rivales.poll();
-                int resultadoPelea;
-                while (true) {
-                    brutoAcciones.pelear(bruto, rival.getNombre());
-                    resultadoPelea = chequearPelea(bruto, rival.getNombre());
-                    if (resultadoPelea != -1) {
-                        break;
-                    }
-                }
-                pelea = new Pelea();
-                pelea.setBruto(bruto);
-                pelea.setRival(rival);
-                pelea.setFecha(new Date());
-                if (resultadoPelea == 1) {
-                    pelea.setVictoria(true);
-                } else {
-                    pelea.setVictoria(false);
-                }
-                dbManager.create(pelea);
-                if (j == 2) {
-                    System.out.println("aaa");
-                }
-            }
-            int nivel = obtenerNivel();
-            if (nivel != bruto.getNivel()) {
-                //actualizar nivel
-                bruto.setNivel(nivel);
-                dbManager.actualizarNivel(bruto);
-            }
-            if (hayQueInscribirTorneo()) {
-                brutoAcciones.inscribirEnTorneo(bruto);
-            }
-        }
-
     }
 
     private void iniciarModoPeleas() {
