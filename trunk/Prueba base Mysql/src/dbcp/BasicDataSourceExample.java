@@ -121,9 +121,14 @@ public class BasicDataSourceExample {
             try {
                 conn.close();
                 printDataSourceStats(dataSource);
+                System.out.println("cambio");
+                dataSource = setupDataSource("jdbc:mysql://localhost:3306/pruebaperformance");
+                conn = dataSource.getConnection();
+                conn = dataSource.getConnection();
+                printDataSourceStats(dataSource);
             } catch (Exception e) {
             }
-            
+
         }
     }
 
@@ -133,6 +138,9 @@ public class BasicDataSourceExample {
         ds.setUsername("root");
         ds.setPassword("root");
         ds.setUrl(connectURI);
+        ds.setMaxActive(20);
+        ds.setMaxIdle(20);
+        ds.setInitialSize(20);
         return ds;
     }
 
@@ -140,6 +148,10 @@ public class BasicDataSourceExample {
         BasicDataSource bds = (BasicDataSource) ds;
         System.out.println("NumActive: " + bds.getNumActive());
         System.out.println("NumIdle: " + bds.getNumIdle());
+
+        System.out.println("InitialSize: " + bds.getInitialSize());
+        System.out.println("MaxActive: " + bds.getMaxActive());
+        System.out.println("MaxIdle: " + bds.getMaxIdle());
     }
 
     public static void shutdownDataSource(DataSource ds) throws SQLException {
