@@ -5,6 +5,7 @@
  */
 package com.ontotravel.gui.panels.nuevaontologia;
 
+import com.ontotravel.gui.FileChooser;
 import com.ontotravel.gui.FramePrincipal;
 import com.ontotravel.mvc.controller.ControladorPanelNuevaOntologia;
 import com.ontotravel.mvc.model.BusinessDelegate;
@@ -899,8 +900,19 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
 
     public void guardarOntologia() {
         //Grabar ontologia
-        ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).grabarOntologia(urlOWL);
-        ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).cargarConfiguracion(main.getConfiguration());
+        if (urlOWL != null) {
+            ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).grabarOntologia(urlOWL);
+            ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).cargarConfiguracion(main.getConfiguration());
+        } else {
+            FileChooser chooser = new FileChooser(this.getMain(), true, this.getMain().getConfiguration().getOwlDirectory());
+            if (chooser.getButton().equals("Cancel")) {
+            } else {
+                // Cargar los table
+                urlOWL = chooser.getPath() + ".owl";
+                ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).grabarOntologia(urlOWL);
+                ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).cargarConfiguracion(main.getConfiguration());
+            }
+        }
     }
 
     public void update() {
@@ -1358,8 +1370,6 @@ private void textFieldURIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
 
     private void cargarPanelClases() {
         // Vaciar arbol
-
-
         abuelo = new DefaultMutableTreeNode("Classes");
         modelo = new DefaultTreeModel(abuelo);
         treeClasses = new JTree(modelo);
@@ -1389,7 +1399,7 @@ private void textFieldURIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                 buttonCargarActionPerformed(evt);
             }
         });
-        jScrollPane1.setViewportView(treeClasses);
+
         Object root = treeClasses.getModel().getRoot();
         TreePath path = new TreePath(root);
         treeClasses.expandPath(path);
@@ -1400,6 +1410,7 @@ private void textFieldURIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
             renderer.setClosedIcon(leafIcon);
             renderer.setOpenIcon(leafIcon);
             treeClasses.setCellRenderer(renderer);
+            jScrollPane1.setViewportView(treeClasses);
         }
     }
 
