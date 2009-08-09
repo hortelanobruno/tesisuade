@@ -334,6 +334,7 @@
     >train</traduccion>
   </palabra>
   <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#Reserva_auto">
+    <sinonimo>Ticket_Translado</sinonimo>
     <sinonimo>Reserva_auto</sinonimo>
   </palabra>
   <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#clase">
@@ -380,6 +381,7 @@
   </palabra>
   <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#Reserva_pasaje">
     <sinonimo>Reserva_pasaje</sinonimo>
+    <sinonimo>Ticket_Viaje</sinonimo>
   </palabra>
   <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#cantidad_habitaciones">
     <sinonimo>cantidad_habitaciones</sinonimo>

@@ -272,7 +272,7 @@ private void buttonAddOntViajesActionPerformed(java.awt.event.ActionEvent evt) {
             }
         } catch (Exception ex) {
             //Entro aca porque no cumple el minimo requerimiento
-            JOptionPane.showMessageDialog(this, "La ontologia NO cumple con los requerimientos minimos", "Asistente de Viajes", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "La ontologia NO cumple con los requerimientos minimos. "+ex.getMessage(), "Asistente de Viajes", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 }//GEN-LAST:event_buttonAddOntViajesActionPerformed

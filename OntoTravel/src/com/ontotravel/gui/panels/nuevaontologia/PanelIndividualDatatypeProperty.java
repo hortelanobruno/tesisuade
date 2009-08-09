@@ -82,6 +82,7 @@ public class PanelIndividualDatatypeProperty extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 private void textFieldValorPropertyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldValorPropertyKeyTyped
+    System.out.println("key typed");
     if(evt.getKeyChar() == KeyEvent.VK_ENTER){
         varEnter = 1;
         ontologia.changePropiedadIndividual(labelNombrePropiedad.getText(),textFieldValorProperty.getText());
@@ -93,9 +94,11 @@ private void textFieldValorPropertyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-
 
 private void textFieldValorPropertyFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldValorPropertyFocusGained
     varEnter = 0;
+    System.out.println("focus gained");
 }//GEN-LAST:event_textFieldValorPropertyFocusGained
 
 private void textFieldValorPropertyFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldValorPropertyFocusLost
+    System.out.println("focus lost");
     if(varEnter == 0){
         ontologia.changePropiedadIndividual(labelNombrePropiedad.getText(),textFieldValorProperty.getText());
     }

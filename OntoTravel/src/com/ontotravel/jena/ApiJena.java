@@ -1389,13 +1389,13 @@ public class ApiJena {
                 Triple tri = s.asTriple();
                 if (tri.getObject().isLiteral()) {
                     if (tri.getPredicate().getLocalName().equals("type")) {
-                        if (tri.getMatchObject().getLiteral().getValue().equals(clase)) {
+                        if (tri.getMatchObject().getLiteral().getValue().toString().equalsIgnoreCase(clase)) {
                             individuals.add(indi.getLocalName());
                         }
                     }
                 } else {
                     if (tri.getPredicate().getLocalName().equals("type")) {
-                        if (tri.getObject().getLocalName().equals(clase)) {
+                        if (tri.getObject().getLocalName().equalsIgnoreCase(clase)) {
                             individuals.add(indi.getLocalName());
                         }
                     }
