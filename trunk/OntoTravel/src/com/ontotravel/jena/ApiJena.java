@@ -258,16 +258,16 @@ public class ApiJena {
         String value;
         for (String prop : propNames) {
             value = propiedades.get(prop);
-            if (value.contains("/")) {
-                String[] values = value.split("/");
-                String[] values1 = hotel.getPropiedadesPrincipales().get(prop).toString().split("/");
-                if (Integer.parseInt(values[2]) != Integer.parseInt(values1[2])) {
+            if (value.contains("-")) {
+                String[] values = value.split("-");
+                String[] values1 = hotel.getPropiedadesPrincipales().get(prop).toString().split("-");
+                if (!values[2].equalsIgnoreCase(values1[2])) {
                     return false;
                 }
-                if (Integer.parseInt(values[1]) != Integer.parseInt(values1[1])) {
+                if (!values[1].equalsIgnoreCase(values1[1])) {
                     return false;
                 }
-                if (Integer.parseInt(values[0]) != Integer.parseInt(values1[0])) {
+                if (!values[0].equalsIgnoreCase(values1[0])) {
                     return false;
                 }
             } else {
@@ -332,16 +332,16 @@ public class ApiJena {
         String value;
         for (String prop : propNames) {
             value = propiedades.get(prop);
-            if (value.contains("/")) {
-                String[] values = value.split("/");
-                String[] values1 = auto.getPropiedadesPrincipales().get(prop).toString().split("/");
-                if (Integer.parseInt(values[2]) != Integer.parseInt(values1[2])) {
+            if (value.contains("-")) {
+                String[] values = value.split("-");
+                String[] values1 = auto.getPropiedadesPrincipales().get(prop).toString().split("-");
+                if (!values[2].equalsIgnoreCase(values1[2])) {
                     return false;
                 }
-                if (Integer.parseInt(values[1]) != Integer.parseInt(values1[1])) {
+                if (!values[1].equalsIgnoreCase(values1[1])) {
                     return false;
                 }
-                if (Integer.parseInt(values[0]) != Integer.parseInt(values1[0])) {
+                if (!values[0].equalsIgnoreCase(values1[0])) {
                     return false;
                 }
             } else {
@@ -391,6 +391,7 @@ public class ApiJena {
             }
             if (propiedades.get("type").equalsIgnoreCase(defOnt.getViaje().getNombreClase())) {
                 if (coincideVuelo(vuelo, propiedades, defOnt)) {
+                    System.out.println("Coincide.");
                     IndividualVO invue = cargarIndividualVueloVO(propiedades, defOnt);
                     invue.setNameIndividual(ind.getLocalName());
                     invue.setUri(ind.getURI());
@@ -406,19 +407,21 @@ public class ApiJena {
         String value;
         for (String prop : propNames) {
             value = propiedades.get(prop);
-            if (value.contains("/")) {
-                String[] values = value.split("/");
-                String[] values1 = vuelo.getPropiedadesPrincipales().get(prop).toString().split("/");
-                if (Integer.parseInt(values[2]) != Integer.parseInt(values1[2])) {
+            if (value.contains("-")) {
+                String[] values = value.split("-");
+                String[] values1 = vuelo.getPropiedadesPrincipales().get(prop).toString().split("-");
+                if (!values[2].equalsIgnoreCase(values1[2])) {
                     return false;
                 }
-                if (Integer.parseInt(values[1]) != Integer.parseInt(values1[1])) {
+                if (!values[1].equalsIgnoreCase(values1[1])) {
                     return false;
                 }
-                if (Integer.parseInt(values[0]) != Integer.parseInt(values1[0])) {
+                if (!values[0].equalsIgnoreCase(values1[0])) {
                     return false;
                 }
             } else {
+                System.out.println("Value Cliente: " + vuelo.getPropiedadesPrincipales().get(prop).toString());
+                System.out.println("Value Onto: " + value);
                 if (!value.equalsIgnoreCase(vuelo.getPropiedadesPrincipales().get(prop).toString())) {
                     return false;
                 }
