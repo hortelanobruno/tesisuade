@@ -8,7 +8,6 @@
  *
  * Created on 15/03/2009, 21:30:27
  */
-
 package com.ontotravel.gui.panels.busqueda.proprincipal;
 
 import java.util.Calendar;
@@ -20,6 +19,7 @@ import java.util.Calendar;
 public class PropiedadPrincipalDate extends javax.swing.JPanel implements PropiedadPrincipal {
 
     private String nombrePropiedad;
+
     /** Creates new form PanelDate */
     public PropiedadPrincipalDate(String nombre) {
         initComponents();
@@ -66,8 +66,6 @@ public class PropiedadPrincipalDate extends javax.swing.JPanel implements Propie
                 .addComponent(labelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser dateChooserValor;
     private javax.swing.JLabel labelNombre;
@@ -80,9 +78,9 @@ public class PropiedadPrincipalDate extends javax.swing.JPanel implements Propie
 
     @Override
     public Object getValor() {
-        if(dateChooserValor.getCalendar() == null){
+        if (dateChooserValor.getCalendar() == null) {
             return null;
-        }else{
+        } else {
             return formatearFecha(dateChooserValor.getCalendar());
         }
     }
@@ -94,7 +92,7 @@ public class PropiedadPrincipalDate extends javax.swing.JPanel implements Propie
 
     @Override
     public boolean checkInput() {
-        if(dateChooserValor.getCalendar() == null){
+        if (dateChooserValor.getCalendar() == null) {
             return false;
         }
         return true;
@@ -106,26 +104,27 @@ public class PropiedadPrincipalDate extends javax.swing.JPanel implements Propie
         labelNombre.setText(nombre);
     }
 
-    private String formatearFecha(Calendar date){
-        int year = date.getTime().getYear()+1900;
-        int month = date.getTime().getMonth()+1;
-        if(month<10){
-            if(date.getTime().getDate()<10){
-                //return year+"-0"+month+"-0"+date.getTime().getDate();
-                return "0"+date.getTime().getDate()+"/0"+month+"/"+year;
-            }else{
-                //return year+"-0"+month+"-"+date.getTime().getDate();
-                return date.getTime().getDate()+"/0"+month+"/"+year;
-            }
-        }else{
-            if(date.getTime().getDate()<10){
-                //return year+"-"+month+"-0"+date.getTime().getDate();
-                return "0"+date.getTime().getDate()+"/"+month+"/"+year;
-            }else{
-                //return year+"-"+month+"-"+date.getTime().getDate();
-                return date.getTime().getDate()+"/"+month+"/"+year;
-            }
-        }
+    private String formatearFecha(Calendar date) {
+        String aa = date.getTime().toLocaleString().split(" ")[0];
+        return aa.split("/")[2] + "-" + aa.split("/")[1] + "-" + aa.split("/")[0];
+//        int year = date.getTime().getYear() + 1900;
+//        int month = date.getTime().getMonth() + 1;
+//        if (month < 10) {
+//            if (date.getTime().getDate() < 10) {
+//                //return year+"-0"+month+"-0"+date.getTime().getDate();
+//                return "0" + date.getTime().getDate() + "-0" + month + "-" + year;
+//            } else {
+//                //return year+"-0"+month+"-"+date.getTime().getDate();
+//                return date.getTime().getDate() + "-0" + month + "-" + year;
+//            }
+//        } else {
+//            if (date.getTime().getDate() < 10) {
+//                //return year+"-"+month+"-0"+date.getTime().getDate();
+//                return "0" + date.getTime().getDate() + "-" + month + "-" + year;
+//            } else {
+//                //return year+"-"+month+"-"+date.getTime().getDate();
+//                return date.getTime().getDate() + "-" + month + "-" + year;
+//            }
+//        }
     }
-
 }

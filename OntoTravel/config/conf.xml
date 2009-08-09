@@ -85,13 +85,11 @@
     </advancedproperty>
   </propiedadesAvanzadasHotel>
   <propiedadesAvanzadasAuto/>
-  <ontologiasViajes>
-    <string>owl/turismoOriginal.owl</string>
-  </ontologiasViajes>
+  <ontologiasViajes/>
   <ontologiasVocabulario>
     <string>owl\vocabulario2.owl</string>
   </ontologiasVocabulario>
   <defaultURLOWLSinonimos>C:/Users/Brunoli/Documents/NetBeansProjects/OntoTravel/owl/vocabulario2.owl</defaultURLOWLSinonimos>
-  <defaultURLOWLViajes>C:/Users/Brunoli/Documents/NetBeansProjects/OntoTravel/owl/turismoOriginal.owl</defaultURLOWLViajes>
+  <defaultURLOWLViajes>C:/Users/Brunoli/Desktop/Tesis/Ontologias/Ontologia para la demostracion/turismoOriginal.owl</defaultURLOWLViajes>
   <owlDirectory>owl/</owlDirectory>
 </configuration>

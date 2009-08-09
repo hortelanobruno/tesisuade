@@ -272,7 +272,7 @@ private void buttonAddOntViajesActionPerformed(java.awt.event.ActionEvent evt) {
             }
         } catch (Exception ex) {
             //Entro aca porque no cumple el minimo requerimiento
-            JOptionPane.showMessageDialog(this, "La ontologia NO cumple con los requerimientos minimos. "+ex.getMessage(), "Asistente de Viajes", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "La ontologia NO cumple con los requerimientos minimos. " + ex.getMessage(), "Asistente de Viajes", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 }//GEN-LAST:event_buttonAddOntViajesActionPerformed
@@ -327,7 +327,6 @@ private void buttonChageDirectorioOntologiaActionPerformed(java.awt.event.Action
 
     public void update() {
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAddOntViajes;
     private javax.swing.JButton buttonChageDirectorioOntologia;
