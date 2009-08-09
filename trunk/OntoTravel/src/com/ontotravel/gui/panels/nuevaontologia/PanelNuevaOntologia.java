@@ -18,6 +18,7 @@ import com.ontotravel.vo.ObjectPropertyVO;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -829,11 +830,36 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void habilitarPanelAddDatatypeProperty(boolean b) {
+        jLabel12.setVisible(b);
+        textFieldNameDatatypeProperty.setVisible(b);
+        buttonOkDatatypeProperty.setVisible(b);
+        buttonCancelDatatypeProperty.setVisible(b);
+    }
+
+    private void habilitarPanelAddObjectProperty(boolean b) {
+        jLabel11.setVisible(b);
+        textFieldNameObjectProperty.setVisible(b);
+        buttonOkObjectProperty.setVisible(b);
+        buttonCancelObjectProperty.setVisible(b);
+    }
+
+    private void habilitarPanelAddIndividual(boolean b) {
+        jLabel13.setVisible(b);
+        textFieldAddIndividual.setVisible(b);
+        buttonOkIndividual.setVisible(b);
+        buttonCancelIndividual.setVisible(b);
+    }
+
     private void initComponents2() {
-        panelAgregarNombre.setVisible(false);
-        panelAddDatatypeProperty.setVisible(false);
-        panelAddObjectProperty.setVisible(false);
-        panelAddIndividual.setVisible(false);
+        //    panelAgregarNombre.setVisible(false);
+        habilitarPanelAgregarNombre(false);
+//        panelAddDatatypeProperty.setVisible(false);
+        habilitarPanelAddDatatypeProperty(false);
+//        panelAddObjectProperty.setVisible(false);
+        habilitarPanelAddObjectProperty(false);
+//        panelAddIndividual.setVisible(false);
+        habilitarPanelAddIndividual(false);
         mapaNodos = new HashMap<String, DefaultMutableTreeNode>();
 
         ImageIcon leafIcon = new ImageIcon(Constantes.ICONTREE);
@@ -909,6 +935,7 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
     }
 
     public void cargarIndividual() {
+        System.out.println("cargando individual");
         if (!listIndividuals.isSelectionEmpty()) {
             JListItem item = (JListItem) listIndividuals.getSelectedValue();
             String ind = item.getTitle();
@@ -944,12 +971,18 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
     }
 
 private void buttonAgregarClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarClassActionPerformed
-    panelAgregarNombre.setVisible(true);
-
+//    panelAgregarNombre.setVisible(true);
+    habilitarPanelAgregarNombre(true);
 }//GEN-LAST:event_buttonAgregarClassActionPerformed
 
+    private void habilitarPanelAgregarNombre(boolean b) {
+        jLabel7.setVisible(b);
+        textFieldNombreClase.setVisible(b);
+        buttonOkNombre.setVisible(b);
+        buttonCancelNombre.setVisible(b);
+    }
 private void buttonRemoverClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverClassActionPerformed
-    panelAgregarNombre.setVisible(false);
+    habilitarPanelAgregarNombre(false);
     removeCurrentNode();
 }//GEN-LAST:event_buttonRemoverClassActionPerformed
 
@@ -970,7 +1003,8 @@ private void buttonOkNombreActionPerformed(java.awt.event.ActionEvent evt) {//GE
         }
         ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).addClass(hijo, padre);
         textFieldNombreClase.setText("");
-        panelAgregarNombre.setVisible(false);
+        //panelAgregarNombre.setVisible(false);
+        habilitarPanelAgregarNombre(false);
     } else {
         textFieldNombreClase.setText("");
         JOptionPane.showMessageDialog(this, "Clase Existente", Constantes.APPLICATION_NAME, JOptionPane.ERROR_MESSAGE);
@@ -980,13 +1014,15 @@ private void buttonOkNombreActionPerformed(java.awt.event.ActionEvent evt) {//GE
 
 private void buttonCancelNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelNombreActionPerformed
     textFieldNombreClase.setText("");
-    panelAgregarNombre.setVisible(false);
+    habilitarPanelAgregarNombre(false);
 }//GEN-LAST:event_buttonCancelNombreActionPerformed
 
 private void listPropertiesObjectValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listPropertiesObjectValueChanged
 // Se selecciono un object propiedad en el panel de propiedades
     if (!listPropertiesObject.isSelectionEmpty()) {
-        ((ControladorPanelNuevaOntologia) getVistaNuevaOntologia().getControlador()).doCargarObjectProperty(true);
+        if (evt.getValueIsAdjusting()) {
+            ((ControladorPanelNuevaOntologia) getVistaNuevaOntologia().getControlador()).doCargarObjectProperty(true);
+        }
     }
 }//GEN-LAST:event_listPropertiesObjectValueChanged
 
@@ -996,15 +1032,18 @@ private void listPropertiesDatatypeValueChanged(javax.swing.event.ListSelectionE
 }//GEN-LAST:event_listPropertiesDatatypeValueChanged
 
 private void buttonAddObjectPropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddObjectPropertyActionPerformed
-    panelAddObjectProperty.setVisible(true);
+    //panelAddObjectProperty.setVisible(true);
+    habilitarPanelAddObjectProperty(true);
 }//GEN-LAST:event_buttonAddObjectPropertyActionPerformed
 
 private void buttonAddDatatypePropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddDatatypePropertyActionPerformed
-    panelAddDatatypeProperty.setVisible(true);
+//    panelAddDatatypeProperty.setVisible(true);
+    habilitarPanelAddDatatypeProperty(true);
 }//GEN-LAST:event_buttonAddDatatypePropertyActionPerformed
 
 private void buttonRemoveObjectPropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveObjectPropertyActionPerformed
-    panelAddObjectProperty.setVisible(false);
+    //panelAddObjectProperty.setVisible(false);
+    habilitarPanelAddObjectProperty(false);
     DefaultListModel model = (DefaultListModel) getListPropertiesObject().getModel();
     if (!listPropertiesObject.isSelectionEmpty()) {
         int aux = getListPropertiesObject().getSelectedIndex();
@@ -1023,14 +1062,16 @@ private void buttonOkObjectPropertyActionPerformed(java.awt.event.ActionEvent ev
         ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).addObjectProperty(pro);
         DefaultListModel model = (DefaultListModel) getListPropertiesObject().getModel();
         model.addElement(new JListItem(pro, Constantes.ICONOBJECTPROPERTY));
-        panelAddObjectProperty.setVisible(false);
+        //panelAddObjectProperty.setVisible(false);
+        habilitarPanelAddObjectProperty(false);
         textFieldNameObjectProperty.setText("");
     }
 
 }//GEN-LAST:event_buttonOkObjectPropertyActionPerformed
 
 private void buttonCancelObjectPropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelObjectPropertyActionPerformed
-    panelAddObjectProperty.setVisible(false);
+//    panelAddObjectProperty.setVisible(false);
+    habilitarPanelAddObjectProperty(false);
     textFieldNameObjectProperty.setText("");
 }//GEN-LAST:event_buttonCancelObjectPropertyActionPerformed
 
@@ -1040,18 +1081,21 @@ private void buttonOkDatatypePropertyActionPerformed(java.awt.event.ActionEvent 
         ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).addDatatypeProperty(pro);
         DefaultListModel model = (DefaultListModel) getListPropertiesDatatype().getModel();
         model.addElement(new JListItem(pro, Constantes.ICONDATATYPEPROPERTY));
-        panelAddDatatypeProperty.setVisible(false);
+        //panelAddDatatypeProperty.setVisible(false);
+        habilitarPanelAddDatatypeProperty(false);
         textFieldNameDatatypeProperty.setText("");
     }
 }//GEN-LAST:event_buttonOkDatatypePropertyActionPerformed
 
 private void buttonCancelDatatypePropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelDatatypePropertyActionPerformed
-    panelAddDatatypeProperty.setVisible(false);
+//    panelAddDatatypeProperty.setVisible(false);
+    habilitarPanelAddDatatypeProperty(false);
     textFieldNameDatatypeProperty.setText("");
 }//GEN-LAST:event_buttonCancelDatatypePropertyActionPerformed
 
 private void buttonRemoveDatatypePropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveDatatypePropertyActionPerformed
-    panelAddDatatypeProperty.setVisible(false);
+//    panelAddDatatypeProperty.setVisible(false);
+    habilitarPanelAddDatatypeProperty(false);
     DefaultListModel model = (DefaultListModel) getListPropertiesDatatype().getModel();
     if (!listPropertiesDatatype.isSelectionEmpty()) {
         int aux = getListPropertiesDatatype().getSelectedIndex();
@@ -1064,7 +1108,9 @@ private void buttonRemoveDatatypePropertyActionPerformed(java.awt.event.ActionEv
 }//GEN-LAST:event_buttonRemoveDatatypePropertyActionPerformed
 
 private void listIndividualsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listIndividualsValueChanged
-    ((ControladorPanelNuevaOntologia) getVistaNuevaOntologia().getControlador()).doCargarIndividual(true);
+    if (!evt.getValueIsAdjusting()) {
+        ((ControladorPanelNuevaOntologia) getVistaNuevaOntologia().getControlador()).doCargarIndividual(true);
+    }
 }//GEN-LAST:event_listIndividualsValueChanged
 
 private void buttonOkIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkIndividualActionPerformed
@@ -1074,17 +1120,20 @@ private void buttonOkIndividualActionPerformed(java.awt.event.ActionEvent evt) {
         ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).addIndividual(ind, clase);
         DefaultListModel model = (DefaultListModel) listIndividuals.getModel();
         model.addElement(new JListItem(ind, Constantes.ICONINDIVIDUAL));
-        panelAddIndividual.setVisible(false);
+//        panelAddIndividual.setVisible(false);
+        habilitarPanelAddIndividual(false);
         textFieldAddIndividual.setText("");
     }
 }//GEN-LAST:event_buttonOkIndividualActionPerformed
 
 private void buttonAddIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddIndividualActionPerformed
-    panelAddIndividual.setVisible(true);
+//    panelAddIndividual.setVisible(true);
+    habilitarPanelAddIndividual(true);
 }//GEN-LAST:event_buttonAddIndividualActionPerformed
 
 private void buttonRemoveIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveIndividualActionPerformed
-    panelAddIndividual.setVisible(false);
+//    panelAddIndividual.setVisible(false);
+    habilitarPanelAddIndividual(false);
     DefaultListModel model = (DefaultListModel) listIndividuals.getModel();
     if (!listIndividuals.isSelectionEmpty()) {
         int aux = listIndividuals.getSelectedIndex();
@@ -1096,7 +1145,8 @@ private void buttonRemoveIndividualActionPerformed(java.awt.event.ActionEvent ev
 }//GEN-LAST:event_buttonRemoveIndividualActionPerformed
 
 private void buttonCancelIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelIndividualActionPerformed
-    panelAddIndividual.setVisible(false);
+//    panelAddIndividual.setVisible(false);
+    habilitarPanelAddIndividual(false);
     textFieldAddIndividual.setText("");
 }//GEN-LAST:event_buttonCancelIndividualActionPerformed
 
@@ -1355,7 +1405,9 @@ private void textFieldURIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
 
     private void cargarPanelProperty() {
         List<String> datatypeProperties = ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).showDatatypeProperties();
+        Collections.sort(datatypeProperties);
         List<String> objectProperties = ((BusinessDelegate) getVistaNuevaOntologia().getModelo()).showObjectProperties();
+        Collections.sort(objectProperties);
 
         listPropertiesDatatype.removeAll();
         listPropertiesObject.removeAll();
@@ -1417,6 +1469,7 @@ private void textFieldURIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
             panel.getComboBoxRange().setSelectedItem(range);
             panelPropertyDefault.add(panel);
             recargarPanel(panelPropertyDefault);
+            this.updateUI();
         }
     }
 
@@ -1445,6 +1498,7 @@ private void textFieldURIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
             }
             panel.getListRange().setModel(model2);
             panelPropertyDefault.add(panel);
+            recargarPanel(panel);
         }
     }
 
@@ -1579,7 +1633,6 @@ private void textFieldURIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
             return null;
         }
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAddDatatypeProperty;
     private javax.swing.JButton buttonAddIndividual;

@@ -13,6 +13,7 @@ import com.ontotravel.mvc.view.VistaSinonimos;
 import com.ontotravel.util.Constantes;
 import com.ontotravel.vo.IndividualSinonimoVO;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -51,7 +52,6 @@ public class PanelSinonimos extends javax.swing.JPanel {
         this.vista = vista;
         initComponents();
         initComponents2();
-
     }
 
     /** This method is called from within the constructor to
@@ -343,6 +343,13 @@ public class PanelSinonimos extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
+        treeIndividual.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        treeIndividual.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+            public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+                treeIndividualValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(treeIndividual);
 
         jLabel7.setText("Palabra");
@@ -444,7 +451,7 @@ public class PanelSinonimos extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelAgregarPalabra, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
                 .addGap(23, 23, 23))
         );
 
@@ -611,6 +618,9 @@ private void buttonRemoverPalabraActionPerformed(java.awt.event.ActionEvent evt)
 
 }//GEN-LAST:event_buttonRemoverPalabraActionPerformed
 
+private void treeIndividualValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_treeIndividualValueChanged
+}//GEN-LAST:event_treeIndividualValueChanged
+
     public void update() {
         if (cargarArbol) {
             cargarTree();
@@ -672,17 +682,17 @@ private void buttonRemoverPalabraActionPerformed(java.awt.event.ActionEvent evt)
         String instancia = eventoTree.getPath().getLastPathComponent().toString();
         IndividualSinonimoVO individual = (IndividualSinonimoVO) ((BusinessDelegate) vista.getModelo()).obtenerIndividual(instancia);
         ArrayList<String> sinonimos = individual.getSinonimos();
+        Collections.sort(sinonimos);
         ArrayList<String> traduccion = individual.getTraduccion();
+        Collections.sort(traduccion);
         String nombre = individual.getNombreInstancia();
         labelPalabra.setText(nombre);
         listSinonimos.setModel(new DefaultListModel());
         DefaultListModel dlm = (DefaultListModel) listSinonimos.getModel();
-
         Iterator itSin = sinonimos.iterator();
         while (itSin.hasNext()) {
             dlm.addElement(itSin.next().toString());
         }
-
         listTraduccion.setModel(new DefaultListModel());
         DefaultListModel dlm2 = (DefaultListModel) listTraduccion.getModel();
         Iterator itTra = traduccion.iterator();
@@ -693,10 +703,11 @@ private void buttonRemoverPalabraActionPerformed(java.awt.event.ActionEvent evt)
 
     public void cargarTree() {
         ArrayList<String> individuals = (ArrayList<String>) ((BusinessDelegate) vista.getModelo()).obtenerInstanciasVocabuario(urlOWL);
-
+        Collections.sort(individuals);
         DefaultMutableTreeNode abuelo = new DefaultMutableTreeNode("Palabras");
         DefaultTreeModel modelo = new DefaultTreeModel(abuelo);
         treeIndividual = new JTree(modelo);
+
         DefaultMutableTreeNode[] padre = new DefaultMutableTreeNode[individuals.size()];
         Iterator it = individuals.iterator();
         int i = 0;
@@ -735,12 +746,12 @@ private void buttonRemoverPalabraActionPerformed(java.awt.event.ActionEvent evt)
     private void initComponents2() {
         DefaultMutableTreeNode abuelo = new DefaultMutableTreeNode("Palabras");
         DefaultTreeModel modelo = new DefaultTreeModel(abuelo);
-        treeIndividual = new JTree(modelo);
+        //treeIndividual = new JTree(modelo);
+        treeIndividual.setModel(modelo);
 
         ImageIcon leafIcon = new ImageIcon(Constantes.ICONINDIVIDUAL);
         if (leafIcon != null) {
-            DefaultTreeCellRenderer renderer =
-                    new DefaultTreeCellRenderer();
+            DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
             renderer.setOpenIcon(leafIcon);
             renderer.setClosedIcon(leafIcon);
             renderer.setLeafIcon(leafIcon);
