@@ -65,6 +65,14 @@
       <nombre>internet</nombre>
       <tipoDato>BOOLEAN</tipoDato>
     </advancedproperty>
+    <advancedproperty>
+      <nombre>tipo_asiento</nombre>
+      <tipoDato reference="../../../defaultOntology/alojamiento/defaultProperties/defaultproperty/tipoDato"/>
+    </advancedproperty>
+    <advancedproperty>
+      <nombre>empresa</nombre>
+      <tipoDato reference="../../../defaultOntology/alojamiento/defaultProperties/defaultproperty/tipoDato"/>
+    </advancedproperty>
   </propiedadesAvanzadasVuelo>
   <propiedadesAvanzadasHotel>
     <advancedproperty>
@@ -85,11 +93,14 @@
     </advancedproperty>
   </propiedadesAvanzadasHotel>
   <propiedadesAvanzadasAuto/>
-  <ontologiasViajes/>
+  <ontologiasViajes>
+    <string>owl/turismoOriginal.owl</string>
+    <string>owl/turismoOriginal2.owl</string>
+  </ontologiasViajes>
   <ontologiasVocabulario>
     <string>owl\vocabulario2.owl</string>
   </ontologiasVocabulario>
   <defaultURLOWLSinonimos>C:/Users/Brunoli/Documents/NetBeansProjects/OntoTravel/owl/vocabulario2.owl</defaultURLOWLSinonimos>
-  <defaultURLOWLViajes>C:/Users/Brunoli/Desktop/nuevo.owl</defaultURLOWLViajes>
+  <defaultURLOWLViajes>C:/Users/Brunoli/Desktop/Tesis/Ontologias/Ontologia para la demostracion/turismoOriginal2.owl</defaultURLOWLViajes>
   <owlDirectory>owl/</owlDirectory>
 </configuration>
