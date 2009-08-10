@@ -1,0 +1,123 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+  <owl:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Reserva_auto"/>
+  <owl:Class>
+    <owl:unionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Reserva_alojamiento"/>
+      <owl:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Reserva_pasaje"/>
+    </owl:unionOf>
+  </owl:Class>
+  <owl:DatatypeProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#empresa">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Reserva_pasaje"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#ciudad_origen">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Reserva_pasaje"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#fecha_inicio">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Reserva_alojamiento"/>
+          <owl:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Reserva_auto"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#cantidad_escalas">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Reserva_pasaje"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#fecha_salida">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Reserva_alojamiento"/>
+          <owl:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Reserva_pasaje"/>
+          <owl:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Reserva_auto"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#ciudad">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Reserva_alojamiento"/>
+          <owl:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Reserva_auto"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#ciudad_destino">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Reserva_pasaje"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#cantidad_personas">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Reserva_alojamiento"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#tipo_asiento">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Reserva_pasaje"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#internet">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Reserva_pasaje"/>
+  </owl:DatatypeProperty>
+  <rdfs:Reserva_pasaje rdf:about="http://www.w3.org/2000/01/rdf-schema#Viaje_3">
+    <rdfs:tipo_asiento rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Primera</rdfs:tipo_asiento>
+    <rdfs:ciudad_destino rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cordoba</rdfs:ciudad_destino>
+    <rdfs:internet rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >true</rdfs:internet>
+    <rdfs:empresa rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Aerolineas Argentinas</rdfs:empresa>
+    <rdfs:ciudad_origen rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Buenos Aires</rdfs:ciudad_origen>
+    <rdfs:fecha_salida rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2009-08-14</rdfs:fecha_salida>
+    <rdfs:cantidad_escalas rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2</rdfs:cantidad_escalas>
+  </rdfs:Reserva_pasaje>
+  <rdfs:Reserva_pasaje rdf:about="http://www.w3.org/2000/01/rdf-schema#Viaje_1">
+    <rdfs:tipo_asiento rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ejecutivo</rdfs:tipo_asiento>
+    <rdfs:ciudad_origen rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Buenos Aires</rdfs:ciudad_origen>
+    <rdfs:empresa rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >LAN</rdfs:empresa>
+    <rdfs:cantidad_escalas rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0</rdfs:cantidad_escalas>
+    <rdfs:fecha_salida rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2009-08-14</rdfs:fecha_salida>
+    <rdfs:ciudad_destino rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cordoba</rdfs:ciudad_destino>
+    <rdfs:internet rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >true</rdfs:internet>
+  </rdfs:Reserva_pasaje>
+  <rdfs:Reserva_pasaje rdf:about="http://www.w3.org/2000/01/rdf-schema#Viaje_2">
+    <rdfs:tipo_asiento rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Economica</rdfs:tipo_asiento>
+    <rdfs:ciudad_origen rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Buenos Aires</rdfs:ciudad_origen>
+    <rdfs:ciudad_destino rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cordoba</rdfs:ciudad_destino>
+    <rdfs:empresa rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Pluna</rdfs:empresa>
+    <rdfs:cantidad_escalas rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1</rdfs:cantidad_escalas>
+    <rdfs:fecha_salida rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2009-08-14</rdfs:fecha_salida>
+    <rdfs:internet rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >false</rdfs:internet>
+  </rdfs:Reserva_pasaje>
+</rdf:RDF>

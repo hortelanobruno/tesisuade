@@ -947,7 +947,6 @@ public class PanelNuevaOntologia extends javax.swing.JPanel {
     }
 
     public void cargarIndividual() {
-        System.out.println("cargando individual");
         if (!listIndividuals.isSelectionEmpty()) {
             JListItem item = (JListItem) listIndividuals.getSelectedValue();
             String ind = item.getTitle();

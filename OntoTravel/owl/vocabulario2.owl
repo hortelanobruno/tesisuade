@@ -153,12 +153,6 @@
   <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#tipo_alojamiento">
     <sinonimo>tipo_alojamiento</sinonimo>
   </palabra>
-  <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#marca">
-    <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >empresa</sinonimo>
-    <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >mark</traduccion>
-  </palabra>
   <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#hotel">
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >hotel</traduccion>
@@ -266,6 +260,9 @@
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >plane</traduccion>
     <sinonimo>avionetaa</sinonimo>
+  </palabra>
+  <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#empresa">
+    <sinonimo>empresa</sinonimo>
   </palabra>
   <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#internet">
     <sinonimo>internet</sinonimo>
@@ -391,6 +388,9 @@
     >small</traduccion>
     <sinonimo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >pequeño</sinonimo>
+  </palabra>
+  <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#tipo_asiento">
+    <sinonimo>tipo_asiento</sinonimo>
   </palabra>
   <palabra rdf:about="http://www.owl-ontologies.com/Ontology1217967578.owl#aerolinea">
     <traduccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string"

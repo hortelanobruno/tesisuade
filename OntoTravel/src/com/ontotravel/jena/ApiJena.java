@@ -390,6 +390,7 @@ public class ApiJena {
                 }
             }
             if (propiedades.get("type").equalsIgnoreCase(defOnt.getViaje().getNombreClase())) {
+                System.out.println(propiedades.toString());
                 if (coincideVuelo(vuelo, propiedades, defOnt)) {
                     System.out.println("Coincide.");
                     IndividualVO invue = cargarIndividualVueloVO(propiedades, defOnt);
@@ -411,18 +412,20 @@ public class ApiJena {
                 String[] values = value.split("-");
                 String[] values1 = vuelo.getPropiedadesPrincipales().get(prop).toString().split("-");
                 if (!values[2].equalsIgnoreCase(values1[2])) {
+                    System.out.println("fallo fecha: "+values.toString());
                     return false;
                 }
                 if (!values[1].equalsIgnoreCase(values1[1])) {
+                    System.out.println("fallo fecha: "+values.toString());
                     return false;
                 }
                 if (!values[0].equalsIgnoreCase(values1[0])) {
+                    System.out.println("fallo fecha: "+values.toString());
                     return false;
                 }
             } else {
-                System.out.println("Value Cliente: " + vuelo.getPropiedadesPrincipales().get(prop).toString());
-                System.out.println("Value Onto: " + value);
                 if (!value.equalsIgnoreCase(vuelo.getPropiedadesPrincipales().get(prop).toString())) {
+                    System.out.println("Fallo: "+value);
                     return false;
                 }
             }
