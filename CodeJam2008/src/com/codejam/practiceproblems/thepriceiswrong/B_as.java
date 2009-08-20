@@ -6,8 +6,8 @@ import java.util.*;
 public class B_as implements Runnable {
 
     public void solve() throws IOException {
-        BufferedReader in = new BufferedReader(new FileReader("./files/thepriceiswrong/B-small-practice.in"));
-        PrintWriter out = new PrintWriter(new File("./files/thepriceiswrong/B-small-practice.out2"));
+        BufferedReader in = new BufferedReader(new FileReader("./files/thepriceiswrong/B-large-practice.in"));
+        PrintWriter out = new PrintWriter(new File("./files/thepriceiswrong/B-large-practice.out2"));
 
         int tn = Integer.parseInt(in.readLine());
         for (int t = 0; t < tn; t++) {
