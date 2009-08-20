@@ -7,7 +7,7 @@ public class B_as implements Runnable {
 
     public void solve() throws IOException {
         BufferedReader in = new BufferedReader(new FileReader("./files/thepriceiswrong/B-large-practice.in"));
-        PrintWriter out = new PrintWriter(new File("./files/thepriceiswrong/B-large-practice.out2"));
+        PrintWriter out = new PrintWriter(new FileOutputStream("./files/thepriceiswrong/B-large2-practice.out"));
 
         int tn = Integer.parseInt(in.readLine());
         for (int t = 0; t < tn; t++) {
