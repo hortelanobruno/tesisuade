@@ -1,0 +1,73 @@
+18:30:20.134 [actor-system-akka.actor.default-dispatcher-3] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+18:30:20.263 [actor-system-akka.actor.default-dispatcher-3] INFO  Remoting - Starting remoting
+18:30:20.587 [actor-system-akka.actor.default-dispatcher-3] INFO  Remoting - Remoting started; listening on addresses :[akka.tcp://actor-system@127.0.0.1:50041]
+18:30:20.603 [actor-system-akka.actor.default-dispatcher-3] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:50041] - Starting up...
+18:30:20.678 [actor-system-akka.actor.default-dispatcher-4] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:50041] - Registered cluster JMX MBean [akka:type=Cluster]
+18:30:20.678 [actor-system-akka.actor.default-dispatcher-4] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:50041] - Started up successfully
+18:30:20.684 [actor-system-akka.actor.default-dispatcher-4] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:50041] - Metrics will be retreived from MBeans, and may be incorrect on some platforms. To increase metric accuracy add the 'sigar.jar' to the classpath and the appropriate platform-specific native libary to 'java.library.path'. Reason: java.lang.ClassNotFoundException: org.hyperic.sigar.Sigar
+18:30:20.686 [actor-system-akka.actor.default-dispatcher-4] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:50041] - Metrics collection has started successfully
+18:30:21.776 [actor-system-akka.actor.default-dispatcher-19] WARN  a.remote.ReliableDeliverySupervisor - Association with remote system [akka.tcp://ClusterSystem@127.0.0.1:2551] has failed, address is now gated for [5000] ms. Reason is: [Association failed with [akka.tcp://ClusterSystem@127.0.0.1:2551]].
+18:30:21.777 [actor-system-akka.actor.default-dispatcher-19] WARN  a.remote.ReliableDeliverySupervisor - Association with remote system [akka.tcp://ClusterSystem@127.0.0.1:2552] has failed, address is now gated for [5000] ms. Reason is: [Association failed with [akka.tcp://ClusterSystem@127.0.0.1:2552]].
+18:30:25.718 [actor-system-akka.actor.default-dispatcher-16] INFO  c.b.a.example1.actor.SimpleActor - SimpleActor constructor
+18:30:25.733 [actor-system-akka.actor.default-dispatcher-16] INFO  c.b.a.example1.actor.SimpleActor - Received Command: Command{data='CMD 1'}
+18:30:25.934 [actor-system-akka.actor.default-dispatcher-16] INFO  c.b.a.example1.actor.SimpleActor - Received Command: Command{data='CMD 2'}
+18:30:25.935 [actor-system-akka.actor.default-dispatcher-16] INFO  c.b.a.example1.actor.SimpleActor - Received Command: Command{data='CMD 3'}
+18:30:25.935 [actor-system-akka.actor.default-dispatcher-16] INFO  c.b.a.example1.actor.SimpleActor - Received Command: Command{data='CMD 4'}
+18:30:25.937 [actor-system-akka.actor.default-dispatcher-16] INFO  c.b.a.example1.actor.SimpleActor - Received Command: Command{data='CMD 5'}
+18:30:30.730 [main] DEBUG c.b.akkanoli.example1.app.System - Actor System Shutdown Starting...
+18:30:30.740 [actor-system-akka.actor.default-dispatcher-16] INFO  a.r.RemoteActorRefProvider$RemotingTerminator - Shutting down remote daemon.
+18:30:30.742 [actor-system-akka.actor.default-dispatcher-16] INFO  a.r.RemoteActorRefProvider$RemotingTerminator - Remote daemon shut down; proceeding with flushing remote transports.
+18:30:30.771 [actor-system-akka.actor.default-dispatcher-16] INFO  a.r.RemoteActorRefProvider$RemotingTerminator - Remoting shut down.
+18:39:42.596 [ClusterSystem-akka.actor.default-dispatcher-3] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+18:39:42.654 [ClusterSystem-akka.actor.default-dispatcher-3] INFO  Remoting - Starting remoting
+18:39:42.786 [ClusterSystem-akka.actor.default-dispatcher-3] INFO  Remoting - Remoting started; listening on addresses :[akka.tcp://ClusterSystem@127.0.0.1:2551]
+18:39:42.797 [ClusterSystem-akka.actor.default-dispatcher-3] INFO  Cluster(akka://ClusterSystem) - Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:2551] - Starting up...
+18:39:42.839 [ClusterSystem-akka.actor.default-dispatcher-4] INFO  Cluster(akka://ClusterSystem) - Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:2551] - Registered cluster JMX MBean [akka:type=Cluster]
+18:39:42.840 [ClusterSystem-akka.actor.default-dispatcher-4] INFO  Cluster(akka://ClusterSystem) - Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:2551] - Started up successfully
+18:39:42.860 [ClusterSystem-akka.actor.default-dispatcher-16] INFO  Cluster(akka://ClusterSystem) - Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:2551] - Metrics will be retreived from MBeans, and may be incorrect on some platforms. To increase metric accuracy add the 'sigar.jar' to the classpath and the appropriate platform-specific native libary to 'java.library.path'. Reason: java.lang.ClassNotFoundException: org.hyperic.sigar.Sigar
+18:39:42.863 [ClusterSystem-akka.actor.default-dispatcher-16] INFO  Cluster(akka://ClusterSystem) - Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:2551] - Metrics collection has started successfully
+18:39:42.897 [ClusterSystem-akka.actor.default-dispatcher-3] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+18:39:42.901 [ClusterSystem-akka.actor.default-dispatcher-5] INFO  Remoting - Starting remoting
+18:39:42.910 [ClusterSystem-akka.actor.default-dispatcher-5] INFO  Remoting - Remoting started; listening on addresses :[akka.tcp://ClusterSystem@127.0.0.1:2552]
+18:39:42.911 [ClusterSystem-akka.actor.default-dispatcher-5] INFO  Cluster(akka://ClusterSystem) - Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:2552] - Starting up...
+18:39:42.913 [ClusterSystem-akka.actor.default-dispatcher-5] INFO  Cluster(akka://ClusterSystem) - Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:2552] - Started up successfully
+18:39:42.913 [ClusterSystem-akka.actor.default-dispatcher-5] INFO  Cluster(akka://ClusterSystem) - Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:2552] - Metrics will be retreived from MBeans, and may be incorrect on some platforms. To increase metric accuracy add the 'sigar.jar' to the classpath and the appropriate platform-specific native libary to 'java.library.path'. Reason: java.lang.ClassNotFoundException: org.hyperic.sigar.Sigar
+18:39:42.913 [ClusterSystem-akka.actor.default-dispatcher-5] INFO  Cluster(akka://ClusterSystem) - Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:2552] - Metrics collection has started successfully
+18:39:42.925 [ClusterSystem-akka.actor.default-dispatcher-2] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+18:39:42.929 [ClusterSystem-akka.actor.default-dispatcher-3] INFO  Remoting - Starting remoting
+18:39:42.940 [ClusterSystem-akka.actor.default-dispatcher-3] INFO  Remoting - Remoting started; listening on addresses :[akka.tcp://ClusterSystem@127.0.0.1:50829]
+18:39:42.942 [ClusterSystem-akka.actor.default-dispatcher-3] INFO  Cluster(akka://ClusterSystem) - Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:50829] - Starting up...
+18:39:42.944 [ClusterSystem-akka.actor.default-dispatcher-2] INFO  Cluster(akka://ClusterSystem) - Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:50829] - Started up successfully
+18:39:42.954 [ClusterSystem-akka.actor.default-dispatcher-13] INFO  Cluster(akka://ClusterSystem) - Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:50829] - Metrics will be retreived from MBeans, and may be incorrect on some platforms. To increase metric accuracy add the 'sigar.jar' to the classpath and the appropriate platform-specific native libary to 'java.library.path'. Reason: java.lang.ClassNotFoundException: org.hyperic.sigar.Sigar
+18:39:42.955 [ClusterSystem-akka.actor.default-dispatcher-13] INFO  Cluster(akka://ClusterSystem) - Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:50829] - Metrics collection has started successfully
+18:39:42.957 [actor-system-akka.actor.default-dispatcher-2] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+18:39:42.962 [actor-system-akka.actor.default-dispatcher-5] INFO  Remoting - Starting remoting
+18:39:42.969 [actor-system-akka.actor.default-dispatcher-5] INFO  Remoting - Remoting started; listening on addresses :[akka.tcp://actor-system@127.0.0.1:50844]
+18:39:42.970 [actor-system-akka.actor.default-dispatcher-5] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:50844] - Starting up...
+18:39:42.971 [actor-system-akka.actor.default-dispatcher-4] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:50844] - Started up successfully
+18:39:42.972 [actor-system-akka.actor.default-dispatcher-8] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:50844] - Metrics will be retreived from MBeans, and may be incorrect on some platforms. To increase metric accuracy add the 'sigar.jar' to the classpath and the appropriate platform-specific native libary to 'java.library.path'. Reason: java.lang.ClassNotFoundException: org.hyperic.sigar.Sigar
+18:39:42.973 [actor-system-akka.actor.default-dispatcher-8] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:50844] - Metrics collection has started successfully
+18:39:42.974 [actor-system-akka.actor.default-dispatcher-6] INFO  c.b.a.example1.actor.SimpleActor - SimpleActor constructor
+18:39:42.976 [actor-system-akka.actor.default-dispatcher-19] INFO  c.b.a.example1.actor.SimpleActor - Received Command: Command{data='CMD 1'}
+18:39:43.151 [actor-system-akka.actor.default-dispatcher-19] INFO  c.b.a.example1.actor.SimpleActor - Received Command: Command{data='CMD 2'}
+18:39:43.151 [actor-system-akka.actor.default-dispatcher-19] INFO  c.b.a.example1.actor.SimpleActor - Received Command: Command{data='CMD 3'}
+18:39:43.151 [actor-system-akka.actor.default-dispatcher-19] INFO  c.b.a.example1.actor.SimpleActor - Received Command: Command{data='CMD 4'}
+18:39:43.152 [actor-system-akka.actor.default-dispatcher-19] INFO  c.b.a.example1.actor.SimpleActor - Received Command: Command{data='CMD 5'}
+18:39:43.429 [ClusterSystem-akka.actor.default-dispatcher-14] INFO  Cluster(akka://ClusterSystem) - Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:2551] - Node [akka.tcp://ClusterSystem@127.0.0.1:2551] is JOINING, roles []
+18:39:43.873 [ClusterSystem-akka.actor.default-dispatcher-3] INFO  Cluster(akka://ClusterSystem) - Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:2551] - Leader is moving node [akka.tcp://ClusterSystem@127.0.0.1:2551] to [Up]
+18:39:43.876 [ClusterSystem-akka.actor.default-dispatcher-15] INFO  c.b.a.e.actor.SimpleClusterListener - Member is Up: Member(address = akka.tcp://ClusterSystem@127.0.0.1:2551, status = Up)
+18:39:48.086 [actor-system-akka.actor.default-dispatcher-21] WARN  akka.cluster.ClusterCoreDaemon - Trying to join member with wrong ActorSystem name, but was ignored, expected [actor-system] but was [ClusterSystem]
+18:39:48.119 [ClusterSystem-akka.actor.default-dispatcher-17] INFO  Cluster(akka://ClusterSystem) - Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:2551] - Node [akka.tcp://ClusterSystem@127.0.0.1:50829] is JOINING, roles []
+18:39:48.247 [ClusterSystem-akka.actor.default-dispatcher-3] INFO  Cluster(akka://ClusterSystem) - Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:50829] - Welcome from [akka.tcp://ClusterSystem@127.0.0.1:2551]
+18:39:48.248 [ClusterSystem-akka.actor.default-dispatcher-22] INFO  c.b.a.e.actor.SimpleClusterListener - Member is Up: Member(address = akka.tcp://ClusterSystem@127.0.0.1:2551, status = Up)
+18:39:48.434 [ClusterSystem-akka.actor.default-dispatcher-2] INFO  Cluster(akka://ClusterSystem) - Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:2551] - Node [akka.tcp://ClusterSystem@127.0.0.1:2552] is JOINING, roles []
+18:39:48.439 [ClusterSystem-akka.actor.default-dispatcher-22] INFO  Cluster(akka://ClusterSystem) - Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:2552] - Welcome from [akka.tcp://ClusterSystem@127.0.0.1:2551]
+18:39:48.440 [ClusterSystem-akka.actor.default-dispatcher-18] INFO  c.b.a.e.actor.SimpleClusterListener - Member is Up: Member(address = akka.tcp://ClusterSystem@127.0.0.1:2551, status = Up)
+18:39:48.864 [ClusterSystem-akka.actor.default-dispatcher-3] INFO  Cluster(akka://ClusterSystem) - Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:2551] - Leader is moving node [akka.tcp://ClusterSystem@127.0.0.1:2552] to [Up]
+18:39:48.865 [ClusterSystem-akka.actor.default-dispatcher-3] INFO  Cluster(akka://ClusterSystem) - Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:2551] - Leader is moving node [akka.tcp://ClusterSystem@127.0.0.1:50829] to [Up]
+18:39:48.869 [ClusterSystem-akka.actor.default-dispatcher-3] INFO  c.b.a.e.actor.SimpleClusterListener - Member is Up: Member(address = akka.tcp://ClusterSystem@127.0.0.1:2552, status = Up)
+18:39:48.870 [ClusterSystem-akka.actor.default-dispatcher-3] INFO  c.b.a.e.actor.SimpleClusterListener - Member is Up: Member(address = akka.tcp://ClusterSystem@127.0.0.1:50829, status = Up)
+18:39:48.874 [ClusterSystem-akka.actor.default-dispatcher-19] INFO  c.b.a.e.actor.SimpleClusterListener - Member is Up: Member(address = akka.tcp://ClusterSystem@127.0.0.1:2552, status = Up)
+18:39:48.874 [ClusterSystem-akka.actor.default-dispatcher-19] INFO  c.b.a.e.actor.SimpleClusterListener - Member is Up: Member(address = akka.tcp://ClusterSystem@127.0.0.1:50829, status = Up)
+18:39:48.930 [ClusterSystem-akka.actor.default-dispatcher-16] INFO  c.b.a.e.actor.SimpleClusterListener - Member is Up: Member(address = akka.tcp://ClusterSystem@127.0.0.1:2552, status = Up)
+18:39:48.931 [ClusterSystem-akka.actor.default-dispatcher-16] INFO  c.b.a.e.actor.SimpleClusterListener - Member is Up: Member(address = akka.tcp://ClusterSystem@127.0.0.1:50829, status = Up)

@@ -1,0 +1,58 @@
+21:25:50.655 [actor-system-akka.actor.default-dispatcher-3] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+21:25:50.702 [actor-system-akka.actor.default-dispatcher-3] INFO  Remoting - Starting remoting
+21:25:50.952 [actor-system-akka.actor.default-dispatcher-3] INFO  Remoting - Remoting started; listening on addresses :[akka.tcp://actor-system@127.0.0.1:58454]
+21:25:50.952 [actor-system-akka.actor.default-dispatcher-3] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:58454] - Starting up...
+21:25:51.014 [actor-system-akka.actor.default-dispatcher-4] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:58454] - Registered cluster JMX MBean [akka:type=Cluster]
+21:25:51.014 [actor-system-akka.actor.default-dispatcher-4] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:58454] - Started up successfully
+21:25:51.014 [actor-system-akka.actor.default-dispatcher-2] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:58454] - Metrics will be retreived from MBeans, and may be incorrect on some platforms. To increase metric accuracy add the 'sigar.jar' to the classpath and the appropriate platform-specific native libary to 'java.library.path'. Reason: java.lang.ClassNotFoundException: org.hyperic.sigar.Sigar
+21:25:51.030 [actor-system-akka.actor.default-dispatcher-2] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:58454] - Metrics collection has started successfully
+21:25:52.106 [actor-system-akka.actor.default-dispatcher-2] WARN  a.remote.ReliableDeliverySupervisor - Association with remote system [akka.tcp://ClusterSystem@127.0.0.1:2551] has failed, address is now gated for [5000] ms. Reason is: [Association failed with [akka.tcp://ClusterSystem@127.0.0.1:2551]].
+21:25:52.122 [actor-system-akka.actor.default-dispatcher-2] WARN  a.remote.ReliableDeliverySupervisor - Association with remote system [akka.tcp://ClusterSystem@127.0.0.1:2552] has failed, address is now gated for [5000] ms. Reason is: [Association failed with [akka.tcp://ClusterSystem@127.0.0.1:2552]].
+21:25:56.056 [actor-system-akka.actor.default-dispatcher-4] INFO  c.b.akkanoli.example3.Subscriber - subscribing
+21:25:56.056 [actor-system-akka.actor.default-dispatcher-4] INFO  c.b.akkanoli.example3.Subscriber - subscribing
+21:25:56.056 [actor-system-akka.actor.default-dispatcher-4] INFO  c.b.akkanoli.example3.Subscriber - subscribing
+21:26:01.036 [main] DEBUG com.brunoli.akkanoli.example3.System - Actor System Shutdown Starting...
+21:26:01.036 [actor-system-akka.actor.default-dispatcher-20] INFO  c.b.akkanoli.example3.Subscriber - Got: HELLO
+21:26:01.036 [actor-system-akka.actor.default-dispatcher-20] INFO  c.b.akkanoli.example3.Subscriber - Got: HELLO
+21:26:01.036 [actor-system-akka.actor.default-dispatcher-20] INFO  c.b.akkanoli.example3.Subscriber - Got: HELLO
+21:26:01.036 [actor-system-akka.actor.default-dispatcher-16] INFO  a.r.RemoteActorRefProvider$RemotingTerminator - Shutting down remote daemon.
+21:26:01.036 [actor-system-akka.actor.default-dispatcher-16] INFO  a.r.RemoteActorRefProvider$RemotingTerminator - Remote daemon shut down; proceeding with flushing remote transports.
+21:26:01.082 [actor-system-akka.actor.default-dispatcher-2] INFO  a.r.RemoteActorRefProvider$RemotingTerminator - Remoting shut down.
+21:26:01.082 [actor-system-akka.actor.default-dispatcher-2] ERROR akka.remote.RemoteActorRef - swallowing exception during message send
+akka.remote.RemoteTransportExceptionNoStackTrace: Attempted to send remote message but Remoting is not running.
+21:28:08.735 [actor-system-akka.actor.default-dispatcher-3] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+21:28:08.782 [actor-system-akka.actor.default-dispatcher-3] INFO  Remoting - Starting remoting
+21:28:08.907 [actor-system-akka.actor.default-dispatcher-3] INFO  Remoting - Remoting started; listening on addresses :[akka.tcp://actor-system@127.0.0.1:58471]
+21:28:08.938 [actor-system-akka.actor.default-dispatcher-3] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:58471] - Starting up...
+21:28:08.969 [actor-system-akka.actor.default-dispatcher-15] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:58471] - Registered cluster JMX MBean [akka:type=Cluster]
+21:28:08.969 [actor-system-akka.actor.default-dispatcher-15] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:58471] - Started up successfully
+21:28:08.969 [actor-system-akka.actor.default-dispatcher-15] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:58471] - Metrics will be retreived from MBeans, and may be incorrect on some platforms. To increase metric accuracy add the 'sigar.jar' to the classpath and the appropriate platform-specific native libary to 'java.library.path'. Reason: java.lang.ClassNotFoundException: org.hyperic.sigar.Sigar
+21:28:08.969 [actor-system-akka.actor.default-dispatcher-15] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:58471] - Metrics collection has started successfully
+21:28:10.063 [actor-system-akka.actor.default-dispatcher-4] WARN  a.remote.ReliableDeliverySupervisor - Association with remote system [akka.tcp://ClusterSystem@127.0.0.1:2551] has failed, address is now gated for [5000] ms. Reason is: [Association failed with [akka.tcp://ClusterSystem@127.0.0.1:2551]].
+21:28:10.063 [actor-system-akka.actor.default-dispatcher-4] WARN  a.remote.ReliableDeliverySupervisor - Association with remote system [akka.tcp://ClusterSystem@127.0.0.1:2552] has failed, address is now gated for [5000] ms. Reason is: [Association failed with [akka.tcp://ClusterSystem@127.0.0.1:2552]].
+21:28:13.971 [actor-system-akka.actor.default-dispatcher-14] INFO  c.b.akkanoli.example3.Subscriber - subscribing
+21:28:13.971 [actor-system-akka.actor.default-dispatcher-14] INFO  c.b.akkanoli.example3.Subscriber - subscribing
+21:28:13.971 [actor-system-akka.actor.default-dispatcher-14] INFO  c.b.akkanoli.example3.Subscriber - subscribing
+21:28:18.978 [main] DEBUG com.brunoli.akkanoli.example3.System - Actor System Shutdown Starting...
+21:28:18.978 [actor-system-akka.actor.default-dispatcher-16] INFO  c.b.akkanoli.example3.Subscriber - Got: HELLO
+21:28:18.978 [actor-system-akka.actor.default-dispatcher-16] INFO  c.b.akkanoli.example3.Subscriber - Got: HELLO
+21:28:18.978 [actor-system-akka.actor.default-dispatcher-16] INFO  c.b.akkanoli.example3.Subscriber - Got: HELLO
+21:28:18.994 [actor-system-akka.actor.default-dispatcher-14] INFO  a.r.RemoteActorRefProvider$RemotingTerminator - Shutting down remote daemon.
+21:28:18.994 [actor-system-akka.actor.default-dispatcher-17] INFO  a.r.RemoteActorRefProvider$RemotingTerminator - Remote daemon shut down; proceeding with flushing remote transports.
+21:28:19.025 [actor-system-akka.actor.default-dispatcher-20] INFO  a.r.RemoteActorRefProvider$RemotingTerminator - Remoting shut down.
+21:28:19.025 [actor-system-akka.actor.default-dispatcher-20] ERROR akka.remote.RemoteActorRef - swallowing exception during message send
+akka.remote.RemoteTransportExceptionNoStackTrace: Attempted to send remote message but Remoting is not running.
+21:33:22.580 [actor-system-akka.actor.default-dispatcher-3] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+21:33:22.642 [actor-system-akka.actor.default-dispatcher-3] INFO  Remoting - Starting remoting
+21:33:22.767 [actor-system-akka.actor.default-dispatcher-3] INFO  Remoting - Remoting started; listening on addresses :[akka.tcp://actor-system@127.0.0.1:58521]
+21:33:22.782 [actor-system-akka.actor.default-dispatcher-3] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:58521] - Starting up...
+21:33:22.814 [actor-system-akka.actor.default-dispatcher-5] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:58521] - Registered cluster JMX MBean [akka:type=Cluster]
+21:33:22.814 [actor-system-akka.actor.default-dispatcher-5] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:58521] - Started up successfully
+21:33:22.829 [actor-system-akka.actor.default-dispatcher-2] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:58521] - Metrics will be retreived from MBeans, and may be incorrect on some platforms. To increase metric accuracy add the 'sigar.jar' to the classpath and the appropriate platform-specific native libary to 'java.library.path'. Reason: java.lang.ClassNotFoundException: org.hyperic.sigar.Sigar
+21:33:22.829 [actor-system-akka.actor.default-dispatcher-2] INFO  Cluster(akka://actor-system) - Cluster Node [akka.tcp://actor-system@127.0.0.1:58521] - Metrics collection has started successfully
+21:33:23.908 [actor-system-akka.actor.default-dispatcher-16] WARN  a.remote.ReliableDeliverySupervisor - Association with remote system [akka.tcp://ClusterSystem@127.0.0.1:2552] has failed, address is now gated for [5000] ms. Reason is: [Association failed with [akka.tcp://ClusterSystem@127.0.0.1:2552]].
+21:33:23.908 [actor-system-akka.actor.default-dispatcher-16] WARN  a.remote.ReliableDeliverySupervisor - Association with remote system [akka.tcp://ClusterSystem@127.0.0.1:2551] has failed, address is now gated for [5000] ms. Reason is: [Association failed with [akka.tcp://ClusterSystem@127.0.0.1:2551]].
+21:33:32.867 [main] DEBUG com.brunoli.akkanoli.example4.System - Actor System Shutdown Starting...
+21:33:32.883 [actor-system-akka.actor.default-dispatcher-4] INFO  a.r.RemoteActorRefProvider$RemotingTerminator - Shutting down remote daemon.
+21:33:32.898 [actor-system-akka.actor.default-dispatcher-4] INFO  a.r.RemoteActorRefProvider$RemotingTerminator - Remote daemon shut down; proceeding with flushing remote transports.
+21:33:32.914 [actor-system-akka.actor.default-dispatcher-4] INFO  a.r.RemoteActorRefProvider$RemotingTerminator - Remoting shut down.
