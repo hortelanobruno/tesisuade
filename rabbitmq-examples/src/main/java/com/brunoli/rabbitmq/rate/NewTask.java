@@ -5,10 +5,13 @@
  */
 package com.brunoli.rabbitmq.rate;
 
+import com.rabbitmq.client.AMQP.Queue.DeclareOk;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.MessageProperties;
+import java.util.HashMap;
+import java.util.Map;
 
 public class NewTask {
 
@@ -20,12 +23,14 @@ public class NewTask {
         factory.setHost("localhost");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
-
-        channel.queueDeclare(TASK_QUEUE_NAME, true, false, false, null);
+        channel.queueDelete(TASK_QUEUE_NAME);
+        Map<String, Object> args = new HashMap<String, Object>();
+        args.put("x-max-length", 10000);
+        DeclareOk ok = channel.queueDeclare(TASK_QUEUE_NAME, true, false, false, args);
 
         String message = getMessage(argv);
 
-        int size = 1000000;
+        int size = 1000;
 
         for (int i = 0; i < size; i++) {
             channel.basicPublish("", TASK_QUEUE_NAME,
@@ -33,6 +38,10 @@ public class NewTask {
                     message.getBytes());
 
         }
+
+        ok = channel.queueDeclarePassive(TASK_QUEUE_NAME);
+
+        System.out.println("queue size: " + ok.getMessageCount());
 
         System.out.println(" [x] Sent '" + message + "'");
 
